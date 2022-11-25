@@ -17,4 +17,9 @@ public class Spot extends Period {
     private int spotNumber;
     @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
+
+    public void changeCourse(Course course){
+        this.course = course;
+        course.getSpots().add(this);
+    }
 }

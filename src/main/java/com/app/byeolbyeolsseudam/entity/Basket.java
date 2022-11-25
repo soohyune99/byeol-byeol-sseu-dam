@@ -15,4 +15,5 @@ public class Basket extends Period{
     private Member member;
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
+
 }
