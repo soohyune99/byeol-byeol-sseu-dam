@@ -24,7 +24,7 @@
                                 <ul class="header-nav header-nav-options">
                                     <li class="header-nav-brand">
                                         <div class="brand-holder">
-                                            <a href="javascript:void(0)" target="_blank"
+                                            <a href="javascript:void(0)" style="cursor: auto"
                                                class="location_text margin-right-lg"> <span
                                                     class="text-gray">프로그램 관리</span>
                                             </a>
@@ -130,7 +130,9 @@
                                                                                             id="programStatus"
                                                                                             style="width: 33.3%;" name="programStatus">
                                                                                         <option value="status" disabled selected hidden>상태</option>
-                                                                                        <option value="진행중">진행중</option>
+                                                                                        <option value="모집 예정">모집 예정</option>
+                                                                                        <option value="모집중">모집중</option>
+                                                                                        <option value="모집 완료">모집 완료</option>
                                                                                         <option value="마감">마감</option>
                                                                                     </select>
                                                                                 </div>
@@ -214,69 +216,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
-<script>
-    //리스트 체크박스
-    var $checkboxes = $(".form-check-input.checkbox");
 
-    // 전체 submit 전 체크
-
-    function addProgram() {
-        if($("input[name=programName]").val() == ""){
-            alert("강좌명을 입력하세요!");
-            $("input[name=programName]").focus();
-            return;
-        }
-
-        if($("input[name=programPlace]").val() == ""){
-            alert("장소를 입력하세요!");
-            $("input[name=programPlace]").focus();
-            return;
-        }
-
-        if($("input[name=programTime]").val() == ""){
-            alert("수강시간을 입력하세요!");
-            $("input[name=programTime]").focus();
-            return;
-        }
-
-        if($("input[name=programLimitCount]").val() == ""){
-            alert("인원수를 입력하세요!");
-            $("input[name=programLimitCount]").focus();
-            return;
-        }
-
-        if($('#programStatus option:selected').val() == "status"){
-            alert("프로그램 상태를 입력하세요!");
-            $("#programStatus").focus();
-            return;
-        }
-
-        if($("input[name=programOpeningDate]").val() == "2022-07-22T12:00"){
-            alert("시작일을 입력하세요!");
-            $("input[name=programOpeningDate]").focus();
-            return;
-        }
-
-        if($("input[name=programClosingDate]").val() == "2022-07-22T12:00"){
-            alert("마감일을 입력하세요!");
-            $("input[name=programClosingDate]").focus();
-            return;
-        }
-
-        if($("textarea[name=programDetail]").val() == ""){
-            alert("상세설명을 입력하세요!");
-            $("textarea[name=programDetail]").focus();
-            return;
-        }
-
-        if($("input[name=programFile]").next().attr("src") == "/images/admin/001.png"){
-            alert("첨부파일을 등록하세요!");
-            return;
-        }
-
-        programForm.submit();
-
-    }
-
-</script>
 </html>

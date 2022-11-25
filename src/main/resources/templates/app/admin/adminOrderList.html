@@ -25,7 +25,7 @@
                                 <ul class="header-nav header-nav-options">
                                     <li class="header-nav-brand">
                                         <div class="brand-holder">
-                                            <a href="javascript:void(0)" target="_blank"
+                                            <a href="javascript:void(0)" style="cursor: auto"
                                                class="location_text margin-right-lg"> <span
                                                     class="text-gray">주문 관리</span>
                                             </a>
@@ -146,41 +146,29 @@
                                                                                                    value="1">
                                                                                         </div>
                                                                                     </th>
-                                                                                    <th class="min-w-100px sorting orderIdTitle"
+                                                                                    <th class="min-w-100px sorting orderDetailIdTitle"
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
-                                                                                        style="width: 15%;">주문 번호
-                                                                                    </th>
-                                                                                    <th class="text-end min-w-100px sorting productIdTitle"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_ecommerce_products_table"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        style="width: 15%;">제품 번호
+                                                                                        style="width: 20%;">주문 번호
                                                                                     </th>
                                                                                     <th class="text-end min-w-70px sorting orderDateTitle"
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
-                                                                                        style="width: 15%;">주문 날짜
-                                                                                    </th>
-                                                                                    <th class="text-end min-w-100px sorting productTotalPriceTitle"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_ecommerce_products_table"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        style="width: 15%;">총 가격
+                                                                                        style="width: 20%;">주문 날짜
                                                                                     </th>
                                                                                     <th class="text-end min-w-100px sorting memberIdTitle"
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
-                                                                                        style="width: 15%;">회원 번호
+                                                                                        style="width: 20%;">회원 번호
                                                                                     </th>
-                                                                                    <th class="text-end min-w-100px sorting productCountTitle"
+                                                                                    <th class="text-end min-w-100px sorting orderStatusTitle"
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
-                                                                                        style="width: 15%;">주문 수량
+                                                                                        style="width: 30%;">주문 상태
                                                                                     </th>
                                                                                 </tr>
                                                                                 <!--end::Table row-->
@@ -204,16 +192,12 @@
                                                                                     <!--end::Checkbox-->
 
                                                                                     <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0 orderId">
+                                                                                    <td class="text-end pe-0 orderDetailId">
+                                                                                        <a href="http://localhost:10001/admin/adminorderdetail">
                                                                                         <span class="fw-bold">2022111301</span>
+                                                                                        </a>
                                                                                     </td>
                                                                                     <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0 productId">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
 
                                                                                     <!--begin::주문 날짜=-->
                                                                                     <td class="text-end pe-0 orderDate"
@@ -222,486 +206,46 @@
                                                                                     </td>
                                                                                     <!--end::주문 날짜=-->
 
-                                                                                    <!--begin::Price 1개의 제품에 대한 총가격 = 제품 1품목 * 주문수량 =-->
-                                                                                    <td class="text-end pe-0 productTotalPrice">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
                                                                                     <!--begin::회원 번호=-->
                                                                                     <td class="text-end pe-0 memberId">2022111301</td>
                                                                                     <!--end::회원 번호=-->
 
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0 productCount"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
+                                                                                    <!--begin::주문 상태=-->
+                                                                                    <td class="text-end pe-0 orderStatus">
+                                                                                        <select class="form-control form-control-solid "
+                                                                                                id="orderStatus"
+                                                                                                style="font-size: 11px; padding-left: 17px; margin: 0 0 0 0;width: 59%;float: left;">
+                                                                                            <option value="orderStatus"
+                                                                                                    disabled selected
+                                                                                                    hidden>주문상태를 선택해주세요
+                                                                                            </option>
+                                                                                            <option value="주문 완료">주문 완료
+                                                                                            </option>
+                                                                                            <option value="주문 취소">주문 취소
+                                                                                            </option>
+                                                                                            <option value="배송 대기중">배송 대기중
+                                                                                            </option>
+                                                                                            <option value="배송중">배송중
+                                                                                            </option>
+                                                                                            <option value="배송 완료">배송 완료
+                                                                                            </option>
+                                                                                        </select>
+                                                                                        <button type="button" style="font-family: inherit; width: 119px; float: right;font-size: 10px; height: 29px;display: block;"
+                                                                                                         class="btn btn-light-primary">수정 하기</button>
+                                                                                        <button type="button" style="background:#74c9ff;font-family: inherit; float: right;width: 59px;font-size: 7px; height: 29px; display: none;"
+                                                                                                class="btn btn-primary">수정</button>
+                                                                                        <button type="button" style="background:#ec6e8e; font-family: inherit; float: right;width: 59px;margin-right: 1px; font-size: 7px; height: 29px; display: none;"
+                                                                                                class="btn btn-danger">취소</button>
+
+
                                                                                     </td>
-                                                                                    <!--end::주문 수량=-->
+                                                                                    <!--end::주문 상태=-->
+
                                                                                 </tr>
                                                                                 <!-- end :: 주문 목록 -->
 
                                                                                 <!-- BEGIN : 삭제할 데이터 - 날리기 ######################### -->
 
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022111301</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0">2022111301</td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::주문 수량=-->
-                                                                                </tr>
-                                                                                <!-- end :: 주문 목록 -->
-
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022111301</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0">2022111301</td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::주문 수량=-->
-                                                                                </tr>
-                                                                                <!-- end :: 주문 목록 -->
-
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022111301</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0">2022111301</td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::주문 수량=-->
-                                                                                </tr>
-                                                                                <!-- end :: 주문 목록 -->
-
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022111301</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0">2022111301</td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::주문 수량=-->
-                                                                                </tr>
-                                                                                <!-- end :: 주문 목록 -->
-
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022111301</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0">2022111301</td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::주문 수량=-->
-                                                                                </tr>
-                                                                                <!-- end :: 주문 목록 -->
-
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022111301</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0">2022111301</td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::주문 수량=-->
-                                                                                </tr>
-                                                                                <!-- end :: 주문 목록 -->
-
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022111301</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0">2022111301</td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::주문 수량=-->
-                                                                                </tr>
-                                                                                <!-- end :: 주문 목록 -->
-
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022111301</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0">2022111301</td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::주문 수량=-->
-                                                                                </tr>
-                                                                                <!-- end :: 주문 목록 -->
-
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022111301</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0">2022111301</td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 수량-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::주문 수량=-->
-                                                                                </tr>
-                                                                                <!-- end :: 주문 목록 -->
 
                                                                                 <!-- END : 삭제할 데이터 - 날리기 ########################### -->
 
