@@ -1,0 +1,127 @@
+@charset "utf-8";
+
+#app-body {
+    height: fit-content;
+    position: relative;
+    flex-grow: 1;
+}
+
+.h1, h1 {
+    font-size: 2.5rem;
+    line-height: 3.75rem;
+    letter-spacing: -.04375rem;
+}
+
+h1[data-v-e476fdec] {
+    line-height: 2.5625rem;
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #323232;
+    margin: 3rem 0;
+}
+
+section[data-v-e476fdec] {
+    font-size: .875rem;
+    margin: 3rem 0 5.125rem;
+}
+
+.item-container[data-v-e476fdec] {
+    cursor: default;
+}
+
+.sign-container[data-v-9ebe1958] {
+    border-radius: 8px;
+    padding: 0.75rem 1rem 1rem;
+}
+
+.sign-container.danger[data-v-9ebe1958] {
+    background-color: #fff2f3;
+}
+
+.header[data-v-9ebe1958] {
+    flex: 1;
+}
+
+.title[data-v-9ebe1958] {
+    display: flex;
+    align-items: flex-start;
+    font-size: .875rem;
+}
+
+.sign-container.danger .title[data-v-9ebe1958] {
+    color: #fa5963;
+}
+
+.title span[data-v-9ebe1958] {
+    padding-left: 0.5rem;
+    white-space: pre-line;
+}
+
+.btn-action[data-v-9ebe1958] {
+    padding-top: 0.4375rem;
+    padding-bottom: 0.4375rem;
+    font-size: .75rem;
+    margin-top: 0.75rem;
+}
+
+.sign-container.danger .btn-action[data-v-9ebe1958] {
+    color: #fff;
+    background-color: #fa5963;
+    border-color: #fa5963;
+}
+
+.account-info[data-v-e476fdec] {
+    margin-bottom: 2rem;
+}
+
+.item-title[data-v-e476fdec] {
+    color: #b5b5b5;
+}
+
+.item-info[data-v-e476fdec] {
+    padding-top: 0.25rem;
+}
+
+
+@media (min-width: 768px){
+h1[data-v-e476fdec] {
+    line-height: 3.125rem;
+    font-size: 2.125rem;
+    }
+}
+
+@media (min-width: 768px){
+section[data-v-e476fdec] {
+    font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .sign-container[data-v-9ebe1958] {
+        display: flex;
+        padding: 0.75rem 1.75rem 0.75rem 0.75rem;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .sign-container[data-v-9ebe1958] {
+        display: flex;
+        padding: 0.75rem 1.75rem 0.75rem 0.75rem;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn-action[data-v-9ebe1958] {
+        width: auto;
+        padding: 0.5rem 1.25rem;
+        margin-top: 0;
+    }
+}
+@media (min-width: 768px) {
+    .button-group > .btn[data-v-2825a58e] {
+        max-width: 8.875rem;
+    }
+}
+

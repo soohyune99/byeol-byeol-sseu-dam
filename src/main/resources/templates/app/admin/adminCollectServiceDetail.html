@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 관리자 페이지</title>
+    <link rel="icon" href="/images/admin/0PBC.png">
+    <link rel="stylesheet" href="/css/admin/adminCssAll.css">
+</head>
+<body>
+<header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
+<div id="wrapper">
+    <div class="flexroot">
+        <div class="app_page flex_column">
+
+            <!--우측 Contents-->
+            <div class="app_wrapper">
+                <!--우측 HEADER -->
+                <header class="app_header">
+                    <div class="header_wrapper">
+                        <div class="headerbar">
+                            <div class="headerbar-left">
+                                <ul class="header-nav header-nav-options">
+                                    <li class="header-nav-brand">
+                                        <div class="brand-holder">
+                                            <a href="javascript:void(0)" target="_blank"
+                                               class="location_text margin-right-lg"> <span
+                                                    class="text-gray">수거서비스</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!--메인 페이지 -->
+                <main class="app_main flex_column">
+                    <div class="app_main_context">
+                        <div class="app_main_context_container">
+                            <div id="content" class="dashboard_main">
+                                <div id="alertBox" class="alert__wrap"></div>
+                                <section>
+                                    <div class="clearfix area_wrap">
+                                        <div class="section-body float_l">
+                                            <div class="app-main flex-column flex-row-fluid"
+                                                 id="kt_app_main">
+                                                <div class="d-flex flex-column flex-column-fluid">
+                                                    <!--관련 제목 입력 부분-->
+                                                    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6"
+                                                         data-select2-id="select2-data-kt_app_toolbar">
+                                                        <div id="kt_app_toolbar_container"
+                                                             class="app-container container-xxl d-flex flex-stack"
+                                                             data-select2-id="select2-data-kt_app_toolbar_container">
+                                                            <div
+                                                                    class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                                                                <h1
+                                                                        class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                                                                    수거 상세 내역</h1>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--/ 관련 제목 입력 부분-->
+
+                                                    <!-- 관련 내용 입력 부분 -->
+                                                    <div id="kt_app_content" class="app-content flex-column-fluid">
+                                                        <!--begin::Content container-->
+                                                        <div id="kt_app_content_container"
+                                                             class="app-container container-xxl">
+                                                            <!--begin::Products-->
+                                                            <div class="card card-flush">
+                                                                <!--begin::Card header-->
+                                                                <div class="card-header align-items-center py-5 gap-2 gap-md-5"
+                                                                     style="border-bottom: 0px solid #eff2f5;">
+                                                                    <!--begin::Card title-->
+                                                                    <div class="card-title">
+
+                                                                        <!--begin::Search-->
+                                                                        <!--                                                                        <div class="d-flex align-items-center position-relative my-1">-->
+                                                                        <!--                                                                            &lt;!&ndash;begin::검색창 돋보기 Svg Icon | path: icons/duotune/general/gen021.svg&ndash;&gt;-->
+                                                                        <!--                                                                            <span class="svg-icon svg-icon-1 position-absolute ms-4">-->
+                                                                        <!--                                                                                <svg width="24" height="24"-->
+                                                                        <!--                                                                                     viewBox="0 0 24 24" fill="none"-->
+                                                                        <!--                                                                                     xmlns="http://www.w3.org/2000/svg">-->
+                                                                        <!--                                                                                    <rect opacity="0.5" x="17.0365"-->
+                                                                        <!--                                                                                          y="15.1223" width="8.15546"-->
+                                                                        <!--                                                                                          height="2" rx="1"-->
+                                                                        <!--                                                                                          transform="rotate(45 17.0365 15.1223)"-->
+                                                                        <!--                                                                                          fill="currentColor">-->
+                                                                        <!--                                                                                    </rect>-->
+                                                                        <!--                                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"-->
+                                                                        <!--                                                                                          fill="currentColor">-->
+                                                                        <!--                                                                                    </path>-->
+                                                                        <!--                                                                                </svg>-->
+                                                                        <!--                                                                            </span>-->
+                                                                        <!--end::Svg Icon-->
+
+                                                                        <!--                                                                            <input type="text"-->
+                                                                        <!--                                                                                   data-kt-ecommerce-product-filter="search"-->
+                                                                        <!--                                                                                   class="form-control form-control-solid w-250px ps-14"-->
+                                                                        <!--                                                                                   placeholder="프로그램 검색">-->
+                                                                        <!--                                                                        </div>-->
+                                                                        <!--end::Search-->
+                                                                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                                                                            <div class="w-100 mw-150px">
+                                                                            </div>
+                                                                            <!--begin::Add product-->
+                                                                            <!--                                                                            <a href="javascript:void(0)"-->
+                                                                            <!--                                                                               class="btn btn-primary">저장</a>-->
+                                                                            <!--                                                                            <a href="javascript:void(0)"-->
+                                                                            <!--                                                                               class="btn btn-primary"-->
+                                                                            <!--                                                                               style="background: #009ef7 ; margin-left: 10px;">수정</a>-->
+                                                                            <!--                                                                            <a href="javascript:void(0)"-->
+                                                                            <!--                                                                               class="btn btn-primary"-->
+                                                                            <!--                                                                               style="background: #f1416c ; margin-left: 10px;">삭제</a>-->
+                                                                            <!--end::Add product-->
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Card title-->
+
+                                                                    <!--begin::Card toolbar-->
+
+                                                                    <!--end::Card toolbar-->
+                                                                </div>
+                                                                <!--end::Card header-->
+
+                                                                <!--begin::Card body-->
+                                                                <div class="card-body pt-0">
+                                                                    <!--begin::Table-->
+                                                                    <div id="kt_ecommerce_products_table_wrapper"
+                                                                         class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+
+                                                                        </div>
+
+
+                                                                        <div style="width: 60%; margin: 0 auto 48px auto;">
+                                                                            <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
+                                                                                 style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
+                                                                                <div class="w-100 mw-150px">
+                                                                                    <a href="http://localhost:10001/admin/admincollectservice"
+                                                                                       style="padding: 9px 20px 9px 20px;"
+                                                                                       class="btn btn-primary">돌아가기</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 29.4%; margin-right: 9px;"> 수거 신청 번호 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 70.6%;"> 55151648 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 25%; margin-right: 9px;"> 신청 날짜 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 75%;"> 2022. 11. 21 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 25%; margin-right: 9px;"> 신청자 (회원번호) </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 75%;"> 2150516 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 25%; margin-right: 9px;"> 주소 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 75%;"> 경기도 성남시 분당구 돌마로 51 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 25%; margin-right: 9px;"> 수거 물품_병 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 75%;"> 5 개 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 25%; margin-right: 9px;"> 수거 물품_페트 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 75%;"> 10 개 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 25%; margin-right: 9px;"> 수거 메세지 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 75%;"> 오전 11시 이후에 문밖에 놓을게요! </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--end::Table-->
+                                                                    </div>
+                                                                    <!--end::Card body-->
+                                                                </div>
+                                                                <!--end::Products-->
+                                                            </div>
+                                                            <!--end::Content container-->
+
+
+                                                        </div><!-- /관련 내용 입력 부분 -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+<script>
+    //리스트 체크박스
+    var $checkboxes = $(".form-check-input.checkbox");
+</script>
+</html>

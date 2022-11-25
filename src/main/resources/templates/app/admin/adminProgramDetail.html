@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 관리자 페이지</title>
+    <link rel="icon" href="/images/admin/0PBC.png">
+    <link rel="stylesheet" href="/css/admin/adminCssAll.css">
+    <style>
+        .programMemberTBL1{
+            width: 6%; margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
+        }
+        .programMemberTBL2{
+            width: 23%; margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
+        }
+        .programMemberTBL3{
+            width: 23%;  margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
+        }
+        .programMemberTBL4{
+            width: 23%;  margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
+        }
+        .programMemberTBL5{
+            width: 25%; margin: 0px 0px 0px 0px ; text-align: center; background: rgba(206,238,217,0.45);
+        }
+    </style>
+</head>
+<body>
+<header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
+<div id="wrapper">
+    <div class="flexroot">
+        <div class="app_page flex_column">
+
+            <!--우측 Contents-->
+            <div class="app_wrapper">
+                <!--우측 HEADER -->
+                <header class="app_header">
+                    <div class="header_wrapper">
+                        <div class="headerbar">
+                            <div class="headerbar-left">
+                                <ul class="header-nav header-nav-options">
+                                    <li class="header-nav-brand">
+                                        <div class="brand-holder">
+                                            <a href="javascript:void(0)" target="_blank"
+                                               class="location_text margin-right-lg"> <span
+                                                    class="text-gray">프로그램 관리</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!--메인 페이지 -->
+                <main class="app_main flex_column">
+                    <div class="app_main_context">
+                        <div class="app_main_context_container">
+                            <div id="content" class="dashboard_main">
+                                <div id="alertBox" class="alert__wrap"></div>
+                                <section>
+                                    <div class="clearfix area_wrap">
+                                        <div class="section-body float_l">
+                                            <div class="app-main flex-column flex-row-fluid"
+                                                 id="kt_app_main">
+                                                <div class="d-flex flex-column flex-column-fluid">
+                                                    <!--관련 제목 입력 부분-->
+                                                    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6"
+                                                         data-select2-id="select2-data-kt_app_toolbar">
+                                                        <div id="kt_app_toolbar_container"
+                                                             class="app-container container-xxl d-flex flex-stack"
+                                                             data-select2-id="select2-data-kt_app_toolbar_container">
+                                                            <div
+                                                                    class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                                                                <h1
+                                                                        class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                                                                    프로그램 상세 내역</h1>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--/ 관련 제목 입력 부분-->
+
+                                                    <!-- 관련 내용 입력 부분 -->
+                                                    <div id="kt_app_content" class="app-content flex-column-fluid">
+                                                        <!--begin::Content container-->
+                                                        <div id="kt_app_content_container"
+                                                             class="app-container container-xxl">
+                                                            <!--begin::Products-->
+                                                            <div class="card card-flush">
+                                                                <!--begin::Card header-->
+                                                                <div class="card-header align-items-center py-5 gap-2 gap-md-5"
+                                                                     style="border-bottom: 0px solid #eff2f5;">
+                                                                    <!--begin::Card title-->
+                                                                    <div class="card-title">
+                                                                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                                                                            <div class="w-100 mw-150px">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Card title-->
+
+                                                                    <!--begin::Card toolbar-->
+
+                                                                    <!--end::Card toolbar-->
+                                                                </div>
+                                                                <!--end::Card header-->
+
+                                                                <!--begin::Card body-->
+                                                                <div class="card-body pt-0">
+                                                                    <!--begin::Table-->
+                                                                    <div id="kt_ecommerce_products_table_wrapper"
+                                                                         class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+
+                                                                        </div>
+
+
+                                                                        <div style="width: 60%; margin: 0 auto 48px auto;">
+                                                                            <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
+                                                                                 style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
+                                                                                <div class="w-100 mw-150px">
+                                                                                    <a href="http://localhost:10001/admin/adminprogram"
+                                                                                       style="padding: 9px 20px 9px 20px;"
+                                                                                       class="btn btn-primary">돌아가기</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 29.4%; margin-right: 9px;"> 강좌명 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 70.6%;"> 줍깅의 유래와 이해 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 25%; margin-right: 9px;"> 현재 신청인원 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 75%;"> 21 명 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 25%; margin-right: 9px;"> 프로그램 상태 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 75%;"> 진행중 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid w-250px ps-14"
+                                                                                         style="width: 100%; text-align: center; background: #ceeed9"> 수강 신청자 명단 </div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid programMemberTBL1">No.</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL2">수강신청 번호</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL3">회원 번호</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL4">회원 이름</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL5">회원 전화번호</div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid programMemberTBL1">01</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL2">00123</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221364</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL4">한동석</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-1234-1234</div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid programMemberTBL1">02</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL2">00129</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221398</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL4">정재훈</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-4152-0000</div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid programMemberTBL1">03</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL2">00159</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL3">20211212</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL4">문승희</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-9845-9546</div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid programMemberTBL1">04</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL2">00129</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221219</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL4">성은지</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-7777-7894</div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid programMemberTBL1">05</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL2">00198</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221287</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL4">홍수현</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-9987-9987</div>
+                                                                                </div>
+                                                                                <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <div class="form-control form-control-solid programMemberTBL1">06</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL2">00178</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221281</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL4">장선홍</div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-7521-7410</div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--end::Table-->
+                                                                    </div>
+                                                                    <!--end::Card body-->
+                                                                </div>
+                                                                <!--end::Products-->
+                                                            </div>
+                                                            <!--end::Content container-->
+
+
+                                                        </div><!-- /관련 내용 입력 부분 -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+<script>
+    //리스트 체크박스
+    var $checkboxes = $(".form-check-input.checkbox");
+</script>
+</html>

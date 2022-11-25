@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 관리자 페이지</title>
+    <link rel="icon" href="/images/admin/0PBC.png">
+    <link rel="stylesheet" href="/css/admin/adminCssAll.css">
+</head>
+<body>
+<header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
+<div id="wrapper">
+    <div class="flexroot">
+        <div class="app_page flex_column">
+
+            <!--우측 Contents-->
+            <div class="app_wrapper">
+                <!--우측 HEADER -->
+                <header class="app_header">
+                    <div class="header_wrapper">
+                        <div class="headerbar">
+                            <div class="headerbar-left">
+                                <ul class="header-nav header-nav-options">
+                                    <li class="header-nav-brand">
+                                        <div class="brand-holder">
+                                            <a href="javascript:void(0)" target="_blank"
+                                               class="location_text margin-right-lg"> <span
+                                                    class="text-gray">고객센터</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!--메인 페이지 -->
+                <main class="app_main flex_column">
+                    <div class="app_main_context">
+                        <div class="app_main_context_container">
+                            <div id="content" class="dashboard_main">
+                                <div id="alertBox" class="alert__wrap"></div>
+                                <section>
+                                    <div class="clearfix area_wrap">
+                                        <div class="section-body float_l">
+                                            <div class="app-main flex-column flex-row-fluid"
+                                                 id="kt_app_main">
+                                                <div class="d-flex flex-column flex-column-fluid">
+                                                    <!--관련 제목 입력 부분-->
+                                                    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6"
+                                                         data-select2-id="select2-data-kt_app_toolbar">
+                                                        <div id="kt_app_toolbar_container"
+                                                             class="app-container container-xxl d-flex flex-stack"
+                                                             data-select2-id="select2-data-kt_app_toolbar_container">
+                                                            <div
+                                                                    class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                                                                <h1
+                                                                        class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                                                                    공지사항 추가</h1>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--/ 관련 제목 입력 부분-->
+
+                                                    <!-- 관련 내용 입력 부분 -->
+                                                    <div id="kt_app_content" class="app-content flex-column-fluid">
+                                                        <!--begin::Content container-->
+                                                        <div id="kt_app_content_container"
+                                                             class="app-container container-xxl">
+                                                            <!--begin::Products-->
+                                                            <div class="card card-flush">
+                                                                <!--begin::Card header-->
+                                                                <div class="card-header align-items-center py-5 gap-2 gap-md-5"
+                                                                     style="border-bottom: 0px solid #eff2f5;">
+                                                                    <!--begin::Card title-->
+                                                                    <div class="card-title">
+                                                                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                                                                            <div class="w-100 mw-150px">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Card title-->
+                                                                </div>
+                                                                <!--end::Card header-->
+
+                                                                <!--begin::Card body-->
+                                                                <div class="card-body pt-0">
+                                                                    <!--begin::Table-->
+                                                                    <div id="kt_ecommerce_products_table_wrapper"
+                                                                         class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+                                                                        </div>
+                                                                        <form th:action="@{adminnotice}"
+                                                                              name="addAdminNoticeForm">
+                                                                            <div style="width: 60%; margin: 0 auto 48px auto;">
+                                                                                <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
+                                                                                     style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
+                                                                                    <div class="w-100 mw-150px">
+                                                                                        <a type="submit"
+                                                                                           onclick="addAdminNotice()"
+                                                                                           style="padding: 9px 20px 9px 20px;"
+                                                                                           class="btn btn-primary">추가
+                                                                                            하기</a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                                    <div class="d-flex align-items-center position-relative my-1">
+                                                                                        <input hidden="hidden"/>
+                                                                                        <input type="text"
+                                                                                               name="noticeTitle"
+                                                                                               class="form-control form-control-solid"
+                                                                                               placeholder="공지사항 제목"
+                                                                                               style="width: 88%;">
+                                                                                        <select class="form-control form-control-solid"
+                                                                                                id="noticeImportant"
+                                                                                                style="width: 12%;padding-left: 19px; margin-left: 9px;color: #5E6278;">
+                                                                                            <option value="noticeSelect"
+                                                                                                    disabled selected
+                                                                                                    hidden>선택
+                                                                                            </option>
+                                                                                            <option value="일반">일반
+                                                                                            </option>
+                                                                                            <option value="중요">중요
+                                                                                            </option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <textarea
+                                                                                            class="form-control form-control-solid"
+                                                                                            name="noticeContent"
+                                                                                            placeholder="공지사항 내용"
+                                                                                            style="width: 100%; height: 200px;"></textarea>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="row">
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end::Table-->
+                                                                        </form>
+                                                                    </div>
+                                                                    <!--end::Card body-->
+                                                                </div>
+                                                                <!--end::Products-->
+                                                            </div>
+                                                            <!--end::Content container-->
+
+
+                                                        </div><!-- /관련 내용 입력 부분 -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+</html>

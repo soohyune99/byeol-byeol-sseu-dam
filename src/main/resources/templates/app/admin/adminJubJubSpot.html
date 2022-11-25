@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 관리자 페이지</title>
+    <link rel="icon" href="/images/admin/0PBC.png">
+    <link rel="stylesheet" href="/css/admin/adminCssAll.css">
+</head>
+<body>
+<header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
+
+<div id="wrapper">
+    <div class="flexroot">
+        <div class="app_page flex_column">
+
+            <!--우측 Contents-->
+            <div class="app_wrapper">
+                <!--우측 HEADER -->
+                <header class="app_header">
+                    <div class="header_wrapper">
+                        <div class="headerbar">
+                            <div class="headerbar-left">
+                                <ul class="header-nav header-nav-options">
+                                    <li class="header-nav-brand">
+                                        <div class="brand-holder">
+                                            <a href="javascript:void(0)" target="_blank"
+                                               class="location_text margin-right-lg"> <span
+                                                    class="text-gray">줍깅 관리</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!--메인 페이지 -->
+                <main class="app_main flex_column">
+                    <div class="app_main_context">
+                        <div class="app_main_context_container">
+                            <div id="content" class="dashboard_main">
+                                <div id="alertBox" class="alert__wrap"></div>
+                                <section>
+                                    <div class="clearfix area_wrap">
+                                        <div class="section-body float_l">
+                                            <div class="app-main flex-column flex-row-fluid"
+                                                 id="kt_app_main">
+                                                <div class="d-flex flex-column flex-column-fluid">
+                                                    <!--관련 제목 입력 부분-->
+                                                    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6"
+                                                         data-select2-id="select2-data-kt_app_toolbar">
+                                                        <div id="kt_app_toolbar_container"
+                                                             class="app-container container-xxl d-flex flex-stack"
+                                                             data-select2-id="select2-data-kt_app_toolbar_container">
+                                                            <div
+                                                                    class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                                                                <h1
+                                                                        class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                                                                    스팟 목록</h1>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--/ 관련 제목 입력 부분-->
+
+                                                    <!-- 관련 내용 입력 부분 -->
+                                                    <div id="kt_app_content" class="app-content flex-column-fluid">
+                                                        <!--begin::Content container-->
+                                                        <div id="kt_app_content_container"
+                                                             class="app-container container-xxl">
+                                                            <!--begin::Products-->
+                                                            <div class="card card-flush">
+                                                                <!--begin::Card header-->
+                                                                <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                                                                    <!--begin::Card title-->
+                                                                    <div class="card-title">
+
+                                                                        <!--begin::Search-->
+                                                                        <div class="d-flex align-items-center position-relative my-1">
+                                                                            <!--begin::검색창 돋보기 Svg Icon | path: icons/duotune/general/gen021.svg-->
+                                                                            <span class="svg-icon svg-icon-1 position-absolute ms-4">
+                                                                                <svg width="24" height="24"
+                                                                                     viewBox="0 0 24 24" fill="none"
+                                                                                     xmlns="http://www.w3.org/2000/svg">
+                                                                                    <rect opacity="0.5" x="17.0365"
+                                                                                          y="15.1223" width="8.15546"
+                                                                                          height="2" rx="1"
+                                                                                          transform="rotate(45 17.0365 15.1223)"
+                                                                                          fill="currentColor">
+                                                                                    </rect>
+                                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                                                                                          fill="currentColor">
+                                                                                    </path>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                            <form>
+                                                                                <input type="text" style="display:none">
+                                                                                <input type="text" name="enter" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
+                                                                                       data-kt-ecommerce-product-filter="search"
+                                                                                       class="form-control form-control-solid w-250px ps-14"
+                                                                                       placeholder="스팟 검색">
+                                                                            </form>
+                                                                        </div>
+                                                                        <!--end::Search-->
+
+                                                                    </div>
+                                                                    <!--end::Card title-->
+
+                                                                    <!--begin::Card toolbar-->
+                                                                    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                                                                        <div class="w-100 mw-150px">
+                                                                        </div>
+                                                                        <!--begin::Add product-->
+                                                                        <a href="http://localhost:10001/admin/adminjubjubspotadd"
+                                                                           class="btn btn-primary">스팟 추가</a>
+                                                                        <!--end::Add product-->
+                                                                        <a href="javascript:void(0)"
+                                                                           class="btn btn-primary"
+                                                                           id="deleteSpotBtn"
+                                                                           style="background: #f1416c ; margin-left: 10px;">삭제</a>
+                                                                    </div>
+                                                                    <!--end::Card toolbar-->
+                                                                </div>
+                                                                <!--end::Card header-->
+
+                                                                <!--begin::Card body-->
+                                                                <div class="card-body pt-0">
+                                                                    <!--begin::Table-->
+                                                                    <div id="kt_ecommerce_products_table_wrapper"
+                                                                         class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+                                                                            <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer"
+                                                                                   id="kt_ecommerce_products_table">
+
+                                                                                <!--begin::Table head-->
+                                                                                <thead>
+                                                                                <!--begin::Table row-->
+                                                                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                                                    <th class="w-10px pe-2 sorting_disabled"
+                                                                                        rowspan="1" colspan="1"
+                                                                                        aria-label=""
+                                                                                        style="width: 5%;">
+                                                                                        <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                                                                            <input class="form-check-input total"
+                                                                                                   type="checkbox"
+                                                                                                   data-kt-check="true"
+                                                                                                   data-kt-check-target="#kt_ecommerce_products_table .form-check-input"
+                                                                                                   value="1">
+                                                                                        </div>
+                                                                                    </th>
+                                                                                    <th class="text-end min-w-100px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_ecommerce_products_table"
+                                                                                        rowspan="1" colspan="1"
+                                                                                        style="width: 14.1%;">스팟 번호
+                                                                                    </th>
+                                                                                    <th class="text-end min-w-100px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_ecommerce_products_table"
+                                                                                        rowspan="1" colspan="1"
+                                                                                        style="width: 14.1%;">스팟 이름
+                                                                                    </th>
+                                                                                    <th class="text-end min-w-100px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_ecommerce_products_table"
+                                                                                        rowspan="1" colspan="1"
+                                                                                        style="width: 14.1%;">스팟 상태
+                                                                                    </th>
+                                                                                    <th class="text-end min-w-100px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_ecommerce_products_table"
+                                                                                        rowspan="1" colspan="1"
+                                                                                        style="width: 14.1%;">스팟 위치
+                                                                                    </th>
+                                                                                    <th class="text-end min-w-100px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_ecommerce_products_table"
+                                                                                        rowspan="1" colspan="1"
+                                                                                        style="width: 14.1%;">스팟 QR
+                                                                                    </th>
+                                                                                    <th class="text-end min-w-100px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_ecommerce_products_table"
+                                                                                        rowspan="1" colspan="1"
+                                                                                        style="width: 14.1%;">해당 코스
+                                                                                    </th>
+                                                                                    <th class="text-end min-w-100px sorting"
+                                                                                        rowspan="1" colspan="1"
+                                                                                        style="width: 10%;">수정
+                                                                                    </th>
+                                                                                </tr>
+                                                                                <!--end::Table row-->
+                                                                                </thead>
+                                                                                <!--end::Table head-->
+
+                                                                                <!--begin::Table body-->
+                                                                                <tbody class="fw-semibold text-gray-600">
+
+                                                                                <!--1_베너 -->
+                                                                                <tr class="odd productList1">
+                                                                                    <!--begin::Checkbox-->
+                                                                                    <td>
+                                                                                        <div
+                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <!--end::Checkbox-->
+
+                                                                                    <!--begin::배너번호=-->
+                                                                                    <td class="text-end pe-0">
+                                                                                        <span class="fw-bold">001</span>
+                                                                                    </td>
+                                                                                    <!--end::배너번호=-->
+
+                                                                                    <!--begin::배너이름=-->
+                                                                                    <td class="text-end pe-0">
+                                                                                        <span class="fw-bold">A코스 첫번째</span>
+                                                                                    </td>
+                                                                                    <!--end::배너이름=-->
+
+                                                                                    <!--begin::배너이름=-->
+                                                                                    <td class="text-end pe-0">
+                                                                                        <span class="fw-bold">mid-1</span>
+                                                                                    </td>
+                                                                                    <!--end::배너이름=-->
+
+                                                                                    <!--begin::배너이름=-->
+                                                                                    <td class="text-end pe-0">
+                                                                                        <span class="fw-bold">영화정</span>
+                                                                                    </td>
+                                                                                    <!--end::배너이름=-->
+
+                                                                                    <!--begin::배너이름=-->
+                                                                                    <td class="text-end pe-0">
+                                                                                        <span class="fw-bold">A코스-1 OR.jpg</span>
+                                                                                    </td>
+                                                                                    <!--end::배너이름=-->
+
+                                                                                    <!--begin::배너이름=-->
+                                                                                    <td class="text-end pe-0">
+                                                                                        <span class="fw-bold">A코스</span>
+                                                                                    </td>
+                                                                                    <!--end::배너이름=-->
+
+                                                                                    <!--begin::수정/삭제=-->
+                                                                                    <td class="text-end pe-0"
+                                                                                        data-order="Inactive">
+                                                                                        <!--begin::수정-->
+                                                                                        <div class="badge badge-light-primary">
+                                                                                            <a href="http://localhost:10001/admin/adminjubjubspotmodify">수정</a>
+                                                                                        </div>
+                                                                                        <!--end::수정-->
+                                                                                    </td>
+                                                                                </tr>
+
+
+
+
+                                                                                </tbody>
+                                                                                <!--end::Table body-->
+
+                                                                            </table>
+                                                                        </div>
+
+
+                                                                        <div class="row">
+
+                                                                            <!-- 몇 개씩 정렬
+                                                                            <div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+                                                                                <div class="dataTables_length"
+                                                                                     id="kt_ecommerce_products_table_length">
+                                                                                    <label><select
+                                                                                            name="kt_ecommerce_products_table_length"
+                                                                                            aria-controls="kt_ecommerce_products_table"
+                                                                                            class="form-select form-select-sm form-select-solid">
+                                                                                        <option value="10">10</option>
+                                                                                        <option value="25">25</option>
+                                                                                        <option value="50">50</option>
+                                                                                        <option value="100">100</option>
+                                                                                    </select></label></div>
+                                                                            </div>-->
+
+
+                                                                            <!-- 우측 하단 페이징 처리 -->
+                                                                            <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+                                                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                                                     id="kt_ecommerce_products_table_paginate">
+                                                                                    <ul class="pagination">
+                                                                                        <li class="paginate_button page-item previous disabled"
+                                                                                            id="kt_ecommerce_products_table_previous">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="0"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"><</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item active">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="1"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">1</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item ">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="2"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">2</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item ">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="3"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">3</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item ">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="4"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">4</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item ">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="5"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">5</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item next"
+                                                                                            id="kt_ecommerce_products_table_next">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="6"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">></a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div><!-- / 우측 하단 페이징 처리 -->
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Table-->
+                                                                </div>
+                                                                <!--end::Card body-->
+                                                            </div>
+                                                            <!--end::Products-->
+                                                        </div>
+                                                        <!--end::Content container-->
+
+
+                                                    </div><!-- /관련 내용 입력 부분 -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+<script>
+    // 검색 _ 엔터로 submit 가능 / 빈칸 입력시 alert
+    function searchList(theForm) {
+        if (theForm.enter.value==""){
+            alert("검색어를 입력하세요");
+            return false;
+        }
+        theForm.submit();
+    }
+
+    // 스팟 삭제
+    $("#deleteSpotBtn").on('click', function () {
+        if ($checkboxes.filter(":checked").length == 0) {
+            alert("삭제할 스팟을 선택하세요.");
+            return;
+        }
+    });
+
+</script>
+</html>

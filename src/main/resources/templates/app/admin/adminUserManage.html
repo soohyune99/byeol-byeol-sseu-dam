@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 관리자 페이지</title>
+    <link rel="icon" href="/images/admin/0PBC.png">
+    <link rel="stylesheet" href="/css/admin/adminCssAll.css">
+</head>
+<body>
+<header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
+
+<div id="wrapper">
+    <div class="flexroot">
+        <div class="app_page flex_column">
+            <div class="app_wrapper">
+
+                <header class="app_header">
+                    <div class="header_wrapper">
+                        <div class="headerbar">
+                            <div class="headerbar-left">
+                                <ul class="header-nav header-nav-options">
+                                    <li class="header-nav-brand">
+                                        <div class="brand-holder">
+                                            <a href="javascript:void(0)" target="_blank"
+                                               class="location_text margin-right-lg"> <span
+                                                    class="text-gray">회원 관리</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <main class="app_main flex_column">
+                    <div class="app_main_context">
+                        <div class="app_main_context_container">
+                            <div id="content" class="dashboard_main">
+                                <div id="alertBox" class="alert__wrap"></div>
+                                <section>
+                                    <div class="clearfix area_wrap">
+                                        <div class="section-body float_l">
+                                            <div class="app-main flex-column flex-row-fluid"
+                                                 id="kt_app_main">
+
+                                                <div class="d-flex flex-column flex-column-fluid">
+                                                    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6"
+                                                         data-select2-id="select2-data-kt_app_toolbar">
+                                                        <!--begin::Toolbar container-->
+                                                        <div id="kt_app_toolbar_container"
+                                                             class="app-container container-xxl d-flex flex-stack"
+                                                             data-select2-id="select2-data-kt_app_toolbar_container">
+                                                            <!--begin::Page title-->
+                                                            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                                                                <!--begin::Title-->
+                                                                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                                                                    회원 목록</h1>
+                                                                <!--end::Title-->
+                                                            </div>
+                                                            <!--end::Page title-->
+                                                        </div>
+                                                        <!--end::Toolbar container-->
+                                                    </div>
+
+                                                    <!--begin::kt_app_content-->
+                                                    <div id="kt_app_content"
+                                                         class="app-content flex-column-fluid">
+                                                        <div id="kt_app_content_container"
+                                                             class="app-container container-xxl">
+                                                            <!--begin::card-->
+                                                            <div class="card">
+                                                                <!--begin::card-header-->
+                                                                <div class="card-header border-0 pt-6">
+                                                                    <div class="card-title">
+                                                                                             <!--########## 검색창_필요시 사용 ###########-->
+                                                                                             <!--begin::Search-->
+                                                                                              <!--<div
+                                                                                                 class="d-flex align-items-center position-relative my-1">
+                                                                                                 &lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen021.svg&ndash;&gt;
+                                                                                                 <span
+                                                                                                     class="svg-icon svg-icon-1 position-absolute ms-6">
+                                                                                                     <svg width="24" height="24" viewBox="0 0 24 24"
+                                                                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                             <rect
+                                                                                                             opacity="0.5" x="17.0365" y="15.1223"
+                                                                                                             width="8.15546" height="2" rx="1"
+                                                                                                             transform="rotate(45 17.0365 15.1223)"
+                                                                                                             fill="currentColor"></rect>
+                                                                                                             <path
+                                                                                                             d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                                                                                                             fill="currentColor"></path>
+                                                                                                         </svg>
+                                                                                                 </span>
+                                                                                                 &lt;!&ndash;end::Svg Icon&ndash;&gt;
+                                                                                                 <input type="text"
+                                                                                                     data-kt-customer-table-filter="search"
+                                                                                                     class="form-control form-control-solid w-250px ps-15"
+                                                                                                     placeholder="Search Users">
+                                                                                             </div>-->
+                                                                                             <!--end::Search-->
+                                                                    </div>
+                                                                    <div class="card-toolbar">
+                                                                        <div class="d-flex justify-content-end"
+                                                                             data-kt-customer-table-toolbar="base">
+                                                                            <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px"
+                                                                                    data-kt-menu="true"
+                                                                                    id="kt-toolbar-filter">
+                                                                                <!--begin::Separator-->
+                                                                                <div class="separator border-gray-200"></div>
+                                                                                <!--end::Separator-->
+                                                                            </div>
+                                                                            <button type="button"
+                                                                                    id="deleteMemberButton"
+                                                                                    class="btn btn-primary"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#kt_modal_add_customer"
+                                                                                    style="background: #f1416c;">
+                                                                                회원 탈퇴
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::card-header-->
+
+                                                                <!--begin::card-body-->
+                                                                <div class="card-body pt-0">
+                                                                    <!--begin::Table-->
+                                                                    <div id="kt_customers_table_wrapper"
+                                                                         class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+                                                                            <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer"
+                                                                                    id="kt_customers_table">
+
+                                                                                <!--begin::Table head-->
+                                                                                <thead>
+                                                                                <!--begin::Table row-->
+                                                                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                                                    <!-- memberCheckBoxTitle -->
+                                                                                    <th class="w-10px pe-2 sorting_disabled memberCheckboxTitle"
+                                                                                        rowspan="1" colspan="1"
+                                                                                        aria-label=""
+                                                                                        style="width: 29.9px;">
+                                                                                        <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                                                                            <input class="form-check-input total"
+                                                                                                   type="checkbox"
+                                                                                                   data-kt-check="true"
+                                                                                                   data-kt-check-target="#kt_customers_table .form-check-input"
+                                                                                                   value="1">
+                                                                                        </div>
+                                                                                    </th>
+                                                                                    <!-- memberIdTitle -->
+                                                                                    <th class="min-w-125px sorting memberIdTitle"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        No.
+                                                                                    </th>
+                                                                                    <!-- memberCategoryTitle -->
+                                                                                    <th class="min-w-125px sorting memberCategoryTitle"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        구분
+                                                                                    </th>
+                                                                                    <!-- memberNameTitle -->
+                                                                                    <th class="min-w-125px sorting memberNameTitle"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        이름
+                                                                                    </th>
+                                                                                    <!-- memberPhoneTitle -->
+                                                                                    <th class="min-w-125px sorting memberPhoneTitle"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        전화번호
+                                                                                    </th>
+                                                                                    <!-- memberEmailTitle -->
+                                                                                    <th class="min-w-125px sorting memberEmailTitle"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        Email
+                                                                                    </th>
+                                                                                    <!-- memberAddressTitle -->
+                                                                                    <th class="min-w-125px sorting memberAddressTitle"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        주소
+                                                                                    </th>
+                                                                                    <!-- memberPointTitle -->
+                                                                                    <th class="min-w-125px sorting memberPointTitle"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        포인트
+                                                                                    </th>
+                                                                                    <!-- memberProfileFileTitle -->
+                                                                                    <th class="min-w-125px sorting memberProfileFileTitle"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        프로필
+                                                                                    </th>
+                                                                                </tr>
+                                                                                <!--end::Table row-->
+                                                                                </thead>
+                                                                                <!--end::Table head-->
+
+                                                                                <!--begin::Table body-->
+                                                                                <tbody class="fw-semibold text-gray-600">
+
+                                                                                <!-- 회원 -->
+                                                                                <tr class="row_member">
+                                                                                    <!-- memberCheckBox -->
+                                                                                    <td class="memberCheckbox">
+                                                                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox" type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <!-- memberId -->
+                                                                                    <td class="member_list_value number memberId">
+                                                                                        2022111301
+                                                                                    </td>
+                                                                                    <!-- memberCategory -->
+                                                                                    <td class="member_list_value memberCategory">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <!-- memberName -->
+                                                                                    <td class="member_list_value memberName">
+                                                                                        문승희
+                                                                                    </td>
+                                                                                    <!-- memberPhone -->
+                                                                                    <td class="member_list_value memberPhone">
+                                                                                        010-1234-5678
+                                                                                    </td>
+                                                                                    <!-- memberEmail -->
+                                                                                    <td class="member_list_value memberEmail">
+                                                                                        ans1234@naver.com
+                                                                                    </td>
+                                                                                    <!-- memberAddress -->
+                                                                                    <td class="member_list_value memberAddress">
+                                                                                        경기도 수원시
+                                                                                    </td>
+                                                                                    <!-- memberPoint -->
+                                                                                    <td class="member_list_value memberPoint">
+                                                                                        36800
+                                                                                    </td>
+                                                                                    <!-- memberProfileFile -->
+                                                                                    <td class="member_list_value memberProfileFile">
+                                                                                        photo.jpg
+                                                                                    </td>
+                                                                                </tr>
+
+
+                                                                            <!-- BEGIN : 삭제할 데이터 - 날리기 #########################-->
+                                                                                <!-- 회원2 -->
+                                                                                <tr class="row_member">
+                                                                                    <td>
+                                                                                        <div
+                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="member_list_value number">
+                                                                                        2022111302
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        정재훈
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-5678-1234
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        wjd1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        경기도 성남시
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        25000
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        photo2.jpg
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원3 -->
+                                                                                <tr class="row_member">
+                                                                                    <td>
+                                                                                        <div
+                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="member_list_value number">
+                                                                                        2022111303
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        홍수현
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-9874-6512
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        ghd1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        서울시 서초구
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        17500
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        phopho.jpg
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원4 -->
+                                                                                <tr class="row_member">
+                                                                                    <td>
+                                                                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox" type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="member_list_value number">
+                                                                                        2022111301
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        문승희
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-1234-5678
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        ans1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        경기도 수원시
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        36800
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        photo.jpg
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원5 -->
+                                                                                <tr class="row_member">
+                                                                                    <td>
+                                                                                        <div
+                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="member_list_value number">
+                                                                                        2022111302
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        정재훈
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-5678-1234
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        wjd1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        경기도 성남시
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        25000
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        photo2.jpg
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원6 -->
+                                                                                <tr class="row_member">
+                                                                                    <td>
+                                                                                        <div
+                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="member_list_value number">
+                                                                                        2022111303
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        홍수현
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-9874-6512
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        ghd1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        서울시 서초구
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        17500
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        phopho.jpg
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원7 -->
+                                                                                <tr class="row_member">
+                                                                                    <td>
+                                                                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox" type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="member_list_value number">
+                                                                                        2022111301
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        문승희
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-1234-5678
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        ans1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        경기도 수원시
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        36800
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        photo.jpg
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원8 -->
+                                                                                <tr class="row_member">
+                                                                                    <td>
+                                                                                        <div
+                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="member_list_value number">
+                                                                                        2022111302
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        정재훈
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-5678-1234
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        wjd1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        경기도 성남시
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        25000
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        photo2.jpg
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원9 -->
+                                                                                <tr class="row_member">
+                                                                                    <td>
+                                                                                        <div
+                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="member_list_value number">
+                                                                                        2022111303
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        홍수현
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-9874-6512
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        ghd1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        서울시 서초구
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        17500
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        phopho.jpg
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원10 -->
+                                                                                <tr class="row_member">
+                                                                                    <td>
+                                                                                        <div
+                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="member_list_value number">
+                                                                                        2022111303
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        홍수현
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-9874-6512
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        ghd1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        서울시 서초구
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        17500
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        phopho.jpg
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                             <!-- END : 삭제할 데이터 - 날리기 ########################### -->
+
+                                                                                <!-- 회원이 없을 때 - 주석 풀기 -->
+                                                                                <!--<tr>
+                                                                                    <td colspan="9" align="center">가입된
+                                                                                        회원이
+                                                                                        없습니다.
+                                                                                    </td>
+                                                                                </tr>-->
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Table-->
+
+                                                                    <!-- 우측 하단 페이징 처리 -->
+                                                                    <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+                                                                        <div class="dataTables_paginate paging_simple_numbers"
+                                                                             id="kt_ecommerce_products_table_paginate">
+                                                                            <ul class="pagination">
+                                                                                <li class="paginate_button page-item previous disabled"
+                                                                                    id="kt_ecommerce_products_table_previous">
+                                                                                    <a href="#"
+                                                                                       aria-controls="kt_ecommerce_products_table"
+                                                                                       data-dt-idx="0"
+                                                                                       tabindex="0"
+                                                                                       class="page-link"><</a>
+                                                                                </li>
+                                                                                <li class="paginate_button page-item active">
+                                                                                    <a href="#"
+                                                                                       aria-controls="kt_ecommerce_products_table"
+                                                                                       data-dt-idx="1"
+                                                                                       tabindex="0"
+                                                                                       class="page-link">1</a>
+                                                                                </li>
+                                                                                <li class="paginate_button page-item ">
+                                                                                    <a href="#"
+                                                                                       aria-controls="kt_ecommerce_products_table"
+                                                                                       data-dt-idx="2"
+                                                                                       tabindex="0"
+                                                                                       class="page-link">2</a>
+                                                                                </li>
+                                                                                <li class="paginate_button page-item ">
+                                                                                    <a href="#"
+                                                                                       aria-controls="kt_ecommerce_products_table"
+                                                                                       data-dt-idx="3"
+                                                                                       tabindex="0"
+                                                                                       class="page-link">3</a>
+                                                                                </li>
+                                                                                <li class="paginate_button page-item ">
+                                                                                    <a href="#"
+                                                                                       aria-controls="kt_ecommerce_products_table"
+                                                                                       data-dt-idx="4"
+                                                                                       tabindex="0"
+                                                                                       class="page-link">4</a>
+                                                                                </li>
+                                                                                <li class="paginate_button page-item ">
+                                                                                    <a href="#"
+                                                                                       aria-controls="kt_ecommerce_products_table"
+                                                                                       data-dt-idx="5"
+                                                                                       tabindex="0"
+                                                                                       class="page-link">5</a>
+                                                                                </li>
+                                                                                <li class="paginate_button page-item next"
+                                                                                    id="kt_ecommerce_products_table_next">
+                                                                                    <a href="#"
+                                                                                       aria-controls="kt_ecommerce_products_table"
+                                                                                       data-dt-idx="6"
+                                                                                       tabindex="0"
+                                                                                       class="page-link">></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div><!-- / 우측 하단 페이징 처리 -->
+                                                                </div><!--end::card-body-->
+                                                            </div><!--end::card-->
+                                                        </div>
+                                                    </div><!--end::kt_app_content-->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+
+</html>

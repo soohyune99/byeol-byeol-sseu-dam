@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 게시판</title>
+    <link rel="icon" href="/images/fix/favicon.png">
+    <link rel="stylesheet" href="/css/fix/header68.css">
+    <link rel="stylesheet" href="/css/fix/header74.css">
+    <link rel="stylesheet" href="/css/fix/header51.css">
+    <link rel="stylesheet" href="/css/fix/header76.css">
+    <link rel="stylesheet" href="/css/fix/header77.css">
+    <link rel="stylesheet" href="/css/fix/header37.css">
+    <link rel="stylesheet" href="/css/fix/font.css">
+    <link rel="stylesheet" href="/css/community/communityMain.css">
+    <link rel="stylesheet" href="/css/community/communitySearch.css">
+</head>
+<body>
+<header th:replace="/app/fix/header.html :: header"></header>
+<div id="app-body">
+    <div class="community-container container" data-v-b31e1ebe="">
+        <div class="soomgo-life-container" data-v-54d1e5f9="" data-v-b31e1ebe="">
+            <section id="soomgo-life-search" class="soomgo-life-search" data-v-40d754bc="" data-v-54d1e5f9="">
+                <section class="community-header" data-v-40d754bc="">
+                    <h1 class="community-title" style="font-size: 34px;" data-v-40d754bc="">커뮤니티</h1><button
+                        type="button" class="btn write-button-desktop btn-primary" data-v-40d754bc=""><i
+                        class="write" data-v-40d754bc=""></i> 글쓰기 </button>
+                </section>
+                <ul class="category d-none d-lg-flex" data-v-85114aa8="" data-v-40d754bc="">
+                    <li data-testid="category-soomgo-life"
+                        class="sg-text-subhead4 sg-font-bold lg:sg-text-subhead2 lg:sg-font-bold sg-text-gray-900 selected"
+                        data-v-6e81a396="" data-v-85114aa8=""><a href="/community/soomgo-life/"
+                                                                 class="link-text router-link-active" data-v-6e81a396=""> 숨고생활 </a></li>
+                </ul>
+                <div data-v-7ec7cacf="" data-v-40d754bc="" class="keyword-searcher-modal d-lg-none">
+                    <div data-v-7ec7cacf="" class="keyword-searcher"><img data-v-7ec7cacf=""
+                                                                          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iIzMyMzIzMiIgZmlsbC1ydWxlPSJub256ZXJvIj4KICAgICAgICAgICAgPHBhdGggZD0iTTEyLjczMyAzLjQ0djE0LjA4bDYuNjM3LTYuNTgxIDEuMTI3IDEuMTM2LTguNTY0IDguNDkyLTguNTYzLTguNDkyIDEuMTI3LTEuMTM2IDYuNjM2IDYuNTgxVjMuNDRoMS42eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE2LjAwMDAwMCwgLTExMC4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDExMC4wMDAwMDApIHRyYW5zbGF0ZSgxMS45MzMzMzMsIDEyLjAwMzMxNCkgcm90YXRlKC0yNzAuMDAwMDAwKSB0cmFuc2xhdGUoLTExLjkzMzMzMywgLTEyLjAwMzMxNCkiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+                                                                          alt="뒤로가기 아이콘" class="back">
+                        <form data-v-ebe7d0bc="" data-v-7ec7cacf="" class="">
+                            <div data-v-ebe7d0bc="" role="group" class="input-group">
+                                <!---->
+                                <div data-v-ebe7d0bc="" class="input-group-prepend"><img data-v-ebe7d0bc=""
+                                                                                         src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEgMSkiIHN0cm9rZT0iI0M1QzVDNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBjeD0iNi42MTEiIGN5PSI2LjYxMSIgcj0iNS44NjEiLz4KICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im0xNS4yNSAxNS4yNS00LjI0My00LjI0MyIvPgogICAgPC9nPgo8L3N2Zz4K"
+                                                                                         alt="커뮤니티 검색 아이콘" class="search"></div><input data-v-ebe7d0bc="" type="text"
+                                                                                                                                       placeholder="키워드와 #태그 모두 검색할 수 있어요." autocomplete="off"
+                                                                                                                                       class="search-input form-control" maxlength="15" id="__BVID__190">
+                                <div data-v-ebe7d0bc="" class="input-group-append"><img data-v-ebe7d0bc=""
+                                                                                        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMgMykiPgogICAgICAgICAgICA8Y2lyY2xlIGZpbGw9IiNDNUM1QzUiIGN4PSI5IiBjeT0iOSIgcj0iOSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im02IDYgNi4wMDUgNi4wMDZNMTIuMDA1IDYgNiAxMi4wMDYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+                                                                                        alt="검색어 삭제 아이콘" class="reset"></div>
+                                <!---->
+                            </div>
+                        </form>
+                    </div>
+                    <!---->
+                </div>
+                <div class="community-layout" data-v-40d754bc="">
+                    <div class="soomgo-life-topic-layout d-lg-block" data-v-40d754bc="">
+                        <section class="topic-filter-section" data-v-09f47c14="" data-v-40d754bc="">
+                            <ul class="topic" data-v-09f47c14="">
+                                <li data-v-06211c10="" data-v-09f47c14="" class=""><a
+                                        href="/community/soomgo-life/all" data-testid="topic-item"
+                                        class="topic-link-item" data-v-06211c10="">
+                                    <div class="icon-wrapper" data-v-06211c10=""><img
+                                            src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/634d181f-f6cc-470c-9a1a-cfed6d9c909a.png"
+                                            alt="전체" data-v-06211c10=""></div><span
+                                        class="sg-text-body2 sg-font-regular sg-text-gray-400"
+                                        data-v-06211c10="">전체</span>
+                                </a></li>
+                                <li data-v-06211c10="" data-v-09f47c14="" class=""><a
+                                        href="/community/soomgo-life/qna" data-testid="topic-item"
+                                        class="topic-link-item" data-v-06211c10="">
+                                    <div class="icon-wrapper" data-v-06211c10=""><img
+                                            src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/f1e39209-9357-4412-b962-99a9d62e6cc5.png"
+                                            alt="궁금해요" data-v-06211c10=""></div><span
+                                        class="sg-text-body2 sg-font-regular sg-text-gray-400"
+                                        data-v-06211c10="">궁금해요</span>
+                                </a></li>
+                                <li data-v-06211c10="" data-v-09f47c14="" class=""><a
+                                        href="/community/soomgo-life/how-much" data-testid="topic-item"
+                                        class="topic-link-item" data-v-06211c10="">
+                                    <div class="icon-wrapper" data-v-06211c10=""><img
+                                            src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/a283e912-b56e-4310-8fa1-2c619bd0332d.png"
+                                            alt="얼마예요" data-v-06211c10=""></div><span
+                                        class="sg-text-body2 sg-font-regular sg-text-gray-400"
+                                        data-v-06211c10="">얼마예요</span>
+                                </a></li>
+                                <li data-v-06211c10="" data-v-09f47c14="" class=""><a
+                                        href="/community/soomgo-life/find-provider" data-testid="topic-item"
+                                        class="topic-link-item" data-v-06211c10="">
+                                    <div class="icon-wrapper" data-v-06211c10=""><img
+                                            src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/b3326101-bf1e-4004-8fa1-b5a0724f9e62.png"
+                                            alt="고수찾아요" data-v-06211c10=""></div><span
+                                        class="sg-text-body2 sg-font-regular sg-text-gray-400"
+                                        data-v-06211c10="">고수찾아요</span>
+                                </a></li>
+                                <li data-v-06211c10="" data-v-09f47c14="" class=""><a
+                                        href="/community/soomgo-life/together" data-testid="topic-item"
+                                        class="topic-link-item" data-v-06211c10="">
+                                    <div class="icon-wrapper" data-v-06211c10=""><img
+                                            src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/ea04ebe5-4787-4b56-99a7-308c6310d972.png"
+                                            alt="함께해요" data-v-06211c10=""></div><span
+                                        class="sg-text-body2 sg-font-regular sg-text-gray-400"
+                                        data-v-06211c10="">함께해요</span>
+                                </a></li>
+                                <li data-v-06211c10="" data-v-09f47c14="" class=""><a
+                                        href="/community/soomgo-life/provider-news" data-testid="topic-item"
+                                        class="topic-link-item" data-v-06211c10="">
+                                    <div class="icon-wrapper" data-v-06211c10=""><img
+                                            src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/8dbafccb-92f6-4be2-b50c-a4eade43585f.png"
+                                            alt="고수소식" data-v-06211c10=""></div><span
+                                        class="sg-text-body2 sg-font-regular sg-text-gray-400"
+                                        data-v-06211c10="">고수소식</span>
+                                </a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="community-content-layout" data-v-40d754bc="">
+                        <div data-v-6a3ac724="" data-v-40d754bc="" class="search-community d-none d-lg-block">
+                            <form data-v-ebe7d0bc="" data-v-6a3ac724="" class="">
+                                <div data-v-ebe7d0bc="" role="group" class="input-group">
+                                    <!---->
+                                    <div data-v-ebe7d0bc="" class="input-group-prepend"><img data-v-ebe7d0bc=""
+                                                                                             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEgMSkiIHN0cm9rZT0iI0M1QzVDNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBjeD0iNi42MTEiIGN5PSI2LjYxMSIgcj0iNS44NjEiLz4KICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im0xNS4yNSAxNS4yNS00LjI0My00LjI0MyIvPgogICAgPC9nPgo8L3N2Zz4K"
+                                                                                             alt="커뮤니티 검색 아이콘" class="search"></div><input data-v-ebe7d0bc=""
+                                                                                                                                           type="text" placeholder="키워드와 #태그 모두 검색할 수 있어요." autocomplete="off"
+                                                                                                                                           class="search-input form-control" maxlength="15" id="__BVID__195">
+                                    <div data-v-ebe7d0bc="" class="input-group-append"><img data-v-ebe7d0bc=""
+                                                                                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMgMykiPgogICAgICAgICAgICA8Y2lyY2xlIGZpbGw9IiNDNUM1QzUiIGN4PSI5IiBjeT0iOSIgcj0iOSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im02IDYgNi4wMDUgNi4wMDZNMTIuMDA1IDYgNiAxMi4wMDYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+                                                                                            alt="검색어 삭제 아이콘" class="reset"></div>
+                                    <!---->
+                                </div>
+                            </form>
+                            <!---->
+                        </div>
+                        <article data-v-7206b48f="" data-v-40d754bc="">
+                            <ul class="feed-list" data-v-7206b48f="">
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/627bc01d73a070ebdde37cdc-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94--%EC%83%B7%EC%8B%9C%EC%88%98%EB%A6%AC-%EB%B0%8F-%EC%99%B8%ED%92%8D%EC%B0%A8%EB%8B%A8-%EC%A0%84%EB%AC%B8%EC%97%85%EC%B2%B4-%EC%9E%85%EB%8B%88%EB%8B%A4-"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">고수소식</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요^^샷시수리 및 외풍차단 전문업체 입니다.</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하세요~
+                                                    샷시 수리. 외풍차단 작업이 주 업무인 업체입니다.
+                                                    저희는 타 업체보다 저렴한 금액으로 최상의 작업을 해드리겠습니다.
+                                                    샷시로라교체,샷시레일파손,모헤어교체,외풍차단 그외 샷시에 관련된 수리 작업은 다 가능합니다.
+                                                    전국 작업 기능하니 부담없이 요청해주세요^^
+                                                </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div><img alt="f926a0d0-9ece-4353-a8f8-86227ec5d602.jpg"
+                                                   data-v-95718dd0=""
+                                                   data-src="https://static.cdn.soomgo.com/upload/media/e4d21e34-1bbc-4d10-a8c5-c081e0a458a3.jpg?h=80&amp;w=80"
+                                                   src="https://static.cdn.soomgo.com/upload/media/e4d21e34-1bbc-4d10-a8c5-c081e0a458a3.jpg?h=80&amp;w=80"
+                                                   lazy="loaded">
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">1</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">3</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 05. 11</span>
+                                    </div>
+                                </a></li>
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/628b96caaba679ace602f9b9-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94---%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EB%A0%88%EC%8A%A8--"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">고수소식</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요 &lt; 베이스 레슨 &gt;</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하세요 !
+                                                    기초로 시작되는 악보 읽는법, 오른손 핑거링, 왼손 운지법, 코드 등등 혹 원하시는 곡이 있으시다면 연주 할
+                                                    수 있게끔 알려드리도록 하겠습니다.
+                                                    베이스라는 악기가 처음 접했을때는 지루하고 따분하게 느껴 지실수도 있지만 그럴 틈 없게끔 재밌게 알려드릴께요
+                                                </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <!---->
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">1</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">1</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 05. 23</span>
+                                    </div>
+                                </a></li>
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/634237b2dc6613bc57c4aa13-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94---%EC%8A%A4%EB%83%85-%EC%B0%8D%EC%96%B4%EB%93%9C%EB%A0%A4%EC%9A%94--"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">함께해요</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요! 스냅 찍어드려요!!</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하하세요🙋🏻‍♂️ 취미 작가 세요스냅입니다!🙋🏻‍♂️
+
+                                                    올해까지만 데이트스냅 우정스냅 무료 촬영 하려고 해요!!
+                                                    매달 선착순 5팀 받습니다
+
+                                                    날짜 장소는 추후협의👍
+
+                                                    ‼️ 작가의 포트폴리오로 사용될수있습니다
+                                                    (sns 숨고 크몽 카페 기타등등-얼굴 가리고 입니 </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <!---->
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">1</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">20</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 10. 09</span>
+                                    </div>
+                                </a></li>
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/62be9e432419d3cceedfdf0e-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94-%EC%98%A8%EB%9D%BC%EC%9D%B8-%EC%87%BC%ED%95%91%EB%AA%B0-%ED%86%B5%ED%95%A9-%EC%86%94%EB%A3%A8%EC%85%98-%ED%9A%8C%EC%82%AC%EB%A5%BC-%EB%8B%A4%EB%8B%88%EB%8A%94%EB%8D%B0"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">궁금해요</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요 온라인 쇼핑몰 통합 솔루션 회사를 다니는데</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하세요 온라인 쇼핑몰 통합 관리 서비스를 하는 회사에 재직중입니다.
+                                                    저희 회사에서 이번에 글로벌 쇼핑몰 서비스를 출시 하는데 외주를 맡겼습니다.
+                                                    외주업체에서는 자바로 프로그램을 짜셨습니다.
+                                                    저에게 과제가 주어졌습니다. 과제는 바로 자바로 프로그램을 만든 업체 </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <!---->
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">0</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">5</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 07. 01</span>
+                                    </div>
+                                </a></li>
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/633e1becf725d74b1bebf38c-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94-html%EC%BD%94%EB%94%A9%EA%B0%80%EB%8A%A5%ED%95%98%EC%8B%A0%EB%B6%84"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">고수찾아요</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요 html코딩가능하신분</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하세요.
+                                                    기존 제가 만든 엑셀파일을 코딩해서 html로 만들어 주실분 있으실까요??? ㅠㅠ
+                                                    이걸 유알엘로 만들려 하니 코딩이 필요해서요. </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <!---->
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">0</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">20</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 10. 06</span>
+                                    </div>
+                                </a></li>
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/6296f8028ac584faba3d728c-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94--%ED%8F%AC%ED%86%A0%EC%A1%B4-%EA%BE%B8%EB%A9%B0%EC%A3%BC%EC%8B%A4-%EA%B3%A0%EC%88%98%EB%8B%98-%EC%B0%BE%EC%8A%B5%EB%8B%88%EB%8B%A4-"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">고수찾아요</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요~~포토존 꾸며주실 고수님 찾습니다!</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하세요 고구마빵 전문점을 운영중입니다.
+                                                    전부 테이크아웃 손님들만 계셔서 홀에 있는 테이블들을 치우고 그곳에 포토존을 만들고 싶습니다.
+                                                    막상 꾸미려니 막막하여
+                                                    가게 컨셉에 맞게 포토존 꾸며주실 고수님을 찾습니다!
+                                                    댓글 남겨주시면 가게 사진 보내드리겠습니다. </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <!---->
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">0</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">2</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 06. 01</span>
+                                    </div>
+                                </a></li>
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/627b70f77c1ea006fd33be62-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94--%EB%88%84%EC%88%98%ED%83%90%EC%A0%95%EC%9E%85%EB%8B%88%EB%8B%A4-"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">고수소식</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요. 누수탐정입니다.</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하세요. 인천과 경기지역에서 주로 누수검사일을 하고 있는
+                                                    누수탐정이라고 합니다. 아랫집에서 갑자기 "우리집 천장에서 물이 새요"라는 말을 들으면 겁부터 나시죠...
+                                                    어찌해야하나 걱정되시고... 저에게 연락주시면 상세히 설명드리겠습니다. 귀찮다고 느끼실 정도 </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div><img alt="KakaoTalk_20220207_214053748_01.jpg" data-v-95718dd0=""
+                                                   data-src="https://static.cdn.soomgo.com/upload/soomgo-life/43388bc0-9865-42b1-9be3-cd04c0a8d78e.jpg?h=80&amp;w=80"
+                                                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                                   lazy="loading">
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">5</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">0</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 05. 11</span>
+                                    </div>
+                                </a></li>
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/627b166e3b2d7dcc95342ebc-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94---%EC%8B%A0%EB%9E%91%EC%8B%A0%EB%B6%80%EB%8B%98%EC%9D%98-%EC%82%AC%ED%9A%8C%EC%9E%90-%EC%9D%B4%EC%9D%80%EC%83%81%EC%9E%85%EB%8B%88%EB%8B%A4-"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">고수소식</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요 ~ 신랑신부님의 사회자 이은상입니다.</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하세요. 이 글을 읽어주시는 신랑 신부님 혹은 사회자를 찾고 계신
+                                                    모든분들께 저를 소개하려합니다.
+
+                                                    저는 숨고에서 결혼식사회자로 활동하는 숨은고수 이은상입니다. 요즘 결혼식은 주례없는 결혼식이 많다보니
+                                                    사회자의 역할이 중요해졌습니다. 그래서 신랑신부의 지인분들이 하 </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <!---->
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">2</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">0</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 05. 11</span>
+                                    </div>
+                                </a></li>
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/632d9b2031c146a82e9db100-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94-%EC%82%B4%EB%A6%BC%EC%A0%95%EB%A6%AC%EC%82%AC%EC%9E%85%EB%8B%88%EB%8B%A4"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">고수소식</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요 살림정리사입니다</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하세요 살림정리사입니다
+                                                    집이나 사업장의 처리가 곤란한 모든 물품을 정리해 드리고 있어요
+                                                    숨고를 통해 다양한 고객들을 만나고 있어요
+                                                    늘 고맙고 감사하게 생각합니다
+                                                    항상 친절하고 깔끔하게 정리해 드릴것을 약속드립니다
+                                                    처리해야 할 일들이 있으면 부담없이 요청해 주 </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div><img alt="97ae0b6b-f6c2-47e8-bd8b-1b2c74e0dee7.jpg"
+                                                   data-v-95718dd0=""
+                                                   data-src="https://static.cdn.soomgo.com/upload/media/e2a120b7-abc2-42f0-9be7-c23500862b3f.jpg?h=80&amp;w=80"
+                                                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                                   lazy="loading">
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">1</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">22</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 09. 23</span>
+                                    </div>
+                                </a></li>
+                                <li class="feed-item" data-v-95718dd0="" data-v-7206b48f=""><a
+                                        href="/community/soomgo-life/posts/627b494ae71ccc4b02865705-%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94---((%EC%9B%90%EB%A3%B81-5%EB%A3%B8-%ED%88%AC%EB%A3%B8))%EC%9E%85%EC%A3%BC%EC%B2%AD%EC%86%8C%EC%A0%84%EB%AC%B8"
+                                        data-testid="soomgo-life-feed-item" data-v-95718dd0="" class="">
+                                    <p data-testid="soomgo-life-topic-name"
+                                       class="topic-name sg-text-description sg-font-regular sg-text-gray-500"
+                                       data-v-95718dd0="">고수소식</p>
+                                    <div class="feed-content service-address-info" data-v-95718dd0="">
+                                        <div data-v-95718dd0="">
+                                            <section class="item-wrapper" data-v-95718dd0="">
+                                                <h3 class="sg-text-subhead5 sg-font-medium sg-text-gray-900"
+                                                    data-v-95718dd0="">안녕하세요~^^((원룸1.5룸 투룸))입주청소전문</h3>
+                                                <p class="content sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                   data-v-95718dd0=""> 안녕하세요. 수도권에서 ((원룸 투룸 1.5룸))입주청소 전문 유민호
+                                                    입니다. 지역은 ((용인시 기흥구)) 입니다 지정요청을 보내주시는 고객님들께 10% 할인가에 서비스를
+                                                    제공해드리고자 합니다. 제 프로필로 들어오셔서 지정요청서를 작성하시고 할인을 받아보세요. 단 </p>
+                                            </section>
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <!---->
+                                    </div>
+                                    <div class="feed-footer" data-v-95718dd0="">
+                                        <div class="user-interaction" data-v-95718dd0=""><span
+                                                class="like sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">0</span><span
+                                                class="comment sg-text-description sg-font-regular sg-text-gray-300"
+                                                data-v-95718dd0="">0</span></div><span
+                                            class="sg-text-description sg-font-regular sg-text-gray-300"
+                                            data-v-95718dd0="">2022. 05. 11</span>
+                                    </div>
+                                </a></li>
+                            </ul>
+                            <div data-v-644ea9c9="" data-v-7206b48f="" class="infinite-loading-container">
+                                <div data-v-644ea9c9="" class="infinite-status-prompt" style="display: none;">
+                                    <figure data-v-7206b48f="" data-v-644ea9c9="" class="text-center">
+                                        <div data-v-fc3fcce8="" data-v-7206b48f="" class="" data-v-644ea9c9="">
+                                            <div data-v-fc3fcce8="" class="indicator-body center"
+                                                 style="width: 24px; height: 24px; border-width: 0.25rem; border-style: solid; border-color: rgb(0, 199, 174) rgba(0, 199, 174, 0.2) rgba(0, 199, 174, 0.2); border-image: initial;">
+                                            </div>
+                                            <p data-v-fc3fcce8="" style="display: none;"></p>
+                                        </div>
+                                    </figure>
+                                </div>
+                                <!-- <div data-v-644ea9c9="" class="infinite-status-prompt" style="display: none;">
+                                <article data-v-414f00e5="" data-v-7206b48f=""
+                                    class="no-items align-self-center text-center no-items no-search-items"
+                                    data-v-644ea9c9=""><i data-v-414f00e5=""><img data-v-7206b48f=""
+                                            data-v-414f00e5=""
+                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjAlIiB5MT0iNTAlIiB5Mj0iNTAlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwQzdBRSIvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0Q0M4RTUiLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSI0MCIgZmlsbD0idXJsKCNhKSIgZmlsbC1vcGFjaXR5PSIuNSIvPgogICAgICAgIDxwYXRoIGQ9Ik0xNiA2NGg0OFYxNkgxNnoiLz4KICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIzIiBkPSJNNDMuNDg2IDI3LjUxNWM0LjY4NSA0LjY4NyA0LjY4NSAxMi4yODMgMCAxNi45Ny00LjY4NyA0LjY4Ny0xMi4yODYgNC42ODctMTYuOTcgMC00LjY4OC00LjY4Ny00LjY4OC0xMi4yODMgMC0xNi45NyA0LjY4NC00LjY4NyAxMi4yODMtNC42ODcgMTYuOTcgMHpNNDQgNDVsOSA5Ii8+CiAgICA8L2c+Cjwvc3ZnPgo="
+                                            alt="검색 결과가 없습니다"></i>
+                                    <h3 data-v-414f00e5="">검색 결과가 없습니다</h3>
+                                    <p data-v-414f00e5="" class="help-block p2"> 궁금한 내용을 게시글로 작성하고
+                                        답변을 받아볼 수 있어요 </p>
+                                    <footer data-v-414f00e5="" class="footer-buttons m-auto"><button
+                                            data-v-7206b48f="" data-v-414f00e5="" type="button"
+                                            class="btn d-lg-none btn-primary">게시글 작성하기</button></footer>
+                                </article>
+                            </div>
+                            <div data-v-644ea9c9="" class="infinite-status-prompt"
+                                style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
+                            </div>
+                            <div data-v-644ea9c9="" class="infinite-status-prompt"
+                                style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
+
+                                <br data-v-644ea9c9=""> <button data-v-644ea9c9=""
+                                    class="btn-try-infinite"></button>
+                            </div>
+                        </div> -->
+                                <div data-v-644ea9c9="" data-v-7206b48f="" class="infinite-loading-container">
+                                    <div data-v-644ea9c9="" class="infinite-status-prompt" style="display: none;">
+                                        <figure data-v-7206b48f="" data-v-644ea9c9="" class="text-center">
+                                            <div data-v-fc3fcce8="" data-v-7206b48f="" class="" data-v-644ea9c9="">
+                                                <div data-v-fc3fcce8="" class="indicator-body center"
+                                                     style="width: 24px; height: 24px; border-width: 0.25rem; border-style: solid; border-color: rgb(0, 199, 174) rgba(0, 199, 174, 0.2) rgba(0, 199, 174, 0.2); border-image: initial;">
+                                                </div>
+                                                <p data-v-fc3fcce8="" style="display: none;"></p>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                    <div data-v-644ea9c9="" class="infinite-status-prompt" style="">
+                                        <article data-v-414f00e5="" data-v-7206b48f=""
+                                                 class="no-items align-self-center text-center no-items no-search-items"
+                                                 data-v-644ea9c9=""><i data-v-414f00e5=""><img data-v-7206b48f=""
+                                                                                               data-v-414f00e5=""
+                                                                                               src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjAlIiB5MT0iNTAlIiB5Mj0iNTAlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwQzdBRSIvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0Q0M4RTUiLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSI0MCIgZmlsbD0idXJsKCNhKSIgZmlsbC1vcGFjaXR5PSIuNSIvPgogICAgICAgIDxwYXRoIGQ9Ik0xNiA2NGg0OFYxNkgxNnoiLz4KICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIzIiBkPSJNNDMuNDg2IDI3LjUxNWM0LjY4NSA0LjY4NyA0LjY4NSAxMi4yODMgMCAxNi45Ny00LjY4NyA0LjY4Ny0xMi4yODYgNC42ODctMTYuOTcgMC00LjY4OC00LjY4Ny00LjY4OC0xMi4yODMgMC0xNi45NyA0LjY4NC00LjY4NyAxMi4yODMtNC42ODcgMTYuOTcgMHpNNDQgNDVsOSA5Ii8+CiAgICA8L2c+Cjwvc3ZnPgo="
+                                                                                               alt="검색 결과가 없습니다"></i>
+                                            <h3 data-v-414f00e5="">검색 결과가 없습니다</h3>
+                                            <p data-v-414f00e5="" class="help-block p2"> 궁금한 내용을 게시글로 작성하고<br>답변을
+                                                받아볼 수 있어요 </p>
+                                            <footer data-v-414f00e5="" class="footer-buttons m-auto"><button
+                                                    data-v-7206b48f="" data-v-414f00e5="" type="button"
+                                                    class="btn d-lg-none btn-primary">게시글 작성하기</button></footer>
+                                        </article>
+                                    </div>
+                                    <div data-v-644ea9c9="" class="infinite-status-prompt"
+                                         style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
+                                    </div>
+                                    <div data-v-644ea9c9="" class="infinite-status-prompt"
+                                         style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
+
+                                        <br data-v-644ea9c9=""> <button data-v-644ea9c9=""
+                                                                        class="btn-try-infinite"></button>
+                                    </div>
+                                </div>
+                        </article>
+                    </div>
+                </div>
+                <!-- <a id="top-btn" role="button" aria-label="위로 가기 버튼" class="top-btn" style="right: 21px;"
+                data-v-fe1c7b0a="" data-v-40d754bc=""><img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTAgMEgyNFYyNEgweiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMyMy4wMDAwMDAsIC02ODAuMDAwMDAwKSB0cmFuc2xhdGUoMzExLjAwMDAwMCwgNjY4LjAwMDAwMCkgdHJhbnNsYXRlKDEyLjAwMDAwMCwgMTIuMDAwMDAwKSIvPgogICAgICAgICAgICAgICAgICAgIDxnIHN0cm9rZT0iI0I1QjVCNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik03IDBMNyAxNSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMyMy4wMDAwMDAsIC02ODAuMDAwMDAwKSB0cmFuc2xhdGUoMzExLjAwMDAwMCwgNjY4LjAwMDAwMCkgdHJhbnNsYXRlKDEyLjAwMDAwMCwgMTIuMDAwMDAwKSB0cmFuc2xhdGUoNS4wMDAwMDAsIDQuNTAwMDAwKSIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMCA3TDcgMCAxNCA3IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzIzLjAwMDAwMCwgLTY4MC4wMDAwMDApIHRyYW5zbGF0ZSgzMTEuMDAwMDAwLCA2NjguMDAwMDAwKSB0cmFuc2xhdGUoMTIuMDAwMDAwLCAxMi4wMDAwMDApIHRyYW5zbGF0ZSg1LjAwMDAwMCwgNC41MDAwMDApIi8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
+                    alt="위로 가기" data-v-fe1c7b0a=""></a> -->
+            </section>
+            <div data-v-54d1e5f9="" class="v-portal" style="display: none;"></div>
+            <!---->
+        </div>
+        <!---->
+    </div>
+</div>
+<div class="swal2-container swal2-center sg-swal swal2-shown" style="overflow-y: auto;">
+    <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show"
+         tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="width: 320px; display: flex;">
+        <div class="swal2-header">
+            <ul class="swal2-progress-steps" style="display: none;"></ul>
+            <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
+                    class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>
+            </div>
+            <div class="swal2-icon swal2-question" style="display: none;"></div>
+            <div class="swal2-icon swal2-warning" style="display: none;"></div>
+            <div class="swal2-icon swal2-info" style="display: none;"></div>
+            <div class="swal2-icon swal2-success" style="display: none;">
+                <div class="swal2-success-circular-line-left"></div><span class="swal2-success-line-tip"></span>
+                <span class="swal2-success-line-long"></span>
+                <div class="swal2-success-ring"></div>
+                <div class="swal2-success-fix"></div>
+                <div class="swal2-success-circular-line-right"></div>
+            </div><img class="swal2-image" style="display: none;">
+            <h2 class="swal2-title" id="swal2-title" style="display: flex;">로그인 필요</h2><button type="button"
+                                                                                               class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button>
+        </div>
+        <div class="swal2-content">
+            <div id="swal2-content" style="display: block;">로그인 후 서비스를 이용할 수 있습니다.</div><input class="swal2-input"
+                                                                                               style="display: none;"><input type="file" class="swal2-file" style="display: none;">
+            <div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select
+                class="swal2-select" style="display: none;"></select>
+            <div class="swal2-radio" style="display: none;"></div><label class="swal2-checkbox"
+                                                                         style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea
+                class="swal2-textarea" style="display: none;"></textarea>
+            <div class="swal2-validation-message" id="swal2-validation-message"></div>
+        </div>
+        <div class="swal2-actions"><button type="button" class="swal2-confirm btn" aria-label=""
+                                           style="display: inline-block;">로그인/회원가입</button><button type="button" class="swal2-cancel btn"
+                                                                                                   aria-label="" style="display: inline-block;">취소</button></div>
+        <div class="swal2-footer" style="display: none;"></div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/community/communitySearch.js"></script>
+<script src="/js/fix/headerLogin.js"></script>
+</html>

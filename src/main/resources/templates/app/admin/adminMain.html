@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 관리자 페이지</title>
+    <link rel="icon" href="/images/admin/0PBC.png">
+    <link rel="stylesheet" href="/css/admin/adminCssAll.css">
+</head>
+<body>
+<header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
+
+<div id="wrapper">
+    <div class="flexroot">
+        <div class="app_page flex_column">
+            <div class="app_wrapper">
+
+                <header class="app_header">
+                    <div class="header_wrapper">
+                        <div class="headerbar">
+                            <div class="headerbar-left">
+                                <ul class="header-nav header-nav-options">
+                                    <li class="header-nav-brand">
+                                        <div class="brand-holder">
+                                            <a href="javascript:void(0)" target="_blank"
+                                               class="location_text margin-right-lg"> <span
+                                                    class="text-gray">대시 보드</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <main class="app_main flex_column">
+                    <div class="app_main_context">
+                        <div class="app_main_context_container">
+                            <div id="content" class="dashboard_main">
+                                <div id="alertBox" class="alert__wrap"></div>
+                                <section>
+                                    <div class="clearfix area_wrap">
+                                        <div class="section-body float_l">
+                                            <div class="app-main flex-column flex-row-fluid"
+                                                 id="kt_app_main">
+
+                                                <!-- 그리드 시작 -->
+                                                <div style="display: grid;
+                                                            grid-template-columns: 50% 50%;
+                                                            width: 1200px;
+                                                            padding-left: 30px;
+                                                            height: 573px;">
+
+                                                    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6"
+                                                         data-select2-id="select2-data-kt_app_toolbar"
+                                                         style="grid-column-start: 1;
+                                                                grid-column-end: 3;">
+                                                        <!--begin::Toolbar container-->
+                                                        <div id="kt_app_toolbar_container"
+                                                             class="app-container container-xxl d-flex flex-stack"
+                                                             data-select2-id="select2-data-kt_app_toolbar_container">
+                                                            <!--begin::Page title-->
+                                                            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                                                                <!--begin::Title-->
+                                                                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                                                                    별별쓰담's TODAY</h1>
+                                                                <!--end::Title-->
+                                                            </div>
+                                                            <!--end::Page title-->
+                                                        </div>
+                                                        <!--end::Toolbar container-->
+                                                    </div>
+
+                                                <!--오늘 가입한 회원-->
+                                                    <!--begin::kt_app_content-->
+                                                    <div
+                                                            class="app-content flex-column-fluid"
+                                                            style="width: 580px;height: 265px;">
+                                                        <div id="kt_app_content_container"
+                                                             class="container-xxl">
+                                                            <!--begin::card-->
+                                                            <div class="card"
+                                                                 style="height: 260px;">
+                                                                <!--begin::card-header-->
+                                                                <div class="card-header border-0 pt-6">
+                                                                    <div class="card-title">
+                                                                        <h3> 가입한 회원</h3>
+                                                                        <img style="margin-left: 4px;"
+                                                                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAFSklEQVRIic3XW0wUVxgH8P+Zmb0vC7sLuIuLCNVW8VJsi0gTaxEo11SbmLQ+GGMsGl/60qShSR9Im/TyUJv60lQ0lYSmSW2aVJEuFwuttoq0VUQEqeEi6C4L7Lo32N2ZOacPwMqWi1hI2u/tnPOd88t3kpn5BviPgiw1sb62xKAWhRYQjNGI+F7BEXs7ANhPFW1XKpQfgBGzX0bensPn/Es5T1gqrBH52iSbLdOQYFL1dXft/KlmTycYo4SQLU9lbtb4PB6RPBj6GsCrSzlv0YoZA7nwRVmCWs0OqDX6D3MLS3Ucx4NRCsfwIAMAqy2NEI4DpTKuNNUHJyeC74bDqC07duEhIWBPBLecLntbZPQTUMbzCj7E8wKyd72i1sYZFq1iwu9D+8+NIVmWIEuyGoTIAk/e2X2o/vg/c+e/agV/4PntL/OmZAsAqBfVZoU2zoBd5fui+W6Xk7/ZdvkAgDkwN98BVKIZOkP8Ur0FQ2cwQKZyxnxrc+DG04UpjDGlSq1ZNqxSawHKVPYvi6wLwlVVVVzT6ZIKnihv2zLW0WWr02HLWEcVCqG78VTpm1VVVVGPAFPPqErir2r1htTMbdv1BqN5pVwAgM/jxu3rbYGJgG8oIHM5ew6f83MAwE/KZgDpOXklK44CgMFoQk5eiZ4wpKtpKBGYvuqiisZ+Qjin1z264uhMeN2jAOGcRRWN/VEYAGRJqnEODYRmxp2VdfB1OQEAIYcPA2euAQBGGnrQWVmHzso6jLbchaf9HobP3gAABAfc6H6/AQBAIzJ6PmqOws6hwbAsS2dmxlGYyXTA6x6TZsbhET8Gz1wDjUigERkhhw8AEPFMIjl/PbZ8XI6kvHXQppkw/ms/AODhH8MIDnoQcvjgv+OCoFXOrlhkMh2MgetrSwy8IHz6zNYX9NEFlYCk3esxfLZjzrX5u0fgau5FeDQAVbIejDKI3kl4uxywFG+A95YD/u4RxG9Nie7ZkJWt5xX88Zav9iZEYZUofG5JTdMkJCbFAJbijQj0uhDsH4+Z51QCeJ0SRJi6sISs1fD8PgQCwJS9Br5OB3zdI4jPegTHmxJhSU3XUIifRWFG6WurbGlz3xgESD/6Ioa/vREzrcsww5y7FkqjNgo/+OEWDJut0KYZEXL4QENSdH0mVtnWqMHI3igMJr3R0XYp4Bl1RZO0a4wAAE1KPKxlmVBbpz4QSqMGrot/obOyDve/vwkAMGyyQNAqYXzOBhCC+KzVMO1Ii0E9oy50XLk0wai4f7qmqWiqLn6ZUyjOb8vdpTcmrZpT/HLCMzqC67+1BqkklRdW2FsfVQygsMLeSiW52useW1EUALzuMVCZnpxBY2AAEHg+RaFa8ldwyaFQqcArBMvsuRiYcMSqVKpWHFYqVSAEKbPnYhoBxuDvu9MVCIcm9YmWFKi1umWBoYkgxpwPcH+wLwCGmCYwBo5wodcjbrE8GPDt6735Z5HZYuWe3fHSv9I7rv4SHHc6KHiuQYqI30WocH72+oLNXv2JEpUyjnfl5pcatPq4J0InAwFcab7g50ggOe9Qa2i+nHlbHwAofevHMCirHrrbM72RIRjwIej3zskNBnyYCPiB6aby3t2eMAM7uRAKPKavZlL4xPBA3zGve8zr93nVHOF8DEy7cVuO1rpmLQEAx70B1n29bYKATFBGDXHxCZN+r1fJxPCJxc5+7J+Evbpop0Cgg0JqLzh4cdx+smiToBCaUtc+bQJHyHBfr1sUxYLiIw1dzTX5ZohCNpNJoPCo/fKy4PmiuSbfzDPdNwAgk+D+goMXxx+3538TfwPVNicTWB8I0gAAAABJRU5ErkJggg==">
+                                                                    </div>
+                                                                    <div class="card-toolbar">
+                                                                        <div class="d-flex justify-content-end"
+                                                                             data-kt-customer-table-toolbar="base">
+                                                                            <a href="http://localhost:10001/admin/adminusermanage"
+                                                                               class="btn btn-primary"
+                                                                               style="background:#f1faff;color: #313534">
+                                                                                더보기
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::card-header-->
+
+                                                                <!--begin::card-body-->
+                                                                <div class="card-body pt-0">
+                                                                    <!--begin::Table-->
+                                                                    <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+                                                                            <table
+                                                                                    class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                                                <!--begin::Table head-->
+                                                                                <thead>
+                                                                                <!--begin::Table row-->
+                                                                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        구분
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        이름
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        전화번호
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        Email
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        주소
+                                                                                    </th>
+                                                                                </tr>
+                                                                                <!--end::Table row-->
+                                                                                </thead>
+                                                                                <!--end::Table head-->
+
+                                                                                <!--begin::Table body-->
+                                                                                <tbody class="fw-semibold text-gray-600">
+
+                                                                                <!-- 회원1 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        문승희
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-1234-5678
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        ans1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        경기도 수원시
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원2 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        정재훈
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-5678-1234
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        wjd1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        경기도 성남시
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원3 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        일반회원
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        홍수현
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        010-9874-6512
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        ghd1234@naver.com
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        서울시 서초구
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원이 없을 때  -->
+                                                                                <!--<tr>
+                                                                                    <td colspan="9" align="center">가입된
+                                                                                        회원이
+                                                                                        없습니다.
+                                                                                    </td>
+                                                                                </tr>-->
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Table-->
+                                                                </div><!--end::card-body-->
+                                                            </div><!--end::card-->
+                                                        </div>
+                                                    </div><!--end::kt_app_content-->
+
+                                                 <!-- 프로그램 -->
+                                                    <!--begin::kt_app_content-->
+                                                    <div class="app-content flex-column-fluid"
+                                                         style="width: 580px; height: 265px;">
+                                                        <div class="container-xxl">
+                                                            <!--begin::card-->
+                                                            <div class="card"
+                                                                 style="height: 260px;">
+                                                                <!--begin::card-header-->
+                                                                <div class="card-header border-0 pt-6">
+                                                                    <div class="card-title">
+                                                                        <h3>쓰담 프로그램 </h3>
+                                                                        <img style="margin-left: 6px;"
+                                                                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABvklEQVRIie2WPUhbURiGn3NzbBR/SgyW2sFNBK1F0dXSQQrVUqk4CI4WskqxUNO4+QeKuEmhgtBObgVFChYKQW2hTZwcBBdLCYpa1EFoknMcNHBtDJ4jQVHzLIf7ffc97+E9H5cLOW46AuDt6AdtI7qTJ3eVViGthXAcMRCPJ3w2+pE3r4RMPQz3dhsLY1s7pR8/L4yWFBc5rc1NBfr4/EZMTs8AIF+GvkTht8V5ofyen0Dn88KDfwplldUx7f3zEZlUiTp3MRCcSHvx/VAPgeDEqfVucSF72wcADI5PpWneve5mcHzq1JoikVT14kVwTlf7YlZRp9g4MbZhcnqG1b/lONbKLCH/L5hG7cY2aoBc1BmjdvdNo3b3c1FnZaqzYpxp01Q9G6bANYja3b/UqE37plxZ1Fd/x31j6V+fs/B682moqaTlSSMC+BPb5NtylL39fXtj/8MOY4GKH7Ky/gvNT8rKSln4vob3wWP8FfnmruHF9OE6DyevAO/9BpYjcwD4qlpxpIXpCVJ6nGg4vFhvIxIC9aj2qQOw9COitLabFY/0RMx/D120hWabhZCfABJJ3TU79OzrRfa5XRwBiYnFAgAylzEAAAAASUVORK5CYII=">
+                                                                    </div>
+                                                                    <div class="card-toolbar">
+                                                                        <div class="d-flex justify-content-end"
+                                                                             data-kt-customer-table-toolbar="base">
+                                                                            <a href="http://localhost:10001/admin/adminprogram"
+                                                                               class="btn btn-primary"
+                                                                               style="background:#f1faff;color: #313534">
+                                                                                더보기
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::card-header-->
+
+                                                                <!--begin::card-body-->
+                                                                <div class="card-body pt-0">
+                                                                    <!--begin::Table-->
+                                                                    <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+                                                                            <table
+                                                                                    class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                                                <!--begin::Table head-->
+                                                                                <thead>
+                                                                                <!--begin::Table row-->
+                                                                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        강좌명
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        신청 시작일
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        신청 마감일
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        신청 인원
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        상태
+                                                                                    </th>
+                                                                                </tr>
+                                                                                <!--end::Table row-->
+                                                                                </thead>
+                                                                                <!--end::Table head-->
+
+                                                                                <!--begin::Table body-->
+                                                                                <tbody class="fw-semibold text-gray-600">
+
+                                                                                <!-- 프로그램1 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        줍깅의 역사와 이해
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.03.02.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.03.25.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        15
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        <div class="badge badge-light-primary">
+                                                                                            진행중
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 프로그램2 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        줍깅 실습 ver2
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.05.03.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.06.07.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        13
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        <div class="badge badge-light-primary">
+                                                                                            진행중
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 프로그램3 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        환경 문제와 우리 삶
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.02.01.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.02.28.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        25
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        <div class="badge badge-light-danger">
+                                                                                            마감
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 회원이 없을 때  -->
+                                                                                <!--<tr>
+                                                                                    <td colspan="9" align="center">프로그램이 없습니다
+                                                                                    </td>
+                                                                                </tr>-->
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Table-->
+                                                                </div><!--end::card-body-->
+                                                            </div><!--end::card-->
+                                                        </div>
+                                                    </div><!--end::kt_app_content-->
+
+                                                 <!-- 수거 신청 내역 -->
+                                                    <!--begin::kt_app_content-->
+                                                    <div class="app-content flex-column-fluid"
+                                                         style="width: 580px; height: 305px;">
+                                                        <div class="container-xxl">
+                                                            <!--begin::card-->
+                                                            <div class="card"
+                                                                 style="height: 287px;">
+                                                                <!--begin::card-header-->
+                                                                <div class="card-header border-0 pt-6">
+                                                                    <div class="card-title">
+                                                                        <h3>수거 신청 내역</h3>
+                                                                        <img style="margin-left: 3px;"
+                                                                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAADb0lEQVRIicWWTWhUVxTH/++9O5NJHAIRo2BKTKXQNqlfFWwXBSmxBSldpIt2UWwrrroqBNwIBaFQF6IiuK8fdOHGWVTsF7RYbcXSOjptB2eSgEkEY8y8ee++j3kf977rQkbnzdw3kcwMPavL/9x7fu/cj3Me8D+ZUh+cOvJtnoVsZy9hGiH56WMfvw4ApC6ykO2c+myql1zkzuZ21cdqT0lt7GnGGiH5xi/qCSyl3aqPlUbHkZPf2G9/8NG6vkx/V4G+V8Ovly46X08fzNa12FZrGllwKO0qFABc0wQhqflGrfmMiw41uw52LAoBUUwEh0GYt6nBug22qMFYEOQbNRKbIcRdu6q7AAbbBVpaNnHlh9uIhMD+fdsxMrK+PVjXXRGh1KjFMhZELdum0TaIHzDkvvsLuuHAMF3kLv8NzwvarnGoAVURyeAA62a9mjsghEgMsni/guxABiObh7BldAM8P8S1G+XE+UII+K47kHa02UTwqekPa6pGzJpjJwZ6aesmTL2/G5N7JzC5dxyqpqDw3yKqhiOd79oWVEKMo0cPeolgANBUbc6W3GwhgFt37qHwzwKy2Qw2Dg9i/VAWb735Mgb60+jvT8vB1ISqaHPNeguYc15wJeDy7AP8crWIO/8uxvQ9u7fi80OTyPSlpGftUIpI8MKqYBaygm1UY9vCGMdv1+8CAHZsG20J7nkBZuaWcPHSTTDGYz7brHosDFcHQ+VlWtX9Rqk0swTTqmHj8CC2jb/QsqQvncKNP2fxaMVCaWYp5jN13YdQWm4faRaUMFVyKI3pll0DACw/ojhx5ntMvDqC/e/sQGnmAS7/eBsievYKfD+MxXNtSjQ1/pSkGWf8+QXGgjRnzwrY9tdGMbZlA4iW3EWJpuLFsWGMv7L5qcYZAwvDdMq+v9g8X2kWAODL0+fn33j3vdHBofYVaTWjegU3f74y/9UXn4w1++QpKGq5G83CsSgUtfV8E8E8CPMONZPL1/OCTUNwP8zLfFJwFEVF60mz6Mgso+pEiIoynxQsNF62jGrH7dE2qlz2lADJcwIA1e8ruYqV6RTs2FYGIZGCpbcaAI4fPtfxGQPA4eOfShnSjOvW6X927mwu0ZdYEQghemW5smboysMKSIokBkjMOGL8wB8//X6BMb6mKkJSpMI5O7CWtT21x+nwjDRI3ZLsAAAAAElFTkSuQmCC">
+                                                                    </div>
+                                                                    <div class="card-toolbar">
+                                                                        <div class="d-flex justify-content-end"
+                                                                             data-kt-customer-table-toolbar="base">
+                                                                            <a href="http://localhost:10001/admin/admincollectservice"
+                                                                               class="btn btn-primary"
+                                                                               style="background:#f1faff;color: #313534">
+                                                                                더보기
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::card-header-->
+
+                                                                <!--begin::card-body-->
+                                                                <div class="card-body pt-0"
+                                                                >
+                                                                    <!--begin::Table-->
+                                                                    <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+                                                                            <table
+                                                                                    class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                                                <!--begin::Table head-->
+                                                                                <thead>
+                                                                                <!--begin::Table row-->
+                                                                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        수거신청번호
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        신청날짜
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        신청자
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        수거자
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        상태
+                                                                                    </th>
+                                                                                </tr>
+                                                                                <!--end::Table row-->
+                                                                                </thead>
+                                                                                <!--end::Table head-->
+
+                                                                                <!--begin::Table body-->
+                                                                                <tbody class="fw-semibold text-gray-600">
+
+                                                                                <!-- 4 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        1004
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.11.19.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2113321
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        012
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        <div class="badge badge-light-primary">
+                                                                                            진행중
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 3 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        1003
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.11.14.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2021165
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        001
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        <div class="badge badge-light-danger">
+                                                                                            종료
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 2 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        1002
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.11.13.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2020111
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        063
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        <div class="badge badge-light-danger">
+                                                                                            종료
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 1 -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        1001
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022.11.12.
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2020020
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        001
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        <div class="badge badge-light-primary">
+                                                                                            진행중
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 없을 때  -->
+                                                                                <!--<tr>
+                                                                                    <td colspan="9" align="center">접수 내역이 없습니다.
+                                                                                    </td>
+                                                                                </tr>-->
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Table-->
+                                                                </div><!--end::card-body-->
+                                                            </div><!--end::card-->
+                                                        </div>
+                                                    </div><!--end::kt_app_content-->
+
+                                                 <!-- 오늘의 주문 -->
+                                                    <!--begin::kt_app_content-->
+                                                    <div class="app-content flex-column-fluid"
+                                                         style="width: 580px; height: 305px;">
+                                                        <div class="container-xxl">
+                                                            <!--begin::card-->
+                                                            <div class="card"
+                                                                 style="height: 287px;">
+                                                                <!--begin::card-header-->
+                                                                <div class="card-header border-0 pt-6">
+                                                                    <div class="card-title">
+                                                                        <h3>오늘의 주문</h3>
+                                                                        <img style="margin-left: 3px;"
+                                                                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAADEklEQVRIicWVSWgUQRSG/1dVMyYM4xJcDiJ68SKCKARFBBUED6JePRhciQviAhJi9DCImGDcyEEwipHBmzeXiCKoiOICETVIiGQimpjEGYlj91RPT1V3edBoYjKZJSZ+l656r5uvuvq9auA/QQCw8+qx09pTBwPJMKd46AsMbini1U21++PjJWYAoD21b/XiJVxNSaWFVosMo0wAXnMkEhHjKhaCNzx41eJyjoYL9VW9l04e2AtCujs9ZdV4iQUAXN5ysgpA1Z8wGZjz14mZFQDuj5t4JNQ0eyrP8KPbm2o2EdCuPP2ODGKG+zEBEbuyra4TBFOsmLIltp6JLAskw0+Xb5hNliNhS8dLStu1Uo6RrlMCIhXgvAdEnVr7b7XRbcZHB/dNbBKSHxt3NaqixJFIhHXryXpjxQIKTgoMy2eUgu04sBz565pyk3bKtRzJ024mxDmTjLFuInrvqkwrM9Txe7e218WyigGg8ni9LF85p3Tu3Bmj3TYMpTUsx4EtJayfi/KSdir9Xaa41rqvaUfdvFHbxQS8rr4+a36h4oAQKAuHURYOD4Q4gNDbzphu7Yg1A7/aKRs+9Jv+hNR/x6/dv1vQeICueJ/lkX8zp9gE8VQmVdGVOxjP89Fv26UluvRRTjErSd/Rkv7J6dXb/xVBIV417orInOLLe0+0AYBlyTGLPyfirqvd6wPzUcUgGAS13dP7bczi7kTCNVrczk8MwHD/Q+JLakzfWbppZDydiVbWtuctBvNff4vLIafQ5jVrCxr3fE2AEw0p85xin6nHadvLvcAsKE+jveuT5Wbca4PjOSvWhNQdz2JipL7MBwLpQFDcmNcVulfww5XV59p2H66fWZQ5C/ltITOtWoiFEy8GtTKiiRcT6Alg1k242CRKHwIoq6w+e2pnzflZ/0I86v94MNuONMwQ0LUEWg+g4EJrrD00xJW3eDB7as6tA2dRAPANKi6eONBcSB7Io49HhLPo0vLyMhiD5y9bogCmF5RH3lU9HIKBoexHeK58UW/sG1Q8e9ES/TnRFYXm/ys/AP6biBdwkk4qAAAAAElFTkSuQmCC">
+                                                                    </div>
+                                                                    <div class="card-toolbar">
+                                                                        <div class="d-flex justify-content-end"
+                                                                             data-kt-customer-table-toolbar="base">
+                                                                            <a href="http://localhost:10001/admin/adminorderlist"
+                                                                               class="btn btn-primary"
+                                                                               style="background:#f1faff;color: #313534">
+                                                                                더보기
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::card-header-->
+
+                                                                <!--begin::card-body-->
+                                                                <div class="card-body pt-0">
+                                                                    <!--begin::Table-->
+                                                                    <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+                                                                            <table
+                                                                                    class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                                                <!--begin::Table head-->
+                                                                                <thead>
+                                                                                <!--begin::Table row-->
+                                                                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        주문날짜
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        주문번호
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        회원번호
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        제품번호
+                                                                                    </th>
+                                                                                    <th class="min-w-125px sorting"
+                                                                                        tabindex="0"
+                                                                                        aria-controls="kt_customers_table"
+                                                                                        rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="">
+                                                                                        총 가격
+                                                                                    </th>
+                                                                                </tr>
+                                                                                <!--end::Table row-->
+                                                                                </thead>
+                                                                                <!--end::Table head-->
+
+                                                                                <!--begin::Table body-->
+                                                                                <tbody class="fw-semibold text-gray-600">
+
+                                                                                <!-- 주문 text -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        2022.11.13
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2111030521
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2020210
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        0153
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        56,000
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 주문 text -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        2022.11.12
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022030596
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2020111
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        0153
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        83,000
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 주문 text -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        2022.11.10
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022030984
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2020311
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        0154
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        25,000
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!-- 주문 text -->
+                                                                                <tr class="row_member">
+                                                                                    <td class="member_list_value">
+                                                                                        2022.11.02
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2022030522
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        2020190
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        0152
+                                                                                    </td>
+                                                                                    <td class="member_list_value">
+                                                                                        280,000
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <!--  없을 때  -->
+                                                                                <!--<tr>
+                                                                                    <td colspan="9" align="center">주문내역이 없습니다.
+                                                                                    </td>
+                                                                                </tr>-->
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Table-->
+                                                                </div><!--end::card-body-->
+                                                            </div><!--end::card-->
+                                                        </div>
+                                                    </div><!--end::kt_app_content-->
+
+
+                                                </div>
+                                                <!-- 그리드 끝 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+
+</html>
