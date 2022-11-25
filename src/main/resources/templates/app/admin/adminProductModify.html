@@ -24,7 +24,7 @@
                                 <ul class="header-nav header-nav-options">
                                     <li class="header-nav-brand">
                                         <div class="brand-holder">
-                                            <a href="javascript:void(0)" target="_blank"
+                                            <a href="javascript:void(0)" style="cursor: auto"
                                                class="location_text margin-right-lg"> <span
                                                     class="text-gray">주문 관리</span>
                                             </a>
@@ -111,11 +111,18 @@
                                                                                                style="width: 100%;">
                                                                                     </div>
                                                                                     <div class="d-flex align-items-center position-relative my-1">
-                                                                                        <input type="text" name="productCategory"
-                                                                                               data-kt-ecommerce-product-filter="search"
-                                                                                               class="form-control form-control-solid w-250px ps-14"
-                                                                                               placeholder="카테 고리"
-                                                                                               style="width: 33.3%;">
+                                                                                        <select class="form-control form-control-solid"
+                                                                                                id="productCategory"
+                                                                                                style="width: 33.3%;" name="productCategory">
+                                                                                            <option value="CategoryStatus" disabled selected hidden>카테고리</option>
+                                                                                            <option value="생활">생활</option>
+                                                                                            <option value="주방">주방</option>
+                                                                                            <option value="욕실">욕실</option>
+                                                                                            <option value="식품">식품</option>
+                                                                                            <option value="취미">취미</option>
+                                                                                            <option value="문구">문구</option>
+                                                                                            <option value="반려동물">반려동물</option>
+                                                                                        </select>
                                                                                         <input type="text" name="productPrice"
                                                                                                data-kt-ecommerce-product-filter="search"
                                                                                                class="form-control form-control-solid w-250px ps-14"
@@ -197,50 +204,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
-<script>
-    //리스트 체크박스
-    var $checkboxes = $(".form-check-input.checkbox");
 
-    //제품 수정 유효성 검사
-    function modifyProduct() {
-        if($("input[name=productName]").val() == ""){
-            alert("제품명을 입력하세요!");
-            $("input[name=productName]").focus();
-            return;
-        }
-
-        if($("input[name=productCategory]").val() == ""){
-            alert("카테 고리를 입력하세요!");
-            $("input[name=productCategory]").focus();
-            return;
-        }
-
-        if($("input[name=productPrice]").val() == ""){
-            alert("가격을 입력하세요!");
-            $("input[name=productPrice]").focus();
-            return;
-        }
-
-        if($("input[name=productCount]").val() == ""){
-            alert("입고 수량을 입력하세요!");
-            $("input[name=productCount]").focus();
-            return;
-        }
-
-        if($("input[name=productFileProfile]").next().attr("src") == "/images/admin/06.png"){
-            alert("대표 이미지를 등록하세요!");
-            return;
-        }
-
-        if($("input[name=productFileDetail]").next().attr("src") == "/images/admin/05.png"){
-            alert("상세 설명 이미지를 등록하세요!");
-            return;
-        }
-
-        productForm.submit();
-
-    }
-
-
-</script>
 </html>

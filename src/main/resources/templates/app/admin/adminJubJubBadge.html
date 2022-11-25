@@ -25,7 +25,7 @@
                                 <ul class="header-nav header-nav-options">
                                     <li class="header-nav-brand">
                                         <div class="brand-holder">
-                                            <a href="javascript:void(0)" target="_blank"
+                                            <a href="javascript:void(0)" style="cursor: auto"
                                                class="location_text margin-right-lg"> <span
                                                     class="text-gray">줍깅 관리</span>
                                             </a>
@@ -697,28 +697,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
-<script>
-    //리스트 체크박스
-    var $checkboxes = $(".form-check-input.checkbox");
 
-
-    // 검색 _ 엔터로 submit 가능 / 빈칸 입력시 alert
-    function searchList(theForm) {
-        if (theForm.enter.value==""){
-            alert("검색어를 입력하세요");
-            return false;
-        }
-        theForm.submit();
-    }
-
-    // 배지 삭제
-    $("#deleteBadgeBtn").on('click', function () {
-        if ($checkboxes.filter(":checked").length == 0) {
-            alert("삭제할 배지을 선택하세요.");
-            return;
-        }
-    });
-
-
-</script>
 </html>
