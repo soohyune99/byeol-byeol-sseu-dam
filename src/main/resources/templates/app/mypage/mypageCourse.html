@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 나의 코스</title>
+    <link rel="icon" href="/images/fix/favicon.png">
+    <link rel="stylesheet" href="/css/fix/font.css">
+    <link rel="stylesheet" href="/css/mypage/mypageOrderList.css">
+    <link rel="stylesheet" href="/css/mypage/mypageCourse.css">
+    <link rel="stylesheet" href="/css/fix/header68.css">
+    <link rel="stylesheet" href="/css/fix/header74.css">
+    <link rel="stylesheet" href="/css/fix/header51.css">
+    <link rel="stylesheet" href="/css/fix/header76.css">
+    <link rel="stylesheet" href="/css/fix/header77.css">
+    <link rel="stylesheet" href="/css/fix/header37.css">
+    <link rel="stylesheet" href="/css/fix/footer1.css">
+    <link rel="stylesheet" href="/css/fix/footer2.css">
+</head>
+
+<body
+        class="doz_sys _body_menu_m20200103e566d1814daef  shop_mypage  fixed-menu-on new_fixed_menu_on new_header_site  loggedin"
+        id="doz_body">
+<header th:replace="/app/fix/header.html :: header"></header>
+<!-- Code injected by live-server -->
+<div doz_type="section"
+     class="section_wrap  pc_section    section_first _section_first   mobile_section_first    side_basic grid_gutter_0 grid_v_gutter_0   "
+     id="s202001038f5e33413dcec" doz_change_mobile=" N" doz_aside="N" doz_side_width="200" doz_side_margin="0"
+     doz_extend="N" doz_mobile_section="N" doz_mobile_hide="N" doz_header_repeat="N" doz_footer_repeat="N"
+     doz_category="default">
+    <div class="section_bg _section_bg _interactive_bg   "
+         style="   background-size:cover; background-repeat: no-repeat; position: absolute;left: 0;top: 0;right: 0; bottom: 0;">
+    </div>
+    <div class="section_bg_color _section_bg_color"
+         style="background-color:#ffffff;  position: absolute;left: 0;top: 0;right: 0; bottom: 0;"></div>
+    <main>
+        <div doz_type="inside" class="inside">
+            <div doz_type="row" doz_grid="12" class="doz_row">
+                <div doz_type="grid" doz_grid="12" class="col-dz col-dz-12">
+                    <div doz_type="widget" id="w20200103c5a95f449eb6b">
+                        <div class="_widget_data _ds_animated_except" data-widget-name="쇼핑 마이페이지"
+                             data-widget-type="shop_mypage" data-widget-parent-is-mobile="N">
+                            <div class="shop-content mypage">
+                                <div class="container-fluid">
+                                    <div class="row show-grid">
+                                        <div class="left-menu hidden-lg hidden-md">
+                                            <ul id="cart_menu">
+                                                <div class="clearfix cart-menu-slide">
+                                                    <li class="  active ">
+                                                        <a href="/shop_mypage/?m2=order"
+                                                           class="body_font_color_50"><span>주문</span></a>
+                                                    </li>
+                                                    <li class=" ">
+                                                        <a href="/shop_mypage/?m2=wish_list"
+                                                           class="body_font_color_50"><span>위시</span></a>
+                                                    </li>
+                                                    <li class=" ">
+                                                        <a href="/shop_mypage/?m2=point_list"
+                                                           class="body_font_color_50"><span>포인트</span></a>
+                                                    </li>
+                                                    <li class=" ">
+                                                        <a href="/shop_mypage/?m2=cancel"
+                                                           class="body_font_color_50"><span>취소/교환/반품</span></a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="/shop_mypage/?m2=qna"
+                                                           class="body_font_color_50"><span>1:1 문의</span></a>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2 col-sm-12 hidden-xs hidden-sm left-menu">
+                                            <ul>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/badge"
+                                                       class="text-gray-dark _fade_link">나의 <span
+                                                            class="hidden-xs">배지</span></a>
+                                                </li>
+                                                <li class="on">
+                                                    <a href="http://localhost:10001/mypage/course"
+                                                       class="text-gray-dark _fade_link">나의 <span
+                                                            class="hidden-xs">코스</span></a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/mypoint"
+                                                       class="text-gray-dark _fade_link">나의 포인트</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/orderlist"
+                                                       class="text-gray-dark _fade_link">주문조회</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/cancellist"
+                                                       class="text-gray-dark _fade_link">주문취소</a>
+                                                </li>
+                                                <!-- <li class="">
+                                                    <a href="/shop_mypage/?m2=wish_list"
+                                                        class="text-gray-dark _fade_link"><span
+                                                            class="hidden-xs">장바구니</span></a>
+                                                </li> -->
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/pickuplist"
+                                                       class="text-gray-dark _fade_link">수거신청내역</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/program"
+                                                       class="text-gray-dark _fade_link">수강내역</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/community"
+                                                       class="text-gray-dark _fade_link">작성글 / 작성댓글</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://localhost:10001/mypage/myinfo"
+                                                       onclick="SITE_MEMBER.editProfile('L3Nob3BfbXlwYWdl');"
+                                                       class="text-gray-dark _fade_link">정보수정 / 탈퇴</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-10 col-sm-12">
+                                            <div class="head bg-bright">
+                                                <div class="my-theme tabled full-width">
+                                                    <div class="img-view table-cell vertical-middle">
+                                                        <div class="tabled full-width">
+                                                            <div class="tumbs table-cell vertical-middle">
+                                                                <a href="javascript:;"
+                                                                   onclick="SITE_MEMBER.editProfile('L3Nob3BfbXlwYWdl');">
+                                                                    <div id="mypage_profile_img" class="img-circle"
+                                                                         style="width: 85px; height: 85px; background: url('https://www.jigushop.co.kr/common/img/default_profile.png')  50% 50% / cover no-repeat;">
+                                                                    </div>
+                                                                    <span class="sr-only">정보 수정</span>
+                                                                </a>
+                                                            </div>
+                                                            <div
+                                                                    class="nick text-default-dark table-cell vertical-middle no-margin-top">
+                                                                    <span class="ug_name text-brand">기본<a
+                                                                            href="javascript:;"
+                                                                            class="btn hidden-lg hidden-md hidden-sm"
+                                                                            role="button" data-toggle="popover"
+                                                                            data-placement="bottom"
+                                                                            data-popover-content="#list-popover"
+                                                                            data-original-title=""
+                                                                            title="">등급혜택</a></span> <span>성은지 님
+                                                                        안녕하세요.</span>
+
+
+                                                                <div class="text-15 use_grade">
+                                                                    <div class="ug_text">sej07@naver.com</div>
+                                                                    <div class="ug_btn">
+                                                                        <a href="http://localhost:10001/mypage/myinfo" class="btn hidden-xs "
+                                                                           role="button" data-toggle="popover"
+                                                                           data-placement="bottom"
+                                                                           data-popover-content="#list-popover"
+                                                                           data-original-title="" title="">정보수정</a>
+                                                                        <div id="list-popover" style="display: none"
+                                                                             class="list_popover">
+                                                                            <div
+                                                                                    class="lp_header_wrap hidden-lg hidden-md hidden-sm">
+                                                                                <h6 class="no-margin">회원 등급별 혜택
+                                                                                    안내
+                                                                                </h6>
+                                                                                <a href="javascript:"
+                                                                                   onclick="$('.popover.in').popover('hide');"
+                                                                                   class="btl btl bt-times"><span
+                                                                                        class="sr-only">닫기</span></a>
+                                                                            </div>
+                                                                            <div class="lp_content_wrap">
+                                                                                <div
+                                                                                        class=" text-center text-18 margin-bottom-xl hidden-lg hidden-md hidden-sm">
+                                                                                    성은지 님의 회원등급은<br><span
+                                                                                        class="text-brand">기본</span>
+                                                                                    입니다. </div>
+                                                                                <div class="lp_title">누적 구매금액:
+                                                                                    0원
+                                                                                </div>
+                                                                                <div
+                                                                                        class="text-center hidden-lg hidden-md hidden-sm text-14 lp_summary">
+                                                                                    <p class="no-margin">구매금액
+                                                                                        100,000원 달성 시<br>Saver 로
+                                                                                        승급됩니다.</p>
+                                                                                </div>
+                                                                                <div class="lp_table">
+                                                                                    <div class="text-bold text-13">
+                                                                                        회원 등급별 혜택 안내</div>
+                                                                                    <div class="table-responsive">
+                                                                                        <table
+                                                                                                class="table no-margin">
+                                                                                            <thead>
+                                                                                            <tr>
+                                                                                                <th>등급명</th>
+                                                                                                <th>등급기준
+                                                                                                </th>
+                                                                                                <th>포인트 추가
+                                                                                                    적립
+                                                                                                </th>
+                                                                                                <th>적립조건
+                                                                                                </th>
+                                                                                            </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                            <tr class="active">
+                                                                                                <td>기본</td>
+                                                                                                <td>기본</td>
+                                                                                                <td></td>
+                                                                                                <td></td>
+                                                                                            </tr>
+                                                                                            <tr class="">
+                                                                                                <td>Saver
+                                                                                                </td>
+                                                                                                <td>100,000원
+                                                                                                </td>
+                                                                                                <td>1% (최대
+                                                                                                    10,000원)
+                                                                                                </td>
+                                                                                                <td>10원</td>
+                                                                                            </tr>
+                                                                                            <tr class="">
+                                                                                                <td>Less
+                                                                                                    Waster
+                                                                                                </td>
+                                                                                                <td>300,000원
+                                                                                                </td>
+                                                                                                <td>2% (최대
+                                                                                                    30,000원)
+                                                                                                </td>
+                                                                                                <td>10원</td>
+                                                                                            </tr>
+                                                                                            <tr class="">
+                                                                                                <td>Zero
+                                                                                                    Waster
+                                                                                                </td>
+                                                                                                <td>500,000원
+                                                                                                </td>
+                                                                                                <td>3% (최대
+                                                                                                    50,000원)
+                                                                                                </td>
+                                                                                                <td>10원</td>
+                                                                                            </tr>
+                                                                                            <tr class="">
+                                                                                                <td>Earth
+                                                                                                    Lover
+                                                                                                </td>
+                                                                                                <td>10,000,000원
+                                                                                                </td>
+                                                                                                <td>5% (최대
+                                                                                                    100,000원)
+                                                                                                </td>
+                                                                                                <td>10원</td>
+                                                                                            </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+
+                                                                                    <div
+                                                                                            class="text-12 margin-top-xxl">
+                                                                                        <p class="no-margin">최근
+                                                                                            3개월
+                                                                                            구매금액에 대해 산정됩니다.</p>
+                                                                                        <p
+                                                                                                class="no-margin text-danger">
+                                                                                            구매금액이 적립조건을 만족할 때
+                                                                                            포인트 추가
+                                                                                            적립이 적용됩니다.</p>
+                                                                                        <p class="no-margin">등급
+                                                                                            조건
+                                                                                            달성시 등급 변경은 매월 1일에
+                                                                                            반영됩니다.
+                                                                                        </p>
+                                                                                        <p class="no-margin">
+                                                                                            구매혜택
+                                                                                            조건은 실결제 기준(쿠폰, 적립금,
+                                                                                            회원혜택
+                                                                                            적용 후 배송비를 제외한
+                                                                                            결제금액)으로
+                                                                                            적용됩니다.</p>
+                                                                                        <p class="no-margin">
+                                                                                            구매금액
+                                                                                            반영은 배송완료 후 7일 이후에
+                                                                                            반영됩니다.
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-cell vertical-middle point-view text-center">
+                                                        <a href="http://localhost:10001/mypage/mypoint">
+                                                            <p>포인트</p>
+                                                            <span class="text-bold text-32">0</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h3 class="tabCommonTit">나의 코스</h3>
+                                            <div class="myTabMenu">
+                                                <ul>
+                                                    <li class="active"><a name="info">1코스</a></li>
+                                                    <li class="unlock"><a name="project">2코스 🔒</a></li>
+                                                    <li class="unlock"><a name="story">3코스 🔒</a></li>
+                                                    <li class="unlock"><a name="favorite">4코스 🔒</a></li>
+                                                    <li class="unlock"><a name="alarm">5코스 🔒</a></li>
+                                                    <li class="unlock"><a name="payment">스페셜 🔒</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="myTabContents noticeTab active">
+                                                <div class="mycourseLocation">
+                                                    <p class="mycourseCopy">
+                                                            <span>
+                                                                "성은지"
+                                                                님이 도전 중인
+                                                                <br>
+                                                                줍깅 챌린지입니다!
+                                                            </span>
+                                                    </p>
+                                                    <img class="locationImg" src="/images/mypage/locate2.png">
+                                                </div>
+                                                <div class="noticeListWrap">
+                                                    <div class="courseLine"></div>
+                                                    <div class="participatingCourseLine"></div>
+                                                    <ul class="noticeListTimeLine">
+                                                        <li class="noticeDayWrap">
+                                                            <ul class="courseList">
+                                                                <li class="noticeContentWrap active">
+                                                                    <div class="left">
+                                                                        <p class="categoryAndDate">
+                                                                            <span>1코스 1지점</span>
+                                                                        </p>
+                                                                        <p class="noticeContent">서울 어디구 어디동 어디어디</p>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="noticeContentWrap active">
+                                                                    <div class="left">
+                                                                        <p class="categoryAndDate">
+                                                                            <span>1코스 2지점</span>
+                                                                        </p>
+                                                                        <p class="noticeContent">서울 어디구 어디동 어디어디</p>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="noticeContentWrap active">
+                                                                    <div class="left">
+                                                                        <p class="categoryAndDate">
+                                                                            <span>1코스 3지점</span>
+                                                                        </p>
+                                                                        <p class="noticeContent">서울 어디구 어디동 어디어디</p>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="noticeContentWrap">
+                                                                    <div class="left">
+                                                                        <p class="categoryAndDate">
+                                                                            <span>1코스 4지점</span>
+                                                                        </p>
+                                                                        <p class="noticeContent">서울 어디구 어디동 어디어디</p>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="noticeContentWrap">
+                                                                    <div class="left">
+                                                                        <p class="categoryAndDate">
+                                                                            <span>1코스 5지점</span>
+                                                                        </p>
+                                                                        <p class="noticeContent">서울 어디구 어디동 어디어디</p>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="swal2-container swal2-center sg-swal swal2-shown" style="overflow-y: auto;">
+    <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show"
+         tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="width: 320px; display: flex;">
+        <div class="swal2-header">
+            <ul class="swal2-progress-steps" style="display: none;"></ul>
+            <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
+                    class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>
+            </div>
+            <div class="swal2-icon swal2-question" style="display: none;"></div>
+            <div class="swal2-icon swal2-warning" style="display: none;"></div>
+            <div class="swal2-icon swal2-info" style="display: none;"></div>
+            <div class="swal2-icon swal2-success" style="display: none;">
+                <div class="swal2-success-circular-line-left"></div><span class="swal2-success-line-tip"></span>
+                <span class="swal2-success-line-long"></span>
+                <div class="swal2-success-ring"></div>
+                <div class="swal2-success-fix"></div>
+                <div class="swal2-success-circular-line-right"></div>
+            </div><img class="swal2-image" style="display: none;">
+            <h2 class="swal2-title" id="swal2-title" style="display: flex;">미참여 코스</h2><button type="button"
+                                                                                               class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button>
+        </div>
+        <div class="swal2-content">
+            <div id="swal2-content" style="display: block;">줍깅 챌린지에 도전 후<br>서비스를 이용할 수 있습니다.</div><input class="swal2-input"
+                                                                                                         style="display: none;"><input type="file" class="swal2-file" style="display: none;">
+            <div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select
+                class="swal2-select" style="display: none;"></select>
+            <div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox"
+                                                                         style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea
+                class="swal2-textarea" style="display: none;"></textarea>
+            <div class="swal2-validation-message" id="swal2-validation-message"></div>
+        </div>
+        <div class="swal2-actions">
+            <button type="button" class="swal2-confirm btn" aria-label=""
+                    style="display: inline-block;">도전하러 가기</button>
+            <a href="javascript:unlockCourseModalClose();" class="modal-combackBtn">다음에 할게요</a>
+        </div>
+        <div class="swal2-footer" style="display: none;"></div>
+    </div>
+</div>
+<footer th:replace="/app/fix/footer.html :: footer"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/mypage/mypageCourse.js"></script>
+</html>

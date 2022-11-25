@@ -1,0 +1,103 @@
+.course-section {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding: 50px 60px;
+}
+
+.subpage-title {
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -0.96px;
+    color: #000;
+    margin-bottom: 20px;
+    padding-left: 265px;
+}
+
+.course-section dl {
+    display: block;
+    padding-left: 265px;
+}
+
+#course dl dt {
+    background-color: #00c7ae;
+}
+
+.course-section dl dt {
+    float: left;
+    display: block;
+    background: #000;
+    border-radius: 50px;
+    width: 90px;
+    font-size: 16px;
+    line-height: 28px;
+    height: 30px;
+    color: #fff;
+    text-align: center;
+    margin: 3px 15px 3px 0;
+}
+
+.course-section dl dd {
+    float: left;
+    width: calc(100% - 105px);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 27px;
+    margin: 3px 0;
+}
+
+.course-min-text {
+    display: inline-block;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+.course-min-title {
+    font-weight: bold;
+}
+
+.course-min-title:after {
+    content: '|';
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 12px;
+    font-weight: 800;
+    position: relative;
+    top: -5px;
+}
+
+.clearfix:before, .clearfix:after{
+    display: table;
+    content: " ";
+}
+
+.clearfix:after{
+    clear: both;
+}
+
+#course dl dt {
+    background-color: #00c7ae;
+}
+
+.course-section dl:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* .row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.row:before, .row:after {
+    display: table;
+    content: " ";
+}
+
+@media (min-width: 992px){
+.col-md-6 {
+    width: 50%;
+    float: left;
+}} */
+
+

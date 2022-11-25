@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기사 회원가입 - 2</title>
+    <link rel="icon" href="/images/fix/favicon.png">
+    <link rel="stylesheet" href="/css/fix/font.css">
+    <link rel="stylesheet" href="/css/fix/header68.css">
+    <link rel="stylesheet" href="/css/fix/header74.css">
+    <link rel="stylesheet" href="/css/fix/header51.css">
+    <link rel="stylesheet" href="/css/fix/header76.css">
+    <link rel="stylesheet" href="/css/fix/header77.css">
+    <link rel="stylesheet" href="/css/fix/header37.css">
+    <link rel="stylesheet" href="/css/fix/footer1.css">
+    <link rel="stylesheet" href="/css/fix/footer2.css">
+    <link rel="stylesheet" href="/css/join/joinCollector.css">
+</head>
+<body class="pro-signup">
+<header th:replace="/app/fix/header.html :: header"></header>
+<div id="app" data-browser="chrome" data-is-loaded="true" class>
+    <div id="app-body">
+        <div data-v-61b32e29="" class="container">
+            <form data-v-61b32e29="" id="id_pro_form" autocomplete="off">
+                <div data-v-2b9a1ce0="" data-v-61b32e29="" class="signup-progress-bar header">
+                    <div data-v-2b9a1ce0="" class="progress">
+                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"
+                             class="progress-bar" style="width: 100%;"></div>
+                    </div>
+                    <div data-v-2b9a1ce0="" class="value-text">100%</div>
+                </div>
+                <div data-v-66225419="" data-v-61b32e29="" id="step4" class="information-step body"
+                     is-initial-mounted="true">
+                    <div data-v-66225419="" class="header">
+                        <h1 data-v-66225419="">마지막으로 필수 정보를 입력해주세요.</h1>
+                    </div>
+                    <div data-v-66225419="" class="step-body">
+                        <!---->
+                        <div data-v-66225419="" class="form-group providername-wrap">
+                            <label data-v-66225419=""
+                                   for="name">이름
+                            </label>
+                            <input data-v-66225419="" name="username" type="text"
+                                   placeholder="이름(실명)을 입력해주세요." class="input-lg form-control" minlength="2"
+                                   maxlength="7" data-vv-validate-on="blur" aria-invalid="true" id="__BVID__267"
+                                   aria-required="true" autofocus>
+                            <div data-v-66225419="" class="invalid-feedback">
+                                <p data-v-66225419="" class="error">이름(실명)을 입력해주세요.</p>
+                            </div>
+                        </div>
+                        <div data-v-66225419="" class="form-group sex-wrap"><label data-v-66225419=""
+                                                                                   for="sex">성별</label>
+                            <div data-v-66225419="" class="gender-radio"><span data-v-66225419="">
+                                        <div data-v-66225419="" data-testid="gender-radio" class="radio"> 남자
+                                        </div>
+                                    </span><span data-v-66225419="">
+                                        <div data-v-66225419="" class="radio"> 여자 </div>
+                                    </span></div>
+                            <div data-v-66225419="" class="invalid-feedback">
+                                <p data-v-66225419="" class="error" style="display: none">성별을 선택해주세요.</p>
+                            </div>
+                        </div>
+                        <div data-v-66225419="" class="form-group email-wrap"><label data-v-66225419=""
+                                                                                     for="email">이메일</label>
+                            <input data-v-66225419="" name="email" type="email"
+                                   placeholder="id@soomgo.com" class="input-lg form-control" maxlength="255"
+                                   data-vv-validate-on="blur" aria-invalid="true" id="__BVID__268">
+                            <span
+                                    data-v-66225419="" class="form-action" style="display: none;"><img
+                                    data-v-66225419=""
+                                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+                                    class="empty">
+                                </span>
+                            <div data-v-66225419="" class="d-block invalid-feedback">
+                                <p data-v-66225419="" class="error" style="display: none">이메일 주소를 입력해주세요.</p>
+                            </div>
+                        </div>
+                        <div data-v-66225419="" class="form-group password-wrap"><label data-v-66225419=""
+                                                                                        for="password">비밀번호</label><input
+                                data-v-66225419="" name="password" type="password"
+                                placeholder="영문+숫자 조합 8자리 이상 입력해주세요." autocomplete="new-password"
+                                class="input-lg form-control is-valid" v-validate="passwordValidatorRules"
+                                data-vv-validate-on="blur" id="__BVID__269" aria-autocomplete="list"><span
+                                data-v-66225419="" class="form-action" style="display: none;"><img
+                                data-v-66225419=""
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+                                class="empty"><span data-v-66225419="" class="display-password"> 표시
+                                    </span></span>
+                            <div data-v-66225419="" class="invalid-feedback">
+                                <p data-v-66225419="" class="error"></p>
+                            </div>
+                        </div>
+                        <div data-v-66225419="" class="form-group">
+                            <div data-v-b5001060="" data-v-66225419="">
+                                <fieldset data-v-b5001060="" class="form-group form-group" id="__BVID__271">
+                                    <!---->
+                                    <div><label data-v-b5001060="" for="request-phone" class="input-label">휴대전화 번호
+                                        인증</label>
+                                        <div data-v-b5001060="" role="group" class="input-group input-group">
+                                            <!----><input data-v-b5001060="" id="request-phone" name="requestPhone"
+                                                          type="tel" placeholder="예) 01012345678"
+                                                          class="answer-input form-control is-invalid" maxlength="13"
+                                                          data-vv-validate-on="blur" aria-invalid="true"><input
+                                                data-v-b5001060="" name="isSendPhoneNumber"
+                                                data-vv-name="isSendPhoneNumber" hidden="hidden"
+                                                aria-required="false" aria-invalid="true">
+                                            <div data-v-b5001060="" class="button-wrapper input-group-append">
+                                                <button data-v-b5001060="" type="button" disabled="disabled"
+                                                        class="send-button disabled"> 전송
+                                                </button>
+                                            </div>
+                                            <!---->
+                                        </div>
+                                        <div data-v-b5001060="" class="validation-msg-wrapper">
+                                            <p data-v-b5001060="" class="validation"
+                                               style="display: none;color: #00C7AE;"> 전화번호는 절대 공개되지 않으며, 안심번호를 통해 상담 전화가
+                                                올 수 있습니다 </p>
+                                        </div>
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </fieldset>
+                                <!---->
+                                <fieldset data-v-b5001060="" class="form-group form-group" id="__BVID__81" style="display: none"><!---->
+                                    <div>
+                                        <label data-v-b5001060="" for="request-verify-phone"
+                                               class="input-label">인증번호</label>
+                                        <div data-v-b5001060="" role="group" class="input-group input-group"><!---->
+                                            <input data-v-b5001060="" id="request-verify-phone"
+                                                   name="requestVerifyPhone" type="tel" placeholder="SMS 인증번호를 입력해주세요."
+                                                   class="answer-input form-control is-valid" maxlength="6"
+                                                   aria-required="true" aria-invalid="true">
+                                            <input data-v-b5001060="" type="checkbox" name="isClickedVerifyPhone"
+                                                   data-vv-name="isClickedVerifyPhone" hidden="hidden"
+                                                   aria-required="true" aria-invalid="true">
+                                            <div data-v-b5001060="" class="button-wrapper input-group-append">
+                                                <button data-v-b5001060="" type="button" disabled="disabled"
+                                                        class="send-button disabled"> 인증하기
+                                                </button>
+                                            </div><!----></div>
+                                        <div data-v-b5001060="" class="validation-msg-wrapper"><!----><!----><p
+                                                data-v-b5001060="" class="authentication" style="color: #00C7AE;"> 인증번호는 수신 후 15분 동안 유효합니다. </p>
+                                        </div><!----><!----><!----></div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div data-v-66225419="" class="terms">
+                            <div data-v-20b04169="" data-v-66225419="" class="agree-to-terms-checkbox"><input
+                                    data-v-20b04169="" id="agree-terms-checkbox-1668331384759" type="checkbox"
+                                    name="agreeToTerms" class="agree-to-terms" aria-required="true"
+                                    aria-invalid="false"><label data-v-20b04169=""
+                                                                for="agree-terms-checkbox-1668331384759"
+                                                                data-testid="agree-to-terms-checkbox-label">
+                                <p data-v-20b04169="" class="terms-wrapper"><span data-v-20b04169=""
+                                                                                  class="terms">이용약관</span>, <span
+                                        data-v-20b04169="" class="terms">개인정보
+                                                수집 및
+                                                이용</span> 동의 (필수) </p>
+                            </label>
+                                <p data-v-20b04169="" class="error-message" style="display: none"> 이용약관에 동의해주세요. </p>
+                                <!---->
+                            </div>
+                            <div data-v-9224195e="" data-v-66225419="" class="more-than-14-checkbox"><input
+                                    data-v-9224195e="" id="more-than-14-checkbox-1668331384764" type="checkbox"
+                                    name="moreThan14" class="more-than-14" aria-required="true"
+                                    aria-invalid="false"><label data-v-9224195e=""
+                                                                data-testid="more-than-14-checkbox-label"
+                                                                for="more-than-14-checkbox-1668331384764">
+                                <p data-v-9224195e="" class="terms-wrapper">만 14세 이상 (필수)</p>
+                            </label>
+                                <p data-v-9224195e="" class="error-message" style="display: none"> 만 14세 이상 가입에 동의해주세요. </p>
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-v-f6f3ff14="" data-v-61b32e29="" class="step-navigator footer">
+                    <div data-v-f6f3ff14="" class="wrapper">
+                        <div data-v-f6f3ff14="" class="warning"></div>
+                        <span data-v-f6f3ff14=""
+                              class="left btn-container"><button data-v-f6f3ff14="" type="button"
+                                                                 class="btn btn-prev btn-outline-primary"> 이전 </button></span><span
+                            data-v-f6f3ff14="" class="right btn-container"><button data-v-f6f3ff14="" type="submit"
+                                                                                  onclick="location.href='http://localhost:10001/main/main'" class="btn btn-primary"> 가입하기 </button></span>
+                    </div>
+                    <!---->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/fix/headerLogin.js"></script>
+<script src="/js/join/joinCollectorStepTwo.js"></script>
+</html>

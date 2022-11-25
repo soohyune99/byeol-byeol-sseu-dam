@@ -1,0 +1,207 @@
+@charset "utf-8";
+
+body {
+    margin: 0;
+    font-family: Noto Sans KR,Malgun Gothic,-apple-system,Segoe UI,Roboto,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #323232;
+    text-align: left;
+    background-color: #fff;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* opacity: 0; */
+    min-height: 100%;
+}
+
+#app-body {
+    height: 100%;
+    position: relative;
+    flex-grow: 1;
+}
+
+.soomgo-life-search[data-v-40d754bc] {
+    width: 60.625rem;
+    /*     padding-top: 3.125rem; */
+    padding-bottom: 5rem;
+    margin: auto;
+}
+
+.community-header[data-v-40d754bc] {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+    margin-bottom: 30px;
+    align-items: flex-end;
+}
+
+ul[data-v-85114aa8] {
+    display: flex;
+    border-bottom: 0.0625rem solid #f4f4f4;
+    margin-bottom: 1.875rem;
+}
+
+.keyword-searcher-modal[data-v-7ec7cacf] {
+    min-height: 3.75rem;
+}
+
+.community-layout[data-v-40d754bc] {
+    display: flex;
+    flex-direction: row;
+}
+
+.community-content-layout[data-v-40d754bc] {
+    width: 37.5rem;
+    margin-left: 5.3125rem;
+}
+
+.community-title[data-v-40d754bc] {
+    font-size: 2.125rem;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: normal;
+    margin: 0;
+    color: #323232;
+}
+
+.write[data-v-40d754bc] {
+    width: 1.25rem;
+    height: 1.25rem;
+    background: url(https://assets.cdn.soomgo.com/icons/icon-board-create.svg) no-repeat;
+    margin-right: 0.25rem;
+}
+
+.write-button-desktop[data-v-40d754bc] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7.5rem;
+    height: 2.75rem;
+    padding: 0.625rem 1.625rem 0.625rem 1.5625rem;
+    border-radius: 6px;
+    border: none;
+}
+
+/* 검색 결과가 없을 때 페이지 css 시작 */
+
+.infinite-loading-container[data-v-644ea9c9] {
+    clear: both;
+    text-align: center;
+}
+
+.text-center {
+    text-align: center!important;
+}
+
+figure {
+    margin: 0 0 1rem;
+}
+
+.indicator-body.center[data-v-fc3fcce8] {
+    margin: 0 auto;
+}
+
+.indicator-body[data-v-fc3fcce8] {
+    border-radius: 50%;
+    -webkit-animation: spin-data-v-fc3fcce8 1s ease-in-out infinite;
+    animation: spin-data-v-fc3fcce8 1s ease-in-out infinite;
+}
+
+p[data-v-fc3fcce8] {
+    font-size: .875rem;
+    line-height: 1.3125rem;
+    font-weight: 400;
+    letter-spacing: -.0125rem;
+}
+
+.no-search-items[data-v-7206b48f] {
+    padding: 8.75rem 0 5rem;
+}
+
+.no-items[data-v-7206b48f] {
+    padding: 7.5rem 0 5rem;
+}
+
+article[data-v-7206b48f] {
+    padding: 2.5rem 0 5rem;
+}
+
+.align-self-center {
+    -ms-grid-row-align: center!important;
+    align-self: center!important;
+}
+
+.no-items>i[data-v-414f00e5] {
+    display: inline-block;
+    width: 5rem;
+    height: 5rem;
+}
+
+.no-items>h3[data-v-414f00e5] {
+    margin-top: 0.75rem;
+    line-height: normal;
+    font-size: 1.125rem;
+    font-weight: 500;
+    white-space: pre-line;
+}
+
+.no-items>.help-block[data-v-414f00e5] {
+    white-space: break-spaces;
+    color: #b5b5b5;
+}
+
+.p2, .swal2-container.sg-swal .swal2-content #swal2-content {
+    font-size: .875rem;
+    line-height: 1.3125rem;
+    font-weight: 400;
+    letter-spacing: -.0125rem;
+}
+
+.no-items>.footer-buttons[data-v-414f00e5] {
+    max-width: 13.4375rem;
+}
+
+.m-auto {
+    margin: auto!important;
+}
+
+.no-search-items .footer-buttons button[data-v-7206b48f] {
+    width: 13.4375rem;
+    border-radius: 6px;
+}
+
+/* 검색 결과가 없을 때 페이지 css 끝 */
+
+/* 미디어쿼리 */
+
+@media (min-width: 768px){
+    #app-body {
+        height: auto!important;
+    }
+}
+
+@media (min-width: 992px){
+    .d-lg-flex {
+        display: flex!important;
+    }
+}
+
+@media (min-width: 992px){
+    .d-lg-none {
+        display: none!important;
+    }
+}
+
+@media (min-width: 992px){
+    .d-lg-block {
+        display: block!important;
+    }
+}
+
+
+

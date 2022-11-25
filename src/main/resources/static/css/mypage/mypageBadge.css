@@ -1,0 +1,321 @@
+@charset "utf-8";
+
+.mybadge p {
+    margin: 0;
+    padding: 0;
+}
+
+.mybadge ul, .mybadge li {
+    list-style: none;
+}
+
+.mybadge h3 {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.mybadge p.badgeCount {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.divisionLine {
+    border-top: 1px solid #d2d2d2;
+    margin: 30px 0;
+    width: 92%;
+}
+
+.badgeList ul {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    width: 93%;
+}
+
+.badgeList ul li {
+    width: 33%;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.badgeList li .mybadgeImg {
+    width: 70px;
+    filter: grayscale(1);
+}
+
+.badgeList li .mybadgeImg.active {
+    width: 70px;
+    filter: grayscale(0);
+}
+
+/* 배지 정보 모달 start */
+
+.swal2-container {
+    display: flex;
+    position: fixed;
+    z-index: 1060;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625em;
+    overflow-x: hidden;
+    transition: background-color .1s;
+    background-color: transparent;
+    -webkit-overflow-scrolling: touch;
+}
+
+.swal2-container.swal2-shown {
+    background-color: rgba(0,0,0,.4);
+}
+
+.swal2-container.swal2-center {
+    align-items: center;
+    display: none;
+}
+
+[class^=swal2] {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.swal2-popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    width: 32em;
+    max-width: 100%;
+    padding: 1.25em;
+    border: none;
+    border-radius: 0.3125em;
+    background: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal {
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.swal2-container.sg-swal .swal2-popup {
+    max-width: 17.5rem;
+    padding: 1.25rem 1rem 1.25rem;
+    border-radius: 0;
+}
+
+.swal2-show {
+    -webkit-animation: swal2-show .3s;
+    animation: swal2-show .3s;
+}
+
+.swal2-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.swal2-progress-steps {
+    align-items: center;
+    margin: 0 0 1.25em;
+    padding: 0;
+    background: inherit;
+    font-weight: 600;
+}
+
+.swal2-icon {
+    position: relative;
+    box-sizing: content-box;
+    justify-content: center;
+    width: 5em;
+    height: 5em;
+    margin: 1.25em auto 1.875em;
+    border: 0.25em solid transparent;
+    border-radius: 50%;
+    font-family: inherit;
+    line-height: 5em;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.swal2-icon.swal2-error {
+    border-color: #f27474;
+}
+
+.swal2-icon.swal2-error .swal2-x-mark {
+    position: relative;
+    flex-grow: 1;
+}
+
+.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left] {
+    left: 1.0625em;
+    transform: rotate(45deg);
+}
+
+.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right] {
+    right: 1em;
+    transform: rotate(-45deg);
+}
+
+.swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+    display: block;
+    position: absolute;
+    top: 2.3125em;
+    width: 2.9375em;
+    height: 0.3125em;
+    border-radius: 0.125em;
+    background-color: #f27474;
+}
+
+.swal2-icon.swal2-question {
+    border-color: #c9dae1;
+    color: #87adbd;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #facea8;
+    color: #f8bb86;
+}
+
+.swal2-icon.swal2-info {
+    border-color: #9de0f6;
+    color: #3fc3ee;
+}
+
+.swal2-icon.swal2-success {
+    border-color: #a5dc86;
+}
+
+.post-detail .swal2-container .swal2-header .swal2-title {
+    white-space: nowrap;
+}
+
+.swal2-container.sg-swal .swal2-header .swal2-title {
+    margin-bottom: 1rem;
+    flex-direction: column;
+    font-size: 1.5rem;
+    color: #323232;
+}
+
+.h4, .swal2-container.sg-swal .swal2-header .swal2-title, h4 {
+    font-size: 1.375rem;
+    line-height: 2.0625rem;
+    font-weight: 500;
+    letter-spacing: -.025rem;
+}
+
+.swal2-content {
+    z-index: 1;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    color: #545454;
+    font-size: 1.125em;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.swal2-container.sg-swal .swal2-content {
+    margin-bottom: 1.25rem;
+    color: #323232;
+}
+
+.p2, .swal2-container.sg-swal .swal2-content #swal2-content {
+    font-size: .875rem;
+    line-height: 1.3125rem;
+    font-weight: 400;
+    letter-spacing: -.0125rem;
+}
+
+.modalbadgeImg {
+    width: 70px;
+    margin-bottom: 15px;
+}
+
+.swal2-input {
+    height: 2.625em;
+    padding: 0 0.75em;
+}
+
+.swal2-file {
+    background: inherit;
+    font-size: 1.125em;
+}
+
+.swal2-file, .swal2-input, .swal2-textarea {
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color .3s,box-shadow .3s;
+    border: 1px solid #d9d9d9;
+    border-radius: 0.1875em;
+    background: inherit;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 6%);
+    color: inherit;
+    font-size: 1.125em;
+}
+
+.swal2-checkbox, .swal2-file, .swal2-input, .swal2-radio, .swal2-select, .swal2-textarea {
+    margin: 1em auto;
+}
+
+.swal2-range {
+    margin: 1em auto;
+    background: inherit;
+}
+
+.swal2-actions {
+    display: flex;
+    z-index: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1.25em auto 0;
+}
+
+.swal2-container.sg-swal .swal2-actions {
+    width: 100%;
+    margin-top: 0;
+}
+
+.swal2-container.sg-swal .swal2-actions button.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: .875rem;
+}
+
+.swal2-container.sg-swal .swal2-actions button.btn.swal2-confirm {
+    border-radius: 0.25rem;
+    height: 2.75rem;
+    background-color: #00c7ae;
+    color: #fff;
+}
+
+.swal2-container.sg-swal .swal2-actions button.btn.swal2-cancel {
+    margin-top: 0.75rem;
+    padding: 0;
+    font-size: .75rem;
+    color: #b5b5b5;
+    height: 1.125rem;
+}
+
+
+/* 배지 정보 모달 end */

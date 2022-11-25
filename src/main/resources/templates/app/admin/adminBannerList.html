@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 관리자 페이지</title>
+    <link rel="icon" href="/images/admin/0PBC.png">
+    <style>
+        .card-inter {
+            position: relative;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            color: #212121;
+            border-radius: 9px;
+            -webkit-box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%);
+            box-shadow: 1px 1px 2px 2px rgb(108 196 175);
+            margin-bottom: 10px;
+            width: 170px;
+            height: 220px;
+            display: inline-block;
+            margin: 4px;
+        }
+
+        .card-head {
+            position: relative;
+            line-height: 50px;
+            min-height: 50px;
+            vertical-align: middle;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .card-head header {
+            display: inline-block;
+            padding: 12px 24px;
+            vertical-align: middle;
+            line-height: 1.2;
+            font-size: 14px;
+        }
+
+        .badge.style-gray {
+            background-color: #535858;
+            border-color: #535858;
+            color: #ffffff;
+        }
+
+        .badge {
+            display: inline-block;
+            min-width: 10px;
+            padding: 3px 7px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            background-color: #777777;
+            border-radius: 10px;
+        }
+
+
+        .card-head .tools {
+            padding-right: 16px;
+            float: right;
+            position: absolute;
+        }
+
+        .card-head > div {
+            display: inline-block;
+        }
+
+        .dropdown-menu.pull-right {
+            right: 0;
+            left: auto;
+            top: 38px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            float: left;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            font-size: 14px;
+            text-align: left;
+            list-style: none;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+            box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+        }
+
+        .dropdown-menu {
+            border: none;
+            margin: 0;
+            -webkit-box-shadow: 0 4px 8px 0 rgb(0 0 0 / 30%);
+            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 30%);
+            border-radius: 2px;
+            padding: 0;
+        }
+
+    </style>
+    <link rel="stylesheet" href="/css/admin/adminCssAll.css">
+</head>
+<body>
+<header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
+
+<div id="wrapper">
+    <div class="flexroot">
+        <div class="app_page flex_column">
+
+            <!--우측 Contents-->
+            <div class="app_wrapper">
+                <!--우측 HEADER -->
+                <header class="app_header">
+                    <div class="header_wrapper">
+                        <div class="headerbar">
+                            <div class="headerbar-left">
+                                <ul class="header-nav header-nav-options">
+                                    <li class="header-nav-brand">
+                                        <div class="brand-holder">
+                                            <a href="javascript:void(0)" target="_blank"
+                                               class="location_text margin-right-lg"> <span
+                                                    class="text-gray">배너 관리</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!--메인 페이지 -->
+                <main class="app_main flex_column">
+                    <div class="app_main_context">
+                        <div class="app_main_context_container">
+                            <div id="content" class="dashboard_main">
+                                <div id="alertBox" class="alert__wrap"></div>
+                                <section>
+                                    <div class="clearfix area_wrap">
+                                        <div class="section-body float_l">
+                                            <div class="app-main flex-column flex-row-fluid"
+                                                 id="kt_app_main">
+                                                <div class="d-flex flex-column flex-column-fluid">
+                                                    <!--관련 제목 입력 부분-->
+                                                    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6"
+                                                         data-select2-id="select2-data-kt_app_toolbar">
+                                                        <div id="kt_app_toolbar_container"
+                                                             class="app-container container-xxl d-flex flex-stack"
+                                                             data-select2-id="select2-data-kt_app_toolbar_container">
+                                                            <div
+                                                                    class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                                                                <h1
+                                                                        class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                                                                    배너 목록</h1>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--/ 관련 제목 입력 부분-->
+
+                                                    <!-- 관련 내용 입력 부분 -->
+                                                    <div id="kt_app_content" class="app-content flex-column-fluid">
+                                                        <!--begin::Content container-->
+                                                        <div id="kt_app_content_container"
+                                                             class="app-container container-xxl">
+                                                            <!--begin::Products-->
+                                                            <div class="card card-flush">
+                                                                <!--begin::Card header-->
+                                                                <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                                                                    <!--begin::Card title-->
+                                                                    <div class="card-title">
+                                                                    </div>
+                                                                    <!--end::Card title-->
+
+                                                                    <!--begin::Card toolbar-->
+                                                                    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                                                                        <div class="form-control form-control-solid"
+                                                                             style="width: 100px;margin: 3px 9px 0px 9px;">
+                                                                            <input class="form-check-input total"
+                                                                                   type="checkbox"
+                                                                                   data-kt-check="true"
+                                                                                   data-kt-check-target="#kt_ecommerce_products_table .form-check-input"
+                                                                                   value="1">
+                                                                            전체 선택
+                                                                        </div>
+                                                                        <div class="w-100 mw-150px">
+                                                                        </div>
+                                                                        <!--begin::Add product-->
+                                                                        <a href="http://localhost:10001/admin/adminbanneradd"
+                                                                           class="btn btn-primary">배너 추가</a>
+                                                                        <!--                                                                        <a href="javascript:void(0)"-->
+                                                                        <!--                                                                           class="btn btn-primary"-->
+                                                                        <!--                                                                           style="background: #009ef7 ; margin-left: 10px;">수정</a>-->
+                                                                        <a href="javascript:void(0)"
+                                                                           class="btn btn-primary"
+                                                                           style="background: #f1416c ; margin-left: 10px;"
+                                                                        id="deleteBannerBtn">삭제</a>
+                                                                        <!--end::Add product-->
+                                                                    </div>
+                                                                    <!--end::Card toolbar-->
+                                                                </div>
+                                                                <!--end::Card header-->
+
+                                                                <!--begin::Card body-->
+                                                                <div class="card-body pt-0">
+                                                                    <!--begin::Table-->
+                                                                    <div id="kt_ecommerce_products_table_wrapper"
+                                                                         class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="table-responsive">
+
+                                                                            <div style="height: 220px;
+                                                                                        width: fit-content;
+                                                                                        margin: 20px auto;">
+
+                                                                                <!-- 배너 목록 -->
+                                                                                <div class="card-inter">
+                                                                                    <div class="card-head">
+                                                                                        <header>
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox"
+                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg
+                                                                                        </header>
+                                                                                    </div>
+                                                                                    <div style="width: 100%;">
+                                                                                            <img class=""
+                                                                                                 src="https://cdn.imweb.me/upload/S202110204a82dedfc6a6e/bde520fac0b05.png"                                                                                                    align="center"
+                                                                                                    style="
+                                                                                            height: 132px;
+                                                                                            width:-webkit-fill-available;">
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">
+                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"
+                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <!-- 배너 목록 -->
+                                                                                <div class="card-inter">
+                                                                                    <div class="card-head">
+                                                                                        <header>
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox"
+                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg
+                                                                                        </header>
+                                                                                    </div>
+                                                                                    <div style="width: 100%;">
+                                                                                        <img class=""
+                                                                                             src="https://cdn.imweb.me/thumbnail/20220622/37b2485c495d2.jpg"
+                                                                                             align="center"
+                                                                                             style="
+                                                                                            height: 132px;
+                                                                                            width:-webkit-fill-available;">
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">
+                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"
+                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <!-- 배너 목록 -->
+                                                                                <div class="card-inter">
+                                                                                    <div class="card-head">
+                                                                                        <header>
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox"
+                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg
+                                                                                        </header>
+                                                                                    </div>
+                                                                                    <div style="width: 100%;">
+                                                                                        <img class=""
+                                                                                             src="https://www.jobaba.net/file/image.do?filePath=qjOcXNAS8yGf1OiG0Ekwo4yICIEbI3zZt3DZ0saUkXop5QEoNyC6geAbHpRYmmKI"
+                                                                                             align="center"
+                                                                                             style="
+                                                                                            height: 132px;
+                                                                                            width:-webkit-fill-available;">
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">
+                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"
+                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <!-- 배너 목록 -->
+                                                                                <div class="card-inter">
+                                                                                    <div class="card-head">
+                                                                                        <header>
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox"
+                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg
+                                                                                        </header>
+                                                                                    </div>
+                                                                                    <div style="width: 100%;">
+                                                                                        <img class=""
+                                                                                             src="https://www.story-w.co.kr/resource/202208/contents/pt56u0nyuafey53n.png"
+                                                                                             align="center"
+                                                                                             style="
+                                                                                            height: 132px;
+                                                                                            width:-webkit-fill-available;">
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">
+                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"
+                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <!-- 배너 목록 -->
+                                                                                <div class="card-inter">
+                                                                                    <div class="card-head">
+                                                                                        <header>
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox"
+                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg
+                                                                                        </header>
+                                                                                    </div>
+                                                                                    <div style="width: 100%;">
+                                                                                        <img class=""
+                                                                                             src="https://www.jobaba.net/file/image.do?filePath=qjOcXNAS8yGf1OiG0Ekwo0QptU81YocVDFsyagElFd1wFKbBzbzowpgajnz6aOy6"
+                                                                                             align="center"
+                                                                                             style="
+                                                                                            height: 132px;
+                                                                                            width:-webkit-fill-available;">
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">
+                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"
+                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <!-- 배너 목록 -->
+                                                                                <div class="card-inter">
+                                                                                    <div class="card-head">
+                                                                                        <header>
+                                                                                            <input class="form-check-input checkbox"
+                                                                                                   type="checkbox"
+                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg
+                                                                                        </header>
+                                                                                    </div>
+                                                                                    <div style="width: 100%;">
+                                                                                        <img class=""
+                                                                                             src="https://pbs.twimg.com/media/DkH4HUSV4AAyLQe.jpg"
+                                                                                             align="center"
+                                                                                             style="
+                                                                                            height: 132px;
+                                                                                            width:-webkit-fill-available;">
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">
+                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"
+                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+
+                                                                            </div>
+
+
+                                                                        </div>
+
+
+                                                                        <div class="row">
+
+
+                                                                            <!-- 우측 하단 페이징 처리 -->
+                                                                            <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+                                                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                                                     id="kt_ecommerce_products_table_paginate">
+                                                                                    <ul class="pagination">
+                                                                                        <li class="paginate_button page-item previous disabled"
+                                                                                            id="kt_ecommerce_products_table_previous">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="0"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"><i
+                                                                                                    class="previous"></i><</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item active">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="1"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">1</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item ">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="2"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">2</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item ">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="3"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">3</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item ">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="4"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">4</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item ">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="5"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">5</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item next"
+                                                                                            id="kt_ecommerce_products_table_next">
+                                                                                            <a href="#"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="6"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"><i
+                                                                                                    class="next"></i>></a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div><!-- / 우측 하단 페이징 처리 -->
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end::Table-->
+                                                                </div>
+                                                                <!--end::Card body-->
+                                                            </div>
+                                                            <!--end::Products-->
+                                                        </div>
+                                                        <!--end::Content container-->
+
+
+                                                    </div><!-- /관련 내용 입력 부분 -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/admin/admin.js"></script>
+<script>
+    // 배너 삭제
+    $("#deleteBannerBtn").on('click', function () {
+        if ($checkboxes.filter(":checked").length == 0) {
+            alert("삭제할 배너를 선택하세요.");
+            return;
+        }
+    });
+
+</script>
+</html>

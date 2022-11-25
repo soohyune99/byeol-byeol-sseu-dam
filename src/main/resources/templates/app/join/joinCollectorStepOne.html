@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기사 회원가입 - 1</title>
+    <link rel="icon" href="/images/fix/favicon.png">
+    <link rel="stylesheet" href="/css/fix/font.css">
+    <link rel="stylesheet" href="/css/join/joinCollector.css">
+    <link rel="stylesheet" href="/css/fix/header68.css">
+    <link rel="stylesheet" href="/css/fix/header74.css">
+    <link rel="stylesheet" href="/css/fix/header51.css">
+    <link rel="stylesheet" href="/css/fix/header76.css">
+    <link rel="stylesheet" href="/css/fix/header77.css">
+    <link rel="stylesheet" href="/css/fix/header37.css">
+    <link rel="stylesheet" href="/css/fix/footer1.css">
+    <link rel="stylesheet" href="/css/fix/footer2.css">
+</head>
+
+<body class="pro-signup">
+<header th:replace="/app/fix/header.html :: header"></header>
+    <div id="app" data-browser="Chrome" data-is-loaded="true" class>
+        <div id="app-body">
+            <div data-v-61b32e29="" class="container">
+                <form data-v-61b32e29="" id="id_pro_form" autocomplete="off">
+                    <div data-v-2b9a1ce0="" data-v-61b32e29="" class="signup-progress-bar header">
+                        <div data-v-2b9a1ce0="" class="progress">
+                            <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"
+                                class="progress-bar" style="width: 50%;"></div>
+                        </div>
+                        <div data-v-2b9a1ce0="" class="value-text">50%</div>
+                    </div>
+                    <div data-v-a46f16b0="" data-v-61b32e29="" id="step3" is-initial-mounted="true" class="body">
+                        <h1 data-v-a46f16b0="">고수님의 활동 지역의 주소를 알려주세요.</h1>
+                        <p data-v-a46f16b0="" class="headline">활동 지역은 근처의 고객을 찾는데 도움이 됩니다.</p>
+                    <div data-v-a46f16b0="" class="addr-search" style="background: url(/images/pickup/daumPostCode.PNG) no-repeat;background-size: contain;height: 444px;">
+                    </div>
+                        <!---->
+                    </div>
+                    <div data-v-f6f3ff14="" data-v-61b32e29="" class="step-navigator footer">
+                        <div data-v-f6f3ff14="" class="wrapper">
+                            <div data-v-f6f3ff14="" class="warning"></div><span data-v-f6f3ff14=""
+                                class="left btn-container"><button data-v-f6f3ff14="" type="button"
+                                    class="btn btn-prev btn-outline-primary"> 이전 </button></span><span
+                                data-v-f6f3ff14="" class="right btn-container"><button data-v-f6f3ff14="" type="button"
+                                    class="btn btn-next btn-primary" onclick="location.href='http://localhost:10001/join/joinpicker1map'"> 다음 </button></span>
+                        </div>
+                        <!---->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/fix/headerLogin.js"></script>
+</html>

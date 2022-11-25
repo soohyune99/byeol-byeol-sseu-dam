@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별별쓰담 | 작성댓글</title>
+    <link rel="icon" href="/images/fix/favicon.png">
+    <link rel="stylesheet" href="/css/fix/font.css">
+    <link rel="stylesheet" href="/css/mypage/mypageOrderList.css">
+    <link rel="stylesheet" href="/css/mypage/mypageCommunity.css">
+    <link rel="stylesheet" href="/css/fix/header68.css">
+    <link rel="stylesheet" href="/css/fix/header74.css">
+    <link rel="stylesheet" href="/css/fix/header51.css">
+    <link rel="stylesheet" href="/css/fix/header76.css">
+    <link rel="stylesheet" href="/css/fix/header77.css">
+    <link rel="stylesheet" href="/css/fix/header37.css">
+    <link rel="stylesheet" href="/css/fix/footer1.css">
+    <link rel="stylesheet" href="/css/fix/footer2.css">
+</head>
+<body class="doz_sys _body_menu_m20200103e566d1814daef  shop_mypage  fixed-menu-on new_fixed_menu_on new_header_site  loggedin"
+      id="doz_body">
+<header th:replace="/app/fix/header.html :: header"></header>
+<!-- Code injected by live-server -->
+<script>
+    // <![CDATA[  <-- For SVG support
+    if ('WebSocket' in window) {
+        (function () {
+            function refreshCSS() {
+                var sheets = [].slice.call(document.getElementsByTagName("link"));
+                var head = document.getElementsByTagName("head")[0];
+                for (var i = 0; i < sheets.length; ++i) {
+                    var elem = sheets[i];
+                    var parent = elem.parentElement || head;
+                    parent.removeChild(elem);
+                    var rel = elem.rel;
+                    if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                        var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                        elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                    }
+                    parent.appendChild(elem);
+                }
+            }
+            var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+            var address = protocol + window.location.host + window.location.pathname + '/ws';
+            var socket = new WebSocket(address);
+            socket.onmessage = function (msg) {
+                if (msg.data == 'reload') window.location.reload();
+                else if (msg.data == 'refreshcss') refreshCSS();
+            };
+            if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                console.log('Live reload enabled.');
+                sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+            }
+        })();
+    }
+    else {
+        console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+    }
+    // ]]>
+</script>
+
+<div doz_type="section"
+     class="section_wrap  pc_section    section_first _section_first   mobile_section_first    side_basic grid_gutter_0 grid_v_gutter_0   "
+     id="s202001038f5e33413dcec" doz_change_mobile=" N" doz_aside="N" doz_side_width="200"
+     doz_side_margin="0" doz_extend="N" doz_mobile_section="N" doz_mobile_hide="N" doz_header_repeat="N"
+     doz_footer_repeat="N" doz_category="default">
+    <div class="section_bg _section_bg _interactive_bg   "
+         style="   background-size:cover; background-repeat: no-repeat; position: absolute;left: 0;top: 0;right: 0; bottom: 0;">
+    </div>
+    <div class="section_bg_color _section_bg_color"
+         style="background-color:#ffffff;  position: absolute;left: 0;top: 0;right: 0; bottom: 0;"></div>
+    <main>
+        <div doz_type="inside" class="inside">
+            <div doz_type="row" doz_grid="12" class="doz_row">
+                <div doz_type="grid" doz_grid="12" class="col-dz col-dz-12">
+                    <div doz_type="widget" id="w20200103c5a95f449eb6b">
+                        <div class="_widget_data _ds_animated_except" data-widget-name="쇼핑 마이페이지"
+                             data-widget-type="shop_mypage" data-widget-parent-is-mobile="N">
+                            <div class="shop-content mypage">
+                                <div class="container-fluid">
+                                    <div class="row show-grid">
+                                        <div class="left-menu hidden-lg hidden-md">
+                                            <ul id="cart_menu">
+                                                <div class="clearfix cart-menu-slide">
+                                                    <li class="  active ">
+                                                        <a href="/shop_mypage/?m2=order"
+                                                           class="body_font_color_50"><span>주문</span></a>
+                                                    </li>
+                                                    <li class=" ">
+                                                        <a href="/shop_mypage/?m2=wish_list"
+                                                           class="body_font_color_50"><span>위시</span></a>
+                                                    </li>
+                                                    <li class=" ">
+                                                        <a href="/shop_mypage/?m2=point_list"
+                                                           class="body_font_color_50"><span>포인트</span></a>
+                                                    </li>
+                                                    <li class=" ">
+                                                        <a href="/shop_mypage/?m2=cancel"
+                                                           class="body_font_color_50"><span>취소/교환/반품</span></a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="/shop_mypage/?m2=qna"
+                                                           class="body_font_color_50"><span>1:1 문의</span></a>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2 col-sm-12 hidden-xs hidden-sm left-menu">
+                                            <ul>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/badge"
+                                                       class="text-gray-dark _fade_link">나의 <span
+                                                            class="hidden-xs">배지</span></a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/course"
+                                                       class="text-gray-dark _fade_link">나의 <span
+                                                            class="hidden-xs">코스</span></a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/mypoint"
+                                                       class="text-gray-dark _fade_link">나의 포인트</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/orderlist"
+                                                       class="text-gray-dark _fade_link">주문조회</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/cancellist"
+                                                       class="text-gray-dark _fade_link">주문취소</a>
+                                                </li>
+                                                <!-- <li class="">
+                                                    <a href="/shop_mypage/?m2=wish_list"
+                                                       class="text-gray-dark _fade_link"><span
+                                                            class="hidden-xs">장바구니</span></a>
+                                                </li> -->
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/pickuplist"
+                                                       class="text-gray-dark _fade_link">수거신청내역</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="http://localhost:10001/mypage/program"
+                                                       class="text-gray-dark _fade_link">수강내역</a>
+                                                </li>
+                                                <li class="on">
+                                                    <a href="http://localhost:10001/mypage/community"
+                                                       class="text-gray-dark _fade_link">작성글 / 작성댓글</a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://localhost:10001/mypage/myinfo"
+                                                       class="text-gray-dark _fade_link">정보수정 / 탈퇴</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-10 col-sm-12">
+                                            <div class="head bg-bright">
+                                                <div class="my-theme tabled full-width">
+                                                    <div class="img-view table-cell vertical-middle">
+                                                        <div class="tabled full-width">
+                                                            <div class="tumbs table-cell vertical-middle">
+                                                                <a href="javascript:;"
+                                                                   onclick="SITE_MEMBER.editProfile('L3Nob3BfbXlwYWdl');">
+                                                                    <div id="mypage_profile_img"
+                                                                         class="img-circle"
+                                                                         style="width: 85px; height: 85px; background: url('https://www.jigushop.co.kr/common/img/default_profile.png')  50% 50% / cover no-repeat;">
+                                                                    </div>
+                                                                    <span class="sr-only">정보 수정</span>
+                                                                </a>
+                                                            </div>
+                                                            <div
+                                                                    class="nick text-default-dark table-cell vertical-middle no-margin-top">
+                                                                        <span class="ug_name text-brand">기본<a
+                                                                                href="javascript:;"
+                                                                                class="btn hidden-lg hidden-md hidden-sm"
+                                                                                role="button" data-toggle="popover"
+                                                                                data-placement="bottom"
+                                                                                data-popover-content="#list-popover"
+                                                                                data-original-title=""
+                                                                                title="">등급혜택</a></span> <span>성은지 님
+                                                                            안녕하세요.</span>
+
+
+                                                                <div class="text-15 use_grade">
+                                                                    <div class="ug_text">sej07@naver.com</div>
+                                                                    <div class="ug_btn">
+                                                                        <a href="http://localhost:10001/mypage/myinfo"
+                                                                           class="btn hidden-xs " role="button"
+                                                                           data-toggle="popover"
+                                                                           data-placement="bottom"
+                                                                           data-popover-content="#list-popover"
+                                                                           data-original-title=""
+                                                                           title="">정보수정</a>
+                                                                        <div id="list-popover"
+                                                                             style="display: none"
+                                                                             class="list_popover">
+                                                                            <div
+                                                                                    class="lp_header_wrap hidden-lg hidden-md hidden-sm">
+                                                                                <h6 class="no-margin">회원 등급별 혜택
+                                                                                    안내
+                                                                                </h6>
+                                                                                <a href="javascript:"
+                                                                                   onclick="$('.popover.in').popover('hide');"
+                                                                                   class="btl btl bt-times"><span
+                                                                                        class="sr-only">닫기</span></a>
+                                                                            </div>
+                                                                            <div class="lp_content_wrap">
+                                                                                <div
+                                                                                        class=" text-center text-18 margin-bottom-xl hidden-lg hidden-md hidden-sm">
+                                                                                    성은지 님의 회원등급은<br><span
+                                                                                        class="text-brand">기본</span>
+                                                                                    입니다. </div>
+                                                                                <div class="lp_title">누적 구매금액:
+                                                                                    0원
+                                                                                </div>
+                                                                                <div
+                                                                                        class="text-center hidden-lg hidden-md hidden-sm text-14 lp_summary">
+                                                                                    <p class="no-margin">구매금액
+                                                                                        100,000원 달성 시<br>Saver 로
+                                                                                        승급됩니다.</p>
+                                                                                </div>
+                                                                                <div class="lp_table">
+                                                                                    <div
+                                                                                            class="text-bold text-13">
+                                                                                        회원 등급별 혜택 안내</div>
+                                                                                    <div
+                                                                                            class="table-responsive">
+                                                                                        <table
+                                                                                                class="table no-margin">
+                                                                                            <thead>
+                                                                                            <tr>
+                                                                                                <th>등급명</th>
+                                                                                                <th>등급기준
+                                                                                                </th>
+                                                                                                <th>포인트 추가
+                                                                                                    적립
+                                                                                                </th>
+                                                                                                <th>적립조건
+                                                                                                </th>
+                                                                                            </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                            <tr
+                                                                                                    class="active">
+                                                                                                <td>기본</td>
+                                                                                                <td>기본</td>
+                                                                                                <td></td>
+                                                                                                <td></td>
+                                                                                            </tr>
+                                                                                            <tr class="">
+                                                                                                <td>Saver
+                                                                                                </td>
+                                                                                                <td>100,000원
+                                                                                                </td>
+                                                                                                <td>1% (최대
+                                                                                                    10,000원)
+                                                                                                </td>
+                                                                                                <td>10원</td>
+                                                                                            </tr>
+                                                                                            <tr class="">
+                                                                                                <td>Less
+                                                                                                    Waster
+                                                                                                </td>
+                                                                                                <td>300,000원
+                                                                                                </td>
+                                                                                                <td>2% (최대
+                                                                                                    30,000원)
+                                                                                                </td>
+                                                                                                <td>10원</td>
+                                                                                            </tr>
+                                                                                            <tr class="">
+                                                                                                <td>Zero
+                                                                                                    Waster
+                                                                                                </td>
+                                                                                                <td>500,000원
+                                                                                                </td>
+                                                                                                <td>3% (최대
+                                                                                                    50,000원)
+                                                                                                </td>
+                                                                                                <td>10원</td>
+                                                                                            </tr>
+                                                                                            <tr class="">
+                                                                                                <td>Earth
+                                                                                                    Lover
+                                                                                                </td>
+                                                                                                <td>10,000,000원
+                                                                                                </td>
+                                                                                                <td>5% (최대
+                                                                                                    100,000원)
+                                                                                                </td>
+                                                                                                <td>10원</td>
+                                                                                            </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+
+                                                                                    <div
+                                                                                            class="text-12 margin-top-xxl">
+                                                                                        <p class="no-margin">최근
+                                                                                            3개월
+                                                                                            구매금액에 대해 산정됩니다.</p>
+                                                                                        <p
+                                                                                                class="no-margin text-danger">
+                                                                                            구매금액이 적립조건을 만족할 때
+                                                                                            포인트 추가
+                                                                                            적립이 적용됩니다.</p>
+                                                                                        <p class="no-margin">등급
+                                                                                            조건
+                                                                                            달성시 등급 변경은 매월 1일에
+                                                                                            반영됩니다.
+                                                                                        </p>
+                                                                                        <p class="no-margin">
+                                                                                            구매혜택
+                                                                                            조건은 실결제 기준(쿠폰, 적립금,
+                                                                                            회원혜택
+                                                                                            적용 후 배송비를 제외한
+                                                                                            결제금액)으로
+                                                                                            적용됩니다.</p>
+                                                                                        <p class="no-margin">
+                                                                                            구매금액
+                                                                                            반영은 배송완료 후 7일 이후에
+                                                                                            반영됩니다.
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                            class="table-cell vertical-middle point-view text-center">
+                                                        <a href="http://localhost:10001/mypage/mypoint">
+                                                            <p>포인트</p>
+                                                            <span class="text-bold text-32">0</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="app-body">
+                                                <div data-v-29df13c4=""
+                                                     class="my-page-community-activity-container">
+                                                    <div data-v-be5cd312="" data-v-29df13c4=""
+                                                         class="community-activity-container">
+                                                        <section data-v-be5cd312=""
+                                                                 class="community-title-section">
+                                                            <p data-v-be5cd312=""
+                                                               style="font-size: 21px; font-weight: bold;"
+                                                               class="community-activity-title">나의 작성 댓글
+                                                            </p>
+                                                        </section>
+                                                        <ul data-v-3650db60="" data-v-be5cd312=""
+                                                            class="tab-list">
+                                                            <li data-v-6bf23ef5="" data-v-3650db60="" onclick="location.href='http://localhost:10001/mypage/community'"
+                                                                class="tab sg-text-body2 sg-font-regular sg-text-gray-400">
+                                                                작성 글 </li>
+                                                            <li data-v-6bf23ef5="" data-v-3650db60=""
+                                                                class="tab router-link-exact-active router-link-active sg-text-subhead4 sg-font-bold sg-text-gray-900 selected">
+                                                                작성 댓글 </li>
+                                                        </ul>
+                                                        <section data-v-be5cd312=""
+                                                                 class="community-activity-content-section">
+                                                            <section data-v-be5cd312=""
+                                                                     class="community-activity-list-section">
+                                                                <ul data-v-be5cd312=""
+                                                                    class="community-activity-list">
+                                                                    <li data-v-6de74f26="" data-v-be5cd312=""
+                                                                        class="community-activity-item">
+                                                                        <!---->
+                                                                        <div data-v-a3afae98=""
+                                                                             data-v-6de74f26=""
+                                                                             class="collapsed">
+                                                                            <div data-v-a3afae98=""
+                                                                                 class="line-clamp"
+                                                                                 style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">
+                                                                                <p data-v-6de74f26=""
+                                                                                   class="community-activity-content sg-text-subhead5 sg-font-medium"
+                                                                                   data-v-a3afae98=""> 안녕하세요~
+                                                                                </p>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <div data-v-a3afae98=""
+                                                                             data-v-6de74f26=""
+                                                                             class="collapsed">
+                                                                            <div data-v-a3afae98=""
+                                                                                 class="line-clamp"
+                                                                                 style="line-height: 1.5; max-height: 1.5rem; -webkit-line-clamp: 1;">
+                                                                                <p data-v-6de74f26=""
+                                                                                   class="community-activity-title sg-text-body2 sg-font-regular sg-text-gray-500"
+                                                                                   data-v-a3afae98=""> 안녕하세요
+                                                                                </p>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div><span data-v-6de74f26=""
+                                                                                    class="sg-text-body2 sg-font-regular sg-text-gray-300">
+                                                                                    2022.11.18 </span>
+                                                                    </li>
+                                                                </ul>
+                                                                <div data-v-644ea9c9="" data-v-be5cd312=""
+                                                                     class="infinite-loading-container">
+                                                                    <div data-v-644ea9c9=""
+                                                                         class="infinite-status-prompt"
+                                                                         style="display: none;">
+                                                                        <figure data-v-be5cd312=""
+                                                                                data-v-644ea9c9=""
+                                                                                class="text-center">
+                                                                            <div data-v-fc3fcce8=""
+                                                                                 data-v-be5cd312="" class=""
+                                                                                 data-v-644ea9c9="">
+                                                                                <div data-v-fc3fcce8=""
+                                                                                     class="indicator-body center"
+                                                                                     style="width: 24px; height: 24px; border-width: 0.25rem; border-style: solid; border-color: rgb(0, 199, 174) rgba(0, 199, 174, 0.2) rgba(0, 199, 174, 0.2); border-image: initial;">
+                                                                                </div>
+                                                                                <p data-v-fc3fcce8=""
+                                                                                   style="display: none;"></p>
+                                                                            </div>
+                                                                        </figure>
+                                                                    </div>
+                                                                    <div data-v-644ea9c9=""
+                                                                         class="infinite-status-prompt"
+                                                                         style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
+                                                                    </div>
+                                                                    <div data-v-644ea9c9=""
+                                                                         class="infinite-status-prompt"
+                                                                         style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px;">
+                                                                    </div>
+                                                                    <div data-v-644ea9c9=""
+                                                                         class="infinite-status-prompt"
+                                                                         style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
+
+                                                                        <br data-v-644ea9c9=""> <button
+                                                                            data-v-644ea9c9=""
+                                                                            class="btn-try-infinite"></button>
+                                                                    </div>
+                                                                </div>
+                                                            </section>
+                                                        </section>
+                                                        <section data-v-be5cd312=""
+                                                                 class="community-content-section white">
+                                                            <article data-v-414f00e5="" data-v-be5cd312=""
+                                                                     class="no-items align-self-center text-center no-items">
+                                                                <i data-v-414f00e5=""><img data-v-be5cd312=""
+                                                                                           data-v-414f00e5=""
+                                                                                           src="https://assets.cdn.soomgo.com/icons/icon-coupon-empty.svg"
+                                                                                           alt="empty"></i>
+                                                                <h3 data-v-414f00e5="">작성 글이 없습니다</h3>
+                                                                <p data-v-414f00e5="" class="help-block p2">생활서비스에 대한<br>정보와 질문을 올려보세요! </p>
+                                                                <!---->
+                                                            </article>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<!-- Code injected-->
+<!-- Code injected by live-server -->
+<footer th:replace="/app/fix/footer.html :: footer"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/fix/headerLogin.js"></script>
+</html>

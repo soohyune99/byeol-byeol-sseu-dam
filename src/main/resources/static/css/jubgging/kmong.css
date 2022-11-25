@@ -1,0 +1,96 @@
+.css-44ob05 {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(242, 243, 247);
+    width: 100%;
+    padding: 80px 0px;
+}
+.css-4ajt1y {
+    width: 1200px;
+    padding: 0px 16px;
+    margin: 0px auto;
+    display: grid;
+    gap: 40px;
+}
+
+.css-gg4vpm {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.css-zo57ty {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.css-1qjs9ls {
+    margin: 0px;
+    color: rgb(33, 34, 36);
+    font-size: 32px;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.css-1blg2w3 {
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(33, 34, 36);
+    line-height: normal;
+}
+
+.css-7l5lee {
+    border-radius: 8px;
+    overflow: hidden;
+    height: 390px;
+    cursor: pointer;
+}
+
+.css-1pishuq {
+    pointer-events: none;
+    transition: opacity 1000ms ease 100ms;
+    opacity: 1;
+}
+
+.css-ae3v06 {
+    display: flex;
+    gap: 20px;
+}
+
+.css-4wklnm {
+    position: relative;
+    flex: 1 1 0%;
+    padding: 32px 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: rgb(48 52 65 / 5%) 0px 0px 20px 5px;
+    display: grid;
+    gap: 12px;
+}
+
+.css-17mol43 {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(48, 52, 65);
+}
+
+.css-kay9jn {
+    margin: 0px;
+    line-height: normal;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(48, 52, 65);
+}
+
+.css-qhcigr {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 32px;
+}
+

@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+.text-success {
+    color: #00c7ae;
+}
+
+.mypage .shop-table > tbody > tr > td:first-child {
+    padding-left: 0;
+}
+
+.shop_mypage .shop-table > tbody > tr > td:last-child {
+    padding: 20px 0px 20px 0;
+}

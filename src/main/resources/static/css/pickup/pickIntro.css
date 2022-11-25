@@ -1,0 +1,34 @@
+
+@media(max-width: 1200px){
+    .css-4ajt1y.e6qyvs41{
+        width: 100%;
+    }
+}
+
+@media(max-width: 606px){
+    .css-gg4vpm{
+        flex-direction: column;
+    }
+    .css-ae3v06{
+        flex-direction: column;
+    }
+    .css-7l5lee{
+        height: 0px;
+    }
+}
+
+iframe{
+    margin-top: 46px;
+    width: 560px;
+    height: 315px;
+}
+
+@media(max-width:586px){
+    .css-4ajt1y.e6qyvs41{
+        width: 100%;
+    }
+
+    iframe{
+        width: 100%;
+    }
+}
