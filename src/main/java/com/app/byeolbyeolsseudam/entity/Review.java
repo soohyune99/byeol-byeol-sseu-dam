@@ -18,4 +18,9 @@ public class Review extends Period {
     private Product product;
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+    public void changeProduct(Product product){
+        this.product = product;
+        product.getReviews().add(this);
+    }
 }
