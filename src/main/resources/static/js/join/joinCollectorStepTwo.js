@@ -88,6 +88,7 @@ function phoneCheck(){
 }
 //인증번호 유효성 검사
 function verificationCheck(){
+    //12345는 인증번호 예시
     if($verification.val() == "12345"){
         $(".authentication").css("color", "#00c7ae")
         $(".authentication").text("인증이 완료되었습니다.")
