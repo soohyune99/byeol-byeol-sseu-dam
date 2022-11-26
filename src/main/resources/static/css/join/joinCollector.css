@@ -259,6 +259,34 @@ button, input {
     box-shadow: 0px 0px 2px 2px #fa5963;
 }
 
+.email-show{
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    z-index: 10;
+    text-align: right;
+    color: #00c7ae;
+    font-weight: 400;
+    font-size: .8rem;
+}
+
+.password-show{
+    position: absolute;
+    top: 13px;
+    right: 4px;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    z-index: 10;
+    text-align: right;
+    color: #00c7ae;
+    font-weight: 400;
+    font-size: .8rem;
+}
+
 .answer-input.form-control.is-invalid:focus{
     border-color: #e1e1e1;
     box-shadow: 0px 0px 2px 2px #00c7acf5;

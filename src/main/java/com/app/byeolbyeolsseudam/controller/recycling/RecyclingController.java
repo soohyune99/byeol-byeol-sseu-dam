@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/test/*")
+@RequestMapping("/recycle/*")
 public class RecyclingController {
 
     @GetMapping("/recycling")

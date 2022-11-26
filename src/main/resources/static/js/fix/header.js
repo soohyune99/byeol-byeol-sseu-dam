@@ -1,7 +1,7 @@
 
 // 도시락 버튼 클릭 시
 
-$('.mobliebtn').click(function(){
+$('.mobliebutton').click(function(){
     $('.mobile-usermenu').css('transform', 'translateX(0)');
 })
 

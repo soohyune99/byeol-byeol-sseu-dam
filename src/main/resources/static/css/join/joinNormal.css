@@ -295,18 +295,20 @@ button, input {
 .signup-form button.btn.password-show[data-v-79992f5d] {
     font-size: .8rem;
 }
+
 .signup-form .float-button-right button.btn[data-v-79992f5d] {
     position: absolute;
-    top: 0;
+    top: -6px;
     right: 0;
     height: 100%;
     background-color: transparent;
     border: none;
-    width: 3.125rem;
+    /*width: 3.125rem;*/
     z-index: 10;
     text-align: right;
     color: #00c7ae;
     font-weight: 400;
+    font-size: .8rem;
 }
 
 

@@ -13,19 +13,19 @@ public class JoinController {
         return "/app/join/joinNormal";
     }
 
-    @GetMapping("/pickintro")
+    @GetMapping("/picker")
     public String pickIntro(){
         return "/app/join/pickIntro";
     }
-    @GetMapping("/joinpicker1")
+    @GetMapping("/picker/adr")
     public String joinpickerOne(){
         return "/app/join/joinCollectorStepOne";
     }
-    @GetMapping("/joinpicker1map")
+    @GetMapping("/picker/map")
     public String joinpickerOneMap(){
         return "/app/join/joinCollectorStepOneMap";
     }
-    @GetMapping("/joinpicker2")
+    @GetMapping("/picker/detail")
     public String joinpickerTwo(){
         return "/app/join/joinCollectorStepTwo";
     }

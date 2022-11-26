@@ -484,9 +484,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 .quote-cta-wrapper[data-v-f32583c0] {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 0.75rem;
     margin-top: 1.5rem;
+    flex-direction: row;
 }
 /* @media (min-width: 768px){
 .quote-cta-wrapper[data-v-f32583c0] {
@@ -627,9 +628,9 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 #abcdef{
     position: absolute;
-    width: 250px;
-    height: 180px;
-    right: 29px;
+    width: 43%;
+    height: 59%;
+    right: 4%;
 }
 #abcdef > img{
     width: 100%;
@@ -637,11 +638,11 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     object-fit: cover;
 }
 
-@media (max-width: 500px){
-    #abcdef{
-        top: 94px;
-        right: 20px;
-        width: 140px;
-        height: 105px;
-    }
-}
+/*@media (max-width: 500px){*/
+/*    #abcdef{*/
+/*        top: 94px;*/
+/*        right: 20px;*/
+/*        width: 140px;*/
+/*        height: 105px;*/
+/*    }*/
+/*}*/

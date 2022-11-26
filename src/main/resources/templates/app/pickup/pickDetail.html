@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>별별쓰담 | 수거상세내역</title>
     <link rel="icon" href="/images/fix/favicon.png">
     <link rel="stylesheet" href="/css/fix/font.css">
     <link rel="stylesheet" href="/css/pickup/pickDetail.css">
@@ -20,7 +20,7 @@
 </head>
 <body class="received-quotes">
 <div>
-<header th:replace="/app/fix/header.html :: header"></header>
+<header th:replace="/app/fix/headerpicker.html :: header"></header>
     <div id="app-body">
         <div class="received-quote-list" data-v-adb80f6e="">
             <div data-v-c85c3b6a="" data-v-adb80f6e="" class="requested-service-header"
@@ -77,12 +77,9 @@
                                 <div data-v-464dc29d="" class="name-wrapper">
                                     <h5 data-v-464dc29d="" class="profile-name"> 김재섭 </h5>
                                 </div>
-<!--                                <div data-v-2608d7d0="" data-v-464dc29d="" class="profile-badges">-->
-<!--                                    <div data-v-2608d7d0="" class="review-rate"><img data-v-2608d7d0=""-->
-<!--                                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im03LjQ5NiAxLjU5NiAxLjQwNyAyLjc0MiAzLjE0NS40NGMuOTEuMTI3IDEuMjc1IDEuMjA0LjYxNSAxLjgyMmwtMi4yNzYgMi4xMzQuNTM4IDMuMDE1Yy4xNTUuODcyLS43OTcgMS41MzgtMS42MTIgMS4xMjZMNi41IDExLjQ1MmwtMi44MTMgMS40MjNjLS44MTUuNDEyLTEuNzY3LS4yNTQtMS42MTItMS4xMjZsLjUzOC0zLjAxNUwuMzM3IDYuNmMtLjY2LS42MTgtLjI5Ni0xLjY5NS42MTUtMS44MjJsMy4xNDUtLjQ0IDEuNDA3LTIuNzQyQzUuOTEyLjggNy4wODguOCA3LjQ5NiAxLjU5NiIgZmlsbD0iI0ZGQ0UyMSIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo="><span-->
-<!--                                            data-v-2608d7d0="" class="rate">5.0</span><span data-v-2608d7d0=""-->
-<!--                                            class="count">(2)</span></div>-->
-<!--                                </div>-->
+                                <div data-v-2608d7d0="" data-v-464dc29d="" class="profile-badges">
+                                        <div data-v-2608d7d0="" class="rate" style="font-size: larger;">010-1234-1234</div>
+                                </div>
                             </div>
                         </section>
                         <div data-v-f32583c0="" data-v-464dc29d="" class="quote-info-wrapper">
@@ -101,10 +98,10 @@
 <!--                                        </span>-->
                                     </div>
                                     <div data-v-f32583c0="" class="quote-cta-wrapper">
-                                        <button data-v-f32583c0="" type="button"
-                                            class="btn quote-cta btn-primary" onclick="location.href=`http://localhost:10001/pickup/pickwantedlist`">목록보기</button>
-                                        <button data-v-f32583c0="" type="button"
-                                                class="btn quote-cta btn-primary" onclick="location.href=`http://localhost:10001/pickup/pickacceptedlist`">수락하기</button>
+                                        <button data-v-f32583c0="" type="button" style="width: 23%;"
+                                            class="btn quote-cta btn-primary" onclick="location.href=`http://localhost:10001/pickup/wantedlist`">목록보기</button>
+                                        <button data-v-f32583c0="" type="button" style="width: 23%;"
+                                                class="btn quote-cta btn-primary" onclick="location.href=`http://localhost:10001/pickup/acceptedlist`">수락하기</button>
                                     </div>
                                 </div>
                             </div>
