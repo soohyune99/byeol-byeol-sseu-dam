@@ -1,6 +1,7 @@
 package com.app.byeolbyeolsseudam.entity;
 
 import com.app.byeolbyeolsseudam.type.BoardCategory;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,16 +9,36 @@ import java.util.List;
 
 @Entity
 @Table(name = "TBL_BOARD")
-@Getter @Setter @ToString
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends Period{
-    @Id @GeneratedValue
+    @Id @GeneratedValue @NotNull
     private Long boardId;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) @NotNull
     private BoardCategory boardCategory;
+    @NotNull
     private String boardTitle;
+    @NotNull
     private String boardContent;
+    @NotNull
     private int boardView;
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+    @Builder
+    public Board(BoardCategory boardCategory, String boardTitle, String boardContent, int boardView, Member member) {
+        this.boardCategory = boardCategory;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.boardView = boardView;
+        this.member = member;
+    }
+
+    public void update(BoardCategory boardCategory, String boardTitle, String boardContent, int boardView){
+        this.boardCategory = boardCategory;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.boardView = boardView;
+    }
 }

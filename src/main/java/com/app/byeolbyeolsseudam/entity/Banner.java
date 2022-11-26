@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -9,10 +10,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TBL_BANNER")
-@Getter @Setter @ToString
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Banner extends Period{
-    @Id @GeneratedValue
+    @Id @GeneratedValue @NotNull
     private Long bannerId;
+    @NotNull
     private String bannerName;
+
+    @Builder
+    public Banner(String bannerName) {
+        this.bannerName = bannerName;
+    }
+
+    public void update(String bannerName){
+        this.bannerName = bannerName;
+    }
 }

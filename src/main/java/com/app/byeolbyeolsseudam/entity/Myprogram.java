@@ -1,14 +1,34 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.sun.istack.NotNull;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_MYPROGRAM")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Myprogram extends Period {
-    @Id @GeneratedValue
+    @Id @GeneratedValue @NotNull
     private Long myprogramId;
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Program program;
+
+    @Builder
+    public Myprogram(Member member, Program program) {
+        this.member = member;
+        this.program = program;
+    }
+
+    public void update(Program program){
+        this.program = program;
+    }
 }
