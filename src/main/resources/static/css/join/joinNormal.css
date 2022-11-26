@@ -298,19 +298,18 @@ button, input {
 
 .signup-form .float-button-right button.btn[data-v-79992f5d] {
     position: absolute;
-    top: -6px;
+    top: -4px;
     right: 0;
     height: 100%;
     background-color: transparent;
     border: none;
-    /*width: 3.125rem;*/
+    width: 5.125rem;
     z-index: 10;
     text-align: right;
     color: #00c7ae;
     font-weight: 400;
     font-size: .8rem;
 }
-
 
 .invalid-feedback {
     display: none;
@@ -464,6 +463,7 @@ button[data-v-0edf7af4] {
     align-items: center;
     justify-content: center;
 }
+
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
     cursor: pointer;
 }
@@ -472,6 +472,7 @@ button[data-v-0edf7af4] {
     color: #323232;
     text-decoration: none;
 }
+
 .btn-primary.focus, .btn-primary:focus, .btn-primary:hover {
     color: #fff;
     background-color: #00a18d;
@@ -499,6 +500,7 @@ p[data-v-fc3fcce8] {
     font-weight: 400;
     letter-spacing: -.0125rem;
 }
+
 /*button.btn[data-v-0edf7af4] {*/
 /*    background-color: #1876f1;*/
 /*    border-color: #1876f1;*/
@@ -594,7 +596,10 @@ button.btn span[data-v-0edf7af4] {
 }
 
 
-
+.btn.email-duplicate:disabled {
+    color: #FFE1E1E1 !important;
+    cursor: default !important;
+}
 
 
 @media (min-width: 992px){
