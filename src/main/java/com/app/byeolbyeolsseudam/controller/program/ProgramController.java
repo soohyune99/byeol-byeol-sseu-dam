@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/test/*")
+@RequestMapping("/program/*")
 public class ProgramController {
 
     @GetMapping("/program")

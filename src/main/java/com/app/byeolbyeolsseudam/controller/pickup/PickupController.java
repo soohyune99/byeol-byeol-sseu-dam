@@ -8,29 +8,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/pickup/*")
 public class PickupController {
 
-    @GetMapping("/pickmain")
+    @GetMapping("/main")
     public String pickMain(){
         return "/app/pickup/pickMain";
     }
-    @GetMapping("/pickdetail")
+    @GetMapping("/detail")
     public String pickDetail(){
         return "/app/pickup/pickDetail";
     }
-    @GetMapping("/pickdetaildone")
+    @GetMapping("/detaildone")
     public String pickDetailDone(){
         return "/app/pickup/pickDetailDone";
     }
-    @GetMapping("/pickwantedlist")
+    @GetMapping("/wantedlist")
     public String pickWantedList(){
         return "/app/pickup/pickWantedList";
     }
-    @GetMapping("/pickacceptedlist")
+    @GetMapping("/acceptedlist")
     public String pickAcceptedList(){
         return "/app/pickup/pickAcceptedList";
     }
-    @GetMapping("/pickfinishedlist")
+    @GetMapping("/okdetail")
+    public String pickOkDetail(){
+        return "/app/pickup/pickOkDetail";
+    }
+    @GetMapping("/finishedlist")
     public String pickFinishedList(){
         return "/app/pickup/pickFinishedList";
+    }
+    @GetMapping("/finisheddetail")
+    public String pickFinishedDetail(){
+        return "/app/pickup/pickFinishedDetail";
     }
 
 }

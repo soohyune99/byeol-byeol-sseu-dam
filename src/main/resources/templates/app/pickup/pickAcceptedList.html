@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>별별쓰담 | 수거현황</title>
     <link rel="icon" href="/images/fix/favicon.png">
     <link rel="stylesheet" href="/css/fix/font.css">
     <link rel="stylesheet" href="/css/pickup/pickWantedList.css">
@@ -21,7 +21,7 @@
 
 <body class="sent-requests" data-modal-open-count="0" style>
 <div>
-<header th:replace="/app/fix/header.html :: header"></header>
+<header th:replace="/app/fix/headerpicker.html :: header"></header>
 <div id="app" data-browser="Chrome" data-is-loaded="true" class>
 
     <div id="app-body">
@@ -47,7 +47,7 @@
                 </div>
             </section>
             <section data-v-564412cd="" class="container">
-                <h1 data-v-564412cd="" class="page-heading-h1"><span data-v-564412cd="">수거 현황</span></h1>
+                <h1 data-v-564412cd="" class="page-heading-h1"><span data-v-564412cd="">수거현황</span></h1>
                 <ul data-v-564412cd="" class="row quote-list no-gutters">
                     <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
                         <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
@@ -75,7 +75,7 @@
                                     <!---->
                                 </div>
                                 <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                        class="btn quote-cta btn-primary btn-block" onclick="location.href='http://localhost:10001/pickup/pickdetaildone'">자세히 보기
+                                        class="btn quote-cta btn-primary btn-block" onclick="location.href='http://localhost:10001/pickup/detaildone'">자세히 보기
                                 </button>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                     </div>
                                     <!---->
                                 </div>
-                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"
+                                <button data-v-05822788="" data-testid="request-detail-btn" type="button" onclick="location.href='http://localhost:10001/pickup/okdetail'"
                                         class="btn quote-cta btn-primary btn-block">자세히 보기
                                 </button>
                             </div>
@@ -141,7 +141,7 @@
                                     <!---->
                                 </div>
                                 <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                        class="btn quote-cta btn-primary btn-block" onclick="location.href='http://localhost:10001/pickup/pickdetail'">자세히 보기
+                                        class="btn quote-cta btn-primary btn-block" onclick="location.href='http://localhost:10001/pickup/detail'">자세히 보기
                                 </button>
                             </div>
                         </div>

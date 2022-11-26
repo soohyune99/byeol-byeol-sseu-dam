@@ -63,25 +63,17 @@
                                         <button data-v-6c349158="" class="btn btn-border">로그아웃</button>
                                     </div>
                                     <div data-v-6c349158="" data-name="change-user-type" class="col">
-                                        <button data-v-6c349158="" class="btn btn-border change-user-type"> 기사전환 </button>
+                                        <button data-v-6c349158="" class="btn btn-border change-user-type" onclick="location.href='http://localhost:10001/pickup/main'">
+                                            기사전환
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <nav data-v-6c349158="" class="gnb-list">
                             <ul data-v-6c349158="" class="user-menu">
-                                <!--                                    <li data-v-6c349158="" class="nav-item">-->
-                                <!--                                        <a data-v-6c349158="" href="/requests/sent" class="gnb-link">-->
-                                <!--                                            <span data-v-6c349158="" class="menu-title">받은견적</span>-->
-                                <!--                                        </a>-->
-                                <!--                                    </li>-->
-                                <!--                                    <li data-v-6c349158="" class="nav-item">-->
-                                <!--                                        <a data-v-6c349158="" href="/chats" class="gnb-link">-->
-                                <!--                                            <span data-v-6c349158="" class="menu-title">채팅</span>-->
-                                <!--                                        </a>-->
-                                <!--                                    </li>-->
                                 <li data-v-6c349158="" class="nav-item">
-                                    <a data-v-6c349158="" href="/mypage/" class="gnb-link">
+                                    <a data-v-6c349158="" href="http://localhost:10001/mypage/main" class="gnb-link">
                                         <span data-v-6c349158="" class="menu-title">마이페이지</span>
                                     </a>
                                 </li>
@@ -93,7 +85,7 @@
                                     </a>
                                 </li>
                                 <li data-v-6c349158="" class="nav-item">
-                                    <a data-v-6c349158="" href="http://localhost:10001/test/program" class="lnb-link">
+                                    <a data-v-6c349158="" href="http://localhost:10001/program/program" class="lnb-link">
                                         <span data-v-6c349158="" class="menu-title">쓰담학교</span>
                                     </a>
                                 </li>
@@ -103,7 +95,7 @@
                                     </a>
                                 </li>
                                 <li data-v-6c349158="" class="nav-item">
-                                    <a data-v-6c349158="" href="http://localhost:10001/test/recyclingintro" class="lnb-link">
+                                    <a data-v-6c349158="" href="http://localhost:10001/recycle/recyclingintro" class="lnb-link">
                                         <span data-v-6c349158="" class="menu-title">쓰담수거</span>
                                     </a>
                                 </li>
@@ -135,7 +127,7 @@
                                 </a>
                             </li>
                             <li data-v-3a2c0d3c="" class="nav-item left-section-item">
-                                <a data-v-3a2c0d3c="" href="http://localhost:10001/test/program" class="gnb-link">
+                                <a data-v-3a2c0d3c="" href="http://localhost:10001/program/program" class="gnb-link">
                                     <span data-v-3a2c0d3c="">쓰담학교</span>
                                 </a>
                             </li>
@@ -145,7 +137,7 @@
                                 </a>
                             </li>
                             <li data-v-3a2c0d3c="" class="nav-item left-section-item">
-                                <a data-v-3a2c0d3c="" href="http://localhost:10001/test/recyclingintro"
+                                <a data-v-3a2c0d3c="" href="http://localhost:10001/recycle/recyclingintro"
                                    class="gnb-link">
                                     <span data-v-3a2c0d3c="">쓰담수거</span>
                                 </a>
@@ -189,11 +181,13 @@
                                     </a>
                                 </li>
                                 <li data-v-0ef37ba8="" class="row">
-                                    <div data-v-0ef37ba8="" class="col">공지사항 </div>
+                                    <a data-v-3a2c0d3c="" href="http://localhost:10001/notice/notice" class="gnb-link">
+                                        <div data-v-0ef37ba8="" class="col">공지사항</div>
+                                    </a>
                                 </li>
                             </ul>
                             <div data-v-0ef37ba8="" data-name="user-type-control">
-                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm">
+                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm"  onclick="location.href='http://localhost:10001/pickup/main'">
                                     <img data-v-0ef37ba8="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMSI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMzMjMyMzIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjIiPjxwYXRoIGQ9Ik0xMiAxLjV2M0g5bS04IDV2LTNoMyIvPjxwYXRoIGQ9Ik0yLjI1NSA0QTQuNSA0LjUgMCAwIDEgOS42OCAyLjMyTDEyIDQuNW0tMTEgMmwyLjMyIDIuMThBNC41IDQuNSAwIDAgMCAxMC43NDUgNyIvPjwvZz48L3N2Zz4=">기사전환
                                 </button>
                             </div>

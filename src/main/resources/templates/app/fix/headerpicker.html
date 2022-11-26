@@ -26,7 +26,7 @@
                 <img class="moblieBtn" style="cursor: pointer;" data-v-3a2c0d3c="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxwYXRoIGQ9Ik00LjUgNmgxNW0tMTUgNmgxNW0tMTUgNmgxNSIgc3Ryb2tlPSIjMkQyRDJEIiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" data-testid="side-nav-menu-icon" alt="네비게이션 메뉴 아이콘">
             </div>
             <div data-v-3a2c0d3c="" class="col-4 mobile-header-col center vue-portal-target">
-                <a data-v-3a2c0d3c="" href="http://localhost:10001/main/main" class="logo">
+                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/main" class="logo">
                     <img data-v-3a2c0d3c="" src="/images/fix/logo.png" alt="별별쓰담 로고" data-testid="main-logo">
                 </a>
             </div>
@@ -62,56 +62,31 @@
                                     <div data-v-6c349158="" data-name="logout" class="col">
                                         <button data-v-6c349158="" class="btn btn-border">로그아웃</button>
                                     </div>
-                                    <!--                                    <div data-v-6c349158="" data-name="change-user-type" class="col">-->
-                                    <!--                                        <button data-v-6c349158="" class="btn btn-border change-user-type"> 고객전환 </button>-->
-                                    <!--                                    </div>-->
+                                    <div data-v-6c349158="" data-name="change-user-type" class="col">
+                                        <button data-v-6c349158="" class="btn btn-border change-user-type" onclick="location.href='http://localhost:10001/main/main'">
+                                            별별쓰담
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <nav data-v-6c349158="" class="gnb-list">
-                            <!--                            <ul data-v-6c349158="" class="user-menu">-->
-                            <!--                                                                    <li data-v-6c349158="" class="nav-item">-->
-                            <!--                                                                        <a data-v-6c349158="" href="/requests/sent" class="gnb-link">-->
-                            <!--                                                                            <span data-v-6c349158="" class="menu-title">받은견적</span>-->
-                            <!--                                                                        </a>-->
-                            <!--                                                                    </li>-->
-                            <!--                                                                    <li data-v-6c349158="" class="nav-item">-->
-                            <!--                                                                        <a data-v-6c349158="" href="/chats" class="gnb-link">-->
-                            <!--                                                                            <span data-v-6c349158="" class="menu-title">채팅</span>-->
-                            <!--                                                                        </a>-->
-                            <!--                                                                    </li>-->
-                            <!--                                <li data-v-6c349158="" class="nav-item">-->
-                            <!--                                    <a data-v-6c349158="" href="/mypage/" class="gnb-link">-->
-                            <!--                                        <span data-v-6c349158="" class="menu-title">마이페이지</span>-->
-                            <!--                                    </a>-->
-                            <!--                                </li>-->
-                            <!--                            </ul>-->
                             <ul data-v-6c349158="" class="service-menu">
                                 <li data-v-6c349158="" class="nav-item">
-                                    <a data-v-6c349158="" href="http://localhost:10001/pickup/pickwantedlist" class="lnb-link">
-                                        <span data-v-6c349158="" class="menu-title">수거 신청목록</span>
+                                    <a data-v-6c349158="" href="http://localhost:10001/pickup/wantedlist" class="lnb-link">
+                                        <span data-v-6c349158="" class="menu-title">수거신청</span>
                                     </a>
                                 </li>
                                 <li data-v-6c349158="" class="nav-item">
-                                    <a data-v-6c349158="" href="http://localhost:10001/pickup/pickacceptedlist" class="lnb-link">
-                                        <span data-v-6c349158="" class="menu-title">수거 현황</span>
+                                    <a data-v-6c349158="" href="http://localhost:10001/pickup/acceptedlist" class="lnb-link">
+                                        <span data-v-6c349158="" class="menu-title">수거현황</span>
                                     </a>
                                 </li>
                                 <li data-v-6c349158="" class="nav-item">
-                                    <a data-v-6c349158="" href="http://localhost:10001/pickup/pickfinishedlist" class="lnb-link">
-                                        <span data-v-6c349158="" class="menu-title">수거 내역</span>
+                                    <a data-v-6c349158="" href="http://localhost:10001/pickup/finishedlist" class="lnb-link">
+                                        <span data-v-6c349158="" class="menu-title">수거내역</span>
                                     </a>
                                 </li>
-                                <!--                                <li data-v-6c349158="" class="nav-item">-->
-                                <!--                                    <a data-v-6c349158="" href="http://localhost:10001/test/recyclingintro" class="lnb-link">-->
-                                <!--                                        <span data-v-6c349158="" class="menu-title">쓰담수거</span>-->
-                                <!--                                    </a>-->
-                                <!--                                </li>-->
-                                <!--                                <li data-v-6c349158="" class="nav-item">-->
-                                <!--                                    <a data-v-6c349158="" href="http://localhost:10001/community/main" class="lnb-link">-->
-                                <!--                                        <span data-v-6c349158="" class="menu-title">커뮤니티</span>-->
-                                <!--                                    </a>-->
-                                <!--                                </li>-->
                             </ul>
                         </nav>
                     </div>
@@ -123,48 +98,31 @@
             <div data-v-3a2c0d3c="" class="desktop-header">
                 <div data-v-3a2c0d3c="" class="left-section">
                     <div data-v-3a2c0d3c="" class="logo">
-                        <a data-v-3a2c0d3c="" href="http://localhost:10001/main/main" class="">
+                        <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/main" class="">
                             <img data-v-3a2c0d3c="" src="/images/fix/logo.png" alt="숨고, 숨은고수">
                         </a>
                     </div>
                     <nav data-v-3a2c0d3c="">
                         <ul data-v-3a2c0d3c="" class="nav-list">
                             <li data-v-3a2c0d3c="" class="nav-item left-section-item">
-                                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/pickwantedlist" class="gnb-link">
-                                    <span data-v-3a2c0d3c="">수거 신청목록</span>
+                                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/wantedlist" class="gnb-link">
+                                    <span data-v-3a2c0d3c="">수거신청</span>
                                 </a>
                             </li>
                             <li data-v-3a2c0d3c="" class="nav-item left-section-item">
-                                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/pickacceptedlist" class="gnb-link">
-                                    <span data-v-3a2c0d3c="">수거 현황</span>
+                                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/acceptedlist" class="gnb-link">
+                                    <span data-v-3a2c0d3c="">수거현황</span>
                                 </a>
                             </li>
                             <li data-v-3a2c0d3c="" class="nav-item left-section-item">
-                                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/pickfinishedlist" class="gnb-link">
-                                    <span data-v-3a2c0d3c="">수거 내역</span>
+                                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/finishedlist" class="gnb-link">
+                                    <span data-v-3a2c0d3c="">수거내역</span>
                                 </a>
                             </li>
-                            <!--                            <li data-v-3a2c0d3c="" class="nav-item left-section-item">-->
-                            <!--                                <a data-v-3a2c0d3c="" href="http://localhost:10001/test/recyclingintro"-->
-                            <!--                                   class="gnb-link">-->
-                            <!--                                    <span data-v-3a2c0d3c="">쓰담수거</span>-->
-                            <!--                                </a>-->
-                            <!--                            </li>-->
-                            <!--                            <li data-v-3a2c0d3c="" class="nav-item left-section-item">-->
-                            <!--                                <a data-v-3a2c0d3c="" href="http://localhost:10001/community/main" class="gnb-link">-->
-                            <!--                                    <span data-v-3a2c0d3c="">커뮤니티</span>-->
-                            <!--                                </a>-->
-                            <!--                            </li>-->
                         </ul>
                     </nav>
                 </div>
                 <div data-v-3a2c0d3c="" class="right-section">
-                    <!--                    <div data-v-f8be2a20="" data-v-3a2c0d3c="" class="notification-counter notification-counter right-section-item">-->
-                    <!--                        <button data-v-f8be2a20="" type="button" class="btn btn-clear btn-none" style="position: relative;" onclick="location.href='http://localhost:10001/market/basket'">-->
-                    <!--                            <img data-v-f8be2a20="" src="https://www.brandi.co.kr/static/22.07.04/images/header/ic-cart.svg" alt="장바구니" class="alarm-image" style="width: 27px;">-->
-                    <!--                            <small data-v-9e8436be="" class="count" style="position: absolute; min-width: 14px; height: 12px; padding: 0 4px; background-color: #00c7ae; border-radius: 50%; color: #fff; font-size: 8px; line-height: 12px; text-indent: 0; text-align: center; right: -1px; top: -2px; vertical-align: middle; line-height: 1.2;">1</small>-->
-                    <!--                        </button>-->
-                    <!--                    </div>-->
                     <div data-v-0ef37ba8="" data-v-3a2c0d3c="" class="usermenu user-menu right-section-item">
                         <div data-v-0ef37ba8="" class="usermenu-button">
                             <div data-v-0ee3c6fc="" data-v-0ef37ba8="" class="user-profile-picture page-profile">
@@ -189,7 +147,9 @@
                                     </a>
                                 </li>
                                 <li data-v-0ef37ba8="" class="row">
-                                    <div data-v-0ef37ba8="" class="col">공지사항 </div>
+                                    <a data-v-3a2c0d3c="" href="http://localhost:10001/notice/notice" class="gnb-link">
+                                        <div data-v-0ef37ba8="" class="col">공지사항 </div>
+                                    </a>
                                 </li>
                             </ul>
                             <div data-v-0ef37ba8="" data-name="user-type-control">
