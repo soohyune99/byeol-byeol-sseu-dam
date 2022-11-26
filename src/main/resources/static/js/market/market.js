@@ -18,9 +18,24 @@ $searchArea.on("blur", function(){
     $keywordBox.css('display', 'none');
 });
 
+/* 검색어 입력 시 x버튼 생성 */
+$searchArea.on('keyup', function(){
+    if($searchArea.val() != ""){
+        $(".input-group-append").css('display', 'block');
+    }else {
+        $(".input-group-append").css('display', 'none');
+    }
+});
+
+/* x버튼 클릭 시 검색어 삭제 */
+$(".btn-keyword-del").on('click', function(){
+    $searchArea.val("");
+    $(".input-group-append").css('display', 'none');
+});
 
 /* 카테고리 클릭 */
 $category.on("click", function(){
     $category.removeClass("router-link-exact-active");
     $(this).addClass("router-link-exact-active");
 });
+
