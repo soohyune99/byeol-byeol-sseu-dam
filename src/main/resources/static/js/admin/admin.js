@@ -273,6 +273,12 @@ function addProgram() {
 		return;
 	}
 
+	if($("input[name=programDate]").val() == "2022-07-22T12:00"){
+		alert("진행날짜를 입력하세요!");
+		$("input[name=programDate]").focus();
+		return;
+	}
+
 	if($("input[name=programTime]").val() == ""){
 		alert("수강시간을 입력하세요!");
 		$("input[name=programTime]").focus();
@@ -330,6 +336,12 @@ function modifyProgram() {
 	if($("input[name=programPlace]").val() == ""){
 		alert("장소를 입력하세요!");
 		$("input[name=programPlace]").focus();
+		return;
+	}
+
+	if($("input[name=programDate]").val() == "2022-07-22T12:00"){
+		alert("진행날짜를 입력하세요!");
+		$("input[name=programDate]").focus();
 		return;
 	}
 
