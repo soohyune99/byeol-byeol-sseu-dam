@@ -26,15 +26,35 @@ public class ProductTest {
     @Test
     public void saveTest(){
         ProductDTO productDTO = new ProductDTO();
+        ProductDTO product1 = new ProductDTO();
+        ProductDTO product2 = new ProductDTO();
 
         productDTO.setProductCategory(ProductCategory.주방);
         productDTO.setProductName("천연 수세미");
         productDTO.setProductPrice(15000);
-//        productDTO.getProductCount(1);
-//        productDTO.getProductFileDetail("product.jpg");
-//        productDTO.getProductFileProfile("profile");
+        productDTO.setProductCount(1);
+        productDTO.setProductFileDetail("product.jpg");
+        productDTO.setProductFileProfile("profile");
+
+
+        product1.setProductCategory(ProductCategory.반려동물);
+        product1.setProductName("비건 개껌");
+        product1.setProductPrice(10000);
+        product1.setProductCount(80);
+        product1.setProductFileDetail("food.jpg");
+        product1.setProductFileProfile("food");
+
+        product2.setProductCategory(ProductCategory.생활);
+        product2.setProductName("에코백");
+        product2.setProductPrice(20000);
+        product2.setProductCount(100);
+        product2.setProductFileDetail("living.jpg");
+        product2.setProductFileProfile("living");
 
         productRepository.save(productDTO.toEntity());
+        productRepository.save(product1.toEntity());
+        productRepository.save(product2.toEntity());
+
 
     }
 
@@ -53,7 +73,7 @@ public class ProductTest {
         Optional<Product> updateProduct = productRepository.findById(1L);
 
         if(updateProduct.isPresent()){
-            updateProduct.get().update(ProductCategory.반려동물, "사료", 16000,3, "tk", "df");
+            updateProduct.get().update(ProductCategory.반려동물, "사료", 16000,3, "사료상세정보", "사료사진");
         }
     }
 
