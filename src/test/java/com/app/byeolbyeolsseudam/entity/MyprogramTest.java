@@ -40,8 +40,8 @@ public class MyprogramTest {
         programDTO.setProgramLimitCount(10);
         programDTO.setProgramPlace("역삼역");
         programDTO.setProgramDate(LocalDateTime.of(2022, 11, 27, 0, 0, 0));
-        programDTO.setOpeningDate(LocalDateTime.of(2022,12,1,0,0,0));
-        programDTO.setClosingDate(LocalDateTime.of(2022, 12, 5, 0, 0,0, 0));
+//        programDTO.setOpeningDate(LocalDateTime.of(2022,12,1,0,0,0));
+//        programDTO.setClosingDate(LocalDateTime.of(2022, 12, 5, 0, 0,0, 0));
 
         programRepository.save(programDTO.toEntity());
 

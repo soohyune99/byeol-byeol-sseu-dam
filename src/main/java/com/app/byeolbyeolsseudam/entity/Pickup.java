@@ -27,9 +27,8 @@ public class Pickup extends Period {
     private Member member;
 
     @Builder
-    public Pickup(int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Member member) {
-        this.recyclable.setPetCount(petCount);
-        this.recyclable.setGlassCount(glassCount);
+    public Pickup(Recyclable recyclable, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Member member) {
+        this.recyclable = recyclable;
         this.pickupAddress = pickupAddress;
         this.pickupMessage = pickupMessage;
         this.pickupStatus = pickupStatus;

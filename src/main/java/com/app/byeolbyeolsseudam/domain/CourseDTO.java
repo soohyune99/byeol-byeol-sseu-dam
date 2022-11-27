@@ -25,9 +25,8 @@ public class CourseDTO {
     private CourseGrade courseGrade;
     private String courseStart;
     private String courseFinish;
-    private PossibleDate possibleDate;
-//    private LocalDateTime openingDate;
-//    private LocalDateTime closingDate;
+    private LocalDateTime openingDate;
+    private LocalDateTime closingDate;
 
     private List<Spot> spots;
 
@@ -42,12 +41,16 @@ public class CourseDTO {
         this.courseGrade = courseGrade;
         this.courseStart = courseStart;
         this.courseFinish = courseFinish;
-//        this.openingDate = openingDate;
-//        this.closingDate = closingDate;
+        this.openingDate = openingDate;
+        this.closingDate = closingDate;
         this.spots = spots;
     }
 
     public Course toEntity(){
+        PossibleDate possibleDate = new PossibleDate();
+        possibleDate.setOpeningDate(openingDate);
+        possibleDate.setClosingDate(closingDate);
+
         return Course.builder()
                 .courseName(courseName)
                 .courseArea(courseArea)
@@ -58,8 +61,6 @@ public class CourseDTO {
                 .courseStart(courseStart)
                 .courseFinish(courseFinish)
                 .possibleDate(possibleDate)
-//                .openingDate(openingDate)
-//                .closingDate(closingDate)
                 .build();
     }
 }

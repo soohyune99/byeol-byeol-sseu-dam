@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.domain;
 
+import com.app.byeolbyeolsseudam.embaddable.Recyclable;
 import com.app.byeolbyeolsseudam.entity.Member;
 import com.app.byeolbyeolsseudam.entity.Pickup;
 import com.app.byeolbyeolsseudam.type.PickupStatus;
@@ -35,9 +36,12 @@ public class PickupDTO {
     }
 
     public Pickup toEntity(){
+        Recyclable recyclable = new Recyclable();
+        recyclable.setPetCount(petCount);
+        recyclable.setGlassCount(glassCount);
+
         return Pickup.builder()
-                .petCount(petCount)
-                .glassCount(glassCount)
+                .recyclable(recyclable)
                 .pickupAddress(pickupAddress)
                 .pickupMessage(pickupMessage)
                 .pickupStatus(PickupStatus.수거대기중)
