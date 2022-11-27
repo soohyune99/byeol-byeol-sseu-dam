@@ -17,9 +17,8 @@ public class ProgramDTO {
     private Long programId;
     private String programName;
     private String programPlace;
-    private PossibleDate possibleDate;
-//    private LocalDateTime openingDate;
-//    private LocalDateTime closingDate;
+    private LocalDateTime openingDate;
+    private LocalDateTime closingDate;
     private int programTime;
     private LocalDateTime programDate;
     private String programContent;
@@ -30,13 +29,12 @@ public class ProgramDTO {
     private LocalDateTime createdDate;
 
     @QueryProjection
-    public ProgramDTO(Long programId, String programName, String programPlace, PossibleDate possibleDate/*LocalDateTime openingDate, LocalDateTime closingDate*/, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFile, String programFileDetail, LocalDateTime createdDate) {
+    public ProgramDTO(Long programId, String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFile, String programFileDetail, LocalDateTime createdDate) {
         this.programId = programId;
         this.programName = programName;
         this.programPlace = programPlace;
-        this.possibleDate = possibleDate;
-//        this.openingDate = openingDate;
-//        this.closingDate = closingDate;
+        this.openingDate = openingDate;
+        this.closingDate = closingDate;
         this.programTime = programTime;
         this.programDate = programDate;
         this.programContent = programContent;
@@ -48,12 +46,14 @@ public class ProgramDTO {
     }
 
     public Program toEntity(){
+        PossibleDate possibleDate = new PossibleDate();
+        possibleDate.setOpeningDate(openingDate);
+        possibleDate.setClosingDate(closingDate);
+
         return Program.builder()
                 .programName(programName)
                 .programPlace(programPlace)
                 .possibleDate(possibleDate)
-//                .openingDate(openingDate)
-//                .closingDate(closingDate)
                 .programTime(programTime)
                 .programDate(programDate)
                 .programContent(programContent)

@@ -47,10 +47,9 @@ public class CourseTest {
         courseDTO.setCourseStart("역삼역 3번 출구");
         courseDTO.setCourseFinish("할리스 역삼스타점");
         courseDTO.setSpots(spotRepository.findAll());
-        courseDTO.setPossibleDate(possibleDate);
-
-//        courseDTO.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
-//        courseDTO.setClosingDate(LocalDateTime.of(2022, 1, 25, 0, 0,0));
+        courseDTO.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
+        courseDTO.setClosingDate(LocalDateTime.of(2022, 1, 25, 0, 0,0));
+//        courseDTO.setPossibleDate(possibleDate);
 
         courseRepository.save(courseDTO.toEntity());
     }
