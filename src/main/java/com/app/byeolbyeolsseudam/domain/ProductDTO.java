@@ -39,6 +39,7 @@ public class ProductDTO {
     public Product toEntity(){
         return Product.builder()
                 .productCategory(productCategory)
+                .productName(productName)
                 .productPrice(productPrice)
                 .productCount(productCount)
                 .productFileDetail(productFileDetail)
