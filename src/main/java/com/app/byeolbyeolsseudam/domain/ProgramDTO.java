@@ -17,29 +17,33 @@ public class ProgramDTO {
     private Long programId;
     private String programName;
     private String programPlace;
-    private LocalDateTime openingDate;
-    private LocalDateTime closingDate;
+    private PossibleDate possibleDate;
+//    private LocalDateTime openingDate;
+//    private LocalDateTime closingDate;
     private int programTime;
     private LocalDateTime programDate;
-    private String programDetail;
+    private String programContent;
     private int programLimitCount;
     private ProgramStatus programStatus;
     private String programFile;
+    private String programFileDetail;
     private LocalDateTime createdDate;
 
     @QueryProjection
-    public ProgramDTO(Long programId, String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, int programTime, LocalDateTime programDate, String programDetail, int programLimitCount, ProgramStatus programStatus, String programFile, LocalDateTime createdDate) {
+    public ProgramDTO(Long programId, String programName, String programPlace, PossibleDate possibleDate/*LocalDateTime openingDate, LocalDateTime closingDate*/, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFile, String programFileDetail, LocalDateTime createdDate) {
         this.programId = programId;
         this.programName = programName;
         this.programPlace = programPlace;
-        this.openingDate = openingDate;
-        this.closingDate = closingDate;
+        this.possibleDate = possibleDate;
+//        this.openingDate = openingDate;
+//        this.closingDate = closingDate;
         this.programTime = programTime;
         this.programDate = programDate;
-        this.programDetail = programDetail;
+        this.programContent = programContent;
         this.programLimitCount = programLimitCount;
         this.programStatus = programStatus;
         this.programFile = programFile;
+        this.programFileDetail = programFileDetail;
         this.createdDate = createdDate;
     }
 
@@ -47,14 +51,16 @@ public class ProgramDTO {
         return Program.builder()
                 .programName(programName)
                 .programPlace(programPlace)
-                .openingDate(openingDate)
-                .closingDate(closingDate)
+                .possibleDate(possibleDate)
+//                .openingDate(openingDate)
+//                .closingDate(closingDate)
                 .programTime(programTime)
                 .programDate(programDate)
-                .programDetail(programDetail)
+                .programContent(programContent)
                 .programLimitCount(programLimitCount)
                 .programStatus(ProgramStatus.모집예정)
                 .programFile(programFile)
+                .programFileDetail(programFileDetail)
                 .build();
     }
 }

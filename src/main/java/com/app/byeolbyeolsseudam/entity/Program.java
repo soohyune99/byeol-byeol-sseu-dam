@@ -27,7 +27,7 @@ public class Program extends Period {
     @NotNull
     private LocalDateTime programDate;
     @NotNull
-    private String programDetail;
+    private String programContent;
     @NotNull
     private int programLimitCount;
     @NotNull
@@ -35,30 +35,33 @@ public class Program extends Period {
     private ProgramStatus programStatus;
     @NotNull
     private String programFile;
+    @NotNull
+    private String programFileDetail;
 
     @Builder
-    public Program(String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, int programTime, LocalDateTime programDate, String programDetail, int programLimitCount, ProgramStatus programStatus, String programFile) {
-        this.programName = programName;
-        this.programPlace = programPlace;
-        this.possibleDate.setOpeningDate(openingDate);
-        this.possibleDate.setClosingDate(openingDate);
-        this.programTime = programTime;
-        this.programDate = programDate;
-        this.programDetail = programDetail;
-        this.programLimitCount = programLimitCount;
-        this.programStatus = programStatus;
-        this.programFile = programFile;
-    }
-
-    public void update(String programName, String programPlace, PossibleDate possibleDate, int programTime, LocalDateTime programDate, String programDetail, int programLimitCount, ProgramStatus programStatus, String programFile){
+    public Program(String programName, String programPlace, PossibleDate possibleDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFile, String programFileDetail) {
         this.programName = programName;
         this.programPlace = programPlace;
         this.possibleDate = possibleDate;
         this.programTime = programTime;
         this.programDate = programDate;
-        this.programDetail = programDetail;
+        this.programContent = programContent;
         this.programLimitCount = programLimitCount;
         this.programStatus = programStatus;
         this.programFile = programFile;
+        this.programFileDetail = programFileDetail;
+    }
+
+    public void update(String programName, String programPlace, PossibleDate possibleDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFile, String programFileDetail){
+        this.programName = programName;
+        this.programPlace = programPlace;
+        this.possibleDate = possibleDate;
+        this.programTime = programTime;
+        this.programDate = programDate;
+        this.programContent = programContent;
+        this.programLimitCount = programLimitCount;
+        this.programStatus = programStatus;
+        this.programFile = programFile;
+        this.programFileDetail = programFileDetail;
     }
 }
