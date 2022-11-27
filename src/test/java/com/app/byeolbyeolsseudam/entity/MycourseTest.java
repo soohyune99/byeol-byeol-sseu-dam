@@ -13,6 +13,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.app.byeolbyeolsseudam.entity.QCourse.course;
+import static com.app.byeolbyeolsseudam.entity.QMycourse.mycourse;
+import static com.app.byeolbyeolsseudam.entity.QSpot.spot;
+
 @SpringBootTest
 @Slf4j
 @Transactional
@@ -39,16 +43,27 @@ public class MycourseTest {
 
     @Test
     public void findTest(){
-
+        jpaQueryFactory.select(mycourse.mycourseId)
+                .from(mycourse).orderBy(mycourse.mycourseId.desc())
+                .fetch().stream().forEach(m -> log.info("Id : " + m));
     }
 
     @Test
     public void updateTest(){
-
+        jpaQueryFactory.selectFrom(mycourse)
+                .orderBy(mycourse.mycourseId.desc())
+                .limit(1)
+                .fetchOne()
+                .update(
+                        jpaQueryFactory.selectFrom(course).limit(1).fetchOne(),
+                        jpaQueryFactory.selectFrom(spot).limit(1).fetchOne()
+                );
     }
 
     @Test
     public void deleteTest(){
-
+        jpaQueryFactory.delete(mycourse)
+                .where(mycourse.spot.spotId.isNull())
+                .execute();
     }
 }
