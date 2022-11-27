@@ -49,7 +49,6 @@ public class CourseTest {
         courseDTO.setSpots(spotRepository.findAll());
         courseDTO.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
         courseDTO.setClosingDate(LocalDateTime.of(2022, 1, 25, 0, 0,0));
-//        courseDTO.setPossibleDate(possibleDate);
 
         courseRepository.save(courseDTO.toEntity());
     }
