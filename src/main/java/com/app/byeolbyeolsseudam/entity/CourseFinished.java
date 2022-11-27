@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.type.CourseFinishedStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -13,7 +14,7 @@ public class CourseFinished extends Period {
     @Id @GeneratedValue @NotNull
     private Long courseFinishedId;
     @NotNull
-    private String courseFinishedStatus;
+    private CourseFinishedStatus courseFinishedStatus;
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
@@ -22,13 +23,13 @@ public class CourseFinished extends Period {
     private Course course;
 
     @Builder
-    public CourseFinished(String courseFinishedStatus, Member member, Course course) {
+    public CourseFinished(CourseFinishedStatus courseFinishedStatus, Member member, Course course) {
         this.courseFinishedStatus = courseFinishedStatus;
         this.member = member;
         this.course = course;
     }
 
-    public void update(String courseFinishedStatus, Course course){
+    public void update(CourseFinishedStatus courseFinishedStatus, Course course){
         this.courseFinishedStatus = courseFinishedStatus;
         this.course = course;
     }

@@ -40,7 +40,7 @@ public class Course extends Period {
     private List<Spot> spots;
 
     @Builder
-    public Course(String courseName, String courseArea, String courseFile, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, LocalDateTime openingDate, LocalDateTime closingDate) {
+    public Course(String courseName, String courseArea, String courseFile, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, PossibleDate possibleDate /*LocalDateTime openingDate, LocalDateTime closingDate*/) {
         this.courseName = courseName;
         this.courseArea = courseArea;
         this.courseFile = courseFile;
@@ -49,11 +49,12 @@ public class Course extends Period {
         this.courseGrade = courseGrade;
         this.courseStart = courseStart;
         this.courseFinish = courseFinish;
-        this.possibleDate.setOpeningDate(openingDate);
-        this.possibleDate.setClosingDate(closingDate);
+        this.possibleDate = possibleDate;
+//        this.possibleDate.setOpeningDate(openingDate);
+//        this.possibleDate.setClosingDate(closingDate);
     }
 
-    public void update(String courseName, String courseArea, String courseFile, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, LocalDateTime openingDate, LocalDateTime closingDate){
+    public void update(String courseName, String courseArea, String courseFile, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, PossibleDate possibleDate/*LocalDateTime openingDate, LocalDateTime closingDate*/){
         this.courseName = courseName;
         this.courseArea = courseArea;
         this.courseFile = courseFile;
@@ -62,7 +63,8 @@ public class Course extends Period {
         this.courseGrade = courseGrade;
         this.courseStart = courseStart;
         this.courseFinish = courseFinish;
-        this.possibleDate.setOpeningDate(openingDate);
-        this.possibleDate.setClosingDate(closingDate);
+        this.possibleDate = possibleDate;
+//        this.possibleDate.setOpeningDate(openingDate);
+//        this.possibleDate.setClosingDate(closingDate);
     }
 }

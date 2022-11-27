@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.domain;
 
+import com.app.byeolbyeolsseudam.embaddable.PossibleDate;
 import com.app.byeolbyeolsseudam.entity.Course;
 import com.app.byeolbyeolsseudam.entity.Spot;
 import com.app.byeolbyeolsseudam.type.CourseGrade;
@@ -24,8 +25,9 @@ public class CourseDTO {
     private CourseGrade courseGrade;
     private String courseStart;
     private String courseFinish;
-    private LocalDateTime openingDate;
-    private LocalDateTime closingDate;
+    private PossibleDate possibleDate;
+//    private LocalDateTime openingDate;
+//    private LocalDateTime closingDate;
 
     private List<Spot> spots;
 
@@ -40,8 +42,8 @@ public class CourseDTO {
         this.courseGrade = courseGrade;
         this.courseStart = courseStart;
         this.courseFinish = courseFinish;
-        this.openingDate = openingDate;
-        this.closingDate = closingDate;
+//        this.openingDate = openingDate;
+//        this.closingDate = closingDate;
         this.spots = spots;
     }
 
@@ -55,8 +57,9 @@ public class CourseDTO {
                 .courseGrade(courseGrade)
                 .courseStart(courseStart)
                 .courseFinish(courseFinish)
-                .openingDate(openingDate)
-                .closingDate(closingDate)
+                .possibleDate(possibleDate)
+//                .openingDate(openingDate)
+//                .closingDate(closingDate)
                 .build();
     }
 }
