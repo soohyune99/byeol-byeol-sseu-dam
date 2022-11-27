@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_MEMBER")
-@Getter
+@Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends Period {
     @Id @GeneratedValue @NotNull
