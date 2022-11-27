@@ -23,7 +23,9 @@ public class Program extends Period {
     @Embedded @NotNull
     private PossibleDate possibleDate;
     @NotNull
-    private LocalDateTime programTime;
+    private int programTime;
+    @NotNull
+    private LocalDateTime programDate;
     @NotNull
     private String programDetail;
     @NotNull
@@ -35,23 +37,25 @@ public class Program extends Period {
     private String programFile;
 
     @Builder
-    public Program(String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, LocalDateTime programTime, String programDetail, int programLimitCount, ProgramStatus programStatus, String programFile) {
+    public Program(String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, int programTime, LocalDateTime programDate, String programDetail, int programLimitCount, ProgramStatus programStatus, String programFile) {
         this.programName = programName;
         this.programPlace = programPlace;
         this.possibleDate.setOpeningDate(openingDate);
-        this.possibleDate.setClosingDate(closingDate);
+        this.possibleDate.setClosingDate(openingDate);
         this.programTime = programTime;
+        this.programDate = programDate;
         this.programDetail = programDetail;
         this.programLimitCount = programLimitCount;
         this.programStatus = programStatus;
         this.programFile = programFile;
     }
 
-    public void update(String programName, String programPlace, PossibleDate possibleDate, LocalDateTime programTime, String programDetail, int programLimitCount, ProgramStatus programStatus, String programFile){
+    public void update(String programName, String programPlace, PossibleDate possibleDate, int programTime, LocalDateTime programDate, String programDetail, int programLimitCount, ProgramStatus programStatus, String programFile){
         this.programName = programName;
         this.programPlace = programPlace;
         this.possibleDate = possibleDate;
         this.programTime = programTime;
+        this.programDate = programDate;
         this.programDetail = programDetail;
         this.programLimitCount = programLimitCount;
         this.programStatus = programStatus;
