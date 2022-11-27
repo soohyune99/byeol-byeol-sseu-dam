@@ -19,7 +19,8 @@ public class ProgramDTO {
     private String programPlace;
     private LocalDateTime openingDate;
     private LocalDateTime closingDate;
-    private LocalDateTime programTime;
+    private int programTime;
+    private LocalDateTime programDate;
     private String programDetail;
     private int programLimitCount;
     private ProgramStatus programStatus;
@@ -27,13 +28,14 @@ public class ProgramDTO {
     private LocalDateTime createdDate;
 
     @QueryProjection
-    public ProgramDTO(Long programId, String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, LocalDateTime programTime, String programDetail, int programLimitCount, ProgramStatus programStatus, String programFile, LocalDateTime createdDate) {
+    public ProgramDTO(Long programId, String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, int programTime, LocalDateTime programDate, String programDetail, int programLimitCount, ProgramStatus programStatus, String programFile, LocalDateTime createdDate) {
         this.programId = programId;
         this.programName = programName;
         this.programPlace = programPlace;
         this.openingDate = openingDate;
         this.closingDate = closingDate;
         this.programTime = programTime;
+        this.programDate = programDate;
         this.programDetail = programDetail;
         this.programLimitCount = programLimitCount;
         this.programStatus = programStatus;
@@ -48,6 +50,7 @@ public class ProgramDTO {
                 .openingDate(openingDate)
                 .closingDate(closingDate)
                 .programTime(programTime)
+                .programDate(programDate)
                 .programDetail(programDetail)
                 .programLimitCount(programLimitCount)
                 .programStatus(ProgramStatus.모집예정)
