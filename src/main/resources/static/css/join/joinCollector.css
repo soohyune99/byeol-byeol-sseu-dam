@@ -261,7 +261,7 @@ button, input {
 
 .email-show{
     position: absolute;
-    top: 2px;
+    top: 1px;
     right: 4px;
     height: 100%;
     background-color: transparent;
@@ -273,9 +273,14 @@ button, input {
     font-size: .8rem;
 }
 
+.email-show:disabled{
+    color: #f1f1f1;
+    cursor: default;
+}
+
 .password-show{
     position: absolute;
-    top: 13px;
+    top: 1px;
     right: 4px;
     height: 100%;
     background-color: transparent;
