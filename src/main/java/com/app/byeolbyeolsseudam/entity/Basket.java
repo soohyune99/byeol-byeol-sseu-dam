@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.BasketDTO;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -13,15 +14,24 @@ public class Basket extends Period{
     @Id @GeneratedValue @NotNull
     private Long basketId;
     @NotNull
+    private int basketCount;
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
-    @Builder
-    public Basket(Member member, Product product) {
+    public void changeMember(Member member){
         this.member = member;
+    }
+
+    public void changeProduct(Product product){
         this.product = product;
+    }
+
+    @Builder
+    public Basket(int basketCount) {
+        this.basketCount = basketCount;
     }
 
     public void update(Member member, Product product){

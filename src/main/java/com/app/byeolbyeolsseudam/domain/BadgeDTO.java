@@ -14,19 +14,25 @@ import java.time.LocalDateTime;
 public class BadgeDTO {
     private Long badgeId;
     private String badgeName;
-    private String badgeFile;
+    private String badgeFileName;
+    private String badgeFileUuid;
+    private String badgeFilePath;
 
     @QueryProjection
-    public BadgeDTO(Long badgeId, String badgeName, String badgeFile) {
+    public BadgeDTO(Long badgeId, String badgeName, String badgeFileName, String badgeFileUuid, String badgeFilePath) {
         this.badgeId = badgeId;
         this.badgeName = badgeName;
-        this.badgeFile = badgeFile;
+        this.badgeFileName = badgeFileName;
+        this.badgeFileUuid = badgeFileUuid;
+        this.badgeFilePath = badgeFilePath;
     }
 
     public Badge toEntity(){
         return Badge.builder()
                 .badgeName(badgeName)
-                .badgeFile(badgeFile)
+                .badgeFileName(badgeFileName)
+                .badgeFilePath(badgeFilePath)
+                .badgeFileUuid(badgeFileUuid)
                 .build();
     }
 }

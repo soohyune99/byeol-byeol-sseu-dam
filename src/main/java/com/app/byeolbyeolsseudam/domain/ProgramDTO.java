@@ -24,12 +24,16 @@ public class ProgramDTO {
     private String programContent;
     private int programLimitCount;
     private ProgramStatus programStatus;
-    private String programFile;
-    private String programFileDetail;
+    private String programFileProfileName;
+    private String programFileProfilePath;
+    private String programFileProfileUuid;
+    private String programFileDetailName;
+    private String programFileDetailPath;
+    private String programFileDetailUuid;
     private LocalDateTime createdDate;
 
     @QueryProjection
-    public ProgramDTO(Long programId, String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFile, String programFileDetail, LocalDateTime createdDate) {
+    public ProgramDTO(Long programId, String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFileProfileName, String programFileProfilePath, String programFileProfileUuid, String programFileDetailName, String programFileDetailPath, String programFileDetailUuid, LocalDateTime createdDate) {
         this.programId = programId;
         this.programName = programName;
         this.programPlace = programPlace;
@@ -40,8 +44,12 @@ public class ProgramDTO {
         this.programContent = programContent;
         this.programLimitCount = programLimitCount;
         this.programStatus = programStatus;
-        this.programFile = programFile;
-        this.programFileDetail = programFileDetail;
+        this.programFileProfileName = programFileProfileName;
+        this.programFileProfilePath = programFileProfilePath;
+        this.programFileProfileUuid = programFileProfileUuid;
+        this.programFileDetailName = programFileDetailName;
+        this.programFileDetailPath = programFileDetailPath;
+        this.programFileDetailUuid = programFileDetailUuid;
         this.createdDate = createdDate;
     }
 
@@ -59,8 +67,12 @@ public class ProgramDTO {
                 .programContent(programContent)
                 .programLimitCount(programLimitCount)
                 .programStatus(ProgramStatus.모집예정)
-                .programFile(programFile)
-                .programFileDetail(programFileDetail)
+                .programFileProfileName(programFileProfileName)
+                .programFileDetailPath(programFileProfilePath)
+                .programFileDetailUuid(programFileProfileUuid)
+                .programFileDetailName(programFileDetailName)
+                .programFileDetailPath(programFileDetailPath)
+                .programFileDetailUuid(programFileDetailUuid)
                 .build();
     }
 }

@@ -17,13 +17,21 @@ public class Banner extends Period{
     private Long bannerId;
     @NotNull
     private String bannerName;
+    @NotNull
+    private String bannerPath;
+    @NotNull
+    private String bannerUuid;
 
     @Builder
-    public Banner(String bannerName) {
+    public Banner(String bannerName, String bannerPath, String bannerUuid) {
         this.bannerName = bannerName;
+        this.bannerPath = bannerPath;
+        this.bannerUuid = bannerUuid;
     }
 
-    public void update(String bannerName){
+    public void update(String bannerName, String bannerPath, String bannerUuid) {
         this.bannerName = bannerName;
+        this.bannerPath = bannerPath;
+        this.bannerUuid = bannerUuid;
     }
 }

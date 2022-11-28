@@ -14,16 +14,22 @@ import java.time.LocalDateTime;
 public class BannerDTO {
     private Long bannerId;
     private String bannerName;
+    private String bannerPath;
+    private String bannerUuid;
 
     @QueryProjection
-    public BannerDTO(Long bannerId, String bannerName) {
+    public BannerDTO(Long bannerId, String bannerName, String bannerPath, String bannerUuid) {
         this.bannerId = bannerId;
         this.bannerName = bannerName;
+        this.bannerPath = bannerPath;
+        this.bannerUuid = bannerUuid;
     }
 
     public Banner toEntity(){
         return Banner.builder()
                 .bannerName(bannerName)
+                .bannerPath(bannerPath)
+                .bannerUuid(bannerUuid)
                 .build();
     }
 }

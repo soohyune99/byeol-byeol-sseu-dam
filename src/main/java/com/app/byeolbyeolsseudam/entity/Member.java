@@ -28,32 +28,35 @@ public class Member extends Period {
     private String memberPhone;
     @NotNull
     private String memberEmail;
-    @NotNull
-    private String memberAddress;
     private int memberPoint;
-    private String memberProfileFile;
+    private String memberProfileName;
+    private String memberProfilePath;
+    private String memberProfileUuid;
 
     @Builder
-    public Member(MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, String memberAddress, int memberPoint, String memberProfileFile) {
+    public Member(MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid) {
         this.memberLoginType = memberLoginType;
         this.memberCategory = memberCategory;
         this.memberName = memberName;
         this.memberPassword = memberPassword;
         this.memberPhone = memberPhone;
         this.memberEmail = memberEmail;
-        this.memberAddress = memberAddress;
         this.memberPoint = memberPoint;
-        this.memberProfileFile = memberProfileFile;
+        this.memberProfileName = memberProfileName;
+        this.memberProfilePath = memberProfilePath;
+        this.memberProfileUuid = memberProfileUuid;
     }
 
-    public void update(MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, String memberAddress, int memberPoint, String memberProfileFile){
+    public void update(MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid) {
+        this.memberLoginType = memberLoginType;
         this.memberCategory = memberCategory;
         this.memberName = memberName;
         this.memberPassword = memberPassword;
         this.memberPhone = memberPhone;
         this.memberEmail = memberEmail;
-        this.memberAddress = memberAddress;
         this.memberPoint = memberPoint;
-        this.memberProfileFile = memberProfileFile;
+        this.memberProfileName = memberProfileName;
+        this.memberProfilePath = memberProfilePath;
+        this.memberProfileUuid = memberProfileUuid;
     }
 }

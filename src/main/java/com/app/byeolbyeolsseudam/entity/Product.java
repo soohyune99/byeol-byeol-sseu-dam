@@ -24,29 +24,45 @@ public class Product extends Period {
     @NotNull
     private int productCount;
     @NotNull
-    private String productFileDetail;
+    private String productFileDetailName;
     @NotNull
-    private String productFileProfile;
+    private String productFileDetailPath;
+    @NotNull
+    private String productFileDetailUuid;
+    @NotNull
+    private String productFileProfileName;
+    @NotNull
+    private String productFileProfilePath;
+    @NotNull
+    private String productFileProfileUuid;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private List<Review> reviews;
 
     @Builder
-    public Product(ProductCategory productCategory, String productName, int productPrice, int productCount, String productFileDetail, String productFileProfile) {
+    public Product(ProductCategory productCategory, String productName, int productPrice, int productCount, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid) {
         this.productCategory = productCategory;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCount = productCount;
-        this.productFileDetail = productFileDetail;
-        this.productFileProfile = productFileProfile;
+        this.productFileDetailName = productFileDetailName;
+        this.productFileDetailPath = productFileDetailPath;
+        this.productFileDetailUuid = productFileDetailUuid;
+        this.productFileProfileName = productFileProfileName;
+        this.productFileProfilePath = productFileProfilePath;
+        this.productFileProfileUuid = productFileProfileUuid;
     }
 
-    public void update(ProductCategory productCategory, String productName, int productPrice, int productCount, String productFileDetail, String productFileProfile){
+    public void update(ProductCategory productCategory, String productName, int productPrice, int productCount, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid) {
         this.productCategory = productCategory;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCount = productCount;
-        this.productFileDetail = productFileDetail;
-        this.productFileProfile = productFileProfile;
+        this.productFileDetailName = productFileDetailName;
+        this.productFileDetailPath = productFileDetailPath;
+        this.productFileDetailUuid = productFileDetailUuid;
+        this.productFileProfileName = productFileProfileName;
+        this.productFileProfilePath = productFileProfilePath;
+        this.productFileProfileUuid = productFileProfileUuid;
     }
 }

@@ -22,6 +22,10 @@ public class PickupAccept extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    public void changePickup(Pickup pickup){
+        this.pickup = pickup;
+    }
+
     @Builder
     public PickupAccept(Pickup pickup, Member member) {
         this.pickup = pickup;

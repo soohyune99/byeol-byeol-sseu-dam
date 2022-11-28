@@ -21,8 +21,6 @@ public class Course extends Period {
     @NotNull
     private String courseArea;
     @NotNull
-    private String courseFile;
-    @NotNull
     private String courseDistance;
     @NotNull
     private String courseTime;
@@ -33,6 +31,12 @@ public class Course extends Period {
     private String courseStart;
     @NotNull
     private String courseFinish;
+    @NotNull
+    private String courseFileName;
+    @NotNull
+    private String courseFilePath;
+    @NotNull
+    private String courseFileUuid;
     @Embedded
     private PossibleDate possibleDate;
 
@@ -40,27 +44,32 @@ public class Course extends Period {
     private List<Spot> spots;
 
     @Builder
-    public Course(String courseName, String courseArea, String courseFile, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, PossibleDate possibleDate) {
+    public Course(String courseName, String courseArea, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, String courseFileName, String courseFilePath, String courseFileUuid, PossibleDate possibleDate, List<Spot> spots) {
         this.courseName = courseName;
         this.courseArea = courseArea;
-        this.courseFile = courseFile;
         this.courseDistance = courseDistance;
         this.courseTime = courseTime;
         this.courseGrade = courseGrade;
         this.courseStart = courseStart;
         this.courseFinish = courseFinish;
+        this.courseFileName = courseFileName;
+        this.courseFilePath = courseFilePath;
+        this.courseFileUuid = courseFileUuid;
         this.possibleDate = possibleDate;
     }
 
-    public void update(String courseName, String courseArea, String courseFile, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, PossibleDate possibleDate){
+    public void update(String courseName, String courseArea, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, String courseFileName, String courseFilePath, String courseFileUuid, PossibleDate possibleDate, List<Spot> spots) {
         this.courseName = courseName;
         this.courseArea = courseArea;
-        this.courseFile = courseFile;
         this.courseDistance = courseDistance;
         this.courseTime = courseTime;
         this.courseGrade = courseGrade;
         this.courseStart = courseStart;
         this.courseFinish = courseFinish;
+        this.courseFileName = courseFileName;
+        this.courseFilePath = courseFilePath;
+        this.courseFileUuid = courseFileUuid;
         this.possibleDate = possibleDate;
+        this.spots = spots;
     }
 }

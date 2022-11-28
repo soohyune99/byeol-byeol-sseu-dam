@@ -19,21 +19,27 @@ public class ProductDTO {
     private String productName;
     private int productPrice;
     private int productCount;
-    private String productFileDetail;
-    private String productFileProfile;
+    private String productFileDetailName;
+    private String productFileDetailPath;
+    private String productFileDetailUuid;
+    private String productFileProfileName;
+    private String productFileProfilePath;
+    private String productFileProfileUuid;
 
-    private List<Review> reviews;
+    private List<ReviewDTO> reviews;
 
-    @QueryProjection
-    public ProductDTO(Long productId, ProductCategory productCategory, String productName, int productPrice, int productCount, String productFileDetail, String productFileProfile, List<Review> reviews) {
+    public ProductDTO(Long productId, ProductCategory productCategory, String productName, int productPrice, int productCount, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid, List<ReviewDTO> reviews) {
         this.productId = productId;
         this.productCategory = productCategory;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCount = productCount;
-        this.productFileDetail = productFileDetail;
-        this.productFileProfile = productFileProfile;
-        this.reviews = reviews;
+        this.productFileDetailName = productFileDetailName;
+        this.productFileDetailPath = productFileDetailPath;
+        this.productFileDetailUuid = productFileDetailUuid;
+        this.productFileProfileName = productFileProfileName;
+        this.productFileProfilePath = productFileProfilePath;
+        this.productFileProfileUuid = productFileProfileUuid;
     }
 
     public Product toEntity(){
@@ -42,8 +48,12 @@ public class ProductDTO {
                 .productName(productName)
                 .productPrice(productPrice)
                 .productCount(productCount)
-                .productFileDetail(productFileDetail)
-                .productFileProfile(productFileProfile)
+                .productFileDetailName(productFileDetailName)
+                .productFileDetailPath(productFileDetailPath)
+                .productFileDetailUuid(productFileDetailUuid)
+                .productFileProfileName(productFileProfileName)
+                .productFileProfilePath(productFileProfilePath)
+                .productFileProfileUuid(productFileProfileUuid)
                 .build();
     }
 }

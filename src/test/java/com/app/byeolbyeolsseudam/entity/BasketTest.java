@@ -17,7 +17,6 @@ import java.util.Optional;
 
 import static com.app.byeolbyeolsseudam.entity.QBasket.basket;
 import static com.app.byeolbyeolsseudam.entity.QMember.member;
-import static com.app.byeolbyeolsseudam.entity.QNotice.notice;
 import static com.app.byeolbyeolsseudam.entity.QProduct.product;
 
 

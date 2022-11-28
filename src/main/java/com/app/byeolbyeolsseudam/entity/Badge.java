@@ -18,16 +18,25 @@ public class Badge extends Period{
     @NotNull
     private String badgeName;
     @NotNull
-    private String badgeFile;
+    private String badgeFileName;
+    @NotNull
+    private String badgeFileUuid;
+    @NotNull
+    private String badgeFilePath;
 
     @Builder
-    public Badge(String badgeName, String badgeFile) {
+    public Badge(String badgeName, String badgeFileName, String badgeFileUuid, String badgeFilePath) {
         this.badgeName = badgeName;
-        this.badgeFile = badgeFile;
+        this.badgeFileName = badgeFileName;
+        this.badgeFilePath = badgeFilePath;
+        this.badgeFileUuid = badgeFileUuid;
     }
 
-    public void update(String badgeName, String badgeFile){
+    public void update(String badgeName, String badgeFileName, String badgeFilePath, String badgeFileUuid){
         this.badgeName = badgeName;
-        this.badgeFile = badgeFile;
+        this.badgeFileName = badgeFileName;
+        this.badgeFilePath = badgeFilePath;
+        this.badgeFileUuid = badgeFileUuid;
+
     }
 }

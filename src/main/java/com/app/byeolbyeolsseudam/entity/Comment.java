@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.CommentDTO;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -14,8 +15,9 @@ public class Comment extends Period {
     private Long commentId;
     @NotNull
     private String commentContent;
-    @NotNull
-    private String commentFile;
+    private String commentFileName;
+    private String commentFilePath;
+    private String commentFileUuid;
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
@@ -24,15 +26,17 @@ public class Comment extends Period {
     private Board board;
 
     @Builder
-    public Comment(String commentContent, String commentFile, Member member, Board board) {
+    public Comment(String commentContent, String commentFileName, String commentFilePath, String commentFileUuid) {
         this.commentContent = commentContent;
-        this.commentFile = commentFile;
-        this.member = member;
-        this.board = board;
+        this.commentFileName = commentFileName;
+        this.commentFilePath = commentFilePath;
+        this.commentFileUuid = commentFileUuid;
     }
 
-    public void update(String commentContent, String commentFile){
+    public void update(String commentContent, String commentFileName, String commentFilePath, String commentFileUuid) {
         this.commentContent = commentContent;
-        this.commentFile = commentFile;
+        this.commentFileName = commentFileName;
+        this.commentFilePath = commentFilePath;
+        this.commentFileUuid = commentFileUuid;
     }
 }

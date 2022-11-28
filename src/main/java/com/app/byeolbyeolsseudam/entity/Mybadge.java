@@ -19,13 +19,15 @@ public class Mybadge extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Badge badge;
 
-    @Builder
-    public Mybadge(Member member, Badge badge) {
+    public void changeMember(Member member){
         this.member = member;
+    }
+
+    public void changeBadge(Badge badge){
         this.badge = badge;
     }
 
-    public void update(Badge badge){
-        this.badge = badge;
-    }
+    @Builder
+    public Mybadge() {;}
+
 }

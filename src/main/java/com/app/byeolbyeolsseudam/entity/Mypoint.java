@@ -24,13 +24,7 @@ public class Mypoint extends Period {
     private Member member;
 
     @Builder
-    public Mypoint(String mypointContent, int mypointInout, Member member) {
-        this.mypointContent = mypointContent;
-        this.mypointInout = mypointInout;
-        this.member = member;
-    }
-
-    public void update(String mypointContent, int mypointInout){
+    public Mypoint(String mypointContent, int mypointInout) {
         this.mypointContent = mypointContent;
         this.mypointInout = mypointInout;
     }

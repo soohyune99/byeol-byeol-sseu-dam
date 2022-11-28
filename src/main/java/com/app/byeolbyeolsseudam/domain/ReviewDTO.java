@@ -20,30 +20,36 @@ import java.time.LocalDateTime;
 public class ReviewDTO {
     private Long reviewId;
     private String reviewContent;
-    private String reviewFile;
     private double reviewStar;
-    private Product product;
-    private Member member;
+    private Long productId;
+    private Long memberId;
+    private String memberName;
+    private String reviewFileName;
+    private String reviewFilePath;
+    private String reviewFileUuid;
     private LocalDateTime createdDate;
 
     @QueryProjection
-    public ReviewDTO(Long reviewId, String reviewContent, String reviewFile, double reviewStar, Product product, Member member, LocalDateTime createdDate) {
+    public ReviewDTO(Long reviewId, String reviewContent, double reviewStar, Long productId, Long memberId, String memberName, String reviewFileName, String reviewFilePath, String reviewFileUuid, LocalDateTime createdDate) {
         this.reviewId = reviewId;
         this.reviewContent = reviewContent;
-        this.reviewFile = reviewFile;
         this.reviewStar = reviewStar;
-        this.product = product;
-        this.member = member;
+        this.productId = productId;
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.reviewFileName = reviewFileName;
+        this.reviewFilePath = reviewFilePath;
+        this.reviewFileUuid = reviewFileUuid;
         this.createdDate = createdDate;
     }
 
     public Review toEntity(){
         return Review.builder()
                 .reviewContent(reviewContent)
-                .reviewFile(reviewFile)
                 .reviewStar(reviewStar)
-                .product(product)
-                .member(member)
+                .reviewFileName(reviewFileName)
+                .reviewFilePath(reviewFilePath)
+                .reviewFileUuid(reviewFileUuid)
                 .build();
     }
 }

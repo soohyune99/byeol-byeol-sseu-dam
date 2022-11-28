@@ -22,12 +22,12 @@ public class MemberDTO {
     private String memberEmail;
     private String memberAddress;
     private int memberPoint;
-    private String memberProfileFile;
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
+    private String memberProfileName;
+    private String memberProfilePath;
+    private String memberProfileUuid;
 
     @QueryProjection
-    public MemberDTO(Long memberId, MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, String memberAddress, int memberPoint, String memberProfileFile, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public MemberDTO(Long memberId, MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, String memberAddress, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid) {
         this.memberId = memberId;
         this.memberLoginType = memberLoginType;
         this.memberCategory = memberCategory;
@@ -37,9 +37,9 @@ public class MemberDTO {
         this.memberEmail = memberEmail;
         this.memberAddress = memberAddress;
         this.memberPoint = memberPoint;
-        this.memberProfileFile = memberProfileFile;
-        this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
+        this.memberProfileName = memberProfileName;
+        this.memberProfilePath = memberProfilePath;
+        this.memberProfileUuid = memberProfileUuid;
     }
 
     public Member toEntity(){
@@ -50,9 +50,10 @@ public class MemberDTO {
                 .memberPassword(memberPassword)
                 .memberPhone(memberPhone)
                 .memberEmail(memberEmail)
-                .memberAddress(memberAddress)
                 .memberPoint(memberPoint)
-                .memberProfileFile(memberProfileFile)
+                .memberProfileName(memberProfileName)
+                .memberProfilePath(memberProfilePath)
+                .memberProfileUuid(memberProfileUuid)
                 .build();
     }
 }

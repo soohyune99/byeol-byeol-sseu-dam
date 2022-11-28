@@ -17,16 +17,24 @@ public class Order extends Period {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
     @NotNull
+    private String orderAddress;
+    private String orderMessage;
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @Builder
-    public Order(OrderStatus orderStatus, Member member) {
-        this.orderStatus = orderStatus;
+    public void changeMember(Member member){
         this.member = member;
     }
 
-    public void update(OrderStatus orderStatus){
+    @Builder
+    public Order(OrderStatus orderStatus, String orderAddress, String orderMessage) {
+        this.orderStatus = orderStatus;
+        this.orderAddress = orderAddress;
+        this.orderMessage = orderMessage;
+    }
+
+    public void update(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
 }
