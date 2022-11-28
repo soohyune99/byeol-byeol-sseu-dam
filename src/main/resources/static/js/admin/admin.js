@@ -315,8 +315,13 @@ function addProgram() {
 		return;
 	}
 
-	if($("input[name=programFile]").next().attr("src") == "/images/admin/001.png"){
-		alert("첨부파일을 등록하세요!");
+	if($("input[name=programFileProfile]").next().attr("src") == "/images/admin/008.png"){
+		alert("대표 이미지를 등록하세요!");
+		return;
+	}
+
+	if($("input[name=programFileDetail]").next().attr("src") == "/images/admin/007.png"){
+		alert("상세 설명 이미지를 등록하세요!");
 		return;
 	}
 
@@ -381,8 +386,13 @@ function modifyProgram() {
 		return;
 	}
 
-	if($("input[name=programFile]").next().attr("src") == "/images/admin/001.png"){
-		alert("첨부파일을 등록하세요!");
+	if($("input[name=programFileProfile]").next().attr("src") == "/images/admin/008.png"){
+		alert("대표 이미지를 등록하세요!");
+		return;
+	}
+
+	if($("input[name=programFileDetail]").next().attr("src") == "/images/admin/007.png"){
+		alert("상세 설명 이미지를 등록하세요!");
 		return;
 	}
 

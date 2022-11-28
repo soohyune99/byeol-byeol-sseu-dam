@@ -94,108 +94,121 @@
 
                                                                         </div>
                                                                         <form th:action="@{adminprogram}" name="programForm">
-                                                                        <div style="width: 60%; margin: 0 auto 48px auto;">
-                                                                            <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
-                                                                                 style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
-                                                                                <div class="w-100 mw-150px">
-                                                                                    <a type="submit" onclick="addProgram()" style=" cursor: pointer; padding: 9px 20px 9px 20px;"
-                                                                                       class="btn btn-primary">저장 하기</a>
+                                                                            <div style="width: 60%; margin: 0 auto 48px auto;">
+                                                                                <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
+                                                                                     style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
+                                                                                    <div class="w-100 mw-150px">
+                                                                                        <a type="submit" onclick="addProgram()" style=" cursor: pointer; padding: 9px 20px 9px 20px;"
+                                                                                           class="btn btn-primary">저장 하기</a>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <input type="text" name="programName"
-                                                                                           data-kt-ecommerce-product-filter="search"
-                                                                                           class="form-control form-control-solid w-250px ps-14"
-                                                                                           placeholder="강좌명"
-                                                                                           style="width: 60%;">
-                                                                                    <input type="text" name="programPlace"
-                                                                                           data-kt-ecommerce-product-filter="search"
-                                                                                           class="form-control form-control-solid w-250px ps-14"
-                                                                                           placeholder="장소"
-                                                                                           style="width: 40%;margin-left: 9px;">
-                                                                                </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 16%;">진행 날짜</div>
-                                                                                    <input type="datetime-local" name="programDate"
-                                                                                           data-kt-ecommerce-product-filter="search"
-                                                                                           class="form-control form-control-solid w-250px ps-14"
-                                                                                           placeholder=""
-                                                                                           style="width: 30%;margin: 0 9px 9px 9px;"
-                                                                                           value="2022-07-22T12:00">
-                                                                                    <input type="number" name="programTime" min="1"
-                                                                                           data-kt-ecommerce-product-filter="search"
-                                                                                           class="form-control form-control-solid w-250px ps-14"
-                                                                                           placeholder="수강시간"
-                                                                                           style="width: 17%;">
-                                                                                    <input type="number" name="programLimitCount" min="1"
-                                                                                           data-kt-ecommerce-product-filter="search"
-                                                                                           class="form-control form-control-solid w-250px ps-14"
-                                                                                           placeholder="인원수"
-                                                                                           style="width: 17%; margin: 0 9px 9px 9px;">
-                                                                                    <select class="form-control form-control-solid"
-                                                                                            id="programStatus"
-                                                                                            style="width: 20%;" name="programStatus">
-                                                                                        <option value="status" disabled selected hidden>상태</option>
-                                                                                        <option value="모집 예정">모집 예정</option>
-                                                                                        <option value="모집중">모집중</option>
-                                                                                        <option value="모집 완료">모집 완료</option>
-                                                                                        <option value="마감">마감</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 10%;">시작일</div>
-                                                                                    <input type="datetime-local" name="programOpeningDate"
-                                                                                           data-kt-ecommerce-product-filter="search"
-                                                                                           class="form-control form-control-solid w-250px ps-14"
-                                                                                           placeholder="시작일"
-                                                                                           style="width: 40%;margin: 0 9px 9px 9px;"
-                                                                                           value="2022-07-22T12:00">
-                                                                                    <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 10%;">마감일</div>
-                                                                                    <input type="datetime-local" name="programClosingDate"
-                                                                                           data-kt-ecommerce-product-filter="search"
-                                                                                           class="form-control form-control-solid w-250px ps-14"
-                                                                                           placeholder=""
-                                                                                           style="width: 40%;margin: 0 0 9px 9px;"
-                                                                                           value="2022-07-22T12:00">
-                                                                                </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <textarea class="form-control form-control-solid"
-                                                                                           placeholder="상세 설명" name="programDetail"
-                                                                                           style="width: 100%; height: 200px;"></textarea>
-                                                                                </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1"
-                                                                                     style="background-color: #f5f8fa;
-                                                                                            border-color: #f5f8fa;
-                                                                                            color: #5E6278;
-                                                                                            transition: color 0.2s ease;
-                                                                                            font-size: inherit;
-                                                                                            font-family: inherit;
-                                                                                            padding: 8px;
-                                                                                            box-shadow: none;
-                                                                                            margin-bottom: 10px;">
-                                                                                    <label style=" margin: 0 auto; width: 100%; height: 130px;">
-                                                                                        <input type="file" id="icon_img"
+                                                                                <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                                    <div class="d-flex align-items-center position-relative my-1">
+                                                                                        <input type="text" name="programName"
+                                                                                               data-kt-ecommerce-product-filter="search"
+                                                                                               class="form-control form-control-solid w-250px ps-14"
+                                                                                               placeholder="강좌명"
+                                                                                               style="width: 60%;">
+                                                                                        <input type="text" name="programPlace"
+                                                                                               data-kt-ecommerce-product-filter="search"
+                                                                                               class="form-control form-control-solid w-250px ps-14"
+                                                                                               placeholder="장소"
+                                                                                               style="width: 40%;margin-left: 9px;">
+                                                                                    </div>
+                                                                                    <div class="d-flex align-items-center position-relative my-1">
+                                                                                        <div class="form-control form-control-solid w-250px ps-14"
+                                                                                             style="width: 16%;">진행 날짜</div>
+                                                                                        <input type="datetime-local" name="programDate"
                                                                                                data-kt-ecommerce-product-filter="search"
                                                                                                class="form-control form-control-solid w-250px ps-14"
                                                                                                placeholder=""
-                                                                                               name="programFile"
-                                                                                               accept="image/jpeg, image/jpg, image/png, image/gif, image/svg+xml"
-                                                                                               style="display:none;margin: 0 auto;">
-                                                                                        <img src="/images/admin/001.png"
-                                                                                             id="thumbnail" style="width: 100%; height: 100%;">
-                                                                                    </label>
+                                                                                               style="width: 30%;margin: 0 9px 9px 9px;"
+                                                                                               value="2022-07-22T12:00">
+                                                                                        <input type="number" name="programTime" min="1"
+                                                                                               data-kt-ecommerce-product-filter="search"
+                                                                                               class="form-control form-control-solid w-250px ps-14"
+                                                                                               placeholder="수강시간"
+                                                                                               style="width: 17%;">
+                                                                                        <input type="number" name="programLimitCount" min="1"
+                                                                                               data-kt-ecommerce-product-filter="search"
+                                                                                               class="form-control form-control-solid w-250px ps-14"
+                                                                                               placeholder="인원수"
+                                                                                               style="width: 17%; margin: 0 9px 9px 9px;">
+                                                                                        <select class="form-control form-control-solid"
+                                                                                                id="programStatus"
+                                                                                                style="width: 20%;" name="programStatus">
+                                                                                            <option value="status" disabled selected hidden>상태</option>
+                                                                                            <option value="모집 예정">모집 예정</option>
+                                                                                            <option value="모집중">모집중</option>
+                                                                                            <option value="모집 완료">모집 완료</option>
+                                                                                            <option value="마감">마감</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="d-flex align-items-center position-relative my-1">
+                                                                                        <div class="form-control form-control-solid w-250px ps-14"
+                                                                                             style="width: 10%;">시작일</div>
+                                                                                        <input type="datetime-local" name="programOpeningDate"
+                                                                                               data-kt-ecommerce-product-filter="search"
+                                                                                               class="form-control form-control-solid w-250px ps-14"
+                                                                                               placeholder="시작일"
+                                                                                               style="width: 40%;margin: 0 9px 9px 9px;"
+                                                                                               value="2022-07-22T12:00">
+                                                                                        <div class="form-control form-control-solid w-250px ps-14"
+                                                                                             style="width: 10%;">마감일</div>
+                                                                                        <input type="datetime-local" name="programClosingDate"
+                                                                                               data-kt-ecommerce-product-filter="search"
+                                                                                               class="form-control form-control-solid w-250px ps-14"
+                                                                                               placeholder=""
+                                                                                               style="width: 40%;margin: 0 0 9px 9px;"
+                                                                                               value="2022-07-22T12:00">
+                                                                                    </div>
+                                                                                    <div class="d-flex align-items-center position-relative my-1">
+                                                                                    <textarea class="form-control form-control-solid"
+                                                                                              placeholder="상세 설명" name="programDetail"
+                                                                                              style="width: 100%; height: 200px;"></textarea>
+                                                                                    </div>
+                                                                                    <div class="d-flex align-items-center position-relative my-1"
+                                                                                         style="background-color: #f5f8fa;
+                                                                                                border-color: #f5f8fa;
+                                                                                                font-size: inherit;
+                                                                                                font-family: inherit;
+                                                                                                padding: 8px;
+                                                                                                box-shadow: none;
+                                                                                                margin-bottom: 10px;">
+                                                                                        <label style=" margin: 0 auto; width: 49%; height: 100px;">
+                                                                                            <input type="file"
+                                                                                                   id="icon_img1"
+                                                                                                   data-kt-ecommerce-product-filter="search"
+                                                                                                   class="form-control form-control-solid w-250px ps-14"
+                                                                                                   placeholder=""
+                                                                                                   name="programFileProfile"
+                                                                                                   accept="image/jpeg, image/jpg, image/png, image/gif, image/svg+xml"
+                                                                                                   style="display:none;margin: 0 auto;">
+                                                                                            <img src="/images/admin/008.png"
+                                                                                                 id="thumbnail1"
+                                                                                                 style="width: 100%; height: 100%;">
+                                                                                        </label>
+                                                                                        <label style=" margin: 0 auto; width: 49%; height: 100px;">
+                                                                                            <input type="file"
+                                                                                                   id="icon_img2"
+                                                                                                   data-kt-ecommerce-product-filter="search"
+                                                                                                   class="form-control form-control-solid w-250px ps-14"
+                                                                                                   placeholder=""
+                                                                                                   name="programFileDetail"
+                                                                                                   accept="image/jpeg, image/jpg, image/png, image/gif, image/svg+xml"
+                                                                                                   style="display:none;margin: 0 auto;">
+                                                                                            <img src="/images/admin/007.png"
+                                                                                                 id="thumbnail2"
+                                                                                                 style="width: 100%; height: 100%;">
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="row">
                                                                                 </div>
                                                                             </div>
-
-
-                                                                            <div class="row">
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--end::Table-->
+                                                                            <!--end::Table-->
                                                                         </form>
                                                                     </div>
                                                                     <!--end::Card body-->
