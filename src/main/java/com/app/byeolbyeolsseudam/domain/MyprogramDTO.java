@@ -3,6 +3,7 @@ package com.app.byeolbyeolsseudam.domain;
 import com.app.byeolbyeolsseudam.entity.Member;
 import com.app.byeolbyeolsseudam.entity.Myprogram;
 import com.app.byeolbyeolsseudam.entity.Program;
+import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,22 +18,32 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class MyprogramDTO {
     private Long myprogramId;
-    private Member member;
-    private Program program;
+    private Long memberId;
+    private Long programId;
+    private String programName;
+    private ProgramStatus programStatus;
+    private String programFile;
+    private String programFileProfileName;
+    private String programFileProfilePath;
+    private String programFileProfileUuid;
     private LocalDateTime createdDate;
 
     @QueryProjection
-    public MyprogramDTO(Long myprogramId, Member member, Program program, LocalDateTime createdDate) {
+    public MyprogramDTO(Long myprogramId, Long memberId, Long programId, String programName, ProgramStatus programStatus, String programFile, String programFileProfileName, String programFileProfilePath, String programFileProfileUuid, LocalDateTime createdDate) {
         this.myprogramId = myprogramId;
-        this.member = member;
-        this.program = program;
+        this.memberId = memberId;
+        this.programId = programId;
+        this.programName = programName;
+        this.programStatus = programStatus;
+        this.programFile = programFile;
+        this.programFileProfileName = programFileProfileName;
+        this.programFileProfilePath = programFileProfilePath;
+        this.programFileProfileUuid = programFileProfileUuid;
         this.createdDate = createdDate;
     }
 
     public Myprogram toEntity(){
         return Myprogram.builder()
-                .member(member)
-                .program(program)
                 .build();
     }
 }

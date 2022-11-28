@@ -15,19 +15,31 @@ import java.time.LocalDateTime;
 public class CommentDTO {
     private Long commentId;
     private String commentContent;
-    private String commentFile;
-    private Member member;
-    private Board board;
+    private String commentFileName;
+    private String commentFilePath;
+    private String commentFileUuid;
+    private Long memberId;
+    private String memberName;
+    private String memberProfileName;
+    private String memberProfilePath;
+    private String memberProfileUuid;
+    private Long boardId;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 
     @QueryProjection
-    public CommentDTO(Long commentId, String commentContent, String commentFile, Member member, Board board, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public CommentDTO(Long commentId, String commentContent, String commentFileName, String commentFilePath, String commentFileUuid, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, Long boardId, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.commentId = commentId;
         this.commentContent = commentContent;
-        this.commentFile = commentFile;
-        this.member = member;
-        this.board = board;
+        this.commentFileName = commentFileName;
+        this.commentFilePath = commentFilePath;
+        this.commentFileUuid = commentFileUuid;
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.memberProfileName = memberProfileName;
+        this.memberProfilePath = memberProfilePath;
+        this.memberProfileUuid = memberProfileUuid;
+        this.boardId = boardId;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
     }
@@ -35,9 +47,9 @@ public class CommentDTO {
     public Comment toEntity(){
         return Comment.builder()
                 .commentContent(commentContent)
-                .commentFile(commentFile)
-                .member(member)
-                .board(board)
+                .commentFileName(commentFileName)
+                .commentFilePath(commentFilePath)
+                .commentFileUuid(commentFileUuid)
                 .build();
     }
 }

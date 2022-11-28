@@ -14,9 +14,11 @@ public class Review extends Period {
     private Long reviewId;
     @NotNull
     private String reviewContent;
-    private String reviewFile;
     @NotNull
     private double reviewStar;
+    private String reviewFileName;
+    private String reviewFilePath;
+    private String reviewFileUuid;
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
@@ -30,17 +32,19 @@ public class Review extends Period {
     }
 
     @Builder
-    public Review(String reviewContent, String reviewFile, double reviewStar, Product product, Member member) {
+    public Review(String reviewContent, double reviewStar, String reviewFileName, String reviewFilePath, String reviewFileUuid) {
         this.reviewContent = reviewContent;
-        this.reviewFile = reviewFile;
         this.reviewStar = reviewStar;
-        this.product = product;
-        this.member = member;
+        this.reviewFileName = reviewFileName;
+        this.reviewFilePath = reviewFilePath;
+        this.reviewFileUuid = reviewFileUuid;
     }
 
-    public void update(String reviewContent, String reviewFile, double reviewStar){
+    public void update(String reviewContent, double reviewStar, String reviewFileName, String reviewFilePath, String reviewFileUuid) {
         this.reviewContent = reviewContent;
-        this.reviewFile = reviewFile;
         this.reviewStar = reviewStar;
+        this.reviewFileName = reviewFileName;
+        this.reviewFilePath = reviewFilePath;
+        this.reviewFileUuid = reviewFileUuid;
     }
 }

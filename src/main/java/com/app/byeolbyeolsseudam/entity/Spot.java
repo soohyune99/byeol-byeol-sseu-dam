@@ -15,7 +15,11 @@ public class Spot extends Period {
     @NotNull
     private String spotName;
     @NotNull
-    private String spotFile;
+    private String spotQrName;
+    @NotNull
+    private String spotQrPath;
+    @NotNull
+    private String spotQrUuid;
     @NotNull
     private String spotAddress;
     @NotNull
@@ -30,17 +34,20 @@ public class Spot extends Period {
     }
 
     @Builder
-    public Spot(String spotName, String spotFile, String spotAddress, int spotNumber, Course course) {
+    public Spot(String spotName, String spotQrName, String spotQrPath, String spotQrUuid, String spotAddress, int spotNumber) {
         this.spotName = spotName;
-        this.spotFile = spotFile;
+        this.spotQrName = spotQrName;
+        this.spotQrPath = spotQrPath;
+        this.spotQrUuid = spotQrUuid;
         this.spotAddress = spotAddress;
         this.spotNumber = spotNumber;
-        this.course = course;
     }
 
-    public void update(String spotName, String spotFile, String spotAddress, int spotNumber, Course course){
+    public void update(String spotName, String spotQrName, String spotQrPath, String spotQrUuid, String spotAddress, int spotNumber, Course course) {
         this.spotName = spotName;
-        this.spotFile = spotFile;
+        this.spotQrName = spotQrName;
+        this.spotQrPath = spotQrPath;
+        this.spotQrUuid = spotQrUuid;
         this.spotAddress = spotAddress;
         this.spotNumber = spotNumber;
         this.course = course;

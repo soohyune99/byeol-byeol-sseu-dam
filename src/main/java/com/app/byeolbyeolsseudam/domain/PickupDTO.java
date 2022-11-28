@@ -21,18 +21,19 @@ public class PickupDTO {
     private String pickupAddress;
     private String pickupMessage;
     private PickupStatus pickupStatus;
-    private Member member;
+    private Long memberId;
     private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
 
     @QueryProjection
-    public PickupDTO(int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Member member) {
+    public PickupDTO(Long pickupId, int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Long memberId, LocalDateTime createdDate) {
+        this.pickupId = pickupId;
         this.petCount = petCount;
         this.glassCount = glassCount;
         this.pickupAddress = pickupAddress;
         this.pickupMessage = pickupMessage;
         this.pickupStatus = pickupStatus;
-        this.member = member;
+        this.memberId = memberId;
+        this.createdDate = createdDate;
     }
 
     public Pickup toEntity(){
@@ -45,7 +46,6 @@ public class PickupDTO {
                 .pickupAddress(pickupAddress)
                 .pickupMessage(pickupMessage)
                 .pickupStatus(PickupStatus.수거대기중)
-                .member(member)
                 .build();
     }
 }

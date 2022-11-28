@@ -22,11 +22,13 @@ public class CourseFinished extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
 
-    @Builder
-    public CourseFinished(CourseFinishedStatus courseFinishedStatus, Member member, Course course) {
-        this.courseFinishedStatus = courseFinishedStatus;
-        this.member = member;
+    public void changeCourse(Course course){
         this.course = course;
+    }
+
+    @Builder
+    public CourseFinished(CourseFinishedStatus courseFinishedStatus) {
+        this.courseFinishedStatus = courseFinishedStatus;
     }
 
     public void update(CourseFinishedStatus courseFinishedStatus, Course course){

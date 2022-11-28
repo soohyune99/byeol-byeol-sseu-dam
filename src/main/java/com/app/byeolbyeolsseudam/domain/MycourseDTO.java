@@ -18,23 +18,20 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class MycourseDTO {
     private Long mycourseId;
-    private Member member;
-    private Course course;
-    private Spot spot;
+    private Long memberId;
+    private Long courseId;
+    private Long spotId;
 
     @QueryProjection
-    public MycourseDTO(Long mycourseId, Member member, Course course, Spot spot) {
+    public MycourseDTO(Long mycourseId, Long memberId, Long courseId, Long spotId) {
         this.mycourseId = mycourseId;
-        this.member = member;
-        this.course = course;
-        this.spot = spot;
+        this.memberId = memberId;
+        this.courseId = courseId;
+        this.spotId = spotId;
     }
 
     public Mycourse toEntity(){
         return Mycourse.builder()
-                .member(member)
-                .course(course)
-                .spot(spot)
                 .build();
     }
 }

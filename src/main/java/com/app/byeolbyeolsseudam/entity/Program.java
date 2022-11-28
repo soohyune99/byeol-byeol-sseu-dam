@@ -34,12 +34,20 @@ public class Program extends Period {
     @Enumerated(EnumType.STRING)
     private ProgramStatus programStatus;
     @NotNull
-    private String programFile;
+    private String programFileProfileName;
     @NotNull
-    private String programFileDetail;
+    private String programFileProfilePath;
+    @NotNull
+    private String programFileProfileUuid;
+    @NotNull
+    private String programFileDetailName;
+    @NotNull
+    private String programFileDetailPath;
+    @NotNull
+    private String programFileDetailUuid;
 
     @Builder
-    public Program(String programName, String programPlace, PossibleDate possibleDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFile, String programFileDetail) {
+    public Program(String programName, String programPlace, PossibleDate possibleDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFileProfileName, String programFileProfilePath, String programFileProfileUuid, String programFileDetailName, String programFileDetailPath, String programFileDetailUuid) {
         this.programName = programName;
         this.programPlace = programPlace;
         this.possibleDate = possibleDate;
@@ -48,11 +56,15 @@ public class Program extends Period {
         this.programContent = programContent;
         this.programLimitCount = programLimitCount;
         this.programStatus = programStatus;
-        this.programFile = programFile;
-        this.programFileDetail = programFileDetail;
+        this.programFileProfileName = programFileProfileName;
+        this.programFileProfilePath = programFileProfilePath;
+        this.programFileProfileUuid = programFileProfileUuid;
+        this.programFileDetailName = programFileDetailName;
+        this.programFileDetailPath = programFileDetailPath;
+        this.programFileDetailUuid = programFileDetailUuid;
     }
 
-    public void update(String programName, String programPlace, PossibleDate possibleDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFile, String programFileDetail){
+    public void update(String programName, String programPlace, PossibleDate possibleDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFileProfileName, String programFileProfilePath, String programFileProfileUuid, String programFileDetailName, String programFileDetailPath, String programFileDetailUuid) {
         this.programName = programName;
         this.programPlace = programPlace;
         this.possibleDate = possibleDate;
@@ -61,7 +73,11 @@ public class Program extends Period {
         this.programContent = programContent;
         this.programLimitCount = programLimitCount;
         this.programStatus = programStatus;
-        this.programFile = programFile;
-        this.programFileDetail = programFileDetail;
+        this.programFileProfileName = programFileProfileName;
+        this.programFileProfilePath = programFileProfilePath;
+        this.programFileProfileUuid = programFileProfileUuid;
+        this.programFileDetailName = programFileDetailName;
+        this.programFileDetailPath = programFileDetailPath;
+        this.programFileDetailUuid = programFileDetailUuid;
     }
 }

@@ -3,6 +3,7 @@ package com.app.byeolbyeolsseudam.domain;
 import com.app.byeolbyeolsseudam.entity.Member;
 import com.app.byeolbyeolsseudam.entity.Pickup;
 import com.app.byeolbyeolsseudam.entity.PickupAccept;
+import com.app.byeolbyeolsseudam.type.PickupStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,20 +15,31 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PickupAcceptDTO {
     private Long pickupAcceptId;
-    private Pickup pickup;
-    private Member member;
+    private Long pickupId;
+    private int petCount;
+    private int glassCount;
+    private String pickupAddress;
+    private String pickupMessage;
+    private PickupStatus pickupStatus;
+    private Long memberId;
+    private String memberName;
+    private LocalDateTime createdDate;
 
-    @QueryProjection
-    public PickupAcceptDTO(Long pickupAcceptId, Pickup pickup, Member member) {
+    public PickupAcceptDTO(Long pickupAcceptId, Long pickupId, int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Long memberId, String memberName, LocalDateTime createdDate) {
         this.pickupAcceptId = pickupAcceptId;
-        this.pickup = pickup;
-        this.member = member;
+        this.pickupId = pickupId;
+        this.petCount = petCount;
+        this.glassCount = glassCount;
+        this.pickupAddress = pickupAddress;
+        this.pickupMessage = pickupMessage;
+        this.pickupStatus = pickupStatus;
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.createdDate = createdDate;
     }
 
     public PickupAccept toEntity(){
         return PickupAccept.builder()
-                .pickup(pickup)
-                .member(member)
                 .build();
     }
 }

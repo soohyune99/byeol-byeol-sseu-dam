@@ -17,21 +17,20 @@ public class MypointDTO {
     private Long mypointId;
     private String mypointContent;
     private int mypointInout;
-    private Member member;
+    private Long memberId;
 
     @QueryProjection
-    public MypointDTO(Long mypointId, String mypointContent, int mypointInout, Member member) {
+    public MypointDTO(Long mypointId, String mypointContent, int mypointInout, Long memberId) {
         this.mypointId = mypointId;
         this.mypointContent = mypointContent;
         this.mypointInout = mypointInout;
-        this.member = member;
+        this.memberId = memberId;
     }
 
     public Mypoint toEntity(){
         return Mypoint.builder()
                 .mypointContent(mypointContent)
                 .mypointInout(mypointInout)
-                .member(member)
                 .build();
     }
 }

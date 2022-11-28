@@ -15,16 +15,20 @@ public class FileBoard extends Period {
     @NotNull
     private String fileBoardName;
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Board board;
+    private String fileBoardPath;
+    @NotNull
+    private String fileBoardUuid;
 
     @Builder
-    public FileBoard(String fileBoardName, Board board) {
+    public FileBoard(String fileBoardName, String fileBoardPath, String fileBoardUuid) {
         this.fileBoardName = fileBoardName;
-        this.board = board;
+        this.fileBoardPath = fileBoardPath;
+        this.fileBoardUuid = fileBoardUuid;
     }
 
-    public void update(String fileBoardName){
+    public void update(String fileBoardName, String fileBoardPath, String fileBoardUuid) {
         this.fileBoardName = fileBoardName;
+        this.fileBoardPath = fileBoardPath;
+        this.fileBoardUuid = fileBoardUuid;
     }
 }

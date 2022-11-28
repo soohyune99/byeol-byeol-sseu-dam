@@ -13,19 +13,22 @@ import org.springframework.stereotype.Component;
 public class FileBoardDTO {
     private Long fileBoardId;
     private String fileBoardName;
-    private Board board;
+    private String fileBoardPath;
+    private String fileBoardUuid;
 
     @QueryProjection
-    public FileBoardDTO(Long fileBoardId, String fileBoardName, Board board) {
+    public FileBoardDTO(Long fileBoardId, String fileBoardName, String fileBoardPath, String fileBoardUuid) {
         this.fileBoardId = fileBoardId;
         this.fileBoardName = fileBoardName;
-        this.board = board;
+        this.fileBoardPath = fileBoardPath;
+        this.fileBoardUuid = fileBoardUuid;
     }
 
     public FileBoard toEntity(){
         return FileBoard.builder()
                 .fileBoardName(fileBoardName)
-                .board(board)
+                .fileBoardPath(fileBoardPath)
+                .fileBoardUuid(fileBoardUuid)
                 .build();
     }
 }

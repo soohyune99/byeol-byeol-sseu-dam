@@ -15,22 +15,21 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class MybadgeDTO {
     private Long mybadgeId;
-    private Member member;
-    private Badge badge;
+    private Long memberId;
+    private Long badgeId;
+    private Long badgeName;
     private LocalDateTime createdDate;
 
     @QueryProjection
-    public MybadgeDTO(Long mybadgeId, Member member, Badge badge, LocalDateTime createdDate) {
+    public MybadgeDTO(Long mybadgeId, Long memberId, Long badgeId, LocalDateTime createdDate) {
         this.mybadgeId = mybadgeId;
-        this.member = member;
-        this.badge = badge;
+        this.memberId = memberId;
+        this.badgeId = badgeId;
         this.createdDate = createdDate;
     }
 
     public Mybadge toEntity(){
         return Mybadge.builder()
-                .member(member)
-                .badge(badge)
                 .build();
     }
 }

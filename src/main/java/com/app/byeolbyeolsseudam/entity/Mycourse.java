@@ -22,12 +22,20 @@ public class Mycourse extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Spot spot;
 
-    @Builder
-    public Mycourse(Member member, Course course, Spot spot) {
+    public void changeMember(Member member){
         this.member = member;
+    }
+
+    public void changeCourse(Course course){
         this.course = course;
+    }
+
+    public void changeSpot(Spot spot){
         this.spot = spot;
     }
+
+    @Builder
+    public Mycourse() {;}
 
     public void update(Course course, Spot spot){
         this.course = course;
