@@ -26,13 +26,16 @@ public class Pickup extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    public void changeMember(Member member){
+        this.member = member;
+    }
+
     @Builder
-    public Pickup(Recyclable recyclable, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Member member) {
+    public Pickup(Recyclable recyclable, String pickupAddress, String pickupMessage, PickupStatus pickupStatus) {
         this.recyclable = recyclable;
         this.pickupAddress = pickupAddress;
         this.pickupMessage = pickupMessage;
         this.pickupStatus = pickupStatus;
-        this.member = member;
     }
 
     public void update(PickupStatus pickupStatus) {

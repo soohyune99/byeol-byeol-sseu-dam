@@ -27,9 +27,4 @@ public class Mybadge extends Period {
         this.badge = badge;
     }
 
-    @Builder
-    public Mybadge(Member member, Badge badge) {
-        this.member = member;
-        this.badge = badge;
-    }
 }

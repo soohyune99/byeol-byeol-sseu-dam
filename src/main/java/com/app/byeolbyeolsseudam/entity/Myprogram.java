@@ -22,17 +22,12 @@ public class Myprogram extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Program program;
 
+    public void changeMember(Member member){
+        this.member = member;
+    }
+
     public void changeProgram(Program program){
         this.program = program;
     }
 
-    @Builder
-    public Myprogram(Member member, Program program) {
-        this.member = member;
-        this.program = program;
-    }
-
-    public void update(Program program){
-        this.program = program;
-    }
 }

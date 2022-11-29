@@ -44,7 +44,7 @@ public class Course extends Period {
     private List<Spot> spots;
 
     @Builder
-    public Course(String courseName, String courseArea, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, String courseFileName, String courseFilePath, String courseFileUuid, PossibleDate possibleDate, List<Spot> spots) {
+    public Course(String courseName, String courseArea, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, String courseFileName, String courseFilePath, String courseFileUuid, PossibleDate possibleDate) {
         this.courseName = courseName;
         this.courseArea = courseArea;
         this.courseDistance = courseDistance;
@@ -56,10 +56,9 @@ public class Course extends Period {
         this.courseFilePath = courseFilePath;
         this.courseFileUuid = courseFileUuid;
         this.possibleDate = possibleDate;
-        this.spots = spots;
     }
 
-    public void update(String courseName, String courseArea, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, String courseFileName, String courseFilePath, String courseFileUuid, PossibleDate possibleDate, List<Spot> spots) {
+    public void update(String courseName, String courseArea, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, String courseFileName, String courseFilePath, String courseFileUuid, PossibleDate possibleDate) {
         this.courseName = courseName;
         this.courseArea = courseArea;
         this.courseDistance = courseDistance;
@@ -71,6 +70,5 @@ public class Course extends Period {
         this.courseFilePath = courseFilePath;
         this.courseFileUuid = courseFileUuid;
         this.possibleDate = possibleDate;
-        this.spots = spots;
     }
 }

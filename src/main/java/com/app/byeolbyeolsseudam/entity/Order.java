@@ -28,11 +28,10 @@ public class Order extends Period {
     }
 
     @Builder
-    public Order(OrderStatus orderStatus, String orderAddress, String orderMessage, Member member) {
+    public Order(OrderStatus orderStatus, String orderAddress, String orderMessage) {
         this.orderStatus = orderStatus;
         this.orderAddress = orderAddress;
         this.orderMessage = orderMessage;
-        this.member = member;
     }
 
     public void update(OrderStatus orderStatus) {

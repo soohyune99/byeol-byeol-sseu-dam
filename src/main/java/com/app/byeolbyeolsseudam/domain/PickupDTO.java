@@ -45,8 +45,7 @@ public class PickupDTO {
                 .recyclable(recyclable)
                 .pickupAddress(pickupAddress)
                 .pickupMessage(pickupMessage)
-                .pickupStatus(PickupStatus.수거대기중)
-                .member(member)
+                .pickupStatus(pickupStatus)
                 .build();
     }
 }

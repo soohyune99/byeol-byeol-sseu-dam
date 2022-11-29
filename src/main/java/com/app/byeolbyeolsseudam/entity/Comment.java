@@ -25,14 +25,20 @@ public class Comment extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 
+    public void changeMember(Member member){
+        this.member = member;
+    }
+
+    public void changeBoard(Board board){
+        this.board = board;
+    }
+
     @Builder
-    public Comment(String commentContent, String commentFileName, String commentFilePath, String commentFileUuid, Member member, Board board) {
+    public Comment(String commentContent, String commentFileName, String commentFilePath, String commentFileUuid) {
         this.commentContent = commentContent;
         this.commentFileName = commentFileName;
         this.commentFilePath = commentFilePath;
         this.commentFileUuid = commentFileUuid;
-        this.member = member;
-        this.board = board;
     }
 
     public void update(String commentContent, String commentFileName, String commentFilePath, String commentFileUuid) {

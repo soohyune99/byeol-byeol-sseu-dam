@@ -38,10 +38,4 @@ public class PickupAcceptDTO {
         this.createdDate = createdDate;
     }
 
-    public PickupAccept toEntity(Pickup pickup, Member member){
-        return PickupAccept.builder()
-                .pickup(pickup)
-                .member(member)
-                .build();
-    }
 }

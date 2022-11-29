@@ -26,11 +26,9 @@ public class CourseFinishedDTO {
         this.courseId = courseId;
     }
 
-    public CourseFinished toEntity(Member member, Course course){
+    public CourseFinished toEntity(){
         return CourseFinished.builder()
                     .courseFinishedStatus(courseFinishedStatus)
-                    .member(member)
-                    .course(course)
                     .build();
     }
 }

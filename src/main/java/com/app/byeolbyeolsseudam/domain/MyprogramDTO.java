@@ -41,11 +41,4 @@ public class MyprogramDTO {
         this.programFileProfileUuid = programFileProfileUuid;
         this.createdDate = createdDate;
     }
-
-    public Myprogram toEntity(Member member, Program program){
-        return Myprogram.builder()
-                .member(member)
-                .program(program)
-                .build();
-    }
 }

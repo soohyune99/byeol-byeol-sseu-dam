@@ -33,7 +33,7 @@ public class CourseDTO {
     private List<Spot> spots;
 
     @QueryProjection
-    public CourseDTO(Long courseId, String courseName, String courseArea, String courseDistance, String courseTime, String courseStart, String courseFinish, CourseGrade courseGrade, String courseFileName, String courseFilePath, String courseFileUuid, LocalDateTime openingDate, LocalDateTime closingDate, List<Spot> spots) {
+    public CourseDTO(Long courseId, String courseName, String courseArea, String courseDistance, String courseTime, String courseStart, String courseFinish, CourseGrade courseGrade, String courseFileName, String courseFilePath, String courseFileUuid, LocalDateTime openingDate, LocalDateTime closingDate) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseArea = courseArea;
@@ -47,10 +47,9 @@ public class CourseDTO {
         this.courseFileUuid = courseFileUuid;
         this.openingDate = openingDate;
         this.closingDate = closingDate;
-        this.spots = spots;
     }
 
-    public Course toEntity(List<Spot> spots){
+    public Course toEntity(){
         PossibleDate possibleDate = new PossibleDate();
         possibleDate.setOpeningDate(openingDate);
         possibleDate.setClosingDate(closingDate);
@@ -67,7 +66,6 @@ public class CourseDTO {
                 .courseStart(courseStart)
                 .courseFinish(courseFinish)
                 .possibleDate(possibleDate)
-                .spots(spots)
                 .build();
     }
 }

@@ -43,13 +43,12 @@ public class BoardDTO {
         this.files = files;
     }
 
-    public Board toEntity(Member member){
+    public Board toEntity(){
         return Board.builder()
                 .boardCategory(boardCategory)
                 .boardTitle(boardTitle)
                 .boardContent(boardContent)
                 .boardView(boardView)
-                .member(member)
                 .build();
     }
 }
