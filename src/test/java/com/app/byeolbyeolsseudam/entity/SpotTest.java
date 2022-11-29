@@ -34,30 +34,47 @@ public class SpotTest {
     @Test
     public void saveTest(){
         SpotDTO spotDTO = new SpotDTO();
-        CourseDTO courseDTO = new CourseDTO();
-        PossibleDate possibleDate = new PossibleDate();
-        possibleDate.setClosingDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
-        possibleDate.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
+//        CourseDTO courseDTO = new CourseDTO();
+//        PossibleDate possibleDate = new PossibleDate();
+//        possibleDate.setClosingDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
+//        possibleDate.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
+//
+//        courseDTO.setCourseName("A코스");
+//        courseDTO.setCourseArea("강남구");
+//        courseDTO.setCourseGrade(CourseGrade.초급);
+//        courseDTO.setCourseTime("1시간");
+//        courseDTO.setCourseDistance("3km");
+//        courseDTO.setCourseStart("역삼역 3번 출구");
+//        courseDTO.setCourseFinish("할리스 역삼스타점");
+//        courseDTO.setCourseFileName("A-course.png");
+//        courseDTO.setCourseFilePath("/upload");
+//        courseDTO.setCourseFileUuid("course");
+//        courseDTO.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
+//        courseDTO.setClosingDate(LocalDateTime.of(2022, 1, 25, 0, 0,0));
+//
+//        Course course = courseDTO.toEntity();
+//
+//        courseRepository.save(course);
 
-        courseDTO.setCourseName("A코스");
-        courseDTO.setCourseArea("강남구");
-        courseDTO.setCourseGrade(CourseGrade.초급);
-        courseDTO.setCourseTime("1시간");
-        courseDTO.setCourseDistance("3km");
-        courseDTO.setCourseStart("역삼역 3번 출구");
-        courseDTO.setCourseFinish("할리스 역삼스타점");
-        courseDTO.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
-        courseDTO.setClosingDate(LocalDateTime.of(2022, 1, 25, 0, 0,0));
 
-        courseRepository.save(courseDTO.toEntity());
+        for (int i = 0; i < 5; i++) {
+            Course course = jpaQueryFactory.selectFrom(QCourse.course)
+                    .orderBy(QCourse.course.courseId.desc())
+                    .limit(1)
+                    .fetchOne();
 
-        spotDTO.setSpotName("1지점");
-        spotDTO.setSpotNumber(2);
-        spotDTO.setSpotAddress("서울 어쩌구 어쩌구동");
-        spotDTO.setSpotFile("course.png");
-        spotDTO.setCourse(courseRepository.findAll().get(0));
+            spotDTO.setSpotName("1지점");
+            spotDTO.setSpotNumber(2);
+            spotDTO.setSpotAddress("서울 어쩌구 어쩌구동");
+            spotDTO.setSpotQrName("course.png");
+            spotDTO.setSpotQrPath("/upload");
+            spotDTO.setSpotQrUuid("qrqrqrqr");
 
-        spotRepository.save(spotDTO.toEntity());
+            Spot spot = spotDTO.toEntity();
+
+            spotRepository.save(spot);
+            spot.changeCourse(course);
+        }
     }
 
     @Test
@@ -75,15 +92,15 @@ public class SpotTest {
                 .orderBy(spot.spotId.desc())
                 .limit(1)
                 .fetchOne()
-                .update("수정된 지점", "update.png", "구미시", 2,
-                        jpaQueryFactory.selectFrom(course).limit(1).fetchOne());
+                .update("수정된 지점", "update.png", "구미시", "ababc",
+                        "역삼동", 3);
     }
 
     @Test
     public void deleteTest(){
-//        jpaQueryFactory.delete(spot)
-//                .where(spot.spotId.eq(3L))
-//                .execute();
+        jpaQueryFactory.delete(spot)
+                .where(spot.spotId.eq(20L))
+                .execute();
     }
 
 }

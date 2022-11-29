@@ -34,28 +34,30 @@ public class BoardTest {
 
         memberDTO.setMemberLoginType(MemberLoginType.네이버);
         memberDTO.setMemberCategory(MemberCategory.일반회원);
-        memberDTO.setMemberName("은지");
+        memberDTO.setMemberName("성은지");
         memberDTO.setMemberEmail("sej07@naver.com");
         memberDTO.setMemberPassword("password486!");
         memberDTO.setMemberAddress("역삼역 3번 출구");
         memberDTO.setMemberPhone("01012345678");
         memberDTO.setMemberPoint(3000);
-        memberDTO.setMemberProfileFile("noimage.png");
 
-        memberRepository.save(memberDTO.toEntity());
+        Member member = memberDTO.toEntity();
+        memberRepository.save(member);
 
         boardDTO.setBoardCategory(BoardCategory.환경활동);
         boardDTO.setBoardTitle("안녕하세요");
-        boardDTO.setBoardContent("집 인터넷이 안돼요.. 왜 이럴까요");
+        boardDTO.setBoardContent("날씨가 추워요");
         boardDTO.setBoardView(1);
-        boardDTO.setMember(memberRepository.findAll().get(0));
 
-        boardRepository.save(boardDTO.toEntity());
+        Board board = boardDTO.toEntity();
+        boardRepository.save(board);
+
+        board.changeMember(member);
     }
 
     @Test
     public void findTest(){
-        Optional<Board> findBoard = boardRepository.findById(5L);
+        Optional<Board> findBoard = boardRepository.findById(52L);
 
         if(findBoard.isPresent()){
             Assertions.assertThat(findBoard.get().getMember().getMemberName().equals("은지"));
@@ -67,7 +69,7 @@ public class BoardTest {
 
     @Test
     public void updateTest(){
-        Optional<Board> updateBoard = boardRepository.findById(5L);
+        Optional<Board> updateBoard = boardRepository.findById(52L);
 
         if(updateBoard.isPresent()){
             updateBoard.get().update(BoardCategory.추천가게, "하하하", "야식먹구싶다", 12);
@@ -76,7 +78,7 @@ public class BoardTest {
 
     @Test
     public void deleteTest(){
-        Optional<Board> deleteBoard = boardRepository.findById(5L);
+        Optional<Board> deleteBoard = boardRepository.findById(54L);
 
         if(deleteBoard.isPresent()){
             boardRepository.delete(deleteBoard.get());

@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.app.byeolbyeolsseudam.entity.QMember.member;
 import static com.app.byeolbyeolsseudam.entity.QMypoint.mypoint;
 
 @SpringBootTest
@@ -27,13 +28,16 @@ public class MypointTest {
 
     @Test
     public void saveTest(){
-        MypointDTO mypointDTO = new MypointDTO();
+        for(int i = 0; i < 10; i++){
+            MypointDTO mypointDTO = new MypointDTO();
 
-        mypointDTO.setMypointContent("신규회원가입");
-        mypointDTO.setMypointInout(3000);
-        mypointDTO.setMember(memberRepository.findAll().get(0));
+            mypointDTO.setMypointContent("신규회원가입");
+            mypointDTO.setMypointInout(3000);
 
-        mypointRepository.save(mypointDTO.toEntity());
+            Mypoint mypoint = mypointDTO.toEntity();
+            mypointRepository.save(mypoint);
+            mypoint.changeMember(memberRepository.findAll().get(0));
+        }
     }
 
     @Test
@@ -48,16 +52,18 @@ public class MypointTest {
         jpaQueryFactory.selectFrom(mypoint)
                 .orderBy(mypoint.mypointId.desc())
                 .fetchAll()
-                .stream().forEach(m -> m.update(
-                    "포인트 수정",
-                    1250
-                ));
+                .stream().forEach(m -> m.changeMember(
+                        jpaQueryFactory.selectFrom(member)
+                                .orderBy(member.memberId.desc())
+                                .limit(1)
+                                .fetchOne()
+        ));
     }
 
     @Test
     public void deleteTest(){
         jpaQueryFactory.delete(mypoint)
-                .where(mypoint.mypointInout.eq(3000))
+                .where(mypoint.mypointId.eq(3L))
                 .execute();
     }
 

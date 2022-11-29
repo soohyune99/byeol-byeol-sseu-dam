@@ -22,12 +22,17 @@ public class BadgeTest {
 
     @Test
     public void saveTest(){
-        BadgeDTO badgeDTO = new BadgeDTO();
 
-        badgeDTO.setBadgeName("배지1");
-        badgeDTO.setBadgeFile("test.png");
+        for(int i = 0; i < 50; i++){
+            BadgeDTO badgeDTO = new BadgeDTO();
 
-        badgeRepository.save(badgeDTO.toEntity());
+            badgeDTO.setBadgeName("배지" + i);
+            badgeDTO.setBadgeFileName("test.png");
+            badgeDTO.setBadgeFilePath("/upload");
+            badgeDTO.setBadgeFileUuid("aabbcc" + i);
+
+            badgeRepository.save(badgeDTO.toEntity());
+        }
     }
 
     @Test
@@ -38,7 +43,7 @@ public class BadgeTest {
             Assertions.assertThat(findBadge.get().getBadgeName().equals("배지1"));
 
             log.info("badgeName : " + findBadge.get().getBadgeName());
-            log.info("badgeFile : " + findBadge.get().getBadgeFile());
+            log.info("badgeFile : " + findBadge.get().getBadgeFileName());
         }
     }
 
@@ -47,13 +52,14 @@ public class BadgeTest {
         Optional<Badge> updateBadge = badgeRepository.findById(1L);
 
         if(updateBadge.isPresent()){
-            updateBadge.get().update("첫번째 배지", "first.png");
+            updateBadge.get().update("첫번째 배지", "first.png",
+                    "/upload", "firstBadge");
         }
     }
 
     @Test
     public void deleteTest(){
-        Optional<Badge> deleteBadge = badgeRepository.findById(1L);
+        Optional<Badge> deleteBadge = badgeRepository.findById(50L);
 
         if(deleteBadge.isPresent()){
             badgeRepository.delete(deleteBadge.get());

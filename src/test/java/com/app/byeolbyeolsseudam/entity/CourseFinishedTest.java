@@ -4,6 +4,7 @@ import com.app.byeolbyeolsseudam.domain.CourseFinishedDTO;
 import com.app.byeolbyeolsseudam.repository.CourseFinishedRepository;
 import com.app.byeolbyeolsseudam.repository.CourseRepository;
 import com.app.byeolbyeolsseudam.repository.MemberRepository;
+import com.app.byeolbyeolsseudam.repository.MycourseRepository;
 import com.app.byeolbyeolsseudam.type.CourseFinishedStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +29,7 @@ public class CourseFinishedTest {
     @Autowired
     private CourseFinishedRepository courseFinishedRepository;
     @Autowired
-    private CourseRepository courseRepository;
-    @Autowired
-    private MemberRepository memberRepository;
+    private MycourseRepository mycourseRepository;
 
     @Test
     public void saveTest(){
@@ -38,31 +37,26 @@ public class CourseFinishedTest {
 
         courseFinishedDTO.setCourseFinishedStatus(CourseFinishedStatus.진행중);
 
-        courseFinishedRepository.save(courseFinishedDTO.toEntity(memberRepository.findAll().get(0), courseRepository.findAll().get(0)));
+        CourseFinished courseFinished = courseFinishedDTO.toEntity();
+        courseFinishedRepository.save(courseFinished);
+        courseFinished.changeMycourse(mycourseRepository.findAll().get(0));
     }
 
     @Test
     public void findTest(){
-        List<CourseFinished> courseFinisheds = jpaQueryFactory.selectFrom(courseFinished)
+        jpaQueryFactory.selectFrom(courseFinished)
                 .where(courseFinished.courseFinishedStatus.eq(CourseFinishedStatus.진행중))
-                .fetch();
-
-        courseFinisheds.stream().map(CourseFinished::toString).forEach(log::info);
+                .fetch()
+                .stream().map(CourseFinished::toString).forEach(log::info);
     }
 
     @Test
     public void updateTest(){
-        CourseFinished courseFinished =
-                jpaQueryFactory.selectFrom(QCourseFinished.courseFinished)
+        jpaQueryFactory.selectFrom(QCourseFinished.courseFinished)
                 .orderBy(QCourseFinished.courseFinished.courseFinishedId.desc())
                 .limit(1)
-                .fetchOne();
-
-        courseFinished.update(
-                CourseFinishedStatus.미완주,
-                jpaQueryFactory.selectFrom(course).orderBy(course.courseId.desc())
-                        .limit(1).fetchOne()
-        );
+                .fetchOne()
+                .update(CourseFinishedStatus.미완주);
     }
 
     @Test

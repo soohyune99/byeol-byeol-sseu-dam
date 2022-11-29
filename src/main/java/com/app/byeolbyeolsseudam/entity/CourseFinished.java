@@ -15,19 +15,26 @@ public class CourseFinished extends Period {
     private Long courseFinishedId;
     @NotNull
     private CourseFinishedStatus courseFinishedStatus;
+//    @NotNull
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Member member;
+//    @NotNull
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Course course;
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Course course;
+    private Mycourse mycourse;
 
-    public void changeMember(Member member) {
-        this.member = member;
-    }
+//    public void changeMember(Member member) {
+//        this.member = member;
+//    }
+//
+//    public void changeCourse(Course course){
+//        this.course = course;
+//    }
 
-    public void changeCourse(Course course){
-        this.course = course;
+    public void changeMycourse(Mycourse mycourse){
+        this.mycourse = mycourse;
     }
 
     @Builder

@@ -33,12 +33,17 @@ public class CommentTest {
     public void saveTest(){
         CommentDTO commentDTO = new CommentDTO();
 
-        commentDTO.setCommentContent("안녕");
-        commentDTO.setCommentFile("hi.png");
-        commentDTO.setBoard(boardRepository.findAll().get(0));
-        commentDTO.setMember(memberRepository.findAll().get(0));
+        commentDTO.setCommentContent("새로운 댓글!");
+        commentDTO.setCommentFileName("hi.png");
+        commentDTO.setCommentFilePath("/upload");
+        commentDTO.setCommentFileUuid("abcedfg");
 
-        commentRepository.save(commentDTO.toEntity());
+        Comment comment = commentDTO.toEntity();
+
+        commentRepository.save(comment);
+
+        comment.changeMember(memberRepository.findAll().get(0));
+        comment.changeBoard(boardRepository.findAll().get(0));
     }
 
     @Test
@@ -58,10 +63,12 @@ public class CommentTest {
         Optional<Comment> updateComment = commentRepository.findById(8L);
 
         if(updateComment.isPresent()){
-            updateComment.get().update("수정댓글", "update.png");
+            updateComment.get().update(
+                    "수정댓글", "update.png",
+                    "/upload", "updateComment");
         }
     }
-    
+
     @Test
     public void deleteTest(){
         Optional<Comment> deleteComment = commentRepository.findById(8L);
