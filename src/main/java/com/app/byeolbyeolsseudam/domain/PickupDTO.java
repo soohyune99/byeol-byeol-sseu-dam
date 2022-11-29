@@ -36,7 +36,7 @@ public class PickupDTO {
         this.createdDate = createdDate;
     }
 
-    public Pickup toEntity(Member member){
+    public Pickup toEntity(){
         Recyclable recyclable = new Recyclable();
         recyclable.setPetCount(petCount);
         recyclable.setGlassCount(glassCount);

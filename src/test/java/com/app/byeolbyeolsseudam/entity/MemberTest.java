@@ -36,7 +36,6 @@ public class MemberTest {
                 memberDTO.setMemberPassword("1234");
                 memberDTO.setMemberAddress("서울강동");
                 memberDTO.setMemberPhone("01012345678");
-                memberDTO.setMemberProfileFile("test.png");
 
                 memberRepository.save(memberDTO.toEntity());
             }
@@ -48,11 +47,13 @@ public class MemberTest {
 
      @Test
     public void updateTest(){
-        Optional<Member> updateMember = memberRepository.findById(7L);
+        Optional<Member> updateMember = memberRepository.findById(1L);
 
         if(updateMember.isPresent()){
-            updateMember.get().update(MemberCategory.기사회원, "조혜인","1111","1234",
-                    "jsh5060@dreamwiz.com", "서울", 0 , "test.png");
+            updateMember.get().update(updateMember.get().getMemberLoginType() ,MemberCategory.기사회원, "조혜인","1111","1234",
+                    "jsh5060@dreamwiz.com", 2,
+                    updateMember.get().getMemberProfileName(), updateMember.get().getMemberProfilePath(),
+                    updateMember.get().getMemberProfileUuid());
         }
 
 
