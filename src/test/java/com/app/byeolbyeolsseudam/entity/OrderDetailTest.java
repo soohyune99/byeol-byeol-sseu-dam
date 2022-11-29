@@ -1,6 +1,7 @@
 package com.app.byeolbyeolsseudam.entity;
 
 import com.app.byeolbyeolsseudam.domain.OrderDetailDTO;
+import com.app.byeolbyeolsseudam.repository.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.OrderDetailRepository;
 import com.app.byeolbyeolsseudam.repository.OrderRepository;
 import com.app.byeolbyeolsseudam.repository.ProductRepository;
@@ -41,37 +42,37 @@ public class OrderDetailTest {
 
     @Test
     public void saveTest(){
-        OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
+        OrderDetailDTO orderDetail1 = new OrderDetailDTO();
 
-        orderDetailDTO.setOrderDetailCount(5);
-        orderDetailDTO.setOrder(orderRepository.findAll().get(0));
-        orderDetailDTO.setProduct(productRepository.findAll().get(0));
-
-        orderDetailRepository.save(orderDetailDTO.toEntity());
+        orderDetail1.setOrderDetailCount(5);
+        OrderDetail orderDetailEntity = orderDetail1.toEntity();
+        orderDetailEntity.changeOrder(orderRepository.findById(8L).get());
+        orderDetailEntity.changeProduct(productRepository.findById(5L).get());
+        orderDetailRepository.save(orderDetailEntity);
     }
 
     @Test
     public void findTest(){
-        Optional<OrderDetail> findOrderDetail = orderDetailRepository.findById(9L);
+        Optional<OrderDetail> findOrderDetail = orderDetailRepository.findById(10L);
 
         if(findOrderDetail.isPresent()){
-            Assertions.assertThat(findOrderDetail.get().getProduct().getProductName().equals("천연수세미"));
+            Assertions.assertThat(findOrderDetail.get().getProduct().getProductName().equals("에코백"));
 
             log.info("orderDetailCount : " + findOrderDetail.get().getOrderDetailCount());
         }
     }
 
-    @Test
-    public void queryUpdateTest(){
-        jpaQueryFactory.selectFrom(orderDetail)
-                .where(orderDetail.orderDetailId.eq(9L))
-                .orderBy(orderDetail.orderDetailId.desc())
-                .limit(1)
-                .fetchOne()
-                .update(8, jpaQueryFactory.selectFrom(order).limit(1).fetchOne(),
-                        jpaQueryFactory.selectFrom(product).limit(1).fetchOne());
-    }
-
+//    @Test
+//    public void queryUpdateTest(){
+//        jpaQueryFactory.selectFrom(orderDetail)
+//                .where(orderDetail.orderDetailId.eq(9L))
+//                .orderBy(orderDetail.orderDetailId.desc())
+//                .limit(1)
+//                .fetchOne()
+//                .update(8, jpaQueryFactory.selectFrom(order).limit(1).fetchOne(),
+//                        jpaQueryFactory.selectFrom(product).limit(1).fetchOne());
+//    }
+//
 
     @Test
     public void queryDeleteTest(){
