@@ -27,11 +27,12 @@ public class Pickup extends Period {
     private Member member;
 
     @Builder
-    public Pickup(Recyclable recyclable, String pickupAddress, String pickupMessage, PickupStatus pickupStatus) {
+    public Pickup(Recyclable recyclable, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Member member) {
         this.recyclable = recyclable;
         this.pickupAddress = pickupAddress;
         this.pickupMessage = pickupMessage;
         this.pickupStatus = pickupStatus;
+        this.member = member;
     }
 
     public void update(PickupStatus pickupStatus) {

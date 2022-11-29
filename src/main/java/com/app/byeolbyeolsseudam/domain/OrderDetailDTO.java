@@ -42,9 +42,11 @@ public class OrderDetailDTO {
         this.memberPoint = memberPoint;
     }
 
-    public OrderDetail toEntity(){
+    public OrderDetail toEntity(Order order, Product product){
         return OrderDetail.builder()
                 .orderDetailCount(orderDetailCount)
+                .order(order)
+                .product(product)
                 .build();
     }
 }

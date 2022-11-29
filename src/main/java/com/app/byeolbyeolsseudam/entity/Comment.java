@@ -26,11 +26,13 @@ public class Comment extends Period {
     private Board board;
 
     @Builder
-    public Comment(String commentContent, String commentFileName, String commentFilePath, String commentFileUuid) {
+    public Comment(String commentContent, String commentFileName, String commentFilePath, String commentFileUuid, Member member, Board board) {
         this.commentContent = commentContent;
         this.commentFileName = commentFileName;
         this.commentFilePath = commentFilePath;
         this.commentFileUuid = commentFileUuid;
+        this.member = member;
+        this.board = board;
     }
 
     public void update(String commentContent, String commentFileName, String commentFilePath, String commentFileUuid) {

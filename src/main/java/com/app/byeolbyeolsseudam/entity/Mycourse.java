@@ -35,7 +35,11 @@ public class Mycourse extends Period {
     }
 
     @Builder
-    public Mycourse() {;}
+    public Mycourse(Member member, Course course, Spot spot) {
+        this.member = member;
+        this.course = course;
+        this.spot = spot;
+    }
 
     public void update(Course course, Spot spot){
         this.course = course;

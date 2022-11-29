@@ -34,13 +34,14 @@ public class Spot extends Period {
     }
 
     @Builder
-    public Spot(String spotName, String spotQrName, String spotQrPath, String spotQrUuid, String spotAddress, int spotNumber) {
+    public Spot(String spotName, String spotQrName, String spotQrPath, String spotQrUuid, String spotAddress, int spotNumber, Course course) {
         this.spotName = spotName;
         this.spotQrName = spotQrName;
         this.spotQrPath = spotQrPath;
         this.spotQrUuid = spotQrUuid;
         this.spotAddress = spotAddress;
         this.spotNumber = spotNumber;
+        this.course = course;
     }
 
     public void update(String spotName, String spotQrName, String spotQrPath, String spotQrUuid, String spotAddress, int spotNumber, Course course) {

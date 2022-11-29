@@ -27,10 +27,11 @@ public class MypointDTO {
         this.memberId = memberId;
     }
 
-    public Mypoint toEntity(){
+    public Mypoint toEntity(Member member){
         return Mypoint.builder()
                 .mypointContent(mypointContent)
                 .mypointInout(mypointInout)
+                .member(member)
                 .build();
     }
 }

@@ -28,8 +28,10 @@ public class MybadgeDTO {
         this.createdDate = createdDate;
     }
 
-    public Mybadge toEntity(){
+    public Mybadge toEntity(Member member, Badge badge){
         return Mybadge.builder()
+                .member(member)
+                .badge(badge)
                 .build();
     }
 }

@@ -1,6 +1,7 @@
 package com.app.byeolbyeolsseudam.domain;
 
 import com.app.byeolbyeolsseudam.entity.Board;
+import com.app.byeolbyeolsseudam.entity.Member;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
@@ -42,12 +43,13 @@ public class BoardDTO {
         this.files = files;
     }
 
-    public Board toEntity(){
+    public Board toEntity(Member member){
         return Board.builder()
                 .boardCategory(boardCategory)
                 .boardTitle(boardTitle)
                 .boardContent(boardContent)
                 .boardView(boardView)
+                .member(member)
                 .build();
     }
 }

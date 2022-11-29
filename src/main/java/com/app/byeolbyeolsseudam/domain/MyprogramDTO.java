@@ -42,8 +42,10 @@ public class MyprogramDTO {
         this.createdDate = createdDate;
     }
 
-    public Myprogram toEntity(){
+    public Myprogram toEntity(Member member, Program program){
         return Myprogram.builder()
+                .member(member)
+                .program(program)
                 .build();
     }
 }

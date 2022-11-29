@@ -31,11 +31,12 @@ public class Board extends Period{
     }
 
     @Builder
-    public Board(BoardCategory boardCategory, String boardTitle, String boardContent, int boardView) {
+    public Board(BoardCategory boardCategory, String boardTitle, String boardContent, int boardView, Member member) {
         this.boardCategory = boardCategory;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.boardView = boardView;
+        this.member = member;
     }
 
     public void update(BoardCategory boardCategory, String boardTitle, String boardContent, int boardView){

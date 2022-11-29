@@ -45,8 +45,10 @@ public class BasketDTO {
         this.productFileProfileUuid = productFileProfileUuid;
     }
 
-    public Basket toEntity(){
+    public Basket toEntity(Member member, Product product){
         return Basket.builder()
+                .member(member)
+                .product(product)
                 .build();
     }
 }

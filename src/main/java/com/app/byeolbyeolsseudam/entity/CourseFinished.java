@@ -27,8 +27,10 @@ public class CourseFinished extends Period {
     }
 
     @Builder
-    public CourseFinished(CourseFinishedStatus courseFinishedStatus) {
+    public CourseFinished(CourseFinishedStatus courseFinishedStatus, Member member, Course course) {
         this.courseFinishedStatus = courseFinishedStatus;
+        this.member = member;
+        this.course = course;
     }
 
     public void update(CourseFinishedStatus courseFinishedStatus, Course course){
