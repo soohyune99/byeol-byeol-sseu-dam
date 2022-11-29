@@ -32,12 +32,14 @@ public class Review extends Period {
     }
 
     @Builder
-    public Review(String reviewContent, double reviewStar, String reviewFileName, String reviewFilePath, String reviewFileUuid) {
+    public Review(String reviewContent, double reviewStar, String reviewFileName, String reviewFilePath, String reviewFileUuid, Product product, Member member) {
         this.reviewContent = reviewContent;
         this.reviewStar = reviewStar;
         this.reviewFileName = reviewFileName;
         this.reviewFilePath = reviewFilePath;
         this.reviewFileUuid = reviewFileUuid;
+        this.product = product;
+        this.member = member;
     }
 
     public void update(String reviewContent, double reviewStar, String reviewFileName, String reviewFilePath, String reviewFileUuid) {

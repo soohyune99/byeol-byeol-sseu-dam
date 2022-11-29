@@ -22,7 +22,9 @@ public class OrderDetail extends Period {
     private Product product;
 
     @Builder
-    public OrderDetail(int orderDetailCount) {
+    public OrderDetail(int orderDetailCount, Order order, Product product) {
         this.orderDetailCount = orderDetailCount;
+        this.order = order;
+        this.product = product;
     }
 }

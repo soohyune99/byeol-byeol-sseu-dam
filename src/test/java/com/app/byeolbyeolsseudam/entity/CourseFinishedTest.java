@@ -37,10 +37,8 @@ public class CourseFinishedTest {
         CourseFinishedDTO courseFinishedDTO = new CourseFinishedDTO();
 
         courseFinishedDTO.setCourseFinishedStatus(CourseFinishedStatus.진행중);
-        courseFinishedDTO.setMember(memberRepository.findAll().get(0));
-        courseFinishedDTO.setCourse(courseRepository.findAll().get(0));
 
-        courseFinishedRepository.save(courseFinishedDTO.toEntity());
+        courseFinishedRepository.save(courseFinishedDTO.toEntity(memberRepository.findAll().get(0), courseRepository.findAll().get(0)));
     }
 
     @Test

@@ -50,7 +50,7 @@ public class CourseDTO {
         this.spots = spots;
     }
 
-    public Course toEntity(){
+    public Course toEntity(List<Spot> spots){
         PossibleDate possibleDate = new PossibleDate();
         possibleDate.setOpeningDate(openingDate);
         possibleDate.setClosingDate(closingDate);
@@ -67,6 +67,7 @@ public class CourseDTO {
                 .courseStart(courseStart)
                 .courseFinish(courseFinish)
                 .possibleDate(possibleDate)
+                .spots(spots)
                 .build();
     }
 }

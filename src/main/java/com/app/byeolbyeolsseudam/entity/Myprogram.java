@@ -27,7 +27,10 @@ public class Myprogram extends Period {
     }
 
     @Builder
-    public Myprogram() {;}
+    public Myprogram(Member member, Program program) {
+        this.member = member;
+        this.program = program;
+    }
 
     public void update(Program program){
         this.program = program;

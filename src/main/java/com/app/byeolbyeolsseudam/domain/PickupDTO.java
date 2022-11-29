@@ -36,7 +36,7 @@ public class PickupDTO {
         this.createdDate = createdDate;
     }
 
-    public Pickup toEntity(){
+    public Pickup toEntity(Member member){
         Recyclable recyclable = new Recyclable();
         recyclable.setPetCount(petCount);
         recyclable.setGlassCount(glassCount);
@@ -46,6 +46,7 @@ public class PickupDTO {
                 .pickupAddress(pickupAddress)
                 .pickupMessage(pickupMessage)
                 .pickupStatus(PickupStatus.수거대기중)
+                .member(member)
                 .build();
     }
 }

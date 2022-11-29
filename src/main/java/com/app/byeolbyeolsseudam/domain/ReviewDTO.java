@@ -43,13 +43,15 @@ public class ReviewDTO {
         this.createdDate = createdDate;
     }
 
-    public Review toEntity(){
+    public Review toEntity(Member member, Product product){
         return Review.builder()
                 .reviewContent(reviewContent)
                 .reviewStar(reviewStar)
                 .reviewFileName(reviewFileName)
                 .reviewFilePath(reviewFilePath)
                 .reviewFileUuid(reviewFileUuid)
+                .member(member)
+                .product(product)
                 .build();
     }
 }

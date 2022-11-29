@@ -56,6 +56,7 @@ public class Course extends Period {
         this.courseFilePath = courseFilePath;
         this.courseFileUuid = courseFileUuid;
         this.possibleDate = possibleDate;
+        this.spots = spots;
     }
 
     public void update(String courseName, String courseArea, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, String courseFileName, String courseFilePath, String courseFileUuid, PossibleDate possibleDate, List<Spot> spots) {
