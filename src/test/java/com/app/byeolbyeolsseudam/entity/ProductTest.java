@@ -33,23 +33,34 @@ public class ProductTest {
         productDTO.setProductName("천연 수세미");
         productDTO.setProductPrice(15000);
         productDTO.setProductCount(1);
-        productDTO.setProductFileDetail("product.jpg");
-        productDTO.setProductFileProfile("profile");
-
+        productDTO.setProductFileDetailName("file.png");
+        productDTO.setProductFileDetailPath("path1");
+        productDTO.setProductFileDetailUuid("uuid1");
+        productDTO.setProductFileProfileName("profile.png");
+        productDTO.setProductFileProfilePath("path11");
+        productDTO.setProductFileProfileUuid("uuid11");
 
         product1.setProductCategory(ProductCategory.반려동물);
         product1.setProductName("비건 개껌");
         product1.setProductPrice(10000);
         product1.setProductCount(80);
-        product1.setProductFileDetail("food.jpg");
-        product1.setProductFileProfile("food");
+        product1.setProductFileDetailName("file2.png");
+        product1.setProductFileDetailPath("path2");
+        product1.setProductFileDetailUuid("uuid2");
+        product1.setProductFileProfileName("profile2.png");
+        product1.setProductFileProfilePath("path22");
+        product1.setProductFileProfileUuid("uuid22");
 
         product2.setProductCategory(ProductCategory.생활);
         product2.setProductName("에코백");
         product2.setProductPrice(20000);
         product2.setProductCount(100);
-        product2.setProductFileDetail("living.jpg");
-        product2.setProductFileProfile("living");
+        product2.setProductFileDetailName("file3.png");
+        product2.setProductFileDetailPath("path3");
+        product2.setProductFileDetailUuid("uuid3");
+        product2.setProductFileProfileName("profile3.png");
+        product2.setProductFileProfilePath("path33");
+        product2.setProductFileProfileUuid("uuid33");
 
         productRepository.save(productDTO.toEntity());
         productRepository.save(product1.toEntity());
@@ -73,7 +84,10 @@ public class ProductTest {
         Optional<Product> updateProduct = productRepository.findById(1L);
 
         if(updateProduct.isPresent()){
-            updateProduct.get().update(ProductCategory.반려동물, "사료", 16000,3, "사료상세정보", "사료사진");
+            updateProduct.get().update(ProductCategory.반려동물,
+                    "개껌", 25000, 100, "file.png",
+                    "pathchange", "uuidchange", "profile",
+                    "profilepath", "profileuuidchange");
         }
     }
 

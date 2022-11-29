@@ -7,6 +7,7 @@ import com.app.byeolbyeolsseudam.repository.ProductRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
+import org.hibernate.criterion.Projection;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,41 +41,50 @@ public class BasketTest {
 
     @Test
     public void saveTest(){
-        BasketDTO basket = new BasketDTO();
+        BasketDTO basket1 = new BasketDTO();
+        BasketDTO basket2 = new BasketDTO();
 
-        basket.setMember(memberRepository.findAll().get(0));
-        basket.setProduct(productRepository.findAll().get(0));
+        basket1.setBasketCount(6);
+        Basket basketEntity1 = basket1.toEntity();
+        basketEntity1.changeMember(memberRepository.findById(1L).get());
+        basketEntity1.changeProduct(productRepository.findById(5L).get());
+        basketRepository.save(basketEntity1);
 
-        basketRepository.save(basket.toEntity());
+        basket2.setBasketCount(3);
+        Basket basketEntity2 = basket1.toEntity();
+        basketEntity2.changeMember(memberRepository.findById(1L).get());
+        basketEntity2.changeProduct(productRepository.findById(4L).get());
+        basketRepository.save(basketEntity2);
+
     }
 
     @Test
     public void findTest(){
-        Optional<Basket> findBasket = basketRepository.findById(8L);
+        Optional<Basket> findBasket = basketRepository.findById(11L);
 
         if(findBasket.isPresent()){
-            Assertions.assertThat(findBasket.get().getMember().getMemberName().equals("은지"));
+            Assertions.assertThat(findBasket.get().getMember().getMemberName().equals("홍수현"));
 
             log.info("ProductName : " + findBasket.get().getProduct().getProductName());
         }
     }
 
-    @Test
-    public void queryUpdateTest(){
-        jpaQueryFactory.selectFrom(basket)
-                .where(basket.basketId.eq(8L))
-                .orderBy(basket.basketId.desc())
-                .limit(1)
-                .fetchOne()
-                .update(
-                        jpaQueryFactory.selectFrom(member).limit(1).fetchOne(),
-                        jpaQueryFactory.selectFrom(product).limit(1).fetchOne());
-    }
+//    @Test
+//    public void queryUpdateTest(){
+//        jpaQueryFactory.selectFrom(basket)
+//                .where(basket.basketId.eq(8L))
+//                .orderBy(basket.basketId.desc())
+//                .limit(1)
+//                .fetchOne()
+//                .update(
+//                        jpaQueryFactory.selectFrom(member).limit(1).fetchOne(),
+//                        jpaQueryFactory.selectFrom(product).limit(1).fetchOne());
+//    }
 
     @Test
     public void queryDeleteTest(){
         jpaQueryFactory.delete(basket)
-                .where(basket.basketId.eq(16L))
+                .where(basket.basketId.eq(12L))
                 .execute();
     }
 }
