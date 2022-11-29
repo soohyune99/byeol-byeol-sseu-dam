@@ -21,10 +21,16 @@ public class OrderDetail extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
-    @Builder
-    public OrderDetail(int orderDetailCount, Order order, Product product) {
-        this.orderDetailCount = orderDetailCount;
+    public void changeOrder(Order order){
         this.order = order;
+    }
+
+    public void changeProduct(Product product){
         this.product = product;
+    }
+
+    @Builder
+    public OrderDetail(int orderDetailCount) {
+        this.orderDetailCount = orderDetailCount;
     }
 }

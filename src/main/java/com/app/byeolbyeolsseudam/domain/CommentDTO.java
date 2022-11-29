@@ -44,14 +44,12 @@ public class CommentDTO {
         this.updatedDate = updatedDate;
     }
 
-    public Comment toEntity(Member member, Board board){
+    public Comment toEntity(){
         return Comment.builder()
                 .commentContent(commentContent)
                 .commentFileName(commentFileName)
                 .commentFilePath(commentFilePath)
                 .commentFileUuid(commentFileUuid)
-                .member(member)
-                .board(board)
                 .build();
     }
 }

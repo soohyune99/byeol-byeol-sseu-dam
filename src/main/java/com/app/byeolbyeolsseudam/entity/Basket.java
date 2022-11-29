@@ -30,14 +30,7 @@ public class Basket extends Period{
     }
 
     @Builder
-    public Basket(int basketCount, Member member, Product product) {
+    public Basket(int basketCount) {
         this.basketCount = basketCount;
-        this.member = member;
-        this.product = product;
-    }
-
-    public void update(Member member, Product product){
-        this.member = member;
-        this.product = product;
     }
 }

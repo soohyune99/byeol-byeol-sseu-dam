@@ -32,7 +32,7 @@ public class SpotDTO {
     }
 
 
-    public Spot toEntity(Course course){
+    public Spot toEntity(){
         return Spot.builder()
                 .spotName(spotName)
                 .spotQrName(spotQrName)
@@ -40,7 +40,6 @@ public class SpotDTO {
                 .spotQrUuid(spotQrUuid)
                 .spotAddress(spotAddress)
                 .spotNumber(spotNumber)
-                .course(course)
                 .build();
     }
 }

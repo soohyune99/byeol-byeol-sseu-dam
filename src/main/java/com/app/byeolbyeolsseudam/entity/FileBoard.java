@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.FileBoardDTO;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -18,6 +19,12 @@ public class FileBoard extends Period {
     private String fileBoardPath;
     @NotNull
     private String fileBoardUuid;
+    @NotNull @ManyToOne
+    private Board board;
+
+    public void changeBoard(Board board){
+        this.board = board;
+    }
 
     @Builder
     public FileBoard(String fileBoardName, String fileBoardPath, String fileBoardUuid) {

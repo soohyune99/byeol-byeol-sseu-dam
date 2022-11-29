@@ -23,10 +23,13 @@ public class Mypoint extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    public void changeMember(Member member){
+        this.member = member;
+    }
+
     @Builder
-    public Mypoint(String mypointContent, int mypointInout, Member member) {
+    public Mypoint(String mypointContent, int mypointInout) {
         this.mypointContent = mypointContent;
         this.mypointInout = mypointInout;
-        this.member = member;
     }
 }

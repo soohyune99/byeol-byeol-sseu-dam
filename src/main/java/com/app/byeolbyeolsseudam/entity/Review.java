@@ -26,20 +26,22 @@ public class Review extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    public void changeMember(Member member){
+        this.member = member;
+    }
+
     public void changeProduct(Product product){
         this.product = product;
         product.getReviews().add(this);
     }
 
     @Builder
-    public Review(String reviewContent, double reviewStar, String reviewFileName, String reviewFilePath, String reviewFileUuid, Product product, Member member) {
+    public Review(String reviewContent, double reviewStar, String reviewFileName, String reviewFilePath, String reviewFileUuid) {
         this.reviewContent = reviewContent;
         this.reviewStar = reviewStar;
         this.reviewFileName = reviewFileName;
         this.reviewFilePath = reviewFilePath;
         this.reviewFileUuid = reviewFileUuid;
-        this.product = product;
-        this.member = member;
     }
 
     public void update(String reviewContent, double reviewStar, String reviewFileName, String reviewFilePath, String reviewFileUuid) {

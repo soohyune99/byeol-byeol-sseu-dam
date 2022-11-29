@@ -27,12 +27,11 @@ public class OrderDTO {
         this.memberId = memberId;
     }
 
-    public Order toEntity(Member member){
+    public Order toEntity(){
         return Order.builder()
                 .orderStatus(orderStatus)
                 .orderAddress(orderAddress)
                 .orderMessage(orderMessage)
-                .member(member)
                 .build();
 
     }

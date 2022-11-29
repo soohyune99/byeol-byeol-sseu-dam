@@ -15,16 +15,18 @@ public class FileBoardDTO {
     private String fileBoardName;
     private String fileBoardPath;
     private String fileBoardUuid;
+    private Long boardId;
 
     @QueryProjection
-    public FileBoardDTO(Long fileBoardId, String fileBoardName, String fileBoardPath, String fileBoardUuid) {
+    public FileBoardDTO(Long fileBoardId, String fileBoardName, String fileBoardPath, String fileBoardUuid, Long boardId) {
         this.fileBoardId = fileBoardId;
         this.fileBoardName = fileBoardName;
         this.fileBoardPath = fileBoardPath;
         this.fileBoardUuid = fileBoardUuid;
+        this.boardId = boardId;
     }
 
-    public FileBoard toEntity(){
+    public FileBoard toEntity(Board board){
         return FileBoard.builder()
                 .fileBoardName(fileBoardName)
                 .fileBoardPath(fileBoardPath)

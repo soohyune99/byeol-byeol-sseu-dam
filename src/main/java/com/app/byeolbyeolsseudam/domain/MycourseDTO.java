@@ -30,11 +30,4 @@ public class MycourseDTO {
         this.spotId = spotId;
     }
 
-    public Mycourse toEntity(Member member, Course course, Spot spot){
-        return Mycourse.builder()
-                .member(member)
-                .course(course)
-                .spot(spot)
-                .build();
-    }
 }
