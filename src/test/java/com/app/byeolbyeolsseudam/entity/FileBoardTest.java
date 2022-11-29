@@ -12,8 +12,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
+import static com.app.byeolbyeolsseudam.entity.QBoard.board;
 import static com.app.byeolbyeolsseudam.entity.QFileBoard.fileBoard;
 
 @SpringBootTest
@@ -30,30 +30,32 @@ public class FileBoardTest {
 
     @Test
     public void saveTest(){
-        Optional<Board> findBoard = boardRepository.findById(2L);
+        Board findBoard = boardRepository.findAll().get(0);
 
-        FileBoardDTO fileBoardDTO = new FileBoardDTO();
+        for(int i = 0; i < 4; i++){
+            FileBoardDTO fileBoardDTO = new FileBoardDTO();
 
-        fileBoardDTO.setFileBoardName("친환경에코상점.png");
-        fileBoardDTO.setBoard(findBoard.get());
+            fileBoardDTO.setFileBoardName("포켓몬빵" + i + ".png");
+            FileBoard fileBoard = fileBoardDTO.toEntity();
+            fileBoardRepository.save(fileBoard);
+            fileBoard.changeBoard(findBoard);
 
-        fileBoardRepository.save(fileBoardDTO.toEntity());
+        }
     }
 
     @Test
     public void findTest(){
-        List<FileBoard> files = jpaQueryFactory.selectFrom(fileBoard)
-                .orderBy(fileBoard.fileBoardId.desc())
-                .limit(2)
-                .fetch();
-
-        files.stream().map(FileBoard::getFileBoardName).forEach(log::info);
+        jpaQueryFactory.select(board.boardId, board.boardTitle, board.boardContent, fileBoard.fileBoardId, fileBoard.fileBoardName)
+                .from(board).join(fileBoard)
+                .on(board.boardId.eq(fileBoard.board.boardId))
+                .fetchJoin()
+                .stream().map(b -> b.toString()).forEach(log::info);
     }
 
     @Test
     public void updateTest(){
         jpaQueryFactory.selectFrom(fileBoard).orderBy(fileBoard.fileBoardId.desc())
-                .limit(1).fetchOne().update("미에로화이바");
+                .limit(1).fetchOne().update("미에로화이바", "/upload", "updateFile");
     }
 
     @Test

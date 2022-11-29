@@ -1,6 +1,5 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.MycourseDTO;
 import com.app.byeolbyeolsseudam.repository.CourseRepository;
 import com.app.byeolbyeolsseudam.repository.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.MycourseRepository;
@@ -9,13 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.app.byeolbyeolsseudam.entity.QCourse.course;
+import java.util.Optional;
+
 import static com.app.byeolbyeolsseudam.entity.QMycourse.mycourse;
-import static com.app.byeolbyeolsseudam.entity.QSpot.spot;
 
 @SpringBootTest
 @Slf4j
@@ -33,12 +31,15 @@ public class MycourseTest {
 
     @Test
     public void saveTest(){
-        MycourseDTO mycourseDTO = new MycourseDTO();
+        Mycourse mycourse = new Mycourse();
 
-        mycourseDTO.setCourse(courseRepository.findAll().get(0));
-        mycourseDTO.setMember(memberRepository.findAll().get(0));
+        Course course = courseRepository.findById(17l).get();
 
-        mycourseRepository.save(mycourseDTO.toEntity());
+        mycourse.changeCourse(course);
+        mycourse.changeMember(memberRepository.findAll().get(0));
+        mycourse.changeSpot(course.getSpots().get(0));
+
+        mycourseRepository.save(mycourse);
     }
 
     @Test
@@ -46,18 +47,19 @@ public class MycourseTest {
         jpaQueryFactory.select(mycourse.mycourseId)
                 .from(mycourse).orderBy(mycourse.mycourseId.desc())
                 .fetch().stream().forEach(m -> log.info("Id : " + m));
+
+        log.info("myCourse : " + jpaQueryFactory.select(mycourse.member.memberName, mycourse.course.courseName, mycourse.spot.spotNumber)
+                .from(mycourse)
+                .fetch());
     }
 
     @Test
     public void updateTest(){
-        jpaQueryFactory.selectFrom(mycourse)
-                .orderBy(mycourse.mycourseId.desc())
-                .limit(1)
-                .fetchOne()
-                .update(
-                        jpaQueryFactory.selectFrom(course).limit(1).fetchOne(),
-                        jpaQueryFactory.selectFrom(spot).limit(1).fetchOne()
-                );
+        jpaQueryFactory.select(mycourse.member.memberName, mycourse.course.courseName, mycourse.spot.spotNumber)
+                .from(mycourse)
+                .fetch()
+                .stream().forEach(c -> log.info("myCourse : " + c));
+
     }
 
     @Test

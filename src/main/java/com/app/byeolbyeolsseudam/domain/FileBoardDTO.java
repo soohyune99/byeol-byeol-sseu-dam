@@ -26,7 +26,7 @@ public class FileBoardDTO {
         this.boardId = boardId;
     }
 
-    public FileBoard toEntity(Board board){
+    public FileBoard toEntity(){
         return FileBoard.builder()
                 .fileBoardName(fileBoardName)
                 .fileBoardPath(fileBoardPath)

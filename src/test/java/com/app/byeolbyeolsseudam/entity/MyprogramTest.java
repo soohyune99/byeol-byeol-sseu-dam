@@ -1,6 +1,5 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.MemberDTO;
 import com.app.byeolbyeolsseudam.domain.MyprogramDTO;
 import com.app.byeolbyeolsseudam.domain.ProgramDTO;
 import com.app.byeolbyeolsseudam.repository.MemberRepository;
@@ -15,10 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static com.app.byeolbyeolsseudam.entity.QMember.member;
 import static com.app.byeolbyeolsseudam.entity.QMyprogram.myprogram;
 import static com.app.byeolbyeolsseudam.entity.QProgram.program;
 
@@ -52,10 +49,10 @@ public class MyprogramTest {
 
         programRepository.save(programDTO.toEntity());
 
-        myprogramDTO.setProgram(programRepository.findAll().get(0));
-        myprogramDTO.setMember(memberRepository.findAll().get(0));
-
-        myprogramRepository.save(myprogramDTO.toEntity());
+        Myprogram myprogram = new Myprogram();
+        myprogram.changeMember(memberRepository.findAll().get(0));
+        myprogram.changeProgram(programRepository.findAll().get(0));
+        myprogramRepository.save(myprogram);
     }
 
     @Test
@@ -71,10 +68,7 @@ public class MyprogramTest {
         jpaQueryFactory.selectFrom(myprogram)
                 .orderBy(myprogram.myprogramId.desc())
                 .limit(1)
-                .fetchOne()
-                .update(
-                        jpaQueryFactory.selectFrom(program).limit(1).fetchOne()
-                );
+                .fetchOne();
     }
 
     @Test

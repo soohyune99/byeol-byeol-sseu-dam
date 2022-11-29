@@ -31,12 +31,12 @@ public class MybadgeTest {
 
     @Test
     public void saveTest(){
-        MybadgeDTO mybadgeDTO = new MybadgeDTO();
+        Mybadge mybadge = new Mybadge();
 
-        mybadgeDTO.setMember(memberRepository.findAll().get(0));
-        mybadgeDTO.setBadge(badgeRepository.findAll().get(0));
+        mybadge.changeBadge(badgeRepository.findAll().get(0));
+        mybadge.changeMember(memberRepository.findAll().get(0));
 
-        mybadgeRepository.save(mybadgeDTO.toEntity());
+        mybadgeRepository.save(mybadge);
     }
 
     @Test
@@ -51,9 +51,7 @@ public class MybadgeTest {
         jpaQueryFactory.selectFrom(mybadge)
                 .orderBy(mybadge.mybadgeId.desc())
                 .limit(1)
-                .fetchOne()
-                .update(jpaQueryFactory.selectFrom(badge)
-                .orderBy(badge.badgeId.desc()).limit(1).fetchOne());
+                .fetchOne();
     }
 
     @Test

@@ -46,11 +46,16 @@ public class CourseTest {
         courseDTO.setCourseDistance("3km");
         courseDTO.setCourseStart("역삼역 3번 출구");
         courseDTO.setCourseFinish("할리스 역삼스타점");
-        courseDTO.setSpots(spotRepository.findAll());
+        courseDTO.setCourseFileName("A-course.png");
+        courseDTO.setCourseFilePath("/upload");
+        courseDTO.setCourseFileUuid("course");
         courseDTO.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
         courseDTO.setClosingDate(LocalDateTime.of(2022, 1, 25, 0, 0,0));
 
-        courseRepository.save(courseDTO.toEntity());
+        Course course = courseDTO.toEntity();
+
+        courseRepository.save(course);
+//        course.getSpots().stream().forEach(spot -> spot.changeCourse(course));
     }
 
     @Test
@@ -70,25 +75,25 @@ public class CourseTest {
 //                .orderBy(course.courseId.desc())
 //                .fetch());
 
-        Course course = jpaQueryFactory.selectFrom(QCourse.course)
-                .where(QCourse.course.courseArea.eq("강남구"))
-                .orderBy(QCourse.course.courseId.desc())
+        PossibleDate possibleDate = new PossibleDate();
+        possibleDate.setClosingDate(LocalDateTime.of(2022,11,29,0,0,0));
+        possibleDate.setOpeningDate(LocalDateTime.of(2022,11,29,0,0,0));
+
+        jpaQueryFactory.selectFrom(course)
+                .where(course.courseId.eq(87L))
+//                .orderBy(course.courseId.)
                 .limit(1)
-                .fetchOne();
-
-        course.update("수정된 코스", "관악구", "update.png", "10km",
-                "4시간", CourseGrade.고급, "서울숲", "성수역 노티스",
-                new PossibleDate());
-
-        log.info(course.toString());
+                .fetchOne()
+                .update("수정된 코스", "관악구", "9km",
+                        "2시간", CourseGrade.중급, "보라매공원 앞",
+                        "서울대입구", "boramae.png", "/upload",
+                        "updateCourse", possibleDate);
     }
 
     @Test
     public void deleteTest(){
-        long result = jpaQueryFactory.delete(course)
-                .where(course.courseId.eq(39L))
+        jpaQueryFactory.delete(course)
+                .where(course.courseFileName.isNull())
                 .execute();
-
-        log.info("삭제 수 : " + result);
     }
 }
