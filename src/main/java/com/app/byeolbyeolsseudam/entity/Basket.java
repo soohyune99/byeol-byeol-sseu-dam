@@ -30,7 +30,7 @@ public class Basket extends Period{
     }
 
     @Builder
-    public Basket(BasketDTO basketDTO) {
-        this.basketCount = basketDTO.getBasketCount();
+    public Basket(int basketCount) {
+        this.basketCount = basketCount;
     }
 }
