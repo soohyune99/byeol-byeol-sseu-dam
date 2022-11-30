@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.MypointDTO;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -28,8 +29,8 @@ public class Mypoint extends Period {
     }
 
     @Builder
-    public Mypoint(String mypointContent, int mypointInout) {
-        this.mypointContent = mypointContent;
-        this.mypointInout = mypointInout;
+    public Mypoint(MypointDTO mypointDTO) {
+        this.mypointContent = mypointDTO.getMypointContent();
+        this.mypointInout = mypointDTO.getMypointInout();
     }
 }

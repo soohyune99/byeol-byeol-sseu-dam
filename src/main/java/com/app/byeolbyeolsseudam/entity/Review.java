@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.ReviewDTO;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -44,11 +45,11 @@ public class Review extends Period {
         this.reviewFileUuid = reviewFileUuid;
     }
 
-    public void update(String reviewContent, double reviewStar, String reviewFileName, String reviewFilePath, String reviewFileUuid) {
-        this.reviewContent = reviewContent;
-        this.reviewStar = reviewStar;
-        this.reviewFileName = reviewFileName;
-        this.reviewFilePath = reviewFilePath;
-        this.reviewFileUuid = reviewFileUuid;
+    public void update(ReviewDTO reviewDTO) {
+        this.reviewContent = reviewDTO.getReviewContent();
+        this.reviewStar = reviewDTO.getReviewStar();
+        this.reviewFileName = reviewDTO.getReviewFileName();
+        this.reviewFilePath = reviewDTO.getReviewFilePath();
+        this.reviewFileUuid = reviewDTO.getReviewFileUuid();
     }
 }

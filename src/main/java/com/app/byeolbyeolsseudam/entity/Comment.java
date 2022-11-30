@@ -41,10 +41,10 @@ public class Comment extends Period {
         this.commentFileUuid = commentFileUuid;
     }
 
-    public void update(String commentContent, String commentFileName, String commentFilePath, String commentFileUuid) {
-        this.commentContent = commentContent;
-        this.commentFileName = commentFileName;
-        this.commentFilePath = commentFilePath;
-        this.commentFileUuid = commentFileUuid;
+    public void update(CommentDTO commentDTO) {
+        this.commentContent = commentDTO.getCommentContent();
+        this.commentFileName = commentDTO.getCommentFileName();
+        this.commentFilePath = commentDTO.getCommentFilePath();
+        this.commentFileUuid = commentDTO.getCommentFileUuid();
     }
 }

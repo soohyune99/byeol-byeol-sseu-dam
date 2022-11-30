@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.ProductDTO;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -53,16 +54,16 @@ public class Product extends Period {
         this.productFileProfileUuid = productFileProfileUuid;
     }
 
-    public void update(ProductCategory productCategory, String productName, int productPrice, int productCount, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid) {
-        this.productCategory = productCategory;
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCount = productCount;
-        this.productFileDetailName = productFileDetailName;
-        this.productFileDetailPath = productFileDetailPath;
-        this.productFileDetailUuid = productFileDetailUuid;
-        this.productFileProfileName = productFileProfileName;
-        this.productFileProfilePath = productFileProfilePath;
-        this.productFileProfileUuid = productFileProfileUuid;
+    public void update(ProductDTO productDTO) {
+        this.productCategory = productDTO.getProductCategory();
+        this.productName = productDTO.getProductName();
+        this.productPrice = productDTO.getProductPrice();
+        this.productCount = productDTO.getProductCount();
+        this.productFileDetailName = productDTO.getProductFileDetailName();
+        this.productFileDetailPath = productDTO.getProductFileDetailPath();
+        this.productFileDetailUuid = productDTO.getProductFileDetailUuid();
+        this.productFileProfileName = productDTO.getProductFileProfileName();
+        this.productFileProfilePath = productDTO.getProductFileProfilePath();
+        this.productFileProfileUuid = productDTO.getProductFileProfileUuid();
     }
 }

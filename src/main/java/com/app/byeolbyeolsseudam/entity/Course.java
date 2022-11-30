@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.CourseDTO;
 import com.app.byeolbyeolsseudam.embaddable.PossibleDate;
 import com.app.byeolbyeolsseudam.type.CourseGrade;
 import com.sun.istack.NotNull;
@@ -58,17 +59,18 @@ public class Course extends Period {
         this.possibleDate = possibleDate;
     }
 
-    public void update(String courseName, String courseArea, String courseDistance, String courseTime, CourseGrade courseGrade, String courseStart, String courseFinish, String courseFileName, String courseFilePath, String courseFileUuid, PossibleDate possibleDate) {
-        this.courseName = courseName;
-        this.courseArea = courseArea;
-        this.courseDistance = courseDistance;
-        this.courseTime = courseTime;
-        this.courseGrade = courseGrade;
-        this.courseStart = courseStart;
-        this.courseFinish = courseFinish;
-        this.courseFileName = courseFileName;
-        this.courseFilePath = courseFilePath;
-        this.courseFileUuid = courseFileUuid;
-        this.possibleDate = possibleDate;
+    public void update(CourseDTO courseDTO) {
+        this.courseName = courseDTO.getCourseName();
+        this.courseArea = courseDTO.getCourseArea();
+        this.courseDistance = courseDTO.getCourseDistance();
+        this.courseTime = courseDTO.getCourseTime();
+        this.courseGrade = courseDTO.getCourseGrade();
+        this.courseStart = courseDTO.getCourseStart();
+        this.courseFinish = courseDTO.getCourseFinish();
+        this.courseFileName = courseDTO.getCourseFileName();
+        this.courseFilePath = courseDTO.getCourseFilePath();
+        this.courseFileUuid = courseDTO.getCourseFileUuid();
+        this.possibleDate.setOpeningDate(courseDTO.getOpeningDate());
+        this.possibleDate.setClosingDate(courseDTO.getClosingDate());
     }
 }

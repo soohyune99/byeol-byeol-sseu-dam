@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.BoardDTO;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -38,10 +39,10 @@ public class Board extends Period{
         this.boardView = boardView;
     }
 
-    public void update(BoardCategory boardCategory, String boardTitle, String boardContent, int boardView){
-        this.boardCategory = boardCategory;
-        this.boardTitle = boardTitle;
-        this.boardContent = boardContent;
-        this.boardView = boardView;
+    public void update(BoardDTO boardDTO){
+        this.boardCategory = boardDTO.getBoardCategory();
+        this.boardTitle = boardDTO.getBoardTitle();
+        this.boardContent = boardDTO.getBoardContent();
+        this.boardView = boardDTO.getBoardView();
     }
 }
