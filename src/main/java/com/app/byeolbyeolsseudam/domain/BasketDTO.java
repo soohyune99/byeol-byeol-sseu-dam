@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class BasketDTO {
     private Long basketId;
     private int basketCount;
-    private String memberId;
+    private Long memberId;
     private Long productId;
     private int productPrice;
     private String productName;
@@ -30,7 +30,7 @@ public class BasketDTO {
     private String productFileProfileUuid;
 
     @QueryProjection
-    public BasketDTO(Long basketId, String memberId, Long productId, ProductCategory productCategory, String productName, int productPrice, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid) {
+    public BasketDTO(Long basketId, Long memberId, Long productId, ProductCategory productCategory, String productName, int productPrice, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid) {
         this.basketId = basketId;
         this.memberId = memberId;
         this.productId = productId;
