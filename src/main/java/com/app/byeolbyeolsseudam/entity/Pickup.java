@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.PickupDTO;
 import com.app.byeolbyeolsseudam.embaddable.Recyclable;
 import com.app.byeolbyeolsseudam.type.PickupStatus;
 import com.sun.istack.NotNull;
@@ -38,7 +39,7 @@ public class Pickup extends Period {
         this.pickupStatus = pickupStatus;
     }
 
-    public void update(PickupStatus pickupStatus) {
-        this.pickupStatus = pickupStatus;
+    public void update(PickupDTO pickupDTO) {
+        this.pickupStatus = pickupDTO.getPickupStatus();
     }
 }

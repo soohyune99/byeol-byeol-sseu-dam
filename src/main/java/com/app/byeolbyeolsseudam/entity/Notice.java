@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.NoticeDTO;
 import com.app.byeolbyeolsseudam.type.NoticeCategory;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -28,9 +29,9 @@ public class Notice extends Period {
         this.noticeCategory = noticeCategory;
     }
 
-    public void update(String noticeTitle, String noticeContent, NoticeCategory noticeCategory){
-        this.noticeTitle = noticeTitle;
-        this.noticeContent = noticeContent;
-        this.noticeCategory = noticeCategory;
+    public void update(NoticeDTO noticeDTO){
+        this.noticeTitle = noticeDTO.getNoticeTitle();
+        this.noticeContent = noticeDTO.getNoticeContent();
+        this.noticeCategory = noticeDTO.getNoticeCategory();
     }
 }

@@ -33,9 +33,9 @@ public class FileBoard extends Period {
         this.fileBoardUuid = fileBoardUuid;
     }
 
-    public void update(String fileBoardName, String fileBoardPath, String fileBoardUuid) {
-        this.fileBoardName = fileBoardName;
-        this.fileBoardPath = fileBoardPath;
-        this.fileBoardUuid = fileBoardUuid;
+    public void update(FileBoardDTO fileBoardDTO) {
+        this.fileBoardName = fileBoardDTO.getFileBoardName();
+        this.fileBoardPath = fileBoardDTO.getFileBoardPath();
+        this.fileBoardUuid = fileBoardDTO.getFileBoardUuid();
     }
 }

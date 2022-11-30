@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.SpotDTO;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -43,12 +44,12 @@ public class Spot extends Period {
         this.spotNumber = spotNumber;
     }
 
-    public void update(String spotName, String spotQrName, String spotQrPath, String spotQrUuid, String spotAddress, int spotNumber) {
-        this.spotName = spotName;
-        this.spotQrName = spotQrName;
-        this.spotQrPath = spotQrPath;
-        this.spotQrUuid = spotQrUuid;
-        this.spotAddress = spotAddress;
-        this.spotNumber = spotNumber;
+    public void update(SpotDTO spotDTO) {
+        this.spotName = spotDTO.getSpotName();
+        this.spotQrName = spotDTO.getSpotQrName();
+        this.spotQrPath = spotDTO.getSpotQrPath();
+        this.spotQrUuid = spotDTO.getSpotQrUuid();
+        this.spotAddress = spotDTO.getSpotAddress();
+        this.spotNumber = spotDTO.getSpotNumber();
     }
 }

@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.MemberDTO;
 import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.app.byeolbyeolsseudam.type.MemberLoginType;
 import com.sun.istack.NotNull;
@@ -47,16 +48,16 @@ public class Member extends Period {
         this.memberProfileUuid = memberProfileUuid;
     }
 
-    public void update(MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid) {
-        this.memberLoginType = memberLoginType;
-        this.memberCategory = memberCategory;
-        this.memberName = memberName;
-        this.memberPassword = memberPassword;
-        this.memberPhone = memberPhone;
-        this.memberEmail = memberEmail;
-        this.memberPoint = memberPoint;
-        this.memberProfileName = memberProfileName;
-        this.memberProfilePath = memberProfilePath;
-        this.memberProfileUuid = memberProfileUuid;
+    public void update(MemberDTO memberDTO){
+        this.memberLoginType = memberDTO.getMemberLoginType();
+        this.memberCategory = memberDTO.getMemberCategory();
+        this.memberName = memberDTO.getMemberName();
+        this.memberPassword = memberDTO.getMemberPassword();
+        this.memberPhone = memberDTO.getMemberPhone();
+        this.memberEmail = memberDTO.getMemberEmail();
+        this.memberPoint = memberDTO.getMemberPoint();
+        this.memberProfileName = memberDTO.getMemberProfileName();
+        this.memberProfilePath = memberDTO.getMemberProfilePath();
+        this.memberProfileUuid = memberDTO.getMemberProfileUuid();
     }
 }

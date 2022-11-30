@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.CourseFinishedDTO;
 import com.app.byeolbyeolsseudam.type.CourseFinishedStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -15,23 +16,9 @@ public class CourseFinished extends Period {
     private Long courseFinishedId;
     @NotNull
     private CourseFinishedStatus courseFinishedStatus;
-//    @NotNull
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Member member;
-//    @NotNull
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Course course;
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Mycourse mycourse;
-
-//    public void changeMember(Member member) {
-//        this.member = member;
-//    }
-//
-//    public void changeCourse(Course course){
-//        this.course = course;
-//    }
 
     public void changeMycourse(Mycourse mycourse){
         this.mycourse = mycourse;
@@ -42,7 +29,7 @@ public class CourseFinished extends Period {
         this.courseFinishedStatus = courseFinishedStatus;
     }
 
-    public void update(CourseFinishedStatus courseFinishedStatus){
-        this.courseFinishedStatus = courseFinishedStatus;
+    public void update(CourseFinishedDTO couseFinishedDTO){
+        this.courseFinishedStatus = couseFinishedDTO.getCourseFinishedStatus();
     }
 }

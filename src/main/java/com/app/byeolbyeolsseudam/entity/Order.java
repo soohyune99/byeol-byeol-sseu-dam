@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.OrderDTO;
 import com.app.byeolbyeolsseudam.type.OrderStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -34,7 +35,7 @@ public class Order extends Period {
         this.orderMessage = orderMessage;
     }
 
-    public void update(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+    public void update(OrderDTO orderDTO) {
+        this.orderStatus = orderDTO.getOrderStatus();
     }
 }

@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.BadgeDTO;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -32,11 +33,10 @@ public class Badge extends Period{
         this.badgeFileUuid = badgeFileUuid;
     }
 
-    public void update(String badgeName, String badgeFileName, String badgeFilePath, String badgeFileUuid){
-        this.badgeName = badgeName;
-        this.badgeFileName = badgeFileName;
-        this.badgeFilePath = badgeFilePath;
-        this.badgeFileUuid = badgeFileUuid;
-
+    public void update(BadgeDTO badgeDTO){
+        this.badgeName = badgeDTO.getBadgeName();
+        this.badgeFileName = badgeDTO.getBadgeFileName();
+        this.badgeFilePath = badgeDTO.getBadgeFilePath();
+        this.badgeFileUuid = badgeDTO.getBadgeFileUuid();
     }
 }

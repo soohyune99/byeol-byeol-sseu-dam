@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.BannerDTO;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -29,9 +30,9 @@ public class Banner extends Period{
         this.bannerUuid = bannerUuid;
     }
 
-    public void update(String bannerName, String bannerPath, String bannerUuid) {
-        this.bannerName = bannerName;
-        this.bannerPath = bannerPath;
-        this.bannerUuid = bannerUuid;
+    public void update(BannerDTO bannerDTO) {
+        this.bannerName = bannerDTO.getBannerName();
+        this.bannerPath = bannerDTO.getBannerPath();
+        this.bannerUuid = bannerDTO.getBannerUuid();
     }
 }
