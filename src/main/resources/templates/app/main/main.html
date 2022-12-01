@@ -59,6 +59,19 @@
     <header th:replace="/app/fix/headerLogin.html :: header"></header>
 
     <div id="app-body">
+    <!--배너 정보확인용 더미 코드. 추후에 bannerPath만 받아서 img태그 src에 전달 예정-->
+        <table>
+            <tbody>
+                <th:block th:each="banner:${banners}">
+                    <tr class="tBody" th:object="${banner}">
+                        <td th:text="*{bannerId}"></td>
+                        <td th:text="*{bannerName}"></td>
+                        <td th:text="*{bannerUuid}"></td>
+                        <td th:text="*{bannerPath}"></td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
         <div class="home" data-v-1346aca8="">
 
             <div class="observer-container" data-v-e0e63576="" data-v-1346aca8="">
