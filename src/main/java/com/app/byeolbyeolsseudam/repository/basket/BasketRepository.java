@@ -1,7 +1,6 @@
-package com.app.byeolbyeolsseudam.repository;
+package com.app.byeolbyeolsseudam.repository.basket;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
-import com.app.byeolbyeolsseudam.entity.Basket;
+import com.app.byeolbyeolsseudam.entity.basket.Basket;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BasketRepository extends JpaRepository<Basket, Long> {

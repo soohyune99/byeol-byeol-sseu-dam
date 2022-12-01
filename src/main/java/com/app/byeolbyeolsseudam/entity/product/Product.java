@@ -1,6 +1,8 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.product;
 
-import com.app.byeolbyeolsseudam.domain.ProductDTO;
+import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.review.Review;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
 import com.sun.istack.NotNull;
 import lombok.*;

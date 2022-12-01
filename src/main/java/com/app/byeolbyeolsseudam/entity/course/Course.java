@@ -1,13 +1,14 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.course;
 
-import com.app.byeolbyeolsseudam.domain.CourseDTO;
+import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.embaddable.PossibleDate;
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.spot.Spot;
 import com.app.byeolbyeolsseudam.type.CourseGrade;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity

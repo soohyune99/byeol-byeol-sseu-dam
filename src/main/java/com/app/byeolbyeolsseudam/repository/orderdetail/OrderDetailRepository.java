@@ -1,7 +1,6 @@
-package com.app.byeolbyeolsseudam.repository;
+package com.app.byeolbyeolsseudam.repository.orderdetail;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
-import com.app.byeolbyeolsseudam.entity.OrderDetail;
+import com.app.byeolbyeolsseudam.entity.orderdetail.OrderDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {

@@ -1,6 +1,8 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.basket;
 
-import com.app.byeolbyeolsseudam.domain.BasketDTO;
+import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.product.Product;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -10,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "TBL_BASKET")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Basket extends Period{
+public class Basket extends Period {
     @Id @GeneratedValue @NotNull
     private Long basketId;
     @NotNull

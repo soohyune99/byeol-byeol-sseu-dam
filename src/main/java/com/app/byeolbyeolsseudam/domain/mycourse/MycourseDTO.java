@@ -1,17 +1,9 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.mycourse;
 
-import com.app.byeolbyeolsseudam.entity.Course;
-import com.app.byeolbyeolsseudam.entity.Member;
-import com.app.byeolbyeolsseudam.entity.Mycourse;
-import com.app.byeolbyeolsseudam.entity.Spot;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import java.time.LocalDateTime;
 
 @Component
 @Data

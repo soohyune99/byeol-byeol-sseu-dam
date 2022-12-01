@@ -1,8 +1,8 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.course;
 
 import com.app.byeolbyeolsseudam.embaddable.PossibleDate;
-import com.app.byeolbyeolsseudam.entity.Course;
-import com.app.byeolbyeolsseudam.entity.Spot;
+import com.app.byeolbyeolsseudam.entity.course.Course;
+import com.app.byeolbyeolsseudam.entity.spot.Spot;
 import com.app.byeolbyeolsseudam.type.CourseGrade;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.program;
 
 import com.app.byeolbyeolsseudam.embaddable.PossibleDate;
-import com.app.byeolbyeolsseudam.entity.Program;
+import com.app.byeolbyeolsseudam.entity.program.Program;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;

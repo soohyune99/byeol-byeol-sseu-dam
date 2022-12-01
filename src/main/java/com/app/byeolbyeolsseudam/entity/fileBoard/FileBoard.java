@@ -1,6 +1,8 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.fileBoard;
 
-import com.app.byeolbyeolsseudam.domain.FileBoardDTO;
+import com.app.byeolbyeolsseudam.domain.fileBoard.FileBoardDTO;
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.board.Board;
 import com.sun.istack.NotNull;
 import lombok.*;
 

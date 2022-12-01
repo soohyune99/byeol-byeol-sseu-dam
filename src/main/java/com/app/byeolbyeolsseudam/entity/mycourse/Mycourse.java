@@ -1,5 +1,9 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.mycourse;
 
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.spot.Spot;
+import com.app.byeolbyeolsseudam.entity.course.Course;
+import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.sun.istack.NotNull;
 import lombok.*;
 

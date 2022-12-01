@@ -1,7 +1,6 @@
-package com.app.byeolbyeolsseudam.repository;
+package com.app.byeolbyeolsseudam.repository.program;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
-import com.app.byeolbyeolsseudam.entity.Program;
+import com.app.byeolbyeolsseudam.entity.program.Program;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProgramRepository extends JpaRepository<Program, Long> {

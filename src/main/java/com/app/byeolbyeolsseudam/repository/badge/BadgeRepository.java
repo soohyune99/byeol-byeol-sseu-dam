@@ -1,10 +1,7 @@
-package com.app.byeolbyeolsseudam.repository;
+package com.app.byeolbyeolsseudam.repository.badge;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
-import com.app.byeolbyeolsseudam.entity.Member;
+import com.app.byeolbyeolsseudam.entity.badge.Badge;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 public interface BadgeRepository extends JpaRepository<Badge, Long> {
 }

@@ -1,6 +1,7 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.badge;
 
-import com.app.byeolbyeolsseudam.domain.BadgeDTO;
+import com.app.byeolbyeolsseudam.domain.badge.BadgeDTO;
+import com.app.byeolbyeolsseudam.entity.Period;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 @Table(name = "TBL_BADGE")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Badge extends Period{
+public class Badge extends Period {
     @Id @GeneratedValue @NotNull
     private Long badgeId;
     @NotNull

@@ -1,8 +1,6 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.comment;
 
-import com.app.byeolbyeolsseudam.entity.Board;
-import com.app.byeolbyeolsseudam.entity.Comment;
-import com.app.byeolbyeolsseudam.entity.Member;
+import com.app.byeolbyeolsseudam.entity.comment.Comment;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;

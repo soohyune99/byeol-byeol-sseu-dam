@@ -1,7 +1,6 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.order;
 
-import com.app.byeolbyeolsseudam.entity.Member;
-import com.app.byeolbyeolsseudam.entity.Order;
+import com.app.byeolbyeolsseudam.entity.order.Order;
 import com.app.byeolbyeolsseudam.type.OrderStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;

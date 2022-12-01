@@ -1,6 +1,7 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.mypoint;
 
-import com.app.byeolbyeolsseudam.domain.MypointDTO;
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;

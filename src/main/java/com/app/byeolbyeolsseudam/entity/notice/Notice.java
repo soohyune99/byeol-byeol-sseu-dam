@@ -1,6 +1,7 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.notice;
 
-import com.app.byeolbyeolsseudam.domain.NoticeDTO;
+import com.app.byeolbyeolsseudam.domain.notice.NoticeDTO;
+import com.app.byeolbyeolsseudam.entity.Period;
 import com.app.byeolbyeolsseudam.type.NoticeCategory;
 import com.sun.istack.NotNull;
 import lombok.*;

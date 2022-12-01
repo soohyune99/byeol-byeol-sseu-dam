@@ -1,17 +1,11 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.orderdetail;
 
-import com.app.byeolbyeolsseudam.entity.Order;
-import com.app.byeolbyeolsseudam.entity.OrderDetail;
-import com.app.byeolbyeolsseudam.entity.Product;
+import com.app.byeolbyeolsseudam.entity.orderdetail.OrderDetail;
 import com.app.byeolbyeolsseudam.type.OrderStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import java.time.LocalDateTime;
 
 @Component
 @Data
