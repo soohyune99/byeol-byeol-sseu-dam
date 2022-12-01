@@ -1,9 +1,11 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.BasketDTO;
-import com.app.byeolbyeolsseudam.repository.BasketRepository;
-import com.app.byeolbyeolsseudam.repository.MemberRepository;
-import com.app.byeolbyeolsseudam.repository.ProductRepository;
+import com.app.byeolbyeolsseudam.domain.basket.BasketDTO;
+import com.app.byeolbyeolsseudam.entity.basket.Basket;
+import com.app.byeolbyeolsseudam.entity.basket.QBasket;
+import com.app.byeolbyeolsseudam.repository.basket.BasketRepository;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -16,9 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static com.app.byeolbyeolsseudam.entity.QBasket.basket;
-import static com.app.byeolbyeolsseudam.entity.QMember.member;
-import static com.app.byeolbyeolsseudam.entity.QProduct.product;
+import static com.app.byeolbyeolsseudam.entity.basket.QBasket.basket;
 
 
 @SpringBootTest
@@ -68,18 +68,6 @@ public class BasketTest {
             log.info("ProductName : " + findBasket.get().getProduct().getProductName());
         }
     }
-
-//    @Test
-//    public void queryUpdateTest(){
-//        jpaQueryFactory.selectFrom(basket)
-//                .where(basket.basketId.eq(8L))
-//                .orderBy(basket.basketId.desc())
-//                .limit(1)
-//                .fetchOne()
-//                .update(
-//                        jpaQueryFactory.selectFrom(member).limit(1).fetchOne(),
-//                        jpaQueryFactory.selectFrom(product).limit(1).fetchOne());
-//    }
 
     @Test
     public void queryDeleteTest(){

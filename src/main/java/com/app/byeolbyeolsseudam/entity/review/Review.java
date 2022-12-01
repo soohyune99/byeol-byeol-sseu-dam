@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TBL_REVIEW")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Review extends Period {
     @Id @GeneratedValue @NotNull
     private Long reviewId;
