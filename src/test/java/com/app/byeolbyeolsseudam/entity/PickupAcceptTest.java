@@ -1,12 +1,19 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.PickupAcceptDTO;
-import com.app.byeolbyeolsseudam.domain.PickupDTO;
+import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
+import com.app.byeolbyeolsseudam.domain.pickupAccept.PickupAcceptDTO;
 import com.app.byeolbyeolsseudam.embaddable.Recyclable;
-import com.app.byeolbyeolsseudam.repository.MemberRepository;
-import com.app.byeolbyeolsseudam.repository.PickupAcceptRepository;
-import com.app.byeolbyeolsseudam.repository.PickupRepository;
+import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
+import com.app.byeolbyeolsseudam.entity.pickup.QPickup;
+import com.app.byeolbyeolsseudam.entity.pickupAccept.PickupAccept;
+import com.app.byeolbyeolsseudam.entity.pickupAccept.QPickupAccept;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.repository.pickup.PickupRepository;
+import com.app.byeolbyeolsseudam.repository.pickupAccept.PickupAcceptCustomRepository;
+import com.app.byeolbyeolsseudam.repository.pickupAccept.PickupAcceptRepository;
 import com.app.byeolbyeolsseudam.type.PickupStatus;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,12 +21,19 @@ import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
+import static com.app.byeolbyeolsseudam.entity.pickup.QPickup.*;
+
+@Slf4j
 @SpringBootTest
 @Transactional
 @Rollback(false)
 public class PickupAcceptTest {
+    @Autowired
+    private JPAQueryFactory jpaQueryFactory;
+
     @Autowired
     private PickupAcceptRepository pickupAcceptRepository;
 
@@ -28,6 +42,9 @@ public class PickupAcceptTest {
 
     @Autowired
     private PickupRepository pickupRepository;
+
+    @Autowired
+    private PickupAcceptCustomRepository pickupAcceptCustomRepository;
 
     @Test
     public void saveTest(){
@@ -47,8 +64,8 @@ public class PickupAcceptTest {
 
         Pickup pickup = pickupDTO.toEntity();
 
+        pickup.changeMember(memberRepository.findById(1L).get());
         pickupRepository.save(pickup);
-        pickup.changeMember(memberRepository.findById(2L).get());
 
         PickupAccept pickupAccept2 = new PickupAccept();
         pickupAccept2.changeMember(memberRepository.findById(2L).get());
@@ -57,18 +74,71 @@ public class PickupAcceptTest {
 
     }
 
+    @Test
+    public void findTest(){
+        List<Pickup> pickups = jpaQueryFactory.selectFrom(pickup)
+                .where(pickup.pickupStatus.eq(PickupStatus.수거대기중))
+                .fetch();
 
-//    @Test
-//    public void updateTest(){
-//        Optional <Pickup> updatePickupAccept = pickupRepository.findById(1L);
-//
-//
-//        if (updatePickupAccept.isPresent()){
-//            updatePickupAccept.get().update(PickupStatus.수거완료);
-//        }
-//
-//
-//
-//   }
+        pickups.stream().map(Pickup::toString).forEach(log::info);
+
+    }
+
+    @Test
+    public void findTest2(){
+        jpaQueryFactory.selectFrom(pickup).where(pickup.pickupStatus.eq(PickupStatus.수거대기중))
+                .orderBy(pickup.pickupId.desc()).fetch()
+                .stream().map(Pickup::toString).forEach(log::info);
+
+    }
+
+
+    @Test
+    public void updateTest(){
+        jpaQueryFactory.update(pickup).set(pickup.pickupStatus, PickupStatus.수거중).where(QPickupAccept.pickupAccept.member.memberId.eq(2L)).execute();
+
+    }
+
+
+    @Test
+    public void updateTest2(){
+        jpaQueryFactory.update(QPickupAccept.pickupAccept).set(QPickupAccept.pickupAccept.pickup.pickupId, 3L)
+                .where(QPickupAccept.pickupAccept.pickupAcceptId.eq(12L)).execute();
+
+    }
+
+
+
+    @Test
+    public void deleteTest(){
+        Optional<PickupAccept> deletePickupAccept = pickupAcceptRepository.findById(1L);
+
+        if (deletePickupAccept.isPresent()){
+            pickupAcceptRepository.delete(deletePickupAccept.get());
+
+        }
+
+
+    }
+
+    @Test
+    public void deleteTest2(){
+        jpaQueryFactory.delete(pickup).where(pickup.pickupId.eq(6L)).execute();
+    }
+
+
+    @Test
+    public void findTest3(){
+        pickupAcceptCustomRepository.findAllByPickupStatus().stream().map(PickupDTO::toString).forEach(log::info);
+
+    }
+
+    @Test
+    public void findTest4(){
+        pickupAcceptCustomRepository.findAllByMyPickup(2L).stream().map(PickupDTO::toString).forEach(log::info);
+
+
+    }
+
 
 }

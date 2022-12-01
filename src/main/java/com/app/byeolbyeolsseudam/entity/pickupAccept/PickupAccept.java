@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TBL_PICKUP_ACCEPT")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PickupAccept extends Period {
     @Id @GeneratedValue @NotNull
     private Long pickupAcceptId;

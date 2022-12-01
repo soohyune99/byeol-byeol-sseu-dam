@@ -8,5 +8,7 @@ import java.util.List;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    public List<Member> findByMemberEmail(@Param("memberEmail") String memberEmail);
+    //    public List<Member> findByMemberEmail(@Param("memberEmail") String memberEmail);
+
+    public Member findByMemberEmail(@Param("memberEmail") String memberEmail);
 }
