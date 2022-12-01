@@ -2075,15 +2075,15 @@ a:focus, a:hover, a:active {
 #good_header{
     border-width: 0 0 1px 0;
     border-style: solid;
-    margin: 0 0 24px;
-    padding-bottom: 24px;
+    margin: 0 0 6px;
+    padding-bottom: 3px;
     line-height: normal;
-    border-color: rgba(100,100,100,0.1);
+    border-color: #0162564f;
 }
 
 
 #scroll{
-    height: 310px;
+    height: 340px;
     overflow-y: scroll;
     margin-top: 20px;
     margin-bottom: 15px;
@@ -2341,7 +2341,7 @@ a {
     backdrop-filter: blur(4px);
 }
 
-#black{
+.black{
     color: black;
 }
 
@@ -2415,3 +2415,47 @@ a {
 /* modal */
 /* modal */
 /* modal */
+
+
+
+
+
+/* 모집중 모집 완료 마감 신청예정 버튼*/
+
+.programStatusIcon {
+    margin-top: 8px;
+    width: 70px;
+    padding: 2px 8px;
+    font-family: Helvetica, Arial, Sans-Serif;
+    display: inline-block;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    vertical-align: middle;
+    text-rendering: optimizeLegibility;
+}
+/* 모집중 */
+.programStatusIcon.blueIcon {
+    color: #009ef7;
+    background: #f1faff;
+    border: 1px solid #f1faff;
+}
+/* 모집 예정 */
+.programStatusIcon.greenIcon {
+    color: #00a08e;
+    background: rgba(214,243,239,0.71);
+    border: 1px solid rgba(214,243,239,0.71);
+}
+/* 모집 완료 */
+.programStatusIcon.redIcon {
+    color: #f1416c;
+    background: #fff5f8;
+    border: 1px solid #fff5f8;
+}
+
+/* 마감 */
+.programStatusIcon.grayIcon {
+    color: #656565;
+    background: #dcdcdc;
+    border: 1px solid #dcdcdc;
+}

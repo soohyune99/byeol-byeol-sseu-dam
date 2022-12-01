@@ -1,10 +1,11 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.MemberDTO;
-import com.app.byeolbyeolsseudam.domain.PickupDTO;
-import com.app.byeolbyeolsseudam.embaddable.Recyclable;
-import com.app.byeolbyeolsseudam.repository.MemberRepository;
-import com.app.byeolbyeolsseudam.repository.PickupRepository;
+import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
+import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
+import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.repository.pickup.PickupRepository;
 import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.app.byeolbyeolsseudam.type.MemberLoginType;
 import com.app.byeolbyeolsseudam.type.PickupStatus;
@@ -60,7 +61,7 @@ public class PickupTest {
         pickupDTO.setPickupAddress("서울특별시 역삼역");
         pickupDTO.setPickupMessage("오후12시 이후 방문");
         pickupDTO.setPickupStatus(PickupStatus.수거대기중);
-        pickupDTO.setMemberId(1L);
+        pickupDTO.setMemberId(2L);
 
         Pickup pickup = pickupDTO.toEntity();
         pickup.changeMember(memberRepository.findById(pickupDTO.getMemberId()).get());
@@ -75,11 +76,11 @@ public class PickupTest {
         }
     }
 
-    @Test
-    public void updateTest(){
-        Pickup findPickup = pickupRepository.findById(5L).get();
-        findPickup.update(PickupStatus.수거완료);
-    }
+//    @Test
+//    public void updateTest(){
+//        Pickup findPickup = pickupRepository.findById(5L).get();
+//        findPickup.update(PickupStatus.수거완료);
+//    }
 
     @Test
     public void deleteTest(){
