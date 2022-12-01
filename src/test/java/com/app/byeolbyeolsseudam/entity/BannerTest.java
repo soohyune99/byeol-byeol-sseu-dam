@@ -1,7 +1,18 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.BannerDTO;
-import com.app.byeolbyeolsseudam.repository.BannerRepository;
+import com.app.byeolbyeolsseudam.domain.banner.BannerDTO;
+import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
+import com.app.byeolbyeolsseudam.domain.orderdetail.OrderDetailDTO;
+import com.app.byeolbyeolsseudam.entity.banner.Banner;
+import com.app.byeolbyeolsseudam.repository.*;
+import com.app.byeolbyeolsseudam.repository.banner.BannerRepository;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.repository.order.OrderRepository;
+import com.app.byeolbyeolsseudam.repository.orderdetail.OrderDetailRepository;
+import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
+import com.app.byeolbyeolsseudam.service.main.BannerService;
+import com.app.byeolbyeolsseudam.type.MemberCategory;
+import com.app.byeolbyeolsseudam.type.MemberLoginType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -15,6 +26,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+
+
 @SpringBootTest
 @Slf4j
 @Transactional
@@ -22,6 +35,18 @@ import java.util.UUID;
 public class BannerTest {
     @Autowired
     private BannerRepository bannerRepository;
+
+    @Autowired
+    private MemberRepository memberRepository;
+
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+    @Autowired
+    private OrderRepository orderRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private BannerService bannerService;
 
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
@@ -66,8 +91,13 @@ public class BannerTest {
     @Test
     public void updateTest(){
         UUID uuid = UUID.randomUUID();
+        BannerDTO bannerDTO = new BannerDTO();
 
-        bannerRepository.findAll().get(0).update(uuid.toString() + "byeolbyeol.png", "C://upload", uuid.toString());
+        bannerDTO.setBannerUuid(uuid.toString());
+        bannerDTO.setBannerName(uuid.toString() + "ssedam.png");
+        bannerDTO.setBannerPath("C://upload");
+
+        bannerRepository.findAll().get(5).update(bannerDTO);
     }
 
 
@@ -75,6 +105,100 @@ public class BannerTest {
 //    public void deleteTest(){
 //        bannerRepository.deleteAll();
 //    }
+
+
+
+    @Test
+    public void memberSaveTest(){
+        MemberDTO memberDTO = new MemberDTO();
+
+        memberDTO.setMemberLoginType(MemberLoginType.일반);
+        memberDTO.setMemberCategory(MemberCategory.일반회원);
+        memberDTO.setMemberName("정재훈");
+        memberDTO.setMemberEmail("orijung93@gmail.com");
+        memberDTO.setMemberPassword("1111");
+        memberDTO.setMemberAddress("서울");
+        memberDTO.setMemberPhone("01011111111");
+
+        memberRepository.save(memberDTO.toEntity());
+    }
+
+//    @Test
+//    public void orderDetailSaveTest(){
+//        OrderDetailDTO orderDetail1 = new OrderDetailDTO();
+//        OrderDetailDTO orderDetail2 = new OrderDetailDTO();
+//        OrderDetailDTO orderDetail3 = new OrderDetailDTO();
+//
+//        orderDetail1.setOrderDetailCount(5);
+//        com.app.byeolbyeolsseudam.entity.OrderDetail orderDetailEntity = orderDetail1.toEntity();
+//        orderDetailEntity.changeOrder(orderRepository.findById(6L).get());
+//        orderDetailEntity.changeProduct(productRepository.findById(3L).get());
+//        orderDetailRepository.save(orderDetailEntity);
+//
+//        orderDetail2.setOrderDetailCount(1);
+//        com.app.byeolbyeolsseudam.entity.OrderDetail orderDetailEntity2 = orderDetail2.toEntity();
+//        orderDetailEntity2.changeOrder(orderRepository.findById(6L).get());
+//        orderDetailEntity2.changeProduct(productRepository.findById(5L).get());
+//        orderDetailRepository.save(orderDetailEntity2);
+//
+//        orderDetail3.setOrderDetailCount(2);
+//        com.app.byeolbyeolsseudam.entity.OrderDetail orderDetailEntity3 = orderDetail3.toEntity();
+//        orderDetailEntity3.changeOrder(orderRepository.findById(6L).get());
+//        orderDetailEntity3.changeProduct(productRepository.findById(4L).get());
+//        orderDetailRepository.save(orderDetailEntity3);
+//    }
+
+//    @Test
+//    public void orderFindTest(){
+//        List<Order> orders = orderRepository.findAll();
+//
+//        for (int i = 0; i < orders.size(); i++) {
+//            log.info(
+//                    "orderId: " + orders.get(i).getOrderId()
+//                            + "orderCreatedDate: " + orders.get(i).getCreatedDate()
+//                            + "memberId: " + orders.get(i).getMember().getMemberName()
+//                            + "orderStatus" + orders.get(i).getOrderStatus()
+//            );
+//        }
+//    }
+//
+//    @Test
+//    public void orderDetailFindTest(){
+//        Optional<Order> order = orderRepository.findById(6L);
+//
+//
+//        log.info("orderId: " + order.get().getOrderId()
+//                + "orderCreatedDate: " + order.get().getCreatedDate()
+//                + "memberId: " + order.get().getMember().getMemberName()
+//                + "orderStatus: " + order.get().getOrderStatus()
+//                + "orderStatus" + order.get().getOrderStatus()
+//                + "orderMessage: " + order.get().getOrderMessage()
+//        );
+//
+//        List<com.app.byeolbyeolsseudam.entity.OrderDetail> orderDetails = jpaQueryFactory.selectFrom(orderDetail)
+//                .where(orderDetail.order.orderId.eq(6L))
+//                .fetch();
+//
+//        for (int i = 0; i < 3; i++){
+//
+//            log.info(
+//                    "productCategory: " + orderDetails.get(i).getProduct().getProductCategory()
+//                    + "productName" + orderDetails.get(i).getProduct().getProductName()
+//                    + "orderDetailCount" + orderDetails.get(i).getOrderDetailCount()
+//                    + "productPrice" + orderDetails.get(i).getProduct().getProductPrice()
+//            );
+//
+//        }
+//    }
+
+    @Test
+    public void BannerServiceTest(){
+        List<BannerDTO> bannerDTOList = bannerService.showList();
+
+        for (int i = 0; i < bannerDTOList.size(); i++) {
+            log.info("bannerName: " + bannerDTOList.get(i).getBannerName() + "bannerPath: " + bannerDTOList.get(i).getBannerPath() + "bannerUUID: " + bannerDTOList.get(i).getBannerUuid());
+        }
+    }
 
 
 }
