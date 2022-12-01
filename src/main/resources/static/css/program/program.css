@@ -714,3 +714,41 @@ section[data-v-2ee8caa0] {
         flex: 0 0 33.33%;
     }
 }
+
+/* 모집중 모집 완료 마감 신청예정 버튼*/
+
+.programStatusIcon {
+    width: 75px;
+    padding: 2px 8px;
+    font-family: Helvetica, Arial, Sans-Serif;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
+    text-rendering: optimizeLegibility;
+}
+/* 모집중 */
+.programStatusIcon.blueIcon {
+    color: #009ef7;
+    background: #f1faff;
+    border: 1px solid #f1faff;
+}
+/* 모집 예정 */
+.programStatusIcon.greenIcon {
+    color: #00a08e;
+    background: rgba(229, 245, 242, 0.71);
+    border: 1px solid rgba(229, 245, 242, 0.71);
+}
+/* 모집 완료 */
+.programStatusIcon.redIcon {
+    color: #f1416c;
+    background: #ffe8ee;
+    border: 1px solid #ffe8ee;
+}
+
+/* 마감 */
+.programStatusIcon.grayIcon {
+    color: #656565;
+    background: rgba(220, 220, 220, 0.77);
+    border: 1px solid rgba(220, 220, 220, 0);
+}
