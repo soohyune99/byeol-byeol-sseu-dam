@@ -1,6 +1,8 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.spot;
 
-import com.app.byeolbyeolsseudam.domain.SpotDTO;
+import com.app.byeolbyeolsseudam.domain.spot.SpotDTO;
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.course.Course;
 import com.sun.istack.NotNull;
 import lombok.*;
 

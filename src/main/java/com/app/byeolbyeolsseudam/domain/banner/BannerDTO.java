@@ -1,12 +1,10 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.banner;
 
-import com.app.byeolbyeolsseudam.entity.Banner;
+import com.app.byeolbyeolsseudam.entity.banner.Banner;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 @Component
 @Data

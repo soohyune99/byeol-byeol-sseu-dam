@@ -1,8 +1,6 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.courseFinished;
 
-import com.app.byeolbyeolsseudam.entity.Course;
-import com.app.byeolbyeolsseudam.entity.CourseFinished;
-import com.app.byeolbyeolsseudam.entity.Member;
+import com.app.byeolbyeolsseudam.entity.courseFinished.CourseFinished;
 import com.app.byeolbyeolsseudam.type.CourseFinishedStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;

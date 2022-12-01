@@ -1,5 +1,8 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.orderdetail;
 
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.product.Product;
+import com.app.byeolbyeolsseudam.entity.order.Order;
 import com.sun.istack.NotNull;
 import lombok.*;
 

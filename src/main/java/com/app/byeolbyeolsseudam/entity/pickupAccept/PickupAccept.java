@@ -1,8 +1,10 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.pickupAccept;
 
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

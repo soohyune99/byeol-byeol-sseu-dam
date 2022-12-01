@@ -1,7 +1,6 @@
-package com.app.byeolbyeolsseudam.repository;
+package com.app.byeolbyeolsseudam.repository.board;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
-import com.app.byeolbyeolsseudam.entity.Board;
+import com.app.byeolbyeolsseudam.entity.board.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {

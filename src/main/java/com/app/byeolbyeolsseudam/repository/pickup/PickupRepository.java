@@ -1,11 +1,7 @@
-package com.app.byeolbyeolsseudam.repository;
+package com.app.byeolbyeolsseudam.repository.pickup;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
-import com.app.byeolbyeolsseudam.entity.Pickup;
+import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 public interface PickupRepository extends JpaRepository<Pickup, Long> {
 

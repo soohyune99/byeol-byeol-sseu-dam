@@ -1,8 +1,5 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.mybadge;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
-import com.app.byeolbyeolsseudam.entity.Member;
-import com.app.byeolbyeolsseudam.entity.Mybadge;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;

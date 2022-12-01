@@ -1,6 +1,7 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.member;
 
-import com.app.byeolbyeolsseudam.domain.MemberDTO;
+import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
+import com.app.byeolbyeolsseudam.entity.Period;
 import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.app.byeolbyeolsseudam.type.MemberLoginType;
 import com.sun.istack.NotNull;

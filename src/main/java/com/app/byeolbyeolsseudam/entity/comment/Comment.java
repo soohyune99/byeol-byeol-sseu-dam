@@ -1,6 +1,9 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.comment;
 
-import com.app.byeolbyeolsseudam.domain.CommentDTO;
+import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
+import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.board.Board;
 import com.sun.istack.NotNull;
 import lombok.*;
 

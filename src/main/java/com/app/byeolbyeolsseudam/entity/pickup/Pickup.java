@@ -1,7 +1,9 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.pickup;
 
-import com.app.byeolbyeolsseudam.domain.PickupDTO;
+import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
 import com.app.byeolbyeolsseudam.embaddable.Recyclable;
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.type.PickupStatus;
 import com.sun.istack.NotNull;
 import lombok.*;

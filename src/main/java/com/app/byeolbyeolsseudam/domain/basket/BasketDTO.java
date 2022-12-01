@@ -1,15 +1,11 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.basket;
 
-import com.app.byeolbyeolsseudam.entity.Basket;
-import com.app.byeolbyeolsseudam.entity.Member;
-import com.app.byeolbyeolsseudam.entity.Product;
+import com.app.byeolbyeolsseudam.entity.basket.Basket;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 @Component
 @Data

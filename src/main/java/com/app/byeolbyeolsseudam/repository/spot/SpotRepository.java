@@ -1,7 +1,6 @@
-package com.app.byeolbyeolsseudam.repository;
+package com.app.byeolbyeolsseudam.repository.spot;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
-import com.app.byeolbyeolsseudam.entity.Spot;
+import com.app.byeolbyeolsseudam.entity.spot.Spot;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SpotRepository extends JpaRepository<Spot, Long> {

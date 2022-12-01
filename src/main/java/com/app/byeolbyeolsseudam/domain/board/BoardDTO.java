@@ -1,9 +1,8 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.board;
 
-import com.app.byeolbyeolsseudam.entity.Board;
-import com.app.byeolbyeolsseudam.entity.Member;
+import com.app.byeolbyeolsseudam.domain.fileBoard.FileBoardDTO;
+import com.app.byeolbyeolsseudam.entity.board.Board;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
-import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;

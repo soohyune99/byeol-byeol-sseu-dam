@@ -1,14 +1,12 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.notice;
 
-import com.app.byeolbyeolsseudam.entity.Notice;
+import com.app.byeolbyeolsseudam.entity.notice.Notice;
 import com.app.byeolbyeolsseudam.type.NoticeCategory;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 
 @Component

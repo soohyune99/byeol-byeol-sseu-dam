@@ -1,9 +1,8 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.product;
 
-import com.app.byeolbyeolsseudam.entity.Product;
-import com.app.byeolbyeolsseudam.entity.Review;
+import com.app.byeolbyeolsseudam.domain.review.ReviewDTO;
+import com.app.byeolbyeolsseudam.entity.product.Product;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
-import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;

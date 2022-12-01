@@ -1,6 +1,8 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.order;
 
-import com.app.byeolbyeolsseudam.domain.OrderDTO;
+import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.type.OrderStatus;
 import com.sun.istack.NotNull;
 import lombok.*;

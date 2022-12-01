@@ -1,7 +1,6 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.fileBoard;
 
-import com.app.byeolbyeolsseudam.entity.Board;
-import com.app.byeolbyeolsseudam.entity.FileBoard;
+import com.app.byeolbyeolsseudam.entity.fileBoard.FileBoard;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;

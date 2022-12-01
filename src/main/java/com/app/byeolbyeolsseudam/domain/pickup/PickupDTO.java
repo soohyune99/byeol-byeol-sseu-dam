@@ -1,8 +1,7 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.pickup;
 
 import com.app.byeolbyeolsseudam.embaddable.Recyclable;
-import com.app.byeolbyeolsseudam.entity.Member;
-import com.app.byeolbyeolsseudam.entity.Pickup;
+import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
 import com.app.byeolbyeolsseudam.type.PickupStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;

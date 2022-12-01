@@ -1,6 +1,8 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.courseFinished;
 
-import com.app.byeolbyeolsseudam.domain.CourseFinishedDTO;
+import com.app.byeolbyeolsseudam.domain.courseFinished.CourseFinishedDTO;
+import com.app.byeolbyeolsseudam.entity.mycourse.Mycourse;
+import com.app.byeolbyeolsseudam.entity.Period;
 import com.app.byeolbyeolsseudam.type.CourseFinishedStatus;
 import com.sun.istack.NotNull;
 import lombok.*;

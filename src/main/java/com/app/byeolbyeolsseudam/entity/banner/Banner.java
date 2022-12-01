@@ -1,6 +1,7 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.banner;
 
-import com.app.byeolbyeolsseudam.domain.BannerDTO;
+import com.app.byeolbyeolsseudam.domain.banner.BannerDTO;
+import com.app.byeolbyeolsseudam.entity.Period;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 @Table(name = "TBL_BANNER")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Banner extends Period{
+public class Banner extends Period {
     @Id @GeneratedValue @NotNull
     private Long bannerId;
     @NotNull

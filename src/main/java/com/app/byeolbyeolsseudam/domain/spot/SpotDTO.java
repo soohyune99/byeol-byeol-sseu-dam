@@ -1,7 +1,7 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.spot;
 
-import com.app.byeolbyeolsseudam.entity.Course;
-import com.app.byeolbyeolsseudam.entity.Spot;
+import com.app.byeolbyeolsseudam.entity.course.Course;
+import com.app.byeolbyeolsseudam.entity.spot.Spot;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;

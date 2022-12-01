@@ -1,14 +1,10 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.mypoint;
 
-import com.app.byeolbyeolsseudam.entity.Member;
-import com.app.byeolbyeolsseudam.entity.Mypoint;
+import com.app.byeolbyeolsseudam.entity.mypoint.Mypoint;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 
 @Component
 @Data

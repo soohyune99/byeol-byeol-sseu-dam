@@ -1,7 +1,6 @@
-package com.app.byeolbyeolsseudam.repository;
+package com.app.byeolbyeolsseudam.repository.product;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
-import com.app.byeolbyeolsseudam.entity.Product;
+import com.app.byeolbyeolsseudam.entity.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {

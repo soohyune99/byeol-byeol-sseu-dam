@@ -1,5 +1,8 @@
-package com.app.byeolbyeolsseudam.entity;
+package com.app.byeolbyeolsseudam.entity.mybadge;
 
+import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.badge.Badge;
+import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.sun.istack.NotNull;
 import lombok.*;
 

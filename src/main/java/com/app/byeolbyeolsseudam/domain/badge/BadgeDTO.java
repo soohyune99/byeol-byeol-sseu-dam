@@ -1,12 +1,10 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.badge;
 
-import com.app.byeolbyeolsseudam.entity.Badge;
+import com.app.byeolbyeolsseudam.entity.badge.Badge;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 @Component
 @Data

@@ -1,16 +1,11 @@
-package com.app.byeolbyeolsseudam.domain;
+package com.app.byeolbyeolsseudam.domain.myprogram;
 
-import com.app.byeolbyeolsseudam.entity.Member;
-import com.app.byeolbyeolsseudam.entity.Myprogram;
-import com.app.byeolbyeolsseudam.entity.Program;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Component
