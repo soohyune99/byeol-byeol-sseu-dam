@@ -1,11 +1,10 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.OrderDetailDTO;
-import com.app.byeolbyeolsseudam.repository.MemberRepository;
-import com.app.byeolbyeolsseudam.repository.OrderDetailRepository;
-import com.app.byeolbyeolsseudam.repository.OrderRepository;
-import com.app.byeolbyeolsseudam.repository.ProductRepository;
-import com.app.byeolbyeolsseudam.type.OrderStatus;
+import com.app.byeolbyeolsseudam.domain.orderdetail.OrderDetailDTO;
+import com.app.byeolbyeolsseudam.entity.orderdetail.OrderDetail;
+import com.app.byeolbyeolsseudam.repository.order.OrderRepository;
+import com.app.byeolbyeolsseudam.repository.orderdetail.OrderDetailRepository;
+import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -17,10 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static com.app.byeolbyeolsseudam.entity.QBasket.basket;
-import static com.app.byeolbyeolsseudam.entity.QOrder.order;
-import static com.app.byeolbyeolsseudam.entity.QOrderDetail.orderDetail;
-import static com.app.byeolbyeolsseudam.entity.QProduct.product;
+import static com.app.byeolbyeolsseudam.entity.orderdetail.QOrderDetail.orderDetail;
+
 
 @SpringBootTest
 @Slf4j

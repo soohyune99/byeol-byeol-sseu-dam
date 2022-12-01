@@ -1,9 +1,10 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.ProductDTO;
-import com.app.byeolbyeolsseudam.repository.ProductRepository;
-import com.app.byeolbyeolsseudam.type.NoticeCategory;
+import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
+import com.app.byeolbyeolsseudam.entity.product.Product;
+import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+
+import static com.app.byeolbyeolsseudam.entity.product.QProduct.product;
+
 
 @SpringBootTest
 @Slf4j
@@ -22,6 +27,10 @@ public class ProductTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private JPAQueryFactory jpaQueryFactory;
+
 
     @Test
     public void saveTest(){
@@ -79,16 +88,17 @@ public class ProductTest {
         }
     }
 
+    // 리스트 조회
     @Test
-    public void updateTest(){
-        Optional<Product> updateProduct = productRepository.findById(1L);
+    public void searchTest(){
+        List<Product> products =  jpaQueryFactory.selectFrom(product)
+                .where(product.productCategory.eq(ProductCategory.생활))
+                .orderBy(product.productId.desc())
+                .limit(1)
+                .fetch();
 
-        if(updateProduct.isPresent()){
-            updateProduct.get().update(ProductCategory.반려동물,
-                    "개껌", 25000, 100, "file.png",
-                    "pathchange", "uuidchange", "profile",
-                    "profilepath", "profileuuidchange");
-        }
+        log.info("productName : " + products.get(0).getProductName());
+        log.info("productPrice :" + products.get(0).getProductPrice());
     }
 
     @Test

@@ -1,9 +1,9 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.MemberDTO;
-import com.app.byeolbyeolsseudam.domain.OrderDTO;
-import com.app.byeolbyeolsseudam.repository.MemberRepository;
-import com.app.byeolbyeolsseudam.repository.OrderRepository;
+import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
+import com.app.byeolbyeolsseudam.entity.order.Order;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.repository.order.OrderRepository;
 import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.app.byeolbyeolsseudam.type.MemberLoginType;
 import com.app.byeolbyeolsseudam.type.OrderStatus;
