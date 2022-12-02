@@ -2,12 +2,13 @@ package com.app.byeolbyeolsseudam.repository.program;
 
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.domain.program.QProgramDTO;
-import com.app.byeolbyeolsseudam.entity.program.QProgram;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+import static com.app.byeolbyeolsseudam.entity.program.QProgram.program;
 
 @Repository
 @RequiredArgsConstructor
@@ -16,27 +17,52 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
 
     /* 키워드를 입력시 검색 결과 List */
     @Override
-    public List<ProgramDTO> findAllSearch(String keyword) {
+    public List<ProgramDTO> searchProgram(String keyword) {
         return jpaQueryFactory.select(new QProgramDTO(
-                QProgram.program.programId,
-                QProgram.program.programName,
-                QProgram.program.programPlace,
-                QProgram.program.possibleDate.openingDate,
-                QProgram.program.possibleDate.closingDate,
-                QProgram.program.programTime,
-                QProgram.program.programDate,
-                QProgram.program.programContent,
-                QProgram.program.programLimitCount,
-                QProgram.program.programStatus,
-                QProgram.program.programFileProfileName,
-                QProgram.program.programFileProfilePath,
-                QProgram.program.programFileProfileUuid,
-                QProgram.program.programFileDetailName,
-                QProgram.program.programFileDetailPath,
-                QProgram.program.programFileDetailUuid,
-                QProgram.program.createdDate
-        )).from(QProgram.program)
-                .where(QProgram.program.programName.contains(keyword))
+                program.programId,
+                program.programName,
+                program.programPlace,
+                program.possibleDate.openingDate,
+                program.possibleDate.closingDate,
+                program.programTime,
+                program.programDate,
+                program.programContent,
+                program.programLimitCount,
+                program.programStatus,
+                program.programFileProfileName,
+                program.programFileProfilePath,
+                program.programFileProfileUuid,
+                program.programFileDetailName,
+                program.programFileDetailPath,
+                program.programFileDetailUuid,
+                program.createdDate
+        )).from(program)
+                .where(program.programName.contains(keyword))
+                .fetch();
+    }
+
+    /* 전체 program List _ Ajax */
+    @Override
+    public List<ProgramDTO> programAllList() {
+        return jpaQueryFactory.select(new QProgramDTO(
+                program.programId,
+                program.programName,
+                program.programPlace,
+                program.possibleDate.openingDate,
+                program.possibleDate.closingDate,
+                program.programTime,
+                program.programDate,
+                program.programContent,
+                program.programLimitCount,
+                program.programStatus,
+                program.programFileProfileName,
+                program.programFileProfilePath,
+                program.programFileProfileUuid,
+                program.programFileDetailName,
+                program.programFileDetailPath,
+                program.programFileDetailUuid,
+                program.createdDate
+        )).from(program)
                 .fetch();
     }
 }

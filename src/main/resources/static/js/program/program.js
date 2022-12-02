@@ -47,7 +47,9 @@ function searchList(theForm) {
         alert("검색어를 입력하세요");
         return false;
     }
-    theForm.submit();
+    // theForm.submit();
+    alert($("#__BVID__183").val());
+    location.href = "/program/list/search" + "?keyword=" + $("#__BVID__183").val();
 }
 
 /* 검색창 추천 검색어 클릭시 검색 칸으로 입력 */
