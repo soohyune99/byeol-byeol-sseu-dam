@@ -67,6 +67,8 @@ public class PickupAcceptTest {
         pickup.changeMember(memberRepository.findById(1L).get());
         pickupRepository.save(pickup);
 
+
+
         PickupAccept pickupAccept2 = new PickupAccept();
         pickupAccept2.changeMember(memberRepository.findById(2L).get());
         pickupAccept2.changePickup(pickup);
@@ -95,7 +97,8 @@ public class PickupAcceptTest {
 
     @Test
     public void updateTest(){
-        jpaQueryFactory.update(pickup).set(pickup.pickupStatus, PickupStatus.수거중).where(QPickupAccept.pickupAccept.member.memberId.eq(2L)).execute();
+        jpaQueryFactory.update(pickup).set(pickup.pickupStatus, PickupStatus.수거중)
+                .where(QPickupAccept.pickupAccept.member.memberId.eq(2L)).execute();
 
     }
 

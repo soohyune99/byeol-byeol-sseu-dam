@@ -30,7 +30,7 @@
             <div data-v-55fec228="">
                 <h1 data-v-55fec228="">숨고에 오신 것을 환영합니다</h1>
                 <div data-v-55fec228="" class="card">
-                    <form th:method="post" th:action="@{/app/join/joinNormal}" th:object="${memberDTO}">
+                    <form th:method="post" th:action="@{/join/join}" th:object="${memberDTO}">
                         <div data-v-79992f5d="" data-v-55fec228="" no-gutters="" data-testid="signup-form"
                              class="form-row signup-form">
                             <div data-v-79992f5d="" class="col-12">
@@ -107,7 +107,7 @@
                                     <div>
                                         <div data-v-79992f5d="" role="group" class="input-group float-button-right">
                                             <input data-v-79992f5d="" type="password"
-                                                   th:field = "*{memberPassword2}"
+                                                   id="pwChecking"
                                                    placeholder="영문+숫자 조합 8자리 이상 입력해주세요" autocomplete="new-password"
                                                    class="text-input form-control is-invalid"
                                                    data-testid="signup-password" x-autocompletetype="off" autocorrect="off"

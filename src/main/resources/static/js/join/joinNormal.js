@@ -2,9 +2,9 @@
 let emailFilter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 let pwFilter = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*\W).{8,20}$/;
 
-let $inputName = $("#__BVID__75");
-let $inputEmail = $("#__BVID__77");
-let $inputPw = $("#__BVID__79");
+let $inputName = $("#memberName");
+let $inputEmail = $("#memberEmail");
+let $inputPw = $("#memberPassword");
 let $pwChecking = $("#pwChecking");
 let $btn = $(".btn-primary");
 let $agree = $("#agree-terms-checkbox-1667907552644");
@@ -47,7 +47,7 @@ function idCheck(){
     }
     ;
 }
-//비밀번호 유효성 검사
+//비밀번호 유효성 검사랑해요
 function pwCheck(){
     if (!$inputPw.val()) {
         $inputPw.parent().siblings(".invalid-feedback").text("비밀번호를 입력해주세요.");
