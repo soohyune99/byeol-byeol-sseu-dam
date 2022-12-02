@@ -1,10 +1,13 @@
 package com.app.byeolbyeolsseudam.domain.board;
 
+import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
 import com.app.byeolbyeolsseudam.domain.fileBoard.FileBoardDTO;
 import com.app.byeolbyeolsseudam.entity.board.Board;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -27,8 +30,10 @@ public class BoardDTO {
     private LocalDateTime createdDate;
 
     private List<FileBoardDTO> files;
+    private List<CommentDTO> comments;
 
-    public BoardDTO(Long boardId, BoardCategory boardCategory, String boardTitle, String boardContent, int boardView, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, LocalDateTime createdDate, List<FileBoardDTO> files) {
+    @QueryProjection
+    public BoardDTO(Long boardId, BoardCategory boardCategory, String boardTitle, String boardContent, int boardView, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, LocalDateTime createdDate) {
         this.boardId = boardId;
         this.boardCategory = boardCategory;
         this.boardTitle = boardTitle;
@@ -40,7 +45,6 @@ public class BoardDTO {
         this.memberProfilePath = memberProfilePath;
         this.memberProfileUuid = memberProfileUuid;
         this.createdDate = createdDate;
-        this.files = files;
     }
 
     public Board toEntity(){

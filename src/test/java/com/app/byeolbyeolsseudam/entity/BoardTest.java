@@ -1,9 +1,11 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.BoardDTO;
-import com.app.byeolbyeolsseudam.domain.MemberDTO;
-import com.app.byeolbyeolsseudam.repository.BoardRepository;
-import com.app.byeolbyeolsseudam.repository.MemberRepository;
+import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
+import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
+import com.app.byeolbyeolsseudam.entity.board.Board;
+import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.repository.board.BoardRepository;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
 import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.app.byeolbyeolsseudam.type.MemberLoginType;
@@ -29,7 +31,6 @@ public class BoardTest {
 
     @Test
     public void saveTest(){
-        BoardDTO boardDTO = new BoardDTO();
         MemberDTO memberDTO = new MemberDTO();
 
         memberDTO.setMemberLoginType(MemberLoginType.네이버);
@@ -44,15 +45,20 @@ public class BoardTest {
         Member member = memberDTO.toEntity();
         memberRepository.save(member);
 
-        boardDTO.setBoardCategory(BoardCategory.환경활동);
-        boardDTO.setBoardTitle("안녕하세요");
-        boardDTO.setBoardContent("날씨가 추워요");
-        boardDTO.setBoardView(1);
+        for(int i = 0; i < 10; i++){
+            BoardDTO boardDTO = new BoardDTO();
 
-        Board board = boardDTO.toEntity();
-        boardRepository.save(board);
+            boardDTO.setBoardCategory(BoardCategory.환경활동);
+            boardDTO.setBoardTitle("안녕하세요" + i);
+            boardDTO.setBoardContent("날씨가 추워요" + i);
+            boardDTO.setBoardView(i * 10);
 
-        board.changeMember(member);
+            Board board = boardDTO.toEntity();
+            boardRepository.save(board);
+
+            board.changeMember(member);
+        }
+
     }
 
     @Test
@@ -70,9 +76,11 @@ public class BoardTest {
     @Test
     public void updateTest(){
         Optional<Board> updateBoard = boardRepository.findById(52L);
+        BoardDTO boardDTO = new BoardDTO();
+        boardDTO.setBoardTitle("야식먹구싶다");
 
         if(updateBoard.isPresent()){
-            updateBoard.get().update(BoardCategory.추천가게, "하하하", "야식먹구싶다", 12);
+            updateBoard.get().update(boardDTO);
         }
     }
 

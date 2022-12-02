@@ -1,6 +1,7 @@
 package com.app.byeolbyeolsseudam.entity.board;
 
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
+import com.app.byeolbyeolsseudam.entity.comment.Comment;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.entity.Period;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
@@ -8,6 +9,7 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "TBL_BOARD")
@@ -27,6 +29,8 @@ public class Board extends Period {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+    @OneToMany
+    private List<Comment> comments;
 
     public void changeMember(Member member){
         this.member = member;

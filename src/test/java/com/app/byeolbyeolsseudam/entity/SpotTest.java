@@ -1,11 +1,11 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.CourseDTO;
-import com.app.byeolbyeolsseudam.domain.SpotDTO;
-import com.app.byeolbyeolsseudam.embaddable.PossibleDate;
-import com.app.byeolbyeolsseudam.repository.CourseRepository;
-import com.app.byeolbyeolsseudam.repository.SpotRepository;
-import com.app.byeolbyeolsseudam.type.CourseGrade;
+import com.app.byeolbyeolsseudam.domain.spot.SpotDTO;
+import com.app.byeolbyeolsseudam.entity.course.Course;
+import com.app.byeolbyeolsseudam.entity.course.QCourse;
+import com.app.byeolbyeolsseudam.entity.spot.Spot;
+import com.app.byeolbyeolsseudam.repository.course.CourseRepository;
+import com.app.byeolbyeolsseudam.repository.spot.SpotRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -14,10 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
-import static com.app.byeolbyeolsseudam.entity.QCourse.course;
-import static com.app.byeolbyeolsseudam.entity.QSpot.spot;
+import static com.app.byeolbyeolsseudam.entity.spot.QSpot.spot;
 
 @SpringBootTest
 @Slf4j
@@ -56,16 +53,15 @@ public class SpotTest {
 //
 //        courseRepository.save(course);
 
-
         for (int i = 0; i < 5; i++) {
             Course course = jpaQueryFactory.selectFrom(QCourse.course)
                     .orderBy(QCourse.course.courseId.desc())
                     .limit(1)
                     .fetchOne();
 
-            spotDTO.setSpotName("1지점");
-            spotDTO.setSpotNumber(2);
-            spotDTO.setSpotAddress("서울 어쩌구 어쩌구동");
+            spotDTO.setSpotName("SPECIAL " + (i + 1) + "지점");
+            spotDTO.setSpotNumber(i + 1);
+            spotDTO.setSpotAddress("서울 무슨구 무슨무슨동");
             spotDTO.setSpotQrName("course.png");
             spotDTO.setSpotQrPath("/upload");
             spotDTO.setSpotQrUuid("qrqrqrqr");
@@ -73,7 +69,7 @@ public class SpotTest {
             Spot spot = spotDTO.toEntity();
 
             spotRepository.save(spot);
-            spot.changeCourse(course);
+            spot.changeCourse(courseRepository.findById(59L).get());
         }
     }
 
@@ -88,12 +84,14 @@ public class SpotTest {
 
     @Test
     public void updateTest(){
+        SpotDTO spotDTO = new SpotDTO();
+        spotDTO.setSpotName("수정된 지점");
+
         jpaQueryFactory.selectFrom(spot)
                 .orderBy(spot.spotId.desc())
                 .limit(1)
                 .fetchOne()
-                .update("수정된 지점", "update.png", "구미시", "ababc",
-                        "역삼동", 3);
+                .update(spotDTO);
     }
 
     @Test

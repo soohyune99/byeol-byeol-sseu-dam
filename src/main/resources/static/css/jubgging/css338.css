@@ -34,10 +34,10 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
-.category-icon > img[data-v-7d45c639] {
+.category-icon > svg[data-v-7d45c639] {
     transition: transform 0.1s ease-in-out;
 }
-.category-icon:hover > img[data-v-7d45c639] {
+.category-icon:hover > svg[data-v-7d45c639] {
     transform: translateY(-0.625rem);
 }
 section[data-name="service-searcher"][data-v-1cf86409] {

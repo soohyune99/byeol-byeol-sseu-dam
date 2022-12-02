@@ -1,10 +1,9 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.CourseFinishedDTO;
-import com.app.byeolbyeolsseudam.repository.CourseFinishedRepository;
-import com.app.byeolbyeolsseudam.repository.CourseRepository;
-import com.app.byeolbyeolsseudam.repository.MemberRepository;
-import com.app.byeolbyeolsseudam.repository.MycourseRepository;
+import com.app.byeolbyeolsseudam.domain.courseFinished.CourseFinishedDTO;
+import com.app.byeolbyeolsseudam.entity.courseFinished.CourseFinished;
+import com.app.byeolbyeolsseudam.repository.courseFinished.CourseFinishedRepository;
+import com.app.byeolbyeolsseudam.repository.mycourse.MycourseRepository;
 import com.app.byeolbyeolsseudam.type.CourseFinishedStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -14,10 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-import static com.app.byeolbyeolsseudam.entity.QCourse.course;
-import static com.app.byeolbyeolsseudam.entity.QCourseFinished.*;
+import static com.app.byeolbyeolsseudam.entity.courseFinished.QCourseFinished.courseFinished;
 
 @SpringBootTest
 @Slf4j
@@ -52,11 +48,14 @@ public class CourseFinishedTest {
 
     @Test
     public void updateTest(){
-        jpaQueryFactory.selectFrom(QCourseFinished.courseFinished)
-                .orderBy(QCourseFinished.courseFinished.courseFinishedId.desc())
+        CourseFinishedDTO courseFinishedDTO = new CourseFinishedDTO();
+        courseFinishedDTO.setCourseFinishedStatus(CourseFinishedStatus.미완주);
+
+        jpaQueryFactory.selectFrom(courseFinished)
+                .orderBy(courseFinished.courseFinishedId.desc())
                 .limit(1)
                 .fetchOne()
-                .update(CourseFinishedStatus.미완주);
+                .update(courseFinishedDTO);
     }
 
     @Test

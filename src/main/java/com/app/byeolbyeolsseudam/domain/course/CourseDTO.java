@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.domain.course;
 
+import com.app.byeolbyeolsseudam.domain.spot.SpotDTO;
 import com.app.byeolbyeolsseudam.embaddable.PossibleDate;
 import com.app.byeolbyeolsseudam.entity.course.Course;
 import com.app.byeolbyeolsseudam.entity.spot.Spot;
@@ -30,7 +31,7 @@ public class CourseDTO {
     private LocalDateTime openingDate;
     private LocalDateTime closingDate;
 
-    private List<Spot> spots;
+    private List<SpotDTO> spots;
 
     @QueryProjection
     public CourseDTO(Long courseId, String courseName, String courseArea, String courseDistance, String courseTime, String courseStart, String courseFinish, CourseGrade courseGrade, String courseFileName, String courseFilePath, String courseFileUuid, LocalDateTime openingDate, LocalDateTime closingDate) {

@@ -1,8 +1,11 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.FileBoardDTO;
-import com.app.byeolbyeolsseudam.repository.BoardRepository;
-import com.app.byeolbyeolsseudam.repository.FileBoardRepository;
+import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
+import com.app.byeolbyeolsseudam.domain.fileBoard.FileBoardDTO;
+import com.app.byeolbyeolsseudam.entity.board.Board;
+import com.app.byeolbyeolsseudam.entity.fileBoard.FileBoard;
+import com.app.byeolbyeolsseudam.repository.board.BoardRepository;
+import com.app.byeolbyeolsseudam.repository.fileBoard.FileBoardRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -11,10 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-import static com.app.byeolbyeolsseudam.entity.QBoard.board;
-import static com.app.byeolbyeolsseudam.entity.QFileBoard.fileBoard;
+import static com.app.byeolbyeolsseudam.entity.board.QBoard.board;
+import static com.app.byeolbyeolsseudam.entity.fileBoard.QFileBoard.fileBoard;
 
 @SpringBootTest
 @Slf4j
@@ -54,8 +55,11 @@ public class FileBoardTest {
 
     @Test
     public void updateTest(){
+        FileBoardDTO fileBoardDTO = new FileBoardDTO();
+        fileBoardDTO.setFileBoardName("미에로화이바.png");
+
         jpaQueryFactory.selectFrom(fileBoard).orderBy(fileBoard.fileBoardId.desc())
-                .limit(1).fetchOne().update("미에로화이바", "/upload", "updateFile");
+                .limit(1).fetchOne().update(fileBoardDTO);
     }
 
     @Test

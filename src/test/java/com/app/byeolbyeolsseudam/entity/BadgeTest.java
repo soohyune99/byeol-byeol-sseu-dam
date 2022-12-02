@@ -1,7 +1,8 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.BadgeDTO;
-import com.app.byeolbyeolsseudam.repository.BadgeRepository;
+import com.app.byeolbyeolsseudam.domain.badge.BadgeDTO;
+import com.app.byeolbyeolsseudam.entity.badge.Badge;
+import com.app.byeolbyeolsseudam.repository.badge.BadgeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -50,10 +51,11 @@ public class BadgeTest {
     @Test
     public void updateTest(){
         Optional<Badge> updateBadge = badgeRepository.findById(1L);
+        BadgeDTO badgeDTO = new BadgeDTO();
+        badgeDTO.setBadgeName("수정된 배지");
 
         if(updateBadge.isPresent()){
-            updateBadge.get().update("첫번째 배지", "first.png",
-                    "/upload", "firstBadge");
+            updateBadge.get().update(badgeDTO);
         }
     }
 
