@@ -60,18 +60,18 @@
 
     <div id="app-body">
     <!--배너 정보확인용 더미 코드. 추후에 bannerPath만 받아서 img태그 src에 전달 예정-->
-        <table>
-            <tbody>
-                <th:block th:each="banner:${banners}">
-                    <tr class="tBody" th:object="${banner}">
-                        <td th:text="*{bannerId}"></td>
-                        <td th:text="*{bannerName}"></td>
-                        <td th:text="*{bannerUuid}"></td>
-                        <td th:text="*{bannerPath}"></td>
-                    </tr>
-                </th:block>
-            </tbody>
-        </table>
+<!--        <table>-->
+<!--            <tbody>-->
+<!--                <th:block th:each="banner:${banners}">-->
+<!--                    <tr class="tBody" th:object="${banner}">-->
+<!--                        <td th:text="*{bannerId}"></td>-->
+<!--                        <td th:text="*{bannerName}"></td>-->
+<!--                        <td th:text="*{bannerUuid}"></td>-->
+<!--                        <td th:text="*{bannerPath}"></td>-->
+<!--                    </tr>-->
+<!--                </th:block>-->
+<!--            </tbody>-->
+<!--        </table>-->
         <div class="home" data-v-1346aca8="">
 
             <div class="observer-container" data-v-e0e63576="" data-v-1346aca8="">
@@ -80,49 +80,52 @@
                 <div data-observe="banner" class="main-banner" data-v-afb0bbd0="" data-v-1346aca8="" data-v-e0e63576=""main-communityid="banner">
                     <div dir="ltr" class="slick-slider slick-initialized" data-v-3d1a4f76="" data-v-55917fe8="" data-v-afb0bbd0="">
 
+
+
                         <div class="slick-list first-slick-list" data-v-3d1a4f76="">
                             <div class="slick-track" style="width: 8730px; opacity: 1;" data-v-e4caeaf8="" data-v-3d1a4f76="">
-
+                                <th:block th:each="banner:${banners}">
                                 <div tabindex="-1" data-index="0" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">
-                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                        <img src="/images/main/slide1.png" alt="포트폴리오 전용 목록 진입 창구 배너" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
+                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="" th:object="${banner}">
+                                        <img th:src="*{bannerPath}" alt="포트폴리오 전용 목록 진입 창구 배너" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
                                     </div>
                                 </div>
-                                <div tabindex="-1" data-index="1" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">
-                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                        <img src="/images/main/slide2.png"  alt="마켓에서 즉시 구매" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                    </div>
-                                </div>
+                                </th:block>
+<!--                                <div tabindex="-1" data-index="1" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">-->
+<!--                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                        <img th:src="*{bannerPath}"  alt="마켓에서 즉시 구매" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div tabindex="-1" data-index="2" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">
-                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                        <img src="/images/main/slide3.png" alt=" 안전한 거래를 위한 7가지 습관" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                    </div>
-                                </div>
+<!--                                <div tabindex="-1" data-index="2" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">-->
+<!--                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                        <img th:src="*{bannerPath}" alt=" 안전한 거래를 위한 7가지 습관" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div tabindex="-1" data-index="3" aria-hidden="false" class="slick-slide slide-banner slick-active slick-current" style="outline: none; width: 970px;" data-v-e4caeaf8="">
-                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8=""  data-v-afb0bbd0="">
-                                        <img src="/images/main/slide4.png"  alt=" 커뮤니티 안내 배너" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                    </div>
-                                </div>
+<!--                                <div tabindex="-1" data-index="3" aria-hidden="false" class="slick-slide slide-banner slick-active slick-current" style="outline: none; width: 970px;" data-v-e4caeaf8="">-->
+<!--                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8=""  data-v-afb0bbd0="">-->
+<!--                                        <img th:src="*{bannerPath}"  alt=" 커뮤니티 안내 배너" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div tabindex="-1" data-index="4" aria-hidden="true" class="slick-slide slide-banner"  style="outline: none; width: 970px;" data-v-e4caeaf8="">
-                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                        <img src="/images/main/slide5.png"  alt=" 고수찾기" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                    </div>
-                                </div>
+<!--                                <div tabindex="-1" data-index="4" aria-hidden="true" class="slick-slide slide-banner"  style="outline: none; width: 970px;" data-v-e4caeaf8="">-->
+<!--                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                        <img th:src="*{bannerPath}"  alt=" 고수찾기" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div tabindex="-1" data-index="5" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">
-                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                        <img src="/images/main/slide6.png"  alt="2023 대비 대학입시 기획전" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                    </div>
-                                </div>
+<!--                                <div tabindex="-1" data-index="5" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">-->
+<!--                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                        <img th:src="*{bannerPath}"  alt="2023 대비 대학입시 기획전" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                                <div tabindex="-1" data-index="6" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">
-                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                        <img src="/images/main/slide7.png"  alt="숨고레터 구독하기" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                    </div>
-                                </div>
+<!--                                <div tabindex="-1" data-index="6" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">-->
+<!--                                    <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                        <img th:src="*{bannerPath}"  alt="숨고레터 구독하기" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
                         </div>
                     </div>
