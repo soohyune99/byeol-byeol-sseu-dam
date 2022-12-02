@@ -1,10 +1,24 @@
 package com.app.byeolbyeolsseudam.controller.admin;
 
+import com.app.byeolbyeolsseudam.domain.banner.BannerDTO;
+import com.app.byeolbyeolsseudam.service.main.BannerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @Slf4j
@@ -193,9 +207,16 @@ public class AdminController {
 
     /* ############################### 배너 관리 ############################### */
 
+    private final BannerService bannerService;
     /* 배너 - 배너 목록 */
+//    @GetMapping("adminbannerlist")
+//    public String adminBannerList(){
+//        return "/app/admin/adminBannerList.html";
+//    }
+
     @GetMapping("adminbannerlist")
-    public String adminBannerList(){
+    public String adminBannerList(Model model){
+        model.addAttribute("banners", bannerService.show());
         return "/app/admin/adminBannerList.html";
     }
 
@@ -210,7 +231,6 @@ public class AdminController {
     public String adminBannerModify(){
         return "/app/admin/adminBannerModify.html";
     }
-
 
 
 

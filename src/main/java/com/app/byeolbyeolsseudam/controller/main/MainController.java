@@ -22,7 +22,7 @@ public class MainController {
 
     @GetMapping("/main")
     public String read(Model model){
-        model.addAttribute("banners", bannerService.showList());
+        model.addAttribute("banners", bannerService.show());
         return "/app/main/main";
     }
 

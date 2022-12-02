@@ -91,7 +91,7 @@
                                                                         <div class="table-responsive">
 
                                                                         </div>
-                                                                        <form th:action="@{adminbannerlist}" name="addBannerForm">
+                                                                        <form th:action="@{adminbannerlist}" name="addBannerForm" method="post" enctype="multipart/form-data">
                                                                         <div style="width: 60%; margin: 0 auto 0 auto;">
                                                                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                  style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
@@ -156,5 +156,34 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script th:inline="javascript">
+    let arrayFile = [];
 
+    $("input[type='file']").on("change",function () {
+        let formData = new FormData();
+        let $inputFile = $("input[name='bannerName']");
+        let files = $inputFile[0].files;
+
+        Array.from(files).forEach(file => arrayFile.push(file));
+        const dataTransfer = new DataTransfer();
+        arrayFile.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $(files).each(function(i, file){
+            formData.append("upload", file);
+        });
+
+        $.ajax({
+            url: "/file/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function () {
+                console.log("성공")
+            }
+        });
+    });
+
+</script>
 </html>

@@ -2,14 +2,14 @@ package com.app.byeolbyeolsseudam.entity;
 
 import com.app.byeolbyeolsseudam.domain.banner.BannerDTO;
 import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
-import com.app.byeolbyeolsseudam.domain.orderdetail.OrderDetailDTO;
 import com.app.byeolbyeolsseudam.entity.banner.Banner;
-import com.app.byeolbyeolsseudam.repository.*;
 import com.app.byeolbyeolsseudam.repository.banner.BannerRepository;
+import com.app.byeolbyeolsseudam.repository.banner.BannerRepositoryImpl;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.order.OrderRepository;
 import com.app.byeolbyeolsseudam.repository.orderdetail.OrderDetailRepository;
 import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
+import com.app.byeolbyeolsseudam.service.admin.BannerUploadService;
 import com.app.byeolbyeolsseudam.service.main.BannerService;
 import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.app.byeolbyeolsseudam.type.MemberLoginType;
@@ -22,6 +22,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.ServletContext;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -33,8 +34,24 @@ import java.util.UUID;
 @Transactional
 @Rollback(false)
 public class BannerTest {
+
+//    @Autowired
+//    private ServletContext servletContext;
+//    @Test
+//    public void pathTest(){
+//        String realPath = servletContext.getRealPath("/static");
+//        log.info("경로: " + realPath);
+//    }
+
+
     @Autowired
     private BannerRepository bannerRepository;
+
+    @Autowired
+    private BannerRepositoryImpl bannerRepositoryImpl;
+
+    @Autowired
+    private BannerUploadService bannerUploadService;
 
     @Autowired
     private MemberRepository memberRepository;
@@ -94,10 +111,10 @@ public class BannerTest {
         BannerDTO bannerDTO = new BannerDTO();
 
         bannerDTO.setBannerUuid(uuid.toString());
-        bannerDTO.setBannerName(uuid.toString() + "ssedam.png");
-        bannerDTO.setBannerPath("C://upload");
+        bannerDTO.setBannerName(uuid.toString() + "end.png");
+        bannerDTO.setBannerPath("/images/main/slide5.png");
 
-        bannerRepository.findAll().get(5).update(bannerDTO);
+        bannerRepository.findAll().get(6).update(bannerDTO);
     }
 
 
@@ -193,12 +210,13 @@ public class BannerTest {
 
     @Test
     public void BannerServiceTest(){
-        List<BannerDTO> bannerDTOList = bannerService.showList();
+        List<BannerDTO> bannerDTOList = bannerService.show();
 
         for (int i = 0; i < bannerDTOList.size(); i++) {
             log.info("bannerName: " + bannerDTOList.get(i).getBannerName() + "bannerPath: " + bannerDTOList.get(i).getBannerPath() + "bannerUUID: " + bannerDTOList.get(i).getBannerUuid());
         }
     }
+
 
 
 }
