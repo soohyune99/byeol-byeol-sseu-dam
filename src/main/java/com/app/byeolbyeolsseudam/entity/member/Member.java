@@ -26,7 +26,7 @@ public class Member extends Period {
     private String memberName;
     @NotNull
     private String memberPassword;
-    @NotNull
+//    @NotNull
     private String memberPhone;
     @NotNull
     private String memberEmail;
