@@ -10,14 +10,6 @@
     <link rel="icon" href="/images/fix/favicon.png">
 
 </head>
-  <!-- header start -->
-
-
-  <!-- header end -->
-    
-
-<!-- Notice start -->
-
 <body class>
     <header class="header">
         <div class="logo">
@@ -45,13 +37,15 @@
                             공지사항
                         </li>
                     </ol>
-                    <form role="search" class="search" data-search="" action="/hc/ko/search" accept-charset="UTF-8" method="get">
+                    <form role="search" class="search" data-search="" action="/search" accept-charset="UTF-8" method="GET">
                         <img data-v-3cfeddf8="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQgNCkiIHN0cm9rZT0iI0I1QjVCNSIgc3Ryb2tlLXdpZHRoPSIxLjYiPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGN4PSI2LjUiIGN5PSI2LjUiIHI9IjYuNSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIGQ9Im0xMS41IDExLjUgNSA1Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="검색 아이콘" style="
                              position: relative;
                                 top: 36px;
                                 left: 13px;">
                         <input name="utf8" type="hidden" value="✓" autocomplete="off">
-                        <input type="search" name="query" id="query" class="clickSearch" placeholder="검색" aria-label="검색">
+                        <input type="search" name="query keyword" id="query" class="clickSearch" placeholder="검색" aria-label="검색">
+<!--                        <input type="text" th:field="*{keyword}" th:value="*{keyword}">-->
+<!--                        <button class="search button primary icon solid fa-search">검색</button>-->
                     </form>
                 </nav>
 
@@ -66,74 +60,17 @@
                                 <div class="table-wrapper">
                                     <table>
                                         <tbody>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="http://localhost:10001/notice/noticedetail">
+                                        <th:block th:each="notice:${notices}">
+                                            <tr class="tBody" th:object="${notice}">
+                                                <td th:if="${#strings.equals(notice.noticeCategory , '중요')}">
                                                     <img src="/images/notice/star.png" alt="" width="18px" height="18px" style="margin-right: 5px;">
-                                                    [22.09.01] 작업관리자에서 공지사항 체크된 내용입니다
-                                                </a><hr>
-                                            </td>
-                                        </tr>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="">
-                                                    <img src="/images/notice/star.png" alt="" width="18px" height="18px" style="margin-right: 5px;">
-                                                    [22.09.01] 작업관리자에서 공지사항 체크된 내용입니다
-                                                </a><hr>
-                                            </td>
-                                        </tr>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="">
-                                                    <img src="/images/notice/star.png" alt="" width="18px" height="18px" style="margin-right: 5px;">
-                                                    [22.09.01] 작업관리자에서 공지사항 체크된 내용입니다
-                                                </a> <hr>
-                                            </td>
-                                        </tr>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="">
-                                                    <img src="/images/notice/star.png" alt="" width="18px" height="18px" style="margin-right: 5px;">
-                                                    작업관리자에서 공지사항 체크된 내용입니다
-                                                </a> <hr>
-                                            </td>
-                                        </tr>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="">[22.09.01] 일반 게시글의 내용입니다 </a>
-                                                <hr>
-                                            </td>
-                                        </tr>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="">[22.09.01] 일반 게시글의 내용입니다 </a>
-                                                <hr>
-                                            </td>
-                                        </tr>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="">[22.09.01] 일반 게시글의 내용입니다 </a>
-                                                <hr>
-                                            </td>
-                                        </tr>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="">[22.09.01] 일반 게시글의 내용입니다 </a>
-                                                <hr>
-                                            </td>
-                                        </tr>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="">일반 게시글의 내용입니다 </a>
-                                                <hr>
-                                            </td>
-                                        </tr>
-                                        <tr class="tBody">
-                                            <td>
-                                                <a href="">일반 게시글의 내용입니다 </a>
-                                                <hr>
-                                            </td>
-                                        </tr>
+                                                    <a class="read" th:text="*{noticeTitle}" th:href="*{noticeId}"></a>
+                                                </td>
+                                                <td th:if="${#strings.equals(notice.noticeCategory , '일반')}">
+                                                    <a class="read" th:text="*{noticeTitle}" th:href="*{noticeId}"></a>
+                                                </td>
+                                            </tr>
+                                        </th:block>
                                         </tbody>
                                     </table>
                                 </div>
@@ -152,7 +89,7 @@
                                 <li>
                                     <a href="/hc/ko/sections/360006534351-%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD?page=3#articles" rel="nofollow">3</a>
                                 </li>
-                                                                       
+
                                 <li class="pagination-next">
                                     <a href="/hc/ko/sections/360006534351-%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD?page=2#articles" rel="next nofollow">›</a>
                                 </li>
@@ -172,7 +109,28 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/Notice/Notice.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
-<script>
+<script th:inline="javascript">
+
+    const $read = $("a.read");
+
+    // $("a.search").on("click", function(e){
+    //     e.preventDefault();
+    //     document.search.submit();
+    // });
+
+    $("input.clickSearch").on("keyup",function(key){
+        e.preventDefault();
+        if(key.keyCode==13) {
+            document.search.submit();
+            location.href = "/notice"+ "/search" + $(this).attr("href");
+        }
+    });
+
+    $read.on("click", function(e){
+        e.preventDefault();
+        location.href = "/notice"+ "/" + $(this).attr("href");
+    });
+
     $('.clickSearch').click(function(){
         $('.clickSearch').css("border", "1px solid #00c7ae");
     })
