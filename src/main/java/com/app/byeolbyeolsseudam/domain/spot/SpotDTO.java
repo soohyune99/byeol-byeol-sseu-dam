@@ -18,7 +18,7 @@ public class SpotDTO {
     private String spotQrName;
     private String spotQrPath;
     private String spotQrUuid;
-    private Course course;
+    private Long courseId;
 
     @QueryProjection
     public SpotDTO(Long spotId, String spotName, String spotAddress, int spotNumber, String spotQrName, String spotQrPath, String spotQrUuid) {

@@ -23,10 +23,17 @@ public class CommentDTO {
     private String memberProfileUuid;
     private Long boardId;
     private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
 
     @QueryProjection
-    public CommentDTO(Long commentId, String commentContent, String commentFileName, String commentFilePath, String commentFileUuid, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, Long boardId, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public CommentDTO(Long commentId, String commentContent, Long memberId, Long boardId) {
+        this.commentId = commentId;
+        this.commentContent = commentContent;
+        this.memberId = memberId;
+        this.boardId = boardId;
+    }
+
+    @QueryProjection
+    public CommentDTO(Long commentId, String commentContent, String commentFileName, String commentFilePath, String commentFileUuid, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, Long boardId, LocalDateTime createdDate) {
         this.commentId = commentId;
         this.commentContent = commentContent;
         this.commentFileName = commentFileName;
@@ -39,7 +46,6 @@ public class CommentDTO {
         this.memberProfileUuid = memberProfileUuid;
         this.boardId = boardId;
         this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
     }
 
     public Comment toEntity(){

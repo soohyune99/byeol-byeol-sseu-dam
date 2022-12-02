@@ -173,6 +173,7 @@ body {
     text-align: left;
     margin: 0;
     color: #2d2d2d;
+    margin-left: 15px;
 }
 
 .fixed .fixed-wrapper .icon[data-v-77f4e41c] {
@@ -348,7 +349,7 @@ body {
 
 .sg-text-body2 {
     font-size: 14px;
-    line-height: 1.57142857;
+    line-height: 1;
     letter-spacing: -.3px;
 }
 
@@ -377,7 +378,7 @@ body {
 
 .sg-text-subhead4, .sg-text-subhead5 {
     font-size: 14px;
-    line-height: 1.57142857;
+    line-height: 2;
     letter-spacing: -.3px;
 }
 
@@ -475,12 +476,6 @@ body {
     margin: 0 0 0.125rem;
     font-weight: 500;
     color: #2d2d2d;
-}
-
-.sg-text-subhead4, .sg-text-subhead5 {
-    font-size: 14px;
-    line-height: 1.57142857;
-    letter-spacing: -.3px;
 }
 
 .post-header .user-profile-wrapper .user-profile-area .profile-post-info .post-created-at[data-v-77f4e41c] {

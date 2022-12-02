@@ -1,9 +1,10 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.CommentDTO;
-import com.app.byeolbyeolsseudam.repository.BoardRepository;
-import com.app.byeolbyeolsseudam.repository.CommentRepository;
-import com.app.byeolbyeolsseudam.repository.MemberRepository;
+import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
+import com.app.byeolbyeolsseudam.entity.comment.Comment;
+import com.app.byeolbyeolsseudam.repository.board.BoardRepository;
+import com.app.byeolbyeolsseudam.repository.comment.CommentRepository;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -31,19 +32,22 @@ public class CommentTest {
 
     @Test
     public void saveTest(){
-        CommentDTO commentDTO = new CommentDTO();
 
-        commentDTO.setCommentContent("새로운 댓글!");
-        commentDTO.setCommentFileName("hi.png");
-        commentDTO.setCommentFilePath("/upload");
-        commentDTO.setCommentFileUuid("abcedfg");
+        for(int i = 0; i < 5; i++){
+            CommentDTO commentDTO = new CommentDTO();
 
-        Comment comment = commentDTO.toEntity();
+            commentDTO.setCommentContent("새로운 댓글!" + i);
+            commentDTO.setCommentFileName("hi.png");
+            commentDTO.setCommentFilePath("/upload");
+            commentDTO.setCommentFileUuid("abcedfg");
 
-        commentRepository.save(comment);
+            Comment comment = commentDTO.toEntity();
 
-        comment.changeMember(memberRepository.findAll().get(0));
-        comment.changeBoard(boardRepository.findAll().get(0));
+            commentRepository.save(comment);
+
+            comment.changeMember(memberRepository.findAll().get(0));
+            comment.changeBoard(boardRepository.findById(116L).get());
+        }
     }
 
     @Test
@@ -61,11 +65,11 @@ public class CommentTest {
     @Test
     public void updateTest(){
         Optional<Comment> updateComment = commentRepository.findById(8L);
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setCommentContent("수정댓글");
 
         if(updateComment.isPresent()){
-            updateComment.get().update(
-                    "수정댓글", "update.png",
-                    "/upload", "updateComment");
+            updateComment.get().update(commentDTO);
         }
     }
 
