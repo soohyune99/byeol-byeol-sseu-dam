@@ -25,9 +25,6 @@ import java.util.Optional;
 public class ProgramTest {
 
     @Autowired
-    ProgramCustomRepository programCustomRepository;
-
-    @Autowired
     ProgramRepository programRepository;
 
     @Autowired
@@ -37,17 +34,17 @@ public class ProgramTest {
     public void saveProgramTest(){
         ProgramDTO programDTO = new ProgramDTO();
 
-        programDTO.setProgramName("3333333줍깅의 유래와 이해");
+        programDTO.setProgramName("친환경 음식");
         programDTO.setProgramPlace("역삼역 3번 출구");
         programDTO.setOpeningDate(LocalDateTime.of(2021, 11,12,11,00));
         programDTO.setClosingDate(LocalDateTime.of(2021, 12,12,12,00));
         programDTO.setProgramTime(5);
         programDTO.setProgramDate(LocalDateTime.of(2021,12,23,12,00));
         programDTO.setProgramContent("줍깅");
-        programDTO.setProgramLimitCount(35);
+        programDTO.setProgramLimitCount(25);
         programDTO.setProgramStatus(ProgramStatus.마감);
         programDTO.setProgramFileProfileName("jub.img");
-        programDTO.setProgramFileProfilePath("ProfilePath");
+        programDTO.setProgramFileProfilePath("/images/program/program1.png");
         programDTO.setProgramFileProfileUuid("ProfileUuid");
         programDTO.setProgramFileDetailName("Detail.img");
         programDTO.setProgramFileDetailPath("DetailPath");
@@ -91,16 +88,15 @@ public class ProgramTest {
 
     }
 
+    /* 프로그램 검색 _ 프로그램 제목 _ 키워드 검색 */
     @Test
-    public void findAllSearchTest(){
-        programCustomRepository.findAllSearch("줍깅").stream().map(ProgramDTO::toString).forEach(log::info);
-        log.info("aeffa");
+    public void searchProgramTest(){
+        programRepository.searchProgram("줍깅").stream().map(ProgramDTO::toString).forEach(log::info);
     }
 
-
     @Test
-
     public void deleteTest(){
         programRepository.deleteById(1L);
     }
+
 }
