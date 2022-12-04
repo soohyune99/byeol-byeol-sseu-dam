@@ -2,8 +2,8 @@
 let emailFilter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 let pwFilter = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*\W).{8,20}$/;
 
-let $inputId = $("#__BVID__75");
-let $inputPw = $("#__BVID__77");
+let $inputId = $("#memberEmail");
+let $inputPw = $("#memberPassword");
 let $btn = $(".btn-primary");
 let $modal = $(".swal2-container");
 let $body = $("body.login");
