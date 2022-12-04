@@ -6,6 +6,8 @@ stickyNav();
 let $dropdownMenu = $(".dropdown-menu.dropdown-menu-right.sticky-nav-menu");
 let $boardMenu = $(".dropdown-menu.dropdown-menu-right.board-menu");
 let $commentMenu = $(".dropdown-menu.dropdown-menu-right.comment-menu");
+let $commentContent = $("textarea[name='comment-input']");
+let $commentSubmitBtn = $(".write-comment-submit");
 let $loginModal = $(".swal2-container.swal2-center");
 let navCheck = -1;
 let commentCheck = -1;
@@ -33,15 +35,15 @@ $(".board-dropdownmenu-menuBtn").on("click", function(){
 
 
 /* 댓글 도시락 버튼 클릭 시 수정, 삭제 메뉴 보이기 */
-$("button#__BVID__1555__BV_toggle_").on("click", function(){
-    openCommentMenu($commentMenu);
-});
+// $("button#__BVID__1555__BV_toggle_").on("click", function(){
+//     openCommentMenu($commentMenu);
+// });
 
 
 /* 댓글 입력 시 로그인 안 되어 있을 경우 로그인 모달창 띄우기 */
-$("#__BVID__1499").on("focus", function(){
-    openLoginModal();
-});
+// $("#__BVID__1499").on("focus", function(){
+//     openLoginModal();
+// });
 
 
 /* 로그인 모달 취소 버튼 클릭 시 돌아가기 */
@@ -49,7 +51,7 @@ $(".swal2-cancel.btn").on("click", function(){
     closeLoginModal();
 });
 
-
+/* 제목Nav 스크롤 최하단일 때 사라지게 하기 */
 function stickyNav(){
     let $scrollTop = $(this).scrollTop();
 
@@ -69,14 +71,17 @@ function openBoardMenu(menu){
 }
 
 function openCommentMenu(menu){
-    menu.toggle();
+    console.log(menu);
+    $(`".` + menu + `"`).toggle();
 }
 
+/* 로그인 모달 띄우기 */
 function openLoginModal(){
     $loginModal.css('display', 'block');
     $("body").css('overflow-y', 'hidden');
 }
 
+/* 로그인 모달 닫기 */
 function closeLoginModal(){
     $loginModal.css('display', 'none');
     $("body").css('overflow-y', 'auto');
@@ -110,6 +115,7 @@ $file.on('change', function (e) {
         }
     }
 });
+
 /* 첨부파일 x 클릭 시 div 삭제 */
 $(".comment-body").on('click', '.delete-badge', function(){
     $file.removeAttr('disabled');
@@ -117,5 +123,52 @@ $(".comment-body").on('click', '.delete-badge', function(){
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
     $(".image-preview").remove();
 });
+
+/* 댓글 내용 입력 시 등록 버튼 보이기 */
+$commentContent.on('keyup', function(){
+  if(!$commentContent.val()){ return; }
+    $commentSubmitBtn.addClass("active");
+});
+
+/* 댓글 등록 */
+$commentSubmitBtn.on("click", function(){
+    console.log($commentContent.val());
+    console.log(boardId);
+    commentService.save({
+        boardId: boardId,
+        memberId: 106,
+        commentContent: $commentContent.val()
+    }, function(){console.log("성공")}, function(){console.log("실패")});
+});
+
+
+
+
+
+
+
+/* ============================= Comment ============================= */
+
+let commentService = (function(){
+    function save(comment, callback, error){
+        $.ajax({
+            url: "/comment/new",
+            type: "post",
+            data: JSON.stringify(comment),
+            contentType: "application/json; charset=utf-8",
+            success: function(result, status, xhr){
+                if(callback){
+                    callback(result);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+    return {save: save}
+})();
 
 

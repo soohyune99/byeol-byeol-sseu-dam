@@ -75,7 +75,7 @@ public class BoardTest {
 
     @Test
     public void updateTest(){
-        Optional<Board> updateBoard = boardRepository.findById(52L);
+        Optional<Board> updateBoard = boardRepository.findById(107L);
         BoardDTO boardDTO = new BoardDTO();
         boardDTO.setBoardTitle("야식먹구싶다");
 

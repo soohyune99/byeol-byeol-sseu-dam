@@ -842,12 +842,6 @@ body {
     resize: none;
 }
 
-.comment-input-box .write-comment-submit[data-v-60f50a1e] {
-    display: none;
-    white-space: nowrap;
-    color: #00c7ae;
-}
-
 .comment-input-box .write-comment-submit.one-line[data-v-60f50a1e] {
     margin-bottom: auto;
 }
