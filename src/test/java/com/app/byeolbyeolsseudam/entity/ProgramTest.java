@@ -34,7 +34,7 @@ public class ProgramTest {
     public void saveProgramTest(){
         ProgramDTO programDTO = new ProgramDTO();
 
-        programDTO.setProgramName("친환경 음식");
+        programDTO.setProgramName("모집중 쓰담학교");
         programDTO.setProgramPlace("역삼역 3번 출구");
         programDTO.setOpeningDate(LocalDateTime.of(2021, 11,12,11,00));
         programDTO.setClosingDate(LocalDateTime.of(2021, 12,12,12,00));
@@ -42,12 +42,12 @@ public class ProgramTest {
         programDTO.setProgramDate(LocalDateTime.of(2021,12,23,12,00));
         programDTO.setProgramContent("줍깅");
         programDTO.setProgramLimitCount(25);
-        programDTO.setProgramStatus(ProgramStatus.마감);
+//        programDTO.setProgramStatus(ProgramStatus.모집예정);
         programDTO.setProgramFileProfileName("jub.img");
-        programDTO.setProgramFileProfilePath("/images/program/program1.png");
+        programDTO.setProgramFileProfilePath("/images/program/program4.png");
         programDTO.setProgramFileProfileUuid("ProfileUuid");
         programDTO.setProgramFileDetailName("Detail.img");
-        programDTO.setProgramFileDetailPath("DetailPath");
+        programDTO.setProgramFileDetailPath("/images/program/program4-1.png");
         programDTO.setProgramFileDetailUuid("DetailUuid");
 
         Program program = programDTO.toEntity();
@@ -76,12 +76,12 @@ public class ProgramTest {
         programDTO.setProgramDate(LocalDateTime.of(2021, 12, 23, 12, 00));
         programDTO.setProgramContent("줍깅");
         programDTO.setProgramLimitCount(35);
-        programDTO.setProgramStatus(ProgramStatus.마감);
+        programDTO.setProgramStatus(ProgramStatus.모집중);
         programDTO.setProgramFileProfileName("수정jub.img");
-        programDTO.setProgramFileProfilePath("수정ProfilePath");
+        programDTO.setProgramFileProfilePath("/images/program/program4.png");
         programDTO.setProgramFileProfileUuid("수정ProfileUuid");
         programDTO.setProgramFileDetailName("수정Detail.img");
-        programDTO.setProgramFileDetailPath("수정DetailPath");
+        programDTO.setProgramFileDetailPath("/images/program/program4-1.png");
         programDTO.setProgramFileDetailUuid("수정DetailUuid");
 
         program.update(programDTO);

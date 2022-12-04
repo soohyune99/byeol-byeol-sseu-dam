@@ -1,6 +1,7 @@
 package com.app.byeolbyeolsseudam.service.program;
 
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
+import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,5 +14,8 @@ public interface ProgramService {
 
     /* 전체 program List */
     public List<ProgramDTO> programAllList();
+
+    /* program List _ STATUS _ 모집중 */
+    public List<ProgramDTO> programStatusIngList(ProgramStatus programStatus);
 
 }

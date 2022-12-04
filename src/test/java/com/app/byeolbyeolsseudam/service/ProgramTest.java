@@ -2,12 +2,15 @@ package com.app.byeolbyeolsseudam.service;
 
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.service.program.ProgramService;
+import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @SpringBootTest
 @Slf4j
@@ -24,9 +27,16 @@ public class ProgramTest {
         log.info("검색 결과 : " + programService.searchProgram(keyword));
     }
 
-    /*  전체 program List _ Ajax  */
+    /*  전체 program List */
     @Test
     public void programAllListTest(){
         programService.programAllList().stream().map(ProgramDTO::toString).forEach(log::info);
+    }
+
+
+    /* program List _ STATUS _ 모집중 */
+    @Test
+    public void programStatusIngList() {
+        programService.programStatusIngList(ProgramStatus.모집중).stream().map(ProgramDTO::toString).forEach(log::info);
     }
 }

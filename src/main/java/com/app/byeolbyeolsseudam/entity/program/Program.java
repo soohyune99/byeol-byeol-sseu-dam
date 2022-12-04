@@ -65,9 +65,32 @@ public class Program extends Period {
         this.programFileDetailUuid = programFileDetailUuid;
     }
 
+//    public void update(ProgramDTO programDTO) {
+//        this.programName = programDTO.getProgramName();
+//        this.programPlace = programDTO.getProgramPlace();
+//        this.programTime = programDTO.getProgramTime();
+//        this.programDate = programDTO.getProgramDate();
+//        this.programContent = programDTO.getProgramContent();
+//        this.programLimitCount = programDTO.getProgramLimitCount();
+//        this.programStatus = programDTO.getProgramStatus();
+//        this.programFileProfileName = programDTO.getProgramFileProfileName();
+//        this.programFileProfilePath = programDTO.getProgramFileProfilePath();
+//        this.programFileProfileUuid = programDTO.getProgramFileProfileUuid();
+//        this.programFileDetailName = programDTO.getProgramFileDetailName();
+//        this.programFileDetailPath = programDTO.getProgramFileDetailPath();
+//        this.programFileDetailUuid = programDTO.getProgramFileDetailUuid();
+//        this.possibleDate.setOpeningDate(programDTO.getOpeningDate());
+//        this.possibleDate.setClosingDate(programDTO.getClosingDate());
+//    }
+
     public void update(ProgramDTO programDTO) {
+        PossibleDate possibleDate = new PossibleDate();
+        possibleDate.setOpeningDate(programDTO.getOpeningDate());
+        possibleDate.setClosingDate(programDTO.getClosingDate());
+
         this.programName = programDTO.getProgramName();
         this.programPlace = programDTO.getProgramPlace();
+        this.possibleDate = possibleDate;
         this.programTime = programDTO.getProgramTime();
         this.programDate = programDTO.getProgramDate();
         this.programContent = programDTO.getProgramContent();
@@ -79,7 +102,5 @@ public class Program extends Period {
         this.programFileDetailName = programDTO.getProgramFileDetailName();
         this.programFileDetailPath = programDTO.getProgramFileDetailPath();
         this.programFileDetailUuid = programDTO.getProgramFileDetailUuid();
-        this.possibleDate.setOpeningDate(programDTO.getOpeningDate());
-        this.possibleDate.setClosingDate(programDTO.getClosingDate());
     }
 }
