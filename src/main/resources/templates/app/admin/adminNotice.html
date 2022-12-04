@@ -113,7 +113,7 @@
                                                                         <div class="w-100 mw-150px">
                                                                         </div>
                                                                         <!--begin::Add product-->
-                                                                        <a href="http://localhost:10001/admin/adminnoticeadd"
+                                                                        <a href="http://localhost:10001/admin/notice/add"
                                                                            class="btn btn-primary">공지사항 추가</a>
                                                                         <!--end::Add product-->
                                                                         <a href="javascript:void(0)"
@@ -193,7 +193,8 @@
                                                                                 <tbody class="fw-semibold text-gray-600">
 
                                                                                 <!--1_베너 -->
-                                                                                <tr class="odd productList1">
+                                                                                <th:block th:each="adminNotice:${adminNotices}">
+                                                                                <tr class="odd productList1" th:object="${adminNotice}">
                                                                                     <!--begin::Checkbox-->
                                                                                     <td>
                                                                                         <div
@@ -206,31 +207,34 @@
 
                                                                                     <!--begin::배너번호=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12</span>
+                                                                                        <span class="fw-bold noticeId" th:text="*{noticeId}"></span>
                                                                                     </td>
                                                                                     <!--end::배너번호=-->
 
                                                                                     <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <div class="badge badge-light-primary" style="color: #00a08e; background: rgba(214,243,239,0.71);">
-                                                                                            일반
+                                                                                    <td class="text-end pe-0"  th:if="${#strings.equals(adminNotice.noticeCategory , '일반')}">
+                                                                                        <div class="badge badge-light-primary" style="color: #00a08e; background: rgba(214,243,239,0.71);" th:text="*{noticeCategory}">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="text-end pe-0"  th:if="${#strings.equals(adminNotice.noticeCategory , '중요')}">
+                                                                                        <div class="badge badge-light-danger" th:text="*{noticeCategory}">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::배너번호=-->
 
                                                                                     <!--begin::배너이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">11월30일 전화업무 휴무</span>
+                                                                                        <span class="fw-bold" th:text="*{noticeTitle}"></span>
                                                                                     </td>
                                                                                     <!--end::배너이름=-->
                                                                                     <!--begin::배너이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">고객센터 이전으로 전화업무 휴무</span>
+                                                                                        <span class="fw-bold" th:text="*{noticeContent}"></span>
                                                                                     </td>
                                                                                     <!--end::배너이름=-->
                                                                                     <!--begin::배너이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022.11.13</span>
+                                                                                        <span class="fw-bold" th:text="${#temporals.format(adminNotice.createdDate, 'yyyy-MM-dd')}"></span>
                                                                                     </td>
                                                                                     <!--end::배너이름=-->
 
@@ -244,111 +248,111 @@
                                                                                         <!--end::수정-->
                                                                                     </td>
                                                                                 </tr>
-
+                                                                                </th:block>
                                                                                 <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
+<!--                                                                                <tr class="odd productList1">-->
+<!--                                                                                    &lt;!&ndash;begin::Checkbox&ndash;&gt;-->
+<!--                                                                                    <td>-->
+<!--                                                                                        <div-->
+<!--                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">-->
+<!--                                                                                            <input class="form-check-input checkbox"-->
+<!--                                                                                                   type="checkbox">-->
+<!--                                                                                        </div>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::Checkbox&ndash;&gt;-->
 
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
+<!--                                                                                    &lt;!&ndash;begin::배너번호=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <span class="fw-bold">12</span>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너번호=&ndash;&gt;-->
 
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <div class="badge badge-light-danger">
-                                                                                            중요
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
+<!--                                                                                    &lt;!&ndash;begin::배너번호=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <div class="badge badge-light-danger">-->
+<!--                                                                                            중요-->
+<!--                                                                                        </div>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너번호=&ndash;&gt;-->
 
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">11월30일 전화업무 휴무</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">고객센터 이전으로 전화업무 휴무</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
+<!--                                                                                    &lt;!&ndash;begin::배너이름=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <span class="fw-bold">11월30일 전화업무 휴무</span>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너이름=&ndash;&gt;-->
+<!--                                                                                    &lt;!&ndash;begin::배너이름=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <span class="fw-bold">고객센터 이전으로 전화업무 휴무</span>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너이름=&ndash;&gt;-->
+<!--                                                                                    &lt;!&ndash;begin::배너이름=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <span class="fw-bold">2022.11.13</span>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너이름=&ndash;&gt;-->
 
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
+<!--                                                                                    &lt;!&ndash;begin::수정/삭제=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0"-->
+<!--                                                                                        data-order="Inactive">-->
+<!--                                                                                        &lt;!&ndash;begin::수정&ndash;&gt;-->
+<!--                                                                                        <div class="badge badge-light-primary">-->
+<!--                                                                                            <a href="javascript:void(0)">수정</a>-->
+<!--                                                                                        </div>-->
+<!--                                                                                        &lt;!&ndash;end::수정&ndash;&gt;-->
+<!--                                                                                    </td>-->
+<!--                                                                                </tr>-->
+<!--                                                                                &lt;!&ndash;1_베너 &ndash;&gt;-->
+<!--                                                                                <tr class="odd productList1">-->
+<!--                                                                                    &lt;!&ndash;begin::Checkbox&ndash;&gt;-->
+<!--                                                                                    <td>-->
+<!--                                                                                        <div-->
+<!--                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">-->
+<!--                                                                                            <input class="form-check-input checkbox"-->
+<!--                                                                                                   type="checkbox">-->
+<!--                                                                                        </div>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::Checkbox&ndash;&gt;-->
 
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
+<!--                                                                                    &lt;!&ndash;begin::배너번호=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <span class="fw-bold">12</span>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너번호=&ndash;&gt;-->
 
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <div class="badge badge-light-danger">
-                                                                                            중요
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
+<!--                                                                                    &lt;!&ndash;begin::배너번호=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <div class="badge badge-light-danger">-->
+<!--                                                                                            중요-->
+<!--                                                                                        </div>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너번호=&ndash;&gt;-->
 
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">11월30일 전화업무 휴무</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">고객센터 이전으로 전화업무 휴무</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">2022.11.13</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
+<!--                                                                                    &lt;!&ndash;begin::배너이름=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <span class="fw-bold">11월30일 전화업무 휴무</span>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너이름=&ndash;&gt;-->
+<!--                                                                                    &lt;!&ndash;begin::배너이름=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <span class="fw-bold">고객센터 이전으로 전화업무 휴무</span>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너이름=&ndash;&gt;-->
+<!--                                                                                    &lt;!&ndash;begin::배너이름=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <span class="fw-bold">2022.11.13</span>-->
+<!--                                                                                    </td>-->
+<!--                                                                                    &lt;!&ndash;end::배너이름=&ndash;&gt;-->
 
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
+<!--                                                                                    &lt;!&ndash;begin::수정/삭제=&ndash;&gt;-->
+<!--                                                                                    <td class="text-end pe-0"-->
+<!--                                                                                        data-order="Inactive">-->
+<!--                                                                                        &lt;!&ndash;begin::수정&ndash;&gt;-->
+<!--                                                                                        <div class="badge badge-light-primary">-->
+<!--                                                                                            <a href="javascript:void(0)">수정</a>-->
+<!--                                                                                        </div>-->
+<!--                                                                                        &lt;!&ndash;end::수정&ndash;&gt;-->
+<!--                                                                                    </td>-->
+<!--                                                                                </tr>-->
 
 
                                                                                 </tbody>
@@ -479,10 +483,18 @@
 
     // 제품 삭제
     $("#deleteNoticeBtn").on('click', function () {
+        let $noticeIds = $(".checkbox:checked").closest("tr").find("span.noticeId");
+        let $noticeArray = new Array();
+
+        $noticeIds.each(function () {
+            $noticeArray.push($(this).text())
+        })
+
         if ($checkboxes.filter(":checked").length == 0) {
             alert("삭제할 공지사항을 선택하세요.");
             return;
         }
+
     });
 
 </script>

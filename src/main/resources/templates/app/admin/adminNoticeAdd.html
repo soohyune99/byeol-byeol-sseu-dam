@@ -91,8 +91,8 @@
                                                                          class="dataTables_wrapper dt-bootstrap4 no-footer">
                                                                         <div class="table-responsive">
                                                                         </div>
-                                                                        <form th:action="@{adminnotice}"
-                                                                              name="addAdminNoticeForm">
+                                                                        <form th:action="@{/admin/notice/save}"
+                                                                              name="addAdminNoticeForm" method="post">
                                                                             <div style="width: 60%; margin: 0 auto 48px auto;">
                                                                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                      style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
@@ -114,6 +114,7 @@
                                                                                                style="width: 88%;">
                                                                                         <select class="form-control form-control-solid"
                                                                                                 id="noticeImportant"
+                                                                                                name="noticeCategory"
                                                                                                 style="width: 12%;padding-left: 19px; margin-left: 9px;color: #5E6278;">
                                                                                             <option value="noticeSelect"
                                                                                                     disabled selected

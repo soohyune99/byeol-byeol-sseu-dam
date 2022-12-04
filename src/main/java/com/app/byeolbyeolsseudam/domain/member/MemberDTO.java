@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Component
 @Data
 @NoArgsConstructor
@@ -19,14 +22,14 @@ public class MemberDTO {
     private String memberPassword;
     private String memberPhone;
     private String memberEmail;
-    private String memberAddress;
     private int memberPoint;
     private String memberProfileName;
     private String memberProfilePath;
     private String memberProfileUuid;
+    private LocalDateTime createdDate;
 
     @QueryProjection
-    public MemberDTO(Long memberId, MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, String memberAddress, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid) {
+    public MemberDTO(Long memberId, MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid, LocalDateTime createdDate) {
         this.memberId = memberId;
         this.memberLoginType = memberLoginType;
         this.memberCategory = memberCategory;
@@ -34,11 +37,11 @@ public class MemberDTO {
         this.memberPassword = memberPassword;
         this.memberPhone = memberPhone;
         this.memberEmail = memberEmail;
-        this.memberAddress = memberAddress;
         this.memberPoint = memberPoint;
         this.memberProfileName = memberProfileName;
         this.memberProfilePath = memberProfilePath;
         this.memberProfileUuid = memberProfileUuid;
+        this.createdDate = createdDate;
     }
 
     public Member toEntity(){

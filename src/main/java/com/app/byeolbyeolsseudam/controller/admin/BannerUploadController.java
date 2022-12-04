@@ -3,6 +3,7 @@ package com.app.byeolbyeolsseudam.controller.admin;
 import com.app.byeolbyeolsseudam.domain.banner.BannerDTO;
 import com.app.byeolbyeolsseudam.service.main.BannerService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,17 +22,17 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/file/*")
 @RequiredArgsConstructor
+@Slf4j
 public class BannerUploadController {
-    private final BannerService bannerService;
+//    private final BannerService bannerService;
 
     private final ServletContext servletContext;
 
 
     @PostMapping("/upload")
     public List<BannerDTO> upload(List<MultipartFile> upload) throws IOException {
-
-//        String realPath = servletContext.getRealPath("/")+"/upload/banner";
-        String rootPath = "C:/upload/banner";
+        String rootPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\banner";
+//        String rootPath = "C:/upload/banner";
         String uploadFileName = null;
         List<BannerDTO> files = new ArrayList<>();
 
@@ -54,20 +55,19 @@ public class BannerUploadController {
 
             files.add(bannerDTO);
 
-            bannerService.save(bannerDTO.toEntity());
+//            bannerService.save(bannerDTO.toEntity());
         }
         return files;
     }
-//    @PostMapping("/delete")
-//    public void delete(String uploadPath, String fileName, String uuid){
-//        File file = new File("C:/upload", uploadPath + "/" + fileName);
-//        BannerDTO bannerDTO = bannerService.selectByUuid(uuid);
-//
-//        if(file.exists()){
-//            file.delete();
-//            bannerService.delete(bannerDTO.toEntity());
-//        }
-//    }
+    @PostMapping("/delete")
+    public void delete(String uploadPath){
+        String rootPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static";
+        File file = new File(rootPath, uploadPath);
+
+        if(file.exists()){
+            file.delete();
+        }
+    }
     public String createDirectoryByNow(){
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         Date now = new Date();
