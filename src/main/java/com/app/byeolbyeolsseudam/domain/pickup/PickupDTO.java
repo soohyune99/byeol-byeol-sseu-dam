@@ -20,7 +20,10 @@ public class PickupDTO {
     private String pickupAddress;
     private String pickupMessage;
     private PickupStatus pickupStatus;
-    private Long memberId;
+    private Long memberId; // 신청자 아이디
+    private String memberName; // 신청자 이름
+    private Long pickerId; // 수거자 아이디
+    private String pickerName; // 수거자 이름
     private LocalDateTime createdDate;
 
     @QueryProjection
@@ -32,6 +35,21 @@ public class PickupDTO {
         this.pickupMessage = pickupMessage;
         this.pickupStatus = pickupStatus;
         this.memberId = memberId;
+        this.createdDate = createdDate;
+    }
+
+    @QueryProjection
+    public PickupDTO(Long pickupId, int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Long memberId, String memberName, Long pickerId, String pickerName, LocalDateTime createdDate) {
+        this.pickupId = pickupId;
+        this.petCount = petCount;
+        this.glassCount = glassCount;
+        this.pickupAddress = pickupAddress;
+        this.pickupMessage = pickupMessage;
+        this.pickupStatus = pickupStatus;
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.pickerId = pickerId;
+        this.pickerName = pickerName;
         this.createdDate = createdDate;
     }
 

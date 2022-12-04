@@ -29,4 +29,8 @@ public class BannerService{
 
     public void delete(Banner banner){bannerRepository.delete(banner);}
 
+    public void saveBanner(BannerDTO bannerDTO) {
+        bannerRepository.save(bannerDTO.toEntity());
+    }
+
 }

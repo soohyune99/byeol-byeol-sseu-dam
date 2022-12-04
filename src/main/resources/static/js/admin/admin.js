@@ -628,7 +628,7 @@ function modifyAdminNotice() {
 // 고객센터 - 배지 목록 + 배지 추가
 
 function addBanner() {
-	if ($("input[name=bannerName]").next().attr("src") == "/images/admin/02.png") {
+	if ($("input[name=bannerNames]").next().attr("src") == "/images/admin/02.png") {
 		alert("배너 사진을 업로드하세요!");
 		return;
 	}
@@ -639,7 +639,7 @@ function addBanner() {
 // 고객센터 - 배지목록 + 배지 수정
 
 function modifyBanner() {
-	if ($("input[name=bannerName]").next().attr("src") == "/images/admin/02.png") {
+	if ($("input[name=bannerNames]").next().attr("src") == "/images/admin/02.png") {
 		alert("배너 사진을 업로드하세요!");
 		return;
 	}

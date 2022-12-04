@@ -7,9 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -40,9 +38,7 @@ public class AdminController {
 
     /* ############################### 회원 관리  ############################### */
 
-    /* 회원 관리 - 회원 목록  */
-    @GetMapping("adminusermanage")
-    public String adminUserManage(){ return "/app/admin/adminUserManage.html"; }
+
 
     /* ############################### 주문 관리 ################################ */
 
@@ -186,51 +182,12 @@ public class AdminController {
 
     /* ############################### 고객 센터 ################################ */
 
-    /* 고객센터 - 공지사항 목록 */
-    @GetMapping("adminnotice")
-    public String adminNotice(){
-        return "/app/admin/adminNotice.html";
-    }
-
-    /* 고객센터 - 공지사항 목록 + 공지사항 추가 */
-    @GetMapping("adminnoticeadd")
-    public String adminNoticeAdd(){
-        return "/app/admin/adminNoticeAdd.html";
-    }
-
-    /* 고객센터 - 공지사항 목록 + 공지사항 수정 */
-    @GetMapping("adminnoticemodify")
-    public String adminNoticeModify(){
-        return "/app/admin/adminNoticeModify.html";
-    }
+    //AdminNoticeController
 
 
     /* ############################### 배너 관리 ############################### */
 
-    private final BannerService bannerService;
-    /* 배너 - 배너 목록 */
-//    @GetMapping("adminbannerlist")
-//    public String adminBannerList(){
-//        return "/app/admin/adminBannerList.html";
-//    }
-
-    @GetMapping("adminbannerlist")
-    public String adminBannerList(Model model){
-        model.addAttribute("banners", bannerService.show());
-        return "/app/admin/adminBannerList.html";
-    }
-
-    /* 베너관리- 베너 추가 */
-    @GetMapping("adminbanneradd")
-    public String adminBannerAdd(){
-        return "/app/admin/adminBannerAdd.html";
-    }
-
-    /* 베너관리- 베너 수정 */
-    @GetMapping("adminbannermodify")
-    public String adminBannerModify(){
-        return "/app/admin/adminBannerModify.html";
-    }
+    //BannerController
 
 
 
