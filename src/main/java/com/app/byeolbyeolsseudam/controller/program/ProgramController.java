@@ -1,48 +1,59 @@
 package com.app.byeolbyeolsseudam.controller.program;
 
-import com.app.byeolbyeolsseudam.service.program.ProgramService;
+import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/program/*")
 public class ProgramController {
-    private final ProgramService programService;
 
     /* 프로그램 기본 List */
     @GetMapping("/list")
-    public String program(Model model){
-        model.addAttribute("programs", programService.programAllList());
-        return "/app/program/program";
+    public String program(ProgramDTO programDTO){
+        return "/app/program/program"; // 이동할 html 파일 경로
     }
-
-    /* 프로그램 Search List _ Keyword 검색 */
-    @GetMapping("/list/search")
-    public String programSearchKeyword(String keyword, Model model){
-        model.addAttribute("programs", programService.searchProgram(keyword));
-        return "/app/program/program";
-    }
-
-
-    /* ####################################################################################################### */
-
 
     /* 프로그램 DETAIL 창 */
     @GetMapping("/programdetail")
     public String programDetail() {
-        return "/app/program/programDetail";
+        return "/app/program/programDetail"; // 이동할 html 파일 경로
     }
 
+    /* ####################################################################################################### */
+    /* ##################################  페이지 이동시 사용  ################################################## */
+    /* ####################################################################################################### */
 
+//    private final ProgramService programService;
+
+    /* 프로그램 기본 List - 페이지 이동시 사용*/
+//    @GetMapping("/list")
+//    public String program(ProgramDTO programDTO){
+//        model.addAttribute("programs", programService.programAllList());
+//        return "/app/program/program";
+//    }
+
+    /* 프로그램 Search List _ Keyword 검색 - 페이지 이동 */
+//    @GetMapping("/list/search")
+//    public String programSearchKeyword(String keyword, Model model){
+//        model.addAttribute("programs", programService.searchProgram(keyword));
+//        return "/app/program/program";
+//    }
+
+
+    /* 프로그램 상태 선택시 - 페이지 이동(status부분 클릭시 css 유지가 안됌... default값 전체로 계속 유지됨. -> 사용시 HTML 더 만들어서 사용하기  */
+//    @GetMapping("/list/status")
+//    public String programStatus(ProgramStatus programStatus, Model model){
+//        model.addAttribute("programs", programService.programStatusIngList(programStatus));
+//        return "/app/program/program";
+//    }
+
+
+    /* ####################################################################################################### */
+    /* ###################################  사용 안함  ######################################################### */
     /* ####################################################################################################### */
 
 //    /* 전체 program List _ Ajax */
@@ -51,9 +62,7 @@ public class ProgramController {
 //        return programService.programAllList();
 //    }
 
-    /* ####################################################################################################### */
-
-    /* 프로그램 _ Keyword 로 검색시 해당 */
+    /* 프로그램 _ Keyword 로 검색시 해당 - 실패 */
 //    @GetMapping("/program?enter={keyword}")
 //    public String program(Model model, @PathVariable String keyword){
 //        /*model.addAttribute("keyword",keyword);*/

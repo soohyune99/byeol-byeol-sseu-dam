@@ -42,15 +42,29 @@ $category.on("click", function () {
 });
 
 /* 검색 Enter로 submit 가능 / 빈칸 입력시 alert */
-function searchList(theForm) {
-    if (theForm.enter.value == "") {
-        alert("검색어를 입력하세요");
-        return false;
-    }
-    // theForm.submit();
-    alert($("#__BVID__183").val());
-    location.href = "/program/list/search" + "?keyword=" + $("#__BVID__183").val();
-}
+// function searchList(theForm) {
+//     if (theForm.enter.value == "") {
+//         alert("검색어를 입력하세요");
+//         return false;
+//     }
+//     // theForm.submit();
+//     location.href = "/program/list/search" + "?keyword=" + $("#__BVID__183").val();
+// }
+//
+//
+// $(".programAllList").on('click', function () {
+//     location.href = "/program/list";
+// });
+//
+// $(".programStatus").on('click', function () {
+//     location.href = "/program/list/status" + "?programStatus=" + $(this).text();
+//     // $(this).css('font-weight', 700);
+//     // $(this).css('border-bottom-color', '#00C7AE');
+//     // $(this).css('border-radius', 0);
+//     // $(this).css('color', '#2d2d2d');
+//     $(this).css('display', 'none');
+// });
+
 
 /* 검색창 추천 검색어 클릭시 검색 칸으로 입력 */
 
