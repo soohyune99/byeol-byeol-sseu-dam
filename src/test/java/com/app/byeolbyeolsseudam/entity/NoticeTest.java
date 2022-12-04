@@ -34,6 +34,15 @@ public class NoticeTest {
     // 공지사항 save
     @Test
     public void queryDslTest(){
+
+        for (int i=0; i<50; i++){
+            NoticeDTO notice1 = new NoticeDTO();
+            notice1.setNoticeTitle("공지사항" + i);
+            notice1.setNoticeContent("공지사항 내용" + i);
+            notice1.setNoticeCategory(NoticeCategory.중요);
+
+            noticeRepository.save(notice1.toEntity());
+        }
         for (int i=51; i<101; i++){
             NoticeDTO noticeDTO = new NoticeDTO();
             noticeDTO.setNoticeTitle("공지사항" + i);
@@ -42,14 +51,14 @@ public class NoticeTest {
 
             noticeRepository.save(noticeDTO.toEntity());
         }
-
-        List<Notice> notices = jpaQueryFactory.selectFrom(notice)
-                .where(notice.noticeTitle.eq("공지사항"))
-                .orderBy(notice.noticeId.desc())
-                .offset(10)
-                .limit(5)
-                .fetch();
-        notices.stream().map(Notice::toString).forEach(log::info);
+//
+//        List<Notice> notices = jpaQueryFactory.selectFrom(notice)
+//                .where(notice.noticeTitle.eq("공지사항"))
+//                .orderBy(notice.noticeId.desc())
+//                .offset(10)
+//                .limit(5)
+//                .fetch();
+//        notices.stream().map(Notice::toString).forEach(log::info);
     }
 
     // 카테고리가 중요인 공지사항 5개 조회

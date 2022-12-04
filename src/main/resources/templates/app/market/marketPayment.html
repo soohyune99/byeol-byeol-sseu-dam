@@ -28,33 +28,24 @@ id="doz_body">
      id="s202001037c5d53c2ffaa5" doz_change_mobile="N" doz_aside="N" doz_side_width="230"
      doz_side_margin="0" doz_extend="N" doz_mobile_section="N" doz_mobile_hide="N" doz_header_repeat="N"
      doz_footer_repeat="N" doz_category="default">
-    <div class="section_bg _section_bg _interactive_bg   "
-         style="   background-size:cover; background-repeat: no-repeat; position: absolute;left: 0;top: 0;right: 0; bottom: 0;">
+    <div class="section_bg _section_bg _interactive_bg" style="   background-size:cover; background-repeat: no-repeat; position: absolute;left: 0;top: 0;right: 0; bottom: 0;">
     </div>
-    <div class="section_bg_color _section_bg_color"
-         style="  position: absolute;left: 0;top: 0;right: 0; bottom: 0;"></div>
+    <div class="section_bg_color _section_bg_color" style="  position: absolute;left: 0;top: 0;right: 0; bottom: 0;"></div>
     <main>
         <div doz_type="inside" class="inside">
             <div doz_type="modify-row" doz_grid="12" class="doz_modify-row">
                 <div doz_type="grid" doz_grid="12" class="col-dz col-dz-12">
                     <div doz_type="widget" id="w2020010365afdaf6c2088">
-                        <div class="_widget_data " data-widget-name="쇼핑 결제 완료" data-widget-type="shop_payment"
-                             data-widget-anim="" data-widget-anim-duration="" data-widget-anim-delay=""
-                             data-widget-parent-is-mobile="N">
-
-
-                            <form id="order_payment" action="/backpg/payment/index.cm" method="post" target=""
-                                  data-pay-type="card" data-init="Y">
+                        <div class="_widget_data " data-widget-name="쇼핑 결제 완료" data-widget-type="shop_payment" data-widget-anim="" data-widget-anim-duration="" data-widget-anim-delay="" data-widget-parent-is-mobile="N">
+                            <form id="order_payment" action="/backpg/payment/index.cm" method="post" target="" data-pay-type="card" data-init="Y">
                                 <input type="hidden" name="order_code" value="o202211116e39b947da4ea">
                                 <div class="shop-content payment clearfix tansparent_bg" id="order_form_wrap">
                                     <input type="hidden" name="" class="_orderer_postcode" value="">
                                     <input type="hidden" name="" class="_orderer_address" value="">
                                     <input type="hidden" name="" class="_orderer_address_detail" value="">
-                                    <input type="hidden" name="deliv_information_show" id="deliv_information_show"
-                                           value="Y">
-                                    <input type="hidden" name="pg_back_url"
-                                           value="https://jigushop.co.kr/shop_payment/?order_code=o202211116e39b947da4ea">
-                                    <h1 class="shop-tit hidden-sm hidden-xs ">결제하기</h1>
+                                    <input type="hidden" name="deliv_information_show" id="deliv_information_show" value="Y">
+                                    <input type="hidden" name="pg_back_url" value="https://jigushop.co.kr/shop_payment/?order_code=o202211116e39b947da4ea">
+                                    <h1 class="shop-tit hidden-sm hidden-xs">결제하기</h1>
                                     <div class="order_wrap _order_wrap ">
                                         <div class="modify-tip-off ">
                                             <h6>주문 상품 정보</h6>
@@ -64,20 +55,18 @@ id="doz_body">
                                                         <div class="shop_item_thumb">
                                                             <a href="/bathroom/?idx=24" target="_blank">
                                                                 <div class="product_img_wrap">
-                                                                    <img src="https://cdn.imweb.me/thumbnail/20220117/6a329ba1bf9e7.jpg"
-                                                                         alt="주문상품 이미지">
+                                                                    <img src="https://cdn.imweb.me/thumbnail/20220117/6a329ba1bf9e7.jpg" alt="주문상품 이미지">
                                                                 </div>
                                                                 <div class="product_info_wrap">
-                                                                        <span class="shop_item_title">[지구샵]
-                                                                            대나무칫솔</span>
+                                                                        <span class="shop_item_title">[지구샵] 대나무칫솔</span>
                                                                     <div class="shop_item_opt">
-                                                                        <p><em
-                                                                                class="list_badge badge_latest">필수</em>
-                                                                            성인용(19cm) - 1개</p>
+                                                                        <p>
+                                                                            <em class="list_badge badge_latest">필수</em>
+                                                                            성인용(19cm) - 1개
+                                                                        </p>
                                                                     </div>
                                                                     <div class="shop_item_pay">
-                                                                            <span
-                                                                                    class="text-bold text-14">2,800원</span>
+                                                                            <span class="text-bold text-14">2,800원</span>
                                                                     </div>
                                                                 </div>
                                                             </a>
@@ -97,44 +86,38 @@ id="doz_body">
                                                         <div class="info text-14 text-gray">성은지</div>
                                                         <div class="info text-14 text-gray">01065559107</div>
                                                         <div class="info text-14 text-gray">sejjes07@gmail.com</div>
-                                                        <a href="javascript:modifyOrdererInfo();"
-                                                           class="btn-primary btn btn-sm-padding text-13 btn_top_right _btn_orderer_edit"
-                                                           role="button">수정</a>
+<!--                                                        <a href="javascript:modifyOrdererInfo();" class="btn-primary btn btn-sm-padding text-13 btn_top_right _btn_orderer_edit" role="button">수정</a>-->
                                                     </div>
                                                 </div>
-                                                <script id="TEMPLATE_ORDERER_PREVIEW_WRAP"
-                                                        type="application/template">
-                                                    <div class="col-xs-12">
-                                                        <div class="text-15 margin-bottom-lg">{orderer_name}</div>
-                                                        <div class="text-14 text-gray">{orderer_call}</div>
-                                                        <div class="text-14 text-gray">{orderer_email}</div>
-                                                        <a onclick="void(0);" href="javascript:" class="btn-primary btn btn-sm-padding text-13 btn_top_right _btn_orderer_edit" role="button">수정</a>
-                                                    </div>
-                                                </script>
-                                                <div class="modify-row _orderer_edit_wrap no-padding-bottom"
-                                                     style="display: none;">
-                                                    <div class="col-xs-6 space_right _orderer_name_wrap error_box"
-                                                         data-error="N" data-error_msg="주문자 이름을 입력해주세요">
-                                                        <input class="form-control _orderer_name" type="text"
-                                                               title="이름" data-group="orderer" placeholder="이름"
-                                                               name="orderer_name" value="성은지">
-                                                    </div>
-                                                    <div class="col-xs-6 space_left _orderer_call_wrap error_box"
-                                                         data-error="N" data-unvalid_error_msg="올바른 전화번호를 입력하세요"
-                                                         data-blank_error_msg="전화번호를 입력하세요"> <input
-                                                            class="form-control _orderer_call" type="tel"
-                                                            title="연락처" data-group="orderer" placeholder="연락처"
-                                                            name="orderer_call" value="01065559107">
-                                                    </div>
-                                                    <div class="col-xs-12 space_top _orderer_email_wrap error_box"
-                                                         data-error="N" data-unvalid_error_msg="올바른 이메일 입력하세요"
-                                                         data-blank_error_msg="이메일을 입력해주세요">
-                                                        <input class="form-control _orderer_email" type="email"
-                                                               title="이메일" data-group="orderer" data-require="Y"
-                                                               placeholder="이메일" name="orderer_email"
-                                                               value="sejjes07@gmail.com">
-                                                    </div>
-                                                </div>
+<!--                                                <script id="TEMPLATE_ORDERER_PREVIEW_WRAP" type="application/template">-->
+<!--                                                    <div class="col-xs-12">-->
+<!--                                                        <div class="text-15 margin-bottom-lg">{orderer_name}</div>-->
+<!--                                                        <div class="text-14 text-gray">{orderer_call}</div>-->
+<!--                                                        <div class="text-14 text-gray">{orderer_email}</div>-->
+<!--                                                        <a onclick="void(0);" href="javascript:" class="btn-primary btn btn-sm-padding text-13 btn_top_right _btn_orderer_edit" role="button">수정</a>-->
+<!--                                                    </div>-->
+<!--                                                </script>-->
+<!--                                                <div class="modify-row _orderer_edit_wrap no-padding-bottom" style="display: none;">-->
+<!--                                                    <div class="col-xs-6 space_right _orderer_name_wrap error_box" data-error="N" data-error_msg="주문자 이름을 입력해주세요">-->
+<!--                                                        <input class="form-control _orderer_name" type="text" title="이름" data-group="orderer" placeholder="이름"-->
+<!--                                                               name="orderer_name" value="성은지">-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-xs-6 space_left _orderer_call_wrap error_box"-->
+<!--                                                         data-error="N" data-unvalid_error_msg="올바른 전화번호를 입력하세요"-->
+<!--                                                         data-blank_error_msg="전화번호를 입력하세요"> <input-->
+<!--                                                            class="form-control _orderer_call" type="tel"-->
+<!--                                                            title="연락처" data-group="orderer" placeholder="연락처"-->
+<!--                                                            name="orderer_call" value="01065559107">-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-xs-12 space_top _orderer_email_wrap error_box"-->
+<!--                                                         data-error="N" data-unvalid_error_msg="올바른 이메일 입력하세요"-->
+<!--                                                         data-blank_error_msg="이메일을 입력해주세요">-->
+<!--                                                        <input class="form-control _orderer_email" type="email"-->
+<!--                                                               title="이메일" data-group="orderer" data-require="Y"-->
+<!--                                                               placeholder="이메일" name="orderer_email"-->
+<!--                                                               value="sejjes07@gmail.com">-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
 
                                             </div>
                                         </div>
@@ -142,175 +125,89 @@ id="doz_body">
                                             <div class="order_detail">
                                                 <h6>배송 정보</h6>
                                                 <div class="_deliv_wrap">
-                                                    <input type="hidden" id="deliv_type" name="deliv_type"
-                                                           value="parcel">
+                                                    <input type="hidden" id="deliv_type" name="deliv_type" value="parcel">
                                                     <input type="hidden" id="deliv_pay_type" value="price">
-                                                    <input type="hidden" id="shipping_code_type"
-                                                           data-group="shipping" name="shipping_code_type"
-                                                           value="default">
+                                                    <input type="hidden" id="shipping_code_type" data-group="shipping" name="shipping_code_type" value="default">
 
                                                     <div class="modify-row" style="padding:0;">
-                                                        <div id="paymentShippingWrap" data-mode="default"
-                                                             data-member="member" data-list_count="1" data-code=""
-                                                             data-type="default">
+                                                        <div id="paymentShippingWrap" data-mode="default" data-member="member" data-list_count="1" data-code="" data-type="default">
                                                             <div class="col-xs-12 _deliv_preview_wrap">
                                                                 <div class="_shipping_preview_wrap">
-                                                                    <!-- <input type="hidden"
-                                                                           name="deliv_address_code[default]"
-                                                                           value="a20221104cc895ebec17a3"> -->
-                                                                    <div class="text-14 margin-bottom-lg text-gray">성은지</div>
-                                                                    <div class="text-14 margin-bottom-lg text-gray">01065559107</div>
+<!--                                                                    <div class="text-14 margin-bottom-lg text-gray">성은지</div>-->
+<!--                                                                    <div class="text-14 margin-bottom-lg text-gray">01065559107</div>-->
                                                                     <div class="text-14 margin-bottom-lg text-gray">
                                                                         <p class="no-margin">서울 강남구 테헤란로 지하 156(역삼동, 역삼역)</p>
                                                                         <p class="no-margin">401호</p>
                                                                         <p class="no-margin">(06236)</p>
                                                                     </div>
                                                                 </div>
-                                                                <a href="javascript: modifyShippingInfo();"
-                                                                   class="btn btn-primary btn-sm-padding text-13 btn_top_right _btn_modify_shipping"
-                                                                   role="button">수정</a>
+                                                                <a href="javascript: modifyShippingInfo();"  class="btn btn-primary btn-sm-padding text-13 btn_top_right _btn_modify_shipping" role="button">등록</a>
                                                             </div>
-                                                            <div class="col-xs-12 _deliv_edit_wrap"
-                                                                 style="display: none;">
-                                                                <ul
-                                                                        class="nav nav-tabs margin-bottom-xxxl deliv_edit_tab  _deliv_edit_tab">
-                                                                    <li class="text-14"><a
-                                                                            href="javascript: void(0);"
-                                                                            data-target="#selectField"
-                                                                            data-tab-type="select"
-                                                                            class="_tab_select">배송지 선택</a></li>
-                                                                    <li class="text-14"><a
-                                                                            href="javascript: void(0);"
-                                                                            data-target="#inputField"
-                                                                            data-tab-type="input"
-                                                                            class="_tab_input">신규입력</a></li>
+                                                            <div class="col-xs-12 _deliv_edit_wrap" style="display: none;">
+                                                                <ul class="nav nav-tabs margin-bottom-xxxl deliv_edit_tab  _deliv_edit_tab">
+                                                                    <li class="text-14">
+                                                                        <a href="javascript: void(0);" data-target="#selectField" data-tab-type="select" class="_tab_select">배송지 선택</a>
+                                                                    </li>
+                                                                    <li class="text-14">
+                                                                        <a href="javascript: void(0);" data-target="#inputField" data-tab-type="input" class="_tab_input">신규입력</a>
+                                                                    </li>
                                                                 </ul>
                                                                 <div class="tab-content">
                                                                     <div id="selectField" class="tab-pane fade in">
-                                                                        <ul class="no-margin select_field_list">
-                                                                        </ul>
-                                                                        <div
-                                                                                class="text-center _btn_shipping_list_extend_wrap">
-                                                                            <a href="javascript:;"
-                                                                               class="text-brand text-14 _btn_shipping_list_extend">더보기
-                                                                                +</a>
+                                                                        <ul class="no-margin select_field_list"> </ul>
+                                                                        <div class="text-center _btn_shipping_list_extend_wrap">
+                                                                            <a href="javascript:;" class="text-brand text-14 _btn_shipping_list_extend">
+                                                                                더보기 +
+                                                                            </a>
                                                                         </div>
                                                                     </div>
-                                                                    <div id="inputField"
-                                                                         class="tab-pane fade input_field">
-                                                                        <div class="_address_wrap"
-                                                                             data-is-add-shipping="N"><label
-                                                                                class="checkbox-inline checkbox-styled no-padding"
-                                                                                style="margin-bottom: 12px;">
-                                                                            <input type="checkbox"
-                                                                                   id="deliv_info_check">
-                                                                            <span class="text-13">주문자 정보와
-                                                                                        동일</span>
+                                                                    <div id="inputField" class="tab-pane fade input_field">
+                                                                        <div class="_address_wrap" data-is-add-shipping="N">
+                                                                            <label class="checkbox-inline checkbox-styled no-padding" style="margin-bottom: 12px;">
+                                                                            <input type="checkbox" id="deliv_info_check">
+                                                                            <span class="text-13">주문자 정보와 동일</span>
                                                                         </label>
                                                                             <div class="modify-row no-padding">
-                                                                                <div class="col-xs-6 space_right error_box _deliv_name_wrap"
-                                                                                     data-error="N"
-                                                                                     data-error_alert_msg="배송지 정보의 수령인 이름을 2 글자 이상 입력해 주세요"
-                                                                                     data-error_msg="2글자 이상 입력해 주세요">
-                                                                                    <input
-                                                                                            class="form-control _deliv_name"
-                                                                                            type="text"
-                                                                                            name="deliv_name"
-                                                                                            placeholder="수령인"
-                                                                                            data-group="shipping"
-                                                                                            value="성은지">
-                                                                                </div>
-                                                                                <div class="col-xs-6 space_left error_box _deliv_call_wrap"
-                                                                                     data-error="N"
-                                                                                     data-unvalid_error_msg="올바른 전화번호를 입력하세요"
-                                                                                     data-blank_error_msg="전화번호를 입력하세요">
-                                                                                    <input
-                                                                                            class="form-control _deliv_call"
-                                                                                            type="tel" name="deliv_call"
-                                                                                            placeholder="연락처"
-                                                                                            data-group="shipping"
-                                                                                            value="01065559107">
-                                                                                </div>
+<!--                                                                                <div class="col-xs-6 space_right error_box _deliv_name_wrap" data-error="N" data-error_alert_msg="배송지 정보의 수령인 이름을 2 글자 이상 입력해 주세요" data-error_msg="2글자 이상 입력해 주세요">-->
+<!--                                                                                    <input class="form-control _deliv_name" type="text" name="deliv_name" placeholder="수령인" data-group="shipping" value="성은지">-->
+<!--                                                                                </div>-->
+<!--                                                                                <div class="col-xs-6 space_left error_box _deliv_call_wrap" data-error="N" data-unvalid_error_msg="올바른 전화번호를 입력하세요" data-blank_error_msg="전화번호를 입력하세요">-->
+<!--                                                                                    <input class="form-control _deliv_call" type="tel" name="deliv_call" placeholder="연락처" data-group="shipping" value="01065559107">-->
+<!--                                                                                </div>-->
                                                                                 <div class="col-xs-12 space_top _deliv_country_wrap"
                                                                                      data-country_visible="N">
                                                                                     <div class="form-select-wrap ">
-                                                                                        <select title=""
-                                                                                                name="deliv_country"
-                                                                                                data-code="a20221104cc895ebec17a3"
-                                                                                                data-group="shipping"
-                                                                                                class="form-control _deliv_country">
-                                                                                            <option value="KR"
-                                                                                                    data-address-type="KR">
-                                                                                                대한민국</option>
+                                                                                        <select title="" name="deliv_country" data-code="a20221104cc895ebec17a3" data-group="shipping" class="form-control _deliv_country">
+                                                                                            <option value="KR" data-address-type="KR"> 대한민국</option>
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div
-                                                                                    class="modify-row no-padding margin-bottom-xxl _input_form_wrap error_box">
-                                                                                <input type="hidden"
-                                                                                       name="deliv_address_code"
-                                                                                       value="a20221104cc895ebec17a3">
-                                                                                <div class="col-xs-3 space_top"
-                                                                                     style="padding-right: 0;">
-                                                                                    <input id="order_postcode_input"
-                                                                                           class="form-control _btn_search_address_sub"
-                                                                                           type="tel"
-                                                                                           placeholder="우편번호"
-                                                                                           value="06236" readonly="">
+                                                                            <div class="modify-row no-padding margin-bottom-xxl _input_form_wrap error_box">
+                                                                                <input type="hidden" name="deliv_address_code" value="a20221104cc895ebec17a3">
+                                                                                <div class="col-xs-3 space_top" style="padding-right: 0;">
+                                                                                    <input id="order_postcode_input" class="form-control _btn_search_address_sub" type="tel" placeholder="우편번호" value="06236" readonly="">
                                                                                 </div>
-                                                                                <div
-                                                                                        class="col-xs-3 space_top btn-tools">
-                                                                                    <a class="blocked text-13 text-center btn _btn_search_address_sub"
-                                                                                       href="javascript:;">주소찾기</a>
+                                                                                <div class="col-xs-3 space_top btn-tools">
+                                                                                    <a class="blocked text-13 text-center btn _btn_search_address_sub" href="javascript:;">주소찾기</a>
                                                                                 </div>
                                                                                 <div class="col-xs-12 space_top">
-                                                                                    <input class="form-control"
-                                                                                           type="hidden"
-                                                                                           id="deliv_postcode"
-                                                                                           name="deliv_postcode"
-                                                                                           placeholder="우편번호"
-                                                                                           data-group="shipping"
-                                                                                           value="06236" readonly="">
-                                                                                    <input id="order_address_input"
-                                                                                           name="deliv_address"
-                                                                                           class="form-control _btn_search_address"
-                                                                                           type="text" placeholder="주소"
-                                                                                           data-group="shipping"
-                                                                                           value="서울 강남구 테헤란로 지하 156 (역삼동, 역삼역)"
-                                                                                           readonly="">
+                                                                                    <input class="form-control" type="hidden" id="deliv_postcode" name="deliv_postcode" placeholder="우편번호" data-group="shipping" value="06236" readonly="">
+                                                                                    <input id="order_address_input" name="deliv_address" class="form-control _btn_search_address" type="text" placeholder="주소" data-group="shipping" value="서울 강남구 테헤란로 지하 156 (역삼동, 역삼역)" readonly="">
                                                                                 </div>
                                                                                 <div class="col-xs-12 space_top">
-                                                                                    <input
-                                                                                            id="order_address_detail_input"
-                                                                                            name="deliv_address_detail"
-                                                                                            class="form-control"
-                                                                                            type="text"
-                                                                                            placeholder="상세주소"
-                                                                                            data-group="shipping"
-                                                                                            value="401호">
+                                                                                    <input id="order_address_detail_input" name="deliv_address_detail" class="form-control" type="text" placeholder="상세주소" data-group="shipping" value="401호">
                                                                                 </div>
                                                                             </div>
-                                                                            <div
-                                                                                    class="checkbox checkbox-styled no-padding _check_is_add_shipping_wrap">
+                                                                            <div lass="checkbox checkbox-styled no-padding _check_is_add_shipping_wrap">
                                                                                 <label class="no-margin">
-                                                                                    <input type="checkbox"
-                                                                                           name="is_add_shipping"
-                                                                                           value="Y"
-                                                                                           data-group="shipping"
-                                                                                           class="_check_is_add_shipping">
-                                                                                    <span class="text-13">배송지
-                                                                                            목록에 추가</span>
+                                                                                    <input type="checkbox" name="is_add_shipping" value="Y" data-group="shipping" class="_check_is_add_shipping">
+                                                                                    <span class="text-13">배송지 목록에 추가</span>
                                                                                 </label>
                                                                             </div>
-                                                                            <div class="checkbox checkbox-styled no-padding _check_is_default_shipping_wrap"
-                                                                                 style="display: none;">
+                                                                            <div class="checkbox checkbox-styled no-padding _check_is_default_shipping_wrap" style="display: none;">
                                                                                 <label class="no-margin">
-                                                                                    <input type="checkbox"
-                                                                                           name="is_default_shipping"
-                                                                                           value="Y"
-                                                                                           data-group="shipping"
-                                                                                           class="_check_is_default_shipping">
+                                                                                    <input type="checkbox" name="is_default_shipping" value="Y" data-group="shipping" class="_check_is_default_shipping">
                                                                                     <span class="text-13">기본
                                                                                             배송지로 설정</span>
                                                                                 </label>
@@ -445,12 +342,12 @@ id="doz_body">
                                                         </label>
                                                     </div>
                                                     <div class="pay_type_item col-xs-6 ">
-                                                        <label class="radio-inline radio-styled no-padding">
-                                                            <input type="radio" name="pay_type" value="cash"
-                                                                   data-name="무통장입금" data-group="payment"
-                                                                   class="_pay_type">
-                                                            <span class="text-14">무통장입금</span>
-                                                        </label>
+<!--                                                        <label class="radio-inline radio-styled no-padding">-->
+<!--                                                            <input type="radio" name="pay_type" value="cash"-->
+<!--                                                                   data-name="무통장입금" data-group="payment"-->
+<!--                                                                   class="_pay_type">-->
+<!--                                                            <span class="text-14">무통장입금</span>-->
+<!--                                                        </label>-->
                                                         <div class="_pay_cash_wrap" data-platform="mobile">
                                                         </div>
                                                         <div class="_pay_cash_receipt_wrap pay_cash_receipt_wrap"

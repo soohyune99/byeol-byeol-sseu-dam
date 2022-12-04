@@ -3,6 +3,7 @@ package com.app.byeolbyeolsseudam.domain.product;
 import com.app.byeolbyeolsseudam.domain.review.ReviewDTO;
 import com.app.byeolbyeolsseudam.entity.product.Product;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,8 @@ public class ProductDTO {
 
     private List<ReviewDTO> reviews;
 
-    public ProductDTO(Long productId, ProductCategory productCategory, String productName, int productPrice, int productCount, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid, List<ReviewDTO> reviews) {
+    @QueryProjection
+    public ProductDTO(Long productId, ProductCategory productCategory, String productName, int productPrice, int productCount, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid) {
         this.productId = productId;
         this.productCategory = productCategory;
         this.productName = productName;
