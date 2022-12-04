@@ -4,6 +4,7 @@ import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.entity.member.QMember;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.service.login.MemberLoginService;
 import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.app.byeolbyeolsseudam.type.MemberLoginType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -33,6 +34,9 @@ public class MemberTest {
     @Autowired
     JPAQueryFactory jpaQueryFactory;
 
+    @Autowired
+    MemberLoginService memberLoginService;
+
     @Test
     public void saveTest(){
         MemberDTO memberDTO = new MemberDTO();
@@ -56,20 +60,29 @@ public class MemberTest {
     @Test
     public void updateTest(){
 
-        Member member = memberRepository.findById(1L).get();
-
         MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setMemberLoginType(MemberLoginType.네이버);
-        memberDTO.setMemberCategory(MemberCategory.기사회원);
-        memberDTO.setMemberName("장선홍");
-        memberDTO.setMemberEmail("dre4135@gmail.com");
-        memberDTO.setMemberPassword("1234");
-        memberDTO.setMemberAddress("서울강동");
-        memberDTO.setMemberPhone("01012345678");
+        memberDTO.setMemberEmail("wkdtjsghd5@naver.com");
+        String tempPassword = memberLoginService.GetTempPassword();
+        memberLoginService.UpdatePassword(memberDTO, tempPassword);
 
-        member.update(memberDTO);
+//        memberLoginService.Send(memberDTO);
+
+//        memberRepository.findByMemberEmail("wkdtjsghd5@naver.com").setMemberPassword("123467788");
+
+//        MemberDTO memberDTO = new MemberDTO();
+//        memberDTO.setMemberLoginType(MemberLoginType.네이버);
+//        memberDTO.setMemberCategory(MemberCategory.기사회원);
+//        memberDTO.setMemberName("장선홍");
+//        memberDTO.setMemberEmail("dre4135@gmail.com");
+//        memberDTO.setMemberPassword("1234");
+//        memberDTO.setMemberAddress("서울강동");
+//        memberDTO.setMemberPhone("01012345678");
+//
+//        member.update(memberDTO);
 
     }
+
+
 
 
     @Test

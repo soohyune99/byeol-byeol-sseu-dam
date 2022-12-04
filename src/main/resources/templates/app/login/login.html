@@ -24,18 +24,20 @@
     <div data-testid="login-page" class="login-page" data-v-7feb86a2="">
         <h2 data-v-7feb86a2="">로그인</h2>
         <div data-v-7feb86a2="" class="card">
-            <form data-v-149435f8="" data-v-7feb86a2="" autocomplete="off" class="">
+            <form data-v-149435f8="" data-v-7feb86a2="" autocomplete="off" class=""
+            th:method="post" th:action="@{/login/login}" th:object="${memberDTO}">
                 <div data-v-149435f8="" class="form-row login-form">
                     <div data-v-149435f8="" class="col-12">
                         <fieldset data-v-149435f8="" class="form-group" id="__BVID__74">
                             <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0"
                                     id="__BVID__74__BV_label_">이메일</legend>
-                            <div><input data-v-149435f8="" name="email" type="email"
+                            <div><input data-v-149435f8="" type="email"
+                                        th:field = "*{memberEmail}"
                                         placeholder="example@soomgo.com" autocomplete="off"
                                         class="text-input form-control is-invalid" data-testid="login-email"
                                         x-autocompletetype="off" autocorrect="off" spellcheck="false"
                                         autocapitalize="off" data-vv-validate-on="blur" aria-invalid="true"
-                                        id="__BVID__75" autofocus>
+                                        autofocus>
                                 <div data-v-149435f8="" class="invalid-feedback" style="display: none">이메일 주소를 입력해주세요.</div>
                             </div>
                         </fieldset>
@@ -46,12 +48,13 @@
                                     id="__BVID__76__BV_label_">비밀번호
                             </legend>
                             <div>
-                                <input data-v-149435f8="" name="password" type="password"
+                                <input data-v-149435f8="" type="password"
+                                        th:field = "*{memberPassword}"
                                         placeholder="비밀번호를 입력해주세요." autocomplete="off"
                                         class="text-input form-control is-invalid" data-testid="login-password"
                                         x-autocompletetype="off" autocorrect="off" spellcheck="false"
                                         autocapitalize="off" data-vv-validate-on="blur" aria-invalid="true"
-                                        id="__BVID__77">
+                                        >
                                 <small data-v-149435f8="" class="form-text text-invalid" style="display: none">비밀번호를
                                 입력해주세요.</small>
                             </div>

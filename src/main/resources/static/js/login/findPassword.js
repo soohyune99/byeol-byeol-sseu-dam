@@ -1,6 +1,6 @@
 
 let emailFilter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-let $inputId = $("#__BVID__76");
+let $inputId = $("#memberEmail");
 let $btn = $(".btn-primary");
 
 // 이메일 유효성 검사
