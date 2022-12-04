@@ -36,7 +36,7 @@
                         <div data-v-01b8dd61="" data-v-77f4e41c="" class="post-category-subject">
                             <ol data-v-01b8dd61="" class="category-breadcrumb list-inline">
                                 <li data-v-01b8dd61="" class="category-breadcrumb-item"><a data-v-01b8dd61=""
-                                                                                           href="/community/soomgo-life/?from=breadcrumb"
+                                                                                           href="/community"
                                                                                            class="breadcrumb-item"
                                                                                            data-testid="soomgo-life-home-breadcrumb"><span
                                         data-v-01b8dd61=""
@@ -323,6 +323,9 @@
     <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </div>
 </body>
+<script th:inline="javascript">
+    let boardId = [[${board.boardId}]];
+</script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/community/communityRead.js"></script>
 <script src="/js/fix/headerLogin.js"></script>

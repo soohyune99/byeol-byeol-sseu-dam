@@ -21,29 +21,34 @@
     <div data-v-b31e1ebe="" class="community-container container">
         <div data-v-54d1e5f9="" data-v-b31e1ebe="" class="soomgo-life-container">
             <section data-v-30483cb0="" data-v-54d1e5f9="" class="write-post-container">
+                <form id="boardForm" th:action="@{/community/write}" th:method="post">
                 <div data-v-28991315="" data-v-30483cb0="" class="select-subject-header">
-                    <div data-v-28991315="" class="subject-header-wrapper"><img data-v-28991315=""
-                                                                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iIzMyMzIzMiIgZmlsbC1ydWxlPSJub256ZXJvIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTYuNDMuNDNsMS4xMzEgMS4xMzEtNy40MzQgNy40MzUgNy40MzQgNy40MzQtMS4xMzEgMS4xMzEtNy40MzUtNy40MzQtNy40MzQgNy40MzRMLjQzIDE2LjQzbDcuNDM0LTcuNDM0TC40MyAxLjU2MSAxLjU2MS40M2w3LjQzNCA3LjQzNEwxNi40My40M3oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zMzcgLTExNCkgdHJhbnNsYXRlKDAgOTQpIHRyYW5zbGF0ZSgzMzcgMjApIi8+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
-                                                                                alt="뒤로 가기" class="back-button"><select data-v-28991315=""
-                                                                                                                        class="custom-select sg-text-subhead3 sg-font-medium post-subject-select-box invalid"
-                                                                                                                        id="__BVID__4797">
-                        <option data-v-28991315="" value=""> 주제 선택 </option>
-                        <option data-v-28991315="" value="qna"> 자랑해요 </option>
-                        <option data-v-28991315="" value="how-much"> 쓰담활동 </option>
-                        <option data-v-28991315="" value="find-provider"> 비건레시피 </option>
-                        <option data-v-28991315="" value="together"> 함께해요 </option>
-                    </select><button data-v-28991315="" type="button" disabled="disabled"
-                                     class="btn btn-secondary disabled write-post-submit">등록</button></div>
+                    <div data-v-28991315="" class="subject-header-wrapper">
+                        <img data-v-28991315=""
+                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iIzMyMzIzMiIgZmlsbC1ydWxlPSJub256ZXJvIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTYuNDMuNDNsMS4xMzEgMS4xMzEtNy40MzQgNy40MzUgNy40MzQgNy40MzQtMS4xMzEgMS4xMzEtNy40MzUtNy40MzQtNy40MzQgNy40MzRMLjQzIDE2LjQzbDcuNDM0LTcuNDM0TC40MyAxLjU2MSAxLjU2MS40M2w3LjQzNCA3LjQzNEwxNi40My40M3oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zMzcgLTExNCkgdHJhbnNsYXRlKDAgOTQpIHRyYW5zbGF0ZSgzMzcgMjApIi8+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+                            alt="뒤로 가기" class="back-button">
+                        <select data-v-28991315="" name="boardCategory"
+                            class="custom-select sg-text-subhead3 sg-font-medium post-subject-select-box invalid"
+                            id="__BVID__4797">
+                            <option data-v-28991315="" value=""> 주제 선택 </option>
+                            <option data-v-28991315="" value="환경활동"> 환경활동 </option>
+                            <option data-v-28991315="" value="비건레시피"> 비건레시피 </option>
+                            <option data-v-28991315="" value="추천가게"> 추천가게 </option>
+                            <option data-v-28991315="" value="사는이야기"> 사는이야기 </option>
+                        </select>
+                        <button data-v-28991315="" type="button" disabled="disabled"
+                             class="btn btn-secondary disabled write-post-submit">등록</button></div>
                 </div>
                 <div data-v-6ac96585="" data-v-30483cb0="" class="attach-file-wrapper">
                     <label>
                         <div data-v-6ac96585="" class="attach-file-area">
                             <div data-v-6ac96585="" class="add-image-icon"></div>
                             <div data-v-6ac96585="" class="custom-file b-form-file file-input" aria-required="false"
-                                 aria-invalid="false" id="__BVID__4799__BV_file_outer_"><input type="file"
-                                                                                               name="uploadFile" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
-                                                                                               multiple="multiple" class="custom-file-input" id="__BVID__4799"
-                                                                                               style="z-index: -5;"><!-- <label data-browse="Browse" class="custom-file-label"
+                                 aria-invalid="false" id="__BVID__4799__BV_file_outer_">
+                                <input type="file" name="uploadFile" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
+                                   multiple="multiple" class="custom-file-input" id="__BVID__4799"
+                                   style="z-index: -5;">
+                                <!-- <label data-browse="Browse" class="custom-file-label"
                                     for="__BVID__4799"><span class="d-block form-file-text"
                                         style="pointer-events: none;">No file chosen</span></label> --></div><span
                                 data-v-6ac96585="" class="image-count sg-text-body2 sg-font-regular">0/4</span>
@@ -53,10 +58,11 @@
                 <div data-v-33cf7b62="" data-v-30483cb0="" class="editor-body-container is-bottom-margin">
                     <div data-v-33cf7b62="" class="editor-body-wrapper">
                         <div data-v-2a73c334="" data-v-33cf7b62="" class="editor-title-wrapper">
-                            <div data-v-2a73c334="" class="editor-title-container"><label data-v-2a73c334=""
-                                                                                          for="post-title-input" class="editor-title-label"><input data-v-2a73c334=""
-                                                                                                                                                   id="post-title-input" type="text" placeholder="제목을 입력해주세요." value=""
-                                                                                                                                                   class="post-title-input sg-text-subhead5 sg-font-medium sg-text-gray-900"></label>
+                            <div data-v-2a73c334="" class="editor-title-container">
+                                <label data-v-2a73c334=""
+                                  for="post-title-input" class="editor-title-label">
+                                    <input data-v-2a73c334="" name="boardTitle"  id="post-title-input" type="text" placeholder="제목을 입력해주세요." value=""
+                                    class="post-title-input sg-text-subhead5 sg-font-medium sg-text-gray-900"></label>
                             </div>
                         </div>
                         <div data-v-33cf7b62="" class="divider-wrapper">
@@ -71,16 +77,18 @@
                         </div>
                         <!---->
                         <div data-v-486b7620="" data-v-33cf7b62="" class="editor-contents"><span data-v-486b7620=""
-                                                                                                 class="sg-text-body2 sg-font-regular sg-text-gray-900"><textarea data-v-486b7620=""
-                                                                                                                                                                  name="post-content" class="editor-contents-textarea" placeholder="요청 서비스 정보를 공유하거나 고객과 고수님들에게 궁금한 서비스를 물어보세요.
+                             class="sg-text-body2 sg-font-regular sg-text-gray-900">
+                            <textarea data-v-486b7620=""
+                             name="boardContent" class="editor-contents-textarea" placeholder="요청 서비스 정보를 공유하거나 고객과 고수님들에게 궁금한 서비스를 물어보세요.
 주제에 맞지 않는 글이나 커뮤니티 이용정책에 위배되어 일정 수 이상 신고를 받는 경우 글이 숨김 및 삭제될 수 있습니다."></textarea></span><span data-v-486b7620=""
-                                                                                             class="editor-contents-textarea-placeholder sg-text-body2 sg-font-regular sg-text-gray-500">
+                             class="editor-contents-textarea-placeholder sg-text-body2 sg-font-regular sg-text-gray-500">
                                     <!-- 요청 서비스 정보를 공유하거나 고객과 고수님들에게 궁금한 서비스를 물어보세요.
                                     주제에 맞지 않는 글이나 커뮤니티 이용정책에 위배되어 일정 수 이상 신고를 받는 경우 글이 숨김 및 삭제될 수 있습니다. -->
                                 </span></div>
                     </div>
                 </div>
                 <!---->
+                </form>
             </section>
             <div data-v-54d1e5f9="" class="v-portal" style="display: none;"></div>
             <!---->
@@ -108,11 +116,11 @@
                                                                                     class="emoji">🤬</span><span data-v-af4658e8="" class="text">욕설, 과도한 비방글, 저격글,
                                     혐오표현</span></p>
                         <p data-v-af4658e8="" class="information-use-content"><span data-v-af4658e8=""
-                                                                                    class="emoji">✋</span><span data-v-af4658e8="" class="text">다른 회원의 앱 사용을 방해하는
+                                                                                    class="emoji">✋</span><span data-v-af4658e8="" class="text">다른 회원의 사이트 이용을 방해하는
                                     행위</span></p>
                     </div>
                     <div data-v-af4658e8="" class="footer-button"><button data-v-af4658e8="" type="button"
-                                                                          class="btn btn-primary btn-block">확인</button></div>
+                      class="btn btn-primary btn-block">확인</button></div>
                 </div>
                 <!---->
             </div><span tabindex="0"></span>

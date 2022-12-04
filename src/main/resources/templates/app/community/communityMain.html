@@ -113,9 +113,10 @@
                             <!---->
                         </div>
                         <section data-v-09f47c14="" data-v-daea50a6="" class="topic-filter-section">
+                            <form id="categoryForm" th:action="@{/community/}" th:method="post">
                             <ul data-v-09f47c14="" class="topic fixed">
                                 <li data-v-06211c10="" data-v-09f47c14="" class="selected fixed"><a
-                                        data-v-06211c10="" href="/community/soomgo-life/all"
+                                        data-v-06211c10="" href="/community"
                                         class="topic-link-item router-link-exact-active router-link-active"
                                         data-testid="topic-item">
                                     <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""
@@ -124,72 +125,80 @@
                                     <span data-v-06211c10=""
                                           class="sg-text-subhead4 sg-font-bold sg-text-gray-900">전체</span>
                                 </a></li>
-                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed"><a data-v-06211c10=""
-                                                                                           href="/community/soomgo-life/qna"
-                                                                                           class="topic-link-item"
-                                                                                           data-testid="topic-item">
+                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
+                                    <a data-v-06211c10="" href="javascript:submitCategoryForm('환경활동')"
+                                           class="topic-link-item"
+                                           data-testid="topic-item">
                                     <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""
                                                                                       src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/f1e39209-9357-4412-b962-99a9d62e6cc5.png"
-                                                                                      alt="궁금해요"></div>
+                                                                                      alt="환경활동"></div>
                                     <span data-v-06211c10=""
-                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">궁금해요</span>
+                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">환경활동</span>
                                 </a></li>
-                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed"><a data-v-06211c10=""
-                                                                                           href="/community/soomgo-life/how-much"
-                                                                                           class="topic-link-item"
-                                                                                           data-testid="topic-item">
-                                    <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""
-                                                                                      src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/a283e912-b56e-4310-8fa1-2c619bd0332d.png"
-                                                                                      alt="얼마예요"></div>
+<!--                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed"><a data-v-06211c10=""-->
+<!--                                                                                           href="/community/soomgo-life/how-much"-->
+<!--                                                                                           class="topic-link-item"-->
+<!--                                                                                           data-testid="topic-item">-->
+<!--                                    <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""-->
+<!--                                                                                      src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/a283e912-b56e-4310-8fa1-2c619bd0332d.png"-->
+<!--                                                                                      alt="비건레시피"></div>-->
+<!--                                    <span data-v-06211c10=""-->
+<!--                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">비건레시피</span>-->
+<!--                                </a></li>-->
+                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
+                                    <a data-v-06211c10=""
+                                           href="javascript:submitCategoryForm('비건레시피')"
+                                           class="topic-link-item"
+                                           data-testid="topic-item">
+                                    <div data-v-06211c10="" class="icon-wrapper">
+                                        <img data-v-06211c10=""
+                                              src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/b3326101-bf1e-4004-8fa1-b5a0724f9e62.png"
+                                              alt="비건레시피"></div>
                                     <span data-v-06211c10=""
-                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">얼마예요</span>
-                                </a></li>
-                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed"><a data-v-06211c10=""
-                                                                                           href="/community/soomgo-life/find-provider"
-                                                                                           class="topic-link-item"
-                                                                                           data-testid="topic-item">
-                                    <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""
-                                                                                      src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/b3326101-bf1e-4004-8fa1-b5a0724f9e62.png"
-                                                                                      alt="고수찾아요"></div>
+                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">비건레시피</span>
+                                </a>
+                                </li>
+                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
+                                    <a data-v-06211c10=""
+                                       href="javascript:submitCategoryForm('추천가게')" class="topic-link-item"
+                                           data-testid="topic-item">
+                                    <div data-v-06211c10="" class="icon-wrapper">
+                                        <img data-v-06211c10=""
+                                              src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/ea04ebe5-4787-4b56-99a7-308c6310d972.png"
+                                              alt="추천가게"></div>
                                     <span data-v-06211c10=""
-                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">고수찾아요</span>
+                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">추천가게</span>
                                 </a></li>
-                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed"><a data-v-06211c10=""
-                                                                                           href="/community/soomgo-life/together"
-                                                                                           class="topic-link-item"
-                                                                                           data-testid="topic-item">
-                                    <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""
-                                                                                      src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/ea04ebe5-4787-4b56-99a7-308c6310d972.png"
-                                                                                      alt="함께해요"></div>
-                                    <span data-v-06211c10=""
-                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">함께해요</span>
-                                </a></li>
-                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed"><a data-v-06211c10=""
-                                                                                           href="/community/soomgo-life/provider-news"
-                                                                                           class="topic-link-item"
-                                                                                           data-testid="topic-item">
-                                    <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""
+                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
+                                    <a data-v-06211c10=""
+                                       href="javascript:submitCategoryForm('사는이야기')"
+                                       class="topic-link-item"
+                                       data-testid="topic-item">
+                                <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""
                                                                                       src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/8dbafccb-92f6-4be2-b50c-a4eade43585f.png"
-                                                                                      alt="고수소식"></div>
+                                                                                      alt="사는이야기"></div>
                                     <span data-v-06211c10=""
-                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">고수소식</span>
+                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">사는이야기</span>
                                 </a></li>
+                                </form>
                             </ul>
                         </section>
                     </div>
                     <div data-v-daea50a6="" class="community-content-layout">
                         <div data-v-6a3ac724="" data-v-daea50a6="" class="search-community d-none d-lg-block">
-                            <form data-v-ebe7d0bc="" data-v-6a3ac724="" class="">
+                            <form id="searchForm" th:action="@{/community/search/}" data-v-ebe7d0bc="" data-v-6a3ac724="" class="">
                                 <div data-v-ebe7d0bc="" role="group" class="input-group">
                                     <!---->
                                     <div data-v-ebe7d0bc="" class="input-group-prepend"><img data-v-ebe7d0bc=""
                                                                                              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEgMSkiIHN0cm9rZT0iI0M1QzVDNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBjeD0iNi42MTEiIGN5PSI2LjYxMSIgcj0iNS44NjEiLz4KICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im0xNS4yNSAxNS4yNS00LjI0My00LjI0MyIvPgogICAgPC9nPgo8L3N2Zz4K"
                                                                                              alt="커뮤니티 검색 아이콘"
                                                                                              class="search"></div>
-                                    <input data-v-ebe7d0bc=""
+                                    <input data-v-ebe7d0bc="" onkeyup="if(window.event.keyCode===13){searchKeyword(this.value)}"
                                            type="text" placeholder="키워드와 #태그 모두 검색할 수 있어요." autocomplete="off"
                                            class="search-input form-control" maxlength="15" id="__BVID__883">
-                                    <div data-v-ebe7d0bc="" class="input-group-append"><img data-v-ebe7d0bc=""
+                                    <input type="hidden">
+                                    <div data-v-ebe7d0bc="" class="input-group-append">
+                                        <img data-v-ebe7d0bc=""
                                                                                             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMgMykiPgogICAgICAgICAgICA8Y2lyY2xlIGZpbGw9IiNDNUM1QzUiIGN4PSI5IiBjeT0iOSIgcj0iOSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im02IDYgNi4wMDUgNi4wMDZNMTIuMDA1IDYgNiAxMi4wMDYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
                                                                                             alt="검색어 삭제 아이콘"
                                                                                             class="reset"
@@ -243,85 +252,85 @@
                                                 </div>
                                             </div>
                                         </th:block>
-                                        <div data-v-e4caeaf8="" tabindex="-1" data-index="1" aria-hidden="false"
-                                             class="slick-slide slick-active" style="outline: none; width: 204px;">
-                                            <div data-v-e4caeaf8=""><a data-v-0e0856ba="" data-v-2064f17f=""
-                                                                       href="/community/soomgo-life/posts/636bd42a63c2653cf7e645e1-2023%EB%85%84-%EC%97%B4%EC%A0%95%EC%9E%88%EC%9D%B4-%EA%B0%99%EC%9D%B4-%EA%B0%80%EC%8B%A4-%EB%B0%94%EB%94%94%ED%94%84%EB%A1%9C%ED%95%84-%EB%8C%80%ED%9A%8C%EC%A4%80%EB%B9%84%ED%95%98%EC%8B%A4%EB%B6%84?from=curation"
-                                                                       class="" data-testid="curation-item"
-                                                                       tabindex="-1"
-                                                                       data-v-e4caeaf8=""
-                                                                       style="width: 100%; display: inline-block;">
-                                                <div data-v-0e0856ba="" class="curation-item">
-                                                    <p data-v-0e0856ba=""
-                                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">
-                                                        함께해요</p>
-                                                    <h3 data-v-0e0856ba=""
-                                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">
-                                                        2023년 열정있이 같이 가실 바디프로필&amp;대회준비하실분</h3>
-                                                    <div data-v-0e0856ba="" class="react-items">
-                                                        <p data-v-0e0856ba=""
-                                                           class="like sg-text-description sg-font-regular sg-text-gray-300">
-                                                            1</p>
-                                                        <p data-v-0e0856ba=""
-                                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">
-                                                            25</p>
+<!--                                        <div data-v-e4caeaf8="" tabindex="-1" data-index="1" aria-hidden="false"-->
+<!--                                             class="slick-slide slick-active" style="outline: none; width: 204px;">-->
+<!--                                            <div data-v-e4caeaf8=""><a data-v-0e0856ba="" data-v-2064f17f=""-->
+<!--                                                                       href="/community/soomgo-life/posts/636bd42a63c2653cf7e645e1-2023%EB%85%84-%EC%97%B4%EC%A0%95%EC%9E%88%EC%9D%B4-%EA%B0%99%EC%9D%B4-%EA%B0%80%EC%8B%A4-%EB%B0%94%EB%94%94%ED%94%84%EB%A1%9C%ED%95%84-%EB%8C%80%ED%9A%8C%EC%A4%80%EB%B9%84%ED%95%98%EC%8B%A4%EB%B6%84?from=curation"-->
+<!--                                                                       class="" data-testid="curation-item"-->
+<!--                                                                       tabindex="-1"-->
+<!--                                                                       data-v-e4caeaf8=""-->
+<!--                                                                       style="width: 100%; display: inline-block;">-->
+<!--                                                <div data-v-0e0856ba="" class="curation-item">-->
+<!--                                                    <p data-v-0e0856ba=""-->
+<!--                                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">-->
+<!--                                                        함께해요</p>-->
+<!--                                                    <h3 data-v-0e0856ba=""-->
+<!--                                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">-->
+<!--                                                        2023년 열정있이 같이 가실 바디프로필&amp;대회준비하실분</h3>-->
+<!--                                                    <div data-v-0e0856ba="" class="react-items">-->
+<!--                                                        <p data-v-0e0856ba=""-->
+<!--                                                           class="like sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                                            1</p>-->
+<!--                                                        <p data-v-0e0856ba=""-->
+<!--                                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                                            25</p>-->
 
-                                                    </div>
-                                                </div>
-                                            </a></div>
-                                        </div>
-                                        <div data-v-e4caeaf8="" tabindex="-1" data-index="2" aria-hidden="false"
-                                             class="slick-slide slick-active" style="outline: none; width: 204px;">
-                                            <div data-v-e4caeaf8=""><a data-v-0e0856ba="" data-v-2064f17f=""
-                                                                       href="/community/soomgo-life/posts/6367cfa0f81b009d143f9d87-%EC%9D%B4%EB%9F%B0%EC%83%81%ED%83%9C%ED%95%B4%EC%84%9C-%EC%96%B4%EB%96%BB%EA%B2%8C-%ED%95%B4%EC%95%BC%EB%90%98%EB%82%98%EC%9A%94?from=curation"
-                                                                       class="" data-testid="curation-item"
-                                                                       tabindex="-1"
-                                                                       data-v-e4caeaf8=""
-                                                                       style="width: 100%; display: inline-block;">
-                                                <div data-v-0e0856ba="" class="curation-item">
-                                                    <p data-v-0e0856ba=""
-                                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">
-                                                        궁금해요</p>
-                                                    <h3 data-v-0e0856ba=""
-                                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">
-                                                        이런상태해서 어떻게 해야되나요</h3>
-                                                    <div data-v-0e0856ba="" class="react-items">
-                                                        <p data-v-0e0856ba=""
-                                                           class="like sg-text-description sg-font-regular sg-text-gray-300">
-                                                            0</p>
-                                                        <p data-v-0e0856ba=""
-                                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">
-                                                            28</p>
-                                                    </div>
-                                                </div>
-                                            </a></div>
-                                        </div>
-                                        <div data-v-e4caeaf8="" tabindex="-1" data-index="3" aria-hidden="true"
-                                             class="slick-slide" style="outline: none; width: 204px;">
-                                            <div data-v-e4caeaf8=""><a data-v-0e0856ba="" data-v-2064f17f=""
-                                                                       href="/community/soomgo-life/posts/6367c56c8586c4a662923082-%EB%AA%B0%EB%94%A9-%EB%96%A8%EC%96%B4%EC%A7%84%EA%B1%B0?from=curation"
-                                                                       class="" data-testid="curation-item"
-                                                                       tabindex="-1"
-                                                                       data-v-e4caeaf8=""
-                                                                       style="width: 100%; display: inline-block;">
-                                                <div data-v-0e0856ba="" class="curation-item">
-                                                    <p data-v-0e0856ba=""
-                                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">
-                                                        얼마예요</p>
-                                                    <h3 data-v-0e0856ba=""
-                                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">
-                                                        몰딩 떨어진거</h3>
-                                                    <div data-v-0e0856ba="" class="react-items">
-                                                        <p data-v-0e0856ba=""
-                                                           class="like sg-text-description sg-font-regular sg-text-gray-300">
-                                                            0</p>
-                                                        <p data-v-0e0856ba=""
-                                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">
-                                                            29</p>
-                                                    </div>
-                                                </div>
-                                            </a></div>
-                                        </div>
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </a></div>-->
+<!--                                        </div>-->
+<!--                                        <div data-v-e4caeaf8="" tabindex="-1" data-index="2" aria-hidden="false"-->
+<!--                                             class="slick-slide slick-active" style="outline: none; width: 204px;">-->
+<!--                                            <div data-v-e4caeaf8=""><a data-v-0e0856ba="" data-v-2064f17f=""-->
+<!--                                                                       href="/community/soomgo-life/posts/6367cfa0f81b009d143f9d87-%EC%9D%B4%EB%9F%B0%EC%83%81%ED%83%9C%ED%95%B4%EC%84%9C-%EC%96%B4%EB%96%BB%EA%B2%8C-%ED%95%B4%EC%95%BC%EB%90%98%EB%82%98%EC%9A%94?from=curation"-->
+<!--                                                                       class="" data-testid="curation-item"-->
+<!--                                                                       tabindex="-1"-->
+<!--                                                                       data-v-e4caeaf8=""-->
+<!--                                                                       style="width: 100%; display: inline-block;">-->
+<!--                                                <div data-v-0e0856ba="" class="curation-item">-->
+<!--                                                    <p data-v-0e0856ba=""-->
+<!--                                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">-->
+<!--                                                        궁금해요</p>-->
+<!--                                                    <h3 data-v-0e0856ba=""-->
+<!--                                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">-->
+<!--                                                        이런상태해서 어떻게 해야되나요</h3>-->
+<!--                                                    <div data-v-0e0856ba="" class="react-items">-->
+<!--                                                        <p data-v-0e0856ba=""-->
+<!--                                                           class="like sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                                            0</p>-->
+<!--                                                        <p data-v-0e0856ba=""-->
+<!--                                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                                            28</p>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </a></div>-->
+<!--                                        </div>-->
+<!--                                        <div data-v-e4caeaf8="" tabindex="-1" data-index="3" aria-hidden="true"-->
+<!--                                             class="slick-slide" style="outline: none; width: 204px;">-->
+<!--                                            <div data-v-e4caeaf8=""><a data-v-0e0856ba="" data-v-2064f17f=""-->
+<!--                                                                       href="/community/soomgo-life/posts/6367c56c8586c4a662923082-%EB%AA%B0%EB%94%A9-%EB%96%A8%EC%96%B4%EC%A7%84%EA%B1%B0?from=curation"-->
+<!--                                                                       class="" data-testid="curation-item"-->
+<!--                                                                       tabindex="-1"-->
+<!--                                                                       data-v-e4caeaf8=""-->
+<!--                                                                       style="width: 100%; display: inline-block;">-->
+<!--                                                <div data-v-0e0856ba="" class="curation-item">-->
+<!--                                                    <p data-v-0e0856ba=""-->
+<!--                                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">-->
+<!--                                                        얼마예요</p>-->
+<!--                                                    <h3 data-v-0e0856ba=""-->
+<!--                                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">-->
+<!--                                                        몰딩 떨어진거</h3>-->
+<!--                                                    <div data-v-0e0856ba="" class="react-items">-->
+<!--                                                        <p data-v-0e0856ba=""-->
+<!--                                                           class="like sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                                            0</p>-->
+<!--                                                        <p data-v-0e0856ba=""-->
+<!--                                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                                            29</p>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </a></div>-->
+<!--                                        </div>-->
                                         <!-- <div data-v-e4caeaf8="" tabindex="-1" data-index="5" aria-hidden="true"
                                         class="slick-slide" style="outline: none; width: 204px;">
                                         <div data-v-e4caeaf8=""><a data-v-0e0856ba="" data-v-2064f17f=""
@@ -350,111 +359,111 @@
                                 </div><!-- <button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none"
                                         class="slick-arrow slick-next" style="display: block;">Next</button> -->
                             </div>
-                            <div data-v-2064f17f="" class="mobile-curation-list d-md-none" style="display: none;"><a
-                                    data-v-0e0856ba=""
-                                    data-v-2064f17f=""
-                                    href="/community/soomgo-life/posts/626f75fd98ad9e7338820867-%EC%98%AC%EB%B0%94%EB%A5%B8-%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%88%A8%EA%B3%A0%EC%83%9D%ED%99%9C-%EA%B0%80%EC%9D%B4%EB%93%9C---?from=curation"
-                                    class="" data-testid="curation-item">
-                                <div data-v-0e0856ba="" class="curation-item notice">
-                                    <p data-v-0e0856ba=""
-                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">공지사항</p>
-                                    <h3 data-v-0e0856ba=""
-                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">올바른 커뮤니티 사용법 쓰담생활
-                                        가이드 ✏️</h3>
-                                    <p data-v-0e0856ba=""
-                                       class="manager sg-text-description sg-font-regular sg-text-white">SseuDam
-                                    </p>
-                                </div>
-                            </a><a data-v-0e0856ba="" data-v-2064f17f=""
-                                   href="/community/soomgo-life/posts/636bd42a63c2653cf7e645e1-2023%EB%85%84-%EC%97%B4%EC%A0%95%EC%9E%88%EC%9D%B4-%EA%B0%99%EC%9D%B4-%EA%B0%80%EC%8B%A4-%EB%B0%94%EB%94%94%ED%94%84%EB%A1%9C%ED%95%84-%EB%8C%80%ED%9A%8C%EC%A4%80%EB%B9%84%ED%95%98%EC%8B%A4%EB%B6%84?from=curation"
-                                   class="" data-testid="curation-item">
-                                <div data-v-0e0856ba="" class="curation-item">
-                                    <p data-v-0e0856ba=""
-                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">함께해요</p>
-                                    <h3 data-v-0e0856ba=""
-                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">2023년 열정있이 같이 가실
-                                        바디프로필&amp;대회준비하실분</h3>
-                                    <div data-v-0e0856ba="" class="react-items">
-                                        <p data-v-0e0856ba=""
-                                           class="like sg-text-description sg-font-regular sg-text-gray-300">1
-                                        </p>
-                                        <p data-v-0e0856ba=""
-                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">
-                                            25</p>
-                                    </div>
-                                </div>
-                            </a><a data-v-0e0856ba="" data-v-2064f17f=""
-                                   href="/community/soomgo-life/posts/6367cfa0f81b009d143f9d87-%EC%9D%B4%EB%9F%B0%EC%83%81%ED%83%9C%ED%95%B4%EC%84%9C-%EC%96%B4%EB%96%BB%EA%B2%8C-%ED%95%B4%EC%95%BC%EB%90%98%EB%82%98%EC%9A%94?from=curation"
-                                   class="" data-testid="curation-item">
-                                <div data-v-0e0856ba="" class="curation-item">
-                                    <p data-v-0e0856ba=""
-                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">궁금해요</p>
-                                    <h3 data-v-0e0856ba=""
-                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">이런상태해서 어떻게 해야되나요
-                                    </h3>
-                                    <div data-v-0e0856ba="" class="react-items">
-                                        <p data-v-0e0856ba=""
-                                           class="like sg-text-description sg-font-regular sg-text-gray-300">0
-                                        </p>
-                                        <p data-v-0e0856ba=""
-                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">
-                                            28</p>
-                                    </div>
-                                </div>
-                            </a><a data-v-0e0856ba="" data-v-2064f17f=""
-                                   href="/community/soomgo-life/posts/6367c56c8586c4a662923082-%EB%AA%B0%EB%94%A9-%EB%96%A8%EC%96%B4%EC%A7%84%EA%B1%B0?from=curation"
-                                   class="" data-testid="curation-item">
-                                <div data-v-0e0856ba="" class="curation-item">
-                                    <p data-v-0e0856ba=""
-                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">얼마예요</p>
-                                    <h3 data-v-0e0856ba=""
-                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">몰딩 떨어진거</h3>
-                                    <div data-v-0e0856ba="" class="react-items">
-                                        <p data-v-0e0856ba=""
-                                           class="like sg-text-description sg-font-regular sg-text-gray-300">0
-                                        </p>
-                                        <p data-v-0e0856ba=""
-                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">
-                                            29</p>
-                                    </div>
-                                </div>
-                            </a><a data-v-0e0856ba="" data-v-2064f17f=""
-                                   href="/community/soomgo-life/posts/6367b592f81b009d143f9d1a--%EA%B2%B0%ED%98%BC%EC%8B%9D-%EC%98%81%EC%83%81%ED%8E%B8%EC%A7%91-%EC%86%8C%EA%B0%9C%ED%8C%85%EC%95%B1%EC%9C%BC%EB%A1%9C%EB%A7%8C%EB%82%9C--%EC%9A%94%EA%B0%80%EC%BB%A4%ED%94%8C%EC%9E%85%EB%8B%88%EB%8B%A4?from=curation"
-                                   class="" data-testid="curation-item">
-                                <div data-v-0e0856ba="" class="curation-item">
-                                    <p data-v-0e0856ba=""
-                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">궁금해요</p>
-                                    <h3 data-v-0e0856ba=""
-                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">[결혼식
-                                        영상편집]소개팅앱으로만난 요가커플입니다</h3>
-                                    <div data-v-0e0856ba="" class="react-items">
-                                        <p data-v-0e0856ba=""
-                                           class="like sg-text-description sg-font-regular sg-text-gray-300">0
-                                        </p>
-                                        <p data-v-0e0856ba=""
-                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">
-                                            26</p>
-                                    </div>
-                                </div>
-                            </a><a data-v-0e0856ba="" data-v-2064f17f=""
-                                   href="/community/soomgo-life/posts/63675ecef81b009d143f9ba1-%EC%8B%B1%ED%81%AC%EB%8C%80-%ED%95%98%EB%B6%80%EC%9E%A5-%EB%B2%BD-%EA%B2%B0%EB%A1%9C%ED%98%84%EC%83%81%EC%9C%BC%EB%A1%9C-%EC%BD%98%EC%84%BC%ED%8A%B8%EC%97%90-%EB%AC%BC%EB%A7%BA%ED%98%80%EC%9A%94?from=curation"
-                                   class="" data-testid="curation-item">
-                                <div data-v-0e0856ba="" class="curation-item">
-                                    <p data-v-0e0856ba=""
-                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">궁금해요</p>
-                                    <h3 data-v-0e0856ba=""
-                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">싱크대 하부장 벽 결로현상으로
-                                        콘센트에 물맺혀요</h3>
-                                    <div data-v-0e0856ba="" class="react-items">
-                                        <p data-v-0e0856ba=""
-                                           class="like sg-text-description sg-font-regular sg-text-gray-300">0
-                                        </p>
-                                        <p data-v-0e0856ba=""
-                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">
-                                            22</p>
-                                    </div>
-                                </div>
-                            </a></div>
+<!--                            <div data-v-2064f17f="" class="mobile-curation-list d-md-none" style="display: none;"><a-->
+<!--                                    data-v-0e0856ba=""-->
+<!--                                    data-v-2064f17f=""-->
+<!--                                    href="/community/soomgo-life/posts/626f75fd98ad9e7338820867-%EC%98%AC%EB%B0%94%EB%A5%B8-%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%88%A8%EA%B3%A0%EC%83%9D%ED%99%9C-%EA%B0%80%EC%9D%B4%EB%93%9C-&#45;&#45;?from=curation"-->
+<!--                                    class="" data-testid="curation-item">-->
+<!--                                <div data-v-0e0856ba="" class="curation-item notice">-->
+<!--                                    <p data-v-0e0856ba=""-->
+<!--                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">공지사항</p>-->
+<!--                                    <h3 data-v-0e0856ba=""-->
+<!--                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">올바른 커뮤니티 사용법 쓰담생활-->
+<!--                                        가이드 ✏️</h3>-->
+<!--                                    <p data-v-0e0856ba=""-->
+<!--                                       class="manager sg-text-description sg-font-regular sg-text-white">SseuDam-->
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </a><a data-v-0e0856ba="" data-v-2064f17f=""-->
+<!--                                   href="/community/soomgo-life/posts/636bd42a63c2653cf7e645e1-2023%EB%85%84-%EC%97%B4%EC%A0%95%EC%9E%88%EC%9D%B4-%EA%B0%99%EC%9D%B4-%EA%B0%80%EC%8B%A4-%EB%B0%94%EB%94%94%ED%94%84%EB%A1%9C%ED%95%84-%EB%8C%80%ED%9A%8C%EC%A4%80%EB%B9%84%ED%95%98%EC%8B%A4%EB%B6%84?from=curation"-->
+<!--                                   class="" data-testid="curation-item">-->
+<!--                                <div data-v-0e0856ba="" class="curation-item">-->
+<!--                                    <p data-v-0e0856ba=""-->
+<!--                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">함께해요</p>-->
+<!--                                    <h3 data-v-0e0856ba=""-->
+<!--                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">2023년 열정있이 같이 가실-->
+<!--                                        바디프로필&amp;대회준비하실분</h3>-->
+<!--                                    <div data-v-0e0856ba="" class="react-items">-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="like sg-text-description sg-font-regular sg-text-gray-300">1-->
+<!--                                        </p>-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                            25</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a><a data-v-0e0856ba="" data-v-2064f17f=""-->
+<!--                                   href="/community/soomgo-life/posts/6367cfa0f81b009d143f9d87-%EC%9D%B4%EB%9F%B0%EC%83%81%ED%83%9C%ED%95%B4%EC%84%9C-%EC%96%B4%EB%96%BB%EA%B2%8C-%ED%95%B4%EC%95%BC%EB%90%98%EB%82%98%EC%9A%94?from=curation"-->
+<!--                                   class="" data-testid="curation-item">-->
+<!--                                <div data-v-0e0856ba="" class="curation-item">-->
+<!--                                    <p data-v-0e0856ba=""-->
+<!--                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">궁금해요</p>-->
+<!--                                    <h3 data-v-0e0856ba=""-->
+<!--                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">이런상태해서 어떻게 해야되나요-->
+<!--                                    </h3>-->
+<!--                                    <div data-v-0e0856ba="" class="react-items">-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="like sg-text-description sg-font-regular sg-text-gray-300">0-->
+<!--                                        </p>-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                            28</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a><a data-v-0e0856ba="" data-v-2064f17f=""-->
+<!--                                   href="/community/soomgo-life/posts/6367c56c8586c4a662923082-%EB%AA%B0%EB%94%A9-%EB%96%A8%EC%96%B4%EC%A7%84%EA%B1%B0?from=curation"-->
+<!--                                   class="" data-testid="curation-item">-->
+<!--                                <div data-v-0e0856ba="" class="curation-item">-->
+<!--                                    <p data-v-0e0856ba=""-->
+<!--                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">얼마예요</p>-->
+<!--                                    <h3 data-v-0e0856ba=""-->
+<!--                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">몰딩 떨어진거</h3>-->
+<!--                                    <div data-v-0e0856ba="" class="react-items">-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="like sg-text-description sg-font-regular sg-text-gray-300">0-->
+<!--                                        </p>-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                            29</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a><a data-v-0e0856ba="" data-v-2064f17f=""-->
+<!--                                   href="/community/soomgo-life/posts/6367b592f81b009d143f9d1a&#45;&#45;%EA%B2%B0%ED%98%BC%EC%8B%9D-%EC%98%81%EC%83%81%ED%8E%B8%EC%A7%91-%EC%86%8C%EA%B0%9C%ED%8C%85%EC%95%B1%EC%9C%BC%EB%A1%9C%EB%A7%8C%EB%82%9C&#45;&#45;%EC%9A%94%EA%B0%80%EC%BB%A4%ED%94%8C%EC%9E%85%EB%8B%88%EB%8B%A4?from=curation"-->
+<!--                                   class="" data-testid="curation-item">-->
+<!--                                <div data-v-0e0856ba="" class="curation-item">-->
+<!--                                    <p data-v-0e0856ba=""-->
+<!--                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">궁금해요</p>-->
+<!--                                    <h3 data-v-0e0856ba=""-->
+<!--                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">[결혼식-->
+<!--                                        영상편집]소개팅앱으로만난 요가커플입니다</h3>-->
+<!--                                    <div data-v-0e0856ba="" class="react-items">-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="like sg-text-description sg-font-regular sg-text-gray-300">0-->
+<!--                                        </p>-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                            26</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a><a data-v-0e0856ba="" data-v-2064f17f=""-->
+<!--                                   href="/community/soomgo-life/posts/63675ecef81b009d143f9ba1-%EC%8B%B1%ED%81%AC%EB%8C%80-%ED%95%98%EB%B6%80%EC%9E%A5-%EB%B2%BD-%EA%B2%B0%EB%A1%9C%ED%98%84%EC%83%81%EC%9C%BC%EB%A1%9C-%EC%BD%98%EC%84%BC%ED%8A%B8%EC%97%90-%EB%AC%BC%EB%A7%BA%ED%98%80%EC%9A%94?from=curation"-->
+<!--                                   class="" data-testid="curation-item">-->
+<!--                                <div data-v-0e0856ba="" class="curation-item">-->
+<!--                                    <p data-v-0e0856ba=""-->
+<!--                                       class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">궁금해요</p>-->
+<!--                                    <h3 data-v-0e0856ba=""-->
+<!--                                        class="sg-text-subhead2 sg-font-bold sg-text-gray-900">싱크대 하부장 벽 결로현상으로-->
+<!--                                        콘센트에 물맺혀요</h3>-->
+<!--                                    <div data-v-0e0856ba="" class="react-items">-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="like sg-text-description sg-font-regular sg-text-gray-300">0-->
+<!--                                        </p>-->
+<!--                                        <p data-v-0e0856ba=""-->
+<!--                                           class="comment sg-text-description sg-font-regular sg-text-gray-300">-->
+<!--                                            22</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a></div>-->
                         </section>
                         <article data-v-7206b48f="" data-v-daea50a6="">
                             <ul data-v-7206b48f="" class="feed-list">
@@ -485,11 +494,11 @@
                                                 data-v-95718dd0="" th:text="*{boardView}"
                                                 class="like sg-text-description sg-font-regular sg-text-gray-300"></span>
                                             <span
-                                                data-v-95718dd0="" th:if="${#lists.isEmpty('board.comments')}" th:text="*{#list.size('comments')}"
+                                                data-v-95718dd0="" th:text="${#lists.size(board.comments)}"
                                                 class="comment sg-text-description sg-font-regular sg-text-gray-300"></span>
-                                            <span
-                                                    data-v-95718dd0="" th:unless="${#lists.isEmpty('board.comments')}" th:text="0"
-                                                    class="comment sg-text-description sg-font-regular sg-text-gray-300"></span>
+<!--                                            <span-->
+<!--                                                    data-v-95718dd0="" th:unless="${#lists.isEmpty(board.comments)}" th:text="0"-->
+<!--                                                    class="comment sg-text-description sg-font-regular sg-text-gray-300"></span>-->
                                         </div>
                                         <span data-v-95718dd0="" th:text="${#temporals.format(board.createdDate, 'yyyy. MM. dd')}"
                                               class="sg-text-description sg-font-regular sg-text-gray-300"></span>

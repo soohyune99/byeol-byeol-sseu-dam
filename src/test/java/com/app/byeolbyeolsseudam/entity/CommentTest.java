@@ -36,7 +36,7 @@ public class CommentTest {
         for(int i = 0; i < 5; i++){
             CommentDTO commentDTO = new CommentDTO();
 
-            commentDTO.setCommentContent("새로운 댓글!" + i);
+            commentDTO.setCommentContent("랄라!" + i);
             commentDTO.setCommentFileName("hi.png");
             commentDTO.setCommentFilePath("/upload");
             commentDTO.setCommentFileUuid("abcedfg");
@@ -46,7 +46,7 @@ public class CommentTest {
             commentRepository.save(comment);
 
             comment.changeMember(memberRepository.findAll().get(0));
-            comment.changeBoard(boardRepository.findById(116L).get());
+            comment.changeBoard(boardRepository.findById(131L).get());
         }
     }
 

@@ -1,7 +1,8 @@
 /* CommunityWrite.html */
 
 let $title = $("#post-title-input");
-let $content = $("textarea[name='post-content']");
+let $content = $("textarea[name='boardContent']");
+let $category = $("select[name='boardCategory']");
 let $submitBtn = $("button.write-post-submit");
 let $xBtn = $("button.close");
 let $okBtn = $("button.btn-block");
@@ -90,6 +91,23 @@ $(".editor-image-list").on('click', '.delete-badge', function(){
     let index = $(this).eq(0).attr('class').split(" ")[1];
 
     $(".image-preview." + index).remove();
+});
+
+/* 등록 버튼 클릭 시 form submit */
+$submitBtn.on('click', function(){
+    if(!$category.val()){
+        alert("카테고리를 선택하세요.");
+        return;
+    }
+    if(!$title.val()){
+        alert("제목을 입력하세요.");
+        return;
+    }
+    if(!$content.val()){
+        alert("내용을 입력하세요.");
+        return;
+    }
+    $("form#boardForm").submit();
 });
 
 
