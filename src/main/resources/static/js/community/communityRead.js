@@ -133,6 +133,51 @@ $commentContent.on('keyup', function(){
 
 /* ================================== Board ==================================*/
 
+function showBoardDetail(boards){
+    let text = "";
+
+    text += `<div data-v-77f4e41c="" data-v-7037b88b="" class="post-header">`;
+    text += `<div data-v-01b8dd61="" data-v-77f4e41c="" class="post-category-subject">`;
+    text += `<ol data-v-01b8dd61="" class="category-breadcrumb list-inline">`;
+    text += `<li data-v-01b8dd61="" class="category-breadcrumb-item">`;
+    text += `<a data-v-01b8dd61="" href="/community" class="breadcrumb-item" data-testid="soomgo-life-home-breadcrumb">`;
+    text += `<span data-v-01b8dd61="" class="sg-text-body2 sg-font-regular sg-text-gray-400">커뮤니티</span>`;
+    text += `</a></li>`;
+    text += `<p data-v-01b8dd61="" class="breadcrumb-divider"></p>`;
+    text += `<li data-v-01b8dd61="" class="category-breadcrumb-item">`;
+    text += `<a data-v-01b8dd61="" href="/community/soomgo-life/find-provider?from=breadcrumb" class="breadcrumb-item">`;
+    text += `<span data-v-01b8dd61="" class="sg-text-body2 sg-font-regular sg-text-gray-400">환경활동</span>`;
+    text += `</a></li></ol></div>`;
+    text += `<div data-v-77f4e41c="" class="post-header-title-wrapper has-service">`;
+    text += `<p data-v-77f4e41c="" class="post-service-name">환경활동</p>`;
+    text += `<h1 data-v-77f4e41c="" data-testid="soomgo-life-post-title" class="post-header-title sg-text-display3 sg-font-bold">안녕하세요9</h1>`;
+    text += `</div>`;
+    text += `<div data-v-e0e63576="" data-v-77f4e41c="" class="observer-container">`;
+    text += `<div data-v-77f4e41c="" data-v-e0e63576="" class="user-profile-wrapper">`;
+    text += `<div data-v-77f4e41c="" data-v-e0e63576="" class="user-profile-area">`;
+    text += `<img data-v-77f4e41c="" data-v-e0e63576="" alt="이정현" class="profile-image" data-src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg" src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg" lazy="loaded">`;
+    text += `<img data-v-77f4e41c="" data-v-e0e63576="" alt="이정현" class="profile-image" data-src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg" src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg" lazy="loaded">`;
+    text += `<div data-v-77f4e41c="" data-v-e0e63576="" class="profile-post-info">`;
+    text += `<span data-v-77f4e41c="" class="user-name sg-text-subhead5 sg-font-medium" data-v-e0e63576="">성은지</span>`;
+    text += `<div>`;
+    text += `<span data-v-77f4e41c="" class="post-created-at sg-text-description sg-font-regular" data-v-e0e63576="">2022. 12. 02</span>`;
+    text += `<span data-v-77f4e41c="" class="post-created-at sg-text-description sg-font-regular" data-v-e0e63576=""> · 조회 91</span>`;
+    text += `</div></div></div>`;
+    text += `<div data-v-77f4e41c="" data-v-e0e63576="" class="post-actions">`;
+    text += `<div data-v-77f4e41c="" class="dropdown b-dropdown btn-group" data-v-e0e63576="" id="__BVID__1550">`;
+    text += `<button aria-haspopup="true" aria-expanded="false" type="button" class="btn board-dropdown-toggle btn-secondary board-dropdownmenu-menuBtn" id="__BVID__1550__BV_toggle_"></button>`;
+    text += `<ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-right board-menu" aria-labelledby="__BVID__1550__BV_toggle_">`;
+    text += `<li data-v-77f4e41c="" role="presentation">`;
+    text += `<a role="menuitem" href="#" target="_self" class="dropdown-item boardUpdate">수정</a>`;
+    text += `</li>`;
+    text += `<li data-v-77f4e41c="" role="presentation">`;
+    text += `<a role="menuitem" href="#" target="_self" class="dropdown-item boardDelete" style="color: red;">삭제</a>`;
+    text += `</li></ul></div></div></div></div>`;
+    text += `<div data-v-77f4e41c="" class="v-portal" style="display: none;"></div>`;
+    text += `</div>`;
+
+    $(".").html(text);
+}
 
 
 
