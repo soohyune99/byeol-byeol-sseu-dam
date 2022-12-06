@@ -1,4 +1,8 @@
 /* marketDetail.html */
+let url = decodeURI(window.location.href).split("/");
+let product = url[url.length - 1];
+
+getnumber();
 
 /* 장바구니 모달 열고 닫기 변수 선언 */
 let $basketModal = $("#shop_detail_add_cart_alarm");
@@ -235,3 +239,7 @@ $(".thumb_detail_img_wrap").on('click', function(){
     $(this).find('img').eq(0).css({'width':  $flag, 'height':  $flag});
 });
 
+
+function getnumber(){
+    $("input[name='inputValue']").val(product);
+}

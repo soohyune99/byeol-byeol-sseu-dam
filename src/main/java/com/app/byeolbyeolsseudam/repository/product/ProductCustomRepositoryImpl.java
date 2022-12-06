@@ -144,7 +144,8 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
         return productPet;
     }
 
-    // 상세 조회
+    // 상세 조회 + 댓글
+    @Override
     public ProductDTO showDetail(Long productId){
         ProductDTO show = jpaQueryFactory.select(new QProductDTO(
                 product.productId,product.productCategory, product.productName,
@@ -167,4 +168,21 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
                 .fetch();
         return show;
     }
+
+    // 상세 조회
+    @Override
+    public ProductDTO showDetailOnly(Long productId) {
+        ProductDTO show = jpaQueryFactory.select(new QProductDTO(
+                product.productId,product.productCategory, product.productName,
+                product.productPrice,product.productCount,product.productFileDetailName,
+                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
+                product.productFileProfilePath,product.productFileProfileUuid))
+                .from(product)
+                .where(product.productId.eq(productId))
+                .orderBy(product.createdDate.desc())
+                .limit(1)
+                .fetchOne();
+        return show;
+    }
+
 }

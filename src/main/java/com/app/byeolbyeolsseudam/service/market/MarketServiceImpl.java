@@ -1,7 +1,9 @@
 package com.app.byeolbyeolsseudam.service.market;
 
+import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.domain.notice.NoticeDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 public class MarketServiceImpl implements MarketService {
 
     private final ProductRepository productRepository;
+//    private final MemberRepository memberRepository;
 
     // 상품 전체 조회
     @Override
@@ -49,9 +52,20 @@ public class MarketServiceImpl implements MarketService {
     @Override
     public List<ProductDTO> showPetList(){return productRepository.showPet();}
 
-    // 상품 상세 조회
+    // 상품 상세 + 댓글 조회
     @Override
     public ProductDTO showListDetail(Long productId){
         return productRepository.showDetail(productId);
     }
+    // 상품 상세 조회
+    @Override
+    public ProductDTO showListDetailOnly(Long productId){
+        return productRepository.showDetailOnly(productId);
+    }
+
+    // 상품 구매
+//    @Override
+//    public List<MemberDTO> showReceipt(Long memberId){
+//        return memberRepository.findById(memberId);
+//    }
 }

@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.service.market;
 
+import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public interface MarketService {
     // 반려동물 카테고리 조회
     public List<ProductDTO> showPetList();
 
-    // 상품 상세 조회
+    // 상품 상세 + 댓글 조회
     public ProductDTO showListDetail(Long productId);
+    // 상품 상세 조회
+    public ProductDTO showListDetailOnly(Long productId);
+
+    // 상품 구매
+//    public List<MemberDTO> showReceipt(Long memberId);
 }

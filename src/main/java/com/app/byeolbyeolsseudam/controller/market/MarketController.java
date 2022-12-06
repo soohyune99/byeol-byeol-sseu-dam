@@ -1,12 +1,13 @@
 package com.app.byeolbyeolsseudam.controller.market;
 
+import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.entity.product.Product;
 import com.app.byeolbyeolsseudam.service.market.MarketService;
+import com.app.byeolbyeolsseudam.service.market.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -14,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MarketController {
 
     private final MarketService marketService;
-//    private final ReviewService reviewService;
 
-    @GetMapping("/all")
+    @GetMapping("/main")
     public String Market(Model model){
         model.addAttribute("products", marketService.showList());
         return "/app/market/market";
@@ -69,7 +69,6 @@ public class MarketController {
     @GetMapping("/{productId}")
     public String detail(@PathVariable Long productId, Model model){
         model.addAttribute("product", marketService.showListDetail(productId));
-//        model.addAttribute("reviews", reviewService.showReview(productId));
         return "/app/market/marketDetail";
     }
 
@@ -80,7 +79,10 @@ public class MarketController {
 
 
     @GetMapping("/payment")
-    public String payment(){
+    public String payment(@RequestParam Long productId, @RequestParam int orderCount,Model model){
+        model.addAttribute("product", marketService.showListDetailOnly(productId));
+//        model.addAttribute("product", product);
+        model.addAttribute("count", orderCount);
         return "/app/market/marketPayment";
     }
 
