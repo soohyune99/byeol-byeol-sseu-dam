@@ -120,9 +120,7 @@ function searchKeyword(){
 function readBoard(boardId){
     communityService.getBoardDetail({
         boardId
-    , function(){
-
-        }
+    , function(){ showBoardDetail }
     });
 }
 
