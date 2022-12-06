@@ -1,15 +1,20 @@
 package com.app.byeolbyeolsseudam.controller.mypage;
 
+import com.app.byeolbyeolsseudam.service.mypage.MypageService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/mypage/*")
+@RequiredArgsConstructor
+@RequestMapping(value = {"/mypage/*", "/mypage"})
 public class MypageController {
+    private final MypageService mypageService;
 
-    @GetMapping("/main")
+    @GetMapping("")
     public String main(){
         return "/app/mypage/mypageMain";
     }
@@ -40,7 +45,8 @@ public class MypageController {
     }
 
     @GetMapping("/mypoint")
-    public String mypoint(){
+    public String mypoint(Model model){
+        model.addAttribute("mypoints", mypageService.selectPoints());
         return "/app/mypage/mypagePoint";
     }
 
@@ -64,18 +70,20 @@ public class MypageController {
         return "/app/mypage/mypageComment";
     }
 
-    @GetMapping("/badge")
-    public String badge(){
+    @GetMapping("/mybadge")
+    public String badge(Model model){
+        model.addAttribute("badges", mypageService.showBadgeList());
+        model.addAttribute("mybadges", mypageService.selectMybadges());
         return "/app/mypage/mypageBadge";
     }
 
-    @GetMapping("/course")
+    @GetMapping("/mycourse")
     public String course(){
         return "/app/mypage/mypageCourse";
     }
 
-    @GetMapping("/program")
-    public String program(){
+    @GetMapping("/myprogram")
+    public String program(Model model){
         return "/app/mypage/mypageProgram";
     }
 

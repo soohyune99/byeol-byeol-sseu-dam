@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TBL_MYPROGRAM")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor/*(access = AccessLevel.PROTECTED)*/
 public class Myprogram extends Period {
     @Id @GeneratedValue @NotNull
     private Long myprogramId;

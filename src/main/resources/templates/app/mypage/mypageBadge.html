@@ -29,7 +29,7 @@
      doz_extend="N" doz_mobile_section="N" doz_mobile_hide="N" doz_header_repeat="N" doz_footer_repeat="N"
      doz_category="default">
     <div class="section_bg _section_bg _interactive_bg   "
-         style="   background-size:cover; background-repeat: no-repeat; position: absolute;left: 0;top: 0;right: 0; bottom: 0;">
+         style="background-size:cover; background-repeat: no-repeat; position: absolute;left: 0;top: 0;right: 0; bottom: 0;">
     </div>
     <div class="section_bg_color _section_bg_color"
          style="background-color:#ffffff;  position: absolute;left: 0;top: 0;right: 0; bottom: 0;"></div>
@@ -309,13 +309,15 @@
                                                 <div class="divisionLine"></div>
                                                 <div class="badgeList">
                                                     <ul>
-                                                        <li class="mybadgeWrap">
+                                                        <th:block th:each="badge:${badges}">
+                                                        <li class="mybadgeWrap" th:object="badge">
 <!--                                                            <img class="mybadgeImg" src="/images/mypage/badge1.png">-->
                                                             <img class="mybadgeImg"
                                                                  src="https://cdn3.iconfinder.com/data/icons/vol-4/128/like-512.png">
-                                                            <p class="badgeName">배지1</p>
-                                                            <p class="badgeInfo">코스1 완주</p>
+                                                            <p class="badgeName" th:text="*{badgeName}">배지1</p>
+                                                            <p class="badgeInfo" th:text="*{badgeInfo}">코스1 완주</p>
                                                         </li>
+                                                        </th:block>
                                                         <li class="mybadgeWrap">
 <!--                                                            <img class="mybadgeImg" src="/images/mypage/badge2.png">-->
                                                             <img class="mybadgeImg" src="https://cdn3.iconfinder.com/data/icons/vol-1-1/128/bridge-512.png">

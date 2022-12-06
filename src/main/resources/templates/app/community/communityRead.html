@@ -325,8 +325,14 @@
 </body>
 <script th:inline="javascript">
     let boardId = [[${board.boardId}]];
+    let member = [[${session.member}]];
+    var uid = '<%=(String)session.getAttribute("uid")%>';
+    console.log(member);
+    console.log(uid);
 </script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/community/communityModule.js"></script>
+<script src="/js/community/commentModule.js"></script>
 <script src="/js/community/communityRead.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 </html>

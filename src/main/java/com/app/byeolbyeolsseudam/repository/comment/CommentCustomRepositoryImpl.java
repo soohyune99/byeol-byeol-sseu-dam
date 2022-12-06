@@ -22,24 +22,15 @@ public class CommentCustomRepositoryImpl implements CommentCustomRepository{
 
     @Override
     public void saveComment(CommentDTO commentDTO, Comment comment){
-        log.info("boardId" + commentDTO.getBoardId());
-        log.info("memberId" + commentDTO.getMemberId());
-
-        Board board = jpaQueryFactory.selectFrom(QBoard.board)
-                .where(QBoard.board.boardId.eq(commentDTO.getBoardId()))
-                .fetchOne();
-
-        comment.changeBoard(board);
-
-//        comment.changeBoard(
-//                jpaQueryFactory.selectFrom(board)
-//                        .where(board.boardId.eq(commentDTO.getBoardId()))
-//                        .fetchOne()
-//        );
-//        comment.changeMember(
-//                jpaQueryFactory.selectFrom(member)
-//                        .where(member.memberId.eq(commentDTO.getMemberId()))
-//                        .fetchOne()
-//        );
+        comment.changeBoard(
+                jpaQueryFactory.selectFrom(board)
+                        .where(board.boardId.eq(commentDTO.getBoardId()))
+                        .fetchOne()
+        );
+        comment.changeMember(
+                jpaQueryFactory.selectFrom(member)
+                        .where(member.memberId.eq(commentDTO.getMemberId()))
+                        .fetchOne()
+        );
     }
 }

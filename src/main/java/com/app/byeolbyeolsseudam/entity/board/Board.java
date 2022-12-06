@@ -29,7 +29,7 @@ public class Board extends Period {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
-    @OneToMany
+    @OneToMany(mappedBy = "board")
     private List<Comment> comments;
 
     public void changeMember(Member member){

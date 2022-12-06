@@ -28,12 +28,13 @@ public class BoardDTO {
     private String memberProfilePath;
     private String memberProfileUuid;
     private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 
     private List<FileBoardDTO> files;
     private List<CommentDTO> comments;
 
     @QueryProjection
-    public BoardDTO(Long boardId, BoardCategory boardCategory, String boardTitle, String boardContent, int boardView, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, LocalDateTime createdDate) {
+    public BoardDTO(Long boardId, BoardCategory boardCategory, String boardTitle, String boardContent, int boardView, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.boardId = boardId;
         this.boardCategory = boardCategory;
         this.boardTitle = boardTitle;
@@ -45,6 +46,7 @@ public class BoardDTO {
         this.memberProfilePath = memberProfilePath;
         this.memberProfileUuid = memberProfileUuid;
         this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
     public Board toEntity(){

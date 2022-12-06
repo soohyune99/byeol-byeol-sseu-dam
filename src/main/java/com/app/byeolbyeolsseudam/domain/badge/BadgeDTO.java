@@ -12,14 +12,16 @@ import org.springframework.stereotype.Component;
 public class BadgeDTO {
     private Long badgeId;
     private String badgeName;
+    private String badgeInfo;
     private String badgeFileName;
     private String badgeFileUuid;
     private String badgeFilePath;
 
     @QueryProjection
-    public BadgeDTO(Long badgeId, String badgeName, String badgeFileName, String badgeFileUuid, String badgeFilePath) {
+    public BadgeDTO(Long badgeId, String badgeName, String badgeInfo, String badgeFileName, String badgeFileUuid, String badgeFilePath) {
         this.badgeId = badgeId;
         this.badgeName = badgeName;
+        this.badgeInfo = badgeInfo;
         this.badgeFileName = badgeFileName;
         this.badgeFileUuid = badgeFileUuid;
         this.badgeFilePath = badgeFilePath;
@@ -28,6 +30,7 @@ public class BadgeDTO {
     public Badge toEntity(){
         return Badge.builder()
                 .badgeName(badgeName)
+                .badgeInfo(badgeInfo)
                 .badgeFileName(badgeFileName)
                 .badgeFilePath(badgeFilePath)
                 .badgeFileUuid(badgeFileUuid)

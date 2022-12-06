@@ -28,7 +28,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
         List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate))
+                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
                 .from(board)
                 .orderBy(board.boardView.desc())
                 .limit(3)
@@ -39,7 +39,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                     comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
                     comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
                     comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-                    comment.board.boardId, comment.createdDate))
+                    comment.board.boardId, comment.createdDate, comment.updatedDate))
                     .from(comment)
                     .where(comment.board.boardId.eq(board.getBoardId()))
                     .fetch();
@@ -67,7 +67,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
         List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate))
+                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
                 .from(board)
                 .orderBy(board.createdDate.desc())
                 .fetch();
@@ -77,7 +77,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                     comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
                     comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
                     comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-                    comment.board.boardId, comment.createdDate))
+                    comment.board.boardId, comment.createdDate, comment.updatedDate))
                     .from(comment)
                     .where(comment.board.boardId.eq(board.getBoardId()))
                     .fetch();
@@ -91,7 +91,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
         List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate))
+                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
                 .from(board)
                 .where(board.boardCategory.eq(boardCategory))
                 .orderBy(board.createdDate.desc())
@@ -102,7 +102,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                             comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
                             comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
                             comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-                            comment.board.boardId, comment.createdDate))
+                            comment.board.boardId, comment.createdDate, comment.updatedDate))
                             .from(comment)
                             .where(comment.board.boardId.eq(board.getBoardId()))
                             .fetch();
@@ -116,11 +116,11 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
         List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate))
+                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
                 .from(board)
                 .where(board.boardTitle.contains(keyword)
-                        .or(board.boardContent.contains(keyword))
-                        .or(board.boardCategory.eq(BoardCategory.valueOf(keyword))))
+                        .or(board.boardContent.contains(keyword)))
+//                        .or(board.boardCategory.eq(BoardCategory.valueOf(keyword))))
                 .orderBy(board.createdDate.desc())
                 .fetch();
 
@@ -129,7 +129,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                     comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
                     comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
                     comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-                    comment.board.boardId, comment.createdDate))
+                    comment.board.boardId, comment.createdDate, comment.updatedDate))
                     .from(comment)
                     .where(comment.board.boardId.eq(board.getBoardId()))
                     .fetch();
@@ -144,7 +144,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
         BoardDTO boardDTO = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate))
+                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
                 .from(board)
                 .where(board.boardId.eq(boardId))
                 .fetchOne();
@@ -153,7 +153,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                 comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
                 comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
                 comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-                comment.board.boardId, comment.createdDate))
+                comment.board.boardId, comment.createdDate, board.updatedDate))
                 .from(comment)
                 .where(comment.board.boardId.eq(boardId))
                 .fetch();

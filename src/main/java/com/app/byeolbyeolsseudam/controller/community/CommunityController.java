@@ -6,10 +6,7 @@ import com.app.byeolbyeolsseudam.type.BoardCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -18,13 +15,13 @@ import org.springframework.web.servlet.view.RedirectView;
 public class CommunityController {
     private final CommunityService communityService;
 
+    /* 커뮤니티 페이지 이동 */
     @GetMapping("")
-    public String main(Model model){
-        model.addAttribute("topViews", communityService.selectTopView());
-        model.addAttribute("boards", communityService.selectBoards());
+    public String main(){
         return "/app/community/communityMain";
     }
 
+    /* 카테고리별 목록 조회 */
     @PostMapping("/{boardCategory}")
     public String mainCategory(@PathVariable BoardCategory boardCategory, Model model){
         model.addAttribute("topViews", communityService.selectTopView());
@@ -32,6 +29,7 @@ public class CommunityController {
         return "/app/community/communityMain";
     }
 
+    /* 게시글 상세보기 */
     @GetMapping("/{boardId}")
     public String Read(@PathVariable Long boardId, Model model){
         BoardDTO boardDTO = communityService.readBoard(boardId);
@@ -39,9 +37,15 @@ public class CommunityController {
         return "/app/community/communityRead";
     }
 
+    /* 키워드 검색 */
     @GetMapping("/search/{keyword}")
     public String search(@PathVariable String keyword, Model model){
         model.addAttribute("boards", communityService.selectBoardsofKeyword(keyword));
+        return "/app/community/communityMain";
+    }
+
+    @GetMapping("/communitysearch")
+    public String searchPage(){
         return "/app/community/communitySearch";
     }
 

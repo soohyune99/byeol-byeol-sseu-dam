@@ -1,6 +1,5 @@
 /* CommunityRead.html */
 
-
 stickyNav();
 
 let $dropdownMenu = $(".dropdown-menu.dropdown-menu-right.sticky-nav-menu");
@@ -130,13 +129,26 @@ $commentContent.on('keyup', function(){
     $commentSubmitBtn.addClass("active");
 });
 
+
+
+/* ================================== Board ==================================*/
+
+
+
+
+
+
+/* ================================== Comment ==================================*/
+
+
 /* 댓글 등록 */
 $commentSubmitBtn.on("click", function(){
     console.log($commentContent.val());
     console.log(boardId);
+    console.log(member);
     commentService.save({
         boardId: boardId,
-        memberId: 106,
+        memberId: member.memberId,
         commentContent: $commentContent.val()
     }, function(){console.log("성공")}, function(){console.log("실패")});
 });
@@ -146,29 +158,5 @@ $commentSubmitBtn.on("click", function(){
 
 
 
-
-/* ============================= Comment ============================= */
-
-let commentService = (function(){
-    function save(comment, callback, error){
-        $.ajax({
-            url: "/comment/new",
-            type: "post",
-            data: JSON.stringify(comment),
-            contentType: "application/json; charset=utf-8",
-            success: function(result, status, xhr){
-                if(callback){
-                    callback(result);
-                }
-            },
-            error: function(xhr, status, err){
-                if(error){
-                    error(err);
-                }
-            }
-        });
-    }
-    return {save: save}
-})();
 
 

@@ -24,7 +24,7 @@ public class BadgeTest {
     @Test
     public void saveTest(){
 
-        for(int i = 0; i < 50; i++){
+        for(int i = 0; i < 18; i++){
             BadgeDTO badgeDTO = new BadgeDTO();
 
             badgeDTO.setBadgeName("배지" + i);
