@@ -38,7 +38,7 @@ public class AdminController {
 
     /* ############################### 회원 관리  ############################### */
 
-
+    //AdminMemberController
 
     /* ############################### 주문 관리 ################################ */
 
@@ -70,29 +70,7 @@ public class AdminController {
 
     /* ############################### 프로그램 관리 ############################# */
 
-    /* 프로그램 관리 - 프로그램 목록 */
-    @GetMapping("adminprogram")
-    public String adminProgram(){
-        return "/app/admin/adminProgram.html";
-    }
-
-    /* 프로그램 - 프로그램 세부 내역 */
-    @GetMapping("adminprogramdetail")
-    public String adminProgramDetail(){
-        return "/app/admin/adminProgramDetail.html";
-    }
-
-    /* 프로그램 관리 - 프로그램 목록 + 프로그램 추가 */
-    @GetMapping("adminprogramadd")
-    public String adminProgramAdd(){
-        return "/app/admin/adminProgramAdd.html";
-    }
-
-    /* 프로그램 관리 - 프로그램 목록 + 프로그램 수정 */
-    @GetMapping("adminprogrammodify")
-    public String adminProgramModify(){
-        return "/app/admin/adminProgramModify.html";
-    }
+//    AdminProgramController
 
     /* ############################### 줍깅 관리 ################################ */
 
@@ -168,17 +146,7 @@ public class AdminController {
 
     /* ############################### 게시판 관리 ############################## */
 
-    /* 게시판관리- 게시판 목록 */
-    @GetMapping("admincommunitymanage")
-    public String adminCommunityManage(){
-        return "/app/admin/adminCommunityManage.html";
-    }
-
-    /* 게시판관리- 댓글 목록 */
-    @GetMapping("admincomment")
-    public String adminComment(){
-        return "/app/admin/adminComment.html";
-    }
+    //AdminCommunityController
 
     /* ############################### 고객 센터 ################################ */
 

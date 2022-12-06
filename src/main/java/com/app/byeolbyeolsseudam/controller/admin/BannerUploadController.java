@@ -24,15 +24,12 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class BannerUploadController {
-//    private final BannerService bannerService;
-
-    private final ServletContext servletContext;
 
 
     @PostMapping("/upload")
     public List<BannerDTO> upload(List<MultipartFile> upload) throws IOException {
-        String rootPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\banner";
-//        String rootPath = "C:/upload/banner";
+//        String rootPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\banner";
+        String rootPath = "C:/upload/banner";
         String uploadFileName = null;
         List<BannerDTO> files = new ArrayList<>();
 
@@ -55,7 +52,6 @@ public class BannerUploadController {
 
             files.add(bannerDTO);
 
-//            bannerService.save(bannerDTO.toEntity());
         }
         return files;
     }

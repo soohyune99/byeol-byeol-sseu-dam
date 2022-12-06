@@ -98,10 +98,11 @@
 .curation-list .curation-list-item .curation-list-wrapper[data-v-287a2a80] {
     display: flex;
     align-items: center;
-    padding: .75rem .125rem;
+    padding: .75rem .525rem;
     margin-bottom: .125rem;
     border-bottom: .0625rem solid #f4f4f4;
-    cursor: pointer
+    cursor: pointer;
+    width: 50%;
 }
 
 .curation-list .curation-list-item .curation-list-wrapper .curation-contents[data-v-287a2a80] {

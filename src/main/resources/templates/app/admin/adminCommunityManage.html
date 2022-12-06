@@ -7,6 +7,19 @@
 	<title>별별쓰담 | 관리자 페이지</title>
 	<link rel="icon" href="/images/admin/0PBC.png">
 	<link rel="stylesheet" href="/css/admin/adminCssAll.css">
+	<style>
+		table{
+			table-layout: fixed;
+		}
+		td{
+			text-align: center;
+			font-size: 13px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+	</style>
 </head>
 <body>
 <header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
@@ -193,7 +206,8 @@
 																				<tbody class="fw-semibold text-gray-600">
 
 																				<!-- 게시글 -->
-																				<tr class="odd productList1">
+																				<th:block th:each="board:${boards}">
+																				<tr th:object="${board}" class="odd productList1">
 																					<!--begin::Checkbox-->
 																					<td>
 																						<div
@@ -206,478 +220,42 @@
 
 																					<!--begin::게시물번호=-->
 																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
+																						<span th:text="*{boardId}" class="fw-bold"></span>
 																					</td>
 																					<!--end::게시물번호=-->
 
 																					<!--begin::카테고리=-->
 																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
+																						<span th:text="*{boardCategory}" class="fw-bold"></span>
 																					</td>
 																					<!--end::카테고리=-->
 
 																					<!--begin::제목=-->
 																					<td class="text-end pe-0"
 																						data-order="15">
-																						<span class="fw-bold ms-3">이벤트) 줍깅 3기 후기</span>
+																						<span th:text="*{boardTitle}" class="fw-bold ms-3"></span>
 																					</td>
 																					<!--end::제목=-->
 
 																					<!--begin::내용=-->
-																					<td class="text-end pe-0">2022 하반기 줍기 모임을 성공적으로 마무리 했습니다...
+																					<td th:text="*{boardContent}" class="text-end pe-0">
 																					</td>
 																					<!--end::내용=-->
 
 																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
+																					<td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd')}" class="text-end pe-0"></td>
 																					<!--end::작성날짜=-->
 
 																					<!--begin::회원번호-->
 																					<td class="text-end pe-0"
 																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
+																						<div th:text="*{memberId}" class="rating justify-content-end">
 																						</div>
 																					</td>
 																					<!--end::회원번호-->
 																				</tr>
+																				</th:block>
 																				<!-- 게시글 -->
-																				<tr class="odd productList1">
-																					<!--begin::Checkbox-->
-																					<td>
-																						<div
-																								class="form-check form-check-sm form-check-custom form-check-solid">
-																							<input class="form-check-input checkbox"
-																								   type="checkbox">
-																						</div>
-																					</td>
-																					<!--end::Checkbox-->
-
-																					<!--begin::게시물번호=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
-																					</td>
-																					<!--end::게시물번호=-->
-
-																					<!--begin::카테고리=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
-																					</td>
-																					<!--end::카테고리=-->
-
-																					<!--begin::제목=-->
-																					<td class="text-end pe-0"
-																						data-order="15">
-																						<span class="fw-bold ms-3">어디에서 모이나요?</span>
-																					</td>
-																					<!--end::제목=-->
-
-																					<!--begin::내용=-->
-																					<td class="text-end pe-0">줍깅 3기 모임 어디서 모이나요? 저번에는 버스정류장...
-																					</td>
-																					<!--end::내용=-->
-
-																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
-																					<!--end::작성날짜=-->
-
-																					<!--begin::회원번호-->
-																					<td class="text-end pe-0"
-																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
-																						</div>
-																					</td>
-																					<!--end::회원번호-->
-																				</tr>
-
-																				<!-- 게시글 -->
-																				<tr class="odd productList1">
-																					<!--begin::Checkbox-->
-																					<td>
-																						<div
-																								class="form-check form-check-sm form-check-custom form-check-solid">
-																							<input class="form-check-input checkbox"
-																								   type="checkbox">
-																						</div>
-																					</td>
-																					<!--end::Checkbox-->
-
-																					<!--begin::게시물번호=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
-																					</td>
-																					<!--end::게시물번호=-->
-
-																					<!--begin::카테고리=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
-																					</td>
-																					<!--end::카테고리=-->
-
-																					<!--begin::제목=-->
-																					<td class="text-end pe-0"
-																						data-order="15">
-																						<span class="fw-bold ms-3">이벤트) 줍깅 3기 후기</span>
-																					</td>
-																					<!--end::제목=-->
-
-																					<!--begin::내용=-->
-																					<td class="text-end pe-0">2022 하반기 줍기 모임을 성공적으로 마무리 했습니다...
-																					</td>
-																					<!--end::내용=-->
-
-																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
-																					<!--end::작성날짜=-->
-
-																					<!--begin::회원번호-->
-																					<td class="text-end pe-0"
-																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
-																						</div>
-																					</td>
-																					<!--end::회원번호-->
-																				</tr>
-																				<!-- 게시글 -->
-																				<tr class="odd productList1">
-																					<!--begin::Checkbox-->
-																					<td>
-																						<div
-																								class="form-check form-check-sm form-check-custom form-check-solid">
-																							<input class="form-check-input checkbox"
-																								   type="checkbox">
-																						</div>
-																					</td>
-																					<!--end::Checkbox-->
-
-																					<!--begin::게시물번호=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
-																					</td>
-																					<!--end::게시물번호=-->
-
-																					<!--begin::카테고리=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
-																					</td>
-																					<!--end::카테고리=-->
-
-																					<!--begin::제목=-->
-																					<td class="text-end pe-0"
-																						data-order="15">
-																						<span class="fw-bold ms-3">어디에서 모이나요?</span>
-																					</td>
-																					<!--end::제목=-->
-
-																					<!--begin::내용=-->
-																					<td class="text-end pe-0">줍깅 3기 모임 어디서 모이나요? 저번에는 버스정류장...
-																					</td>
-																					<!--end::내용=-->
-
-																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
-																					<!--end::작성날짜=-->
-
-																					<!--begin::회원번호-->
-																					<td class="text-end pe-0"
-																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
-																						</div>
-																					</td>
-																					<!--end::회원번호-->
-																				</tr>
-
-																				<!-- 게시글 -->
-																				<tr class="odd productList1">
-																					<!--begin::Checkbox-->
-																					<td>
-																						<div
-																								class="form-check form-check-sm form-check-custom form-check-solid">
-																							<input class="form-check-input checkbox"
-																								   type="checkbox">
-																						</div>
-																					</td>
-																					<!--end::Checkbox-->
-
-																					<!--begin::게시물번호=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
-																					</td>
-																					<!--end::게시물번호=-->
-
-																					<!--begin::카테고리=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
-																					</td>
-																					<!--end::카테고리=-->
-
-																					<!--begin::제목=-->
-																					<td class="text-end pe-0"
-																						data-order="15">
-																						<span class="fw-bold ms-3">이벤트) 줍깅 3기 후기</span>
-																					</td>
-																					<!--end::제목=-->
-
-																					<!--begin::내용=-->
-																					<td class="text-end pe-0">2022 하반기 줍기 모임을 성공적으로 마무리 했습니다...
-																					</td>
-																					<!--end::내용=-->
-
-																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
-																					<!--end::작성날짜=-->
-
-																					<!--begin::회원번호-->
-																					<td class="text-end pe-0"
-																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
-																						</div>
-																					</td>
-																					<!--end::회원번호-->
-																				</tr>
-																				<!-- 게시글 -->
-																				<tr class="odd productList1">
-																					<!--begin::Checkbox-->
-																					<td>
-																						<div
-																								class="form-check form-check-sm form-check-custom form-check-solid">
-																							<input class="form-check-input checkbox"
-																								   type="checkbox">
-																						</div>
-																					</td>
-																					<!--end::Checkbox-->
-
-																					<!--begin::게시물번호=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
-																					</td>
-																					<!--end::게시물번호=-->
-
-																					<!--begin::카테고리=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
-																					</td>
-																					<!--end::카테고리=-->
-
-																					<!--begin::제목=-->
-																					<td class="text-end pe-0"
-																						data-order="15">
-																						<span class="fw-bold ms-3">어디에서 모이나요?</span>
-																					</td>
-																					<!--end::제목=-->
-
-																					<!--begin::내용=-->
-																					<td class="text-end pe-0">줍깅 3기 모임 어디서 모이나요? 저번에는 버스정류장...
-																					</td>
-																					<!--end::내용=-->
-
-																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
-																					<!--end::작성날짜=-->
-
-																					<!--begin::회원번호-->
-																					<td class="text-end pe-0"
-																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
-																						</div>
-																					</td>
-																					<!--end::회원번호-->
-																				</tr>
-
-																				<!-- 게시글 -->
-																				<tr class="odd productList1">
-																					<!--begin::Checkbox-->
-																					<td>
-																						<div
-																								class="form-check form-check-sm form-check-custom form-check-solid">
-																							<input class="form-check-input checkbox"
-																								   type="checkbox">
-																						</div>
-																					</td>
-																					<!--end::Checkbox-->
-
-																					<!--begin::게시물번호=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
-																					</td>
-																					<!--end::게시물번호=-->
-
-																					<!--begin::카테고리=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
-																					</td>
-																					<!--end::카테고리=-->
-
-																					<!--begin::제목=-->
-																					<td class="text-end pe-0"
-																						data-order="15">
-																						<span class="fw-bold ms-3">이벤트) 줍깅 3기 후기</span>
-																					</td>
-																					<!--end::제목=-->
-
-																					<!--begin::내용=-->
-																					<td class="text-end pe-0">2022 하반기 줍기 모임을 성공적으로 마무리 했습니다...
-																					</td>
-																					<!--end::내용=-->
-
-																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
-																					<!--end::작성날짜=-->
-
-																					<!--begin::회원번호-->
-																					<td class="text-end pe-0"
-																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
-																						</div>
-																					</td>
-																					<!--end::회원번호-->
-																				</tr>
-																				<!-- 게시글 -->
-																				<tr class="odd productList1">
-																					<!--begin::Checkbox-->
-																					<td>
-																						<div
-																								class="form-check form-check-sm form-check-custom form-check-solid">
-																							<input class="form-check-input checkbox"
-																								   type="checkbox">
-																						</div>
-																					</td>
-																					<!--end::Checkbox-->
-
-																					<!--begin::게시물번호=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
-																					</td>
-																					<!--end::게시물번호=-->
-
-																					<!--begin::카테고리=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
-																					</td>
-																					<!--end::카테고리=-->
-
-																					<!--begin::제목=-->
-																					<td class="text-end pe-0"
-																						data-order="15">
-																						<span class="fw-bold ms-3">어디에서 모이나요?</span>
-																					</td>
-																					<!--end::제목=-->
-
-																					<!--begin::내용=-->
-																					<td class="text-end pe-0">줍깅 3기 모임 어디서 모이나요? 저번에는 버스정류장...
-																					</td>
-																					<!--end::내용=-->
-
-																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
-																					<!--end::작성날짜=-->
-
-																					<!--begin::회원번호-->
-																					<td class="text-end pe-0"
-																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
-																						</div>
-																					</td>
-																					<!--end::회원번호-->
-																				</tr>
-
-																				<!-- 게시글 -->
-																				<tr class="odd productList1">
-																					<!--begin::Checkbox-->
-																					<td>
-																						<div
-																								class="form-check form-check-sm form-check-custom form-check-solid">
-																							<input class="form-check-input checkbox"
-																								   type="checkbox">
-																						</div>
-																					</td>
-																					<!--end::Checkbox-->
-
-																					<!--begin::게시물번호=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
-																					</td>
-																					<!--end::게시물번호=-->
-
-																					<!--begin::카테고리=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
-																					</td>
-																					<!--end::카테고리=-->
-
-																					<!--begin::제목=-->
-																					<td class="text-end pe-0"
-																						data-order="15">
-																						<span class="fw-bold ms-3">이벤트) 줍깅 3기 후기</span>
-																					</td>
-																					<!--end::제목=-->
-
-																					<!--begin::내용=-->
-																					<td class="text-end pe-0">2022 하반기 줍기 모임을 성공적으로 마무리 했습니다...
-																					</td>
-																					<!--end::내용=-->
-
-																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
-																					<!--end::작성날짜=-->
-
-																					<!--begin::회원번호-->
-																					<td class="text-end pe-0"
-																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
-																						</div>
-																					</td>
-																					<!--end::회원번호-->
-																				</tr>
-																				<!-- 게시글 -->
-																				<tr class="odd productList1">
-																					<!--begin::Checkbox-->
-																					<td>
-																						<div
-																								class="form-check form-check-sm form-check-custom form-check-solid">
-																							<input class="form-check-input checkbox"
-																								   type="checkbox">
-																						</div>
-																					</td>
-																					<!--end::Checkbox-->
-
-																					<!--begin::게시물번호=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">1232121</span>
-																					</td>
-																					<!--end::게시물번호=-->
-
-																					<!--begin::카테고리=-->
-																					<td class="text-end pe-0">
-																						<span class="fw-bold">줍깅</span>
-																					</td>
-																					<!--end::카테고리=-->
-
-																					<!--begin::제목=-->
-																					<td class="text-end pe-0"
-																						data-order="15">
-																						<span class="fw-bold ms-3">어디에서 모이나요?</span>
-																					</td>
-																					<!--end::제목=-->
-
-																					<!--begin::내용=-->
-																					<td class="text-end pe-0">줍깅 3기 모임 어디서 모이나요? 저번에는 버스정류장...
-																					</td>
-																					<!--end::내용=-->
-
-																					<!--begin::작성날짜=-->
-																					<td class="text-end pe-0">2022.11.30</td>
-																					<!--end::작성날짜=-->
-
-																					<!--begin::회원번호-->
-																					<td class="text-end pe-0"
-																						data-order="rating-3">
-																						<div class="rating justify-content-end">213262
-																						</div>
-																					</td>
-																					<!--end::회원번호-->
-																				</tr>
-
-
 																				</tbody>
 																				<!--end::Table body-->
 
