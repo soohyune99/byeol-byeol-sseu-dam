@@ -16,6 +16,14 @@
     <link rel="stylesheet" href="/css/fix/footer1.css">
     <link rel="stylesheet" href="/css/fix/footer2.css">
     <link rel="icon" href="/images/fix/favicon.png">
+    <style>
+        /*#noArticle1{*/
+        /*    width: 24px; height: 24px; border-width: 0.25rem; border-style: solid; border-color: rgb(0, 199, 174) rgba(0, 199, 174, 0.2) rgba(0, 199, 174, 0.2); border-image: initial;*/
+        /*}*/
+        .noArticle2{
+            color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -50,13 +58,14 @@
                                              alt="검색" class="search-icon">
                                     </div>
 
-                                    <form>
-                                        <input type="text" style="display:none">
+                                    <form onsubmit="return false">
+<!--                                        <input type="text" style="display:none">-->
 
+                                        <!-- 검색 입력 input -->
                                         <input name="enter" autocomplete='off' value=""
                                                onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
                                                data-v-78206d9f="" type="text" placeholder="원하는 프로그램을 검색해보세요"
-                                               class="pro-form-control" maxlength="15" id="__BVID__183">
+                                               class="pro-form-control" maxlength="20" id="__BVID__183">
                                     </form>
                                     <div data-v-78206d9f="" class="input-group-append" style="display: none;">
                                         <button style="padding: 0; padding-right: 6px;"
@@ -72,12 +81,12 @@
                             <!-- BEGIN : 추천 서비스 -->
                             <div data-v-78206d9f="" class="keyword-box">
                                 <ul data-v-78206d9f="">
-                                    <li data-v-78206d9f="" class="title">추천 서비스</li>
-                                    <li data-v-78206d9f="" class="sub">친환경</li>
-                                    <li data-v-78206d9f="" class="sub">아이와 함께하는</li>
-                                    <li data-v-78206d9f="" class="sub">특별 프로그램</li>
-                                    <li data-v-78206d9f="" class="sub">쓰담 학교</li>
-                                    <li data-v-78206d9f="" class="sub">TEAM 개발도상국</li>
+                                    <li data-v-78206d9f="" class="title" onclick="selectKeyword(this)">추천 서비스</li>
+                                    <li data-v-78206d9f="" class="sub" onclick="selectKeyword(this)">친환경</li>
+                                    <li data-v-78206d9f="" class="sub" onclick="selectKeyword(this)">아이와 함께하는</li>
+                                    <li data-v-78206d9f="" class="sub" onclick="selectKeyword(this)">특별 프로그램</li>
+                                    <li data-v-78206d9f="" class="sub" onclick="selectKeyword(this)">쓰담 학교</li>
+                                    <li data-v-78206d9f="" class="sub" onclick="selectKeyword(this)">TEAM 개발도상국</li>
                                 </ul>
                             </div>
                             <!-- END : 추천 서비스 -->
@@ -116,9 +125,13 @@
                             <div data-v-18e85706="" data-v-72c8052a="">
                                 <!-- BEGIN : 프로그램 개수 -->
                                 <section data-v-219a3136="" data-v-18e85706="">
-                                    <div data-v-219a3136="" class="product-total-count">
-                                        <strong data-v-219a3136="">12</strong>
-                                        <span data-v-219a3136="">개 서비스</span>
+                                    <div data-v-219a3136="" class="product-total-count" id="totalCountPlace">
+<!--                                        <strong data-v-219a3136="">12</strong>-->
+<!--                                        <span data-v-219a3136="">개 서비스</span>-->
+                                        <!-- 몇 개의 서비스 -->
+                                        <!-- 몇 개의 서비스 -->
+                                        <!-- 몇 개의 서비스 -->
+
                                     </div>
                                 </section>
                                 <!-- END : 프로그램 개수 -->
@@ -126,521 +139,28 @@
                                 <!-- BEGIN : 프로그램 article 감싸는 DIV -->
                                 <div data-v-18e85706="" class="product-list responsive" id="programListId">
 
-                                    <!-- BEGIN : 프로그램 article -->
-                                    <!--                                    <tbody>-->
-                                    <!--                                    <th:block th:each="program:${programs}" th:object="${program}">-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        &lt;!&ndash; BEGIN : 프로그램 DETAIL로 가는 링크 &ndash;&gt;-->
-                                    <!--                                        <a data-v-85c61b32="" th:href="@{/program/programdetail}" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 이미지&ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;">-->
-                                    <!--                                                        <img data-v-1a98b297="" th:src="*{programFileProfilePath}">-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; END : 프로그램 이미지 &ndash;&gt;-->
-
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 상태 &ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name">-->
-                                    <!--                                                <span data-v-85c61b32="" class="programStatusIcon blueIcon" th:text="*{programStatus}"></span>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; END : 프로그램 상태 &ndash;&gt;-->
-
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 TITLE&ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        &lt;!&ndash; BIGIN : 프로그램 TITLE TEXT &ndash;&gt;-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="" th:text="*{programName}">-->
-                                    <!--                                                        </h3>-->
-                                    <!--                                                        &lt;!&ndash; END : 프로그램 TITLE TEXT &ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 TITLE&ndash;&gt;-->
-                                    <!--                                        </a>-->
-                                    <!--                                        &lt;!&ndash; END : 프로그램 DETAIL로 가는 링크 &ndash;&gt;-->
-                                    <!--                                    </article>-->
-                                    <!--                                    </th:block>-->
-                                    <!--                                    </tbody>-->
-                                    <!-- END : 프로그램 article -->
-
-                                    <!-- BEGIN : 프로그램 article -->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-
-                                    <!--                                        &lt;!&ndash; BEGIN : 프로그램 DETAIL로 가는 링크 &ndash;&gt;-->
-                                    <!--                                        <a data-v-85c61b32="" th:href="@{/program/programdetail}" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 이미지&ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;">-->
-                                    <!--                                                        <img data-v-1a98b297="" src="/images/program/program1.png">-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; END : 프로그램 이미지 &ndash;&gt;-->
-
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 상태 &ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name">-->
-                                    <!--                                                <span data-v-85c61b32="" class="programStatusIcon blueIcon">모집중</span>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; END : 프로그램 상태 &ndash;&gt;-->
-
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 TITLE&ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        &lt;!&ndash; BIGIN : 프로그램 TITLE TEXT &ndash;&gt;-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">-->
-                                    <!--                                                            “ 맛있게 먹고 있나요? ” 별별쓰담 X 쓰담학교 지구를 위한 친환경요리 프로젝트 - 중화요리 - -->
-                                    <!--                                                        </h3>-->
-                                    <!--                                                        &lt;!&ndash; END : 프로그램 TITLE TEXT &ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 TITLE&ndash;&gt;-->
-                                    <!--                                        </a>-->
-                                    <!--                                        &lt;!&ndash; END : 프로그램 DETAIL로 가는 링크 &ndash;&gt;-->
-                                    <!--                                    </article>-->
-                                    <!-- END : 프로그램 article -->
-
-
-                                    <!--################################################################################-->
-                                    <!--#############################  삭제 예정  ########################################-->
-                                    <!--################################################################################-->
-
-                                    <!-- BEGIN : 프로그램 article -->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-
-                                    <!--                                        &lt;!&ndash; BEGIN : 프로그램 DETAIL로 가는 링크 &ndash;&gt;-->
-                                    <!--                                        <a data-v-85c61b32="" th:href="@{/program/programdetail}" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 이미지&ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;">-->
-                                    <!--                                                        <img data-v-1a98b297="" src="/images/program/program1.png">-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; END : 프로그램 이미지 &ndash;&gt;-->
-
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 상태 &ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name">-->
-                                    <!--                                                <span data-v-85c61b32="" class="programStatusIcon greenIcon">모집예정</span>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; END : 프로그램 상태 &ndash;&gt;-->
-
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 TITLE&ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        &lt;!&ndash; BIGIN : 프로그램 TITLE TEXT &ndash;&gt;-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">-->
-                                    <!--                                                            “ 맛있게 먹고 있나요? ” 별별쓰담 X 쓰담학교 지구를 위한 친환경요리 프로젝트 - 중화요리 - -->
-                                    <!--                                                        </h3>-->
-                                    <!--                                                        &lt;!&ndash; END : 프로그램 TITLE TEXT &ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 TITLE&ndash;&gt;-->
-                                    <!--                                        </a>-->
-                                    <!--                                        &lt;!&ndash; END : 프로그램 DETAIL로 가는 링크 &ndash;&gt;-->
-                                    <!--                                    </article>-->
-                                    <!-- END : 프로그램 article -->
-
-                                    <!--################################################################################-->
-                                    <!--################################################################################-->
-                                    <!--################################################################################-->
-                                    <!--반복문 돌릴 부분 - 삭제 예정 -->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="/images/program/program2.png">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 상태 &ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name">-->
-                                    <!--                                                <span data-v-85c61b32="" class="programStatusIcon redIcon">모집완료</span>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; END : 프로그램 상태 &ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] 환경 영화제 -우리의-->
-                                    <!--                                                            식생활, 멸종을 부르다- with ‘기후미식’ 저자 이의철 작가님</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="/images/program/program3.png">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; BEGIN : 프로그램 상태 &ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name">-->
-                                    <!--                                                <span data-v-85c61b32="" class="programStatusIcon grayIcon">마감</span>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash; END : 프로그램 상태 &ndash;&gt;-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] “내가 먹은 채소, 어디까지-->
-                                    <!--                                                            키워봤어?” -씨앗편- with 씨드키퍼</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="/images/program/program4.png">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name"><span-->
-                                    <!--                                                    data-v-85c61b32="">모집예정</span></div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] 환경 영화제 -모따이나이-->
-                                    <!--                                                            키친- with 소비자기후행동</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="/images/program/program5.png">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name"><span-->
-                                    <!--                                                    data-v-85c61b32="">모집마감</span></div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] “잘 먹고 살고 있나요?”-->
-                                    <!--                                                            -비건요리(양식)편- with 지구커리</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="/images/program/program6.png">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name"><span-->
-                                    <!--                                                    data-v-85c61b32="">모집중</span></div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] “잘 먹고 살고 있나요?”-->
-                                    <!--                                                            -비건요리(한식)편- with 오색오미</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="/images/program/program7.png">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name"><span-->
-                                    <!--                                                    data-v-85c61b32="">비건요리</span></div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">“잘 먹고 살고 있나요?”-->
-                                    <!--                                                            -비건요리(양식)편- with 지구커리</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="https://cdn.imweb.me/thumbnail/20221005/f92134e46d8c9.jpg">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name"><span-->
-                                    <!--                                                    data-v-85c61b32="">환경영화제</span></div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] 환경 영화제 -우리의-->
-                                    <!--                                                            식생활, 멸종을 부르다- with ‘기후미식’ 저자 이의철 작가님</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="https://cdn.imweb.me/thumbnail/20220905/c6fa568c4ec68.jpg">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name"><span-->
-                                    <!--                                                    data-v-85c61b32="">유기농법</span></div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] “내가 먹은 채소, 어디까지-->
-                                    <!--                                                            키워봤어?” -씨앗편- with 씨드키퍼</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="https://cdn.imweb.me/thumbnail/20220920/e10575f739340.jpg">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name"><span-->
-                                    <!--                                                    data-v-85c61b32="">환경영화제</span></div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] 환경 영화제 -모따이나이-->
-                                    <!--                                                            키친- with 소비자기후행동</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="https://cdn.imweb.me/thumbnail/20221007/3c0f97548b7ea.jpg">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name"><span-->
-                                    <!--                                                    data-v-85c61b32="">비건요리</span></div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] “잘 먹고 살고 있나요?”-->
-                                    <!--                                                            -비건요리(양식)편- with 지구커리</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!--                                    <article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">-->
-                                    <!--                                        <a data-v-85c61b32="" href="/ip/products/636261e61511bf6f50ce7101" class=""-->
-                                    <!--                                           data-testid="product-list-item">-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-image">-->
-                                    <!--                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">-->
-                                    <!--                                                    <div data-v-1a98b297="" class="image-wrap"-->
-                                    <!--                                                         style="padding-top: 66.6667%;"><img data-v-1a98b297=""-->
-                                    <!--                                                                                             src="https://cdn.imweb.me/thumbnail/20220919/72bb7c992cacb.jpg">-->
-                                    <!--                                                        &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </article>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="service-name"><span-->
-                                    <!--                                                    data-v-85c61b32="">비건요리</span></div>-->
-                                    <!--                                            <div data-v-85c61b32="" class="item-title">-->
-                                    <!--                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">-->
-                                    <!--                                                    <div data-v-a3afae98="" class="line-clamp"-->
-                                    <!--                                                         style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">-->
-                                    <!--                                                        <h3 data-v-85c61b32="" data-v-a3afae98="">[모집완료] “잘 먹고 살고 있나요?”-->
-                                    <!--                                                            -비건요리(한식)편- with 오색오미</h3>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    &lt;!&ndash;&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </a>-->
-                                    <!--                                    </article>-->
-                                    <!-- / 반복문 돌릴 부분 - 삭제 예정 -->
-                                    <!--################################################################################-->
-                                    <!--################################################################################-->
-                                    <!--################################################################################-->
-
+                                    <!--  프로그램 데이터 들어가는 자리  -->
+                                    <!--  프로그램 데이터 들어가는 자리  -->
+                                    <!--  프로그램 데이터 들어가는 자리  -->
 
                                 </div>
                                 <!-- END : 프로그램 article 감싸는 DIV -->
 
                                 <!-- BEGIN : 프로그램 없는 경우 나오는 DIV -->
-                                <div data-v-644ea9c9="" data-v-72c8052a="" class="infinite-loading-container">
+                                <div data-v-644ea9c9="" data-v-72c8052a="" class="infinite-loading-container" id="noArticleProgram">
 
                                     <div data-v-644ea9c9="" class="infinite-status-prompt" style="display: none;">
-                                        <div data-v-fc3fcce8="" data-v-72c8052a="" class="" data-v-644ea9c9="">
-                                            <div data-v-fc3fcce8="" class="indicator-body center"
-                                                 style="width: 24px; height: 24px; border-width: 0.25rem; border-style: solid; border-color: rgb(0, 199, 174) rgba(0, 199, 174, 0.2) rgba(0, 199, 174, 0.2); border-image: initial;">
-                                            </div>
-                                            <p data-v-fc3fcce8="" style="display: none;"></p>
+                                        <div>
+                                            <div class="indicator-body center" ></div>
+                                            <p style="display: none;"></p>
                                         </div>
                                     </div>
+                                    <div id="noArticle1">
 
-                                    <!-- BEGIN : 돋보기 : 선택하신 조건으로 판매중인 상품이 없습니다 다른 지역 또는 섹션에서 상품을 탐색해보세요 -->
-                                    <div data-v-644ea9c9="" class="infinite-status-prompt" style="">
-                                        <article data-v-414f00e5="" data-v-72c8052a=""
-                                                 class="no-items align-self-center text-center no-items"
-                                                 data-v-644ea9c9="">
-                                            <i
-                                                    data-v-414f00e5=""><img data-v-72c8052a="" data-v-414f00e5=""
-                                                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icHJlZml4X19hIiB4MT0iMCUiIHgyPSIxMDAlIiB5MT0iNTAlIiB5Mj0iNTAlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwQzdBRSIvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0Q0M4RTUiLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBmaWxsPSIjRkZGIiBkPSJNMCAwSDM3NVY2NjdIMHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSB0cmFuc2xhdGUoNDQgMTQ2KSI+CiAgICAgICAgICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjQwIiBmaWxsPSJ1cmwoI3ByZWZpeF9fYSkiIGZpbGwtb3BhY2l0eT0iLjUiIGZpbGwtcnVsZT0ibm9uemVybyIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMTYgNjRMNjQgNjQgNjQgMTYgMTYgMTZ6Ii8+CiAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjMiIGQ9Ik00NS40ODYgMjguNTE1YzQuNjg1IDQuNjg3IDQuNjg1IDEyLjI4MyAwIDE2Ljk3LTQuNjg3IDQuNjg3LTEyLjI4NiA0LjY4Ny0xNi45NyAwLTQuNjg4LTQuNjg3LTQuNjg4LTEyLjI4MyAwLTE2Ljk3IDQuNjg0LTQuNjg3IDEyLjI4My00LjY4NyAxNi45NyAwek00NiA0Nmw5IDkiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
-                                                                            alt="empty"></i>
-                                            <h3 data-v-414f00e5=""></h3>
-                                            <p data-v-414f00e5="" class="help-block p2"><strong data-v-72c8052a=""
-                                                                                                data-v-414f00e5=""> 선택하신
-                                                조건으로<br data-v-72c8052a=""
-                                                        data-v-414f00e5="">판매중인 상품이 없습니다. </strong><br
-                                                    data-v-72c8052a=""
-                                                    data-v-414f00e5="">다른
-                                                지역 또는 섹션에서 상품을 탐색해보세요.</p>
-                                        </article>
-                                    </div>
-                                    <!-- END : 돋보기 : 선택하신 조건으로 판매중인 상품이 없습니다 다른 지역 또는 섹션에서 상품을 탐색해보세요 -->
-                                    <div data-v-644ea9c9="" class="infinite-status-prompt"
-                                         style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
-                                    </div>
-                                    <div data-v-644ea9c9="" class="infinite-status-prompt"
-                                         style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
+                                        <!-- 돋보기 _ 프로그램 없는 경우 실행 되는 자리 -->
+                                        <!-- 돋보기 _ 프로그램 없는 경우 실행 되는 자리 -->
+                                        <!-- 돋보기 _ 프로그램 없는 경우 실행 되는 자리 -->
 
-                                        <br data-v-644ea9c9="">
-                                        <button data-v-644ea9c9=""
-                                                class="btn-try-infinite"></button>
                                     </div>
                                 </div>
                                 <!-- END : 프로그램 없는 경우 나오는 DIV -->
@@ -661,7 +181,7 @@
 <script>
     let programStatus // 프로그램 상태 (모집예정, 모집중, 모집완료, 마감)
     let keyword // 검색어
-
+    let count // 프로그램 수
 
     /* 전체 program List _ Ajax */
 
@@ -678,10 +198,12 @@
             url: "/pro/list", //전체 programAllList()를 실행한 programs 를 가지고 작동
             type: "get",
             success: function (programs) {
-                if (programs.size != 0) {
+                if (programs.length != 0) {
                     programList(programs);
+                    programCountNum(programs); // 프로그램 수 Count 함수
                 } else {
-                    alert("안댕") // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+                    noProgramList(); // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+                    programCountNum(programs); // 프로그램 수 Count 함수
                 }
             }
         });
@@ -694,10 +216,12 @@
             url: "/pro/list/" + programStatus, // 경로 뒤에 programStatus 붙여서 해당 restController 사용
             type: "get",
             success: function (programs) {
-                if (programs.size != 0) {
+                if (programs.length != 0) {
                     programList(programs);
+                    programCountNum(programs); // 프로그램 수 Count 함수
                 } else {
-                    alert("안댕") // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+                    noProgramList(); // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+                    programCountNum(programs); // 프로그램 수 Count 함수
                 }
             }
         });
@@ -711,6 +235,10 @@
         // 빈칸 입력시
         if (keyword == "") {
             alert("검색어를 입력하세요");
+            $keywordBox.hide(); // 추천서비스 닫기
+            $category.removeClass("router-link-exact-active");
+            $(".programAllList").addClass("router-link-exact-active");
+
             return false;
         }
         // 글자 입력시
@@ -718,17 +246,24 @@
             url: "/pro/list/" + keyword, // 경로 뒤에 keyword 붙여서 해당 restController 사용
             type: "post",
             success: function (programs) {
-                if (programs.size != 0) {
+                $category.removeClass("router-link-exact-active");
+                $(".programAllList").addClass("router-link-exact-active");
+                $(".keyword-box").hide(); // 엔터 입력시 keyword 박스 닫힘.
+                if (programs.length != 0) {
                     programList(programs);
+                    programCountNum(programs); // 프로그램 수 Count 함수
+
                 } else {
-                    alert("안댕") // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+                    noProgramList();// 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+                    programCountNum(programs); // 프로그램 수 Count 함수
                 }
+                /* 검색 후 다른 상태 누른 경우 text 내용 없애기 */
+                $(".programStatus").on('click', function () {
+                    $searchArea.val("");
+                });
             }
         });
     }
-
-
-
 
     /* 해당 프로그램 개수에 따라 article을 반복해서 html에 넣어줄 함수 */
     function programList(programs) {
@@ -736,14 +271,12 @@
 
         programs.forEach(program => {
             text += "<article data-v-85c61b32='' data-v-18e85706='' class='product-list-item responsive'>";
-            text += "<input type='hidden'" + program.programId + ">"
+            text += "<input type='hidden' id='programId' href='" + program.programId + "'>"
             /* a태그 안에 link 수정 필요 */
-            text += "<a data-v-85c61b32='' th:href=`@{/program/programdetail}` class=''\n" +
-                "            data-testid='product-list-item'>";
+            text += "<a data-v-85c61b32='' onclick='moveDetail(this)' data-testid='product-list-item' style='cursor: pointer;'>";
             text += "<div data-v-85c61b32='' class='item-image'>";
             text += "<article data-v-1a98b297='' data-v-85c61b32='' class='preview-image'>";
-            text += "<div data-v-1a98b297='' class='image-wrap'\n" +
-                "            style='padding-top: 66.6667%;'>";
+            text += "<div data-v-1a98b297='' class='image-wrap' style='padding-top: 66.6667%;'>";
             /* 해당 이미지 경로 */
             text += "<img data-v-1a98b297='' src='" + program.programFileProfilePath + "'>";
             text += "</div>";
@@ -751,7 +284,15 @@
             text += "</div>";
             text += "<div data-v-85c61b32='' class='service-name'>";
             /* 프로그램 상태 : 모집예정 greenIcon , 모집중 blueIcon, 모집완료 redIcon, 마감 grayIcon / class 다르게 줘야함, 수정필요 */
-            text += "<span data-v-85c61b32='' class='programStatusIcon blueIcon'>" + program.programStatus + "</span>";
+            if(program.programStatus == '모집예정'){
+                text += "<span data-v-85c61b32='' class='programStatusIcon greenIcon'>" + program.programStatus + "</span>";
+            } else if(program.programStatus == '모집중'){
+                text += "<span data-v-85c61b32='' class='programStatusIcon blueIcon'>" + program.programStatus + "</span>";
+            } else if(program.programStatus == '모집완료'){
+                text += "<span data-v-85c61b32='' class='programStatusIcon redIcon'>" + program.programStatus + "</span>";
+            } else if(program.programStatus == '마감'){
+                text += "<span data-v-85c61b32='' class='programStatusIcon grayIcon'>" + program.programStatus + "</span>";
+            }
             text += "</div>";
             text += "<div data-v-85c61b32='' class='item-title'>";
             text += "<div data-v-a3afae98='' data-v-85c61b32='' class='collapsed'>";
@@ -766,7 +307,49 @@
             text += "</article>";
 
         });
-        $("#programListId").html(text); // #programListId 밑에 반복 해서 text들을 넣어줌
+        $("#programListId").html(text);// #programListId 밑에 반복 해서 text들을 넣어줌
+        $("#noArticle1").html("");// 프로그램이 없는 경우 ""로 div를 채워줌
+    }
+
+    /* 해당 프로그램이 없는 경우 보여줄 돋보기 함수 */
+    function noProgramList() {
+        let text = "";
+        text += "<div class='infinite-status-prompt'>"
+        text += "<article class='no-items align-self-center text-center no-items'>"
+        text += "<i data-v-414f00e5=''><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icHJlZml4X19hIiB4MT0iMCUiIHgyPSIxMDAlIiB5MT0iNTAlIiB5Mj0iNTAlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwQzdBRSIvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0Q0M4RTUiLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBmaWxsPSIjRkZGIiBkPSJNMCAwSDM3NVY2NjdIMHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSB0cmFuc2xhdGUoNDQgMTQ2KSI+CiAgICAgICAgICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjQwIiBmaWxsPSJ1cmwoI3ByZWZpeF9fYSkiIGZpbGwtb3BhY2l0eT0iLjUiIGZpbGwtcnVsZT0ibm9uemVybyIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMTYgNjRMNjQgNjQgNjQgMTYgMTYgMTZ6Ii8+CiAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjMiIGQ9Ik00NS40ODYgMjguNTE1YzQuNjg1IDQuNjg3IDQuNjg1IDEyLjI4MyAwIDE2Ljk3LTQuNjg3IDQuNjg3LTEyLjI4NiA0LjY4Ny0xNi45NyAwLTQuNjg4LTQuNjg3LTQuNjg4LTEyLjI4MyAwLTE2Ljk3IDQuNjg0LTQuNjg3IDEyLjI4My00LjY4NyAxNi45NyAwek00NiA0Nmw5IDkiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=' alt='empty'></i>"
+        text += "<h3 data-v-414f00e5=''></h3>"
+        text += "<p data-v-414f00e5='' class='help-block p2'>"
+        text += "<strong> 선택하신 조건으로 <br> 진행중인 프로그램이 없습니다. </strong><br> 다른 쓰담 프로그램을 탐색해보세요.</p>"
+        text += "</article>"
+        text += "</div>"
+        text += "<div class='infinite-status-prompt noArticle2'>"
+        text += "</div>"
+        text += "<div data-v-644ea9c9='' class='infinite-status-prompt noArticle2'>"
+        text += "<button class='btn-try-infinite'></button>"
+        text += "</div>"
+        $("#noArticle1").html(text); // #noArticleProgram 밑에 text들을 넣어줌
+        $("#programListId").html(""); // 프로그램이 없는 경우 ""로 div를 채워줌
+    }
+
+    /* 프로그램 수 Count */
+    function programCountNum(programs) {
+        count = programs.length;
+        let text = "";
+        text +="<strong data-v-219a3136=''>" + count + "</strong>"
+        text +="<span data-v-219a3136=''> 개 서비스 </span>"
+
+        $("#totalCountPlace").html(text);
+    }
+
+    // $(".moveDetail").on('click', function () {
+    //     alert($(this).prev().attr('value'));
+    //     location.href = "/program/detail" + "?programId=" + $(this).prev().attr('value');
+    // });
+
+    /* 프로그램 클릭시 programId를 이용하여 해당 program 선택 */
+    function moveDetail(obj) {
+        alert($(obj).closest(".responsive").find('#programId').attr("href"));
+        location.href = "/program/detail" + "?programId=" + $(obj).closest(".responsive").find('#programId').attr("href");
     }
 
 </script>

@@ -34,20 +34,20 @@ public class ProgramTest {
     public void saveProgramTest(){
         ProgramDTO programDTO = new ProgramDTO();
 
-        programDTO.setProgramName("모집중 쓰담학교");
+        programDTO.setProgramName("“ 맛있게 먹고 있나요? ” 별별쓰담 X 쓰담학교 지구를 위한 친환경요리 프로젝트 - 일식요리 - ");
         programDTO.setProgramPlace("역삼역 3번 출구");
-        programDTO.setOpeningDate(LocalDateTime.of(2021, 11,12,11,00));
-        programDTO.setClosingDate(LocalDateTime.of(2021, 12,12,12,00));
+        programDTO.setOpeningDate(LocalDateTime.of(2022, 5,12,11,00));
+        programDTO.setClosingDate(LocalDateTime.of(2022, 9,12,12,00));
         programDTO.setProgramTime(5);
-        programDTO.setProgramDate(LocalDateTime.of(2021,12,23,12,00));
+        programDTO.setProgramDate(LocalDateTime.of(2022,12,23,12,00));
         programDTO.setProgramContent("줍깅");
         programDTO.setProgramLimitCount(25);
 //        programDTO.setProgramStatus(ProgramStatus.모집예정);
         programDTO.setProgramFileProfileName("jub.img");
-        programDTO.setProgramFileProfilePath("/images/program/program4.png");
+        programDTO.setProgramFileProfilePath("/images/program/program3.png");
         programDTO.setProgramFileProfileUuid("ProfileUuid");
         programDTO.setProgramFileDetailName("Detail.img");
-        programDTO.setProgramFileDetailPath("/images/program/program4-1.png");
+        programDTO.setProgramFileDetailPath("/images/program/program31.png");
         programDTO.setProgramFileDetailUuid("DetailUuid");
 
         Program program = programDTO.toEntity();
@@ -60,28 +60,33 @@ public class ProgramTest {
         Optional<Program> findProgram = programRepository.findById(11L);
         if(findProgram.isPresent()){
             Assertions.assertThat(findProgram.get().getProgramId().equals(11L));
+            log.info("11번 : "+findProgram.get().getProgramId().equals(11L));
         }
+
+        Program program = findProgram.get();
+        log.info("ProgramStatus"+program.getProgramStatus());
+
     }
 
     @Test
     public void updateTest(){
         ProgramDTO programDTO = new ProgramDTO();
-        Program program= programRepository.findById(1L).get();
+        Program program= programRepository.findById(2L).get();
 
-        programDTO.setProgramName("수정작년줍깅의 유래와 이해");
+        programDTO.setProgramName("“ 맛있게 먹고 있나요? ” 별별쓰담 X 쓰담학교 지구를 위한 친환경요리 프로젝트 - 중화요리 -");
         programDTO.setProgramPlace("수정역삼역 3번 출구");
-        programDTO.setOpeningDate(LocalDateTime.of(2021, 11, 12, 11, 00));
-        programDTO.setClosingDate(LocalDateTime.of(2021, 12, 12, 12, 00));
+        programDTO.setOpeningDate(LocalDateTime.of(2023, 11, 12, 11, 00));
+        programDTO.setClosingDate(LocalDateTime.of(2024, 12, 12, 12, 00));
         programDTO.setProgramTime(3);
         programDTO.setProgramDate(LocalDateTime.of(2021, 12, 23, 12, 00));
-        programDTO.setProgramContent("줍깅");
+        programDTO.setProgramContent("-지구를 위하는 친환경요리를 함께 만들어보고 맛보는 시간을 만들어보아요 지구를 아끼고 맛있는 음식도 먹고!");
         programDTO.setProgramLimitCount(35);
-        programDTO.setProgramStatus(ProgramStatus.모집중);
+        programDTO.setProgramStatus(ProgramStatus.모집완료);
         programDTO.setProgramFileProfileName("수정jub.img");
-        programDTO.setProgramFileProfilePath("/images/program/program4.png");
+        programDTO.setProgramFileProfilePath("/images/program/program1.png");
         programDTO.setProgramFileProfileUuid("수정ProfileUuid");
         programDTO.setProgramFileDetailName("수정Detail.img");
-        programDTO.setProgramFileDetailPath("/images/program/program4-1.png");
+        programDTO.setProgramFileDetailPath("/images/program/program1-1.png");
         programDTO.setProgramFileDetailUuid("수정DetailUuid");
 
         program.update(programDTO);

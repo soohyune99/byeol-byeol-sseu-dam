@@ -39,13 +39,16 @@
                                                  class="slick-slide slick-active slick-current"
                                                  style="outline: none; width: 600px;" data-v-e4caeaf8="">
                                                 <div data-v-e4caeaf8="">
+
                                                     <article tabindex="-1" class="preview-image"
                                                              style="width:100%;display:inline-block;" data-v-1a98b297=""
                                                              data-v-5a004a22="" data-v-e4caeaf8="">
                                                         <div class="image-wrap" style=""
                                                              data-v-1a98b297="">
-                                                            <img src="/images/program/program1-1.png"
+                                                            <img th:src="${program.programFileDetailPath}"
                                                                  style="width: 600px;">
+<!--                                                            <img src="/images/program/program1-1.png"-->
+<!--                                                                 style="width: 600px;">-->
 
                                                         </div>
                                                         <!---->
@@ -291,5 +294,12 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/Program/programDetail.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
+<script>
+    $("#modal_title").on("click",function () {
+        alert($(obj).closest(".responsive").find('#programId').attr("href"));
+        location.href = "/program/programAddSuccess"
+    })
+
+</script>
 
 </html>
