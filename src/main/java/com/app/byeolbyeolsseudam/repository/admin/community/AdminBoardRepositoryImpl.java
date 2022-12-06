@@ -21,7 +21,7 @@ public class AdminBoardRepositoryImpl implements AdminBoardCustomRepository {
                 board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate
+                board.member.memberProfileUuid, board.createdDate, board.updatedDate
         )).from(board).orderBy(board.boardId.desc()).limit(10).fetch();
     }
 }

@@ -2,71 +2,74 @@ package com.app.byeolbyeolsseudam.entity;
 
 import com.app.byeolbyeolsseudam.domain.banner.BannerDTO;
 import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
+import com.app.byeolbyeolsseudam.domain.notice.NoticeDTO;
+import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
 import com.app.byeolbyeolsseudam.entity.banner.Banner;
+import com.app.byeolbyeolsseudam.entity.notice.Notice;
+import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
 import com.app.byeolbyeolsseudam.repository.banner.BannerRepository;
 import com.app.byeolbyeolsseudam.repository.banner.BannerRepositoryImpl;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.repository.notice.NoticeRepository;
 import com.app.byeolbyeolsseudam.repository.order.OrderRepository;
 import com.app.byeolbyeolsseudam.repository.orderdetail.OrderDetailRepository;
+import com.app.byeolbyeolsseudam.repository.pickup.PickupRepository;
 import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
-import com.app.byeolbyeolsseudam.service.admin.BannerUploadService;
 import com.app.byeolbyeolsseudam.service.main.BannerService;
 import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.app.byeolbyeolsseudam.type.MemberLoginType;
+import com.app.byeolbyeolsseudam.type.NoticeCategory;
+import com.app.byeolbyeolsseudam.type.PickupStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.ServletContext;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static com.app.byeolbyeolsseudam.entity.notice.QNotice.notice;
 
 
 @SpringBootTest
 @Slf4j
 @Transactional
 @Rollback(false)
-public class BannerTest {
+public class BannerTest{
 
-//    @Autowired
-//    private ServletContext servletContext;
+
 //    @Test
 //    public void pathTest(){
-//        String realPath = servletContext.getRealPath("/static");
-//        log.info("경로: " + realPath);
+//
+//        String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static";
+//        log.info("경로1: " + path);
 //    }
-
 
     @Autowired
     private BannerRepository bannerRepository;
 
     @Autowired
-    private BannerRepositoryImpl bannerRepositoryImpl;
-
-    @Autowired
-    private BannerUploadService bannerUploadService;
-
-    @Autowired
     private MemberRepository memberRepository;
 
-    @Autowired
-    private OrderDetailRepository orderDetailRepository;
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private ProductRepository productRepository;
     @Autowired
     private BannerService bannerService;
 
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
+
+    @Autowired
+    private NoticeRepository noticeRepository;
+
 
     @Test
     public void saveTest(){
@@ -127,17 +130,18 @@ public class BannerTest {
 
     @Test
     public void memberSaveTest(){
-        MemberDTO memberDTO = new MemberDTO();
+        for(int i = 0; i < 4; i++){
+            MemberDTO memberDTO = new MemberDTO();
 
-        memberDTO.setMemberLoginType(MemberLoginType.일반);
-        memberDTO.setMemberCategory(MemberCategory.일반회원);
-        memberDTO.setMemberName("정재훈");
-        memberDTO.setMemberEmail("orijung93@gmail.com");
-        memberDTO.setMemberPassword("1111");
-        memberDTO.setMemberAddress("서울");
-        memberDTO.setMemberPhone("01011111111");
+            memberDTO.setMemberLoginType(MemberLoginType.네이버);
+            memberDTO.setMemberCategory(MemberCategory.일반회원);
+            memberDTO.setMemberName("한동석");
+            memberDTO.setMemberEmail("tedhan@gmail.com");
+            memberDTO.setMemberPassword("1");
+            memberDTO.setMemberPhone("01077777777");
 
-        memberRepository.save(memberDTO.toEntity());
+            memberRepository.save(memberDTO.toEntity());
+        }
     }
 
 //    @Test
@@ -217,6 +221,22 @@ public class BannerTest {
         }
     }
 
+    @Autowired
+    private PickupRepository pickupRepository;
 
+    @Test
+    public void NoticeSaveTest(){
+        PickupDTO pickupDTO = new PickupDTO();
+        pickupDTO.setPetCount(5);
+        pickupDTO.setGlassCount(10);
+        pickupDTO.setPickupAddress("서울특별시 역삼역");
+        pickupDTO.setPickupMessage("오후12시 이후 방문");
+        pickupDTO.setPickupStatus(PickupStatus.수거대기중);
+        pickupDTO.setMemberId(224L);
+
+        Pickup pickup = pickupDTO.toEntity();
+        pickup.changeMember(memberRepository.findById(pickupDTO.getMemberId()).get());
+        pickupRepository.save(pickup);
+    }
 
 }
