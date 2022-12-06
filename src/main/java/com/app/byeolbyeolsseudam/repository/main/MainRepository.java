@@ -91,7 +91,7 @@ public class MainRepository {
         return jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate))
+                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
                 .from(board)
                 .orderBy(board.boardView.desc())
                 .limit(8)
@@ -103,7 +103,7 @@ public class MainRepository {
                 board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate
+                board.member.memberProfileUuid, board.createdDate,board.updatedDate
         )).from(board).orderBy(board.boardId.desc()).limit(6).fetch();
     }
 

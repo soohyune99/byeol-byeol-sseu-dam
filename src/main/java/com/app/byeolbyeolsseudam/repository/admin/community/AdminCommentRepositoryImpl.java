@@ -30,7 +30,8 @@ public class AdminCommentRepositoryImpl implements AdminCommentCustomRepository{
                 comment.member.memberProfilePath,
                 comment.member.memberProfileUuid,
                 comment.board.boardId,
-                comment.createdDate
+                comment.createdDate,
+                comment.updatedDate
         )).from(comment).orderBy(comment.commentId.desc()).limit(10).fetch();
     }
 }
