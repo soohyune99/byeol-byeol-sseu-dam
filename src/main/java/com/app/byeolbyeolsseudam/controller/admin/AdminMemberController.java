@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = {"/admin/member/*", "/admin/member"})
-public class AdminUserController {
+public class AdminMemberController {
 
     private final AdminMemberService adminMemberService;
     /* 회원 관리 - 회원 목록  */

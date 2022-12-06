@@ -1,5 +1,8 @@
 
 let autoSlideWidth = 970;
+let $bnImg = $("input.bnImg");
+
+
 
 const banner = document.querySelector("div.slick-track");
 let count = 0;
@@ -18,7 +21,6 @@ window.onresize = function(event){
 function resizeWindow(){
     let $resize = $(window).width();
     $resize = $resize > 970 ? 970 : $resize;
-    console.log($resize);
     $(".slick-slide.slide-banner").css('width', $resize);
     $(".slide-banner.banner-item").css('width', $resize);
     $(".banner-image").css('width', $resize);
@@ -51,7 +53,7 @@ firstDiv.style.float = 'left';
 firstDiv.style.height = '100%';
 firstDiv.style.minHeight = '1px';
 firstDiv.style.display = 'block';
-firstDiv.innerHTML = `<img src="/images/main/slide1.png" alt="포트폴리오 전용 목록 진입 창구 배너" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">`;
+firstDiv.innerHTML = `<img src="` + $($bnImg.get(0)).attr("name") + `" alt="포트폴리오 전용 목록 진입 창구 배너" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">`;
 banner.appendChild(firstDiv);
 
 
@@ -61,7 +63,7 @@ lastDiv.style.float = 'left';
 lastDiv.style.height = '100%';
 lastDiv.style.minHeight = '1px';
 lastDiv.style.display = 'block';
-lastDiv.innerHTML = `<img src="/images/main/slide2.png" alt="이사 기획전" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">`;
+lastDiv.innerHTML = `<img src="` + $($bnImg.get(1)).attr("name") + `" alt="이사 기획전" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">`;
 banner.insertBefore(lastDiv, document.querySelector("div.banner div"));
 
 banner.style.transform = "translate(-" + autoSlideWidth + "px)";

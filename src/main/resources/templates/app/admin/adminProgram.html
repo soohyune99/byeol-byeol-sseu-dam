@@ -114,12 +114,15 @@
                                                                         <div class="w-100 mw-150px">
                                                                         </div>
                                                                         <!--begin::Add product-->
-                                                                        <a href="http://localhost:10001/admin/adminprogramadd"
+
+                                                                        <a href="http://localhost:10001/admin/program/add"
                                                                            class="btn btn-primary">프로그램 추가</a>
+
                                                                         <a href="javascript:void(0)"
                                                                            class="btn btn-primary"
                                                                            id="deleteProgramBtn"
                                                                            style="background: #f1416c ; margin-left: 10px;">삭제</a>
+
                                                                         <!--end::Add product-->
                                                                     </div>
                                                                     <!--end::Card toolbar-->
@@ -200,18 +203,7 @@
                                                                                         rowspan="1" colspan="1"
                                                                                         style="width: 5%;">인원수
                                                                                     </th>
-                                                                                    <th class="text-end min-w-100px sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_ecommerce_products_table"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        style="width: 8%">대표사진
-                                                                                    </th>
-                                                                                    <th class="text-end min-w-100px sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_ecommerce_products_table"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        style="width: 8%">세부사진
-                                                                                    </th>
+
                                                                                     <th class="text-end min-w-100px sorting"
                                                                                         rowspan="1" colspan="1"
                                                                                         style="width: 6%">상태
@@ -229,27 +221,27 @@
                                                                                 <tbody class="fw-semibold text-gray-600">
 
                                                                                 <!-- 프로그램 목록 모집중 -->
-                                                                                <tr class="odd productList">
+                                                                                <form action="http://localhost:10001/admin/program/delete" name="deleteForm">
+                                                                                <th:block th:each="program:${programs}">
+                                                                                <tr th:object="${program}" class="odd productList">
                                                                                     <!--begin::Checkbox-->
                                                                                     <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
+                                                                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                            <input class="form-check-input checkbox" type="checkbox" name="checkedValue" th:value="*{programId}">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::Checkbox-->
 
                                                                                     <!--begin::강좌 번호=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
+                                                                                        <span th:text="*{programId}" class="fw-bold"></span>
                                                                                     </td>
                                                                                     <!--end::강좌 번호=-->
 
                                                                                     <!--begin::강좌명=-->
                                                                                     <td class="text-end pe-0">
                                                                                         <span class="fw-bold">
-                                                                                            <a href="http://localhost:10001/admin/adminprogramdetail">줍깅의 유래와 이해</a>
+                                                                                            <a  th:text="*{programName}" href="http://localhost:10001/admin/adminprogramdetail"></a>
                                                                                         </span>
                                                                                     </td>
                                                                                     <!--end::강좌명=-->
@@ -257,660 +249,64 @@
                                                                                     <!--begin::장소=-->
                                                                                     <td class="text-end pe-0"
                                                                                         data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
+                                                                                        <span  th:text="*{programPlace}" class="fw-bold ms-3"></span>
                                                                                     </td>
                                                                                     <!--end::장소=-->
 
                                                                                     <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
+                                                                                    <td  th:text="${#temporals.format(program.openingDate, 'yyyy년 MM월 dd일')}" class="text-end pe-0">
                                                                                     </td>
                                                                                     <!--end::신청시작날짜=-->
 
                                                                                     <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
+                                                                                    <td  th:text="${#temporals.format(program.closingDate, 'yyyy-MM-dd')}" class="text-end pe-0">
                                                                                     </td>
                                                                                     <!--end::신청마감날짜=-->
 
                                                                                     <!--begin::수강시간-->
                                                                                     <td class="text-end pe-0"
                                                                                         data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
+                                                                                        <div  th:text="*{programTime}" class="rating justify-content-end">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::수강시간-->
 
                                                                                     <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
+                                                                                    <td  th:text="*{programContent}" class="text-end">
                                                                                     </td>
                                                                                     <!--end::상세설명=-->
 
                                                                                     <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
+                                                                                    <td  th:text="*{programLimitCount}" class="text-end"></td>
                                                                                     <!--end::인원수=-->
-
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
 
                                                                                     <!--begin::상태=-->
                                                                                     <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
+                                                                                        data-order="Inactive" th:if="${#strings.equals(program.programStatus , '모집중')}">
                                                                                         <div class="badge badge-light-primary">
-                                                                                            <div class="badge badge-light-primary">
-                                                                                                모집중
+                                                                                            <div th:text="*{programStatus}" class="badge badge-light-primary">
                                                                                             </div>
                                                                                         </div>
                                                                                     </td>
-                                                                                    <!--end::상태-->
-                                                                                    <!--begin::수정=-->
                                                                                     <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/adminprogrammodify">수정</a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수정-->
-                                                                                </tr>
-
-                                                                                <!-- 프로그램 목록 모집중-->
-                                                                                <tr class="odd productList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::강좌 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
-                                                                                    </td>
-                                                                                    <!--end::강좌 번호=-->
-
-                                                                                    <!--begin::강좌명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">
-                                                                                            <a href="http://localhost:10001/admin/adminprogramdetail">줍깅의 유래와 이해</a></span>
-                                                                                    </td>
-                                                                                    <!--end::강좌명=-->
-
-                                                                                    <!--begin::장소=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
-                                                                                    </td>
-                                                                                    <!--end::장소=-->
-
-                                                                                    <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
-                                                                                    </td>
-                                                                                    <!--end::신청시작날짜=-->
-
-                                                                                    <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
-                                                                                    </td>
-                                                                                    <!--end::신청마감날짜=-->
-
-                                                                                    <!--begin::수강시간-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수강시간-->
-
-                                                                                    <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
-                                                                                    </td>
-                                                                                    <!--end::상세설명=-->
-
-                                                                                    <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
-                                                                                    <!--end::인원수=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-
-                                                                                    <!--begin::상태=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <div class="badge badge-light-primary">
-                                                                                                모집중
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::상태-->
-                                                                                    <!--begin::수정=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/adminprogrammodify">수정</a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수정-->
-                                                                                </tr>
-
-                                                                                <!-- 프로그램 목록 모집완료-->
-                                                                                <tr class="odd productList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::강좌 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
-                                                                                    </td>
-                                                                                    <!--end::강좌 번호=-->
-
-                                                                                    <!--begin::강좌명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">
-                                                                                            <a href="http://localhost:10001/admin/adminprogramdetail">
-                                                                                                줍깅의 유래와 이해</a></span>
-                                                                                    </td>
-                                                                                    <!--end::강좌명=-->
-
-                                                                                    <!--begin::장소=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
-                                                                                    </td>
-                                                                                    <!--end::장소=-->
-
-                                                                                    <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
-                                                                                    </td>
-                                                                                    <!--end::신청시작날짜=-->
-
-                                                                                    <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
-                                                                                    </td>
-                                                                                    <!--end::신청마감날짜=-->
-
-                                                                                    <!--begin::수강시간-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수강시간-->
-
-                                                                                    <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
-
-                                                                                    </td>
-                                                                                    <!--end::상세설명=-->
-
-                                                                                    <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
-                                                                                    <!--end::인원수=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-
-                                                                                    <!--begin::상태=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
+                                                                                        data-order="Inactive" th:if="${#strings.equals(program.programStatus , '모집완료')}">
                                                                                         <div class="badge badge-light-danger">
-                                                                                            모집완료
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::상태-->
-                                                                                    <!--begin::수정=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/adminprogrammodify">수정</a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수정-->
-                                                                                </tr>
-
-                                                                                <!-- 프로그램 목록 모집예정-->
-                                                                                <tr class="odd productList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::강좌 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
-                                                                                    </td>
-                                                                                    <!--end::강좌 번호=-->
-
-                                                                                    <!--begin::강좌명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold"><a href="http://localhost:10001/admin/adminprogramdetail">줍깅의 유래와 이해</a></span>
-                                                                                    </td>
-                                                                                    <!--end::강좌명=-->
-
-                                                                                    <!--begin::장소=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
-                                                                                    </td>
-                                                                                    <!--end::장소=-->
-
-                                                                                    <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
-                                                                                    </td>
-                                                                                    <!--end::신청시작날짜=-->
-
-                                                                                    <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
-                                                                                    </td>
-                                                                                    <!--end::신청마감날짜=-->
-
-                                                                                    <!--begin::수강시간-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수강시간-->
-
-                                                                                    <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
-
-                                                                                    </td>
-                                                                                    <!--end::상세설명=-->
-
-                                                                                    <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
-                                                                                    <!--end::인원수=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-
-                                                                                    <!--begin::상태=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary" style="color: #00a08e; background: rgba(214,243,239,0.71);">
-                                                                                            모집예정
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::상태-->
-                                                                                    <!--begin::수정=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수정-->
-                                                                                </tr>
-
-                                                                                <!-- 프로그램 목록 모집마감-->
-                                                                                <tr class="odd productList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::강좌 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
-                                                                                    </td>
-                                                                                    <!--end::강좌 번호=-->
-
-                                                                                    <!--begin::강좌명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold"><a href="http://localhost:10001/admin/adminprogramdetail">줍깅의 유래와 이해</a></span>
-                                                                                    </td>
-                                                                                    <!--end::강좌명=-->
-
-                                                                                    <!--begin::장소=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
-                                                                                    </td>
-                                                                                    <!--end::장소=-->
-
-                                                                                    <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
-                                                                                    </td>
-                                                                                    <!--end::신청시작날짜=-->
-
-                                                                                    <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
-                                                                                    </td>
-                                                                                    <!--end::신청마감날짜=-->
-
-                                                                                    <!--begin::수강시간-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수강시간-->
-
-                                                                                    <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
-
-                                                                                    </td>
-                                                                                    <!--end::상세설명=-->
-
-                                                                                    <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
-                                                                                    <!--end::인원수=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-
-                                                                                    <!--begin::상태=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary" style="color: #656565; background: rgba(220,220,220,0.71);">
-                                                                                            마감
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::상태-->
-                                                                                    <!--begin::수정=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수정-->
-                                                                                </tr>
-
-                                                                                <!-- 프로그램 목록 모집중 -->
-                                                                                <tr class="odd productList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::강좌 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
-                                                                                    </td>
-                                                                                    <!--end::강좌 번호=-->
-
-                                                                                    <!--begin::강좌명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">
-                                                                                            <a href="http://localhost:10001/admin/adminprogramdetail">줍깅의 유래와 이해</a>
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <!--end::강좌명=-->
-
-                                                                                    <!--begin::장소=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
-                                                                                    </td>
-                                                                                    <!--end::장소=-->
-
-                                                                                    <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
-                                                                                    </td>
-                                                                                    <!--end::신청시작날짜=-->
-
-                                                                                    <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
-                                                                                    </td>
-                                                                                    <!--end::신청마감날짜=-->
-
-                                                                                    <!--begin::수강시간-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수강시간-->
-
-                                                                                    <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
-                                                                                    </td>
-                                                                                    <!--end::상세설명=-->
-
-                                                                                    <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
-                                                                                    <!--end::인원수=-->
-
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-
-                                                                                    <!--begin::상태=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <div class="badge badge-light-primary">
-                                                                                                모집중
+                                                                                            <div th:text="*{programStatus}" class="badge badge-light-danger">
                                                                                             </div>
                                                                                         </div>
                                                                                     </td>
-                                                                                    <!--end::상태-->
-                                                                                    <!--begin::수정=-->
                                                                                     <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/adminprogrammodify">수정</a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수정-->
-                                                                                </tr>
-
-                                                                                <!-- 프로그램 목록 모집중-->
-                                                                                <tr class="odd productList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::강좌 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
-                                                                                    </td>
-                                                                                    <!--end::강좌 번호=-->
-
-                                                                                    <!--begin::강좌명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">
-                                                                                            <a href="http://localhost:10001/admin/adminprogramdetail">줍깅의 유래와 이해</a></span>
-                                                                                    </td>
-                                                                                    <!--end::강좌명=-->
-
-                                                                                    <!--begin::장소=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
-                                                                                    </td>
-                                                                                    <!--end::장소=-->
-
-                                                                                    <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
-                                                                                    </td>
-                                                                                    <!--end::신청시작날짜=-->
-
-                                                                                    <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
-                                                                                    </td>
-                                                                                    <!--end::신청마감날짜=-->
-
-                                                                                    <!--begin::수강시간-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수강시간-->
-
-                                                                                    <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
-                                                                                    </td>
-                                                                                    <!--end::상세설명=-->
-
-                                                                                    <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
-                                                                                    <!--end::인원수=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-
-                                                                                    <!--begin::상태=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <div class="badge badge-light-primary">
-                                                                                                모집중
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::상태-->
-                                                                                    <!--begin::수정=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/adminprogrammodify">수정</a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수정-->
-                                                                                </tr>
-
-                                                                                <!-- 프로그램 목록 모집완료-->
-                                                                                <tr class="odd productList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::강좌 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
-                                                                                    </td>
-                                                                                    <!--end::강좌 번호=-->
-
-                                                                                    <!--begin::강좌명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">
-                                                                                            <a href="http://localhost:10001/admin/adminprogramdetail">
-                                                                                                줍깅의 유래와 이해</a></span>
-                                                                                    </td>
-                                                                                    <!--end::강좌명=-->
-
-                                                                                    <!--begin::장소=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
-                                                                                    </td>
-                                                                                    <!--end::장소=-->
-
-                                                                                    <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
-                                                                                    </td>
-                                                                                    <!--end::신청시작날짜=-->
-
-                                                                                    <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
-                                                                                    </td>
-                                                                                    <!--end::신청마감날짜=-->
-
-                                                                                    <!--begin::수강시간-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수강시간-->
-
-                                                                                    <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
-
-                                                                                    </td>
-                                                                                    <!--end::상세설명=-->
-
-                                                                                    <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
-                                                                                    <!--end::인원수=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-
-                                                                                    <!--begin::상태=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
+                                                                                        data-order="Inactive" th:if="${#strings.equals(program.programStatus , '모집예정')}">
                                                                                         <div class="badge badge-light-danger">
-                                                                                            모집완료
+                                                                                            <div th:text="*{programStatus}" class="badge badge-light-danger" style="color: #00a08e;background: rgba(214,243,239,0.71)">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="text-end pe-0"
+                                                                                        data-order="Inactive" th:if="${#strings.equals(program.programStatus , '마감')}">
+                                                                                        <div class="badge badge-light-danger">
+                                                                                            <div th:text="*{programStatus}" class="badge badge-light-danger" style="color: #656565;background: rgba(220,220,220,0.71)">
+                                                                                            </div>
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::상태-->
@@ -923,180 +319,8 @@
                                                                                     </td>
                                                                                     <!--end::수정-->
                                                                                 </tr>
-
-                                                                                <!-- 프로그램 목록 모집예정-->
-                                                                                <tr class="odd productList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::강좌 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
-                                                                                    </td>
-                                                                                    <!--end::강좌 번호=-->
-
-                                                                                    <!--begin::강좌명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold"><a href="http://localhost:10001/admin/adminprogramdetail">줍깅의 유래와 이해</a></span>
-                                                                                    </td>
-                                                                                    <!--end::강좌명=-->
-
-                                                                                    <!--begin::장소=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
-                                                                                    </td>
-                                                                                    <!--end::장소=-->
-
-                                                                                    <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
-                                                                                    </td>
-                                                                                    <!--end::신청시작날짜=-->
-
-                                                                                    <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
-                                                                                    </td>
-                                                                                    <!--end::신청마감날짜=-->
-
-                                                                                    <!--begin::수강시간-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수강시간-->
-
-                                                                                    <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
-
-                                                                                    </td>
-                                                                                    <!--end::상세설명=-->
-
-                                                                                    <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
-                                                                                    <!--end::인원수=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-
-                                                                                    <!--begin::상태=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary" style="color: #00a08e; background: rgba(214,243,239,0.71);">
-                                                                                            모집예정
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::상태-->
-                                                                                    <!--begin::수정=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수정-->
-                                                                                </tr>
-
-                                                                                <!-- 프로그램 목록 모집마감-->
-                                                                                <tr class="odd productList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::강좌 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">12321</span>
-                                                                                    </td>
-                                                                                    <!--end::강좌 번호=-->
-
-                                                                                    <!--begin::강좌명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold"><a href="http://localhost:10001/admin/adminprogramdetail">줍깅의 유래와 이해</a></span>
-                                                                                    </td>
-                                                                                    <!--end::강좌명=-->
-
-                                                                                    <!--begin::장소=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">C동 201호</span>
-                                                                                    </td>
-                                                                                    <!--end::장소=-->
-
-                                                                                    <!--begin::신청시작날짜=-->
-                                                                                    <td class="text-end pe-0">2022.11.01
-                                                                                    </td>
-                                                                                    <!--end::신청시작날짜=-->
-
-                                                                                    <!--begin::신청마감날짜=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        2022.11.30
-                                                                                    </td>
-                                                                                    <!--end::신청마감날짜=-->
-
-                                                                                    <!--begin::수강시간-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수강시간-->
-
-                                                                                    <!--begin::상세설명=-->
-                                                                                    <td class="text-end">우리나라 줍깅의 시작
-
-                                                                                    </td>
-                                                                                    <!--end::상세설명=-->
-
-                                                                                    <!--begin::인원수=-->
-                                                                                    <td class="text-end">25</td>
-                                                                                    <!--end::인원수=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-                                                                                    <!--begin::첨부파일=-->
-                                                                                    <td class="text-end">줍깅pr.jpg</td>
-                                                                                    <!--end::첨부파일=-->
-
-                                                                                    <!--begin::상태=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary" style="color: #656565; background: rgba(220,220,220,0.71);">
-                                                                                            마감
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::상태-->
-                                                                                    <!--begin::수정=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::수정-->
-                                                                                </tr>
-
-
-
-
+                                                                                </th:block>
+                                                                                </form>
                                                                                 </tbody>
                                                                                 <!--end::Table body-->
 
@@ -1229,6 +453,9 @@
             alert("삭제할 프로그램을 선택하세요.");
             return;
         }
+
+        $("form[name='deleteForm']").submit();
     });
+
 </script>
 </html>
