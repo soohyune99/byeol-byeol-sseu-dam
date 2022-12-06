@@ -38,7 +38,6 @@ public class BoardTest {
         memberDTO.setMemberName("성은지");
         memberDTO.setMemberEmail("sej07@naver.com");
         memberDTO.setMemberPassword("password486!");
-        memberDTO.setMemberAddress("역삼역 3번 출구");
         memberDTO.setMemberPhone("01012345678");
         memberDTO.setMemberPoint(3000);
 

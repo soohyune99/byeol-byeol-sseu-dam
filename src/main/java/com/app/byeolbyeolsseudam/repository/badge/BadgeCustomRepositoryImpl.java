@@ -18,10 +18,11 @@ public class BadgeCustomRepositoryImpl implements BadgeCustomRepository{
     @Override
     public List<BadgeDTO> showBadgeList(){
         return jpaQueryFactory.select(new QBadgeDTO(
-                badge.badgeId, badge.badgeName, badge.badgeFileName,
+                badge.badgeId, badge.badgeName, badge.badgeInfo, badge.badgeFileName,
                 badge.badgeFileUuid, badge.badgeFilePath))
                 .from(badge)
                 .orderBy(badge.badgeId.desc())
+                .limit(18)
                 .fetch();
     }
 }

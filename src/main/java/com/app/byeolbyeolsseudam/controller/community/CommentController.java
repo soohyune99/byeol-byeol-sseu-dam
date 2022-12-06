@@ -23,11 +23,7 @@ public class CommentController {
 
     @PostMapping(value = "/new", consumes = "application/json", produces = "text/plain; charset=utf-8")
     public ResponseEntity<String> saveComment(@RequestBody CommentDTO commentDTO) throws UnsupportedEncodingException {
-        log.info("댓글~!!!!!!!!!!!" + commentDTO.getCommentContent());
-        log.info("멤버~!!!!!!!!!!!!!!" + commentDTO.getMemberId());
-        log.info("보드~!!!!!!!!!!!!" + commentDTO.getBoardId());
-        Comment comment = commentService.saveComment(commentDTO);
-        commentService.updateComment(commentDTO, comment);
+        commentService.saveComment(commentDTO);
         return new ResponseEntity<>(new String("write success".getBytes(), "UTF-8"), HttpStatus.OK);
     }
 }

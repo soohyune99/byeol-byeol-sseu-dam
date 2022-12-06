@@ -20,6 +20,8 @@ public class Badge extends Period {
     @NotNull
     private String badgeName;
     @NotNull
+    private String badgeInfo;
+    @NotNull
     private String badgeFileName;
     @NotNull
     private String badgeFileUuid;
@@ -27,8 +29,9 @@ public class Badge extends Period {
     private String badgeFilePath;
 
     @Builder
-    public Badge(String badgeName, String badgeFileName, String badgeFileUuid, String badgeFilePath) {
+    public Badge(String badgeName, String badgeInfo, String badgeFileName, String badgeFileUuid, String badgeFilePath) {
         this.badgeName = badgeName;
+        this.badgeInfo = badgeInfo;
         this.badgeFileName = badgeFileName;
         this.badgeFilePath = badgeFilePath;
         this.badgeFileUuid = badgeFileUuid;
@@ -36,6 +39,7 @@ public class Badge extends Period {
 
     public void update(BadgeDTO badgeDTO){
         this.badgeName = badgeDTO.getBadgeName();
+        this.badgeInfo = badgeDTO.getBadgeInfo();
         this.badgeFileName = badgeDTO.getBadgeFileName();
         this.badgeFilePath = badgeDTO.getBadgeFilePath();
         this.badgeFileUuid = badgeDTO.getBadgeFileUuid();
