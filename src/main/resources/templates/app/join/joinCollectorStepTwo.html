@@ -23,7 +23,8 @@
 <div id="app" data-browser="chrome" data-is-loaded="true" class>
     <div id="app-body">
         <div data-v-61b32e29="" class="container">
-            <form data-v-61b32e29="" id="id_pro_form" autocomplete="off">
+            <form data-v-61b32e29="" id="id_pro_form" autocomplete="off"
+                  th:method="post" th:action="@{/join/picker/detail}" th:object="${memberDTO}">
                 <div data-v-2b9a1ce0="" data-v-61b32e29="" class="signup-progress-bar header">
                     <div data-v-2b9a1ce0="" class="progress">
                         <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"
@@ -41,9 +42,10 @@
                         <div data-v-66225419="" class="form-group providername-wrap">
                             <label data-v-66225419="" for="name">이름
                             </label>
-                            <input data-v-66225419="" name="username" type="text"
+                            <input data-v-66225419="" type="text"
+                                   th:field = "*{memberName}"
                                    placeholder="이름(실명)을 입력해주세요." class="input-lg form-control" minlength="2"
-                                   maxlength="7" data-vv-validate-on="blur" aria-invalid="true" id="__BVID__267"
+                                   maxlength="7" data-vv-validate-on="blur" aria-invalid="true"
                                    aria-required="true" autofocus>
                             <div data-v-66225419="" class="invalid-feedback">
                                 <p data-v-66225419="" class="error">이름(실명)을 입력해주세요.</p>
@@ -65,8 +67,9 @@
                             <label data-v-66225419="" for="email">이메일</label>
                             <div style="position: relative">
                             <input data-v-66225419="" name="email" type="email"
+                                   th:field = "*{memberEmail}"
                                    placeholder="id@gmail.com" class="input-lg form-control" maxlength="255"
-                                   data-vv-validate-on="blur" aria-invalid="true" id="__BVID__268">
+                                   data-vv-validate-on="blur" aria-invalid="true">
 <!--                            <span data-v-66225419="" class="form-action" style="display: none;">-->
 <!--                                <img data-v-66225419="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=" class="empty">-->
 <!--                            </span>-->
@@ -82,10 +85,11 @@
                                                                                         for="password">비밀번호</label>
                             <div style="position: relative">
                             <input
-                                data-v-66225419="" name="password" type="password"
+                                data-v-66225419="" type="password"
+                                th:field = "*{memberPassword}"
                                 placeholder="영문+숫자+특수문자 조합 8자리 이상 입력해주세요." autocomplete="new-password"
                                 class="input-lg form-control is-valid" v-validate="passwordValidatorRules"
-                                data-vv-validate-on="blur" id="__BVID__269" aria-autocomplete="list">
+                                data-vv-validate-on="blur" aria-autocomplete="list">
 <!--                            <span data-v-66225419="" class="form-action" style="display: none;">-->
 <!--                                <img data-v-66225419="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=" class="empty">-->
 <!--                                <span data-v-66225419="" class="display-password"> 표시 </span>-->
@@ -121,7 +125,8 @@
                                     <div><label data-v-b5001060="" for="request-phone" class="input-label">휴대전화 번호
                                         인증</label>
                                         <div data-v-b5001060="" role="group" class="input-group input-group">
-                                            <!----><input data-v-b5001060="" id="request-phone" name="requestPhone"
+                                            <!----><input data-v-b5001060=""
+                                                          th:field = "*{memberPhone}"
                                                           type="tel" placeholder="예) 01012345678"
                                                           class="answer-input form-control is-invalid" maxlength="13"
                                                           data-vv-validate-on="blur" aria-invalid="true"><input

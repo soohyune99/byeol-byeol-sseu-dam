@@ -1,13 +1,13 @@
 
 let emailFilter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 let pwFilter = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*\W).{8,20}$/;
-let $inputName = $("#__BVID__267");
+let $inputName = $("#memberName");
 let $inputGender = $(".gender-radio");
 let $selectedGender = $inputGender.find(".radio");
-let $inputEmail = $("#__BVID__268");
-let $inputPw = $("#__BVID__269");
+let $inputEmail = $("#memberEmail");
+let $inputPw = $("#memberPassword");
 let $pwChecking = $("#pwChecking");
-let $inputPhone = $("#request-phone");
+let $inputPhone = $("#memberPhone");
 let $verification = $("#request-verify-phone");
 let $btn = $(".btn-primary");
 let verify = false;

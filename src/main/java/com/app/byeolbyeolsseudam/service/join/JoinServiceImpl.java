@@ -24,6 +24,18 @@ public class JoinServiceImpl implements JoinService {
         memberRepository.save(memberDTO.toEntity());
     }
 
+    @Override
+    public void crewJoin(MemberDTO memberDTO){
+        memberDTO.setMemberLoginType(MemberLoginType.일반);
+        memberDTO.setMemberCategory(MemberCategory.기사회원);
+        memberDTO.setMemberName(memberDTO.getMemberName());
+        memberDTO.setMemberEmail(memberDTO.getMemberEmail());
+        memberDTO.setMemberPassword(memberDTO.getMemberPassword());
+        memberDTO.setMemberPhone(memberDTO.getMemberPhone());
+        memberRepository.save(memberDTO.toEntity());
+
+    }
+
 //    @Override
 //    public List<MemberDTO> findAll(){
 //        .findAll();

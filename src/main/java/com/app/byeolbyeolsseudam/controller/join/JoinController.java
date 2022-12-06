@@ -28,12 +28,11 @@ public class JoinController {
     @GetMapping("/join")
     public String join(MemberDTO memberDTO){
 
-
         return "/app/join/joinNormal";
     }
 
     @PostMapping("/join")
-    public RedirectView memberJoin(MemberDTO memberDTO, RedirectView redirectView){
+    public RedirectView memberJoin(MemberDTO memberDTO){
 
         joinService.memberJoin(memberDTO);
 
@@ -45,17 +44,29 @@ public class JoinController {
     public String pickIntro(){
         return "/app/join/pickIntro";
     }
+
     @GetMapping("/picker/adr")
     public String joinpickerOne(){
         return "/app/join/joinCollectorStepOne";
     }
+
     @GetMapping("/picker/map")
-    public String joinpickerOneMap(){
+    public String joinpickerOneMap(MemberDTO memberDTO){
         return "/app/join/joinCollectorStepOneMap";
     }
+
+
+
     @GetMapping("/picker/detail")
-    public String joinpickerTwo(){
+    public String joinpickerTwo(MemberDTO memberDTO){
+
         return "/app/join/joinCollectorStepTwo";
+    }
+
+    @PostMapping("/picker/detail")
+    public RedirectView crewJoin(MemberDTO memberDTO){
+        joinService.crewJoin(memberDTO);
+        return new RedirectView ("/main/main");
     }
 
 }

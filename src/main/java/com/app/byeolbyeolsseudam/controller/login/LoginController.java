@@ -65,15 +65,18 @@ public class LoginController {
 //    }
 
     @PostMapping("/findpassword")
-    public RedirectView send(MemberDTO memberDTO){
+    public RedirectView send(MemberDTO memberDTO, RedirectAttributes redirectAttributes){
 
         memberLoginService.Send(memberDTO);
+
+        redirectAttributes.addFlashAttribute("memberEmail", memberDTO.getMemberEmail());
 
         return new RedirectView("/login/findpassworddone");
     }
 
-    @GetMapping("/findpassworddone")
+    @RequestMapping(value = "/findpassworddone", method = RequestMethod.GET)
     public String findPasswordDone(){
+
         return "/app/login/findPasswordDone";
     }
 }
