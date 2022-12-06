@@ -261,7 +261,7 @@
                                     </a>
                                 </div>
                                 <div class="comment_textarea">
-                                    <form id="_accordion_review_form_c202206217f7c30ccb91ca">
+<!--                                    <form id="_accordion_review_form_c202206217f7c30ccb91ca">-->
                                         <input type="hidden" name="prod_code" value="s202109163d3fa45186ceb">
                                         <input type="hidden" name="parent_code" value="c202206217f7c30ccb91ca">
                                         <input type="hidden" name="review_comment_token" value="TInRex1/D9VTWV4fHL/SeDuga8+er1EraFQHAhLGsxLQqb37ORZvjtYK1wiJdQ8GUE3UY2rEPpFTcLIqC1tK3FpnkTLskp2TrDItQzPVc/JsjqeO6oV2EqhDPkqXSooH">
@@ -271,7 +271,7 @@
                                             <div class="textarea_block">
                                                 <textarea placeholder="구매평을 작성하세요." name="body" id="review_comment_body"></textarea>
                                                 <div class="file-add-block margin-bottom-xl" style="display: none;" id="review_comment_image_box_c202206217f7c30ccb91ca"></div>
-                                                <a href="javascript:" class="btn btn-brand btn-sm _style">등록</a>
+                                                <a href="javascript:void(0)" class="finish btn btn-brand btn-sm _style">등록</a>
                                                 <div class="inline-blocked holder icon-wrap">
                                                     <i class="icon-picture icon vertical-middle holder">
                                                         <img data-v-60f50a1e="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=" alt="이미지 첨부" class="attach-image-icon">
@@ -281,7 +281,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+<!--                                    </form>-->
                                 </div>
 
                                 <ul class="list_review_wrap">
@@ -372,26 +372,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <div class="text-14">
-                                                    <span lass="txt _txt _review_body _block_ _review_code_c20221106fbfb68ae0a11a" block-review-code="c20221106fbfb68ae0a11a" block="false">
-                                                        <div class="dummy _dummy"><br><br><br><br><br><br><br></div>
-                                                        내용
-                                                    </span>
-                                                    <span class="_block_review_command_" style="display: block">
-                                                        <span class="more text-13">
-                                                            <strong class="body_font_color_60 more-underline">더보기</strong>
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                                <span class="_block_review_command_" style="display: block">
-                                                    <div class="review_comment_wrap_c20221106fbfb68ae0a11a"> </div>
-                                                </span>
-                                            </div>
-                                            <div class="table-cell vertical-top width-5 text-13 use_summary">
-                                                <div>작성자</div>
-                                                <div>작성 날짜</div>
-                                                <div class="margin-top-xxl text-12 review_tools clearfix">
-                                                </div>
+                                                <div class="reviews"></div>
                                             </div>
                                         </div>
                                     </li>
@@ -427,6 +408,7 @@
                         </section>
                     </div>
                 </div>
+                <form action="/payment" method="GET" class="count-form">
                 <div class="flex-aside right" data-v-08563466="">
                     <div class="product-controller" data-v-08563466=""  th:object="${product}">
                         <section class="bread-crumbs no-space" data-v-08563466="">
@@ -538,10 +520,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div id="goods_wrap" class="goods_wrap">
                                                     <!-- 필수 옵션, 선택 옵션이 둘다 없을경우 태그가 출력되면 안됨(여백, 가로선)-->
                                                     <div class="goods_select" id="prod_options"></div>
-                                                    <form>
                                                     <div class="goods_payment" id="prod_selected_options">
                                                         <div class="opt_block no-border order_quantity_area" style="height: auto; ">
                                                             <div class="area_tit holder">
@@ -554,14 +536,18 @@
                                                                             <i class="btl bt-minus"  aria-hidden="true"></i>
                                                                             <span class="sr-only">minus</span>
                                                                         </a>
-                                                                        <label for="productCount"><input id="productCount" type="text" title="number" value="1" class="form-control _order_count_mobile 0"></label>
+                                                                        <label for="orderCount">
+                                                                            <!-- 주문 수량 -->
+                                                                            <input name="orderCount" id="orderCount" type="text" title="number" value="1" class="form-control _order_count_mobile 0">
+                                                                            <input type="text" style="display: none;" name="productId" id="takeId">
+                                                                        </label>
                                                                         <a href="javascript: plusItemCount(0);">
                                                                             <i class="btl bt-plus" aria-hidden="true"></i>
                                                                             <span class="sr-only">plus</span>
                                                                         </a>
                                                                     </div>
                                                                     <div class="area_price absolute absolute_right absolute_middle">
-                                                                        <span class="item_price 0">13,400원</span>
+                                                                        <span class="item_price 0"  th:text="|${#numbers.formatInteger(product.productPrice, 0, 'COMMA')}원|"></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -571,7 +557,7 @@
                                                                 <span class="body_font_color_70 itemCount" style="padding: 16px 0">총 상품금액(1개)</span>
                                                             </p>
                                                             <p class="text-right" style="display:inline-block; float: right;">
-                                                                <span class="total_price" style="padding: 16px 0">13,400원</span>
+                                                                <span class="total_price" style="padding: 16px 0"  th:text="|${#numbers.formatInteger(product.productPrice, 0, 'COMMA')}원|"></span>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -603,15 +589,19 @@
                                         </svg>
                                     </span>
                                 </button>
-                                <button data-testid="purchase-btn" type="button" onclick="location.href='http://localhost:10001/market/payment'" class="btn btn-buy btn-primary" style="font-size: 16px;" data-v-08563466="">
+<!--                                <button data-testid="purchase-btn" type="button" onclick="location.href='http://localhost:10001/market/payment'" class="btn btn-buy btn-primary" style="font-size: 16px;" data-v-08563466="">-->
+                                <button data-testid="purchase-btn" type="submit" value="주문하기" class="btn btn-buy btn-primary" style="font-size: 16px;" data-v-08563466="">
                                     주문하기
+<!--                                    <input type="hidden" name="product" value="">-->
+<!--                                    <input type="hidden" name="product" id="product" th:object="${product}">-->
+<!--                                    <input type="hidden" th:value=${member}">-->
                                 </button>
                             </div>
                         </section>
-                        </form>
                         <img data-v-4df1822e="" src="/images/market/minibanner.png" lazy="loaded" style="padding-top: 5%;">
                     </div>
                 </div>
+                </form>
                 <div class="v-portal" style="display:none;" data-v-08563466=""></div>
             </article>
         </div>
@@ -652,126 +642,76 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/market/marketDetail.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
+<script src="/js/market/review.js"></script>
 <script th:inline="javascript">
-    /*댓글 전체 보기*/
+    // let id = $("#takeId").attr("id");
+    // let get = $("#takeId").val();
+    // console.log(id);
+    // console.log(get);
 
-    // function getList(reviewDTO) {
-    //     text = "";
-    //     reviewDTO.review.forEach(revies => {
-    //     text += "<div class='tabled full-width'>";
-    //     text += "<div class='table-cell vertical-top txt_wrap'>";
-    //     text += "<div class='interlock_star_point inline-blocked'>";
-    //     text += "<div class='star_point_wrap'>";
-    //     text += "<a class='bts bt-star active'>";
-    //     text += "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 102 102' width='15' height='15' preserveAspectRatio='xMidYMid meet' style='width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);'>";
-    //     text += "<defs>";
-    //     text += "<clipPath id='__lottie_element_2'>";
-    //     text += "<rect width='102' height='102' x='0' y='0'>";
-    //     text += "</rect>";
-    //     text += "</clipPath>";
-    //     text += "</defs>";
-    //     text += "<g clip-path='url(#__lottie_element_2)'>";
-    //     text += "<g transform='matrix(1,0,0,1,51,50.42300033569336)' opacity='1' style='display: block;'>";
-    //     text += "<g opacity='1' transform='matrix(3,0,0,3,0,0)'>";
-    //     text += "<path fill='rgb(255,206,33)' fill-opacity='1' d=' M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934'>";
-    //     text += "</path>";
-    //     text += "</g>";
-    //     text += "</g>";
-    //     text += "</g>";
-    //     text += "</svg>";
-    //     text += "</a>";
-    //     text += "<a class='bts bt-star active'>";
-    //     text += "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 102 102' width='15' height='15' preserveAspectRatio='xMidYMid meet' style='width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);'>";
-    //     text += "<defs>";
-    //     text += "<clipPath id='__lottie_element_2'>";
-    //     text += "<rect width='102' height='102' x='0' y='0'></rect>";
-    //     text += "</clipPath>";
-    //     text += "</defs>";
-    //     text += "<g clip-path='url(#__lottie_element_2)'>";
-    //     text += "<g transform='matrix(1,0,0,1,51,50.42300033569336)' opacity='1' style='display: block;'>";
-    //     text += "<g opacity='1' transform='matrix(3,0,0,3,0,0)'>";
-    //     text += "<path fill='rgb(255,206,33)' fill-opacity='1' d='M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934'>";
-    //     text += "</path>";
-    //     text += "</g>";
-    //     text += "</g>";
-    //     text += "</g>";
-    //     text += "</svg>";
-    //     text += "</a>";
-    //     text += "<a class='bts bt-star active'>";
-    //     text = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 102 102' width='15' height='15' preserveAspectRatio='xMidYMid meet' style='width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);'>";
-    //             <defs>
-    //             <clipPath id="__lottie_element_2">
-    //             <rect width="102" height="102" x="0" y="0"></rect>
-    //             </clipPath>
-    //             </defs>
-    //             <g clip-path="url(#__lottie_element_2)">
-    //             <g transform="matrix(1,0,0,1,51,50.42300033569336)" opacity="1" style="display: block;">
-    //             <g opacity="1" transform="matrix(3,0,0,3,0,0)">
-    //             <path fill="rgb(255,206,33)" fill-opacity="1" d=" M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934"></path>
-    //             </g>
-    //             </g>
-    //             </g>
-    //             </svg>
-    //             </a>
-    //             <a class="bts bt-star active">
-    //             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 102" width="15" height="15" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">
-    //             <defs>
-    //             <clipPath id="__lottie_element_2">
-    //             <rect width="102" height="102" x="0" y="0"></rect>
-    //             </clipPath>
-    //             </defs>
-    //             <g clip-path="url(#__lottie_element_2)">
-    //             <g transform="matrix(1,0,0,1,51,50.42300033569336)" opacity="1" style="display: block;">
-    //             <g opacity="1" transform="matrix(3,0,0,3,0,0)">
-    //             <path fill="rgb(255,206,33)" fill-opacity="1" d=" M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934"></path>
-    //             </g>
-    //             </g>
-    //             </g>
-    //             </svg>
-    //             </a>
-    //             <a class="bts bt-star active">
-    //             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 102" width="15" height="15" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">
-    //             <defs>
-    //             <clipPath id="__lottie_element_2">
-    //             <rect width="102" height="102" x="0" y="0"></rect>
-    //             </clipPath>
-    //             </defs>
-    //             <g clip-path="url(#__lottie_element_2)">
-    //             <g transform="matrix(1,0,0,1,51,50.42300033569336)" opacity="1" style="display: block;">
-    //             <g opacity="1" transform="matrix(3,0,0,3,0,0)">
-    //             <path fill="rgb(255,206,33)" fill-opacity="1" d=" M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934"></path>
-    //             </g>
-    //             </g>
-    //             </g>
-    //             </svg>
-    //             </a>
-    //             </div>
-    //             </div>
-    //             <div class="text-14">
-    //             <span lass="txt _txt _review_body _block_ _review_code_c20221106fbfb68ae0a11a" block-review-code="c20221106fbfb68ae0a11a" block="false">
-    //             <div class="dummy _dummy"><br><br><br><br><br><br><br></div>
-    //         내용
-    //         </span>
-    //         <span class="_block_review_command_" style="display: block">
-    //             <span class="more text-13">
-    //             <strong class="body_font_color_60 more-underline">더보기</strong>
-    //             </span>
-    //             </span>
-    //             </div>
-    //             <span class="_block_review_command_" style="display: block">
-    //             <div class="review_comment_wrap_c20221106fbfb68ae0a11a"> </div>
-    //             </span>
-    //             </div>
-    //             <div class="table-cell vertical-top width-5 text-13 use_summary">
-    //             <div>작성자</div>
-    //             <div>작성 날짜</div>
-    //         <div class="margin-top-xxl text-12 review_tools clearfix">
-    //             </div>
-    //             </div>
-    //             </div>
-    //             </li>
-    //     });
-    //
-    // }
+/*    $(".btn-buy").on("click", function(){
+        console.log("들어옴");
+        // let id = $('#takeId').attr('name');
+        console.log(id);
+    });*/
+
+    /*댓글 전체 보기*/
+    let productId = [[${product.productId}]];
+
+    // show();
+
+    $("a.finish").on("click", function(){
+        reviewService.save({
+            reviewContent: $("textarea[name='reviewContent']").val(),
+            productId: productId
+        }, getList);
+    });
+
+    // function show(){
+    //     reviewService.getList(productId, getList);
+    // };
+
+
+    function getList(reviewDTO) {
+        let text = "";
+
+        text += "<div>";
+        text += "<div class='text-14'>";
+        text += "<span lass='txt _txt _review_body _block_ _review_code_c20221106fbfb68ae0a11a' block-review-code='c20221106fbfb68ae0a11a' block='false'>";
+        text += "<div class='dummy _dummy'>";
+        text += "<br>";
+        text += "<br>";
+        text += "<br>";
+        text += "<br>";
+        text += "<br>";
+        text += "<br>";
+        text += "</div>" +  + "</span>";
+        text += "<span class='_block_review_command_' style='display: block'>";
+        text += "<span class='more text-13'>";
+        text += "<strong class='body_font_color_60 more-underline'>더보기</strong>";
+        text += "</span>";
+        text += "</span>";
+        text += "</div>";
+        text += "<span class='_block_review_command_' style='display: block'>";
+        text += "<div class='review_comment_wrap_c20221106fbfb68ae0a11a'>";
+        text += "</div>";
+        text += "</span>";
+        text += "</div>";
+        text += "<div class='table-cell vertical-top width-5 text-13 use_summary'>";
+        text += "<div>작성자</div>";
+        text += "<div>작성 날짜</div>";
+        text += "<div class='margin-top-xxl text-12 review_tools clearfix'>";
+        text += "</div>";
+        text += "</div>";
+        text += "</div>";
+
+        //페이지 이동이 없기 때문에 append로 하면 이전 목록이 없어지지 않는다.
+        //따라서 html로 계속 덮어씌워줘야 한다.
+        $("div.reviews").append(text)
+
+        //페이징 처리를 위해 댓글 전체 개수를 전달해준다.
+        // showReplyPage(reviewDTO.reviewCount)
+
+    }
 </script>
 </html>

@@ -3,8 +3,10 @@
 const $marketSearch = $("section.market-keyword-search-form");
 const $searchArea = $("input#__BVID__183");
 const $keywordBox = $(".keyword-box");
+// let $categoryList = $("ul.tab > li.fixed > a.btn.btn-category");
+let $categoryList = $("ul.tab > li > a.fixed");
 
-let $category = $("ul.tab li a.btn.btn-category");
+// let $category = $("ul.tab li a.btn.btn-category");
 
 /* 검색바 포커스했을 때 드롭박스 열기 */
 $searchArea.on("focus", function(){
@@ -34,9 +36,38 @@ $(".btn-keyword-del").on('click', function(){
 });
 
 /* 카테고리 클릭 */
-$category.on("click", function(){
-    $category.removeClass("router-link-exact-active");
-    console.log("들어옴");
-    $(this).addClass("router-link-exact-active");
-});
+// $category.on("click", function(){
+//     $category.removeClass("router-link-exact-active");
+//     console.log("들어옴");
+//     $(this).addClass("router-link-exact-active");
+// });
+
+$("group-0").on("click", function (){
+    // console.log("들어옴");
+    $("group-0").addClass("router-link-exact-active");
+    $("group-1").removeClass("router-link-exact-active");
+    $("group-2").removeClass("router-link-exact-active");
+    $("group-3").removeClass("router-link-exact-active");
+    $("group-4").removeClass("router-link-exact-active");
+    $("group-5").removeClass("router-link-exact-active");
+    $("group-6").removeClass("router-link-exact-active");
+    $("group-7").removeClass("router-link-exact-active");
+})
+
+// function selectedCategory(){
+//     let url = window.location.href.split("/");
+//     let category = url[url.length - 1];
+//
+//     $.each($categoryList, function(i){
+//         $category = $categoryList.children().eq(i).text().trim();
+//
+//         if(category != 'all'){
+//             $categoryList.eq(0).eq(0).removeClass("selected");
+//
+//             if($category == category){
+//                 $categoryList.eq(i).eq(0).addClass("selected");
+//             }
+//         }
+//     });
+// }
 
