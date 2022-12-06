@@ -2,6 +2,7 @@ package com.app.byeolbyeolsseudam.repository.pickupAccept;
 
 import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
 import com.app.byeolbyeolsseudam.domain.pickup.QPickupDTO;
+import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
 import com.app.byeolbyeolsseudam.entity.pickup.QPickup;
 import com.app.byeolbyeolsseudam.entity.pickupAccept.QPickupAccept;
 import com.app.byeolbyeolsseudam.repository.pickup.PickupRepository;
@@ -60,6 +61,7 @@ public class PickupAcceptCustomRepositoryImpl implements PickupAcceptCustomRepos
                         QPickup.pickup.pickupStatus.eq(PickupStatus.수거중),
                         pickupAccept.member.memberId.eq(memberId)
                 )
+                .orderBy(QPickup.pickup.createdDate.desc())
                 .distinct()
                 .fetch();
 
@@ -87,8 +89,28 @@ public class PickupAcceptCustomRepositoryImpl implements PickupAcceptCustomRepos
                         QPickup.pickup.pickupStatus.eq(PickupStatus.수거완료),
                         pickupAccept.member.memberId.eq(memberId)
                 )
+                .orderBy(QPickup.pickup.createdDate.desc())
                 .distinct()
                 .fetch();
+    }
+
+    @Override
+    public PickupDTO find(Long pickupId){
+
+       return queryFactory.select(new QPickupDTO(
+               QPickup.pickup.pickupId,
+               QPickup.pickup.recyclable.petCount,
+               QPickup.pickup.recyclable.glassCount,
+               QPickup.pickup.pickupAddress,
+               QPickup.pickup.member.memberName,
+               QPickup.pickup.pickupStatus,
+               QPickup.pickup.member.memberId,
+               QPickup.pickup.createdDate
+       ))
+               .from(QPickup.pickup, pickupAccept)
+               .where(
+                       QPickup.pickup.pickupId.eq(pickupId)
+               ).fetchOne();
     }
 
 
@@ -127,18 +149,18 @@ public class PickupAcceptCustomRepositoryImpl implements PickupAcceptCustomRepos
 
 //        상태 진행중으로 업데이트
         @Override
-        public void StatusUpdate(PickupDTO pickupDTO){
+        public void StatusUpdate(Long pickupId){
             jpaQueryFactory.update(QPickup.pickup).set(QPickup.pickup.pickupStatus, PickupStatus.수거중)
-                    .where(QPickup.pickup.pickupId.eq(pickupDTO.getPickupId())).execute();
+                    .where(QPickup.pickup.pickupId.eq(pickupId)).execute();
 
         }
 
 
 //        완료 업데이트
         @Override
-        public void Complete(PickupDTO pickupDTO){
+        public void Complete(Long pickupId){
             jpaQueryFactory.update(QPickup.pickup).set(QPickup.pickup.pickupStatus, PickupStatus.수거완료)
-                    .where(QPickup.pickup.pickupId.eq(pickupDTO.getPickupId())).execute();
+                    .where(QPickup.pickup.pickupId.eq(pickupId)).execute();
         }
 
 

@@ -24,6 +24,7 @@
 <div id="app" data-browser="Chrome" data-is-loaded="true" class>
     <div id="app-body">
         <div data-v-61b32e29="" class="container">
+<!--            th:method="get" th:action="@{/join/picker/detail}" th:object="${memberDTO}"-->
             <form data-v-61b32e29="" id="id_pro_form" autocomplete="off">
                 <div data-v-2b9a1ce0="" data-v-61b32e29="" class="signup-progress-bar header">
                     <div data-v-2b9a1ce0="" class="progress">
@@ -37,28 +38,28 @@
                     <p data-v-a46f16b0="" class="headline">활동 지역은 근처의 고객을 찾는데 도움이 됩니다.</p>
                     <div data-v-a46f16b0="" class="addr-search">
                         <div data-v-a46f16b0="" class="addr-input"><span data-v-a46f16b0=""
-                                                                         class="active-area">활동 지역</span><span
-                                data-v-a46f16b0="" class="edit-addr-btn"> 수정 </span></div><!---->
-                        <div data-v-a46f16b0="" class="addr-form">
-                            <div data-v-a46f16b0="" class="col-12"><input data-v-a46f16b0="" name="addr1" type="text"
-                                                                          readonly="readonly"
-                                                                          class="form-control id-addr1 form-control"
-                                                                          aria-label="주소" aria-invalid="false"
-                                                                          id="__BVID__416" value="대전시 구로구 청담동 미켈란쉐르빌 1005호" style=""></div>
-                        </div>
-                    </div>
-                    <div data-v-a46f16b0="" class="map-distance">
-                        <div data-v-a46f16b0="" class="map-wrap">
-                            <div data-v-a46f16b0="" class="title">이동 가능 거리</div>
-                            <div style="
-    width: 518px;
-    height: 220px;
-    background: url(/images/pickup/googleMapApi.PNG)no-repeat;background-size: contain;
-">
+                                                                         class="active-area">활동 지역</span></div><!---->
 
-                            </div>
-                        </div>
                     </div>
+
+
+<!--                    map start-->
+
+                    <div class="map-wrapx" style="text-align: center">
+<!--                        th:field = "*{memberName}"-->
+
+                            <input type="text" placeholder="주소" id="memberName" name="memberName" style="width: 400px;
+                                height: 35px;">
+                            <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" style="color: #fff;
+                                background-color: #00c7ae;
+                                border-style: none;
+                                height: 35px;
+                                border-radius: 0.25rem;"><br>
+                        <div id="map" style="width:518px;height:300px;margin: 20px auto;display:none"></div>
+                    </div>
+
+<!--                    map end-->
+
                 </div>
                 <div data-v-f6f3ff14="" data-v-61b32e29="" class="step-navigator footer">
                     <div data-v-f6f3ff14="" class="wrapper">
@@ -76,4 +77,53 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c8d8f8733f928d836ce54c96c0143ba&libraries=services"></script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+            level: 5 // 지도의 확대 레벨
+        };
+
+    //지도를 미리 생성
+    var map = new daum.maps.Map(mapContainer, mapOption);
+    //주소-좌표 변환 객체를 생성
+    var geocoder = new daum.maps.services.Geocoder();
+    //마커를 미리 생성
+    var marker = new daum.maps.Marker({
+        position: new daum.maps.LatLng(37.537187, 127.005476),
+        map: map
+    });
+
+
+    function sample5_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = data.address; // 최종 주소 변수
+
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("memberName").value = addr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+
+                        var result = results[0]; //첫번째 결과의 값을 활용
+
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        // 지도를 보여준다.
+                        mapContainer.style.display = "block";
+                        map.relayout();
+                        // 지도 중심을 변경한다.
+                        map.setCenter(coords);
+                        // 마커를 결과값으로 받은 위치로 옮긴다.
+                        marker.setPosition(coords)
+                    }
+                });
+            }
+        }).open();
+    }
+</script>
 </html>

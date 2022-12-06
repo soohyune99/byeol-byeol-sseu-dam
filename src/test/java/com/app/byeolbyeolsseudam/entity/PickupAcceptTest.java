@@ -11,6 +11,7 @@ import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.pickup.PickupRepository;
 import com.app.byeolbyeolsseudam.repository.pickupAccept.PickupAcceptCustomRepository;
 import com.app.byeolbyeolsseudam.repository.pickupAccept.PickupAcceptRepository;
+import com.app.byeolbyeolsseudam.service.pickup.PickupService2;
 import com.app.byeolbyeolsseudam.type.PickupStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +46,9 @@ public class PickupAcceptTest {
 
     @Autowired
     private PickupAcceptCustomRepository pickupAcceptCustomRepository;
+
+    @Autowired
+    private PickupService2 pickupService2;
 
     @Test
     public void saveTest(){
@@ -142,6 +146,20 @@ public class PickupAcceptTest {
 
 
     }
+
+    @Test
+    public void Service(){
+        pickupService2.getPickupList().stream().map(PickupDTO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void Service2(){
+
+//        pickupService2.UpdateAndSave(7L, 5L);
+
+        pickupService2.CompleteAndSave(7L);
+    }
+
 
 
 }
