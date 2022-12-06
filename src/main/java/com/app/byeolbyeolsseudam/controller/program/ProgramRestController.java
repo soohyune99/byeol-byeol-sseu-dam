@@ -4,6 +4,7 @@ import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.service.program.ProgramService;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/pro/*")
+@Slf4j
 public class ProgramRestController {
     private final ProgramService programService;
 
@@ -25,6 +27,7 @@ public class ProgramRestController {
     @GetMapping("/list/{programStatus}")
     public List<ProgramDTO> statusList(@PathVariable ProgramStatus programStatus){
         List<ProgramDTO> programs = programService.programStatusIngList(programStatus);
+        log.info("dfsdfsdfadsfa: " + programs);
         return programs;
     }
 

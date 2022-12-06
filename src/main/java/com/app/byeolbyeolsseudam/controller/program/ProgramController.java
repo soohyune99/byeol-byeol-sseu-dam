@@ -1,15 +1,22 @@
 package com.app.byeolbyeolsseudam.controller.program;
 
+import com.app.byeolbyeolsseudam.domain.notice.NoticeDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
+import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.service.program.ProgramService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/program/*")
+@Slf4j
 public class ProgramController {
+    private final ProgramService programService;
 
     /* 프로그램 기본 List */
     @GetMapping("/list")
@@ -17,12 +24,42 @@ public class ProgramController {
         return "/app/program/program"; // 이동할 html 파일 경로
     }
 
-    /* 프로그램 DETAIL 창 */
-    @GetMapping("/programdetail")
-    public String programDetail() {
-        return "/app/program/programDetail"; // 이동할 html 파일 경로
+    /* 프로그램 DETAIL 이동 */
+    @GetMapping("/detail")
+    public String findProgramDetail(Long programId, Model model){
+        model.addAttribute("program",programService.findProgramDetail(programId));
+        return"/app/program/programDetail";
     }
 
+//    /* 로그인 되었을때 진행 필요  */
+//    @GetMapping("/programAddSuccess")
+//    public RedirectView programAddSuccess(@SessionAttribute("member") Member member){
+//        log.info(member.getMemberId().toString());
+//        return new RedirectView("list");
+//    }
+
+
+
+
+//        log.info(member.getMemberId().toString());
+
+//    /* 프로그램 DETAIL 창 */
+//    @GetMapping("/detail")
+//    public String programDetail() {
+//        return "/app/program/programDetail"; // 이동할 html 파일 경로
+//    }
+//    @GetMapping("/detail?programId={programId}")
+//    public String programDetail(Model model, @SessionAttribute("member") Member member, @PathVariable("programId") Long programId) {
+//        model.addAttribute("program",programService.programDetailPage(model, member, programId));
+//        model.addAttribute("program",programId);
+//        return "/app/program/programDetail"; // 이동할 html 파일 경로
+//    }
+//    @GetMapping("/detail")
+//    public String programDetail(Model model){
+//        model.addAttribute("detailProgram",programDetail(model));
+////        programService.programDetailPage1(programDTO.getProgramId());
+//        return "/app/program/programDetail";
+//    }
     /* ####################################################################################################### */
     /* ##################################  페이지 이동시 사용  ################################################## */
     /* ####################################################################################################### */

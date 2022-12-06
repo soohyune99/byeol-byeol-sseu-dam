@@ -1,10 +1,12 @@
 package com.app.byeolbyeolsseudam.service.program;
 
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
+import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.repository.program.ProgramRepository;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
 public class ProgramSearchService implements ProgramService {
     private final ProgramRepository programRepository;
 
-    /* 프로그램 _ Keyword 로 검색시 해당 _ 보류 */
+    /* 프로그램 _ Keyword 로 검색 List*/
     @Override
     public List<ProgramDTO> searchProgram(String keyword){
         return programRepository.searchProgram(keyword);
@@ -25,10 +27,29 @@ public class ProgramSearchService implements ProgramService {
         return programRepository.programAllList();
     }
 
-    /* program List _ STATUS _ 모집중 */
+    /* program List _ STATUS List*/
     @Override
     public List<ProgramDTO> programStatusIngList(ProgramStatus programStatus) {
         return programRepository.programStatusIngList(programStatus);
     }
+
+    /* 프로그램 Article 클릭시 해당 Detail 페이지로 이동 */
+    @Override
+    public ProgramDTO findProgramDetail(Long programId) {
+        ProgramDTO programDTO = programRepository.findProgramDetail(programId);
+        return programDTO;
+    }
+
+
+//    @Override
+//    public ProgramDTO programDetailPage(Model model, Member member, Long programId) {
+//        return programRepository.programDetailPage(model, member, programId);
+//    }
+//
+//    @Override
+//    public ProgramDTO programDetailPage1(Long programId) {
+//        return programRepository.programDetailPage1(programId);
+//    }
+
 
 }
