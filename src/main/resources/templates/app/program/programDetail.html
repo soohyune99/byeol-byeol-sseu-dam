@@ -77,16 +77,30 @@
                         <!-- program detail start-->
 
 
-                        <section class="program detail">
+                        <section th:object="${program}" class="program detail">
 
                             <header id="good_header">
-                                <div class="view_tit no-margin-top title_font_style "
-                                     style="color: #454545; font-size: 16px !important; margin-bottom: 5px;"> “ 맛있게 먹고 있나요? ” 별별쓰담 X 쓰담학교 지구를 위한 친환경요리 프로젝트 - 중화요리 -
-                                    <div class="ns-icon inline-blocked clearfix">
-                                        <div class="programStatusIcon blueIcon">모집중</div>
-<!--                                        <div class="programStatusIcon greenIcon">모집 예정</div>-->
-<!--                                        <div class="programStatusIcon redIcon">모집 완료</div>-->
-<!--                                        <div class="programStatusIcon grayIcon">마 감</div>-->
+                                <div  class="view_tit no-margin-top title_font_style "
+                                     style="color: #454545; font-size: 16px !important; margin-bottom: 5px;">
+                                    <span th:text="*{programName}"></span><br>
+                                    <div  class="ns-icon inline-blocked clearfix">
+<!--                                        <th:block th:if="${#strings.equals(program.programStatus.toString(), '모집중')}">-->
+<!--                                            <div class="programStatusIcon blueIcon">모집중</div>-->
+<!--                                        </th:block>-->
+<!--                                        <th:block th:if="${#strings.equals(program.programStatus.toString(), '모집예정')}">-->
+<!--                                            <div class="programStatusIcon greenIcon">모집예정</div>-->
+<!--                                        </th:block>-->
+<!--                                        <th:block th:if="${#strings.equals(program.programStatus.toString(), '모집완료')}">-->
+<!--                                            <div class="programStatusIcon redIcon">모집완료</div>-->
+<!--                                        </th:block>-->
+<!--                                        <th:block th:if="${#strings.equals(program.programStatus.toString(), '마감')}">-->
+<!--                                            <div class="programStatusIcon grayIcon">마감</div>-->
+<!--                                        </th:block>-->
+
+                                        <div th:if="${#strings.equals(program.programStatus, '모집중')}" class="programStatusIcon blueIcon">모집중</div>
+                                        <div th:if="${#strings.equals(program.programStatus, '모집예정')}"  class="programStatusIcon greenIcon">모집예정</div>
+                                        <div th:if="${#strings.equals(program.programStatus, '모집완료')}"  class="programStatusIcon redIcon">모집완료</div>
+                                        <div th:if="${#strings.equals(program.programStatus, '마감')}" class="programStatusIcon grayIcon">마감</div>
                                     </div>
                                 </div>
                             </header>
@@ -94,22 +108,22 @@
                                 <div class="goods_form" id="prod_goods_form">
                                     <div class="goods_summary body_font_color_70">
                                         <div class="fr-view">
-                                            <p class="black"> “ 맛있게 먹고 있나요? ” 별별쓰담 X 쓰담학교 지구를 위한 친환경요리 프로젝트 - 중화요리 -</p>
+                                            <p th:text="*{programName}" class="black"></p>
                                             <ul style="list-style-type: circle;">
                                                 <li>내용 :
-                                                    <p class="black">-지구를 위하는 친환경요리를 함께 만들어보고 맛보는 시간을 만들어보아요 지구를 아끼고 맛있는 음식도 먹고!</p>
+                                                    <p th:text="' - '+*{programContent}" class="black"></p>
                                                 </li>
                                                 <li>일시 :
-                                                    <p class="black">- 2022년 12월 7일 수요일 13:00 </p>
+                                                    <p th:text="' - '+${#temporals.format(program.programDate, 'yyyy년 MM월 dd일 HH:mm')}" class="black"></p>
                                                 </li>
                                                 <li>장소 :
-                                                    <p class="black">- 역삼 쓰담빌딩 302호</p>
+                                                    <p th:text="' - '+*{programPlace}" class="black"></p>
                                                 </li>
                                                 <li>수강 가능 인원 :
-                                                    <p class="black">- 35명</p>
+                                                    <p th:text="' - '+*{programLimitCount}+' 명'" class="black"></p>
                                                 </li>
                                                 <li>수강 소요 시간 :
-                                                    <p class="black">- 4 (시간)</p>
+                                                    <p th:text="' - '+*{programTime}+' (시간)'"  class="black"></p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -122,20 +136,20 @@
                                     <div class="_item_detail_wrap">
                                         <div class="margin-bottom-xxl">
 
-                                            <div class="option_wrap" style="display: block; font-size:13px;margin-bottom: 10px;">
-                                                <div class="inline-blocked vertical-middle">
-                                                    <span class="option_title text-bold">현재 신청 인원 수</span>
-                                                </div>
-                                                <div class="inline-blocked vertical-middle">
-                                                    <span class="option_data">22 명</span>
-                                                </div>
-                                            </div>
+<!--                                            <div class="option_wrap" style="display: block; font-size:13px;margin-bottom: 10px;">-->
+<!--                                                <div class="inline-blocked vertical-middle">-->
+<!--                                                    <span class="option_title text-bold">현재 신청 인원 수</span>-->
+<!--                                                </div>-->
+<!--                                                <div class="inline-blocked vertical-middle">-->
+<!--                                                    <span class="option_data">22 명</span>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                             <div class="" style="font-size:13px;">
                                                 <div class="inline-blocked vertical-middle">
-                                                    <span class="option_title text-bold">모집 시작일</span>
+                                                    <span  class="option_title text-bold">모집 시작일</span>
                                                 </div>
                                                 <div class="inline-blocked vertical-middle">
-                                                    <span class="option_data">2022년 11월 28일 수요일 12:00</span>
+                                                    <span th:text="' '+${#temporals.format(program.openingDate, 'yyyy년 MM월 dd일 HH:mm')}"class="option_data"></span>
                                                 </div>
                                             </div>
                                             <div class="" style="font-size:13px;">
@@ -143,7 +157,7 @@
                                                     <span class="option_title text-bold">모집 마감일</span>
                                                 </div>
                                                 <div class="inline-blocked vertical-middle">
-                                                    <span class="option_data">2022년 12월 2일 수요일 12:00</span>
+                                                    <span th:text="' '+${#temporals.format(program.closingDate, 'yyyy년 MM월 dd일 HH:mm')}" class="option_data"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -263,13 +277,13 @@
 
                                     <button data-testid="purchase-btn" type="button" class="btn btn-buy btn-primary"
                                             style="background: #00c7ae; border-radius: 0.25rem; "
-                                            onclick="location.href='http://localhost:10001/program/program'">
+                                            onclick="location.href='http://localhost:10001/mypage/myprogram'">
                                         신청하기
                                     </button>
 
                                     <button data-testid="purchase-btn" type="button" class="btn btn-buy btn-primary"
                                             style="background: #00c7ae; border-radius: 0.25rem;"
-                                            onclick="history.go(-1);">
+                                            onclick="history.go(0);">
                                         돌아가기
                                     </button>
 
@@ -299,6 +313,12 @@
         alert($(obj).closest(".responsive").find('#programId').attr("href"));
         location.href = "/program/programAddSuccess"
     })
+
+    /* 신청하기 클릭시 마이페이지 */
+    function moveDetail(obj) {
+        // alert($(obj).closest(".responsive").find('#programId').attr("href"));
+        location.href = "/program/detail" + "?programId=" + $(obj).closest(".responsive").find('#programId').attr("href");
+    }
 
 </script>
 
