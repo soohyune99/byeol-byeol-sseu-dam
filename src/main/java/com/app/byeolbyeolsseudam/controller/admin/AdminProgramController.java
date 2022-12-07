@@ -2,14 +2,18 @@ package com.app.byeolbyeolsseudam.controller.admin;
 
 import com.app.byeolbyeolsseudam.service.admin.AdminProgramService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = {"/admin/program/*", "/admin/program"})
+@Slf4j
 public class AdminProgramController {
     /* 프로그램 관리 - 프로그램 목록 */
 
@@ -40,9 +44,10 @@ public class AdminProgramController {
     }
 
     /* 프로그램 관리 - 프로그램 삭제 */
-    @GetMapping("/delete")
-    public String adminProgramDelete(){
+    @PostMapping("/delete")
+    public RedirectView adminProgramDelete(@RequestParam List<String> checkedValue){
+        adminProgramService.removeProgram(checkedValue);
 
-        return "/app/admin/adminProgram";
+        return new RedirectView("/admin/program");
     }
 }

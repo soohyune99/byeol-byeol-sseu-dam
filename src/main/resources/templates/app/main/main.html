@@ -87,9 +87,9 @@
                                 <th:block th:each="banner:${banners}">
                                 <div tabindex="-1" data-index="0" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">
                                     <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="" th:object="${banner}">
-                                        <img th:src="*{bannerPath}" alt="포트폴리오 전용 목록 진입 창구 배너" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
-                                        <input type="hidden" th:if="${bannerStat.first}" th:name="*{bannerPath}" class="bnImg">
-                                        <input type="hidden" th:if="${bannerStat.count==2}" th:name="*{bannerPath}" class="bnImg">
+                                        <img th:src="|*{bannerPath}/*{bannerUuid}_*{bannerName}|" alt="메인 배너" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
+                                        <input type="hidden" th:if="${bannerStat.first}" th:name="|*{bannerPath}/*{bannerUuid}_*{bannerName}|" class="bnImg">
+                                        <input type="hidden" th:if="${bannerStat.count==2}" th:name="|*{bannerPath}/*{bannerUuid}_*{bannerName}|" class="bnImg">
                                     </div>
                                 </div>
                                 </th:block>

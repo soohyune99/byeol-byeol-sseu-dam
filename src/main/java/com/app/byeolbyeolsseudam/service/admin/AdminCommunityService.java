@@ -7,6 +7,7 @@ import com.app.byeolbyeolsseudam.repository.admin.community.AdminCommentReposito
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +20,15 @@ public class AdminCommunityService {
     public List<BoardDTO> showBoardList(){
         return adminBoardRepository.showBoardList();
     }
+
+    public void removeBoard(List<String> boardIdstr){
+        List<Long> boardId = new ArrayList<>();
+        boardIdstr.stream().map(Long::parseLong).forEach(boardId::add);
+        boardId.forEach(adminBoardRepository::deleteById);
+
+
+    }
+
 
     public List<CommentDTO> showCommentList(){
         return adminCommentRepository.showCommentList();

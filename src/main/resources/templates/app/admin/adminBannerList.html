@@ -216,168 +216,35 @@
                                                                             <div style="height: 220px;
                                                                                         width: fit-content;
                                                                                         margin: 20px auto;">
-
+                                                                                <form th:action="@{banner/delete}" method="post" name="deleteForm">
                                                                                 <th:block th:each="banner:${banners}">
                                                                                 <div class="card-inter" th:object="${banner}">
                                                                                     <div class="card-head">
                                                                                         <header>
                                                                                             <input class="form-check-input checkbox"
-                                                                                                   type="checkbox"
-                                                                                                   style="width: 13px;margin-right: 8px;">메인 배너
+                                                                                                   type="checkbox" name="checkedValue"
+                                                                                                   style="width: 13px;margin-right: 8px;" th:value="*{bannerId}">메인 배너
                                                                                         </header>
                                                                                     </div>
                                                                                     <div style="width: 100%;">
-                                                                                            <img class="image" th:src="*{bannerPath}"                                                                                                    align="center"
+                                                                                            <img class="image" th:src="|*{bannerPath}/*{bannerUuid}_*{bannerName}|"                                                                                                    align="center"
                                                                                                     style="
                                                                                             width: 100%;
                                                                                             height: 132px;
                                                                                             width:-webkit-fill-available;">
                                                                                     </div>
                                                                                     <div>
-                                                                                        <a href="http://localhost:10001/admin/banner/modify" style="cursor: pointer; align-content: end">
+                                                                                        <a th:href="@{banner/modify(bannerId=${banner.bannerId})}" style="cursor: pointer; align-content: end">
                                                                                             <img style="width: 20%; float: right; margin-right: 4px;"
                                                                                                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">
                                                                                         </a>
                                                                                     </div>
                                                                                 </div>
                                                                                 </th:block>
-<!--                                                                                &lt;!&ndash; 배너 목록 &ndash;&gt;-->
-<!--                                                                                <div class="card-inter">-->
-<!--                                                                                    <div class="card-head">-->
-<!--                                                                                        <header>-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox"-->
-<!--                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg-->
-<!--                                                                                        </header>-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div style="width: 100%;">-->
-<!--                                                                                        <img class=""-->
-<!--                                                                                             src="https://cdn.imweb.me/thumbnail/20220622/37b2485c495d2.jpg"-->
-<!--                                                                                             align="center"-->
-<!--                                                                                             style="-->
-<!--                                                                                            height: 132px;-->
-<!--                                                                                            width:-webkit-fill-available;">-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div>-->
-<!--                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">-->
-<!--                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"-->
-<!--                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">-->
-<!--                                                                                        </a>-->
-<!--                                                                                    </div>-->
-<!--                                                                                </div>-->
-
-<!--                                                                                &lt;!&ndash; 배너 목록 &ndash;&gt;-->
-<!--                                                                                <div class="card-inter">-->
-<!--                                                                                    <div class="card-head">-->
-<!--                                                                                        <header>-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox"-->
-<!--                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg-->
-<!--                                                                                        </header>-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div style="width: 100%;">-->
-<!--                                                                                        <img class=""-->
-<!--                                                                                             src="https://www.jobaba.net/file/image.do?filePath=qjOcXNAS8yGf1OiG0Ekwo4yICIEbI3zZt3DZ0saUkXop5QEoNyC6geAbHpRYmmKI"-->
-<!--                                                                                             align="center"-->
-<!--                                                                                             style="-->
-<!--                                                                                            height: 132px;-->
-<!--                                                                                            width:-webkit-fill-available;">-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div>-->
-<!--                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">-->
-<!--                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"-->
-<!--                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">-->
-<!--                                                                                        </a>-->
-<!--                                                                                    </div>-->
-<!--                                                                                </div>-->
-
-<!--                                                                                &lt;!&ndash; 배너 목록 &ndash;&gt;-->
-<!--                                                                                <div class="card-inter">-->
-<!--                                                                                    <div class="card-head">-->
-<!--                                                                                        <header>-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox"-->
-<!--                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg-->
-<!--                                                                                        </header>-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div style="width: 100%;">-->
-<!--                                                                                        <img class=""-->
-<!--                                                                                             src="https://www.story-w.co.kr/resource/202208/contents/pt56u0nyuafey53n.png"-->
-<!--                                                                                             align="center"-->
-<!--                                                                                             style="-->
-<!--                                                                                            height: 132px;-->
-<!--                                                                                            width:-webkit-fill-available;">-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div>-->
-<!--                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">-->
-<!--                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"-->
-<!--                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">-->
-<!--                                                                                        </a>-->
-<!--                                                                                    </div>-->
-<!--                                                                                </div>-->
-
-<!--                                                                                &lt;!&ndash; 배너 목록 &ndash;&gt;-->
-<!--                                                                                <div class="card-inter">-->
-<!--                                                                                    <div class="card-head">-->
-<!--                                                                                        <header>-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox"-->
-<!--                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg-->
-<!--                                                                                        </header>-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div style="width: 100%;">-->
-<!--                                                                                        <img class=""-->
-<!--                                                                                             src="https://www.jobaba.net/file/image.do?filePath=qjOcXNAS8yGf1OiG0Ekwo0QptU81YocVDFsyagElFd1wFKbBzbzowpgajnz6aOy6"-->
-<!--                                                                                             align="center"-->
-<!--                                                                                             style="-->
-<!--                                                                                            height: 132px;-->
-<!--                                                                                            width:-webkit-fill-available;">-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div>-->
-<!--                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">-->
-<!--                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"-->
-<!--                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">-->
-<!--                                                                                        </a>-->
-<!--                                                                                    </div>-->
-<!--                                                                                </div>-->
-
-<!--                                                                                &lt;!&ndash; 배너 목록 &ndash;&gt;-->
-<!--                                                                                <div class="card-inter">-->
-<!--                                                                                    <div class="card-head">-->
-<!--                                                                                        <header>-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox"-->
-<!--                                                                                                   style="width: 13px;margin-right: 8px;">메인베너1.jpg-->
-<!--                                                                                        </header>-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div style="width: 100%;">-->
-<!--                                                                                        <img class=""-->
-<!--                                                                                             src="https://pbs.twimg.com/media/DkH4HUSV4AAyLQe.jpg"-->
-<!--                                                                                             align="center"-->
-<!--                                                                                             style="-->
-<!--                                                                                            height: 132px;-->
-<!--                                                                                            width:-webkit-fill-available;">-->
-<!--                                                                                    </div>-->
-<!--                                                                                    <div>-->
-<!--                                                                                        <a href="http://localhost:10001/admin/adminbannermodify" style="cursor: pointer; align-content: end">-->
-<!--                                                                                            <img style="width: 20%; float: right; margin-right: 4px;"-->
-<!--                                                                                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACp0lEQVRoge2Y22oTURSG/z2ZSZqmUVJLE8RaDwki1rbSSoSqRBMxUBQt4kvohV6kBp9ArWJAX0LRKgq2IGq8aMAThhZFTS9SpSUQm8bQpk0yBy+ayNDaHMfZI8x3l702a/6PtWeYCaCj0xCk0obQ25z0j658/dJBU7DRNowSWWql2UgACVdC73LXGu1FReDoDgMsCklQETBzBEcUkqAiACgnQU0AUEaCqgDQuAR1AaAxCU0IAPVLaEYAqE9CUwLAeolK+1k1Qq3l0aeCYr00N4Fa0QVoowvQRhegjS5AG12ANlTehephJhi0sfn8UxDSLjLMYMfISAz4TyZwfzzSCoZ5AkIGALgYUXz1IxBwATT/2KqSzqWIjUjG5wa+0NT9YryT5QvWYilBBOG4pifASisgovElgH6B5bqmvP64wHKLxbJDMhgea1bAJKRx7qsX9mzkV2mNZ7n9k3IJSUpqUsAkpHE2Ngh79j0OzQY89qVIuFTjWa5r0uuP85xxQpSk05q7B+Th5bzZeiOcaBnwFH9GRZH1Dfnc85qawEbhAcA9N+xxLE6EIQsPaOgx2iSkMBTz/zV8Cffc8GbXzwfeUnhAIwImIY0zsVNoz34sty0KHif2nb+dki9SFyh3bGREwcNHLmJ+bYGqQKPhAYoC1YRPmntQLjxASaDa8KOuMZQLD1AQqCX8CrulYj9VBZQOD6j8PdCXC8GW/7JhPdncuxre0Fp1T1UnsId5iIzThTxnXVdLmnsw6nxWU3hARQGrNItN0gzayGdkdjuR51r+1Go9NnIqvswpxa2rvXeP7U1cOLB9YXVBlKYQy++EiOlKj8pyqDaBeMpy8vK9fnyYKR4RhljQYbwDFt56wwMq3sSZZa6te9vC9OtvjrG+Xemb5PDydyX6/gYZcyKWPkzBiQAAAABJRU5ErkJggg==">-->
-<!--                                                                                        </a>-->
-<!--                                                                                    </div>-->
-<!--                                                                                </div>-->
-
-
-
-
+                                                                                </form>
                                                                             </div>
-
-
                                                                         </div>
-
-
                                                                         <div class="row">
-
-
                                                                             <!-- 우측 하단 페이징 처리 -->
                                                                             <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
                                                                                 <div class="dataTables_paginate paging_simple_numbers"
@@ -469,16 +336,16 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script th:inline="javascript">
+
+    var $checkboxes = $(".form-check-input.checkbox");
+
     $("#deleteBannerBtn").on("click", function () {
-        let uploadPath = $(".checkbox:checked").closest(".card-inter").find(".image").attr("src");
-        console.log(uploadPath)
+        if ($checkboxes.filter(":checked").length == 0) {
+            alert("삭제할 배너를 선택하세요.");
+            return;
+        }
 
-        $.ajax({
-            url: "/admin/banner/delete",
-            type: "post",
-            data: {uploadPath: uploadPath}
-        })
-
+        $("form[name='deleteForm']").submit();
     })
 
 

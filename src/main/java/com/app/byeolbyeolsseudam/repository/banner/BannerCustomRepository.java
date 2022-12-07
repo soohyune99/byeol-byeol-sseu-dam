@@ -9,5 +9,7 @@ import java.util.List;
 public interface BannerCustomRepository{
     public List<BannerDTO> showList();
 
+    public BannerDTO selectById(Long bannerId);
 
+    public void update(BannerDTO bannerDTO);
 }

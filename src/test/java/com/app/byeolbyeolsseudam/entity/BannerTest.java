@@ -128,21 +128,21 @@ public class BannerTest{
 
 
 
-    @Test
-    public void memberSaveTest(){
-        for(int i = 0; i < 4; i++){
-            MemberDTO memberDTO = new MemberDTO();
-
-            memberDTO.setMemberLoginType(MemberLoginType.네이버);
-            memberDTO.setMemberCategory(MemberCategory.일반회원);
-            memberDTO.setMemberName("한동석");
-            memberDTO.setMemberEmail("tedhan@gmail.com");
-            memberDTO.setMemberPassword("1");
-            memberDTO.setMemberPhone("01077777777");
-
-            memberRepository.save(memberDTO.toEntity());
-        }
-    }
+//    @Test
+//    public void memberSaveTest(){
+//        for(int i = 0; i < 4; i++){
+//            MemberDTO memberDTO = new MemberDTO();
+//
+//            memberDTO.setMemberLoginType(MemberLoginType.네이버);
+//            memberDTO.setMemberCategory(MemberCategory.일반회원);
+//            memberDTO.setMemberName("한동석");
+//            memberDTO.setMemberEmail("tedhan@gmail.com");
+//            memberDTO.setMemberPassword("1");
+//            memberDTO.setMemberPhone("01077777777");
+//
+//            memberRepository.save(memberDTO.toEntity());
+//        }
+//    }
 
 //    @Test
 //    public void orderDetailSaveTest(){

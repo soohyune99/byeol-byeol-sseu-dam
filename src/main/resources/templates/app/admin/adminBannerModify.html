@@ -91,8 +91,8 @@
                                                                         <div class="table-responsive">
 
                                                                         </div>
-                                                                        <form th:action="@{adminbannerlist}" name="modifyBannerForm">
-                                                                        <div style="width: 60%; margin: 0 auto 0 auto;">
+                                                                        <form th:action="@{/admin/banner/modified}" name="modifyBannerForm" method="post" enctype="multipart/form-data">
+                                                                        <div style="width: 60%; margin: 0 auto 0 auto;" th:object="${oldBanner}">
                                                                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                  style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
                                                                                 <div class="w-100 mw-150px">
@@ -119,7 +119,7 @@
                                                                                                data-kt-ecommerce-product-filter="search"
                                                                                                class="form-control form-control-solid w-250px ps-14"
                                                                                                placeholder=""
-                                                                                               name="bannerName"
+                                                                                               name="bannerNames"
                                                                                                accept="image/jpeg, image/jpg, image/png, image/gif, image/svg+xml"
                                                                                                style="display:none;margin: 0 auto;">
                                                                                         <img src="/images/admin/02.png"
@@ -130,7 +130,9 @@
                                                                             </div>
                                                                             <div class="row">
                                                                             </div>
+                                                                            <input type="hidden" class="bannerID" name="bannerId" th:value="*{bannerId}">
                                                                         </div>
+                                                                            <div id="bannerInfo"></div>
                                                                         <!--end::Table-->
                                                                         </form>
                                                                     </div>
@@ -158,5 +160,43 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script th:inline="javascript">
+    let arrayFile = [];
 
+    $("input[type='file']").on("change",function () {
+        let formData = new FormData();
+        let $inputFile = $("input[name='bannerNames']");
+        let files = $inputFile[0].files;
+
+        Array.from(files).forEach(file => arrayFile.push(file));
+        const dataTransfer = new DataTransfer();
+        arrayFile.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $(files).each(function(i, file){
+            formData.append("upload", file);
+        });
+
+        $.ajax({
+            url: "/file/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: insertImg
+        });
+    });
+
+    function insertImg(files) {
+        let text = "";
+
+        $(files).each(function (i, file) {
+            text += `<input name="bannerName" type="hidden" value="`+ file.bannerName +`">`;
+            text += `<input name="bannerPath" type="hidden" value="`+ file.bannerPath +`">`;
+            text += `<input name="bannerUuid" type="hidden" value="`+ file.bannerUuid +`">`;
+        });
+        $("#bannerInfo").html(text);
+
+    }
+</script>
 </html>

@@ -3,18 +3,19 @@ package com.app.byeolbyeolsseudam.controller.admin;
 import com.app.byeolbyeolsseudam.domain.banner.BannerDTO;
 import com.app.byeolbyeolsseudam.service.main.BannerService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.File;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = {"/admin/banner/*", "/admin/banner"})
+@Slf4j
 public class BannerController {
     private final BannerService bannerService;
 
@@ -37,10 +38,25 @@ public class BannerController {
     }
 
     /* 베너관리- 베너 수정 */
+    @PostMapping("/modified")
+    public RedirectView adminBannerModify(BannerDTO bannerDTO){
+        log.info("controller" + bannerDTO);
+        bannerService.updateBanner(bannerDTO, bannerDTO.getBannerId());
+
+        return new RedirectView("/admin/banner");
+    }
+
     @GetMapping("/modify")
-    public String adminBannerModify(){
+    public String adminBannerModified(@RequestParam(name = "bannerId") Long bannerId, Model model ){
+        model.addAttribute("oldBanner", bannerService.selectById(bannerId));
+
         return "/app/admin/adminBannerModify";
     }
 
+    @PostMapping("/delete")
+    public RedirectView adminProgramDelete(@RequestParam List<String> checkedValue){
+        bannerService.removeBanner(checkedValue);
 
+        return new RedirectView("/admin/banner");
+    }
 }
