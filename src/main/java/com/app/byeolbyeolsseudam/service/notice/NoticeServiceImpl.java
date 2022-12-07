@@ -5,7 +5,9 @@ import com.app.byeolbyeolsseudam.entity.notice.Notice;
 import com.app.byeolbyeolsseudam.repository.notice.NoticeRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.loadtime.definition.LightXMLParser;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,15 @@ import java.util.List;
 public class NoticeServiceImpl implements NoticeService {
 
     private final NoticeRepository noticeRepository;
+
+    @Override
+    public Page<NoticeDTO> showListAll(Pageable pageable){
+
+        List<NoticeDTO> notices = noticeRepository.showAll(pageable);
+        final Page<NoticeDTO> noticePage = new PageImpl<>(notices, pageable, notices.size());
+
+        return noticePage;
+    }
 
     @Override
     public List<NoticeDTO> showListCategory(){
@@ -29,7 +40,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public List<NoticeDTO> search(String keyword){
-        return noticeRepository.findByTitleContaining(keyword);
+        return noticeRepository.searchNotice(keyword);
     }
 
 

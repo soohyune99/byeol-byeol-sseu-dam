@@ -35,21 +35,29 @@ public class NoticeTest {
     @Test
     public void queryDslTest(){
 
-        for (int i=0; i<50; i++){
+        for (int i=0; i<10; i++){
             NoticeDTO notice1 = new NoticeDTO();
-            notice1.setNoticeTitle("공지사항" + i);
-            notice1.setNoticeContent("공지사항 내용" + i);
+            notice1.setNoticeTitle("바나프레소 커피" + (i+1));
+            notice1.setNoticeContent("아이스아메리카노" + (i+1));
             notice1.setNoticeCategory(NoticeCategory.중요);
 
             noticeRepository.save(notice1.toEntity());
         }
-        for (int i=51; i<101; i++){
+        for (int i=11; i<20; i++){
             NoticeDTO noticeDTO = new NoticeDTO();
-            noticeDTO.setNoticeTitle("공지사항" + i);
-            noticeDTO.setNoticeContent("공지사항 내용" + i);
+            noticeDTO.setNoticeTitle("할리스 커피" + (i+1));
+            noticeDTO.setNoticeContent("바닐라 딜라이트" + (i+1));
             noticeDTO.setNoticeCategory(NoticeCategory.일반);
 
             noticeRepository.save(noticeDTO.toEntity());
+        }
+        for (int i=21; i<30; i++){
+            NoticeDTO notice2 = new NoticeDTO();
+            notice2.setNoticeTitle("할리스 커피" + (i+1));
+            notice2.setNoticeContent("바닐라 딜라이트" + (i+1));
+            notice2.setNoticeCategory(NoticeCategory.일반);
+
+            noticeRepository.save(notice2.toEntity());
         }
 //
 //        List<Notice> notices = jpaQueryFactory.selectFrom(notice)
@@ -105,7 +113,7 @@ public class NoticeTest {
     public void searchTest(){
         jpaQueryFactory.select(notice.noticeTitle, notice.noticeContent)
                 .from(notice)
-                .where(notice.noticeTitle.contains("공지").or(notice.noticeContent.contains("내용")))
+                .where(notice.noticeTitle.contains("스").or(notice.noticeContent.contains("스")))
                 .orderBy(notice.createdDate.desc())
                 .fetch()
                 .stream()

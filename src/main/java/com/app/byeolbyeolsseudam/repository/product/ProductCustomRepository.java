@@ -26,6 +26,7 @@ public interface ProductCustomRepository {
     // 반려동물 카테고리 조회
     public List<ProductDTO> showPet();
 
+
     // 마켓 상세 + 댓글 조회
     public ProductDTO showDetail(Long productId);
     // 마켓 상세 조회

@@ -408,7 +408,7 @@
                         </section>
                     </div>
                 </div>
-                <form action="/payment" method="GET" class="count-form">
+                <form th:action="@{/market/payment}" method="post" class="count-form">
                 <div class="flex-aside right" data-v-08563466="">
                     <div class="product-controller" data-v-08563466=""  th:object="${product}">
                         <section class="bread-crumbs no-space" data-v-08563466="">
@@ -539,7 +539,7 @@
                                                                         <label for="orderCount">
                                                                             <!-- 주문 수량 -->
                                                                             <input name="orderCount" id="orderCount" type="text" title="number" value="1" class="form-control _order_count_mobile 0">
-                                                                            <input type="text" style="display: none;" name="productId" id="takeId">
+                                                                            <input type="text" style="display: none;" name="productId" id="takeId" th:value="*{productId}">
                                                                         </label>
                                                                         <a href="javascript: plusItemCount(0);">
                                                                             <i class="btl bt-plus" aria-hidden="true"></i>

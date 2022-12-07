@@ -37,15 +37,13 @@
                             공지사항
                         </li>
                     </ol>
-                    <form role="search" class="search" data-search="" action="/search" accept-charset="UTF-8" method="GET">
+                    <form class="search" name="searchForm" th:action="@{/notice/search}" method="get">
                         <img data-v-3cfeddf8="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQgNCkiIHN0cm9rZT0iI0I1QjVCNSIgc3Ryb2tlLXdpZHRoPSIxLjYiPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGN4PSI2LjUiIGN5PSI2LjUiIHI9IjYuNSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIGQ9Im0xMS41IDExLjUgNSA1Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="검색 아이콘" style="
                              position: relative;
                                 top: 36px;
                                 left: 13px;">
-                        <input name="utf8" type="hidden" value="✓" autocomplete="off">
-                        <input type="search" name="query keyword" id="query" class="clickSearch" placeholder="검색" aria-label="검색">
-<!--                        <input type="text" th:field="*{keyword}" th:value="*{keyword}">-->
-<!--                        <button class="search button primary icon solid fa-search">검색</button>-->
+<!--                        <input name="utf8" type="hidden" value="✓" autocomplete="off">-->
+                        <input type="search" name="keyword" id="query" class="clickSearch" placeholder="검색" aria-label="검색">
                     </form>
                 </nav>
 
@@ -60,14 +58,14 @@
                                 <div class="table-wrapper">
                                     <table>
                                         <tbody>
-                                        <th:block th:each="notice:${notices}">
+                                        <th:block th:each="notice:${paging}">
                                             <tr class="tBody" th:object="${notice}">
                                                 <td th:if="${#strings.equals(notice.noticeCategory , '중요')}">
                                                     <img src="/images/notice/star.png" alt="" width="18px" height="18px" style="margin-right: 5px;">
-                                                    <a class="read" th:text="*{noticeTitle}" th:href="*{noticeId}"></a>
+                                                    <a class="read" th:text="*{noticeTitle}" th:href="|detail/*{noticeId}|"></a>
                                                 </td>
                                                 <td th:if="${#strings.equals(notice.noticeCategory , '일반')}">
-                                                    <a class="read" th:text="*{noticeTitle}" th:href="*{noticeId}"></a>
+                                                    <a class="read" th:text="*{noticeTitle}" th:href="|detail/*{noticeId}|"></a>
                                                 </td>
                                             </tr>
                                         </th:block>
@@ -76,38 +74,66 @@
                                 </div>
                             </section>
                         </div>
-                                    
-                        <!-- 페이징 처리  -->
-                        <nav class="pagination">
-                            <ul>
-                                <li class="pagination-current">
-                                    <span>1</span>
+                        <!-- 페이징 -->
+                        <!-- 페이징처리 시작 -->
+                        <div th:if="${!paging.isEmpty()}">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                                    <a class="page-link"
+                                       th:href="@{/page=${paging.number-1}}">
+                                        <span>이전</span>
+                                    </a>
                                 </li>
-                                <li>
-                                    <a href="/hc/ko/sections/360006534351-%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD?page=2#articles" rel="next nofollow">2</a>
+                                <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                                    th:classappend="${page == paging.number} ? 'active'"
+                                    class="page-item">
+                                    <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
                                 </li>
-                                <li>
-                                    <a href="/hc/ko/sections/360006534351-%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD?page=3#articles" rel="nofollow">3</a>
-                                </li>
-
-                                <li class="pagination-next">
-                                    <a href="/hc/ko/sections/360006534351-%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD?page=2#articles" rel="next nofollow">›</a>
-                                </li>
-                                <li class="pagination-last">
-                                    <a href="/hc/ko/sections/360006534351-%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD?page=3#articles" rel="nofollow">»</a>
+                                <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                                    <a class="page-link" th:href="@{/page=${paging.number+1}}">
+                                        <span>다음</span>
+                                    </a>
                                 </li>
                             </ul>
-                        </nav>
-                        <!-- 페이징 처리 끝  -->
+                        </div>
+                        <!-- 페이징처리 끝 -->
 
-                        <!-- 게시글 작업 -->
+
+                       <!-- <div>
+                            <nav class="pagination">
+                                <ul>
+                                    <li class="pagination-first">
+                                        <a href="" rel="nofollow">«</a>
+                                    </li>
+
+                                    <li class="pagination-prev">
+                                        <a href="" rel="prev nofollow" th:href="*{page - 1}">‹</a>
+                                    </li>
+                                    <li>
+                                        <a href="" rel="prev nofollow" th:href="*{page}">1</a>
+                                    </li>
+                                    <li class="pagination-current">
+                                        <span>2</span>
+                                    </li>
+                                    <li>
+                                        <a href="" rel="next nofollow">3</a>
+                                    </li>
+                                    <li class="pagination-next">
+                                        <a href="" rel="next nofollow">›</a>
+                                    </li>
+                                    <li class="pagination-last">
+                                        <a href="" rel="nofollow">»</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>-->
                     </div>
                 </div>
             </div>
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="/js/Notice/Notice.js"></script>
+<!--<script src="/js/Notice/Notice.js"></script>-->
 <script src="/js/fix/headerLogin.js"></script>
 <script th:inline="javascript">
 
@@ -118,8 +144,14 @@
     //     document.search.submit();
     // });
 
+    /* keyword 입력시 실행되는 함수 */
+    function searchList(theForm) {
+        keyword = theForm.enter.value; // keyword = enter키로 작동한 form 태그 안에 있는 값
+        console.log(keyword);
+    }
+
     $("input.clickSearch").on("keyup",function(key){
-        e.preventDefault();
+        // e.preventDefault();
         if(key.keyCode==13) {
             document.search.submit();
             location.href = "/notice"+ "/search" + $(this).attr("href");
@@ -134,5 +166,8 @@
     $('.clickSearch').click(function(){
         $('.clickSearch').css("border", "1px solid #00c7ae");
     })
+
+
+
 </script>
 </html>
