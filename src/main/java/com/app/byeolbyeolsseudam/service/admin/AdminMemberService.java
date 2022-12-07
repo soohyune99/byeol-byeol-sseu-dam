@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.app.byeolbyeolsseudam.entity.member.QMember.member;
@@ -21,4 +22,10 @@ public class AdminMemberService {
     public List<MemberDTO> showMemberList(){
         return adminMemberRepository.showMemberList();
     };
+
+    public void removeMember(List<String> memberIdstr){
+//        List<Long> memberId = new ArrayList<>();
+//        memberIdstr.stream().map(Long::parseLong).forEach(memberId::add);
+//        memberId.forEach(adminMemberRepository::deleteById);
+    }
 }

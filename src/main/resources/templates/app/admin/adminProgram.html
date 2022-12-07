@@ -221,7 +221,7 @@
                                                                                 <tbody class="fw-semibold text-gray-600">
 
                                                                                 <!-- 프로그램 목록 모집중 -->
-                                                                                <form action="http://localhost:10001/admin/program/delete" name="deleteForm">
+                                                                                <form action="http://localhost:10001/admin/program/delete" name="deleteForm" method="post">
                                                                                 <th:block th:each="program:${programs}">
                                                                                 <tr th:object="${program}" class="odd productList">
                                                                                     <!--begin::Checkbox-->
@@ -241,7 +241,7 @@
                                                                                     <!--begin::강좌명=-->
                                                                                     <td class="text-end pe-0">
                                                                                         <span class="fw-bold">
-                                                                                            <a  th:text="*{programName}" href="http://localhost:10001/admin/adminprogramdetail"></a>
+                                                                                            <a  th:text="*{programName}" href="http://localhost:10001/admin/program/detail"></a>
                                                                                         </span>
                                                                                     </td>
                                                                                     <!--end::강좌명=-->

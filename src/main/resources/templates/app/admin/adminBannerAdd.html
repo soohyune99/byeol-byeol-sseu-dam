@@ -95,8 +95,9 @@
                                                                         <div style="width: 60%; margin: 0 auto 0 auto;">
                                                                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                  style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
-                                                                                <div class="w-100 mw-150px" style="margin-bottom: 9px;">
-                                                                                    <a type="submit" onclick="addBanner()" class="btn btn-primary">저장</a>
+                                                                                <div class="w-100 mw-150px" style="display: flex;flex-direction: column; margin-bottom: 9px;">
+                                                                                    <a type="submit" style="cursor: pointer" onclick="addBanner()" class="btn btn-primary">저장</a>
+                                                                                    <a href="javascript:void(0)" style="background: #f1416c" class="btn btn-primary uploadCancel">취소</a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -130,6 +131,10 @@
                                                                             </div>
                                                                         </div>
                                                                         <!--end::Table-->
+                                                                            <div id="bannerInfo">
+
+                                                                            </div>
+
                                                                         </form>
                                                                     </div>
                                                                     <!--end::Card body-->
@@ -164,6 +169,12 @@
         let $inputFile = $("input[name='bannerNames']");
         let files = $inputFile[0].files;
 
+        let $uploadPath = $("input[name='bannerPath']").val();
+        let $bannerUuid = $("input[name='bannerUuid']").val();
+        let $bannerName = $("input[name='bannerName']").val();
+
+        deleteFile($uploadPath,$bannerUuid,$bannerName);
+
         Array.from(files).forEach(file => arrayFile.push(file));
         const dataTransfer = new DataTransfer();
         arrayFile.forEach(file => dataTransfer.items.add(file));
@@ -191,8 +202,31 @@
             text += `<input name="bannerPath" type="hidden" value="`+ file.bannerPath +`">`;
             text += `<input name="bannerUuid" type="hidden" value="`+ file.bannerUuid +`">`;
         });
-        $("label").append(text);
+        $("#bannerInfo").html(text);
 
     }
+
+    $(".uploadCancel").on("click",function () {
+        let $uploadPath = $("input[name='bannerPath']").val();
+        let $bannerUuid = $("input[name='bannerUuid']").val();
+        let $bannerName = $("input[name='bannerName']").val();
+
+        deleteFile($uploadPath,$bannerUuid,$bannerName);
+
+        location.href="http://localhost:10001/admin/banner"
+    })
+
+    function deleteFile(path, uuid, name) {
+        $.ajax({
+            url: "/file/delete",
+            type: "post",
+            data:{
+                uploadPath: path,
+                bannerUuid: uuid,
+                bannerName:name
+            }
+        })
+    }
+
 </script>
 </html>

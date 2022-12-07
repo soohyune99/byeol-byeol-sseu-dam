@@ -38,12 +38,6 @@ public class AdminProgramRepositoryImpl implements AdminProgramCustomRepository{
         )).from(program).orderBy(program.programId.desc()).limit(10).fetch();
     }
 
-//    public void delete(List<String> programId){
-//        List<Long> programIdLong = null;
-//        programId.stream().map(Long::parseLong).forEach(programIdLong::add);
-//
-//
-//    }
 
 
 }

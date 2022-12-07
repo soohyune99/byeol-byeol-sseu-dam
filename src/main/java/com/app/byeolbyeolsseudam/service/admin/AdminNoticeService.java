@@ -5,6 +5,7 @@ import com.app.byeolbyeolsseudam.repository.admin.notice.AdminNoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,6 +20,12 @@ public class AdminNoticeService {
 
     public void saveNotice(NoticeDTO noticeDTO){
         adminNoticeRepository.save(noticeDTO.toEntity());
+    }
+
+    public void removeNotice(List<String> noticeIdstr){
+        List<Long> noticeId = new ArrayList<>();
+        noticeIdstr.stream().map(Long::parseLong).forEach(noticeId::add);
+        noticeId.forEach(adminNoticeRepository::deleteById);
     }
 
 }

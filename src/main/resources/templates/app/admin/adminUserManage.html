@@ -223,12 +223,13 @@
                                                                                 <tbody class="fw-semibold text-gray-600">
 
                                                                                 <!-- 회원 -->
+                                                                                <form th:action="@{member/delete}" method="post" name="deleteForm">
                                                                                 <th:block th:each="member:${members}">
                                                                                 <tr class="row_member" th:object="${member}">
                                                                                     <!-- memberCheckBox -->
                                                                                     <td class="memberCheckbox">
                                                                                         <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox" type="checkbox">
+                                                                                            <input class="form-check-input checkbox" type="checkbox" name="checkedValue" th:value="*{memberId}">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!-- memberId -->
@@ -254,310 +255,8 @@
                                                                                     </td>
                                                                                 </tr>
                                                                                 </th:block>
+                                                                                </form>
 
-                                                                            <!-- BEGIN : 삭제할 데이터 - 날리기 #########################-->
-                                                                                <!-- 회원2 -->
-<!--                                                                                <tr class="row_member">-->
-<!--                                                                                    <td>-->
-<!--                                                                                        <div-->
-<!--                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox">-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value number">-->
-<!--                                                                                        2022111302-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        일반회원-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        정재훈-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        010-5678-1234-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        wjd1234@naver.com-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        25000-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        photo2.jpg-->
-<!--                                                                                    </td>-->
-<!--                                                                                    </td>-->
-<!--                                                                                </tr>-->
-
-<!--                                                                                &lt;!&ndash; 회원3 &ndash;&gt;-->
-<!--                                                                                <tr class="row_member">-->
-<!--                                                                                    <td>-->
-<!--                                                                                        <div-->
-<!--                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox">-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value number">-->
-<!--                                                                                        2022111303-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        일반회원-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        홍수현-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        010-9874-6512-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        ghd1234@naver.com-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        17500-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        phopho.jpg-->
-<!--                                                                                    </td>-->
-<!--                                                                                    </td>-->
-<!--                                                                                </tr>-->
-
-<!--                                                                                &lt;!&ndash; 회원4 &ndash;&gt;-->
-<!--                                                                                <tr class="row_member">-->
-<!--                                                                                    <td>-->
-<!--                                                                                        <div class="form-check form-check-sm form-check-custom form-check-solid">-->
-<!--                                                                                            <input class="form-check-input checkbox" type="checkbox">-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value number">-->
-<!--                                                                                        2022111301-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        일반회원-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        문승희-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        010-1234-5678-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        ans1234@naver.com-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        36800-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        photo.jpg-->
-<!--                                                                                    </td>-->
-<!--                                                                                    </td>-->
-<!--                                                                                </tr>-->
-
-<!--                                                                                &lt;!&ndash; 회원5 &ndash;&gt;-->
-<!--                                                                                <tr class="row_member">-->
-<!--                                                                                    <td>-->
-<!--                                                                                        <div-->
-<!--                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox">-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value number">-->
-<!--                                                                                        2022111302-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        일반회원-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        정재훈-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        010-5678-1234-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        wjd1234@naver.com-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        25000-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        photo2.jpg-->
-<!--                                                                                    </td>-->
-<!--                                                                                    </td>-->
-<!--                                                                                </tr>-->
-
-<!--                                                                                &lt;!&ndash; 회원6 &ndash;&gt;-->
-<!--                                                                                <tr class="row_member">-->
-<!--                                                                                    <td>-->
-<!--                                                                                        <div-->
-<!--                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox">-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value number">-->
-<!--                                                                                        2022111303-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        일반회원-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        홍수현-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        010-9874-6512-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        ghd1234@naver.com-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        17500-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        phopho.jpg-->
-<!--                                                                                    </td>-->
-<!--                                                                                    </td>-->
-<!--                                                                                </tr>-->
-
-<!--                                                                                &lt;!&ndash; 회원7 &ndash;&gt;-->
-<!--                                                                                <tr class="row_member">-->
-<!--                                                                                    <td>-->
-<!--                                                                                        <div class="form-check form-check-sm form-check-custom form-check-solid">-->
-<!--                                                                                            <input class="form-check-input checkbox" type="checkbox">-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value number">-->
-<!--                                                                                        2022111301-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        일반회원-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        문승희-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        010-1234-5678-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        ans1234@naver.com-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        36800-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        photo.jpg-->
-<!--                                                                                    </td>-->
-<!--                                                                                    </td>-->
-<!--                                                                                </tr>-->
-
-<!--                                                                                &lt;!&ndash; 회원8 &ndash;&gt;-->
-<!--                                                                                <tr class="row_member">-->
-<!--                                                                                    <td>-->
-<!--                                                                                        <div-->
-<!--                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox">-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value number">-->
-<!--                                                                                        2022111302-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        일반회원-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        정재훈-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        010-5678-1234-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        wjd1234@naver.com-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        25000-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        photo2.jpg-->
-<!--                                                                                    </td>-->
-<!--                                                                                    </td>-->
-<!--                                                                                </tr>-->
-
-<!--                                                                                &lt;!&ndash; 회원9 &ndash;&gt;-->
-<!--                                                                                <tr class="row_member">-->
-<!--                                                                                    <td>-->
-<!--                                                                                        <div-->
-<!--                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox">-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value number">-->
-<!--                                                                                        2022111303-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        일반회원-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        홍수현-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        010-9874-6512-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        ghd1234@naver.com-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        17500-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        phopho.jpg-->
-<!--                                                                                    </td>-->
-<!--                                                                                    </td>-->
-<!--                                                                                </tr>-->
-
-<!--                                                                                &lt;!&ndash; 회원10 &ndash;&gt;-->
-<!--                                                                                <tr class="row_member">-->
-<!--                                                                                    <td>-->
-<!--                                                                                        <div-->
-<!--                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">-->
-<!--                                                                                            <input class="form-check-input checkbox"-->
-<!--                                                                                                   type="checkbox">-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value number">-->
-<!--                                                                                        2022111303-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        일반회원-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        홍수현-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        010-9874-6512-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        ghd1234@naver.com-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        17500-->
-<!--                                                                                    </td>-->
-<!--                                                                                    <td class="member_list_value">-->
-<!--                                                                                        phopho.jpg-->
-<!--                                                                                    </td>-->
-<!--                                                                                    </td>-->
-<!--                                                                                </tr>-->
-
-                                                                             <!-- END : 삭제할 데이터 - 날리기 ########################### -->
-
-                                                                                <!-- 회원이 없을 때 - 주석 풀기 -->
-                                                                                <!--<tr>
-                                                                                    <td colspan="9" align="center">가입된
-                                                                                        회원이
-                                                                                        없습니다.
-                                                                                    </td>
-                                                                                </tr>-->
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
@@ -646,5 +345,16 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script>
+    var $checkboxes = $(".form-check-input.checkbox");
 
+    $("#deleteMemberButton").on("click",function () {
+        if ($checkboxes.filter(":checked").length == 0) {
+            alert("삭제할 프로그램을 선택하세요.");
+            return;
+        }
+
+        $("form[name='deleteForm']").submit();
+    })
+</script>
 </html>
