@@ -6,9 +6,11 @@ import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
 import com.app.byeolbyeolsseudam.domain.comment.QCommentDTO;
 import com.app.byeolbyeolsseudam.domain.fileBoard.FileBoardDTO;
 import com.app.byeolbyeolsseudam.domain.fileBoard.QFileBoardDTO;
+import com.app.byeolbyeolsseudam.entity.board.Board;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,8 +18,10 @@ import java.util.List;
 import static com.app.byeolbyeolsseudam.entity.board.QBoard.board;
 import static com.app.byeolbyeolsseudam.entity.comment.QComment.comment;
 import static com.app.byeolbyeolsseudam.entity.fileBoard.QFileBoard.fileBoard;
+import static com.app.byeolbyeolsseudam.entity.member.QMember.member;
 
 @Repository
+@Slf4j
 @RequiredArgsConstructor
 public class BoardCustomRepositoryImpl implements BoardCustomRepository{
     private final JPAQueryFactory jpaQueryFactory;
@@ -45,19 +49,6 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                     .fetch();
             board.setComments(comments);
         });
-
-//        for(BoardDTO board : boards){
-//            List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
-//                    comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
-//                    comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
-//                    comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-//                    comment.board.boardId, comment.createdDate))
-//                    .from(comment)
-//                    .where(comment.board.boardId.eq(board.getBoardId()))
-//                    .fetch();
-//            board.setComments(comments);
-//        }
-
         return boards;
     }
 
@@ -70,6 +61,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                 board.member.memberProfileUuid, board.createdDate, board.updatedDate))
                 .from(board)
                 .orderBy(board.createdDate.desc())
+                .limit(10)
                 .fetch();
 
         boards.stream().forEach(board -> {
@@ -95,6 +87,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                 .from(board)
                 .where(board.boardCategory.eq(boardCategory))
                 .orderBy(board.createdDate.desc())
+                .limit(10)
                 .fetch();
 
         boards.stream().forEach(board -> {
@@ -122,6 +115,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                         .or(board.boardContent.contains(keyword)))
 //                        .or(board.boardCategory.eq(BoardCategory.valueOf(keyword))))
                 .orderBy(board.createdDate.desc())
+                .limit(10)
                 .fetch();
 
         boards.stream().forEach(board -> {
@@ -172,10 +166,66 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
         return boardDTO;
     }
 
+    /* 글 작성 시 작성자 찾기 */
     @Override
-    public void plusView(BoardDTO boardDTO){
+    public void saveMemberofBoard(BoardDTO boardDTO, Board board){
+        board.changeMember(
+                jpaQueryFactory.selectFrom(member)
+                .where(member.memberId.eq(boardDTO.getMemberId()))
+                .fetchOne()
+        );
+    }
+
+    /* 게시글 수정 */
+    @Override
+    public Board updateBoard(BoardDTO boardDTO){
+        log.info("보드!!!!!!!!!!!!!!!!!!!" + boardDTO.getBoardId());
+        log.info("보드!!!!!!!!!!!!!!!!!!!" + boardDTO.getBoardCategory());
+        log.info(boardDTO.getBoardTitle());
+        log.info(boardDTO.getBoardContent());
+        log.info("보드!!!!!!!!!!!!!!!!!!!" + boardDTO.getMemberId());
+
+        Board updatedBoard = jpaQueryFactory.selectFrom(board)
+                .where(board.boardId.eq(boardDTO.getBoardId()))
+                .fetchOne();
+
+        updatedBoard.update(boardDTO);
+
+        return updatedBoard;
+    }
+
+    @Override
+    public List<BoardDTO> selectScrollBoards(int page){
+        List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
+                board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
+                board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
+                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
+                .from(board)
+                .orderBy(board.createdDate.desc())
+                .offset(page * 10)
+                .limit(10)
+                .fetch();
+
+        boards.stream().forEach(board -> {
+            List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
+                    comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
+                    comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
+                    comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
+                    comment.board.boardId, comment.createdDate, comment.updatedDate))
+                    .from(comment)
+                    .where(comment.board.boardId.eq(board.getBoardId()))
+                    .fetch();
+            board.setComments(comments);
+        });
+        return boards;
+    }
+
+    @Override
+    public Board plusView(BoardDTO boardDTO){
         boardDTO.setBoardView(boardDTO.getBoardView() + 1);
-        jpaQueryFactory.selectFrom(board).where(board.boardId.eq(boardDTO.getBoardId())).fetchOne().update(boardDTO);
+        Board plusViewBoard = jpaQueryFactory.selectFrom(board).where(board.boardId.eq(boardDTO.getBoardId())).fetchOne();
+        plusViewBoard.update(boardDTO);
+        return plusViewBoard;
     }
 
 }

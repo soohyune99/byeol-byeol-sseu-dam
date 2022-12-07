@@ -2,6 +2,25 @@
 
 
 let commentService = (function(){
+    function getCommentList(boardId, callback, error){
+        $.ajax({
+            url: "/comment/" + boardId,
+            type: "get",
+            data: JSON.stringify(boardId),
+            contentType: "application/json; charset=utf-8",
+            success: function(comments, status, xhr){
+                if(callback){
+                    callback(comments);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
     function save(comment, callback, error){
         $.ajax({
             url: "/comment/new",
@@ -20,6 +39,6 @@ let commentService = (function(){
             }
         });
     }
-    return {save: save}
+    return {getCommentList:getCommentList, save: save}
 })();
 

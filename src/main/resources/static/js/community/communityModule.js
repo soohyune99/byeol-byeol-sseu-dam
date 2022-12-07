@@ -75,6 +75,97 @@ let communityService = (function(){
         $.ajax({
             url: "/board/read/" + boardId,
             type: "get",
+            success: function(board, status, xhr){
+                if(callback){
+                    callback(board);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function saveBoard(boardDTO, callback, error){
+        $.ajax({
+            url: "/board/write",
+            type: "post",
+            data: JSON.stringify(boardDTO),
+            contentType: "application/json; charset=utf-8",
+            success: function(status, xhr){
+                if(callback){
+                    callback();
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function updateBoard(boardDTO, callback, error){
+        $.ajax({
+            url: "/board/update" + boardDTO.boardId,
+            type: "patch",
+            data: JSON.stringify(boardDTO),
+            contentType: "application/json; charset=utf-8",
+            success: function(boardId, status, xhr){
+                if(callback){
+                    callback(boardId);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function deleteBoard(boardId, callback, error){
+        $.ajax({
+            url: "/board/" + boardId,
+            type: "delete",
+            success: function(status, xhr){
+                if(callback){
+                    callback();
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function plusBoardView(boardDTO, callback, error){
+        $.ajax({
+            url: "/board/view/" + boardDTO.boardId,
+            type: "patch",
+            data: JSON.stringify(boardDTO),
+            contentType: "application/json; charset=utf-8",
+            success: function(boardView, status, xhr){
+                if(callback){
+                    callback(boardView);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function infiniteScroll(page, callback, error){
+        $.ajax({
+            url: "/board/scroll/" + page,
+            type: "get",
             success: function(boards, status, xhr){
                 if(callback){
                     callback(boards);
@@ -111,6 +202,35 @@ let communityService = (function(){
         return `${Math.floor(betweenTimeDay / 365)}년전`;
     }
 
-    return { getTopViewList:getTopViewList, getBoardList:getBoardList, getCategoryBoards:getCategoryBoards, getSearchBoards:getSearchBoards, getBoardDetail:getBoardDetail, timeForToday:timeForToday }
+    function uploadBoardFile(file, callback, error){
+        console.log(file);
+        var data = new FormData();
+        data.append("file", file);
+        console.log(data);
+        $.ajax({
+            url: "/board/upload",
+            type: "post",
+            data: data,
+            enctype: 'multipart/form-data',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(file, status, xhr){
+                if(callback){
+                    callback(file);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    return { getTopViewList:getTopViewList, getBoardList:getBoardList, getCategoryBoards:getCategoryBoards,
+        getSearchBoards:getSearchBoards, getBoardDetail:getBoardDetail, saveBoard:saveBoard, deleteBoard:deleteBoard,
+        updateBoard:updateBoard, plusBoardView:plusBoardView, uploadBoardFile:uploadBoardFile,
+        infiniteScroll:infiniteScroll, timeForToday:timeForToday }
 })();
 

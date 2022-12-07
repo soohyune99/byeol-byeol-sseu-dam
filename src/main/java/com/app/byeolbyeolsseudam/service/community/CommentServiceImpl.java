@@ -6,10 +6,17 @@ import com.app.byeolbyeolsseudam.repository.comment.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
+
+    @Override
+    public List<CommentDTO> getCommentList(Long boardId){
+        return commentRepository.getCommentList(boardId);
+    }
 
     @Override
     public void saveComment(CommentDTO commentDTO){
