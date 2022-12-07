@@ -46,7 +46,7 @@ id="doz_body">
                                     <input type="hidden" name="deliv_information_show" id="deliv_information_show" value="Y">
                                     <input type="hidden" name="pg_back_url" value="https://jigushop.co.kr/shop_payment/?order_code=o202211116e39b947da4ea">
                                     <h1 class="shop-tit hidden-sm hidden-xs">결제하기</h1>
-                                    <div class="order_wrap _order_wrap ">
+                                    <div class="order_wrap _order_wrap " th:object="${product}">
                                         <div class="modify-tip-off ">
                                             <h6>주문 상품 정보</h6>
                                             <div class="modify-row">
@@ -58,15 +58,15 @@ id="doz_body">
                                                                     <img src="https://cdn.imweb.me/thumbnail/20220117/6a329ba1bf9e7.jpg" alt="주문상품 이미지">
                                                                 </div>
                                                                 <div class="product_info_wrap">
-                                                                        <span class="shop_item_title">[지구샵] 대나무칫솔</span>
+                                                                        <span class="shop_item_title" th:text="*{productName}"></span>
                                                                     <div class="shop_item_opt">
                                                                         <p>
                                                                             <em class="list_badge badge_latest">필수</em>
-                                                                            성인용(19cm) - 1개
+                                                                            <p th:text="|${count}개|"></p>
                                                                         </p>
                                                                     </div>
                                                                     <div class="shop_item_pay">
-                                                                            <span class="text-bold text-14">2,800원</span>
+                                                                            <span class="text-bold text-14" th:text="|${#numbers.formatInteger(product.productPrice, 0, 'COMMA')}원|"></span>
                                                                     </div>
                                                                 </div>
                                                             </a>
@@ -84,7 +84,7 @@ id="doz_body">
                                                 <div class="modify-row no-padding _orderer_preview_wrap">
                                                     <div class="col-xs-12 ordererInfo">
                                                         <div class="info text-14 text-gray">성은지</div>
-                                                        <div class="info text-14 text-gray">01065559107</div>
+<!--                                                        <div class="info text-14 text-gray">01065559107</div>-->
                                                         <div class="info text-14 text-gray">sejjes07@gmail.com</div>
 <!--                                                        <a href="javascript:modifyOrdererInfo();" class="btn-primary btn btn-sm-padding text-13 btn_top_right _btn_orderer_edit" role="button">수정</a>-->
                                                     </div>
@@ -136,6 +136,7 @@ id="doz_body">
 <!--                                                                    <div class="text-14 margin-bottom-lg text-gray">성은지</div>-->
 <!--                                                                    <div class="text-14 margin-bottom-lg text-gray">01065559107</div>-->
                                                                     <div class="text-14 margin-bottom-lg text-gray">
+                                                                        <input type="text" placeholder="주소를 입력 해주세요.">
                                                                         <p class="no-margin">서울 강남구 테헤란로 지하 156(역삼동, 역삼역)</p>
                                                                         <p class="no-margin">401호</p>
                                                                         <p class="no-margin">(06236)</p>
@@ -305,7 +306,7 @@ id="doz_body">
                                                         <p class="text-gray">배송비</p>
                                                     </div>
                                                     <div class="col-xs-6 pay-number col_ctr">
-                                                        <p>2,800원</p>
+                                                        <p>상품가격</p>
                                                         <p>+3,000원</p>
                                                     </div>
                                                 </div>

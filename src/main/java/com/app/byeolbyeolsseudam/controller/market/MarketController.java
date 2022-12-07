@@ -19,6 +19,7 @@ public class MarketController {
     @GetMapping("/main")
     public String Market(Model model){
         model.addAttribute("products", marketService.showList());
+        model.addAttribute("count", marketService.showList().size());
         return "/app/market/market";
     }
 
@@ -26,42 +27,49 @@ public class MarketController {
     @GetMapping("/living")
     public String MarketLiving(Model model){
         model.addAttribute("products", marketService.showLivingList());
+        model.addAttribute("count", marketService.showLivingList().size());
         return "/app/market/market";
     }
 
     @GetMapping("/kitchen")
     public String MarketKitchen(Model model){
         model.addAttribute("products", marketService.showKitchenList());
+        model.addAttribute("count", marketService.showKitchenList().size());
         return "/app/market/market";
     }
 
     @GetMapping("/bathroom")
     public String MarketBathroom(Model model){
         model.addAttribute("products", marketService.showBathroomList());
+        model.addAttribute("count", marketService.showBathroomList().size());
         return "/app/market/market";
     }
 
     @GetMapping("/food")
     public String MarketFood(Model model){
         model.addAttribute("products", marketService.showFoodList());
+        model.addAttribute("count", marketService.showFoodList().size());
         return "/app/market/market";
     }
 
     @GetMapping("/hobby")
     public String MarketHobby(Model model){
         model.addAttribute("products", marketService.showHobbyList());
+        model.addAttribute("count", marketService.showHobbyList().size());
         return "/app/market/market";
     }
 
     @GetMapping("/office")
     public String MarketOffice(Model model){
         model.addAttribute("products", marketService.showOfficeList());
+        model.addAttribute("count", marketService.showOfficeList().size());
         return "/app/market/market";
     }
 
     @GetMapping("/pet")
     public String MarketPet(Model model){
         model.addAttribute("products", marketService.showPetList());
+        model.addAttribute("count", marketService.showPetList().size());
         return "/app/market/market";
     }
 
@@ -78,7 +86,7 @@ public class MarketController {
     }
 
 
-    @GetMapping("/payment")
+    @PostMapping("/payment")
     public String payment(@RequestParam Long productId, @RequestParam int orderCount,Model model){
         model.addAttribute("product", marketService.showListDetailOnly(productId));
 //        model.addAttribute("product", product);
