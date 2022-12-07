@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 public interface JoinService {
     //     회원 가입
     public void memberJoin(MemberDTO memberDTO);
-//         기사 가입
+    //         기사 가입
     public void crewJoin(MemberDTO memberDTO);
+    //         이메일 중복검사
+    public  boolean checkEmail(String memberEmail);
 //       회원 전체 조회
 //    public List<MemberDTO> findAll();
 ////     회원 조회

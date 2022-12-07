@@ -137,34 +137,61 @@ $passwordShowBtn.on("click", function () {
 })
 //이메일 중복검사하는 js
 function checkEmailDuplication() {
-    //중복검사 예시
-    if ($inputEmail.val() == "hds1234@gmail.com") {
-        $inputEmail.parent().siblings(".invalid-feedback").text("중복된 이메일 주소입니다.");
-        $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
-        $inputEmail.parent().siblings(".invalid-feedback").css("color", "#fa5963");
-        $inputEmail.addClass("invalid");
-        emailDuplicate = false;
-    }else {
-        $inputEmail.parent().siblings(".invalid-feedback").text("사용 가능한 이메일 주소입니다.");
-        $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
-        $inputEmail.parent().siblings(".invalid-feedback").css("color", "#00c7ae");
-        $inputEmail.removeClass("invalid");
-        emailDuplicate = true;
+    const memberEmail = $("#memberEmail").val();
+    $.ajax({
+        url: "/join/checkEmail",
+        type: "get",
+        data: {memberEmail: memberEmail},
+        contentType: "application/json; charset=utf-8",
+        success: function (result) {
+            console.log("AJAX 들어옴" + result);
+            if (result){
+                $inputEmail.parent().siblings(".invalid-feedback").text("중복된 이메일 주소입니다.");
+                $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
+                $inputEmail.parent().siblings(".invalid-feedback").css("color", "#fa5963");
+                $inputEmail.addClass("invalid");
+                emailDuplicate = false;
+            } else {
+                $inputEmail.parent().siblings(".invalid-feedback").text("사용 가능한 이메일 주소입니다.");
+                $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
+                $inputEmail.parent().siblings(".invalid-feedback").css("color", "#00c7ae");
+                $inputEmail.removeClass("invalid");
+                emailDuplicate = true;
+            }
 
-        // $.ajax({
-        //     success: function (condition) {
-        //         if(condition){
-        //             $inputEmail.parent().siblings(".invalid-feedback").text("중복된 이메일 주소입니다.");
-        //             $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
-        //             $inputEmail.addClass("invalid");
-        //         }else{
-        //             $inputEmail.parent().siblings(".invalid-feedback").text("사용가능한 이메일 주소입니다..");
-        //             $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
-        //             $inputEmail.removeClass("invalid");
-        //         }
-        //     }
-        // })
-    }
+        }
+    })
+
+
+
+    //중복검사 예시
+    // if ($inputEmail.val() == "hds1234@gmail.com") {
+    //     $inputEmail.parent().siblings(".invalid-feedback").text("중복된 이메일 주소입니다.");
+    //     $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
+    //     $inputEmail.parent().siblings(".invalid-feedback").css("color", "#fa5963");
+    //     $inputEmail.addClass("invalid");
+    //     emailDuplicate = false;
+    // }else {
+    //     $inputEmail.parent().siblings(".invalid-feedback").text("사용 가능한 이메일 주소입니다.");
+    //     $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
+    //     $inputEmail.parent().siblings(".invalid-feedback").css("color", "#00c7ae");
+    //     $inputEmail.removeClass("invalid");
+    //     emailDuplicate = true;
+
+    // $.ajax({
+    //     success: function (condition) {
+    //         if(condition){
+    //             $inputEmail.parent().siblings(".invalid-feedback").text("중복된 이메일 주소입니다.");
+    //             $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
+    //             $inputEmail.addClass("invalid");
+    //         }else{
+    //             $inputEmail.parent().siblings(".invalid-feedback").text("사용가능한 이메일 주소입니다..");
+    //             $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
+    //             $inputEmail.removeClass("invalid");
+    //         }
+    //     }
+    // })
+
 }
 
 $duplicationCheckBtn.on("click",function () {

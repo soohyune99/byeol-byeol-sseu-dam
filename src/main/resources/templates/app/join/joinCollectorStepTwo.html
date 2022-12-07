@@ -47,6 +47,9 @@
                                    placeholder="이름(실명)을 입력해주세요." class="input-lg form-control" minlength="2"
                                    maxlength="7" data-vv-validate-on="blur" aria-invalid="true"
                                    aria-required="true" autofocus>
+                            <input data-v-66225419="" type="text"
+                                   th:field = "*{memberAddress}" style="display: none"
+                            >
                             <div data-v-66225419="" class="invalid-feedback">
                                 <p data-v-66225419="" class="error">이름(실명)을 입력해주세요.</p>
                             </div>
@@ -66,16 +69,16 @@
                         <div data-v-66225419="" class="form-group email-wrap">
                             <label data-v-66225419="" for="email">이메일</label>
                             <div style="position: relative">
-                            <input data-v-66225419="" name="email" type="email"
-                                   th:field = "*{memberEmail}"
-                                   placeholder="id@gmail.com" class="input-lg form-control" maxlength="255"
-                                   data-vv-validate-on="blur" aria-invalid="true">
-<!--                            <span data-v-66225419="" class="form-action" style="display: none;">-->
-<!--                                <img data-v-66225419="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=" class="empty">-->
-<!--                            </span>-->
-                            <button
-                                    data-v-79992f5d="" type="button"
-                                    class="email-show" disabled>중복확인</button>
+                                <input data-v-66225419="" name="email" type="email"
+                                       th:field = "*{memberEmail}"
+                                       placeholder="id@gmail.com" class="input-lg form-control" maxlength="255"
+                                       data-vv-validate-on="blur" aria-invalid="true">
+                                <!--                            <span data-v-66225419="" class="form-action" style="display: none;">-->
+                                <!--                                <img data-v-66225419="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=" class="empty">-->
+                                <!--                            </span>-->
+                                <button
+                                        data-v-79992f5d="" type="button"
+                                        class="email-show" disabled>중복확인</button>
                             </div>
                             <div data-v-66225419="" class="d-block invalid-feedback">
                                 <p data-v-66225419="" class="error" style="display: none">이메일 주소를 입력해주세요.</p>
@@ -84,17 +87,17 @@
                         <div data-v-66225419="" class="form-group password-wrap"><label data-v-66225419=""
                                                                                         for="password">비밀번호</label>
                             <div style="position: relative">
-                            <input
-                                data-v-66225419="" type="password"
-                                th:field = "*{memberPassword}"
-                                placeholder="영문+숫자+특수문자 조합 8자리 이상 입력해주세요." autocomplete="new-password"
-                                class="input-lg form-control is-valid" v-validate="passwordValidatorRules"
-                                data-vv-validate-on="blur" aria-autocomplete="list">
-<!--                            <span data-v-66225419="" class="form-action" style="display: none;">-->
-<!--                                <img data-v-66225419="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=" class="empty">-->
-<!--                                <span data-v-66225419="" class="display-password"> 표시 </span>-->
-<!--                            </span>-->
-                            <button data-v-79992f5d="" type="button" class="password-show">표시</button>
+                                <input
+                                        data-v-66225419="" type="password"
+                                        th:field = "*{memberPassword}"
+                                        placeholder="영문+숫자+특수문자 조합 8자리 이상 입력해주세요." autocomplete="new-password"
+                                        class="input-lg form-control is-valid" v-validate="passwordValidatorRules"
+                                        data-vv-validate-on="blur" aria-autocomplete="list">
+                                <!--                            <span data-v-66225419="" class="form-action" style="display: none;">-->
+                                <!--                                <img data-v-66225419="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=" class="empty">-->
+                                <!--                                <span data-v-66225419="" class="display-password"> 표시 </span>-->
+                                <!--                            </span>-->
+                                <button data-v-79992f5d="" type="button" class="password-show">표시</button>
                             </div>
                             <div data-v-66225419="" class="invalid-feedback">
                                 <p data-v-66225419="" class="error" style="display: none"></p>
@@ -103,16 +106,16 @@
                         <div data-v-66225419="" class="form-group password-wrap"><label data-v-66225419=""
                                                                                         for="password">비밀번호 확인</label>
                             <div style="position: relative">
-                            <input
-                                data-v-66225419="" type="password"
-                                placeholder="영문+숫자+특수문자 조합 8자리 이상 입력해주세요." autocomplete="new-password"
-                                class="input-lg form-control is-valid" v-validate="passwordValidatorRules"
-                                data-vv-validate-on="blur" id="pwChecking" aria-autocomplete="list">
-<!--                            <span data-v-66225419="" class="form-action" style="display: none;">-->
-<!--                                <img data-v-66225419="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=" class="empty">-->
-<!--                                <span data-v-66225419="" class="display-password"> 표시</span>-->
-<!--                            </span>-->
-                            <button data-v-79992f5d="" type="button" class="password-show">표시</button>
+                                <input
+                                        data-v-66225419="" type="password"
+                                        placeholder="영문+숫자+특수문자 조합 8자리 이상 입력해주세요." autocomplete="new-password"
+                                        class="input-lg form-control is-valid" v-validate="passwordValidatorRules"
+                                        data-vv-validate-on="blur" id="pwChecking" aria-autocomplete="list">
+                                <!--                            <span data-v-66225419="" class="form-action" style="display: none;">-->
+                                <!--                                <img data-v-66225419="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyODMgLTY2MSkgdHJhbnNsYXRlKDE5NjAgNTk5KSB0cmFuc2xhdGUoMzIzIDYyKSB0cmFuc2xhdGUoMyAzKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI5IiBmaWxsPSIjRTFFMUUxIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgZD0iTTEyIDZMNiAxMk02IDZMMTIgMTIiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=" class="empty">-->
+                                <!--                                <span data-v-66225419="" class="display-password"> 표시</span>-->
+                                <!--                            </span>-->
+                                <button data-v-79992f5d="" type="button" class="password-show">표시</button>
                             </div>
                             <div data-v-66225419="" class="invalid-feedback">
                                 <p data-v-66225419="" class="error" style="display: none"></p>

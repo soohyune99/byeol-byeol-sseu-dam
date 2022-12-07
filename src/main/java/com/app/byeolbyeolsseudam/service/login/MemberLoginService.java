@@ -23,7 +23,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Slf4j
 public class MemberLoginService {
-   private final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     JavaMailSender mailSender;
 
@@ -60,9 +60,9 @@ public class MemberLoginService {
     //임시 비밀번호로 업데이트
     public void UpdatePassword(MemberDTO memberDTO, String tempPassword){
 
-       Member member = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
-       member.setMemberPassword(tempPassword);
-       memberRepository.save(member);
+        Member member = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
+        member.setMemberPassword(tempPassword);
+        memberRepository.save(member);
 
     }
 
