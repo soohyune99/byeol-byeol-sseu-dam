@@ -28,12 +28,6 @@ function closeLoginModal(){
     $loginModal.css('display', 'none');
 }
 
-// /* 카테고리 클릭 시 form 태그 submit 시키기 */
-// function submitCategoryForm(category){
-//     $categoryForm.attr('action', '/community/' + category);
-//     $categoryForm.submit();
-// }
-
 /* 검색어 삭제 x버튼 보이기 */
 $searchBar.on('keyup', function(){
     if(!$searchBar.val()){
@@ -49,37 +43,6 @@ function resetKeyword(){
     $searchBar.val('');
     $reset.css('display', 'none');
 }
-
-
-// /* 검색하기 */
-// function searchKeyword(keyword){
-//     console.log(keyword);
-//     console.log($searchBar.val());
-//     if(!$searchBar.val()){
-//         alert("검색어를 입력하세요");
-//         return;
-//     }
-//     $searchForm.attr('action', '/community/search/' + $searchBar.val());
-//     $searchForm.submit();
-// }
-
-// /* 클릭한 카테고리에 활성화시키는 클래스 넣어주기 */
-// function selectedCategory(){
-//     let url = decodeURI(window.location.href).split("/");
-//     let category = url[url.length - 1];
-//
-//     $.each($categoryList, function(i){
-//         $category = $categoryList.children().eq(i).text().trim();
-//
-//         if(category != 'community' && category.substring(category.length, category.length - 1) != '?'){
-//             $categoryList.eq(0).eq(0).removeClass("selected");
-//
-//             if($category == category){
-//                 $categoryList.eq(i).eq(0).addClass("selected");
-//             }
-//         }
-//     });
-// }
 
 
 /* ================================== Board ==================================*/
@@ -116,13 +79,13 @@ function searchKeyword(){
     , showSearchBoard);
 }
 
-/* 게시글 보기 */
-function readBoard(boardId){
-    communityService.getBoardDetail({
-        boardId
-    , function(){ showBoardDetail }
-    });
-}
+// /* 무한스크롤 */
+// $(window).scroll(function() {
+//     console.log($(window).scrollTop)
+//     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+//         console.log("도착");
+//     }
+// });
 
 /* 조회수 높은 TOP 3 */
 function showTopView(topViews){
@@ -131,7 +94,7 @@ function showTopView(topViews){
     topViews.forEach(topView => {
         text += `<div data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false" class="slick-slide slick-active slick-current" style="outline: none; width: 204px;">`;
         text += `<div data-v-e4caeaf8="">`;
-        text += `<a data-v-0e0856ba="" data-v-2064f17f="" href="javascript:readBoard('` + topView.boardId + `')" class="" data-testid="curation-item" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;">`;
+        text += `<a data-v-0e0856ba="" data-v-2064f17f="" href="/community/` + topView.boardId + `" class="" data-testid="curation-item" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;">`;
         text += `<div data-v-0e0856ba="" class="curation-item notice">`;
         text += `<p data-v-0e0856ba="" class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">` + topView.boardCategory + `</p>`;
         text += `<h3 data-v-0e0856ba="" class="sg-text-subhead2 sg-font-bold sg-text-gray-900">` + topView.boardTitle + `</h3>`;
@@ -154,7 +117,7 @@ function showCommunityBoard(boards){
 
     boards.forEach(board => {
         text += `<li data-v-95718dd0="" data-v-7206b48f="" class="feed-item">`;
-        text += `<a data-v-95718dd0="" href="javascript:readBoard('"` + board.boardId + `')" class="" data-testid="soomgo-life-feed-item">`;
+        text += `<a data-v-95718dd0="" href="/community/` + board.boardId + `" class="" data-testid="soomgo-life-feed-item">`;
         text += `<p data-v-95718dd0="" data-testid="soomgo-life-topic-name" class="topic-name sg-text-description sg-font-regular sg-text-gray-500">` + board.boardCategory + `</p>`;
         text += `<div data-v-95718dd0="" class="feed-content service-address-info">`;
         text += `<div data-v-95718dd0="">`;
@@ -187,7 +150,7 @@ function showSearchBoard(boards){
 
     boards.forEach(board => {
         text += `<li data-v-95718dd0="" data-v-7206b48f="" class="feed-item">`;
-        text += `<a data-v-95718dd0="" href="javascript:readBoard('"` + board.boardId + `')" class="" data-testid="soomgo-life-feed-item">`;
+        text += `<a data-v-95718dd0="" href="/community/` + board.boardId + `" class="" data-testid="soomgo-life-feed-item">`;
         text += `<p data-v-95718dd0="" data-testid="soomgo-life-topic-name" class="topic-name sg-text-description sg-font-regular sg-text-gray-500">` + board.boardCategory + `</p>`;
         text += `<div data-v-95718dd0="" class="feed-content service-address-info">`;
         text += `<div data-v-95718dd0="">`;
@@ -215,7 +178,15 @@ function showSearchBoard(boards){
 }
 
 
+/* ================================== Infinite Scroll ==================================*/
 
+let page = 1;
 
-
-
+$(window).scroll(function(){
+    if($(window).scrollTop() + 1 >= $(document).height() - $(window).height()){
+        communityService.infiniteScroll(
+            page, showCommunityBoard
+        );
+        page++;
+    }
+});

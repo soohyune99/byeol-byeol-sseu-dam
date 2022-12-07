@@ -31,31 +31,31 @@ public class BoardTest {
 
     @Test
     public void saveTest(){
-        MemberDTO memberDTO = new MemberDTO();
-
-        memberDTO.setMemberLoginType(MemberLoginType.네이버);
-        memberDTO.setMemberCategory(MemberCategory.일반회원);
-        memberDTO.setMemberName("성은지");
-        memberDTO.setMemberEmail("sej07@naver.com");
-        memberDTO.setMemberPassword("password486!");
-        memberDTO.setMemberPhone("01012345678");
-        memberDTO.setMemberPoint(3000);
-
-        Member member = memberDTO.toEntity();
-        memberRepository.save(member);
+//        MemberDTO memberDTO = new MemberDTO();
+//
+//        memberDTO.setMemberLoginType(MemberLoginType.네이버);
+//        memberDTO.setMemberCategory(MemberCategory.일반회원);
+//        memberDTO.setMemberName("성은지");
+//        memberDTO.setMemberEmail("sej07@naver.com");
+//        memberDTO.setMemberPassword("password486!");
+//        memberDTO.setMemberPhone("01012345678");
+//        memberDTO.setMemberPoint(3000);
+//
+//        Member member = memberDTO.toEntity();
+//        memberRepository.save(member);
 
         for(int i = 0; i < 10; i++){
             BoardDTO boardDTO = new BoardDTO();
 
-            boardDTO.setBoardCategory(BoardCategory.환경활동);
-            boardDTO.setBoardTitle("안녕하세요" + i);
-            boardDTO.setBoardContent("날씨가 추워요" + i);
+            boardDTO.setBoardCategory(BoardCategory.추천가게);
+            boardDTO.setBoardTitle("점메추 " + i);
+            boardDTO.setBoardContent("저메추" + i);
             boardDTO.setBoardView(i * 10);
 
             Board board = boardDTO.toEntity();
             boardRepository.save(board);
 
-            board.changeMember(member);
+            board.changeMember(memberRepository.findById(3L).get());
         }
 
     }

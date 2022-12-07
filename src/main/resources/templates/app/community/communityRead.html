@@ -18,12 +18,13 @@
     <link rel="stylesheet" href="/css/fix/footer2.css">
 </head>
 <body>
-<div id="wrapper" th:object="${board}">
+<div id="wrapper">
     <header th:replace="/app/fix/header.html :: header"></header>
     <div id="app-sticky-nav" class="vue-portal-target">
         <section data-v-77f4e41c="" class="fixed show">
             <section data-v-77f4e41c="" class="fixed-wrapper">
-                <h2 data-v-77f4e41c="" class="fixed-title sg-text-subhead3 sg-font-medium" th:text="*{boardTitle}"></h2>
+                <h2 data-v-77f4e41c="" class="fixed-title sg-text-subhead3 sg-font-medium"
+                ></h2>
             </section>
         </section>
     </div>
@@ -42,40 +43,39 @@
                                         data-v-01b8dd61=""
                                         class="sg-text-body2 sg-font-regular sg-text-gray-400">커뮤니티</span></a></li>
                                 <p data-v-01b8dd61="" class="breadcrumb-divider"></p>
-                                <li data-v-01b8dd61="" class="category-breadcrumb-item"><a data-v-01b8dd61=""
-                                                                                           href="/community/soomgo-life/find-provider?from=breadcrumb"
-                                                                                           class="breadcrumb-item"><span
-                                        data-v-01b8dd61=""
-                                        class="sg-text-body2 sg-font-regular sg-text-gray-400"
-                                        th:text="*{boardCategory}"></span></a></li>
+                                <li data-v-01b8dd61="" class="category-breadcrumb-item">
+                                    <a data-v-01b8dd61=""
+                                   href="/community/soomgo-life/find-provider?from=breadcrumb"
+                                   class="breadcrumb-item">
+                                        <span data-v-01b8dd61=""
+                                            class="categoryDetail sg-text-body2 sg-font-regular sg-text-gray-400"></span>
+                                    </a></li>
                             </ol>
                         </div>
                         <div data-v-77f4e41c="" class="post-header-title-wrapper has-service">
-                            <p data-v-77f4e41c="" class="post-service-name" th:text="*{boardCategory}"></p>
+                            <p data-v-77f4e41c="" class="post-service-name" ></p>
                             <h1 data-v-77f4e41c="" data-testid="soomgo-life-post-title"
-                                class="post-header-title sg-text-display3 sg-font-bold" th:text="*{boardTitle}"> 컴퓨터 시리얼
-                                포트 고장인거같습니다 수리 가능하신분
+                                class="post-header-title board-title sg-text-display3 sg-font-bold">
                             </h1>
                             <!--                        <p data-v-77f4e41c="" class="post-address-info">서울/강서구</p>-->
                         </div>
                         <div data-v-e0e63576="" data-v-77f4e41c="" class="observer-container">
                             <div data-v-77f4e41c="" data-v-e0e63576="" class="user-profile-wrapper">
                                 <div data-v-77f4e41c="" data-v-e0e63576="" class="user-profile-area"><img
-                                        data-v-77f4e41c="" data-v-e0e63576="" alt="이정현" class="profile-image"
+                                        data-v-77f4e41c="" data-v-e0e63576="" alt="" class="profile-image board-writer-profile"
                                         data-src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg"
-                                        src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg"
+                                        src=""
                                         lazy="loaded">
                                     <div data-v-77f4e41c="" data-v-e0e63576="" class="profile-post-info"><span
-                                            data-v-77f4e41c="" class="user-name sg-text-subhead5 sg-font-medium"
-                                            data-v-e0e63576="" th:text="*{memberName}"></span>
+                                            data-v-77f4e41c="" class="user-name board-writer-name sg-text-subhead5 sg-font-medium"
+                                            data-v-e0e63576=""></span>
                                         <div>
                                     <span data-v-77f4e41c=""
-                                          class="post-created-at sg-text-description sg-font-regular"
-                                          data-v-e0e63576=""
-                                          th:text="${#temporals.format(board.createdDate, 'yyyy. MM. dd')}"></span>
+                                          class="post-created-at board-createdDate sg-text-description sg-font-regular"
+                                          data-v-e0e63576="" ></span>
                                             <span data-v-77f4e41c=""
-                                                  class="post-created-at sg-text-description sg-font-regular"
-                                                  data-v-e0e63576="" th:text="' · 조회 ' + *{boardView}"></span>
+                                                  class="post-created-at board-boardView sg-text-description sg-font-regular"
+                                                  data-v-e0e63576=""></span>
                                         </div>
                                     </div>
                                 </div>
@@ -89,11 +89,12 @@
                                         <ul role="menu" tabindex="-1"
                                             class="dropdown-menu dropdown-menu-right board-menu"
                                             aria-labelledby="__BVID__1550__BV_toggle_">
-                                            <li data-v-77f4e41c="" role="presentation"><a role="menuitem" href="#"
+                                            <li data-v-77f4e41c="" role="presentation">
+                                                <a role="menuitem"
                                                                                           target="_self"
                                                                                           class="dropdown-item boardUpdate">수정</a>
                                             </li>
-                                            <li data-v-77f4e41c="" role="presentation"><a role="menuitem" href="#"
+                                            <li data-v-77f4e41c="" role="presentation"><a role="menuitem" href="javascript:;"
                                                                                           target="_self"
                                                                                           class="dropdown-item boardDelete"
                                                                                           style="color: red;">삭제</a>
@@ -110,40 +111,40 @@
                     <hr data-v-7037b88b="" class="hr-divider">
                     <div data-v-2071676a="" data-v-7037b88b="" class="body-container">
                         <div data-v-2071676a="" class="body-contents">
-                            <p data-v-2071676a="" class="text sg-text-body1 sg-font-regular"><span
-                                    data-v-2071676a="" th:text="*{boardContent}"></span></p>
+                            <p data-v-2071676a="" class="text sg-text-body1 sg-font-regular">
+                                <span class="board-content" data-v-2071676a=""></span>
+                            </p>
                         </div>
                         <div data-v-7614b52f="" data-v-2071676a="" class="body-image-container">
                             <ul data-v-7614b52f="" class="grid-image-wrapper">
-                                <li data-v-7614b52f="" data-type="lightGallery"
-                                    data-exthumbimage="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg?h=160&amp;w=160"
-                                    data-sub-html-src="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg?h=160&amp;w=160"
-                                    data-src="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg"
-                                    data-sub-html=" " class="grid-image-list">
-                                    <!----><img data-v-7614b52f="" alt="AF4F2468-615E-4DF4-8636-BBD415B62A1A.jpg"
-                                                class="image"
-                                                data-src="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg"
-                                                src="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg"
-                                                lazy="loaded">
-                                </li>
-                                <li data-v-7614b52f="" data-type="lightGallery"
-                                    data-exthumbimage="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160"
-                                    data-sub-html-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160"
-                                    data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg"
-                                    data-sub-html=" " class="grid-image-list">
-                                    <!----><img data-v-7614b52f="" alt="4298D74C-9291-4543-8137-3820671DEA3C.jpg"
-                                                class="image"
-                                                data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg"
-                                                src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg"
-                                                lazy="loaded">
-                                </li>
+<!--                                <li data-v-7614b52f="" data-type="lightGallery"-->
+<!--                                    data-exthumbimage="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg?h=160&amp;w=160"-->
+<!--                                    data-sub-html-src="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg?h=160&amp;w=160"-->
+<!--                                    data-src="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg"-->
+<!--                                    data-sub-html=" " class="grid-image-list">-->
+<!--                                    &lt;!&ndash;&ndash;&gt;<img data-v-7614b52f="" alt="AF4F2468-615E-4DF4-8636-BBD415B62A1A.jpg"-->
+<!--                                                class="image"-->
+<!--                                                data-src="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg"-->
+<!--                                                src="https://static.cdn.soomgo.com/upload/media/3da8860d-7a0c-483c-bedd-201bb91c2edb.jpg"-->
+<!--                                                lazy="loaded">-->
+<!--                                </li>-->
+<!--                                <li data-v-7614b52f="" data-type="lightGallery"-->
+<!--                                    data-exthumbimage="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160"-->
+<!--                                    data-sub-html-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160"-->
+<!--                                    data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg"-->
+<!--                                    data-sub-html=" " class="grid-image-list">-->
+<!--                                    &lt;!&ndash;&ndash;&gt;<img data-v-7614b52f="" alt="4298D74C-9291-4543-8137-3820671DEA3C.jpg"-->
+<!--                                                class="image"-->
+<!--                                                data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg"-->
+<!--                                                src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg"-->
+<!--                                                lazy="loaded">-->
+<!--                                </li>-->
                             </ul>
                         </div>
                         <ul data-v-2071676a="" class="body-tag-list"></ul>
                         <div data-v-c5cb681e="" data-v-2071676a="" class="post-react-state">
                             <div data-v-c5cb681e="" class="post-react-item comments">
-                                <span data-v-c5cb681e="" class="text sg-text-buttonSlim sg-font-medium"
-                                      th:text="'댓글 ' + ${#lists.size(board.comments)}"></span>
+                                <span data-v-c5cb681e="" class="text sg-text-buttonSlim sg-font-medium"></span>
                             </div>
                         </div>
                     </div>
@@ -166,8 +167,9 @@
                                             chosen</span></label></div>
                         </label>
                             <div data-v-60f50a1e="" class="comment-body">
-                                <!----><textarea data-v-60f50a1e="" name="comment-input" placeholder="댓글을 남겨보세요"
-                                                 rows="1" wrap="soft"
+                                <!---->
+                                <textarea data-v-60f50a1e="" name="comment-input" placeholder="댓글을 남겨보세요"
+                                                 rows="1" wrap="soft" onkeyup="if(window.event.keyCode===13){ saveComment(); }"
                                                  class="sg-text-body2 sg-font-regular comment-input form-control"
                                                  maxlength="500"
                                                  style="height: 22px; overflow: hidden; resize: none; outline: none;"
@@ -179,62 +181,60 @@
                             </div>
                         </div>
                         <ul data-v-e30e236e="" data-v-c4a04da8="" class="post-comments-list">
-                            <th:block th:each="comment:${board.comments}">
-                            <li th:object="${comment}" data-v-eb37dd0c="" data-v-e30e236e="" class="post-comments-list-item">
-                                <div data-v-6f126738="" data-v-eb37dd0c="" class="post-comment-wrapper">
-                                    <div data-v-6f126738="" class="profile-image provider">
-                                        <img data-v-6f126738="" alt="⭐바른배관⭐ 하수구막힘+각종수전(고객은 내 가족이다)"
-                                             class="image" data-src="https://static.cdn.soomgo.com/upload/profile/dce93681-1662-4df6-b116-bed3bc418d25.jpg?h=110&amp;w=110"
-                                               src="https://static.cdn.soomgo.com/upload/profile/dce93681-1662-4df6-b116-bed3bc418d25.jpg?h=110&amp;w=110"
-                                               lazy="loaded"></div>
-                                    <div data-v-6f126738="" class="comment-information">
-                                        <span data-v-6f126738="" class="user-name sg-text-subhead4 sg-font-bold sg-text-gray-900"
-                                              th:text="*{memberName}"></span>
-                                        <div data-v-6f126738="" class="content">
-                                            <p data-v-6f126738="" class="text sg-text-body2 sg-font-regular">
-                                                <!----><span data-v-6f126738="" th:text="*{commentContent}">사진으로 보니깐 약간 휘어진거 같은데요</span>
-                                            </p>
-                                        </div>
-                                        <!---->
-                                        <div data-v-6f126738=""
-                                             class="comment-action-group sg-text-description sg-font-regular">
-                                            <div data-v-6f126738="" class="comment-react">
-                                                <span data-v-6f126738="" class="text" th:text="${#temporals.format(board.createdDate, 'yyyy. MM. dd')}"></span>
-                                            </div>
-                                            <div data-v-6f126738="" class="more-action">
-                                                <div data-v-6f126738="" class="dropdown b-dropdown show btn-group"
-                                                     id="__BVID__1555">
-                                                    <!---->
-                                                    <button aria-haspopup="true" aria-expanded="true"
-                                                            type="button" th:classappend="*{commentId}"
-                                                            class="btn board-dropdown-toggle btn-secondary btn-comment"
-                                                            id="__BVID__1555__BV_toggle_" onclick="javascript:openCommentMenu(this.classList)"></button>
-                                                    <ul role="menu" tabindex="-1"
-                                                        class="dropdown-menu dropdown-menu-right comment-menu"
-                                                        aria-labelledby="__BVID__1555__BV_toggle_"
-                                                        style="position: absolute; transform: translate3d(-116px, 22px, 0px); top: 0px; left: 0px; will-change: transform;"
-                                                        x-placement="bottom-end">
-                                                        <li data-v-77f4e41c="" role="presentation"><a role="menuitem"
-                                                                                                      href="#"
-                                                                                                      target="_self"
-                                                                                                      class="dropdown-item commentUpdate">수정</a>
-                                                        </li>
-                                                        <li data-v-77f4e41c="" role="presentation"><a role="menuitem"
-                                                                                                      href="#"
-                                                                                                      target="_self"
-                                                                                                      class="dropdown-item commentDelete"
-                                                                                                      style="color: red;">삭제</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!---->
-                                <!---->
-                            </li>
-                            </th:block>
+<!--                            <li data-v-eb37dd0c="" data-v-e30e236e="" class="post-comments-list-item">-->
+<!--                                <div data-v-6f126738="" data-v-eb37dd0c="" class="post-comment-wrapper">-->
+<!--                                    <div data-v-6f126738="" class="profile-image provider">-->
+<!--                                        <img data-v-6f126738="" alt="⭐바른배관⭐ 하수구막힘+각종수전(고객은 내 가족이다)"-->
+<!--                                             class="image" data-src="https://static.cdn.soomgo.com/upload/profile/dce93681-1662-4df6-b116-bed3bc418d25.jpg?h=110&amp;w=110"-->
+<!--                                               src="https://static.cdn.soomgo.com/upload/profile/dce93681-1662-4df6-b116-bed3bc418d25.jpg?h=110&amp;w=110"-->
+<!--                                               lazy="loaded"></div>-->
+<!--                                    <div data-v-6f126738="" class="comment-information">-->
+<!--                                        <span data-v-6f126738="" class="user-name sg-text-subhead4 sg-font-bold sg-text-gray-900"-->
+<!--                                              ></span>-->
+<!--                                        <div data-v-6f126738="" class="content">-->
+<!--                                            <p data-v-6f126738="" class="text sg-text-body2 sg-font-regular">-->
+<!--                                                &lt;!&ndash;&ndash;&gt;<span data-v-6f126738="">사진으로 보니깐 약간 휘어진거 같은데요</span>-->
+<!--                                            </p>-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash;&ndash;&gt;-->
+<!--                                        <div data-v-6f126738=""-->
+<!--                                             class="comment-action-group sg-text-description sg-font-regular">-->
+<!--                                            <div data-v-6f126738="" class="comment-react">-->
+<!--                                                <span data-v-6f126738="" class="text"></span>-->
+<!--                                            </div>-->
+<!--                                            <div data-v-6f126738="" class="more-action">-->
+<!--                                                <div data-v-6f126738="" class="dropdown b-dropdown show btn-group"-->
+<!--                                                     id="__BVID__1555">-->
+<!--                                                    &lt;!&ndash;&ndash;&gt;-->
+<!--                                                    <button aria-haspopup="true" aria-expanded="true"-->
+<!--                                                            type="button"-->
+<!--                                                            class="btn board-dropdown-toggle btn-secondary btn-comment"-->
+<!--                                                            id="__BVID__1555__BV_toggle_" onclick="javascript:openCommentMenu(this.classList)"></button>-->
+<!--                                                    <ul role="menu" tabindex="-1"-->
+<!--                                                        class="dropdown-menu dropdown-menu-right comment-menu"-->
+<!--                                                        aria-labelledby="__BVID__1555__BV_toggle_"-->
+<!--                                                        style="position: absolute; transform: translate3d(-116px, 22px, 0px); top: 0px; left: 0px; will-change: transform;"-->
+<!--                                                        x-placement="bottom-end">-->
+<!--                                                        <li data-v-77f4e41c="" role="presentation"><a role="menuitem"-->
+<!--                                                                                                      href="#"-->
+<!--                                                                                                      target="_self"-->
+<!--                                                                                                      class="dropdown-item commentUpdate">수정</a>-->
+<!--                                                        </li>-->
+<!--                                                        <li data-v-77f4e41c="" role="presentation"><a role="menuitem"-->
+<!--                                                                                                      href="#"-->
+<!--                                                                                                      target="_self"-->
+<!--                                                                                                      class="dropdown-item commentDelete"-->
+<!--                                                                                                      style="color: red;">삭제</a>-->
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash;&ndash;&gt;-->
+<!--                                &lt;!&ndash;&ndash;&gt;-->
+<!--                            </li>-->
                         </ul>
                         <!---->
                         <div data-v-644ea9c9="" data-v-c4a04da8="" class="infinite-loading-container">
@@ -323,13 +323,6 @@
     <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </div>
 </body>
-<script th:inline="javascript">
-    let boardId = [[${board.boardId}]];
-    let member = [[${session.member}]];
-    var uid = '<%=(String)session.getAttribute("uid")%>';
-    console.log(member);
-    console.log(uid);
-</script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/community/communityModule.js"></script>
 <script src="/js/community/commentModule.js"></script>

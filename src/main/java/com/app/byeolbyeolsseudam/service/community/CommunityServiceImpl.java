@@ -39,13 +39,33 @@ public class CommunityServiceImpl implements CommunityService{
         return boardRepository.readBoard(boardId);
     }
 
-//    @Override
-//    public void plusView(BoardDTO boardDTO){
-//        boardRepository.plusView(boardDTO);
-//    }
-
     @Override
     public void saveBoard(BoardDTO boardDTO) {
-        boardRepository.save(boardDTO.toEntity());
+        Board board = boardDTO.toEntity();
+        boardRepository.saveMemberofBoard(boardDTO, board);
+        boardRepository.save(board);
     }
+
+    @Override
+    public Long updateBoard(BoardDTO boardDTO){
+        Board board = boardRepository.updateBoard(boardDTO);
+        boardRepository.save(board);
+        return boardDTO.getBoardId();
+    }
+
+    @Override
+    public void deleteBoard(Long boardId){
+        boardRepository.delete(boardRepository.findById(boardId).get());
+    }
+
+    @Override
+    public List<BoardDTO> selectScrollBoards(int page){
+        return boardRepository.selectScrollBoards(page);
+    }
+
+//    @Override
+//    public void plusView(BoardDTO boardDTO){
+//        Board board = boardRepository.plusView(boardDTO);
+//        boardRepository.save(board);
+//    }
 }

@@ -4,6 +4,8 @@ stickyNav();
 
 let $dropdownMenu = $(".dropdown-menu.dropdown-menu-right.sticky-nav-menu");
 let $boardMenu = $(".dropdown-menu.dropdown-menu-right.board-menu");
+let $boardDeleteBtn = $(".boardDelete");
+let $boardUpdateBtn = $(".boardUpdate");
 let $commentMenu = $(".dropdown-menu.dropdown-menu-right.comment-menu");
 let $commentContent = $("textarea[name='comment-input']");
 let $commentSubmitBtn = $(".write-comment-submit");
@@ -34,9 +36,9 @@ $(".board-dropdownmenu-menuBtn").on("click", function(){
 
 
 /* 댓글 도시락 버튼 클릭 시 수정, 삭제 메뉴 보이기 */
-// $("button#__BVID__1555__BV_toggle_").on("click", function(){
-//     openCommentMenu($commentMenu);
-// });
+$("button#__BVID__1555__BV_toggle_").on("click", function(){
+    openCommentMenu($commentMenu);
+});
 
 
 /* 댓글 입력 시 로그인 안 되어 있을 경우 로그인 모달창 띄우기 */
@@ -70,7 +72,6 @@ function openBoardMenu(menu){
 }
 
 function openCommentMenu(menu){
-    console.log(menu);
     $(`".` + menu + `"`).toggle();
 }
 
@@ -125,7 +126,10 @@ $(".comment-body").on('click', '.delete-badge', function(){
 
 /* 댓글 내용 입력 시 등록 버튼 보이기 */
 $commentContent.on('keyup', function(){
-  if(!$commentContent.val()){ return; }
+  if(!$commentContent.val()){
+      $commentSubmitBtn.removeClass("active");
+      return;
+  }
     $commentSubmitBtn.addClass("active");
 });
 
@@ -133,73 +137,127 @@ $commentContent.on('keyup', function(){
 
 /* ================================== Board ==================================*/
 
-function showBoardDetail(boards){
+let url = decodeURI(window.location.href).split("/");
+let boardId = url[url.length - 1];
+
+readBoard(boardId);
+
+/* 게시글 보기 */
+function readBoard(boardId){
+    communityService.getBoardDetail(
+        boardId, showBoardDetail
+    );
+}
+
+/* 게시글 삭제 */
+$boardDeleteBtn.on('click', function(){
+    communityService.deleteBoard(boardId, deleteBoard);
+});
+
+
+function showBoardDetail(board){
     let text = "";
 
-    text += `<div data-v-77f4e41c="" data-v-7037b88b="" class="post-header">`;
-    text += `<div data-v-01b8dd61="" data-v-77f4e41c="" class="post-category-subject">`;
-    text += `<ol data-v-01b8dd61="" class="category-breadcrumb list-inline">`;
-    text += `<li data-v-01b8dd61="" class="category-breadcrumb-item">`;
-    text += `<a data-v-01b8dd61="" href="/community" class="breadcrumb-item" data-testid="soomgo-life-home-breadcrumb">`;
-    text += `<span data-v-01b8dd61="" class="sg-text-body2 sg-font-regular sg-text-gray-400">커뮤니티</span>`;
-    text += `</a></li>`;
-    text += `<p data-v-01b8dd61="" class="breadcrumb-divider"></p>`;
-    text += `<li data-v-01b8dd61="" class="category-breadcrumb-item">`;
-    text += `<a data-v-01b8dd61="" href="/community/soomgo-life/find-provider?from=breadcrumb" class="breadcrumb-item">`;
-    text += `<span data-v-01b8dd61="" class="sg-text-body2 sg-font-regular sg-text-gray-400">환경활동</span>`;
-    text += `</a></li></ol></div>`;
-    text += `<div data-v-77f4e41c="" class="post-header-title-wrapper has-service">`;
-    text += `<p data-v-77f4e41c="" class="post-service-name">환경활동</p>`;
-    text += `<h1 data-v-77f4e41c="" data-testid="soomgo-life-post-title" class="post-header-title sg-text-display3 sg-font-bold">안녕하세요9</h1>`;
-    text += `</div>`;
-    text += `<div data-v-e0e63576="" data-v-77f4e41c="" class="observer-container">`;
-    text += `<div data-v-77f4e41c="" data-v-e0e63576="" class="user-profile-wrapper">`;
-    text += `<div data-v-77f4e41c="" data-v-e0e63576="" class="user-profile-area">`;
-    text += `<img data-v-77f4e41c="" data-v-e0e63576="" alt="이정현" class="profile-image" data-src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg" src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg" lazy="loaded">`;
-    text += `<img data-v-77f4e41c="" data-v-e0e63576="" alt="이정현" class="profile-image" data-src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg" src="https://static.cdn.soomgo.com/upload/profile/f69bc8fc-b536-426a-9244-632c7baa7233.jpg" lazy="loaded">`;
-    text += `<div data-v-77f4e41c="" data-v-e0e63576="" class="profile-post-info">`;
-    text += `<span data-v-77f4e41c="" class="user-name sg-text-subhead5 sg-font-medium" data-v-e0e63576="">성은지</span>`;
-    text += `<div>`;
-    text += `<span data-v-77f4e41c="" class="post-created-at sg-text-description sg-font-regular" data-v-e0e63576="">2022. 12. 02</span>`;
-    text += `<span data-v-77f4e41c="" class="post-created-at sg-text-description sg-font-regular" data-v-e0e63576=""> · 조회 91</span>`;
-    text += `</div></div></div>`;
-    text += `<div data-v-77f4e41c="" data-v-e0e63576="" class="post-actions">`;
-    text += `<div data-v-77f4e41c="" class="dropdown b-dropdown btn-group" data-v-e0e63576="" id="__BVID__1550">`;
-    text += `<button aria-haspopup="true" aria-expanded="false" type="button" class="btn board-dropdown-toggle btn-secondary board-dropdownmenu-menuBtn" id="__BVID__1550__BV_toggle_"></button>`;
-    text += `<ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-right board-menu" aria-labelledby="__BVID__1550__BV_toggle_">`;
-    text += `<li data-v-77f4e41c="" role="presentation">`;
-    text += `<a role="menuitem" href="#" target="_self" class="dropdown-item boardUpdate">수정</a>`;
-    text += `</li>`;
-    text += `<li data-v-77f4e41c="" role="presentation">`;
-    text += `<a role="menuitem" href="#" target="_self" class="dropdown-item boardDelete" style="color: red;">삭제</a>`;
-    text += `</li></ul></div></div></div></div>`;
-    text += `<div data-v-77f4e41c="" class="v-portal" style="display: none;"></div>`;
-    text += `</div>`;
+    $(".categoryDetail").html(board.boardCategory);
+    $(".post-service-name").html(board.boardCategory);
+    $(".board-title").html(board.boardTitle);
+    $(".board-writer-profile").attr('src', board.memberProfilePath + board.memberProfileUuid + board.memberProfileName);
+    $(".board-writer-name").html(board.memberName);
+    $(".board-createdDate").html(board.createdDate);
+    $(".board-boardView").html(' · 조회 ' + board.boardView);
+    $boardUpdateBtn.attr('href', '/community/update?id=' + board.boardId);
+    $(".board-content").html(board.boardContent);
 
-    $(".").html(text);
+    board.files.forEach(file => {
+        text += `<li data-v-7614b52f="" data-type="lightGallery" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160" data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg" data-sub-html=" " class="grid-image-list">`;
+        text += `<img data-v-7614b52f="" alt="4298D74C-9291-4543-8137-3820671DEA3C.jpg" class="image" data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg" src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg" lazy="loaded">`;
+        text += `</li>`;
+    })
+    $(".grid-image-wrapper").html(text);
+
+    // $(".post-react-item comments > span").html('댓글 ' + board.comment.length);
+
+    // plusBoardView(board);
 }
 
 
+function deleteBoard(){
+    location.href = "/community";
+}
 
+function plusBoardView(board){
+    communityService.plusBoardView(
+        board, plusAfterBoardView
+    );
+}
+
+function plusAfterBoardView(boardView){
+
+}
 
 
 /* ================================== Comment ==================================*/
 
+showComment(boardId);
 
-/* 댓글 등록 */
+/* 댓글 목록 보기 */
+function showComment(boardId){
+    commentService.getCommentList(
+        boardId, showCommentList
+    );
+}
+
 $commentSubmitBtn.on("click", function(){
-    console.log($commentContent.val());
-    console.log(boardId);
-    console.log(member);
-    commentService.save({
-        boardId: boardId,
-        memberId: member.memberId,
-        commentContent: $commentContent.val()
-    }, function(){console.log("성공")}, function(){console.log("실패")});
+    saveComment();
 });
 
+/* 댓글 등록 */
+function saveComment(){
+    commentService.save({
+        boardId: boardId,
+        memberId: 3,
+        commentContent: $commentContent.val()
+    }, function(){
+        $commentContent.val('');
+        $commentSubmitBtn.removeClass("active");
+        showComment(boardId);
+    });
+}
 
+function showCommentList(comments){
+    let text = "";
 
+    comments.forEach(comment => {
+        text += `<li data-v-eb37dd0c="" data-v-e30e236e="" class="post-comments-list-item">`;
+        text += `<div data-v-6f126738="" data-v-eb37dd0c="" class="post-comment-wrapper">`;
+        text += `<div data-v-6f126738="" class="profile-image provider">`;
+        text += `<img data-v-6f126738="" alt="" class="image" data-src="https://static.cdn.soomgo.com/upload/profile/dce93681-1662-4df6-b116-bed3bc418d25.jpg?h=110&amp;w=110" src="` + comment.commentFilePath + comment.commentFileUuid + comment.commentFileName + `" lazy="loaded">`;
+        text += `</div>`;
+        text += `<div data-v-6f126738="" class="comment-information">`;
+        text += `<span data-v-6f126738="" class="user-name sg-text-subhead4 sg-font-bold sg-text-gray-900">` + comment.memberName + `</span>`;
+        text += `<div data-v-6f126738="" class="content">`;
+        text += `<p data-v-6f126738="" class="text sg-text-body2 sg-font-regular">`;
+        text += `<span data-v-6f126738="">` + comment.commentContent + `</span>`;
+        text += `</p></div>`;
+        text += `<div data-v-6f126738="" class="comment-action-group sg-text-description sg-font-regular">`;
+        text += `<div data-v-6f126738="" class="comment-react">`;
+        text += `<span data-v-6f126738="" class="text">` + comment.createdDate + `</span>`;
+        text += `</div>`;
+        text += `<div data-v-6f126738="" class="more-action">`;
+        text += `<div data-v-6f126738="" class="dropdown b-dropdown show btn-group" id="__BVID__1555">`;
+        text += `<button aria-haspopup="true" aria-expanded="true" type="button" class="btn board-dropdown-toggle btn-secondary btn-comment ` + comment.commentId +`" id="__BVID__1555__BV_toggle_" onclick="javascript:openCommentMenu(this.classList)"></button>`;
+        text += `<ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-right comment-menu" aria-labelledby="__BVID__1555__BV_toggle_" style="position: absolute; transform: translate3d(-116px, 22px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-end">`;
+        text += `<li data-v-77f4e41c="" role="presentation">`;
+        text += `<a role="menuitem" href="#" target="_self" class="dropdown-item commentUpdate">수정</a>`;
+        text += `</li>`;
+        text += `<li data-v-77f4e41c="" role="presentation">`;
+        text += `<a role="menuitem" href="#" target="_self" class="dropdown-item commentDelete" style="color: red;">삭제</a>`;
+        text += `</li></ul></div></div></div></div></div>`;
+        text += `</li>`;
+    });
+
+    $(".post-comments-list").html(text);
+}
 
 
 

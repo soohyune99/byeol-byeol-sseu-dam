@@ -21,44 +21,44 @@ public class CommunityController {
         return "/app/community/communityMain";
     }
 
-    /* 카테고리별 목록 조회 */
-    @PostMapping("/{boardCategory}")
-    public String mainCategory(@PathVariable BoardCategory boardCategory, Model model){
-        model.addAttribute("topViews", communityService.selectTopView());
-        model.addAttribute("boards", communityService.selectBoardsofCategory(boardCategory));
-        return "/app/community/communityMain";
-    }
+//    /* 카테고리별 목록 조회 */
+//    @PostMapping("/{boardCategory}")
+//    public String mainCategory(@PathVariable BoardCategory boardCategory, Model model){
+//        model.addAttribute("topViews", communityService.selectTopView());
+//        model.addAttribute("boards", communityService.selectBoardsofCategory(boardCategory));
+//        return "/app/community/communityMain";
+//    }
 
-    /* 게시글 상세보기 */
+    /* 게시글 상세보기로 이동 */
     @GetMapping("/{boardId}")
     public String Read(@PathVariable Long boardId, Model model){
-        BoardDTO boardDTO = communityService.readBoard(boardId);
-        model.addAttribute("board", boardDTO);
+//        BoardDTO boardDTO = communityService.readBoard(boardId);
+//        model.addAttribute("board", boardDTO);
         return "/app/community/communityRead";
     }
 
-    /* 키워드 검색 */
-    @GetMapping("/search/{keyword}")
-    public String search(@PathVariable String keyword, Model model){
-        model.addAttribute("boards", communityService.selectBoardsofKeyword(keyword));
-        return "/app/community/communityMain";
-    }
+//    /* 키워드 검색 */
+//    @GetMapping("/search/{keyword}")
+//    public String search(@PathVariable String keyword, Model model){
+//        model.addAttribute("boards", communityService.selectBoardsofKeyword(keyword));
+//        return "/app/community/communityMain";
+//    }
 
-    @GetMapping("/communitysearch")
-    public String searchPage(){
-        return "/app/community/communitySearch";
-    }
+//    @GetMapping("/communitysearch")
+//    public String searchPage(){
+//        return "/app/community/communitySearch";
+//    }
 
-    @GetMapping("/write")
+    @GetMapping(value = {"/write", "/update"})
     public String write(){
         return "/app/community/communityWrite";
     }
 
-    @PostMapping("/write")
-    public RedirectView writeSubmit(BoardDTO boardDTO){
-        communityService.saveBoard(boardDTO);
-        return new RedirectView("/community");
-    }
+//    @PostMapping("/write")
+//    public RedirectView writeSubmit(BoardDTO boardDTO){
+//        communityService.saveBoard(boardDTO);
+//        return new RedirectView("/community");
+//    }
 
 
 }
