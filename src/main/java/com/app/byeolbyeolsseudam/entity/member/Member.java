@@ -26,8 +26,9 @@ public class Member extends Period {
     private String memberName;
     @NotNull
     private String memberPassword;
-//    @NotNull
+    //    @NotNull
     private String memberPhone;
+    private String memberAddress;
     @NotNull
     private String memberEmail;
     private int memberPoint;
@@ -36,12 +37,13 @@ public class Member extends Period {
     private String memberProfileUuid;
 
     @Builder
-    public Member(MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid) {
+    public Member(MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberAddress, String memberEmail, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid) {
         this.memberLoginType = memberLoginType;
         this.memberCategory = memberCategory;
         this.memberName = memberName;
         this.memberPassword = memberPassword;
         this.memberPhone = memberPhone;
+        this.memberAddress = memberAddress;
         this.memberEmail = memberEmail;
         this.memberPoint = memberPoint;
         this.memberProfileName = memberProfileName;
@@ -55,6 +57,7 @@ public class Member extends Period {
         this.memberName = memberDTO.getMemberName();
         this.memberPassword = memberDTO.getMemberPassword();
         this.memberPhone = memberDTO.getMemberPhone();
+        this.memberAddress = memberDTO.getMemberAddress();
         this.memberEmail = memberDTO.getMemberEmail();
         this.memberPoint = memberDTO.getMemberPoint();
         this.memberProfileName = memberDTO.getMemberProfileName();

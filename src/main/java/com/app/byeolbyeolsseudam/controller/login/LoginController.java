@@ -34,20 +34,20 @@ public class LoginController {
     @PostMapping("/login")
     public RedirectView login2(MemberDTO memberDTO, Model model){
 
-       if (memberLoginService.login(memberDTO)){
-           model.addAttribute("member", memberLoginService.Get(memberDTO));
+        if (memberLoginService.login(memberDTO)){
+            model.addAttribute("member", memberLoginService.Get(memberDTO));
 
             return new RedirectView ("/main/main");
-       } else {
-           return new RedirectView ("/login/login");
-       }
+        } else {
+            return new RedirectView ("/login/login");
+        }
 
     }
 
     @GetMapping("/logout")
-    public RedirectView logout(SessionStatus sessionStatus){
+    public String logout(SessionStatus sessionStatus){
         sessionStatus.setComplete();
-        return new RedirectView ("/main/main");
+        return "/app/main/logoutMain";
     }
 
     @GetMapping("/findpassword")

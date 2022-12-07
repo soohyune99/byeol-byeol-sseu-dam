@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/fix/favicon.png">
+    <title>별별쓰담 | 메인</title>
+    <style type="text/css">
+        .resize-observer[data-v-b329ee4c] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: transparent;
+            pointer-events: none;
+            display: block;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .resize-observer[data-v-b329ee4c] object {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+    <link data-vue-meta="1" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" />
+
+    <link rel="stylesheet" href="/css/main/main75.css">
+    <link rel="stylesheet" href="/css/main/main68.css">
+    <link rel="stylesheet" href="/css/main/main74.css">
+    <link rel="stylesheet" href="/css/main/main47.css">
+    <link rel="stylesheet" href="/css/main/main9.css">
+    <link rel="stylesheet" href="/css/main/main200.css">
+    <link rel="stylesheet" href="/css/main/main199.css">
+    <link rel="stylesheet" href="/css/main/main201.css">
+    <link rel="stylesheet" href="/css/fix/header68.css">
+    <link rel="stylesheet" href="/css/fix/header74.css">
+    <link rel="stylesheet" href="/css/fix/header51.css">
+    <link rel="stylesheet" href="/css/fix/header76.css">
+    <link rel="stylesheet" href="/css/fix/header77.css">
+    <link rel="stylesheet" href="/css/fix/header37.css">
+    <link rel="stylesheet" href="/css/fix/footer1.css">
+    <link rel="stylesheet" href="/css/fix/footer2.css">
+</head>
+
+<body>
+<div id="wrap">
+    <header th:replace="/app/fix/header.html :: header"></header>
+
+    <div id="app-body">
+        <!--배너 정보확인용 더미 코드. 추후에 bannerPath만 받아서 img태그 src에 전달 예정-->
+        <!--        <table>-->
+        <!--            <tbody>-->
+        <!--                <th:block th:each="banner:${banners}">-->
+        <!--                    <tr class="tBody" th:object="${banner}">-->
+        <!--                        <td th:text="*{bannerId}"></td>-->
+        <!--                        <td th:text="*{bannerName}"></td>-->
+        <!--                        <td th:text="*{bannerUuid}"></td>-->
+        <!--                        <td th:text="*{bannerPath}"></td>-->
+        <!--                    </tr>-->
+        <!--                </th:block>-->
+        <!--            </tbody>-->
+        <!--        </table>-->
+        <div class="home" data-v-1346aca8="">
+
+            <div class="observer-container" data-v-e0e63576="" data-v-1346aca8="">
+
+                <!-- 배너 시작 -->
+                <div data-observe="banner" class="main-banner" data-v-afb0bbd0="" data-v-1346aca8="" data-v-e0e63576=""main-communityid="banner">
+                    <div dir="ltr" class="slick-slider slick-initialized" data-v-3d1a4f76="" data-v-55917fe8="" data-v-afb0bbd0="">
+
+
+
+                        <div class="slick-list first-slick-list" data-v-3d1a4f76="">
+                            <div class="slick-track" style="width: 8730px; opacity: 1;" data-v-e4caeaf8="" data-v-3d1a4f76="">
+                                <th:block th:each="banner:${banners}">
+                                    <div tabindex="-1" data-index="0" aria-hidden="true" class="slick-slide slide-banner" style="outline: none; width: 970px;" data-v-e4caeaf8="">
+                                        <div tabindex="-1" class="banner-item" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-afb0bbd0="" th:object="${banner}">
+                                            <img th:src="*{bannerPath}" alt="포트폴리오 전용 목록 진입 창구 배너" class="banner-image" data-v-e4caeaf8="" data-v-afb0bbd0="">
+                                            <input type="hidden" th:if="${bannerStat.first}" th:name="*{bannerPath}" class="bnImg">
+                                            <input type="hidden" th:if="${bannerStat.count==2}" th:name="*{bannerPath}" class="bnImg">
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                    <!--배너 숫자 -->
+                    <div class="indicator" data-v-afb0bbd0="">
+                        <span class="current-slide-no"></span>
+                        <span class="slash">/</span>
+                        <span class="total-slide-no">7</span>
+                    </div>
+
+                </div>
+            </div>
+            <!--배너 끝 -->
+        </div>
+
+        <!-- 카테고리 -->
+        <ul data-testid="main-category" class="main-category category-list container" data-v-05b842e7="" data-v-1346aca8="">
+            <li class="category-item" data-v-05b842e7="">
+                <a href="http://localhost:10001/market/main" data-v-05b842e7="" class="">
+                    <div class="category-icon" data-v-05b842e7="">
+                        <svg class="maincategory" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+   .st00{fill:#5BB28E;stroke:#414042;stroke-width:20;stroke-miterlimit:10;}
+   .st11{fill:#AEDEEF;}
+   .st22{fill:#6DC5A5;}
+   .st33{fill:#F15A29;stroke:#414042;stroke-width:14;stroke-miterlimit:10;}
+   .st44{fill:#414042;}
+   .st55{fill:none;stroke:#414042;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+   .st66{fill:#F9ED32;stroke:#414042;stroke-width:14;stroke-miterlimit:10;}
+</style><circle class="st00" cx="256.9" cy="247.6" id="XMLID_363_" r="195.1"/><path class="st11" d="M439.6,249.7c0,97.4-54,167.5-151.1,181.3c-96.3,13.7-201.1-83.9-201.1-181.3  S166.2,63.5,263.5,63.5S439.6,152.3,439.6,249.7z" id="XMLID_362_"/><path class="st22" d="M431,248.9c0,96.4-53.6,165.8-150,179.5c-95.6,13.5-199.6-83.1-199.6-179.5  S159.7,64.5,256.2,63.5C369.6,62.3,431,152.5,431,248.9z" id="XMLID_361_"/><circle class="st33" cx="205.6" cy="260.5" id="XMLID_360_" r="41.1"/><circle class="st4" cx="103.9" cy="41.8" id="XMLID_359_" r="5"/><circle class="st44" cx="239.3" cy="310.2" id="XMLID_358_" r="5"/><circle class="st4" cx="120.2" cy="422.7" id="XMLID_357_" r="11.3"/><circle class="st44" cx="334.5" cy="470.5" id="XMLID_356_" r="5"/><circle class="st44" cx="254.2" cy="160.7" id="XMLID_354_" r="5"/><circle class="st44" cx="279.6" cy="160.7" id="XMLID_353_" r="7.7"/><path class="st55" d="M274.1,394.2c7.9-5.6,17.6-8.8,28-8.8c27,0,48.9,21.9,48.9,48.9c0,9.6-2.8,18.6-7.6,26.2" id="XMLID_352_"/><circle class="st66" cx="81.4" cy="82.1" id="XMLID_351_" r="15.1"/><circle class="st33" cx="287.3" cy="300.2" id="XMLID_23_" r="15.2"/><circle class="st44" cx="189.6" cy="324.6" id="XMLID_355_" r="9.6"/><circle class="st44" cx="164.6" cy="442.6" id="XMLID_42_" r="5"/><circle class="st66" cx="389.5" cy="445.3" id="XMLID_43_" r="15.1"/></svg>
+                        <p class="category-title" data-v-05b842e7="">별별마켓</p>
+                    </div>
+                </a>
+            </li>
+            <li class="category-item" data-v-05b842e7="">
+                <a href="http://localhost:10001/program/program" data-v-05b842e7="" class="">
+                    <div class="category-icon" data-v-05b842e7="">
+                        <!--                    <img src="https://assets.cdn.soomgo.com/icons/category1/lesson.svg" alt="학교" class="category-img" data-v-05b842e7="">-->
+                        <svg class="maincategory"  id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+   .st0{fill:#B9D4DB;stroke:#414042;stroke-width:20;stroke-miterlimit:10;}
+   .st1{fill:#AEDEEF;}
+   .st2{fill:#E4F5FD;}
+   .st3{fill:#FBEC7D;stroke:#414042;stroke-width:10;stroke-miterlimit:10;}
+   .st4{fill:#414042;}
+   .st5{fill:none;stroke:#414042;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+   .st6{fill:#B9D4DB;stroke:#414042;stroke-width:13;stroke-miterlimit:10;}
+   .st7{fill:none;stroke:#414042;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+   .st8{fill:#BE1E2D;stroke:#414042;stroke-width:15.9261;stroke-miterlimit:10;}
+   .st9{fill:#F9ED32;stroke:#414042;stroke-width:13;stroke-miterlimit:10;}
+</style><circle class="st0" cx="287.4" cy="263.5" id="XMLID_173_" r="195.1"/><path class="st1" d="M462.6,262.3c0,99.1-52.8,170.5-147.9,184.6c-94.3,13.9-196.9-85.4-196.9-184.6  S195,72.8,290.3,72.8S462.6,163.2,462.6,262.3z" id="XMLID_172_"/><path class="st2" d="M462.6,260.4c0,97.5-53.7,167.7-150.5,181.6c-95.9,13.7-200.3-84-200.3-181.6  S190.4,73.8,287.3,72.8C401.1,71.7,462.6,162.9,462.6,260.4z" id="XMLID_171_"/><circle class="st3" cx="262.1" cy="358.5" id="XMLID_169_" r="22.6"/><circle class="st4" cx="157" cy="300.2" id="XMLID_164_" r="5"/><circle class="st4" cx="315.1" cy="202.2" id="XMLID_163_" r="5"/><circle class="st4" cx="198" cy="210.3" id="XMLID_162_" r="11.3"/><path class="st5" d="M157,358.5c0,11.6,7.5,21,16.7,21" id="XMLID_161_"/><circle class="st4" cx="346.6" cy="40.2" id="XMLID_159_" r="5"/><circle class="st4" cx="173.7" cy="57.7" id="XMLID_157_" r="9.1"/><circle class="st6" cx="290.3" cy="358.5" id="XMLID_165_" r="22.6"/><path class="st7" d="M144.3,478.8c-68.4-48.4-113-128.2-113-218.3c0-76.2,31.9-145,83.1-193.7" id="XMLID_166_"/><circle class="st8" cx="117.9" cy="57.7" id="XMLID_170_" r="25.8"/><circle class="st9" cx="440.1" cy="68.4" id="XMLID_22_" r="22.6"/></svg>
+                        <p class="category-title" data-v-05b842e7="">쓰담학교</p>
+                    </div>
+                </a>
+            </li>
+
+            <li class="category-item" data-v-05b842e7="">
+                <a href="http://localhost:10001/jubgging/jubgging-intro" data-v-05b842e7="" class="">
+                    <div class="category-icon" data-v-05b842e7="">
+                        <?xml version="1.0" ?><svg class="maincategory" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+	.st000{fill:#E8D55F;stroke:#414042;stroke-width:20;stroke-miterlimit:10;}
+    .st111{fill:#F9F5B8;}
+    .st222{fill:#FBEC7D;}
+    .st333{fill:#5FC5E5;stroke:#414042;stroke-width:17;stroke-miterlimit:10;}
+    .st444{fill:#414042;}
+    .st555{fill:none;stroke:#414042;stroke-width:12.1497;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+    .st666{fill:none;stroke:#414042;stroke-width:20;stroke-miterlimit:10;}
+    .st777{fill:#F7941E;stroke:#414042;stroke-width:17;stroke-miterlimit:10;}
+    .st888{fill:none;stroke:#414042;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style><circle class="st000" cx="262.7" cy="275.5" id="XMLID_404_" r="195.1"/><path class="st111" d="M445.7,275.1c0,95.4-54,164.1-151.2,177.7c-96.4,13.4-201.3-82.2-201.3-177.7  S172.1,92.7,269.4,92.7S445.7,179.7,445.7,275.1z" id="XMLID_403_"/><path class="st222" d="M441.6,275.6c0,95.1-54.3,163.5-152.1,177c-96.9,13.4-202.4-81.9-202.4-177  S166.5,93.7,264.4,92.7C379.4,91.6,441.6,180.5,441.6,275.6z" id="XMLID_402_"/><circle class="st333" cx="436.6" cy="52.2" id="XMLID_401_" r="26.6"/><circle class="st4" cx="265.3" cy="322.2" id="XMLID_400_" r="5"/><circle class="st444" cx="290.4" cy="214.2" id="XMLID_399_" r="8.1"/><circle class="st444" cx="173.3" cy="484.8" id="XMLID_398_" r="11.3"/><path class="st555" d="M386.6,168.3c-4.8-13.7-16.9-22-27.2-18.4" id="XMLID_397_"/><circle class="st444" cx="178.3" cy="57.2" id="XMLID_396_" r="5"/><circle class="st444" cx="240.3" cy="268.1" id="XMLID_394_" r="5"/><circle class="st444" cx="380.7" cy="52.2" id="XMLID_393_" r="7.7"/><path class="st666" d="M457.7,301.6c20.2,22.5,28.8,43.3,22.3,59c-17,40.6-129.5,32-251.1-19S22.3,216.2,39.4,175.6  c7.7-18.4,34.9-26.7,73.7-25.5" id="XMLID_392_"/><circle class="st777" cx="206.3" cy="236.7" id="XMLID_391_" r="22.6"/><path class="st888" d="M390,117c28.9-8.7,46.5-6.8,57.9,5.8c29.5,32.6-26,130.8-123.9,219.3s-201.2,133.7-230.7,101  c-13.3-14.8-14.7-31.5,2.8-66.1" id="XMLID_274_"/></svg>
+                        <p class="category-title" data-v-05b842e7="">별별줍깅</p>
+                    </div>
+                </a>
+            </li>
+            <li class="category-item" data-v-05b842e7="">
+                <a href="http://localhost:10001/recycle/recyclingintro" data-v-05b842e7="" class="">
+                    <div class="category-icon" data-v-05b842e7="">
+                        <?xml version="1.0" ?><svg class="maincategory" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+	.st050{fill:#50ABC4;stroke:#414042;stroke-width:20;stroke-miterlimit:10;}
+    .st150{fill:#AEDEEF;}
+    .st250{fill:#5FC7E6;}
+    .st350{fill:#B72679;stroke:#414042;stroke-width:15;stroke-miterlimit:10;}
+    .st450{fill:#414042;}
+    .st550{fill:none;stroke:#414042;stroke-width:17;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+    .st650{fill:#5FC7E6;stroke:#414042;stroke-width:16;stroke-miterlimit:10;}
+</style><circle class="st050" cx="258" cy="240.6" id="XMLID_41_" r="195.1"/><path class="st150" d="M441.5,242.9c0,97.2-54.1,167.2-151.4,181c-96.5,13.7-201.6-83.8-201.6-181S167.5,57.1,265,57.1  S441.5,145.7,441.5,242.9z" id="XMLID_40_"/><path class="st250" d="M436.6,239.4c0,94.8-54.3,163-151.9,176.5c-96.8,13.3-202.2-81.7-202.2-176.5  S161.8,58,259.6,57.1C374.5,55.9,436.6,144.6,436.6,239.4z" id="XMLID_39_"/><circle class="st350" cx="303.3" cy="427.3" id="XMLID_37_" r="22.6"/><circle class="st450" cx="105.1" cy="34.7" id="XMLID_32_" r="5"/><circle class="st450" cx="250.3" cy="187.1" id="XMLID_31_" r="5"/><circle class="st450" cx="109.2" cy="315.9" id="XMLID_30_" r="11.3"/><circle class="st450" cx="330.6" cy="471.7" id="XMLID_28_" r="9.7"/><circle class="st450" cx="273" cy="192.1" id="XMLID_27_" r="5"/><circle class="st450" cx="255.3" cy="153.6" id="XMLID_26_" r="5"/><circle class="st450" cx="285.4" cy="158.6" id="XMLID_25_" r="17.4"/><path class="st550" d="M275.2,387.2c7.9-5.6,17.6-8.8,28-8.8c27,0,48.9,21.9,48.9,48.9c0,9.6-2.8,18.6-7.6,26.2" id="XMLID_24_"/><circle class="st650" cx="82.5" cy="75.1" id="XMLID_29_" r="22.6"/></svg>
+                        <p class="category-title" data-v-05b842e7="">쓰담수거</p>
+                    </div>
+                </a>
+            </li>
+            <li class="category-item" data-v-05b842e7="">
+                <a href="http://localhost:10001/community/main" data-v-05b842e7="" class="">
+                    <div class="category-icon" data-v-05b842e7="">
+                        <?xml version="1.0" ?><svg class="maincategory" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+	.st060{fill:#51A280;stroke:#414042;stroke-width:20;stroke-miterlimit:10;}
+    .st160{fill:#AEDEEF;}
+    .st260{fill:#6DC5A5;}
+    .st360{fill:#8DC63F;stroke:#414042;stroke-width:19;stroke-miterlimit:10;}
+    .st460{fill:#FBEC7D;stroke:#414042;stroke-width:17;stroke-miterlimit:10;}
+    .st560{fill:none;stroke:#414042;stroke-width:16;stroke-linecap:round;stroke-miterlimit:10;}
+    .st660{fill:none;stroke:#414042;stroke-width:17;stroke-linecap:round;stroke-miterlimit:10;}
+    .st760{fill:#414042;}
+    .st860{fill:none;stroke:#414042;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style><circle class="st060" cx="274" cy="268.5" id="XMLID_129_" r="195.1"/><path class="st160" d="M459.5,272.6c0,96.3-55,165.7-154,179.3c-98.2,13.5-205-83-205-179.3S180.9,88.5,280,88.5  S459.5,176.3,459.5,272.6z" id="XMLID_128_"/><path class="st260" d="M454.5,272.9c0,95.9-55,164.9-154,178.5c-98.2,13.5-205-82.6-205-178.5S175.9,89.4,275,88.5  C391.5,87.3,454.5,177,454.5,272.9z" id="XMLID_127_"/><circle class="st360" cx="364.3" cy="103" id="XMLID_126_" r="40.3"/><circle class="st460" cx="319.3" cy="455.2" id="XMLID_125_" r="22.6"/><line class="st560" id="XMLID_124_" x1="67.8" x2="170.2" y1="101" y2="101"/><line class="st560" id="XMLID_123_" x1="68.9" x2="123.3" y1="143.3" y2="143.3"/><line class="st660" id="XMLID_121_" x1="283.3" x2="452.2" y1="355.2" y2="355.2"/><circle class="st760" cx="276.6" cy="315.2" id="XMLID_120_" r="5"/><circle class="st760" cx="301.7" cy="207.2" id="XMLID_119_" r="5"/><circle class="st760" cx="319.3" cy="277.8" id="XMLID_118_" r="11.3"/><path class="st860" d="M143.7,363.5c0,11.6,7.5,21,16.7,21" id="XMLID_117_"/><circle class="st760" cx="189.6" cy="50.2" id="XMLID_116_" r="5"/><circle class="st760" cx="333.3" cy="45.2" id="XMLID_115_" r="5"/><circle class="st760" cx="421.3" cy="121.2" id="XMLID_114_" r="5"/><circle class="st760" cx="404.6" cy="33.9" id="XMLID_113_" r="7.7"/><line class="st560" id="XMLID_65_" x1="43.3" x2="96.1" y1="186.6" y2="186.6"/></svg>
+                        <p class="category-title" data-v-05b842e7="">커뮤니티</p>
+                    </div>
+                </a>
+            </li>
+
+        </ul>
+
+        <!-- 지금 바로 원하는 서비스를 받아보세요 -->
+        <div class="observer-container container no-mobile-padding" data-v-e0e63576="" data-v-489c24cc="" data-v-1346aca8="">
+            <div data-v-e0e63576="" class="main-ip-product-list">
+                <section data-v-489c24cc="" data-v-e0e63576="" class="header">
+                    <h2 data-v-489c24cc="" data-v-e0e63576="" class="title">별별 수강</h2>
+                </section>
+
+                <section data-v-489c24cc="" class="slide-change-wrapper" data-v-e0e63576="">
+                    <div data-v-d8635bf2="" data-v-489c24cc="">
+                        <div data-v-73dd068d="" data-v-d8635bf2="" class="main-desktop-slide">
+                            <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-73dd068d="" dir="ltr" class="slick-slider slick-initialized">
+                                <!-- 이전 버튼 -->
+                                <button data-v-21137603="" data-v-3d1a4f76="" type="button"  data-role="none" class="firstBtn firstPrev slick-arrow slick-prev " style="display: none;">Previous</button>
+                                <!-- 슬라이드 시작 -->
+                                <div data-v-3d1a4f76="" class="slick-list">
+                                    <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-first slick-track sub-banner" style="width: 1976px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                                        <th:block th:each="program:${programs}">
+                                            <div th:object="${program}" data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false" class="slick-slide slick-active slick-current" style="outline: none; width: 247px;">
+                                                <div data-v-e4caeaf8="">
+                                                    <article data-v-85c61b32="" data-v-d8635bf2="" class="product-list-item hide-provider responsive" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;">
+                                                        <a data-v-85c61b32="" href="/ip/products/63738d17369116432a2f4aa0?from=main" class="" data-testid="product-list-item">
+                                                            <div data-v-85c61b32="" class="item-image">
+                                                                <article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">
+                                                                    <div data-v-1a98b297="" class="image-wrap" style="padding-top: 66.6667%;">
+                                                                        <img data-v-1a98b297="" src="https://cdn.class101.net/images/a3591166-612d-4ba9-bdf8-69a8b63a46c4/375xauto.webp">
+                                                                    </div>
+                                                                </article>
+                                                            </div>
+                                                            <div data-v-85c61b32="" class="item-title">
+                                                                <div data-v-a3afae98="" data-v-85c61b32="" class="collapsed">
+                                                                    <div data-v-a3afae98="" class="line-clamp" style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">
+                                                                        <h3 th:text="*{programName}" data-v-85c61b32="" data-v-a3afae98="">그림을 비누에 담다, 따라 그리는 명작 비누</h3>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <!-- 다음 버튼 -->
+                                <button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none" class="firstBtn firstNext slick-arrow slick-next" style="display: block;">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!--    주방-->
+        <div data-v-cb8f7044="" data-v-1346aca8="" class="main-exhibition container no-mobile-padding">
+            <div data-v-cb8f7044="" class="exhibition-item">
+                <h2 data-v-cb8f7044="" class="title">주방</h2>
+                <div data-v-73dd068d="" data-v-cb8f7044="" class="main-desktop-slide">
+                    <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-73dd068d="" dir="ltr" class="slick-slider slick-initialized">
+                        <button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none" class="fourBtn fourPrev slick-arrow slick-prev" style="display: none;">Previous</button>
+                        <div data-v-3d1a4f76="" class="slick-list">
+                            <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-four slick-track" style="width: 1482px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                                <th:block th:each="kitchen:${kitchens}">
+                                    <div th:object="${kitchen}" data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false" class="slick-slide slick-active slick-current" style="outline: none; width: 247px;">
+                                        <div data-v-e4caeaf8="">
+                                            <a data-v-cb8f7044="" href="https://cdn.imweb.me/thumbnail/20210913/7f55e7a33833f.jpg" class="" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;">
+                                                <img data-v-cb8f7044="" alt="고무장갑 팔목라인" class="service-image" data-src="https://cdn.imweb.me/thumbnail/20210913/7f55e7a33833f.jpg" src="https://cdn.imweb.me/thumbnail/20210913/7f55e7a33833f.jpg" lazy="loaded">
+                                                <p th:text="*{productName}" data-v-cb8f7044="" class="service-name"></p>
+                                            </a>
+                                        </div>
+                                        <div data-v-85c61b32="" class="item-price">
+                                            <strong th:text="|${#numbers.formatInteger(kitchen.productPrice, 0, 'COMMA')}원|" data-v-85c61b32=""></strong>
+                                        </div>
+                                        <div class="prod_icon icon_default" style="display: inline-block; text-align: center; color: #fff; font-size: 11px; vertical-align: middle; text-rendering: optimizeLegibility; background: #fff; color: red; width: auto; font-weight: normal; font-size: 11px; padding: 2px 0px;">BEST</div>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none" class="fourBtn fourNext slick-arrow slick-next" style="display: block;">Next</button>
+                    </div>
+                </div>
+            </div>
+            <!--        욕실-->
+            <div data-v-cb8f7044="" class="exhibition-item">
+                <h2 data-v-cb8f7044="" class="title">욕실</h2>
+                <div data-v-73dd068d="" data-v-cb8f7044="" class="main-desktop-slide">
+                    <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-73dd068d="" dir="ltr" class="slick-slider slick-initialized">
+                        <button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none" class="fiveBtn fivePrev slick-arrow slick-prev" style="display: none;">Previous</button>
+                        <div data-v-3d1a4f76="" class="slick-list">
+                            <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-five slick-track" style="width: 1482px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                                <th:block th:each="bath:${bathes}">
+                                    <div th:object="${bath}" data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false"
+                                         class="slick-slide slick-active slick-current" style="outline: none; width: 247px;">
+                                        <div data-v-e4caeaf8=""><a data-v-cb8f7044=""
+                                                                   href="/hire/%EC%9E%90%EB%8F%99%EC%B0%A8-%EC%8D%AC%ED%8C%85?from=%EA%B8%B0%ED%9A%8D%EC%A0%84"
+                                                                   class="" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;"><img
+                                                data-v-cb8f7044="" alt="자동차 썬팅" class="service-image"
+                                                data-src="https://cdn.imweb.me/thumbnail/20220816/e7980fcbb4c59.jpg"
+                                                src="https://cdn.imweb.me/thumbnail/20220816/e7980fcbb4c59.jpg"
+                                                lazy="loaded">
+                                            <p th:text="*{productName}" data-v-cb8f7044="" class="service-name"></p>
+                                        </a></div>
+                                        <div data-v-85c61b32="" class="item-price">
+                                            <strong  th:text="|${#numbers.formatInteger(bath.productPrice, 0, 'COMMA')}원|" data-v-85c61b32=""></strong>
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div><button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none"
+                                      class="fiveBtn fiveNext slick-arrow slick-next" style="display: block;">Next</button>
+                    </div>
+                </div>
+            </div>
+            <div data-v-cb8f7044="" class="exhibition-item">
+                <h2 data-v-cb8f7044="" class="title">생활</h2>
+                <div data-v-73dd068d="" data-v-cb8f7044="" class="main-desktop-slide">
+                    <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-73dd068d="" dir="ltr"
+                         class="slick-slider slick-initialized"><button data-v-21137603="" data-v-3d1a4f76="" type="button"
+                                                                        data-role="none" class="sixBtn sixPrev slick-arrow slick-prev" style="display: none;">Previous</button>
+                        <div data-v-3d1a4f76="" class="slick-list">
+                            <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-six slick-track"
+                                 style="width: 1482px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                                <th:block th:each="life:${lives}">
+                                    <div th:object="${life}" data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false"
+                                         class="slick-slide slick-active slick-current" style="outline: none; width: 247px;">
+                                        <div data-v-e4caeaf8=""><a data-v-cb8f7044=""
+                                                                   href="/hire/%ED%8D%BC%EC%8A%A4%EB%84%90%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%8B%9D?from=%EA%B8%B0%ED%9A%8D%EC%A0%84"
+                                                                   class="" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;"><img
+                                                data-v-cb8f7044="" alt="미니 에코백" class="service-image"
+                                                data-src="https://cdn.imweb.me/thumbnail/20220126/4487a182e52e5.jpg"
+                                                src="https://cdn.imweb.me/thumbnail/20220126/4487a182e52e5.jpg"
+                                                lazy="loaded">
+                                            <p th:text="*{productName}" data-v-cb8f7044="" class="service-name"></p>
+                                        </a></div>
+                                        <div data-v-85c61b32="" class="item-price">
+                                            <strong  th:text="|${#numbers.formatInteger(life.productPrice, 0, 'COMMA')}원|" data-v-85c61b32=""></strong>
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div><button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none"
+                                      class="sixBtn sixNext slick-arrow slick-next" style="display: block;">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 지금 가장 뜨거운 🔥 커뮤니티 게시글 -->
+            <div class="observer-container container no-mobile-padding" data-v-e0e63576="" data-v-58af04c6=""  data-v-1346aca8="">
+                <div class="main-popular-pro test-b" data-v-e0e63576="" data-v-58af04c6="">
+
+                    <section class="header" data-v-e0e63576="" data-v-58af04c6="">
+                        <h2 class="title" data-v-e0e63576="" data-v-58af04c6=""> 지금 가장 뜨거운 🔥 커뮤니티 게시글 </h2>
+                        <a href="http://localhost:10001/community/main" class="go-list" data-v-1b5b0368="" data-v-58af04c6="" data-v-e0e63576="">
+                            <span class="watch-all" data-v-1b5b0368="">전체보기</span>
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTAgMEgxNlYxNkgweiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwNTMuMDAwMDAwLCAtMjAyLjAwMDAwMCkgdHJhbnNsYXRlKDQ4NS4wMDAwMDAsIDE4OC4wMDAwMDApIHRyYW5zbGF0ZSg1NjguMDAwMDAwLCAxNC4wMDAwMDApIi8+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggc3Ryb2tlPSIjMDBDN0FFIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMS41IiBkPSJNMTEgMTNMNiA4IDExIDMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMDUzLjAwMDAwMCwgLTIwMi4wMDAwMDApIHRyYW5zbGF0ZSg0ODUuMDAwMDAwLCAxODguMDAwMDAwKSB0cmFuc2xhdGUoNTY4LjAwMDAwMCwgMTQuMDAwMDAwKSB0cmFuc2xhdGUoOC41MDAwMDAsIDguMDAwMDAwKSBzY2FsZSgtMSwgMSkgdHJhbnNsYXRlKC04LjUwMDAwMCwgLTguMDAwMDAwKSIvPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" data-v-1b5b0368="">
+                        </a>
+                    </section>
+
+                    <div data-v-73dd068d="" data-v-58af04c6="" class="main-desktop-slide" data-v-e0e63576="">
+                        <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-73dd068d="" dir="ltr" class="slick-slider slick-initialized">
+                            <!-- 이전 버튼 -->
+                            <button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none" class="threeBtn threePrev slick-arrow slick-prev" style="display: none;">Previous</button>
+
+                            <!-- 슬라이드 시작 -->
+                            <div data-v-3d1a4f76="" class="slick-list">
+                                <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-three slick-track" style="width: 2574px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                                    <div data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false" class="slick-slide slick-active slick-current" style="outline: none;">
+                                        <div data-v-e4caeaf8="">
+                                            <a data-v-78b11936="" data-v-58af04c6=""  href="/search/pro/%EC%9A%A9%EB%8B%AC-%EC%9A%B4%EC%86%A1/address/%ED%99%88-%EB%A6%AC%EB%B9%99--%EC%9D%B4%EC%82%AC/review_count?from=main_best_pro" class="" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;">
+                                                <section data-v-78b11936="" class="meet-provider">
+                                                    <img data-v-78b11936="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCA1NiA1NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTS0xMTItMjE4NWgxMTcwdjUzNzFILTExMnoiLz4KICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTIgLTEyKSI+CiAgICAgICAgICAgIDxyZWN0IGZpbGw9IiNGMkYyRjIiIHdpZHRoPSIxODIiIGhlaWdodD0iMTgyIiByeD0iOCIvPgogICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMiAxMikiPgogICAgICAgICAgICAgICAgPGNpcmNsZSBmaWxsPSIjRDRFMEZFIiBmaWxsLXJ1bGU9Im5vbnplcm8iIGN4PSIyOCIgY3k9IjI4IiByPSIyOCIvPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTM0LjI3IDE2LjA3OGEzLjI3OCAzLjI3OCAwIDAgMC0zLjI4IDMuMTYybC0uMzY1IDEwLjc5NWg3LjI5MWwtLjM2NS0xMC43OTVhMy4yNzggMy4yNzggMCAwIDAtMy4yOC0zLjE2MnpNMjEuMjkyIDE2LjA3OGEzLjI3NyAzLjI3NyAwIDAgMC0zLjI4IDMuMTYybC0uMzY2IDEwLjc5NWg3LjI5MWwtLjM2NS0xMC43OTVhMy4yNzggMy4yNzggMCAwIDAtMy4yOC0zLjE2MnoiIGZpbGw9IiM1MDgwRkEiLz4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Im0zNi44NzcgMTcuOTg1LTcuOTQ4LjUwNmMtLjYxOS4wMzktMS4yNC4wMzktMS44NTggMGwtNy45NDgtLjUwNmE1LjI0NiA1LjI0NiAwIDAgMC01LjUzIDQuNDY4bC0xLjM0MyA5LjE4MmgzMS41bC0xLjM0My05LjE4MmE1LjI0NiA1LjI0NiAwIDAgMC01LjUzLTQuNDY4eiIgZmlsbD0iIzgwQTNGQyIvPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTM4LjEzNSAyNi4yNTVoLTIwLjI3Yy0zLjEwMSAwLTUuNjE1IDIuNTA2LTUuNjE1IDUuNTk4IDAgMy4wOTEgMi41MTQgNS41OTcgNS42MTUgNS41OTdoMjAuMjdjMy4xMDEgMCA1LjYxNS0yLjUwNiA1LjYxNS01LjU5NyAwLTMuMDkyLTIuNTE0LTUuNTk4LTUuNjE1LTUuNTk4eiIgZmlsbD0iIzQyNzBGOCIvPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTM1IDM5LjkyMmMtMy41NDQgMC02LjQxNy0yLjg2NC02LjQxNy02LjM5NyAwLTMuNTMzIDIuODczLTYuMzk3IDYuNDE3LTYuMzk3IDMuNTQzIDAgNi40MTYgMi44NjQgNi40MTYgNi4zOTcgMCAzLjUzMy0yLjg3MyA2LjM5Ny02LjQxNiA2LjM5N3oiIGZpbGw9IiMyQzNFRDAiIGZpbGwtcnVsZT0ibm9uemVybyIvPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTM0Ljk5OSAzNy4xNmEzLjY0IDMuNjQgMCAwIDEtMy42NDYtMy42MzVBMy42NCAzLjY0IDAgMCAxIDM1IDI5Ljg5YTMuNjQgMy42NCAwIDAgMSAzLjY0NiAzLjYzNSAzLjY0IDMuNjQgMCAwIDEtMy42NDYgMy42MzV6IiBmaWxsPSIjRUZGNEZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMC43MDggMzkuOTIyYy0zLjU0MyAwLTYuNDE2LTIuODY0LTYuNDE2LTYuMzk3IDAtMy41MzMgMi44NzMtNi4zOTcgNi40MTYtNi4zOTcgMy41NDQgMCA2LjQxNyAyLjg2NCA2LjQxNyA2LjM5NyAwIDMuNTMzLTIuODczIDYuMzk3LTYuNDE3IDYuMzk3eiIgZmlsbD0iIzJDM0VEMCIgZmlsbC1ydWxlPSJub256ZXJvIi8+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMjAuNzA4IDM3LjE2YTMuNjQgMy42NCAwIDAgMS0zLjY0Ni0zLjYzNSAzLjY0IDMuNjQgMCAwIDEgMy42NDYtMy42MzUgMy42NCAzLjY0IDAgMCAxIDMuNjQ2IDMuNjM1IDMuNjQgMy42NCAwIDAgMS0zLjY0NiAzLjYzNXoiIGZpbGw9IiNFRkY0RkYiIGZpbGwtcnVsZT0ibm9uemVybyIvPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="고수 만나러가기" class="meet-provider-icon">
+                                                    <span data-v-78b11936="" class="meet-provider-text total">가장 뜨거운 🔥</span>
+                                                    <br data-v-78b11936="">
+                                                    <div data-v-78b11936="" class="meet-provider-link">
+                                                        <span data-v-78b11936="" class="meet-provider-text">게시글 보기</span>
+                                                        <img data-v-78b11936="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgxMnYxMkgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iIzJEMkQyRCIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0ibTQgMTAgNC00LTQtNCIvPgogICAgPC9nPgo8L3N2Zz4K">
+                                                    </div>
+                                                </section>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <th:block th:each="top:${topBoards}">
+                                        <div th:object="${top}" data-v-e4caeaf8="" tabindex="-1" data-index="1" aria-hidden="false" class="slick-slide slick-active" style="outline: none; width: 198px;">
+                                            <div data-v-e4caeaf8="">
+                                                <a data-v-2caa2ac0="" data-v-58af04c6="" href="/profile/users/2885276?from=main_best_pro" class="" tabindex="-1" data-v-e4caeaf8=""  style="width: 100%; display: inline-block;">
+                                                    <div data-v-2caa2ac0="" data-testid="main-pro-card" class="main-pro-card">
+                                                        <section data-v-2caa2ac0="" class="header">
+                                                            <div data-v-2caa2ac0="" class="thumb" data-src="https://dmmj3ljielax6.cloudfront.net/upload/profile/d9a169e3-ff36-4af1-9d64-624638410c3b.jpg" lazy="loaded" style="background-image: url(https://dmmj3ljielax6.cloudfront.net/upload/profile/d9a169e3-ff36-4af1-9d64-624638410c3b.jpg)"></div>
+                                                            <div data-v-2caa2ac0="" class="review">
+                                                                <img data-v-2caa2ac0="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im03LjQ5NiAxLjU5NiAxLjQwNyAyLjc0MiAzLjE0NS40NGMuOTEuMTI3IDEuMjc1IDEuMjA0LjYxNSAxLjgyMmwtMi4yNzYgMi4xMzQuNTM4IDMuMDE1Yy4xNTUuODcyLS43OTcgMS41MzgtMS42MTIgMS4xMjZMNi41IDExLjQ1MmwtMi44MTMgMS40MjNjLS44MTUuNDEyLTEuNzY3LS4yNTQtMS42MTItMS4xMjZsLjUzOC0zLjAxNUwuMzM3IDYuNmMtLjY2LS42MTgtLjI5Ni0xLjY5NS42MTUtMS44MjJsMy4xNDUtLjQ0IDEuNDA3LTIuNzQyQzUuOTEyLjggNy4wODguOCA3LjQ5NiAxLjU5NiIgZmlsbD0iI0ZGQ0UyMSIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=">
+                                                                <span data-v-2caa2ac0="" class="rate">4.9</span>
+                                                            </div>
+                                                        </section>
+                                                        <p th:text="*{memberName}" data-v-2caa2ac0="" class="name">작성자</p>
+                                                        <div th:text="*{boardTitle}" data-v-1c0b0670="" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;">안녕하세요 23평 직사각형 마름모꼴의 노후된 상가건물입니다 렌탈스튜디오 운영겸 저의쇼핑몰 사무실공간을 만들고도 싶은데요. 도배 장판 인테리어등 견적문의드립니다. 크림빛 화이트계열(아이보리) 호리존등 설치비용 등등의 각종 인테리어 물어볼게많아서 채팅자세한 상담해주실고수님</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </div><button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none"
+                                          class="threeBtn threeNext slick-arrow slick-next" style="display: block;">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <!---->
+            </div>
+            <!-- 게시판 -->
+            <div class="main-community slide-knowhow-list container" data-v-d53abf48="" data-v-1346aca8="">
+                <section class="header short-bottom" data-v-d53abf48="">
+                    <h2 class="title" data-v-d53abf48="">별별쓰담 커뮤니티에 물어보세요</h2>
+                    <a href="http://localhost:10001/community/main" data-testid="community-home" class="go-list" data-v-1b5b0368="" data-v-d53abf48="">
+                        <span class="watch-all" data-v-1b5b0368="">전체보기</span>
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTAgMEgxNlYxNkgweiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwNTMuMDAwMDAwLCAtMjAyLjAwMDAwMCkgdHJhbnNsYXRlKDQ4NS4wMDAwMDAsIDE4OC4wMDAwMDApIHRyYW5zbGF0ZSg1NjguMDAwMDAwLCAxNC4wMDAwMDApIi8+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggc3Ryb2tlPSIjMDBDN0FFIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMS41IiBkPSJNMTEgMTNMNiA4IDExIDMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMDUzLjAwMDAwMCwgLTIwMi4wMDAwMDApIHRyYW5zbGF0ZSg0ODUuMDAwMDAwLCAxODguMDAwMDAwKSB0cmFuc2xhdGUoNTY4LjAwMDAwMCwgMTQuMDAwMDAwKSB0cmFuc2xhdGUoOC41MDAwMDAsIDguMDAwMDAwKSBzY2FsZSgtMSwgMSkgdHJhbnNsYXRlKC04LjUwMDAwMCwgLTguMDAwMDAwKSIvPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" data-v-1b5b0368="">
+                    </a>
+                </section>
+                <div data-v-e636ceae="" data-v-d53abf48="" class="main-community-contents">
+                    <div data-v-e636ceae="" class="desktop-section">
+                        <div data-v-e636ceae="" class="curation-container half-list">
+                            <ul data-v-287a2a80="" data-v-e636ceae="" data-testid="curation-list" class="curation-list">
+                                <li data-v-287a2a80="" data-testid="curation-item" class="curation-list-item" style="display: flex;flex-wrap: wrap">
+                                    <th:block th:each="board:${boards}">
+                                        <a th:object="${board}" data-v-287a2a80="" href="/community/soomgo-life/posts/6370e559d7334c72676ba41b-%EC%87%BC%ED%95%91%EB%AA%B0-%EC%82%AC%EB%AC%B4%EC%8B%A4%EA%B2%B8-%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4-%EB%AC%B8%EC%9D%98" class="curation-list-wrapper">
+                                            <div data-v-287a2a80="" class="curation-contents has-thumbnail">
+                                                <p th:text="*{boardCategory}" data-v-287a2a80="" class="topic-name"></p>
+                                                <p th:text="*{boardTitle}" data-v-287a2a80="" class="curation-title"></p>
+                                                <p th:text="*{boardContent}" data-v-287a2a80="" class="curation-content"></p>
+                                                <div data-v-287a2a80="" class="curation-reactions">
+                                                    <span th:text="*{boardView}" data-v-287a2a80="" class="view-count"></span>
+                                                    <span data-v-287a2a80="" class="comment-count">24</span>
+                                                </div>
+                                            </div>
+                                            <div data-v-287a2a80="" class="curation-topic-image">
+                                                <img data-v-287a2a80="" alt="519D8549-5386-45C2-8D53-FF4D19328570.jpg" class="topic-thumbnail-image" data-src="https://static.cdn.soomgo.com/upload/media/2b808418-abc6-4229-8df3-1531cae1c581.jpg" src="https://static.cdn.soomgo.com/upload/media/2b808418-abc6-4229-8df3-1531cae1c581.jpg" azy="loaded">
+                                            </div>
+                                        </a>
+                                    </th:block>
+                                    <!--                                    <a data-v-287a2a80="" href="/community/soomgo-life/posts/6372cda495a43a568d32b5fb-%EC%9C%97%EC%B8%B5-%EB%88%84%EC%88%98%EB%A1%9C-%EC%9D%B8%ED%95%9C-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4-%EB%8F%84%EB%B0%B0-%EA%B3%A0%EC%88%98%EB%8B%98%EB%93%A4%EA%BB%98-%EC%A7%88%EB%AC%B8%EC%9D%B4%EC%9A%94-" class="curation-list-wrapper">-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-contents has-thumbnail">-->
+                                    <!--                                            <p data-v-287a2a80="" class="topic-name">궁금해요</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-title">윗층 누수로 인한 인테리어&amp;도배 고수님들께 질문이요.</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-content">11월5일 윗층 수전에서 물이 누수되어 저희집 씽크장 뒷편 벽면을 타고 물이 흘렀어요. 보상을 해준다 만다 옥신각신하다가. 11월 8일 얘기를 나눴고 2가지 제안을 한 상태에요. 첫째 도배를 원하면 해주겠다. 그런데 "씽크장도 떼어내고 해야되는데 번거롭고 불편하지않...</p>-->
+                                    <!--                                            <div data-v-287a2a80="" class="curation-reactions">-->
+                                    <!--                                                <span data-v-287a2a80="" class="view-count">99+</span>-->
+                                    <!--                                                <span data-v-287a2a80="" class="comment-count">20</span>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-topic-image">-->
+                                    <!--                                            <img data-v-287a2a80="" alt="3d96ee5e-bbb6-44a5-b490-d2a854807671.jpg" class="topic-thumbnail-image" data-src="https://static.cdn.soomgo.com/upload/media/b664f687-80dc-40a1-bf42-650b58d2b08a.jpg" src="https://static.cdn.soomgo.com/upload/media/b664f687-80dc-40a1-bf42-650b58d2b08a.jpg" lazy="loaded">-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </a>-->
+                                    <!--                                    <a data-v-287a2a80=""  href="/community/soomgo-life/posts/6373586063c2653cf7e65824-%ED%83%80%EC%9D%BC%EC%9C%84-%EA%B2%80%EC%9D%80%EC%A0%90&#45;&#45;%EA%B3%B0%ED%8C%A1%EC%9D%B4%EC%9D%B8%EC%A7%80-" class="curation-list-wrapper">-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-contents has-thumbnail">-->
+                                    <!--                                            <p data-v-287a2a80="" class="topic-name">궁금해요</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-title">타일위 검은점..곰팡이인지?</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-content">이게 곰팡이인가요? 페인트가 튀어서 곰팡이가 생긴건가요? 스크래퍼로 긁어내니 색상이 회색 또는 갈색으로 좀 연해지긴 하는데 철수세미로 박박 문질러도 안없어지고.. 락스휴지 신공으로도 안사라지네요. 정체가 뭔지 어떻게 지우는지 궁금합니다.</p>-->
+                                    <!--                                            <div data-v-287a2a80="" class="curation-reactions">-->
+                                    <!--                                                <span data-v-287a2a80="" class="view-count">99+</span>-->
+                                    <!--                                                <span data-v-287a2a80="" class="comment-count">17</span>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-topic-image">-->
+                                    <!--                                            <img data-v-287a2a80="" alt="2efa5b36-f700-45ea-aa74-be5e068f384a.jpg" class="topic-thumbnail-image"  data-src="https://static.cdn.soomgo.com/upload/media/06c8885d-314e-486b-bc89-a15ec82bb1d8.jpg" src="https://static.cdn.soomgo.com/upload/media/06c8885d-314e-486b-bc89-a15ec82bb1d8.jpg" lazy="loaded">-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </a>-->
+                                    <!--                                    <a data-v-287a2a80="" href="/community/soomgo-life/posts/6370e559d7334c72676ba41b-%EC%87%BC%ED%95%91%EB%AA%B0-%EC%82%AC%EB%AC%B4%EC%8B%A4%EA%B2%B8-%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4-%EB%AC%B8%EC%9D%98" class="curation-list-wrapper">-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-contents has-thumbnail">-->
+                                    <!--                                            <p data-v-287a2a80="" class="topic-name">고수찾아요</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-title">쇼핑몰 사무실겸 스튜디오 인테리어 문의</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-content">안녕하세요 23평 직사각형 마름모꼴의 노후된 상가건물입니다 렌탈스튜디오 운영겸 저의쇼핑몰 사무실공간을 만들고도 싶은데요. 도배 장판 인테리어등 견적문의드립니다. 크림빛 화이트계열(아이보리) 호리존등 설치비용 등등의 각종 인테리어 물어볼게많아서 채팅자세한 상담해주실고수님...</p>-->
+                                    <!--                                            <div data-v-287a2a80="" class="curation-reactions">-->
+                                    <!--                                                <span data-v-287a2a80="" class="view-count">99+</span>-->
+                                    <!--                                                <span data-v-287a2a80="" class="comment-count">24</span>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-topic-image">-->
+                                    <!--                                            <img data-v-287a2a80="" alt="519D8549-5386-45C2-8D53-FF4D19328570.jpg" class="topic-thumbnail-image" data-src="https://static.cdn.soomgo.com/upload/media/2b808418-abc6-4229-8df3-1531cae1c581.jpg" src="https://static.cdn.soomgo.com/upload/media/2b808418-abc6-4229-8df3-1531cae1c581.jpg" azy="loaded">-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </a>-->
+                                    <!--                                    <a data-v-287a2a80="" href="/community/soomgo-life/posts/6372cda495a43a568d32b5fb-%EC%9C%97%EC%B8%B5-%EB%88%84%EC%88%98%EB%A1%9C-%EC%9D%B8%ED%95%9C-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4-%EB%8F%84%EB%B0%B0-%EA%B3%A0%EC%88%98%EB%8B%98%EB%93%A4%EA%BB%98-%EC%A7%88%EB%AC%B8%EC%9D%B4%EC%9A%94-" class="curation-list-wrapper">-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-contents has-thumbnail">-->
+                                    <!--                                            <p data-v-287a2a80="" class="topic-name">궁금해요</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-title">윗층 누수로 인한 인테리어&amp;도배 고수님들께 질문이요.</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-content">11월5일 윗층 수전에서 물이 누수되어 저희집 씽크장 뒷편 벽면을 타고 물이 흘렀어요. 보상을 해준다 만다 옥신각신하다가. 11월 8일 얘기를 나눴고 2가지 제안을 한 상태에요. 첫째 도배를 원하면 해주겠다. 그런데 "씽크장도 떼어내고 해야되는데 번거롭고 불편하지않...</p>-->
+                                    <!--                                            <div data-v-287a2a80="" class="curation-reactions">-->
+                                    <!--                                                <span data-v-287a2a80="" class="view-count">99+</span>-->
+                                    <!--                                                <span data-v-287a2a80="" class="comment-count">20</span>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-topic-image">-->
+                                    <!--                                            <img data-v-287a2a80="" alt="3d96ee5e-bbb6-44a5-b490-d2a854807671.jpg" class="topic-thumbnail-image" data-src="https://static.cdn.soomgo.com/upload/media/b664f687-80dc-40a1-bf42-650b58d2b08a.jpg" src="https://static.cdn.soomgo.com/upload/media/b664f687-80dc-40a1-bf42-650b58d2b08a.jpg" lazy="loaded">-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </a>-->
+                                    <!--                                    <a data-v-287a2a80=""  href="/community/soomgo-life/posts/6373586063c2653cf7e65824-%ED%83%80%EC%9D%BC%EC%9C%84-%EA%B2%80%EC%9D%80%EC%A0%90&#45;&#45;%EA%B3%B0%ED%8C%A1%EC%9D%B4%EC%9D%B8%EC%A7%80-" class="curation-list-wrapper">-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-contents has-thumbnail">-->
+                                    <!--                                            <p data-v-287a2a80="" class="topic-name">궁금해요</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-title">타일위 검은점..곰팡이인지?</p>-->
+                                    <!--                                            <p data-v-287a2a80="" class="curation-content">이게 곰팡이인가요? 페인트가 튀어서 곰팡이가 생긴건가요? 스크래퍼로 긁어내니 색상이 회색 또는 갈색으로 좀 연해지긴 하는데 철수세미로 박박 문질러도 안없어지고.. 락스휴지 신공으로도 안사라지네요. 정체가 뭔지 어떻게 지우는지 궁금합니다.</p>-->
+                                    <!--                                            <div data-v-287a2a80="" class="curation-reactions">-->
+                                    <!--                                                <span data-v-287a2a80="" class="view-count">99+</span>-->
+                                    <!--                                                <span data-v-287a2a80="" class="comment-count">17</span>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                        <div data-v-287a2a80="" class="curation-topic-image">-->
+                                    <!--                                            <img data-v-287a2a80="" alt="2efa5b36-f700-45ea-aa74-be5e068f384a.jpg" class="topic-thumbnail-image"  data-src="https://static.cdn.soomgo.com/upload/media/06c8885d-314e-486b-bc89-a15ec82bb1d8.jpg" src="https://static.cdn.soomgo.com/upload/media/06c8885d-314e-486b-bc89-a15ec82bb1d8.jpg" lazy="loaded">-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </a>-->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-app-banner container" data-v-1f45891b="" data-v-1346aca8="">
+                <div class="app-download-banner" data-v-1f45891b="">
+                    <img src="/images/main/subbanner2.png" style="width: 100%;">
+                </div>
+            </div>
+            <div class="main-pro-locations container no-mobile-padding" data-v-06148408="" data-v-1346aca8="">
+                <div class="header" data-v-06148408="">
+                    <h2 class="title" data-v-06148408="">줍깅 코스</h2>
+                </div>
+            </div>
+            <div data-v-0a3d71e7="" data-v-1346aca8="" class="main-magazine margin-offset container no-mobile-padding">
+                <div data-v-73dd068d="" data-v-0a3d71e7="" class="main-desktop-slide magazine-slide">
+                    <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-73dd068d="" dir="ltr" class="slick-slider slick-initialized">
+                        <button data-v-21137603="" data-v-3d1a4f76="" type="button"  data-role="none" class="nineBtn ninePrev slick-arrow slick-prev" style="display: none;">Previous</button>
+                        <div data-v-3d1a4f76="" class="slick-list">
+                            <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-nine slick-track" style="width: 2632px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                                <div data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false" class="slick-slide slick-active slick-current" style="outline: none; width: 329px;">
+                                    <div data-v-e4caeaf8="">
+                                        <ul class="location-list" data-v-06148408="">
+                                            <li class="location-item" data-v-06148408="">
+                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408=""class="">1코스</a>
+                                            </li>
+                                        </ul>
+                                        <a data-v-0a3d71e7="" data-v-e4caeaf8="" href="https://blog.naver.com/brave_mobile_mkt/222928179063" target="_blank" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"  lazy="loaded">
+                                                <img src="/images/jubgging/subjub1.png" alt="" style="width: 99%; height: 100%;">
+                                            </div>
+                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고수인터뷰] 목소리처럼 표현하는 악기, 트럼펫의 매력을 알려드려요</p>-->
+                                        </a>
+                                    </div>
+                                </div>
+                                <div data-v-e4caeaf8="" tabindex="-1" data-index="1" aria-hidden="false" class="slick-slide slick-active" style="outline: none; width: 329px;">
+                                    <div data-v-e4caeaf8="">
+                                        <ul class="location-list" data-v-06148408="">
+                                            <li class="location-item" data-v-06148408="">
+                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408=""class="">2코스</a>
+                                            </li>
+                                        </ul>
+                                        <a data-v-0a3d71e7="" data-v-e4caeaf8="" href="https://blog.naver.com/brave_mobile_mkt/222360372143" target="_blank" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"  lazy="loaded">
+                                                <img src="/images/jubgging/subjub2.png" alt="" style="width: 99%; height: 100%;">
+                                            </div>
+                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고객 인터뷰] 그림으로 다시 찾은 인생의 즐거움</p>-->
+                                        </a>
+                                    </div>
+                                </div>
+                                <div data-v-e4caeaf8="" tabindex="-1" data-index="2" aria-hidden="false" class="slick-slide slick-active" style="outline: none; width: 329px;">
+                                    <div data-v-e4caeaf8="">
+                                        <ul class="location-list" data-v-06148408="">
+                                            <li class="location-item" data-v-06148408="">
+                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408=""class="">3코스</a>
+                                            </li>
+                                        </ul>
+                                        <a data-v-0a3d71e7="" data-v-e4caeaf8="" href="https://blog.naver.com/brave_mobile_mkt/2226637349000" target="_blank" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"  lazy="loaded">
+                                                <img src="/images/jubgging/subjub3.png" alt="" style="width: 99%; height: 100%;">
+                                            </div>
+                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고수 인터뷰] 방송에 나온 훈련법이 정답은 아니에요</p>-->
+                                        </a>
+                                    </div>
+                                </div>
+                                <div data-v-e4caeaf8="" tabindex="-1" data-index="3" aria-hidden="true" class="slick-slide" style="outline: none; width: 329px;">
+                                    <div data-v-e4caeaf8="">
+                                        <ul class="location-list" data-v-06148408="">
+                                            <li class="location-item" data-v-06148408="">
+                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408=""class="">4코스</a>
+                                            </li>
+                                        </ul>
+                                        <a data-v-0a3d71e7="" data-v-e4caeaf8="" href="https://blog.naver.com/brave_mobile_mkt/222484821507" target="_blank" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"  lazy="loaded">
+                                                <img src="/images/jubgging/subjub4.png" alt="" style="width: 99%; height: 100%;">
+                                            </div>
+                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고객 인터뷰] 영어 초보 부장님의 회화 도전기</p>-->
+                                        </a>
+                                    </div>
+                                </div>
+                                <div data-v-e4caeaf8="" tabindex="-1" data-index="4" aria-hidden="true" class="slick-slide" style="outline: none; width: 329px;">
+                                    <div data-v-e4caeaf8="">
+                                        <ul class="location-list" data-v-06148408="">
+                                            <li class="location-item" data-v-06148408="">
+                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408=""class="">5코스</a>
+                                            </li>
+                                        </ul>
+                                        <a data-v-0a3d71e7="" data-v-e4caeaf8="" href="https://blog.naver.com/brave_mobile_mkt/222324635200" target="_blank" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"  lazy="loaded">
+                                                <img src="/images/jubgging/subjub5.png" alt="" style="width: 99%; height: 100%;">
+                                            </div>
+                                            <!--                                <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고수 인터뷰] 꾹꾹 눌러왔던 감정을 멜로디에 담아</p>-->
+                                        </a>
+                                    </div>
+                                </div>
+                                <div data-v-e4caeaf8="" tabindex="-1" data-index="5" aria-hidden="true" class="slick-slide" style="outline: none; width: 329px;">
+                                    <div data-v-e4caeaf8="">
+                                        <ul class="location-list" data-v-06148408="">
+                                            <li class="location-item" data-v-06148408="">
+                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408=""class="">이벤트</a>
+                                            </li>
+                                        </ul>
+                                        <a data-v-0a3d71e7="" data-v-e4caeaf8="" href="https://blog.naver.com/brave_mobile_mkt/222632038351" target="_blank" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image" lazy="loaded">
+                                                <img src="/images/jubgging/subjub6.png" alt="" style="width: 99%; height: 100%;">
+                                            </div>
+                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고수 인터뷰] 도배사 집안 출신의 진짜 고수 이야기</p>-->
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none"class="nineBtn nineNext slick-arrow slick-next" style="display: block;">Next</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="main-pro-info container no-mobile-margin" data-v-31a06ef8="" data-v-1346aca8="">
+                <div class="header" data-v-31a06ef8="">
+                    <p class="title" data-v-31a06ef8="">제로웨이스트에 관심 있나요?<br data-v-31a06ef8="">별별쓰담에서 더 나은 지구를<br
+                            class="d-none d-sm-block" data-v-31a06ef8="">만나보세요</p>
+                    <div class="pro-signup-btn" data-v-31a06ef8=""><a href="http://localhost:10001/recycle/recycling" target="_self" class="btn btn-primary"
+                                                                      data-v-31a06ef8="">수거신청</a></div>
+                </div>
+                <div dir="ltr" class="slick-slider slick-initialized" data-v-3d1a4f76="" data-v-55917fe8="" data-v-31a06ef8="">
+                    <button type="button" data-role="none" class="tenBtn tenPrev slick-arrow slick-prev" style="display:none;"
+                            data-v-21137603="" data-v-3d1a4f76="">Previous</button>
+                    <div class="slick-list" data-v-3d1a4f76="">
+                        <div class="slick-ten slick-track" style="width: 1923px; opacity: 1; transform: translate3d(0px, 0px, 0px);"
+                             data-v-e4caeaf8="" data-v-3d1a4f76="">
+                            <div tabindex="-1" data-index="0" aria-hidden="false" class="slick-slide slick-active slick-current"
+                                 style="outline: none; width: 641px;" data-v-e4caeaf8="">
+                                <div data-v-e4caeaf8="">
+                                    <div tabindex="-1" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-31a06ef8="">
+                                        <div class="pro-info-slide" data-v-e4caeaf8="" data-v-31a06ef8=""><img
+                                                src="https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg"
+                                                srcset="https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg 1x, https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg 2x, https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg 3x"
+                                                alt="고객의 요청서를 무료로 받으세요" class="image" data-v-e4caeaf8="" data-v-31a06ef8="">
+                                            <p class="desc" data-v-e4caeaf8="" data-v-31a06ef8="">별별쓰담에서 수거 요청 한번으로</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div tabindex="-1" data-index="1" aria-hidden="true" class="slick-slide"
+                                 style="outline: none; width: 641px;" data-v-e4caeaf8="">
+                                <div data-v-e4caeaf8="">
+                                    <div tabindex="-1" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-31a06ef8="">
+                                        <div class="pro-info-slide" data-v-e4caeaf8="" data-v-31a06ef8="">
+                                            <img src="https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg"
+                                                 srcset="https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg 1x, https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg 2x, https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg 3x"
+                                                 alt="고객의 요청서를 무료로 받으세요" class="image" data-v-e4caeaf8="" data-v-31a06ef8="">
+                                            <p class="desc" data-v-e4caeaf8="" data-v-31a06ef8="">외출 없이 문앞에 간단하게</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div tabindex="-1" data-index="2" aria-hidden="true" class="slick-slide"
+                                 style="outline: none; width: 641px;" data-v-e4caeaf8="">
+                                <div data-v-e4caeaf8="">
+                                    <div tabindex="-1" style="width:100%;display:inline-block;" data-v-e4caeaf8="" data-v-31a06ef8="">
+                                        <div class="pro-info-slide" data-v-e4caeaf8="" data-v-31a06ef8="">
+                                            <img src="https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg"
+                                                 srcset="https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg 1x, https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg 2x, https://i.ytimg.com/vi/moK9pq2CoZ8/maxresdefault.jpg 3x"
+                                                 alt="고객의 요청서를 무료로 받으세요" class="image" data-v-e4caeaf8="" data-v-31a06ef8="">
+                                            <p class="desc" data-v-e4caeaf8="" data-v-31a06ef8="">쓰레기 양에 따라 합리적으로</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><button type="button" data-role="none" class="tenBtn tenNext slick-arrow slick-next" style="display:block;"
+                                  data-v-21137603="" data-v-3d1a4f76="">Next</button>
+                </div>
+            </div>
+            <div class="main-modal-wrapper" data-v-1346aca8=""></div>
+        </div>
+    </div>
+    <footer th:replace="/app/fix/footer.html :: footer"></footer>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/main/main.js"></script>
+<script src="/js/fix/header.js"></script>
+<script src="/js/fix/headerLogin.js"></script>
+</html>

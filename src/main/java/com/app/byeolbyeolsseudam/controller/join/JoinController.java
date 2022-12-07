@@ -8,10 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -25,12 +23,14 @@ public class JoinController {
 //    @SessionAttribute("member") Member member
 //        log.info(member.getMemberEmail());
 
+
+    //  가입 싸이트 접근
     @GetMapping("/join")
     public String join(MemberDTO memberDTO){
-
         return "/app/join/joinNormal";
     }
 
+    //  가입
     @PostMapping("/join")
     public RedirectView memberJoin(MemberDTO memberDTO){
 
@@ -39,7 +39,7 @@ public class JoinController {
         return new RedirectView ("/main/main");
     }
 
-
+    //  기사 가입
     @GetMapping("/picker")
     public String pickIntro(){
         return "/app/join/pickIntro";
@@ -50,8 +50,12 @@ public class JoinController {
         return "/app/join/joinCollectorStepOne";
     }
 
+    //
     @GetMapping("/picker/map")
     public String joinpickerOneMap(MemberDTO memberDTO){
+
+//        redirectAttributes.addAttribute("memberAddress", memberDTO.getMemberAddress());
+
         return "/app/join/joinCollectorStepOneMap";
     }
 
@@ -67,6 +71,13 @@ public class JoinController {
     public RedirectView crewJoin(MemberDTO memberDTO){
         joinService.crewJoin(memberDTO);
         return new RedirectView ("/main/main");
+    }
+
+    //   중복확인
+    @ResponseBody
+    @GetMapping("checkEmail")
+    public boolean checkEmail(String memberEmail){
+        return joinService.checkEmail(memberEmail);
     }
 
 }

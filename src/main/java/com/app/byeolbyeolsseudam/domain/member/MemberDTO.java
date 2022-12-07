@@ -21,6 +21,7 @@ public class MemberDTO {
     private String memberName;
     private String memberPassword;
     private String memberPhone;
+    private String memberAddress;
     private String memberEmail;
     private int memberPoint;
     private String memberProfileName;
@@ -29,13 +30,14 @@ public class MemberDTO {
     private LocalDateTime createdDate;
 
     @QueryProjection
-    public MemberDTO(Long memberId, MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid, LocalDateTime createdDate) {
+    public MemberDTO(Long memberId, MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberAddress, String memberEmail, int memberPoint, String memberProfileName, String memberProfilePath, String memberProfileUuid, LocalDateTime createdDate) {
         this.memberId = memberId;
         this.memberLoginType = memberLoginType;
         this.memberCategory = memberCategory;
         this.memberName = memberName;
         this.memberPassword = memberPassword;
         this.memberPhone = memberPhone;
+        this.memberAddress = memberAddress;
         this.memberEmail = memberEmail;
         this.memberPoint = memberPoint;
         this.memberProfileName = memberProfileName;
@@ -51,6 +53,7 @@ public class MemberDTO {
                 .memberName(memberName)
                 .memberPassword(memberPassword)
                 .memberPhone(memberPhone)
+                .memberAddress(memberAddress)
                 .memberEmail(memberEmail)
                 .memberPoint(memberPoint)
                 .memberProfileName(memberProfileName)

@@ -24,8 +24,8 @@
 <div id="app" data-browser="Chrome" data-is-loaded="true" class>
     <div id="app-body">
         <div data-v-61b32e29="" class="container">
-<!--            th:method="get" th:action="@{/join/picker/detail}" th:object="${memberDTO}"-->
-            <form data-v-61b32e29="" id="id_pro_form" autocomplete="off">
+            <!--            th:method="get" th:action="@{/join/picker/detail}" th:object="${memberDTO}"-->
+            <form data-v-61b32e29="" id="id_pro_form" autocomplete="off" th:method="get" th:action="@{/join/picker/detail}" th:object="${memberDTO}">
                 <div data-v-2b9a1ce0="" data-v-61b32e29="" class="signup-progress-bar header">
                     <div data-v-2b9a1ce0="" class="progress">
                         <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"
@@ -43,14 +43,14 @@
                     </div>
 
 
-<!--                    map start-->
+                    <!--                    map start-->
 
                     <div class="map-wrapx" style="text-align: center">
-<!--                        th:field = "*{memberName}"-->
+                        <!-- th:field = "*{memberName}"-->
 
-                            <input type="text" placeholder="주소" id="memberName" name="memberName" style="width: 400px;
+                        <input type="text" placeholder="주소" th:field = "*{memberAddress}" style="width: 400px;
                                 height: 35px;">
-                            <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" style="color: #fff;
+                        <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" style="color: #fff;
                                 background-color: #00c7ae;
                                 border-style: none;
                                 height: 35px;
@@ -58,7 +58,7 @@
                         <div id="map" style="width:518px;height:300px;margin: 20px auto;display:none"></div>
                     </div>
 
-<!--                    map end-->
+                    <!--                    map end-->
 
                 </div>
                 <div data-v-f6f3ff14="" data-v-61b32e29="" class="step-navigator footer">
@@ -66,7 +66,7 @@
                         <div data-v-f6f3ff14="" class="warning"></div>
                         <span data-v-f6f3ff14="" class="left btn-container"><button data-v-f6f3ff14="" type="button" onclick="location.href='http://localhost:10001/join/picker/adr'"
                                                                                     class="btn btn-prev btn-outline-primary"> 이전 </button></span><span
-                            data-v-f6f3ff14="" class="right btn-container"><button data-v-f6f3ff14="" type="button"
+                            data-v-f6f3ff14="" class="right btn-container"><button data-v-f6f3ff14="" type="submit"
                                                                                    onclick="location.href='http://localhost:10001/join/picker/detail'" class="btn btn-next btn-primary"> 다음 </button></span>
                     </div><!----></div>
             </form>
@@ -103,7 +103,7 @@
                 var addr = data.address; // 최종 주소 변수
 
                 // 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("memberName").value = addr;
+                document.getElementById("memberAddress").value = addr;
                 // 주소로 상세 정보를 검색
                 geocoder.addressSearch(data.address, function(results, status) {
                     // 정상적으로 검색이 완료됐으면

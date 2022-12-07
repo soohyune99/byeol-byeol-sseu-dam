@@ -5,9 +5,11 @@ import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.app.byeolbyeolsseudam.type.MemberLoginType;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class JoinServiceImpl implements JoinService {
@@ -31,9 +33,21 @@ public class JoinServiceImpl implements JoinService {
         memberDTO.setMemberName(memberDTO.getMemberName());
         memberDTO.setMemberEmail(memberDTO.getMemberEmail());
         memberDTO.setMemberPassword(memberDTO.getMemberPassword());
-        memberDTO.setMemberPhone(memberDTO.getMemberPhone());
+        memberDTO.setMemberAddress(memberDTO.getMemberAddress());
         memberRepository.save(memberDTO.toEntity());
 
+    }
+
+    @Override
+    public boolean checkEmail(String memberEmail) {
+        boolean checkEmail = memberRepository.existsByMemberEmail(memberEmail);
+        if (checkEmail) {
+            log.info("트루값이다");
+            return true;
+        } else {
+            log.info("폴스값이다");
+            return false;
+        }
     }
 
 //    @Override

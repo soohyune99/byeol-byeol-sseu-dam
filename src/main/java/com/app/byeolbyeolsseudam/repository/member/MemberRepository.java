@@ -1,6 +1,7 @@
 package com.app.byeolbyeolsseudam.repository.member;
 
 import com.app.byeolbyeolsseudam.entity.member.Member;
+import org.apache.catalina.mbeans.SparseUserDatabaseMBean;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -12,5 +13,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     public Member findByMemberEmail(@Param("memberEmail") String memberEmail);
 
-
+    public boolean existsByMemberEmail(@Param("memberEmail") String memberEmail);
 }
