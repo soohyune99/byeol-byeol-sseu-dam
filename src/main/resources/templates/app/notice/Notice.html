@@ -44,6 +44,7 @@
                                 left: 13px;">
 <!--                        <input name="utf8" type="hidden" value="✓" autocomplete="off">-->
                         <input type="search" name="keyword" id="query" class="clickSearch" placeholder="검색" aria-label="검색">
+                        <input type="hidden" style="display: none;" name="page" id="takepage" th:value="${page}">
                     </form>
                 </nav>
 
@@ -58,17 +59,28 @@
                                 <div class="table-wrapper">
                                     <table>
                                         <tbody>
-                                        <th:block th:each="notice:${paging}">
-                                            <tr class="tBody" th:object="${notice}">
-                                                <td th:if="${#strings.equals(notice.noticeCategory , '중요')}">
-                                                    <img src="/images/notice/star.png" alt="" width="18px" height="18px" style="margin-right: 5px;">
-                                                    <a class="read" th:text="*{noticeTitle}" th:href="|detail/*{noticeId}|"></a>
-                                                </td>
-                                                <td th:if="${#strings.equals(notice.noticeCategory , '일반')}">
-                                                    <a class="read" th:text="*{noticeTitle}" th:href="|detail/*{noticeId}|"></a>
-                                                </td>
-                                            </tr>
-                                        </th:block>
+                                        <div th:if="${paging.isFirst()}">
+                                            <th:block th:each="notice:${paging}">
+                                                <tr class="tBody" th:object="${notice}" >
+                                                    <td th:if="${#strings.equals(notice.noticeCategory , '중요')}">
+                                                        <img src="/images/notice/star.png" alt="" width="18px" height="18px" style="margin-right: 5px;">
+                                                        <a class="read" th:text="*{noticeTitle}" th:href="|detail/*{noticeId}|"></a>
+                                                    </td>
+                                                    <td th:if="${#strings.equals(notice.noticeCategory , '일반')}">
+                                                        <a class="read" th:text="*{noticeTitle}" th:href="|detail/*{noticeId}|"></a>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
+                                        </div>
+                                        <div th:if="${!paging.isFirst()}">
+                                            <th:block th:each="notice:${notices}">
+                                                <tr class="tBody" th:object="${notice}" >
+                                                    <td>
+                                                        <a class="read" th:text="*{noticeTitle}" th:href="|detail/*{noticeId}|"></a>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
+                                        </div>
                                         </tbody>
                                     </table>
                                 </div>
@@ -78,19 +90,16 @@
                         <!-- 페이징처리 시작 -->
                         <div th:if="${!paging.isEmpty()}">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
-                                    <a class="page-link"
-                                       th:href="@{/page=${paging.number-1}}">
-                                        <span>이전</span>
-                                    </a>
+                                    <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'" th:if="${paging.hasPrevious()}">
+                                        <a class="page-link" th:href="@{|/notice/${paging.number - 1 }|}">
+                                            <span>이전</span>
+                                        </a>
+                                    </li>
+                                <li th:each="page: ${#numbers.sequence(1, paging.totalPages)}" th:classappend="${page == paging.number} ? 'active'" class="page-item">
+                                    <a th:text="${page}" class="page-link" th:href="@{|/notice/${page}|}"></a>
                                 </li>
-                                <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
-                                    th:classappend="${page == paging.number} ? 'active'"
-                                    class="page-item">
-                                    <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
-                                </li>
-                                <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
-                                    <a class="page-link" th:href="@{/page=${paging.number+1}}">
+                                <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'" th:if="${paging.hasNext()}">
+                                    <a class="page-link" th:href="@{|/notice/${paging.number + 1}|}">
                                         <span>다음</span>
                                     </a>
                                 </li>

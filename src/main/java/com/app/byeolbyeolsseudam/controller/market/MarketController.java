@@ -89,8 +89,10 @@ public class MarketController {
     @PostMapping("/payment")
     public String payment(@RequestParam Long productId, @RequestParam int orderCount,Model model){
         model.addAttribute("product", marketService.showListDetailOnly(productId));
+        model.addAttribute("productPrice", marketService.showListDetailOnly(productId).getProductPrice());
 //        model.addAttribute("product", product);
         model.addAttribute("count", orderCount);
+
         return "/app/market/marketPayment";
     }
 

@@ -1,29 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>별별쓰담 | 공지사항</title>
     <link rel="stylesheet" href="/css/notice/NoticeSearch.css">
     <link rel="stylesheet" href="/css/fix/font.css">
     <link rel="icon" href="/images/fix/favicon.png">
 </head>
-
-
-
-<body>
-<!-- header start -->
-
-
-<!-- header end -->
-
-
-<!-- Notice start -->
-
 <body class>
-
-
 <header class="header">
     <div class="logo">
         <a href="http://localhost:10001/main/main">
@@ -43,99 +29,98 @@
     <div class="container">
         <nav class="sub-nav">
             <ol class="breadcrumbs">
-
-                <li title="자주묻는질문 - 숨고 : 숨은고수">
-
-                    <a href="/hc/ko" id="question1">자주묻는질문 - 별쓰 : 별별쓰담</a>
-
+                <li title="별별쓰담 - 공지사항">
+                    <a href="/hc/ko" id="question1">별별쓰담 - 공지사항</a>
                 </li>
-                <li title="공지사항">
-
+                <li title="검색 결과">
                     검색 결과
-
                 </li>
-
             </ol>
 
-            <form role="search" class="search" data-search="" action="/hc/ko/search" accept-charset="UTF-8" method="get">
-                <img data-v-3cfeddf8="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQgNCkiIHN0cm9rZT0iI0I1QjVCNSIgc3Ryb2tlLXdpZHRoPSIxLjYiPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGN4PSI2LjUiIGN5PSI2LjUiIHI9IjYuNSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIGQ9Im0xMS41IDExLjUgNSA1Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="검색 아이콘" style=" position: relative; top: 36px; left: 13px;">
-                <input name="utf8" type="hidden" value="✓" autocomplete="off">
-                <input type="hidden" name="category" id="category" value="360002081551" autocomplete="off">
-                <input type="search" name="query" id="query" class="searchBtn" placeholder="검색" aria-label="검색">
+            <form class="search" name="searchForm" th:action="@{/notice/search}" method="get">
+                <img data-v-3cfeddf8="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQgNCkiIHN0cm9rZT0iI0I1QjVCNSIgc3Ryb2tlLXdpZHRoPSIxLjYiPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGN4PSI2LjUiIGN5PSI2LjUiIHI9IjYuNSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIGQ9Im0xMS41IDExLjUgNSA1Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="검색 아이콘" style="
+                             position: relative;
+                                top: 36px;
+                                left: 13px;">
+                <input type="search" name="keyword" id="query" class="clickSearch" placeholder="검색" aria-label="검색">
             </form>
-
         </nav>
 
         <div class="category-container">
             <div class="category-content">
                 <header class="page-header">
                     <h1>검색 결과</h1>
-                    <p class="page-header-description">"리뷰"에 대한 19개의 결과</p>
+                    <p class="page-header-description"th:text="${searchCount} + '개의 결과'"></p>
                 </header>
 
                 <div class="search-results">
                     <section class="search-results-column">
-                        <h3 class="search-results-subheading">
-                            지식창고
-                        </h3>
-
-                        <ul class="search-results-list">
-
-                            <li class="search-result">
-                                <a href="/hc/ko/search/click?data=BAh7DjoHaWRsKwiIklrUUwA6D2FjY291bnRfaWRpAz90GDoJdHlwZUkiDGFydGljbGUGOgZFVDoIdXJsSSIBymh0dHBzOi8vaGVscC5zb29tZ28uY29tL2hjL2tvL2FydGljbGVzLzM2MDA0NDk5MTExMi0tJUVCJUE2JUFDJUVCJUI3JUIwLSVFQSVCMyVBMCVFQyU4OCU5OCVFQyU5NyU5MCVFQSVCMiU4Qy0lRUIlQTYlQUMlRUIlQjclQjAlRUIlOEElOTQtJUVDJTk2JUI0JUVCJTk2JUJCJUVBJUIyJThDLSVFQiU4MiVBOCVFQSVCOCVCMCVFQiU4MiU5OCVFQyU5QSU5NC0GOwhUOg5zZWFyY2hfaWRJIikzNmI1NTNmZi05OWU3LTRjOGEtYjA3Yy1lM2Q4ZmZlNmVkNTcGOwhGOglyYW5raQY6C2xvY2FsZUkiB2tvBjsIVDoKcXVlcnlJIgvrpqzrt7AGOwhUOhJyZXN1bHRzX2NvdW50aRg%3D--ba859542732170361454673ffcb93c563d53beb2" class="search-result-link">[리뷰] 고수에게 리뷰는 어떻게 남기나요?</a>
-
-
+                        <h3 class="search-results-subheading"> 지식창고 </h3>
+                        <ul class="search-results-list" >
+                            <th:block th:each="notice:${searchResult}">
+                            <li class="search-result" th:object="${notice}">
+                                <a th:href="|detail/*{noticeId}|" class="search-result-link" th:text="*{noticeTitle}"></a>
                                 <ul class="meta-group">
                                     <li>
                                         <ol class="breadcrumbs search-result-breadcrumbs">
-
-                                            <li title="자주묻는질문 - 숨고 : 숨은고수"><a href="https://help.soomgo.com">자주묻는질문 - 숨고 : 숨은고수</a></li>
-
-                                            <li title="고객 가이드"><a href="https://help.soomgo.com/hc/ko/categories/115001217927-%EA%B3%A0%EA%B0%9D-%EA%B0%80%EC%9D%B4%EB%93%9C">고객 가이드</a></li>
-
-                                            <li title="리뷰와 소개"><a href="https://help.soomgo.com/hc/ko/sections/360008909711-%EB%A6%AC%EB%B7%B0%EC%99%80-%EC%86%8C%EA%B0%9C">리뷰와 소개</a></li>
-
+                                            <li title="공지사항">
+                                                <a th:href="|detail/*{noticeId}|" >공지사항</a>
+                                            </li>
                                         </ol>
                                     </li>
                                     <li class="meta-data">
-
-                                        Helpdesk
-
+                                        <time th:text="${#temporals.format(notice.createdDate, 'yyyy년 MM월 dd일')}" datetime="2020-06-25T03:31:47Z" title="2020-06-25 12:31" data-datetime="relative">날짜</time>
                                     </li>
-                                    <li class="meta-data"><time datetime="2020-06-25T03:31:47Z" title="2020-06-25 12:31" data-datetime="relative">2년 전</time></li>
                                 </ul>
-                                <div class="search-result-description">고수 프로필에 리뷰 남기는 법 📱 숨고 앱(APP) 앱 하단 채팅 클릭 거래한 고수의 채팅방 클릭 오른쪽 상단 리뷰 작성하기 버튼 클릭하고 리뷰 작성 💻 숨고 웹사이트(PC) 왼쪽 상단 채팅 클릭 🔗 https://soomgo.com/chats 거래한 고수의 채팅방 클릭 오른쪽 상단 <em>리뷰</em> 작성하기 클릭하고 <em>리뷰</em> 작성 또한, 다음의 경우에 한해 숨고 <em>리뷰</em> 관리 정책에 의거하여 <em>리뷰</em>가 즉시 비공개됩니다. 1) 개인정보가 노출된 <em>리뷰</em> 2) 욕설,비속어,음란한 내용이 포함된 리뷰 3) 실제 거래/고용등이 되지 아니한 고수에게 작성된 리뷰 4) 고수가 제공한 서비스와 관련 없는내용이나 사진이 포함된 리뷰 ※ 고수가 아닌 숨고와 관련된 내용 등 5) 의미없는 모음,자음,특수문자 등의 나열 6) 취소(환불/부분환불 포함)된 거래에 대한 리뷰</div>
+                                <div class="search-result-description" th:href="|detail/*{noticeId}|" th:text="*{noticeContent}"></div>
                             </li>
-
+                            </th:block>
                         </ul>
-
                     </section>
-
-
-
                 </div>
 
-
-
+                <div th:if="${!searchResult.isEmpty()}">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" th:classappend="${!searchResult.hasPrevious} ? 'disabled'"  th:if="${searchResult.hasPrevious()}">
+                            <a class="page-link" th:href="@{/notice/search/(page=${searchResult.number - 1}, keyword=${keyword})}">
+                                <span>이전</span>
+                            </a>
+                        </li>
+                        <li th:each="page: ${#numbers.sequence(1, searchResult.totalPages)}" th:classappend="${page == searchResult.number} ? 'active'" class="page-item">
+                            <a th:text="|${page}|" class="page-link" th:href="@{/notice/search/(page=${page - 1}, keyword=${keyword})}"></a>
+                        </li>
+                        <li class="page-item" th:classappend="${!searchResult.hasNext} ? 'disabled'" th:if="${searchResult.hasNext()}">
+                            <a class="page-link" th:href="@{/notice/search/(page=${searchResult.number + 1}, keyword=${keyword})}">
+                                <span>다음</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
 
             </div>
         </div>
-
     </div>
 </main>
 </body>
-
-
-
-
-<!-- footer start -->
-<!-- fooo\ter end -->
-
-
-
-</body>
-
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/Notice.js"></script>
+<script th:inline="javascript">
+
+    $('.searchBtn').click(function(){
+        $('.searchBtn').css("border", "1px solid #00c7ae");
+    })
+
+    /* keyword 입력시 실행되는 함수 */
+    function searchList(theForm) {
+        keyword = theForm.enter.value; // keyword = enter키로 작동한 form 태그 안에 있는 값
+    }
+
+    /*$("input.clickSearch").on("keyup",function(key){
+        if(key.keyCode==13) {
+        document.search.submit();
+        location.href = "/notice"+ "/search" + $(this).attr("href");
+        }
+    });*/
+</script>
 </html>
