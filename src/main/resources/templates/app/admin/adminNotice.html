@@ -7,6 +7,19 @@
     <title>별별쓰담 | 관리자 페이지</title>
     <link rel="icon" href="/images/admin/0PBC.png">
     <link rel="stylesheet" href="/css/admin/adminCssAll.css">
+    <style>
+        table{
+            table-layout: fixed;
+        }
+        td{
+            text-align: center;
+            font-size: 13px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+    </style>
 </head>
 <body>
 <header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
@@ -298,7 +311,7 @@
                                                                                         </li>
 
                                                                                         <li class="paginate_button page-item next"
-                                                                                            id="kt_ecommerce_products_table_next"  th:if="${adminNotices.hasNext()}">
+                                                                                            id="kt_ecommerce_products_table_next" th:if="${adminNotices.hasNext()}">
                                                                                             <a th:href="@{|/admin/notice/${adminNotices.number +2}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="6"

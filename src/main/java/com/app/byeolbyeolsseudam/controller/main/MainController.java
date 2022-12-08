@@ -23,7 +23,7 @@ public class MainController {
 
     @GetMapping("/main")
     public String read(Model model){
-        model.addAttribute("banners", bannerService.show());
+        model.addAttribute("banners", bannerService.showMainBanner());
         model.addAttribute("programs", mainService.showProgram());
         model.addAttribute("kitchens", mainService.showProductKitchen());
         model.addAttribute("bathes", mainService.showProductBath());

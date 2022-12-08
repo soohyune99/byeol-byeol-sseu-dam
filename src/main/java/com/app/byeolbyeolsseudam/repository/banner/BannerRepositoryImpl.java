@@ -21,7 +21,7 @@ public class BannerRepositoryImpl implements BannerCustomRepository{
     public final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<BannerDTO> showList(){
+    public List<BannerDTO> showList(Pageable pageable){
         return jpaQueryFactory.select(new QBannerDTO(
                 banner.bannerId,
                 banner.bannerName,
@@ -29,8 +29,8 @@ public class BannerRepositoryImpl implements BannerCustomRepository{
                 banner.bannerUuid
         )).from(banner)
                 .orderBy(banner.bannerId.desc())
-                .offset(0)
-                .limit(7)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
     };
 
@@ -52,5 +52,19 @@ public class BannerRepositoryImpl implements BannerCustomRepository{
         jpaQueryFactory.selectFrom(banner)
                 .where(banner.bannerId.eq(bannerDTO.getBannerId()))
                 .fetchOne().update(bannerDTO);
+    }
+
+    @Override
+    public List<BannerDTO> showMainBanner() {
+        return jpaQueryFactory.select(new QBannerDTO(
+                banner.bannerId,
+                banner.bannerName,
+                banner.bannerPath,
+                banner.bannerUuid
+        )).from(banner)
+                .orderBy(banner.bannerId.desc())
+                .offset(0)
+                .limit(7)
+                .fetch();
     }
 }
