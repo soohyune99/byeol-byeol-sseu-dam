@@ -3,14 +3,18 @@ package com.app.byeolbyeolsseudam.repository.course;
 import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.domain.course.QCourseDTO;
 import com.app.byeolbyeolsseudam.domain.spot.QSpotDTO;
+import com.app.byeolbyeolsseudam.entity.board.QBoard;
 import com.app.byeolbyeolsseudam.entity.spot.QSpot;
+import com.app.byeolbyeolsseudam.type.BoardCategory;
 import com.app.byeolbyeolsseudam.type.CourseGrade;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.app.byeolbyeolsseudam.entity.board.QBoard.board;
 import static com.app.byeolbyeolsseudam.entity.course.QCourse.course;
 import static com.app.byeolbyeolsseudam.entity.spot.QSpot.spot;
 
@@ -85,4 +89,5 @@ public class CourseCustomRepositoryImpl implements CourseCustomRepository {
                 .fetch());
         return courseDTO;
     }
+
 }

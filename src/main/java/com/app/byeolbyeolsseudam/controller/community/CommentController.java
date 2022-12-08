@@ -27,6 +27,11 @@ public class CommentController {
         return commentService.getCommentList(boardId);
     }
 
+    @PostMapping("/{boardId}/{page}")
+    public List<CommentDTO> getMoreComment(@PathVariable Long boardId, @PathVariable int page){
+        return commentService.getMoreComment(boardId, page);
+    }
+
     @PostMapping(value = "/new", consumes = "application/json", produces = "text/plain; charset=utf-8")
     public ResponseEntity<String> saveComment(@RequestBody CommentDTO commentDTO) throws UnsupportedEncodingException {
         commentService.saveComment(commentDTO);

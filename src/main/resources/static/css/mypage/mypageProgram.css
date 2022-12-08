@@ -51,18 +51,18 @@ body {
     margin-left: auto;
 }
 
-.soomgo-pay-container[data-v-2234e070] {
+.byeolbyeol-pay-container[data-v-2234e070] {
     padding: 0;
     margin: 0 auto;
 }
 
-.soomgo-pay-list[data-v-775998d8] {
+.byeolbyeol-pay-list[data-v-775998d8] {
     width: 92%;
     /* padding: 3.125rem 1rem 5rem;
     margin: 0 auto; */
 }
 
-.soomgo-pay-list h1[data-v-775998d8] {
+.byeolbyeol-pay-list h1[data-v-775998d8] {
     font-size: 1.3rem;
     line-height: 1.5rem;
     color: #323232;
@@ -70,7 +70,7 @@ body {
     margin: 1.5rem 0;
 }
 
-.soomgo-pay-list .mobile-divider[data-v-775998d8] {
+.byeolbyeol-pay-list .mobile-divider[data-v-775998d8] {
     display: none;
     margin: 0 -1rem;
     height: 0.5rem;
@@ -78,7 +78,7 @@ body {
     background-color: #f2f2f2;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .caption[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .caption[data-v-775998d8] {
     padding: 0 0 0.75rem;
     display: flex;
     font-size: .875rem;
@@ -93,7 +93,7 @@ body {
     margin-left: -0.9375rem;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .soomgo-pay-list-item-wrap[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .byeolbyeol-pay-list-item-wrap[data-v-775998d8] {
     margin: 0;
 }
 
@@ -102,13 +102,13 @@ body {
     max-width: 100%;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .soomgo-pay-list-item[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .byeolbyeol-pay-list-item[data-v-775998d8] {
     padding: 1rem 0 1.1875rem;
     border-bottom: 0.0625rem solid #f2f2f2;
     margin: 0;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .soomgo-pay-list-item h4[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .byeolbyeol-pay-list-item h4[data-v-775998d8] {
     font-size: .875rem;
     color: #00c7ae;
     font-weight: 700;
@@ -116,7 +116,7 @@ body {
     line-height: 1.25rem;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .soomgo-pay-list-item-info[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .byeolbyeol-pay-list-item-info[data-v-775998d8] {
     display: flex;
     font-size: .875rem;
     line-height: 1.25rem;
@@ -126,7 +126,7 @@ body {
     position: relative;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .soomgo-pay-list-item .profile-picture[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .byeolbyeol-pay-list-item .profile-picture[data-v-775998d8] {
     width: 2.625rem;
     height: 2.625rem;
     flex-basis: 2.625rem;
@@ -150,23 +150,23 @@ body {
     height: 100%;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .soomgo-pay-list-item .user-info[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .byeolbyeol-pay-list-item .user-info[data-v-775998d8] {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     margin-left: 0.75rem;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .soomgo-pay-list-item .user-info .name[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .byeolbyeol-pay-list-item .user-info .name[data-v-775998d8] {
     font-weight: 500;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .soomgo-pay-list-item .user-info .service-name[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .byeolbyeol-pay-list-item .user-info .service-name[data-v-775998d8] {
     margin-top: 0.125rem;
     color: #b5b5b5;
 }
 
-.soomgo-pay-list section.soomgo-pay-list-wrap .soomgo-pay-list-item .price[data-v-775998d8] {
+.byeolbyeol-pay-list section.byeolbyeol-pay-list-wrap .byeolbyeol-pay-list-item .price[data-v-775998d8] {
     font-size: 1rem;
     font-weight: 500;
     display: flex;

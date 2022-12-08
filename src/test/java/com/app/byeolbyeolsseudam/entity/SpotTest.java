@@ -61,7 +61,7 @@ public class SpotTest {
 
             spotDTO.setSpotName("5코스 " + (i + 1) + "지점");
             spotDTO.setSpotNumber(i + 1);
-            spotDTO.setSpotAddress("서울 저쩌구 저쩌저쩌동");
+            spotDTO.setSpotAddress("서울 블라구 블라블라동");
             spotDTO.setSpotQrName("course.png");
             spotDTO.setSpotQrPath("/upload");
             spotDTO.setSpotQrUuid("qrqrqrqr");
@@ -69,7 +69,7 @@ public class SpotTest {
             Spot spot = spotDTO.toEntity();
 
             spotRepository.save(spot);
-            spot.changeCourse(courseRepository.findById(9L).get());
+            spot.changeCourse(courseRepository.findById(49L).get());
         }
     }
 

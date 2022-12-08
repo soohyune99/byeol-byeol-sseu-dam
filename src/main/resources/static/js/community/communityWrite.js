@@ -112,7 +112,7 @@ $(document).ready(function(){
         formData.append('boardCategory', $category.val());
         formData.append('boardTitle', $title.val());
         formData.append('boardContent', $content.val());
-        formData.append('memberId', 3);
+        formData.append('memberId', 1);
 
         if(fileIndex != 0){
             for(var i = 0; i < fileIndex; i++){
@@ -149,6 +149,12 @@ function updateBoard(board){
 /* 수정완료 버튼 클릭 시 */
 $updateBtn.on('click', function(){
 
+    console.log(boardId);
+    console.log($category.val());
+    console.log($title.val());
+    console.log($content.val());
+    console.log(board.boardView);
+
     let formData = new FormData();
 
     formData.append('boardId', boardId);
@@ -156,7 +162,7 @@ $updateBtn.on('click', function(){
     formData.append('boardTitle', $title.val());
     formData.append('boardContent', $content.val());
     formData.append('boardView', board.boardView);
-    formData.append('memberId', 3);
+    formData.append('memberId', 1);
 
     if(fileIndex != 0){
         for(var i = 0; i < fileIndex; i++){

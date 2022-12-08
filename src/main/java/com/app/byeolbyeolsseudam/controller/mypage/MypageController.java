@@ -19,17 +19,17 @@ public class MypageController {
         return "/app/mypage/mypageMain";
     }
 
-    @GetMapping("/orderlist")
+    @GetMapping("/order")
     public String orderlist(){
         return "/app/mypage/mypageOrderList";
     }
 
-    @GetMapping("/cancellist")
+    @GetMapping("/cancel")
     public String cancellist(){
         return "/app/mypage/mypageCancelList";
     }
 
-    @GetMapping("/orderdetail")
+    @GetMapping("/order/detail")
     public String orderlistdetail(){
         return "/app/mypage/mypageOrderDetail";
     }
@@ -39,23 +39,23 @@ public class MypageController {
         return "/app/mypage/mypageInfoUpdate";
     }
 
-    @GetMapping("/myinfo")
+    @GetMapping("/info")
     public String myinfo(){
         return "/app/mypage/mypageInfo";
     }
 
-    @GetMapping("/mypoint")
+    @GetMapping("/point")
     public String mypoint(Model model){
         model.addAttribute("mypoints", mypageService.selectPoints());
         return "/app/mypage/mypagePoint";
     }
 
-    @GetMapping("/pickuplist")
+    @GetMapping("/pickup")
     public String pickuplist(){
         return "/app/mypage/mypagePickupList";
     }
 
-    @GetMapping("/pickupdetail")
+    @GetMapping("/pickup/detail")
     public String pickupdetail(){
         return "/app/mypage/mypagePickupDetail";
     }
@@ -70,19 +70,19 @@ public class MypageController {
         return "/app/mypage/mypageComment";
     }
 
-    @GetMapping("/mybadge")
+    @GetMapping("/badge")
     public String badge(Model model){
         model.addAttribute("badges", mypageService.showBadgeList());
         model.addAttribute("mybadges", mypageService.selectMybadges());
         return "/app/mypage/mypageBadge";
     }
 
-    @GetMapping("/mycourse")
+    @GetMapping("/course")
     public String course(){
         return "/app/mypage/mypageCourse";
     }
 
-    @GetMapping("/myprogram")
+    @GetMapping("/program")
     public String program(Model model){
         return "/app/mypage/mypageProgram";
     }

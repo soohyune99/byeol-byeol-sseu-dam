@@ -48,14 +48,14 @@ public class BoardTest {
             BoardDTO boardDTO = new BoardDTO();
 
             boardDTO.setBoardCategory(BoardCategory.환경활동);
-            boardDTO.setBoardTitle("안녕 " + i);
-            boardDTO.setBoardContent("안녕" + i);
-            boardDTO.setBoardView(i * 10);
+            boardDTO.setBoardTitle("줍깅 " + i + "코스 후기!");
+            boardDTO.setBoardContent("뿌듯하다~~ " + i);
+            boardDTO.setBoardView(i * 3);
 
             Board board = boardDTO.toEntity();
             boardRepository.save(board);
 
-            board.changeMember(memberRepository.findById(3L).get());
+            board.changeMember(memberRepository.findById(1L).get());
         }
 
     }

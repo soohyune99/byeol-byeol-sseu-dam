@@ -6,7 +6,26 @@ let commentService = (function(){
         $.ajax({
             url: "/comment/" + boardId,
             type: "get",
-            data: JSON.stringify(boardId),
+            data: JSON.stringify(boardId, page),
+            contentType: "application/json; charset=utf-8",
+            success: function(comments, status, xhr){
+                if(callback){
+                    callback(comments);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function getMoreComment(boardId, page, callback, error){
+        $.ajax({
+            url: "/comment/" + boardId + "/" + page,
+            type: "post",
+            data: JSON.stringify(boardId, page),
             contentType: "application/json; charset=utf-8",
             success: function(comments, status, xhr){
                 if(callback){
@@ -75,6 +94,6 @@ let commentService = (function(){
             }
         });
     }
-    return {getCommentList:getCommentList, save: save, updateOKComment:updateOKComment, deleteComment:deleteComment}
+    return {getCommentList:getCommentList, getMoreComment:getMoreComment, save: save, updateOKComment:updateOKComment, deleteComment:deleteComment}
 })();
 

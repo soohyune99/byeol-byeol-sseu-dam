@@ -56,15 +56,10 @@ public class BoardController {
     }
 
     @PostMapping("/update/{boardId}")
-    public Long updateBoard(@RequestBody BoardDTO boardDTO, @PathVariable Long boardId){
+    public Long updateBoard(BoardDTO boardDTO, @PathVariable Long boardId){
         communityService.updateBoard(boardDTO);
         return boardId;
     }
-
-//    @PatchMapping("/view/{boardId}")
-//    public void plusBoardView(@PathVariable Long boardId, @RequestBody BoardDTO boardDTO){
-//        communityService.plusView(boardDTO);
-//    }
 
     @DeleteMapping("/{boardId}")
     public void deleteBoard(@PathVariable Long boardId){
@@ -74,6 +69,11 @@ public class BoardController {
     @PostMapping("/scroll")
     public List<BoardDTO> infiniteScroll(Criteria criteria){
         return communityService.selectScrollBoards(criteria);
+    }
+
+    @PatchMapping("/view/{boardId}")
+    public void plusBoardView(@PathVariable Long boardId, @RequestBody BoardDTO boardDTO){
+        communityService.plusView(boardDTO);
     }
 
     @ResponseBody

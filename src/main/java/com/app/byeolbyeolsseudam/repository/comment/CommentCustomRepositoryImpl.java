@@ -35,20 +35,22 @@ public class CommentCustomRepositoryImpl implements CommentCustomRepository{
                 .from(comment)
                 .where(comment.board.boardId.eq(boardId))
                 .orderBy(comment.createdDate.desc())
+                .limit(5)
                 .fetch();
     }
 
     @Override
-    public void saveComment(CommentDTO commentDTO, Comment comment){
-        comment.changeBoard(
-                jpaQueryFactory.selectFrom(board)
-                        .where(board.boardId.eq(commentDTO.getBoardId()))
-                        .fetchOne()
-        );
-        comment.changeMember(
-                jpaQueryFactory.selectFrom(member)
-                        .where(member.memberId.eq(commentDTO.getMemberId()))
-                        .fetchOne()
-        );
+    public List<CommentDTO> getMoreComment(Long boardId, int page){
+        return jpaQueryFactory.select(new QCommentDTO(comment.commentId, comment.commentContent,
+                comment.commentFileName, comment.commentFilePath, comment.commentFileUuid,
+                comment.member.memberId, comment.member.memberName, comment.member.memberProfileName,
+                comment.member.memberProfilePath, comment.member.memberProfileUuid,
+                comment.board.boardId, comment.createdDate, comment.updatedDate))
+                .from(comment)
+                .where(comment.board.boardId.eq(boardId))
+                .orderBy(comment.createdDate.desc())
+                .offset(page * 5)
+                .limit(5)
+                .fetch();
     }
 }

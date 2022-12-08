@@ -32,8 +32,6 @@ public class MyprogramDTO {
         this.programPlace = programPlace;
         this.programStatus = programStatus;
         this.programFileProfileName = programFileProfileName;
-        this.programFileProfilePath = programFileProfilePath;
-        this.programFileProfileUuid = programFileProfileUuid;
         this.createdDate = createdDate;
     }
 }
