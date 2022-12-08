@@ -254,7 +254,7 @@
                                                                                     <!--end::장소=-->
 
                                                                                     <!--begin::신청시작날짜=-->
-                                                                                    <td  th:text="${#temporals.format(program.openingDate, 'yyyy년 MM월 dd일')}" class="text-end pe-0">
+                                                                                    <td  th:text="${#temporals.format(program.openingDate, 'yyyy-MM-dd')}" class="text-end pe-0">
                                                                                     </td>
                                                                                     <!--end::신청시작날짜=-->
 
@@ -314,7 +314,7 @@
                                                                                     <td class="text-end pe-0"
                                                                                         data-order="Inactive">
                                                                                         <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/adminprogrammodify">수정</a>
+                                                                                            <a th:href="@{/admin/program/modify}">수정</a>
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::수정-->

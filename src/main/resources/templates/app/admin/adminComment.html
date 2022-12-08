@@ -163,13 +163,7 @@
                                                                                         rowspan="1" colspan="1"
                                                                                         style="width: 10%;">작성 날짜
                                                                                     </th>
-                                                                                    <th class="text-end min-w-100px sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_ecommerce_products_table"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        style="width: 10%;">첨부 파일
-                                                                                    </th>
-                                                                                    <th class="text-end min-w-100px sorting"
+                                                                                     <th class="text-end min-w-100px sorting"
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
@@ -188,254 +182,52 @@
                                                                                 <!--begin::Table body-->
                                                                                 <tbody class="fw-semibold text-gray-600">
 
-                                                                                <!--상품목록_상품리스트1_스트롱고체치약 -->
-                                                                                <tr class="odd productList1">
+                                                                                <form th:action="@{comment/delete}" name="deleteForm" method="post">
+                                                                                <th:block th:each="comment:${comments}">
+                                                                                <tr th:object="${comment}" class="odd productList1">
                                                                                     <!--begin::Checkbox-->
                                                                                     <td>
                                                                                         <div
                                                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                                             <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
+                                                                                                   type="checkbox" name="checkedValue" th:value="*{commentId}">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::Checkbox-->
 
                                                                                     <!--begin::Category=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
+                                                                                        <span class="fw-bold" th:text="*{commentId}"></span>
                                                                                     </td>
                                                                                     <!--end::Category=-->
 
                                                                                     <!--begin::제품 번호=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 쓰담치약 좋아요</span>
+                                                                                        <span class="fw-bold" th:text="*{commentContent}"></span>
                                                                                     </td>
                                                                                     <!--end::제품 번호=-->
 
                                                                                     <!--begin::수량=-->
                                                                                     <td class="text-end pe-0"
                                                                                         data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
+                                                                                        <span class="fw-bold ms-3" th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd')}"></span>
                                                                                     </td>
                                                                                     <!--end::수량=-->
 
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">치약.jpg
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
                                                                                     <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
+                                                                                    <td class="text-end pe-0" th:text="${comment.memberName}"></td>
                                                                                     <!--end::카테고리=-->
 
-                                                                                    <!--begin::리뷰 평점-->
                                                                                     <td class="text-end pe-0"
                                                                                         data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            1235
+                                                                                        <div class="rating justify-content-end" th:text="${comment.boardId}">
                                                                                         </div>
                                                                                     </td>
                                                                                 </tr>
-                                                                                <!--상품목록_상품리스트1_스트롱고체치약 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::Category=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::Category=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 쓰담치약 좋아요</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">치약.jpg
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            1235
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--상품목록_상품리스트1_스트롱고체치약 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::Category=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::Category=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 쓰담치약 좋아요</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">치약.jpg
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            1235
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--상품목록_상품리스트1_스트롱고체치약 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::Category=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::Category=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 쓰담치약 좋아요</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">치약.jpg
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            1235
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-                                                                                </tr>
-                                                                                <!--상품목록_상품리스트1_스트롱고체치약 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::Category=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::Category=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 쓰담치약 좋아요</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">치약.jpg
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            1235
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                </tr>
-
-
+                                                                                </th:block>
+                                                                                </form>
                                                                                 </tbody>
                                                                                 <!--end::Table body-->
-
                                                                             </table>
                                                                         </div>
 
@@ -559,12 +351,14 @@
     //     theForm.submit();
     // }
 
-    // // 삭제
-    // $("#deleteCommentBtn").on('click', function () {
-    //     if ($checkboxes.filter(":checked").length == 0) {
-    //         alert("삭제할 댓글을 선택하세요.");
-    //         return;
-    //     }
-    // });
+    var $checkboxes = $(".form-check-input.checkbox");
+
+    $("#deleteCommentBtn").on('click', function () {
+        if ($checkboxes.filter(":checked").length == 0) {
+            alert("삭제할 댓글을 선택하세요.");
+            return;
+        }
+        $("form[name='deleteForm']").submit();
+    });
 </script>
 </html>

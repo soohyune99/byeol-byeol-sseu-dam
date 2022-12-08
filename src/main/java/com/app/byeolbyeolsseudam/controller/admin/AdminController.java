@@ -42,31 +42,7 @@ public class AdminController {
 
     /* ############################### 주문 관리 ################################ */
 
-    /* 주문 관리 - 상품 목록 */
-    @GetMapping("adminproductlist")
-    public String adminProductList(){ return "/app/admin/adminProductList.html"; }
-
-    /* 주문 관리 - 상품 목록 + 상품 추가 */
-    @GetMapping("adminproductadd")
-    public String adminProductAdd(){
-        return "/app/admin/adminProductAdd.html";
-    }
-
-    /* 주문 관리 - 상품 목록 + 상품 수정 */
-    @GetMapping("adminproductmodify")
-    public String adminProductModify(){ return "/app/admin/adminProductModify.html"; }
-
-    /* 주문 관리 _ 주문 목록 */
-    @GetMapping("adminorderlist")
-    public String adminOrdertList(){ return "/app/admin/adminOrderList.html"; }
-
-    /* 주문 관리 _ 주문 목록 + 주문 상세 내역 */
-    @GetMapping("adminorderdetail")
-    public String adminOrderDetail(){ return "/app/admin/adminOrderDetail.html"; }
-
-    /* 주문 관리 _ 리뷰 목록 */
-    @GetMapping("adminreviewlist")
-    public String adminReviewList(){ return "/app/admin/adminReviewList.html"; }
+   //AdminProductController
 
     /* ############################### 프로그램 관리 ############################# */
 

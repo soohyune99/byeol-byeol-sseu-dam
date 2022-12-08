@@ -3,9 +3,11 @@ package com.app.byeolbyeolsseudam.domain.program;
 import com.app.byeolbyeolsseudam.embaddable.PossibleDate;
 import com.app.byeolbyeolsseudam.entity.program.Program;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -17,9 +19,12 @@ public class ProgramDTO {
     private Long programId;
     private String programName;
     private String programPlace;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime openingDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime closingDate;
     private int programTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime programDate;
     private String programContent;
     private int programLimitCount;
@@ -66,7 +71,7 @@ public class ProgramDTO {
                 .programDate(programDate)
                 .programContent(programContent)
                 .programLimitCount(programLimitCount)
-                .programStatus(ProgramStatus.모집예정)
+                .programStatus(programStatus)
                 .programFileProfileName(programFileProfileName)
                 .programFileProfilePath(programFileProfilePath)
                 .programFileProfileUuid(programFileProfileUuid)

@@ -49,7 +49,6 @@ public class BannerRepositoryImpl implements BannerCustomRepository{
 
     @Override
     public void update(BannerDTO bannerDTO) {
-        log.info("흑흑: "+ bannerDTO);
         jpaQueryFactory.selectFrom(banner)
                 .where(banner.bannerId.eq(bannerDTO.getBannerId()))
                 .fetchOne().update(bannerDTO);

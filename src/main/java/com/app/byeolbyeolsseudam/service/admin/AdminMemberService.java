@@ -24,8 +24,8 @@ public class AdminMemberService {
     };
 
     public void removeMember(List<String> memberIdstr){
-//        List<Long> memberId = new ArrayList<>();
-//        memberIdstr.stream().map(Long::parseLong).forEach(memberId::add);
-//        memberId.forEach(adminMemberRepository::deleteById);
+        List<Long> memberId = new ArrayList<>();
+        memberIdstr.stream().map(Long::parseLong).forEach(memberId::add);
+        memberId.forEach(adminMemberRepository::deleteById);
     }
 }
