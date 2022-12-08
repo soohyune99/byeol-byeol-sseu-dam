@@ -36,7 +36,7 @@
                                                 <div data-v-e4caeaf8="">
                                                     <article tabindex="-1" class="preview-image" style="width:100%;display:inline-block;" data-v-1a98b297="" data-v-5a004a22="" data-v-e4caeaf8="">
                                                         <div class="image-wrap">
-                                                            <img src="/images/market/kitchen1.jpg" data-v-1a98b297="">
+                                                            <img src="/images/market/kitchen2.png" data-v-1a98b297="">
                                                         </div>
                                                     </article>
                                                 </div>
@@ -73,7 +73,7 @@
                             <article class="product-description-images" data-v-08563466="" data-v-e0e63576="">
                                 <div class="height-clamp hide-less" style="--hc-gradient-height:120px; --hc-height:464px;" data-v-7fdb566e="">
                                     <div data-v-7fdb566e="">
-                                        <img src="/images/market/kitchendetail1.png" alt="상품 상세이미지" data-type="lightGallery" role="button" class="img-fluid w-100" data-v-7fdb566e="">
+                                        <img src="/images/market/kitchendetail2.jpg" alt="상품 상세이미지" data-type="lightGallery" role="button" class="img-fluid w-100" data-v-7fdb566e="">
                                     </div>
                                 </div>
                             </article>
@@ -408,20 +408,20 @@
                         </section>
                     </div>
                 </div>
-                <form th:action="@{/market/payment}" method="post" class="count-form">
+<!--                <form  method="post" class="count-form">-->
                 <div class="flex-aside right" data-v-08563466="">
-                    <div class="product-controller" data-v-08563466=""  th:object="${product}">
+                    <div class="product-controller" data-v-08563466="">
                         <section class="bread-crumbs no-space" data-v-08563466="">
                             <ol class="page-breadcrumbs list-inline" style="padding:0" data-v-0ddaacb9="" data-v-08563466="">
                                 <li data-v-0ddaacb9="" class="">
-                                    <a href="" data-v-0ddaacb9="" class="" th:text="*{productCategory}"></a>
+                                    <a href="" data-v-0ddaacb9="" class="productType"></a>
                                 </li>
                             </ol>
                         </section>
                         <section class="product-title" data-v-08563466="">
                             <div class="prod_icon text-danger icon_default">BEST</div>
-                            <h3 data-v-08563466="" th:text="*{productName}"></h3>
-                            <span class="real_price inline-blocked" style="" th:text="|${#numbers.formatInteger(product.productPrice, 0, 'COMMA')}원|"></span>
+                            <h3 class="proName" data-v-08563466=""></h3>
+                            <span class="real_price inline-blocked" style=""></span>
                         </section>
                         <section class="product-options" data-v-08563466="">
                             <div class="bottom-sheet" data-v-5084b5b0="" data-v-08563466="">
@@ -539,7 +539,7 @@
                                                                         <label for="orderCount">
                                                                             <!-- 주문 수량 -->
                                                                             <input name="orderCount" id="orderCount" type="text" title="number" value="1" class="form-control _order_count_mobile 0">
-                                                                            <input type="text" style="display: none;" name="productId" id="takeId" th:value="*{productId}">
+                                                                            <input type="text" style="display: none;" name="productId" id="takeId">
                                                                         </label>
                                                                         <a href="javascript: plusItemCount(0);">
                                                                             <i class="btl bt-plus" aria-hidden="true"></i>
@@ -547,7 +547,7 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="area_price absolute absolute_right absolute_middle">
-                                                                        <span class="item_price 0"  th:text="|${#numbers.formatInteger(product.productPrice, 0, 'COMMA')}원|"></span>
+                                                                        <span class="item_price 0"></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -557,7 +557,7 @@
                                                                 <span class="body_font_color_70 itemCount" style="padding: 16px 0">총 상품금액(1개)</span>
                                                             </p>
                                                             <p class="text-right" style="display:inline-block; float: right;">
-                                                                <span class="total_price" style="padding: 16px 0"  th:text="|${#numbers.formatInteger(product.productPrice, 0, 'COMMA')}원|"></span>
+                                                                <span class="total_price" style="padding: 16px 0"></span>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -589,7 +589,7 @@
                                         </svg>
                                     </span>
                                 </button>
-                                <button data-testid="purchase-btn" type="submit" value="주문하기" class="btn btn-buy btn-primary" style="font-size: 16px;" data-v-08563466="">
+                                <button data-testid="purchase-btn" type="submit" value="주문하기" class="purchase-btn btn btn-buy btn-primary" style="font-size: 16px;" data-v-08563466="">
                                     주문하기
                                 </button>
                             </div>
@@ -597,7 +597,7 @@
                         <img data-v-4df1822e="" src="/images/market/minibanner.png" lazy="loaded" style="padding-top: 5%;">
                     </div>
                 </div>
-                </form>
+<!--                </form>-->
                 <div class="v-portal" style="display:none;" data-v-08563466=""></div>
             </article>
         </div>
@@ -636,78 +636,8 @@
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/market/marketModule.js"></script>
 <script src="/js/market/marketDetail.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script src="/js/market/review.js"></script>
-<script th:inline="javascript">
-    // let id = $("#takeId").attr("id");
-    // let get = $("#takeId").val();
-    // console.log(id);
-    // console.log(get);
-
-/*    $(".btn-buy").on("click", function(){
-        console.log("들어옴");
-        // let id = $('#takeId').attr('name');
-        console.log(id);
-    });*/
-
-    /*댓글 전체 보기*/
-    let productId = [[${product.productId}]];
-
-    // show();
-
-    $("a.finish").on("click", function(){
-        reviewService.save({
-            reviewContent: $("textarea[name='reviewContent']").val(),
-            productId: productId
-        }, getList);
-    });
-
-    // function show(){
-    //     reviewService.getList(productId, getList);
-    // };
-
-
-    function getList(reviewDTO) {
-        let text = "";
-
-        text += "<div>";
-        text += "<div class='text-14'>";
-        text += "<span lass='txt _txt _review_body _block_ _review_code_c20221106fbfb68ae0a11a' block-review-code='c20221106fbfb68ae0a11a' block='false'>";
-        text += "<div class='dummy _dummy'>";
-        text += "<br>";
-        text += "<br>";
-        text += "<br>";
-        text += "<br>";
-        text += "<br>";
-        text += "<br>";
-        text += "</div>" +  + "</span>";
-        text += "<span class='_block_review_command_' style='display: block'>";
-        text += "<span class='more text-13'>";
-        text += "<strong class='body_font_color_60 more-underline'>더보기</strong>";
-        text += "</span>";
-        text += "</span>";
-        text += "</div>";
-        text += "<span class='_block_review_command_' style='display: block'>";
-        text += "<div class='review_comment_wrap_c20221106fbfb68ae0a11a'>";
-        text += "</div>";
-        text += "</span>";
-        text += "</div>";
-        text += "<div class='table-cell vertical-top width-5 text-13 use_summary'>";
-        text += "<div>작성자</div>";
-        text += "<div>작성 날짜</div>";
-        text += "<div class='margin-top-xxl text-12 review_tools clearfix'>";
-        text += "</div>";
-        text += "</div>";
-        text += "</div>";
-
-        //페이지 이동이 없기 때문에 append로 하면 이전 목록이 없어지지 않는다.
-        //따라서 html로 계속 덮어씌워줘야 한다.
-        $("div.reviews").append(text)
-
-        //페이징 처리를 위해 댓글 전체 개수를 전달해준다.
-        // showReplyPage(reviewDTO.reviewCount)
-
-    }
-</script>
 </html>

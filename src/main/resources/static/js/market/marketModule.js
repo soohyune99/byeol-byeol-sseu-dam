@@ -61,11 +61,13 @@ let marketService = (function(){
 
     /* 마켓 상세 조회 */
     function getProductDetail(productId, callback, error){
+        console.log(productId);
         $.ajax({
             url: "/product/read/" + productId,
             type: "get",
             success: function(product, status, xhr){
                 if(callback){
+                    console.log("성공");
                     callback(product);
                 }
             },

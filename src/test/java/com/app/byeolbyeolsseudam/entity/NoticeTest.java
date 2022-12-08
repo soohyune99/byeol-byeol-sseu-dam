@@ -37,28 +37,29 @@ public class NoticeTest {
 
         for (int i=0; i<10; i++){
             NoticeDTO notice1 = new NoticeDTO();
-            notice1.setNoticeTitle("바나프레소 커피" + (i+1));
-            notice1.setNoticeContent("아이스아메리카노" + (i+1));
+            notice1.setNoticeTitle("중요 공지사항" + (i+1));
+            notice1.setNoticeContent("이 공지사항은 중요합니다.\n 꼼꼼히 읽어주세요. 감사합니다." + (i+1));
             notice1.setNoticeCategory(NoticeCategory.중요);
 
             noticeRepository.save(notice1.toEntity());
         }
         for (int i=11; i<20; i++){
             NoticeDTO noticeDTO = new NoticeDTO();
-            noticeDTO.setNoticeTitle("할리스 커피" + (i+1));
-            noticeDTO.setNoticeContent("바닐라 딜라이트" + (i+1));
+            noticeDTO.setNoticeTitle("일반 공지사항" + (i+1));
+            noticeDTO.setNoticeContent("이 공지사항은 보통입니다.\n 그래도 꼼꼼히 읽어주세요. 감사합니다." + (i+1));
             noticeDTO.setNoticeCategory(NoticeCategory.일반);
 
             noticeRepository.save(noticeDTO.toEntity());
         }
         for (int i=21; i<30; i++){
             NoticeDTO notice2 = new NoticeDTO();
-            notice2.setNoticeTitle("할리스 커피" + (i+1));
-            notice2.setNoticeContent("바닐라 딜라이트" + (i+1));
+            notice2.setNoticeTitle("일반 공지사항" + (i+1));
+            notice2.setNoticeContent("이 공지사항은 보통입니다.\n 그래도 꼼꼼히 읽어주세요. 감사합니다." + (i+1));
             notice2.setNoticeCategory(NoticeCategory.일반);
 
             noticeRepository.save(notice2.toEntity());
         }
+
 //
 //        List<Notice> notices = jpaQueryFactory.selectFrom(notice)
 //                .where(notice.noticeTitle.eq("공지사항"))

@@ -5,12 +5,14 @@ import com.app.byeolbyeolsseudam.entity.product.Product;
 import com.app.byeolbyeolsseudam.service.market.MarketService;
 import com.app.byeolbyeolsseudam.service.market.ReviewService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping(value = {"/market/*", "/market"})
 public class MarketController {
 
@@ -25,8 +27,15 @@ public class MarketController {
     // 마켓 상세보기 조회
     @GetMapping("/{productId}")
     public String Read(@PathVariable Long productId, Model model){
+        log.info("상세보기 들어옴");
+        log.info("" + productId);
         return "/app/market/marketDetail";
     }
+
+    /*@GetMapping(value = {"/payment"})
+    public String payment(@RequestParam Long productId, @RequestParam int orderCount){
+        return "/app/market/marketPayment";
+    }*/
 
 /*    @GetMapping("/basket")
     public String basket(){
@@ -34,15 +43,6 @@ public class MarketController {
     }
 
 
-    @PostMapping("/payment")
-    public String payment(@RequestParam Long productId, @RequestParam int orderCount,Model model){
-        model.addAttribute("product", marketService.showListDetailOnly(productId));
-        model.addAttribute("productPrice", marketService.showListDetailOnly(productId).getProductPrice());
-//        model.addAttribute("product", product);
-        model.addAttribute("count", orderCount);
-
-        return "/app/market/marketPayment";
-    }
 
     @GetMapping("/paid")
     public String paid(){
