@@ -49,7 +49,7 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
         )).from(program)
                 .where(program.programName.contains(keyword))
                 .orderBy(program.programDate.desc())
-//                .limit(9)
+                .limit(12)
                 .fetch();
     }
 
@@ -75,7 +75,7 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
                 program.programFileDetailUuid,
                 program.createdDate
         )).from(program).orderBy(program.programDate.desc())
-//                .limit(9)
+                .limit(12)
                 .fetch();
     }
 
@@ -102,7 +102,7 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
                 program.createdDate
         )).from(program)
                 .where(program.programStatus.eq(programStatus)).orderBy(program.programDate.desc())
-//                .limit(9)
+                .limit(12)
                 .fetch();
     }
 

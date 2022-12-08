@@ -27,8 +27,10 @@ public interface ProgramCustomRepository{
     /* 프로그램 Article 클릭시 해당 Detail 페이지로 이동 */
     public ProgramDTO findProgramDetail(Long programId);
 
+    /* 동적쿼리 + 무한스크롤 Search -> keyword, programStatus */
     public Page<ProgramDTO> selectScrollPrograms (Search search, Pageable pageable);
 
+    /* 신청하기 클릭시 */
 
 //    /* program Detail _ 상세보기 클릭시 상세페이지 */
 //    public ProgramDTO programDetailPage(Model model, @SessionAttribute Member member, Long programId);

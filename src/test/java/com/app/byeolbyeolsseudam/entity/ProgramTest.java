@@ -109,7 +109,7 @@ public class ProgramTest {
                 "지구를 아끼고 맛있는 음식도 먹고! " +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO03.setProgramLimitCount(35);
-        programDTO03.setProgramStatus(ProgramStatus.모집중);
+        programDTO03.setProgramStatus(ProgramStatus.모집예정);
         programDTO03.setProgramFileProfileName("/images/program/program3.png");
         programDTO03.setProgramFileProfilePath("/images/program/program3.png");
         programDTO03.setProgramFileProfileUuid("/images/program/program3.png");
@@ -134,7 +134,7 @@ public class ProgramTest {
                 "지구를 아끼고 맛있는 음식도 먹고! " +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO04.setProgramLimitCount(15);
-        programDTO04.setProgramStatus(ProgramStatus.모집중);
+        programDTO04.setProgramStatus(ProgramStatus.모집예정);
         programDTO04.setProgramFileProfileName("/images/program/program4.png");
         programDTO04.setProgramFileProfilePath("/images/program/program4.png");
         programDTO04.setProgramFileProfileUuid("/images/program/program4.png");
@@ -174,7 +174,7 @@ public class ProgramTest {
         programDTO06.setProgramDate(LocalDateTime.of(2022,12,19,15,00));
         programDTO06.setProgramContent("줍깅");
         programDTO06.setProgramLimitCount(16);
-        programDTO06.setProgramStatus(ProgramStatus.모집중);
+        programDTO06.setProgramStatus(ProgramStatus.모집예정);
         programDTO06.setProgramFileProfileName("/images/program/program6.png");
         programDTO06.setProgramFileProfilePath("/images/program/program6.png");
         programDTO06.setProgramFileProfileUuid("/images/program/program6.png");
@@ -199,7 +199,7 @@ public class ProgramTest {
                 "함께 알아보는 시간을 가집니다" +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO07.setProgramLimitCount(30);
-        programDTO07.setProgramStatus(ProgramStatus.모집중);
+        programDTO07.setProgramStatus(ProgramStatus.모집예정);
         programDTO07.setProgramFileProfileName("/images/program/program7.png");
         programDTO07.setProgramFileProfilePath("/images/program/program7.png");
         programDTO07.setProgramFileProfileUuid("/images/program/program7.png");
@@ -224,7 +224,7 @@ public class ProgramTest {
                 "함께 알아보는 시간을 가집니다" +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO08.setProgramLimitCount(30);
-        programDTO08.setProgramStatus(ProgramStatus.모집중);
+        programDTO08.setProgramStatus(ProgramStatus.모집완료);
         programDTO08.setProgramFileProfileName("/images/program/program8.png");
         programDTO08.setProgramFileProfilePath("/images/program/program8.png");
         programDTO08.setProgramFileProfileUuid("/images/program/program8.png");
@@ -274,7 +274,7 @@ public class ProgramTest {
                 "함께 알아보는 시간을 가집니다" +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO10.setProgramLimitCount(30);
-        programDTO10.setProgramStatus(ProgramStatus.모집중);
+        programDTO10.setProgramStatus(ProgramStatus.모집완료);
         programDTO10.setProgramFileProfileName("/images/program/program10.png");
         programDTO10.setProgramFileProfilePath("/images/program/program10.png");
         programDTO10.setProgramFileProfileUuid("/images/program/program10.png");
