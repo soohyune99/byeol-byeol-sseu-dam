@@ -1,18 +1,19 @@
 package com.app.byeolbyeolsseudam.repository.product;
 
-import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
-import com.app.byeolbyeolsseudam.domain.comment.QCommentDTO;
+import com.app.byeolbyeolsseudam.domain.Criteria;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.domain.product.QProductDTO;
 import com.app.byeolbyeolsseudam.domain.review.QReviewDTO;
 import com.app.byeolbyeolsseudam.domain.review.ReviewDTO;
+import com.app.byeolbyeolsseudam.entity.product.Product;
 import com.app.byeolbyeolsseudam.entity.product.QProduct;
 import com.app.byeolbyeolsseudam.entity.review.QReview;
-import com.app.byeolbyeolsseudam.entity.review.Review;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
 
     // 전체 조회
     @Override
-    public List<ProductDTO> showAll(){
+    public List<ProductDTO> selectProducts(){
         List<ProductDTO> products = jpaQueryFactory.select(new QProductDTO(
                 product.productId,product.productCategory, product.productName,
                 product.productPrice,product.productCount,product.productFileDetailName,
@@ -34,128 +35,99 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
                 product.productFileProfilePath,product.productFileProfileUuid))
                 .from(product)
                 .orderBy(product.createdDate.desc())
+                .limit(12)
                 .fetch();
 
+        products.stream().forEach(review -> {
+            List<ReviewDTO> reviews = jpaQueryFactory.select(new QReviewDTO(
+                    QReview.review.reviewId, QReview.review.reviewContent, QReview.review.reviewStar,
+                    QReview.review.product.productId,QReview.review.member.memberId,
+                    QReview.review.member.memberName, QReview.review.reviewFileName,
+                    QReview.review.reviewFilePath, QReview.review.reviewFileUuid,
+                    QReview.review.createdDate))
+                    .from(QReview.review)
+                    .where(QReview.review.product.productId.eq(product.productId))
+                    .fetch();
+            review.setReviews(reviews);
+        });
         return products;
     }
 
-    // 카테고리 생활 클릭 시 조회
+    // 카테고리 클릭 시 조회
     @Override
-    public List<ProductDTO> showLiving(){
-        List<ProductDTO> productLiving = jpaQueryFactory.select(new QProductDTO(
-                product.productId,product.productCategory, product.productName,
-                product.productPrice,product.productCount,product.productFileDetailName,
-                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
-                product.productFileProfilePath,product.productFileProfileUuid))
-                .from(product)
-                .where(product.productCategory.eq(ProductCategory.생활))
-                .orderBy(product.createdDate.desc())
+    public List<ProductDTO> selectProductofCategory(ProductCategory productCategory){
+        List<ProductDTO> products = jpaQueryFactory.select(new QProductDTO(
+                QProduct.product.productId, QProduct.product.productCategory,QProduct.product.productName,
+                QProduct.product.productPrice, QProduct.product.productCount, QProduct.product.productFileDetailName,
+                QProduct.product.productFileDetailPath, QProduct.product.productFileDetailUuid, QProduct.product.productFileProfileName,
+                QProduct.product.productFileProfilePath, QProduct.product.productFileProfileUuid ))
+                .from(QProduct.product)
+                .where(QProduct.product.productCategory.eq(productCategory))
+                .orderBy(QProduct.product.createdDate.desc())
+                .limit(12)
                 .fetch();
-        return productLiving;
+
+
+        products.stream().forEach(review -> {
+            List<ReviewDTO> reviews = jpaQueryFactory.select(new QReviewDTO(
+                    QReview.review.reviewId, QReview.review.reviewContent, QReview.review.reviewStar,
+                    QReview.review.product.productId,QReview.review.member.memberId,
+                    QReview.review.member.memberName, QReview.review.reviewFileName,
+                    QReview.review.reviewFilePath, QReview.review.reviewFileUuid,
+                    QReview.review.createdDate))
+                    .from(QReview.review)
+                    .where(QReview.review.product.productId.eq(product.productId))
+                    .fetch();
+            review.setReviews(reviews);
+        });
+        return products;
     }
 
-    // 카테고리 주방 클릭 시 조회
+    // 마켓 검색
     @Override
-    public List<ProductDTO> showKitchen(){
-        List<ProductDTO> productKitchen = jpaQueryFactory.select(new QProductDTO(
-                product.productId,product.productCategory, product.productName,
-                product.productPrice,product.productCount,product.productFileDetailName,
-                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
-                product.productFileProfilePath,product.productFileProfileUuid))
-                .from(product)
-                .where(product.productCategory.eq(ProductCategory.주방))
+    public List<ProductDTO> selectProductofKeyword(String keyword){
+        List<ProductDTO> products = jpaQueryFactory.select(new QProductDTO(
+                QProduct.product.productId, QProduct.product.productCategory,QProduct.product.productName,
+                QProduct.product.productPrice, QProduct.product.productCount, QProduct.product.productFileDetailName,
+                QProduct.product.productFileDetailPath, QProduct.product.productFileDetailUuid, QProduct.product.productFileProfileName,
+                QProduct.product.productFileProfilePath, QProduct.product.productFileProfileUuid ))
+                .from(QProduct.product)
+                .where(product.productName.contains(keyword))
                 .orderBy(product.createdDate.desc())
+                .limit(12)
                 .fetch();
-        return productKitchen;
+
+        products.stream().forEach(product -> {
+            List<ReviewDTO> reviews = jpaQueryFactory.select(new QReviewDTO(
+                    QReview.review.reviewId, QReview.review.reviewContent, QReview.review.reviewStar,
+                    QReview.review.product.productId,QReview.review.member.memberId,
+                    QReview.review.member.memberName, QReview.review.reviewFileName,
+                    QReview.review.reviewFilePath, QReview.review.reviewFileUuid,
+                    QReview.review.createdDate))
+                    .from(QReview.review)
+                    .where(QReview.review.product.productId.eq(product.getProductId()))
+                    .fetch();
+            product.setReviews(reviews);
+        });
+        return products;
     }
 
-    // 카테고리 욕실 클릭 시 조회
-    @Override
-    public List<ProductDTO> showBathroom(){
-        List<ProductDTO> productBathroom = jpaQueryFactory.select(new QProductDTO(
-                product.productId,product.productCategory, product.productName,
-                product.productPrice,product.productCount,product.productFileDetailName,
-                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
-                product.productFileProfilePath,product.productFileProfileUuid))
-                .from(product)
-                .where(product.productCategory.eq(ProductCategory.욕실))
-                .orderBy(product.createdDate.desc())
-                .fetch();
-        return productBathroom;
-    }
-
-    // 카테고리 식품 클릭 시 조회
-    @Override
-    public List<ProductDTO> showFood(){
-        List<ProductDTO> productFood = jpaQueryFactory.select(new QProductDTO(
-                product.productId,product.productCategory, product.productName,
-                product.productPrice,product.productCount,product.productFileDetailName,
-                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
-                product.productFileProfilePath,product.productFileProfileUuid))
-                .from(product)
-                .where(product.productCategory.eq(ProductCategory.식품))
-                .orderBy(product.createdDate.desc())
-                .fetch();
-        return productFood;
-    }
-
-    // 카테고리 취미 클릭 시 조회
-    @Override
-    public List<ProductDTO> showHobby(){
-        List<ProductDTO> productHobby = jpaQueryFactory.select(new QProductDTO(
-                product.productId,product.productCategory, product.productName,
-                product.productPrice,product.productCount,product.productFileDetailName,
-                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
-                product.productFileProfilePath,product.productFileProfileUuid))
-                .from(product)
-                .where(product.productCategory.eq(ProductCategory.취미))
-                .orderBy(product.createdDate.desc())
-                .fetch();
-        return productHobby;
-    }
-
-    // 카테고리 문구 클릭 시 조회
-    @Override
-    public List<ProductDTO> showOffice(){
-        List<ProductDTO> productOffice= jpaQueryFactory.select(new QProductDTO(
-                product.productId,product.productCategory, product.productName,
-                product.productPrice,product.productCount,product.productFileDetailName,
-                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
-                product.productFileProfilePath,product.productFileProfileUuid))
-                .from(product)
-                .where(product.productCategory.eq(ProductCategory.문구))
-                .orderBy(product.createdDate.desc())
-                .fetch();
-        return productOffice;
-    }
-
-    // 카테고리 반려동물 클릭 시 조회
-    @Override
-    public List<ProductDTO> showPet(){
-        List<ProductDTO> productPet = jpaQueryFactory.select(new QProductDTO(
-                product.productId,product.productCategory, product.productName,
-                product.productPrice,product.productCount,product.productFileDetailName,
-                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
-                product.productFileProfilePath,product.productFileProfileUuid))
-                .from(product)
-                .where(product.productCategory.eq(ProductCategory.반려동물))
-                .orderBy(product.createdDate.desc())
-                .fetch();
-        return productPet;
-    }
 
     // 상세 조회 + 댓글
     @Override
-    public ProductDTO showDetail(Long productId){
-        ProductDTO show = jpaQueryFactory.select(new QProductDTO(
-                product.productId,product.productCategory, product.productName,
-                product.productPrice,product.productCount,product.productFileDetailName,
-                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
-                product.productFileProfilePath,product.productFileProfileUuid))
-                .from(product)
-                .where(product.productId.eq(productId))
-                .orderBy(product.createdDate.desc())
-                .limit(1)
+    public ProductDTO readProduct(Long productId){
+
+        Product product = jpaQueryFactory.selectFrom(QProduct.product)
+                .where(QProduct.product.productId.eq(productId))
+                .fetchOne();
+
+        ProductDTO productDTO = jpaQueryFactory.select(new QProductDTO(
+                QProduct.product.productId,QProduct.product.productCategory, QProduct.product.productName,
+                QProduct.product.productPrice,QProduct.product.productCount,QProduct.product.productFileDetailName,
+                QProduct.product.productFileDetailPath,QProduct.product.productFileDetailUuid,QProduct.product.productFileProfileName,
+                QProduct.product.productFileProfilePath,QProduct.product.productFileProfileUuid))
+                .from(QProduct.product)
+                .where(QProduct.product.productId.eq(productId))
                 .fetchOne();
 
         List<ReviewDTO> reviews = jpaQueryFactory.select(new QReviewDTO(
@@ -166,23 +138,51 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
                 .from(review)
                 .where(review.product.productId.eq(productId))
                 .fetch();
-        return show;
+
+        productDTO.setReviews(reviews);
+
+        return productDTO;
     }
 
-    // 상세 조회
+    // 무한 스크롤
     @Override
-    public ProductDTO showDetailOnly(Long productId) {
-        ProductDTO show = jpaQueryFactory.select(new QProductDTO(
-                product.productId,product.productCategory, product.productName,
-                product.productPrice,product.productCount,product.productFileDetailName,
-                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
-                product.productFileProfilePath,product.productFileProfileUuid))
-                .from(product)
-                .where(product.productId.eq(productId))
-                .orderBy(product.createdDate.desc())
-                .limit(1)
-                .fetchOne();
-        return show;
+    public List<ProductDTO> selectScrollProducts(Criteria criteria){
+        List<ProductDTO> products = jpaQueryFactory.select(new QProductDTO(
+                QProduct.product.productId, QProduct.product.productCategory,QProduct.product.productName,
+                QProduct.product.productPrice, QProduct.product.productCount, QProduct.product.productFileDetailName,
+                QProduct.product.productFileDetailPath, QProduct.product.productFileDetailUuid, QProduct.product.productFileProfileName,
+                QProduct.product.productFileProfilePath, QProduct.product.productFileProfileUuid ))
+                .from(QProduct.product)
+                .where(nameLike(criteria.getKeyword()), categoryEq(criteria.getCategory()))
+                .offset(criteria.getPage() * 10)
+                .limit(12)
+                .fetch();
+
+        products.stream().forEach(product -> {
+            List<ReviewDTO> reviews = jpaQueryFactory.select(new QReviewDTO(
+                    QReview.review.reviewId, QReview.review.reviewContent, QReview.review.reviewStar,
+                    QReview.review.product.productId,QReview.review.member.memberId,
+                    QReview.review.member.memberName, QReview.review.reviewFileName,
+                    QReview.review.reviewFilePath, QReview.review.reviewFileUuid,
+                    QReview.review.createdDate))
+                    .from(QReview.review)
+                    .where(QReview.review.product.productId.eq(product.getProductId()))
+                    .fetch();
+            product.setReviews(reviews);
+        });
+        return products;
     }
+
+    /* 무한스크롤 동적쿼리 조건 */
+    private BooleanExpression nameLike(String name){
+        return StringUtils.hasText(name)? product.productName.contains(name) : null;
+    }
+
+    private BooleanExpression categoryEq(String category){
+        return StringUtils.hasText(category)? product.productCategory.eq(ProductCategory.valueOf(category)) : null;
+    }
+
+
+
 
 }

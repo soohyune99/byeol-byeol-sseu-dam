@@ -1,9 +1,7 @@
 package com.app.byeolbyeolsseudam.service.market;
 
-import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
-import com.app.byeolbyeolsseudam.domain.notice.NoticeDTO;
+import com.app.byeolbyeolsseudam.domain.Criteria;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
-import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
 import lombok.RequiredArgsConstructor;
@@ -15,57 +13,40 @@ import java.util.List;
 public class MarketServiceImpl implements MarketService {
 
     private final ProductRepository productRepository;
-//    private final MemberRepository memberRepository;
 
     // 상품 전체 조회
     @Override
-    public List<ProductDTO> showList(){
-        return productRepository.showAll();
+    public List<ProductDTO> selectProducts(){
+        return productRepository.selectProducts();
     }
 
-
-    // 생활 카테고리 조회
-    @Override
-    public List<ProductDTO> showLivingList(){return productRepository.showLiving();}
-
-    // 주방 카테고리 조회
-    @Override
-    public List<ProductDTO> showKitchenList(){return productRepository.showKitchen();}
-
-    // 욕실 카테고리 조회
-    @Override
-    public List<ProductDTO> showBathroomList(){return productRepository.showBathroom();}
-
-    // 식품 카테고리 조회
-    @Override
-    public List<ProductDTO> showFoodList(){return productRepository.showFood();}
-
-    // 취미 카테고리 조회
-    @Override
-    public List<ProductDTO> showHobbyList(){return productRepository.showHobby();}
-
-    // 문구 카테고리 조회
-    @Override
-    public List<ProductDTO> showOfficeList(){return productRepository.showOffice();}
-
-    // 반려동물 카테고리 조회
-    @Override
-    public List<ProductDTO> showPetList(){return productRepository.showPet();}
-
-    // 상품 상세 + 댓글 조회
-    @Override
-    public ProductDTO showListDetail(Long productId){
-        return productRepository.showDetail(productId);
+    // 상품 개수 조회
+    public long countProducts(){
+        return productRepository.count();
     }
+
+    // 상품 카테고리별 조회
+    @Override
+    public List<ProductDTO> selectProductsofCategory(ProductCategory productCategory){
+        return productRepository.selectProductofCategory(productCategory);
+    }
+
+    // 상품 검색
+    @Override
+    public List<ProductDTO> selectProductsofKeyword(String keyword){
+        return productRepository.selectProductofKeyword(keyword);
+    }
+
     // 상품 상세 조회
     @Override
-    public ProductDTO showListDetailOnly(Long productId){
-        return productRepository.showDetailOnly(productId);
+    public ProductDTO readProduct(Long productId){
+        return productRepository.readProduct(productId);
     }
 
-    // 상품 구매
-//    @Override
-//    public List<MemberDTO> showReceipt(Long memberId){
-//        return memberRepository.findById(memberId);
-//    }
+    // 무한 스크롤
+    @Override
+    public List<ProductDTO> selectScrollProducts(Criteria criteria){
+        return productRepository.selectScrollProducts(criteria);
+    }
+
 }

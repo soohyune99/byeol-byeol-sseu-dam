@@ -1,6 +1,6 @@
 package com.app.byeolbyeolsseudam.service.market;
 
-import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
+import com.app.byeolbyeolsseudam.domain.Criteria;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
 import org.springframework.stereotype.Service;
@@ -11,28 +11,18 @@ import java.util.List;
 public interface MarketService {
 
     // 상품 전체 조회
-    public List<ProductDTO> showList();
+    public List<ProductDTO> selectProducts();
 
-    // 생활 카테고리 조회
-    public List<ProductDTO> showLivingList();
-    // 주방 카테고리 조회
-    public List<ProductDTO> showKitchenList();
-    // 욕실 카테고리 조회
-    public List<ProductDTO> showBathroomList();
-    // 식품 카테고리 조회
-    public List<ProductDTO> showFoodList();
-    // 취미 카테고리 조회
-    public List<ProductDTO> showHobbyList();
-    // 문구 카테고리 조회
-    public List<ProductDTO> showOfficeList();
-    // 반려동물 카테고리 조회
-    public List<ProductDTO> showPetList();
+    // 상품 카테고리별 조회
+    public List<ProductDTO> selectProductsofCategory(ProductCategory productCategory);
 
-    // 상품 상세 + 댓글 조회
-    public ProductDTO showListDetail(Long productId);
+    // 상품 검색
+    public List<ProductDTO> selectProductsofKeyword(String keyword);
+
     // 상품 상세 조회
-    public ProductDTO showListDetailOnly(Long productId);
+    public ProductDTO readProduct(Long productId);
 
-    // 상품 구매
-//    public List<MemberDTO> showReceipt(Long memberId);
+    // 무한 스크롤
+    public List<ProductDTO> selectScrollProducts(Criteria criteria);
+
 }
