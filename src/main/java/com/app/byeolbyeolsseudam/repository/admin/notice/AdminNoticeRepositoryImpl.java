@@ -4,6 +4,7 @@ import com.app.byeolbyeolsseudam.domain.notice.NoticeDTO;
 import com.app.byeolbyeolsseudam.domain.notice.QNoticeDTO;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class AdminNoticeRepositoryImpl implements AdminNoticeCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<NoticeDTO> showList() {
+    public List<NoticeDTO> showList(String keyword, Pageable pageable) {
         return jpaQueryFactory.select(new QNoticeDTO(
                 notice.noticeId,
                 notice.noticeTitle,
@@ -24,8 +25,10 @@ public class AdminNoticeRepositoryImpl implements AdminNoticeCustomRepository {
                 notice.noticeCategory,
                 notice.createdDate
         )).from(notice)
+                .where(notice.noticeTitle.contains(keyword).or(notice.noticeContent.contains(keyword)))
                 .orderBy(notice.noticeId.desc())
-                .limit(10)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
     }
 
@@ -47,5 +50,16 @@ public class AdminNoticeRepositoryImpl implements AdminNoticeCustomRepository {
         jpaQueryFactory.selectFrom(notice)
                 .where(notice.noticeId.eq(noticeDTO.getNoticeId()))
                 .fetchOne().update(noticeDTO);
+    }
+
+    @Override
+    public List<NoticeDTO> searchNotice(String keyword) {
+        return jpaQueryFactory.select(new QNoticeDTO(
+                notice.noticeId, notice.noticeTitle,
+                notice.noticeContent, notice.noticeCategory, notice.createdDate
+        )).from(notice)
+                .where(notice.noticeTitle.contains(keyword).or(notice.noticeContent.contains(keyword)))
+                .orderBy(notice.noticeId.desc())
+                .fetch();
     }
 }
