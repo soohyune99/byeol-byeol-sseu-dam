@@ -2,8 +2,9 @@ package com.app.byeolbyeolsseudam.entity;
 
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.entity.program.Program;
+import com.app.byeolbyeolsseudam.domain.Search;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
-import com.app.byeolbyeolsseudam.repository.program.ProgramCustomRepository;
+import com.app.byeolbyeolsseudam.repository.program.ProgramDynamicRepository;
 import com.app.byeolbyeolsseudam.repository.program.ProgramRepository;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,9 @@ public class ProgramTest {
 
     @Autowired
     MemberRepository memberRepository;
+
+    @Autowired
+    ProgramDynamicRepository programDynamicRepository;
 
     @Test
     public void saveProgramTest(){
@@ -60,6 +64,7 @@ public class ProgramTest {
                 "지구를 아끼고 맛있는 음식도 먹고! " +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO01.setProgramLimitCount(35);
+        programDTO01.setProgramStatus(ProgramStatus.모집중);
         programDTO01.setProgramFileProfileName("/images/program/program1.png");
         programDTO01.setProgramFileProfilePath("/images/program/program1.png");
         programDTO01.setProgramFileProfileUuid("/images/program/program1.png");
@@ -82,6 +87,7 @@ public class ProgramTest {
                 "지구를 아끼고 맛있는 음식도 먹고! " +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO02.setProgramLimitCount(20);
+        programDTO02.setProgramStatus(ProgramStatus.모집중);
         programDTO02.setProgramFileProfileName("/images/program/program2.png");
         programDTO02.setProgramFileProfilePath("/images/program/program2.png");
         programDTO02.setProgramFileProfileUuid("/images/program/program2.png");
@@ -104,6 +110,7 @@ public class ProgramTest {
                 "지구를 아끼고 맛있는 음식도 먹고! " +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO03.setProgramLimitCount(35);
+        programDTO03.setProgramStatus(ProgramStatus.모집중);
         programDTO03.setProgramFileProfileName("/images/program/program3.png");
         programDTO03.setProgramFileProfilePath("/images/program/program3.png");
         programDTO03.setProgramFileProfileUuid("/images/program/program3.png");
@@ -128,6 +135,7 @@ public class ProgramTest {
                 "지구를 아끼고 맛있는 음식도 먹고! " +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO04.setProgramLimitCount(15);
+        programDTO04.setProgramStatus(ProgramStatus.모집중);
         programDTO04.setProgramFileProfileName("/images/program/program4.png");
         programDTO04.setProgramFileProfilePath("/images/program/program4.png");
         programDTO04.setProgramFileProfileUuid("/images/program/program4.png");
@@ -151,6 +159,7 @@ public class ProgramTest {
                 "쓰담수거를 하면 어떻게 되는지 알아보아요" +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO05.setProgramLimitCount(15);
+        programDTO05.setProgramStatus(ProgramStatus.모집중);
         programDTO05.setProgramFileProfileName("/images/program/program5.png");
         programDTO05.setProgramFileProfilePath("/images/program/program5.png");
         programDTO05.setProgramFileProfileUuid("/images/program/program5.png");
@@ -166,6 +175,7 @@ public class ProgramTest {
         programDTO06.setProgramDate(LocalDateTime.of(2022,12,19,15,00));
         programDTO06.setProgramContent("줍깅");
         programDTO06.setProgramLimitCount(16);
+        programDTO06.setProgramStatus(ProgramStatus.모집중);
         programDTO06.setProgramFileProfileName("/images/program/program6.png");
         programDTO06.setProgramFileProfilePath("/images/program/program6.png");
         programDTO06.setProgramFileProfileUuid("/images/program/program6.png");
@@ -190,6 +200,7 @@ public class ProgramTest {
                 "함께 알아보는 시간을 가집니다" +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO07.setProgramLimitCount(30);
+        programDTO07.setProgramStatus(ProgramStatus.모집중);
         programDTO07.setProgramFileProfileName("/images/program/program7.png");
         programDTO07.setProgramFileProfilePath("/images/program/program7.png");
         programDTO07.setProgramFileProfileUuid("/images/program/program7.png");
@@ -214,6 +225,7 @@ public class ProgramTest {
                 "함께 알아보는 시간을 가집니다" +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO08.setProgramLimitCount(30);
+        programDTO08.setProgramStatus(ProgramStatus.모집중);
         programDTO08.setProgramFileProfileName("/images/program/program8.png");
         programDTO08.setProgramFileProfilePath("/images/program/program8.png");
         programDTO08.setProgramFileProfileUuid("/images/program/program8.png");
@@ -238,6 +250,7 @@ public class ProgramTest {
                 "함께 알아보는 시간을 가집니다" +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO09.setProgramLimitCount(35);
+        programDTO09.setProgramStatus(ProgramStatus.모집중);
         programDTO09.setProgramFileProfileName("/images/program/program9.png");
         programDTO09.setProgramFileProfilePath("/images/program/program9.png");
         programDTO09.setProgramFileProfileUuid("/images/program/program9.png");
@@ -262,6 +275,7 @@ public class ProgramTest {
                 "함께 알아보는 시간을 가집니다" +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO10.setProgramLimitCount(30);
+        programDTO10.setProgramStatus(ProgramStatus.모집중);
         programDTO10.setProgramFileProfileName("/images/program/program10.png");
         programDTO10.setProgramFileProfilePath("/images/program/program10.png");
         programDTO10.setProgramFileProfileUuid("/images/program/program10.png");
@@ -286,6 +300,7 @@ public class ProgramTest {
                 "함께 알아보는 시간을 가집니다" +
                 "무상프로그램으로 모두 함께 참여해보아요");
         programDTO11.setProgramLimitCount(30);
+        programDTO11.setProgramStatus(ProgramStatus.모집중);
         programDTO11.setProgramFileProfileName("/images/program/program11.png");
         programDTO11.setProgramFileProfilePath("/images/program/program11.png");
         programDTO11.setProgramFileProfileUuid("/images/program/program11.png");
@@ -310,6 +325,7 @@ public class ProgramTest {
                 "무상프로그램으로 모두 함께 참여해보아요" +
                 "* 해당 회차는 크리스마스 특별 프로그램입니다 *");
         programDTO12.setProgramLimitCount(100);
+        programDTO12.setProgramStatus(ProgramStatus.모집중);
         programDTO12.setProgramFileProfileName("/images/program/program12.png");
         programDTO12.setProgramFileProfilePath("/images/program/program12.png");
         programDTO12.setProgramFileProfileUuid("/images/program/program12.png");
@@ -401,7 +417,20 @@ public class ProgramTest {
 
     @Test
     public void deleteTest(){
-        programRepository.deleteById(1L);
+        programRepository.deleteById(100L);
+    }
+
+    @Test
+    public void programDynamicListTest (){
+        Search search = new Search();
+        search.setKeyword(""); //검색은 빈문자열도 가능 (엔드로 되어있는건 안보임)
+//        search.setProgramStatus("");
+        search.setProgramStatus(ProgramStatus.모집예정.name());
+//        search.setProgramStatus(ProgramStatus.모집중.name());
+//        search.setProgramStatus(ProgramStatus.모집완료);
+//        search.setProgramStatus(ProgramStatus.마감);
+        log.info(" 검색어 , 상태 : " + programDynamicRepository.programDynamicList(search).size());
+//        programDynamicRepository.programDynamicList("","");
     }
 
 }

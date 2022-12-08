@@ -40,6 +40,11 @@ public class ProgramSearchService implements ProgramService {
         return programDTO;
     }
 
+    @Override
+    public List<ProgramDTO> selectScrollPrograms(int page) {
+        return programRepository.selectScrollPrograms(page);
+    }
+
 
 //    @Override
 //    public ProgramDTO programDetailPage(Model model, Member member, Long programId) {

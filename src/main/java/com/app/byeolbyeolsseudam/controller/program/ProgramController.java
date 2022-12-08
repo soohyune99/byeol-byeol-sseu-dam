@@ -1,8 +1,10 @@
 package com.app.byeolbyeolsseudam.controller.program;
 
+import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
 import com.app.byeolbyeolsseudam.domain.notice.NoticeDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.service.program.ProgramDynamicService;
 import com.app.byeolbyeolsseudam.service.program.ProgramService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,12 +13,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/program/*")
 @Slf4j
 public class ProgramController {
     private final ProgramService programService;
+    private final ProgramDynamicService programDynamicService;
 
     /* 프로그램 기본 List */
     @GetMapping("/list")
@@ -30,6 +35,11 @@ public class ProgramController {
         model.addAttribute("program",programService.findProgramDetail(programId));
         return"/app/program/programDetail";
     }
+
+//    @GetMapping("/scroll/{page}")
+//    public List<ProgramDTO> infiniteScroll(@PathVariable int page){
+//        return programService.selectScrollPrograms(page);
+//    }
 
 //    /* 로그인 되었을때 진행 필요  */
 //    @GetMapping("/programAddSuccess")
