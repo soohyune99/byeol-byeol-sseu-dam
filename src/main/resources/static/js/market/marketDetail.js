@@ -1,8 +1,8 @@
 /* marketDetail.html */
-let url = decodeURI(window.location.href).split("/");
-let product = url[url.length - 1];
+// let $purchaseBtn = $(".purchase-btn");
+// let $productCount = document.getElementById('orderCount').value;
 
-getnumber();
+// getedNumber();
 
 /* 장바구니 모달 열고 닫기 변수 선언 */
 let $basketModal = $("#shop_detail_add_cart_alarm");
@@ -144,6 +144,34 @@ function totalPrice(){
     $totalPrice.html(text);
 }
 
+/* ================================== MarketDetail ==================================*/
+
+console.log("js 들어옴");
+let url = decodeURI(window.location.href).split("/");
+let productId = url[url.length - 1];
+
+readProduct(productId);
+
+/* 상품 상세 조회 */
+function readProduct(productId) {
+    marketService.getProductDetail(
+        productId, showProductDetail
+    );
+}
+
+
+/* 상품 상세 조회 */
+function showProductDetail(product){
+    // let text = "";
+
+    $(".productType").html(product.productCategory);
+    $(".proName").html(product.productName);
+    $(".real_price").html(product.productPrice);
+    $(".item_price").html(product.productPrice);
+    $(".total_price").html(product.productPrice);
+    // $purchaseBtn.attr('href', '/market/payment?id=' + product.productId);
+}
+
 /* 구매하지 않은 제품일 경우 구매평 작성 불가 모달 띄우기 */
 function openReviewModal(){
     if(false){
@@ -239,7 +267,8 @@ $(".thumb_detail_img_wrap").on('click', function(){
     $(this).find('img').eq(0).css({'width':  $flag, 'height':  $flag});
 });
 
-
-function getnumber(){
+/*function getedNumber(){
     $("input[name='inputValue']").val(product);
-}
+}*/
+
+/* ================================== Review ==================================*/

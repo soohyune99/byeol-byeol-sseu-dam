@@ -157,7 +157,7 @@ function showMarketProduct(products) {
 
     let text = "";
 
-    if(products.length > 0) {
+    // if(products.length  0) {
         text += `<div data-v-18e85706="" data-v-72c8052a="">`;
         text += `<section data-v-219a3136="" data-v-18e85706="">`;
         text += `<div data-v-219a3136="" class="product-total-count">`;
@@ -166,7 +166,7 @@ function showMarketProduct(products) {
         text += `</div>`;
         text += `</section>`;
         text += `<div data-v-18e85706="" class="product-list responsive">`;
-    }
+    // }
 
     products.forEach(product => {
         text += `<article data-v-85c61b32="" data-v-18e85706="" class="product-list-item responsive">`;

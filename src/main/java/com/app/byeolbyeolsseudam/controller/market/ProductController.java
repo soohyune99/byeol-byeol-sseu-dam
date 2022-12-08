@@ -29,21 +29,19 @@ public class ProductController {
     // 카테고리별 조회
     @GetMapping("/{productCategory}")
     public List<ProductDTO> getCategoryMarkets(@PathVariable ProductCategory productCategory) {
-        log.info("------------------------" + productCategory);
-        log.info("++++++++++++++++++" + marketService.selectProductsofCategory(productCategory));
         return marketService.selectProductsofCategory(productCategory);
     }
 
     // 검색
     @PostMapping("/{keyword}")
     public List<ProductDTO> getSearchProducts(@PathVariable String keyword){
-        log.info("****************************" + keyword);
         return marketService.selectProductsofKeyword(keyword);
     }
 
     // 상세조회
-    @GetMapping(value = {"/read/{productId}"})
+    @GetMapping("/read/{productId}")
     public ProductDTO getProductDetail(@PathVariable Long productId){
+        log.info("--------들어옴--------" + productId);
         return marketService.readProduct(productId);
     }
 
