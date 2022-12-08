@@ -263,7 +263,8 @@ ul {
 /* @media (min-width: 768px) */
 .pagination a, .pagination span {
     font-size: 13px;
-    padding: 5px 12px;
+    color: #363a3c;
+    /*padding: 5px 12px;*/
 }
 
 h3 {
