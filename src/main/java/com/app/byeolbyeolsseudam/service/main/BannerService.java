@@ -8,6 +8,9 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,8 +25,11 @@ public class BannerService{
 
     private final BannerRepository bannerRepository;
 
-    public List<BannerDTO> show(){
-       return bannerRepository.showList();
+    public Page<BannerDTO> show(Pageable pageable){
+
+        List<BannerDTO> banners = bannerRepository.showList(pageable);
+        final Page<BannerDTO> bannerPage = new PageImpl<>(banners, pageable, bannerRepository.findAll().size());
+       return bannerPage;
     }
 
     public void save(Banner banner){
@@ -49,5 +55,9 @@ public class BannerService{
         bannerRepository.update(bannerDTO);
         Banner banner = bannerRepository.findById(bannerId).get();
         bannerRepository.save(banner);
+    }
+
+    public List<BannerDTO> showMainBanner(){
+        return bannerRepository.showMainBanner();
     }
 }
