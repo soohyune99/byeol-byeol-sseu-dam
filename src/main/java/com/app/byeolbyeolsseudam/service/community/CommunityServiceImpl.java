@@ -3,14 +3,17 @@ package com.app.byeolbyeolsseudam.service.community;
 import com.app.byeolbyeolsseudam.domain.Criteria;
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
 import com.app.byeolbyeolsseudam.entity.board.Board;
+import com.app.byeolbyeolsseudam.entity.fileBoard.FileBoard;
 import com.app.byeolbyeolsseudam.repository.board.BoardRepository;
 import com.app.byeolbyeolsseudam.repository.fileBoard.FileBoardRepository;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 public class CommunityServiceImpl implements CommunityService{
     private final BoardRepository boardRepository;
     private final FileBoardRepository fileBoardRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public List<BoardDTO> selectTopView(){
@@ -48,7 +52,10 @@ public class CommunityServiceImpl implements CommunityService{
     @Override
     public void saveBoard(BoardDTO boardDTO) {
         Board board = boardDTO.toEntity();
-        board.changeFiles(boardDTO.getFiles().stream().map(file -> file.toEntity(board)).collect(Collectors.toList()));
+        board.changeMember(memberRepository.findById(boardDTO.getMemberId()).get());
+        if(Optional.ofNullable(boardDTO.getFiles()).isPresent()){
+            board.changeFiles(boardDTO.getFiles().stream().map(file -> file.toEntity(board)).collect(Collectors.toList()));
+        }
         boardRepository.save(board);
     }
 
@@ -56,21 +63,23 @@ public class CommunityServiceImpl implements CommunityService{
 
     @Override
     public void updateBoard(BoardDTO boardDTO){
-//        Board board = boardRepository.updateBoard(boardDTO);
-//        try {
-//            board.getFiles().stream().forEach(file -> fileBoardRepository.delete(file));
-//            List<FileBoard> files = boardRepository.saveFilesofBoard(boardDTO, board);
-//            board.changeFile(files);
-//            boardRepository.save(board);
-//            files.stream().forEach(file -> fileBoardRepository.save(file));
-//        } catch(NullPointerException e){
-//            boardRepository.save(board);
-//        }
+        Board board = boardRepository.findById(boardDTO.getBoardId()).get();
+        if(Optional.ofNullable(board.getFiles()).isPresent()){
+            board.getFiles().stream().forEach(file -> fileBoardRepository.delete(file));
+        }
+        if(Optional.ofNullable(boardDTO.getFiles()).isPresent()){
+            board.changeFiles(boardDTO.getFiles().stream().map(file -> file.toEntity(board)).collect(Collectors.toList()));
+        }
+        board.update(boardDTO);
+        boardRepository.save(board);
     }
 
     @Override
     public void deleteBoard(Long boardId){
-        boardRepository.delete(boardRepository.findById(boardId).get());
+        log.info("ServiceImpl의 boardId : " + boardId);
+        Board board = boardRepository.findById(boardId).get();
+        board.getFiles().stream().forEach(file -> fileBoardRepository.delete(file));
+        boardRepository.delete(board);
     }
 
     @Override
@@ -78,9 +87,11 @@ public class CommunityServiceImpl implements CommunityService{
         return boardRepository.selectScrollBoards(criteria);
     }
 
-//    @Override
-//    public void plusView(BoardDTO boardDTO){
-//        Board board = boardRepository.plusView(boardDTO);
-//        boardRepository.save(board);
-//    }
+    @Override
+    public void plusView(BoardDTO boardDTO){
+        boardDTO.setBoardView(boardDTO.getBoardView() + 1);
+        Board board = boardRepository.findById(boardDTO.getBoardId()).get();
+        board.update(boardDTO);
+        boardRepository.save(board);
+    }
 }

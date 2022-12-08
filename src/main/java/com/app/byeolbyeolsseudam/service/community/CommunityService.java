@@ -18,5 +18,5 @@ public interface CommunityService {
     public void updateBoard(BoardDTO boardDTO);
     public void deleteBoard(Long boardId);
     public void saveBoard(BoardDTO boardDTO);
-//    public void plusView(BoardDTO boardDTO);
+    public void plusView(BoardDTO boardDTO);
 }

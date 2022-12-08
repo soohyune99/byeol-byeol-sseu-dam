@@ -112,7 +112,7 @@ let communityService = (function(){
 
     function updateBoard(formData, callback, error){
         $.ajax({
-            url: "/board/update" + boardId,
+            url: "/board/update/" + boardId,
             type: "post",
             data: formData,
             enctype:'multipart/form-data',

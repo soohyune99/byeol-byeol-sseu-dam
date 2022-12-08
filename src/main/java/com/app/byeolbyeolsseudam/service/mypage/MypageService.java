@@ -13,4 +13,5 @@ public interface MypageService {
     public List<MypointDTO> selectPoints();
     public List<MybadgeDTO> selectMybadges();
     public List<BadgeDTO> showBadgeList();
+    public List<MyprogramDTO> showMyprogramList(Long memberId);
 }

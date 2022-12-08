@@ -7,7 +7,6 @@ import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
 import com.app.byeolbyeolsseudam.domain.comment.QCommentDTO;
 import com.app.byeolbyeolsseudam.domain.fileBoard.FileBoardDTO;
 import com.app.byeolbyeolsseudam.domain.fileBoard.QFileBoardDTO;
-import com.app.byeolbyeolsseudam.entity.board.Board;
 import com.app.byeolbyeolsseudam.entity.board.QBoard;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -17,12 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.app.byeolbyeolsseudam.entity.board.QBoard.board;
 import static com.app.byeolbyeolsseudam.entity.comment.QComment.comment;
 import static com.app.byeolbyeolsseudam.entity.fileBoard.QFileBoard.fileBoard;
-import static com.app.byeolbyeolsseudam.entity.member.QMember.member;
 
 @Repository
 @Slf4j
@@ -156,11 +155,6 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
     /* 특정 게시글 보기 */
     @Override
     public BoardDTO readBoard(Long boardId){
-
-        Board board = jpaQueryFactory.selectFrom(QBoard.board)
-                .where(QBoard.board.boardId.eq(boardId))
-                .fetchOne();
-
         BoardDTO boardDTO = jpaQueryFactory.select(new QBoardDTO(QBoard.board.boardId,
                         QBoard.board.boardCategory, QBoard.board.boardTitle,
                         QBoard.board.boardContent, QBoard.board.boardView, QBoard.board.member.memberId,
@@ -190,32 +184,31 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
 
         boardDTO.setComments(comments);
         boardDTO.setFiles(files);
-        plusView(boardDTO);
 
         return boardDTO;
     }
 
-    /* 글 작성 시 작성자 찾기 */
-    @Override
-    public void saveMemberofBoard(BoardDTO boardDTO, Board board){
-        board.changeMember(
-                jpaQueryFactory.selectFrom(member)
-                .where(member.memberId.eq(boardDTO.getMemberId()))
-                .fetchOne()
-        );
-    }
+//    /* 글 작성 시 작성자 찾기 */
+//    @Override
+//    public void saveMemberofBoard(BoardDTO boardDTO, Board board){
+//        board.changeMember(
+//                jpaQueryFactory.selectFrom(member)
+//                .where(member.memberId.eq(boardDTO.getMemberId()))
+//                .fetchOne()
+//        );
+//    }
 
-    /* 게시글 수정 */
-    @Override
-    public Board updateBoard(BoardDTO boardDTO){
-        Board updatedBoard = jpaQueryFactory.selectFrom(board)
-                .where(board.boardId.eq(boardDTO.getBoardId()))
-                .fetchOne();
-
-        updatedBoard.update(boardDTO);
-
-        return updatedBoard;
-    }
+//    /* 게시글 수정 */
+//    @Override
+//    public Board updateBoard(BoardDTO boardDTO){
+//        Board updatedBoard = jpaQueryFactory.selectFrom(board)
+//                .where(board.boardId.eq(boardDTO.getBoardId()))
+//                .fetchOne();
+//
+//        updatedBoard.update(boardDTO);
+//
+//        return updatedBoard;
+//    }
 
     /* 무한스크롤 */
     @Override
@@ -258,13 +251,4 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
     private BooleanExpression categoryEq(String category){
         return StringUtils.hasText(category)? board.boardCategory.eq(BoardCategory.valueOf(category)) : null;
     }
-
-    @Override
-    public Board plusView(BoardDTO boardDTO){
-        boardDTO.setBoardView(boardDTO.getBoardView() + 1);
-        Board plusViewBoard = jpaQueryFactory.selectFrom(board).where(board.boardId.eq(boardDTO.getBoardId())).fetchOne();
-        plusViewBoard.update(boardDTO);
-        return plusViewBoard;
-    }
-
 }

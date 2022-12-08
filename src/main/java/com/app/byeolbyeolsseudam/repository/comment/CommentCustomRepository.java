@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CommentCustomRepository {
     public List<CommentDTO> getCommentList(Long boardId);
-    public void saveComment(CommentDTO commentDTO, Comment comment);
+    public List<CommentDTO> getMoreComment(Long boardId, int page);
 }

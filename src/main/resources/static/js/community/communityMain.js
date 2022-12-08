@@ -79,6 +79,13 @@ function searchKeyword(){
     , showSearchBoard);
 }
 
+function plusBoardView(board){
+    console.log("들어옴")
+    communityService.plusBoardView(
+        board, plusAfterBoardView
+    );
+}
+
 
 /* 조회수 높은 TOP 3 */
 function showTopView(topViews){
@@ -87,7 +94,7 @@ function showTopView(topViews){
     topViews.forEach(topView => {
         text += `<div data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false" class="slick-slide slick-active slick-current" style="outline: none; width: 204px;">`;
         text += `<div data-v-e4caeaf8="">`;
-        text += `<a data-v-0e0856ba="" data-v-2064f17f="" href="/community/` + topView.boardId + `" class="" data-testid="curation-item" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;">`;
+        text += `<a data-v-0e0856ba="" data-v-2064f17f="" onclick="javascript:plusBoardView(` + topView.boardId + `)" class="" data-testid="curation-item" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;">`;
         text += `<div data-v-0e0856ba="" class="curation-item notice">`;
         text += `<p data-v-0e0856ba="" class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">` + topView.boardCategory + `</p>`;
         text += `<h3 data-v-0e0856ba="" class="sg-text-subhead2 sg-font-bold sg-text-gray-900">` + topView.boardTitle + `</h3>`;
@@ -169,6 +176,12 @@ function showSearchBoard(boards){
 
     $("ul.feed-list").html(text);
 }
+
+/* 조회수 증가 및 페이지 이동 */
+function plusAfterBoardView(boardId){
+    location.href="/community/" + boardId;
+}
+
 
 
 /* ================================== Infinite Scroll ==================================*/

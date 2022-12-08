@@ -182,7 +182,8 @@ function showBoardDetail(board){
         $(".grid-image-wrapper").html(text);
     }
 
-    // plusBoardView(board);
+    $(".post-react-item.comments > span").html('댓글 ' + board.comments.length);
+
 }
 
 
@@ -190,23 +191,27 @@ function deleteBoard(){
     location.href = "/community";
 }
 
-function plusBoardView(board){
-    communityService.plusBoardView(
-        board, plusAfterBoardView
-    );
-}
-
-function plusAfterBoardView(boardView){
-
-}
+// function plusBoardView(board){
+//     communityService.plusBoardView(
+//         board, plusAfterBoardView
+//     );
+// }
+//
+// function plusAfterBoardView(boardView){
+//
+// }
 
 
 /* ================================== Comment ==================================*/
 
-showComment(boardId);
+globalThis.page = 1;
+let commentCount = 0;
+let realCommentCount = 0;
+
+showComment();
 
 /* 댓글 목록 보기 */
-function showComment(boardId){
+function showComment(){
     commentService.getCommentList(
         boardId, showCommentList
     );
@@ -215,6 +220,18 @@ function showComment(boardId){
 $commentSubmitBtn.on("click", function(){
     saveComment();
 });
+
+/* 댓글 더 보기 눌렀을 시 */
+function clickMoreCommentBtn(){
+    if(globalThis.page != 0) {
+        $(".comment-more-btn").remove();
+    }
+
+    commentService.getMoreComment(
+        boardId, globalThis.page, showCommentMore
+    );
+    globalThis.page++;
+}
 
 /* 댓글 첨부파일 등록 시 uploade 저장 */
 $commentFileForm.on('change', function(){
@@ -230,13 +247,14 @@ $commentFileForm.on('change', function(){
     function saveComment() {
         commentService.save({
             boardId: boardId,
-            memberId: 3,
+            memberId: 1,
             commentContent: $commentContent.val(),
             commentFileName: $("input[name='commentFileName']").val()
         }, function () {
             $commentContent.val('');
             $commentSubmitBtn.removeClass("active");
-            showComment(boardId);
+            console.log("등록 성공")
+            showComment();
         });
     }
 // });
@@ -274,16 +292,15 @@ function updateCancel(commentId){
 
 /* 댓글 수정 완료 */
 function updateOKComment(commentId){
-    console.log("수정완료")
-    console.log($("input.commentContent." + commentId).val());
     commentService.updateOKComment({
         commentId: commentId,
         commentContent: $("input.commentContent." + commentId).val(),
         boardId: boardId,
-        memberId: 3,
+        memberId: 1,
         commentFileName: $("input[name='commentFileName']").val()
     }, function(){
-        showComment(boardId);
+        console.log("수정성공")
+        showComment();
     });
 }
 
@@ -291,11 +308,61 @@ function updateOKComment(commentId){
 function deleteComment(commentId){
     commentService.deleteComment(
         commentId, function(){
-            showComment(boardId);
+            showComment();
     });
 }
 
 function showCommentList(comments){
+    let text = "";
+
+    comments.forEach(comment => {
+        text += `<li data-v-eb37dd0c="" data-v-e30e236e="" class="post-comments-list-item">`;
+        text += `<div data-v-6f126738="" data-v-eb37dd0c="" class="post-comment-wrapper">`;
+        text += `<div data-v-6f126738="" class="profile-image provider">`;
+        text += `<img data-v-6f126738="" alt="" class="image" data-src="https://static.cdn.soomgo.com/upload/profile/dce93681-1662-4df6-b116-bed3bc418d25.jpg?h=110&amp;w=110" src="` + comment.memberProfileName + `" lazy="loaded">`;
+        text += `</div>`;
+        text += `<div data-v-6f126738="" class="comment-information">`;
+        text += `<span data-v-6f126738="" class="user-name sg-text-subhead4 sg-font-bold sg-text-gray-900">` + comment.memberName + `</span>`;
+        text += `<div data-v-6f126738="" class="content">`;
+        text += `<p data-v-6f126738="" class="text sg-text-body2 sg-font-regular">`;
+        text += `<span data-v-6f126738="" class="commentContent ` + comment.commentId + `">` + comment.commentContent + `</span>`;
+        text += `</p></div>`;
+        text += `<div data-v-6f126738="" class="comment-action-group sg-text-description sg-font-regular">`;
+        text += `<div data-v-6f126738="" class="comment-react">`;
+        text += `<span data-v-6f126738="" class="text">`;
+        text += comment.createdDate == comment.updatedDate ? "작성 " + communityService.timeForToday(comment.createdDate)
+            : "수정 " + communityService.timeForToday(comment.updatedDate);
+        text += `</span>`;
+        text += `</div>`;
+        text += `<div data-v-6f126738="" class="more-action">`;
+        text += `<div data-v-6f126738="" class="dropdown b-dropdown show btn-group" id="__BVID__1555">`;
+        text += `<button aria-haspopup="true" aria-expanded="true" type="button" class="btn board-dropdown-toggle btn-secondary btn-comment ` + comment.commentId +`" onclick="javascript:openCommentMenu(` + comment.commentId + `)"></button>`;
+        text += `<ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-right comment-menu ` + comment.commentId + `" aria-labelledby="__BVID__1555__BV_toggle_" style="position: absolute; transform: translate3d(-116px, 22px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-end">`;
+        text += `<li data-v-77f4e41c="" role="presentation">`;
+        text += `<a role="menuitem" href="javascript:updateComment(` + comment.commentId + `)" target="_self" class="dropdown-item commentUpdate">수정</a>`;
+        text += `</li>`;
+        text += `<li data-v-77f4e41c="" role="presentation">`;
+        text += `<a role="menuitem" href="javascript:deleteComment(` + comment.commentId + `)" target="_self" class="dropdown-item commentDelete" style="color: #ff0000;">삭제</a>`;
+        text += `</li></ul></div></div></div></div></div>`;
+        text += `</li>`;
+    });
+
+    if(comments.length >= 5){
+        text += `<button onclick="javascript:clickMoreCommentBtn();" class="comment-more-btn" style="width: 100%; background: transparent; border: none; font-size: 12px;">더보기</button>`;
+    }
+
+    $(".post-comments-list").html(text);
+    $(".image-preview").remove();
+    $file.removeAttr('disabled');
+    $(".attach-image-icon").css('cursor', 'pointer');
+    $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
+}
+
+function showCommentMore(comments){
+    // if(comments.length == 0){
+    //     alert("마지막 댓글입니다.");
+    //     return;
+    // }
     let text = "";
 
     comments.forEach(comment => {
@@ -330,10 +397,11 @@ function showCommentList(comments){
         text += `</li>`;
     });
 
-    $(".post-react-item.comments > span").html('댓글 ' + comments.length);
+    if(comments.length >= 5){
+        text += `<button onclick="javascript:clickMoreCommentBtn();" class="comment-more-btn" style="width: 100%; background: transparent; border: none; font-size: 12px;">더보기</button>`;
+    }
 
-    $(".post-comments-list").html(text);
-    $(".image-preview").remove();
+    $(".post-comments-list").append(text);
     $file.removeAttr('disabled');
     $(".attach-image-icon").css('cursor', 'pointer');
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
@@ -353,7 +421,6 @@ function afterUploadeCommentFile(file){
     $(".attach-image-icon").css('cursor', 'default');
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iI0M1QzVDNSIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
 }
-
 
 
 
