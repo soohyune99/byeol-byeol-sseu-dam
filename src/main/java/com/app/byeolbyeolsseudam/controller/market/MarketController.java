@@ -16,71 +16,19 @@ public class MarketController {
 
     private final MarketService marketService;
 
-    @GetMapping("/main")
-    public String Market(Model model){
-        model.addAttribute("products", marketService.showList());
-        model.addAttribute("count", marketService.showList().size());
+    @GetMapping("")
+    public String main(){
         return "/app/market/market";
     }
 
-    /* 카테고리 받아서 조회 */
-    @GetMapping("/living")
-    public String MarketLiving(Model model){
-        model.addAttribute("products", marketService.showLivingList());
-        model.addAttribute("count", marketService.showLivingList().size());
-        return "/app/market/market";
-    }
-
-    @GetMapping("/kitchen")
-    public String MarketKitchen(Model model){
-        model.addAttribute("products", marketService.showKitchenList());
-        model.addAttribute("count", marketService.showKitchenList().size());
-        return "/app/market/market";
-    }
-
-    @GetMapping("/bathroom")
-    public String MarketBathroom(Model model){
-        model.addAttribute("products", marketService.showBathroomList());
-        model.addAttribute("count", marketService.showBathroomList().size());
-        return "/app/market/market";
-    }
-
-    @GetMapping("/food")
-    public String MarketFood(Model model){
-        model.addAttribute("products", marketService.showFoodList());
-        model.addAttribute("count", marketService.showFoodList().size());
-        return "/app/market/market";
-    }
-
-    @GetMapping("/hobby")
-    public String MarketHobby(Model model){
-        model.addAttribute("products", marketService.showHobbyList());
-        model.addAttribute("count", marketService.showHobbyList().size());
-        return "/app/market/market";
-    }
-
-    @GetMapping("/office")
-    public String MarketOffice(Model model){
-        model.addAttribute("products", marketService.showOfficeList());
-        model.addAttribute("count", marketService.showOfficeList().size());
-        return "/app/market/market";
-    }
-
-    @GetMapping("/pet")
-    public String MarketPet(Model model){
-        model.addAttribute("products", marketService.showPetList());
-        model.addAttribute("count", marketService.showPetList().size());
-        return "/app/market/market";
-    }
 
     // 마켓 상세보기 조회
     @GetMapping("/{productId}")
-    public String detail(@PathVariable Long productId, Model model){
-        model.addAttribute("product", marketService.showListDetail(productId));
+    public String Read(@PathVariable Long productId, Model model){
         return "/app/market/marketDetail";
     }
 
-    @GetMapping("/basket")
+/*    @GetMapping("/basket")
     public String basket(){
         return "/app/market/marketBasket";
     }
@@ -99,5 +47,5 @@ public class MarketController {
     @GetMapping("/paid")
     public String paid(){
         return "/app/market/marketPaid";
-    }
+    }*/
 }
