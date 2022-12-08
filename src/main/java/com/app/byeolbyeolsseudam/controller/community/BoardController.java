@@ -1,13 +1,11 @@
 package com.app.byeolbyeolsseudam.controller.community;
 
+import com.app.byeolbyeolsseudam.domain.Criteria;
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
-import com.app.byeolbyeolsseudam.domain.fileBoard.FileBoardDTO;
-import com.app.byeolbyeolsseudam.entity.fileBoard.FileBoard;
 import com.app.byeolbyeolsseudam.service.community.CommunityService;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.asm.Advice;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,7 +41,7 @@ public class BoardController {
     }
 
     @PostMapping("/{keyword}")
-    public List<BoardDTO> getSearchBorads(@PathVariable String keyword){
+    public List<BoardDTO> getSearchBoards(@PathVariable String keyword){
         return communityService.selectBoardsofKeyword(keyword);
     }
 
@@ -52,11 +51,11 @@ public class BoardController {
     }
 
     @PostMapping("/write")
-    public void saveBoard(@RequestBody BoardDTO boardDTO){
+    public void saveBoard(BoardDTO boardDTO){
         communityService.saveBoard(boardDTO);
     }
 
-    @PatchMapping("/update/{boardId}")
+    @PostMapping("/update/{boardId}")
     public Long updateBoard(@RequestBody BoardDTO boardDTO, @PathVariable Long boardId){
         communityService.updateBoard(boardDTO);
         return boardId;
@@ -72,9 +71,9 @@ public class BoardController {
         communityService.deleteBoard(boardId);
     }
 
-    @GetMapping("/scroll/{page}")
-    public List<BoardDTO> infiniteScroll(@PathVariable int page){
-        return communityService.selectScrollBoards(page);
+    @PostMapping("/scroll")
+    public List<BoardDTO> infiniteScroll(Criteria criteria){
+        return communityService.selectScrollBoards(criteria);
     }
 
     @ResponseBody
@@ -83,15 +82,26 @@ public class BoardController {
         response.setContentType("text/html; charset=utf-8");
         String uploadPath = "C:/upload/";
 
+        File uploadFolder = new File(uploadPath, createDirectoryByNow());
+        if(!uploadFolder.exists()){
+            uploadFolder.mkdirs();
+        }
+
         PrintWriter out = response.getWriter();
         String originalFileExtension = file.getOriginalFilename();
         String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");// + originalFileExtension
         log.info("storedFileName : " + storedFileName);
         log.info("originalFileExtension : " + originalFileExtension);
         log.info(file.toString());
-        log.info(uploadPath+storedFileName);
-        file.transferTo(new File(uploadPath + storedFileName + originalFileExtension));
-        out.println("/upload/" + storedFileName + originalFileExtension);
+        log.info(uploadPath + storedFileName);
+        file.transferTo(new File(uploadFolder + "/" + storedFileName + originalFileExtension));
+        out.print("/upload/" + createDirectoryByNow() + "/" + storedFileName + originalFileExtension);
         out.close();
+    }
+
+    public String createDirectoryByNow(){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        Date now = new Date();
+        return format.format(now);
     }
 }

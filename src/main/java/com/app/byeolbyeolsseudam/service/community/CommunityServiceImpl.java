@@ -1,18 +1,24 @@
 package com.app.byeolbyeolsseudam.service.community;
 
+import com.app.byeolbyeolsseudam.domain.Criteria;
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
 import com.app.byeolbyeolsseudam.entity.board.Board;
 import com.app.byeolbyeolsseudam.repository.board.BoardRepository;
+import com.app.byeolbyeolsseudam.repository.fileBoard.FileBoardRepository;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CommunityServiceImpl implements CommunityService{
     private final BoardRepository boardRepository;
+    private final FileBoardRepository fileBoardRepository;
 
     @Override
     public List<BoardDTO> selectTopView(){
@@ -42,15 +48,24 @@ public class CommunityServiceImpl implements CommunityService{
     @Override
     public void saveBoard(BoardDTO boardDTO) {
         Board board = boardDTO.toEntity();
-        boardRepository.saveMemberofBoard(boardDTO, board);
+        board.changeFiles(boardDTO.getFiles().stream().map(file -> file.toEntity(board)).collect(Collectors.toList()));
         boardRepository.save(board);
     }
 
+
+
     @Override
-    public Long updateBoard(BoardDTO boardDTO){
-        Board board = boardRepository.updateBoard(boardDTO);
-        boardRepository.save(board);
-        return boardDTO.getBoardId();
+    public void updateBoard(BoardDTO boardDTO){
+//        Board board = boardRepository.updateBoard(boardDTO);
+//        try {
+//            board.getFiles().stream().forEach(file -> fileBoardRepository.delete(file));
+//            List<FileBoard> files = boardRepository.saveFilesofBoard(boardDTO, board);
+//            board.changeFile(files);
+//            boardRepository.save(board);
+//            files.stream().forEach(file -> fileBoardRepository.save(file));
+//        } catch(NullPointerException e){
+//            boardRepository.save(board);
+//        }
     }
 
     @Override
@@ -59,8 +74,8 @@ public class CommunityServiceImpl implements CommunityService{
     }
 
     @Override
-    public List<BoardDTO> selectScrollBoards(int page){
-        return boardRepository.selectScrollBoards(page);
+    public List<BoardDTO> selectScrollBoards(Criteria criteria){
+        return boardRepository.selectScrollBoards(criteria);
     }
 
 //    @Override

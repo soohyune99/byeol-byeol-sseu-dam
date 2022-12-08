@@ -1036,6 +1036,18 @@ body {
     flex-direction: column;
 }
 
+input.commentContent {
+    width: 80%;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #00c7ae;
+}
+
+button.comment-updateCancel-btn, button.comment-updateOk-btn {
+    background: transparent;
+    border: none;
+}
+
 
 /* 로그인 확인 모달창 start */
 

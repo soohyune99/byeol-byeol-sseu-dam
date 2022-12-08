@@ -1,9 +1,11 @@
 package com.app.byeolbyeolsseudam.domain.fileBoard;
 
+import com.app.byeolbyeolsseudam.entity.board.Board;
 import com.app.byeolbyeolsseudam.entity.fileBoard.FileBoard;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +16,11 @@ public class FileBoardDTO {
     private String fileBoardName;
     private String fileBoardPath;
     private String fileBoardUuid;
-    private Long boardId;
+
+    @QueryProjection
+    public FileBoardDTO(String fileBoardName) {
+        this.fileBoardName = fileBoardName;
+    }
 
     @QueryProjection
     public FileBoardDTO(Long fileBoardId, String fileBoardName, String fileBoardPath, String fileBoardUuid, Long boardId) {
@@ -22,14 +28,12 @@ public class FileBoardDTO {
         this.fileBoardName = fileBoardName;
         this.fileBoardPath = fileBoardPath;
         this.fileBoardUuid = fileBoardUuid;
-        this.boardId = boardId;
     }
 
-    public FileBoard toEntity(){
+    public FileBoard toEntity(Board board){
         return FileBoard.builder()
                 .fileBoardName(fileBoardName)
-                .fileBoardPath(fileBoardPath)
-                .fileBoardUuid(fileBoardUuid)
+                .board(board)
                 .build();
     }
 }

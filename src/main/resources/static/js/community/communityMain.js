@@ -6,8 +6,7 @@ let $loginModal = $(".swal2-container")
 let $categoryList = $("ul.topic.fixed > li.fixed");
 let $searchBar = $("input#__BVID__883");
 let $reset = $(".reset-keyword-btn");
-
-
+globalThis.category = "";
 
 $writeBtn.on('click', function(){
     openLoginModal();
@@ -16,7 +15,6 @@ $writeBtn.on('click', function(){
 $closeBtn.on('click', function(){
     closeLoginModal();
 });
-
 
 /* 로그인하지 않고 글쓰기 작성 버튼 클릭 시 로그인 모달 띄우기 */
 function openLoginModal(){
@@ -34,7 +32,6 @@ $searchBar.on('keyup', function(){
         $reset.css('display', 'none');
         return;
     }
-
     $reset.css('display', 'block');
 });
 
@@ -60,11 +57,12 @@ function show(){
 
 /* 카테고리 클릭 시 카테고리 해당 게시글 조회 */
 $categoryList.on('click', function(){
+    globalThis.category = $(this).text().trim();
     $categoryList.removeClass("selected");
     $(this).addClass("selected");
 
     communityService.getCategoryBoards(
-        $(this).text().trim()
+        globalThis.category
     , showSearchBoard);
 });
 
@@ -74,18 +72,13 @@ function searchKeyword(){
         alert("검색어를 입력하세요");
         return;
     }
+
+    $categoryList.removeClass("selected");
     communityService.getSearchBoards(
         $searchBar.val()
     , showSearchBoard);
 }
 
-// /* 무한스크롤 */
-// $(window).scroll(function() {
-//     console.log($(window).scrollTop)
-//     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-//         console.log("도착");
-//     }
-// });
 
 /* 조회수 높은 TOP 3 */
 function showTopView(topViews){
@@ -100,7 +93,7 @@ function showTopView(topViews){
         text += `<h3 data-v-0e0856ba="" class="sg-text-subhead2 sg-font-bold sg-text-gray-900">` + topView.boardTitle + `</h3>`;
         text += `<div class="react-items" data-v-025ccc6a="">`;
         text += `<p class="view sg-text-description sg-font-regular sg-text-gray-300" data-v-025ccc6a="">` + topView.boardView + `</p>`;
-        text += `<p class="comment sg-text-description sg-font-regular sg-text-gray-300" data-v-025ccc6a="">` + /*topView.comments.size()*/  + `</p>`;
+        text += `<p class="comment sg-text-description sg-font-regular sg-text-gray-300" data-v-025ccc6a="">` + topView.comments.length  + `</p>`;
         text += `</div>`;
         text += `</div>`;
         text += `</a>`;
@@ -130,11 +123,11 @@ function showCommunityBoard(boards){
         text += `<div data-v-95718dd0="" class="feed-footer">`;
         text += `<div data-v-95718dd0="" class="user-interaction">`;
         text += `<span data-v-95718dd0="" class="like sg-text-description sg-font-regular sg-text-gray-300">` + board.boardView + `</span>`;
-        text += `<span data-v-95718dd0="" class="comment sg-text-description sg-font-regular sg-text-gray-300">` + /*board.comments.size() */+ `</span>`;
+        text += `<span data-v-95718dd0="" class="comment sg-text-description sg-font-regular sg-text-gray-300">` + board.comments.length + `</span>`;
         text += `</div>`;
         text += `<span data-v-95718dd0="" class="sg-text-description sg-font-regular sg-text-gray-300">`
-        text += board.createdDate == board.updateDate ? "작성 " + communityService.timeForToday(board.createdDate)
-            : "수정 " + communityService.timeForToday(board.updateDate);
+        text += board.createdDate == board.updatedDate ? "작성 " + communityService.timeForToday(board.createdDate)
+            : "수정 " + communityService.timeForToday(board.updatedDate);
         text += `</span>`;
         text += `</div>`;
         text += `</a>`;
@@ -163,11 +156,11 @@ function showSearchBoard(boards){
         text += `<div data-v-95718dd0="" class="feed-footer">`;
         text += `<div data-v-95718dd0="" class="user-interaction">`;
         text += `<span data-v-95718dd0="" class="like sg-text-description sg-font-regular sg-text-gray-300">` + board.boardView + `</span>`;
-        text += `<span data-v-95718dd0="" class="comment sg-text-description sg-font-regular sg-text-gray-300">` + /*board.comments.size() */+ `</span>`;
+        text += `<span data-v-95718dd0="" class="comment sg-text-description sg-font-regular sg-text-gray-300">` + board.comments.length + `</span>`;
         text += `</div>`;
         text += `<span data-v-95718dd0="" class="sg-text-description sg-font-regular sg-text-gray-300">`
-        text += board.createdDate == board.updateDate ? "작성 " + communityService.timeForToday(board.createdDate)
-            : "수정 " + communityService.timeForToday(board.updateDate);
+        text += board.createdDate == board.updatedDate ? "작성 " + communityService.timeForToday(board.createdDate)
+            : "수정 " + communityService.timeForToday(board.updatedDate);
         text += `</span>`;
         text += `</div>`;
         text += `</a>`;
@@ -180,12 +173,22 @@ function showSearchBoard(boards){
 
 /* ================================== Infinite Scroll ==================================*/
 
+
+
 let page = 1;
 
 $(window).scroll(function(){
-    if($(window).scrollTop() + 1 >= $(document).height() - $(window).height()){
+    let formData = new FormData();
+    let keyword = $searchBar.val() || "";
+
+    formData.append('page', page);
+    formData.append('keyword', keyword);
+    formData.append('category', globalThis.category);
+
+    if($(window).scrollTop() * 1.001 >= $(document).height() - $(window).height()){
+        console.log("무한스크롤 " + page);
         communityService.infiniteScroll(
-            page, showCommunityBoard
+            formData, showCommunityBoard
         );
         page++;
     }

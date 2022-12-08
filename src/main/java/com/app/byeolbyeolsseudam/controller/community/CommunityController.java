@@ -1,15 +1,22 @@
 package com.app.byeolbyeolsseudam.controller.community;
 
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
+import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.service.community.CommunityService;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping(value = {"/community/*", "/community"})
 public class CommunityController {
@@ -49,6 +56,7 @@ public class CommunityController {
 //        return "/app/community/communitySearch";
 //    }
 
+    /* 글 작성 페이지로 이동 */
     @GetMapping(value = {"/write", "/update"})
     public String write(){
         return "/app/community/communityWrite";

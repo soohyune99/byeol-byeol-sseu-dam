@@ -20,6 +20,7 @@
 <div id="app-body">
     <div data-v-b31e1ebe="" class="community-container container">
         <div data-v-54d1e5f9="" data-v-b31e1ebe="" class="soomgo-life-container">
+<!--            <form id="board-write-form" method="post" enctype="multipart/form-data">-->
             <section data-v-30483cb0="" data-v-54d1e5f9="" class="write-post-container">
                 <div data-v-28991315="" data-v-30483cb0="" class="select-subject-header">
                     <div data-v-28991315="" class="subject-header-wrapper">
@@ -46,7 +47,7 @@
                             <div data-v-6ac96585="" class="add-image-icon"></div>
                             <div data-v-6ac96585="" class="custom-file b-form-file file-input" aria-required="false"
                                  aria-invalid="false" id="__BVID__4799__BV_file_outer_">
-                                <form id="board-upload-form">
+                                <form id="board-upload-form" enctype="multipart/form-data">
                                 <input type="file" name="uploadFile" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
                                    multiple="multiple" class="custom-file-input" id="__BVID__4799"
                                    style="z-index: -5;">
@@ -75,8 +76,10 @@
                             <hr data-v-33cf7b62="" class="hr-divider">
                         </div>
                         <div data-v-7d0a628e="" data-v-33cf7b62="" class="editor-image-list-wrapper">
+                            <form id="uploaded-image-form" enctype="multipart/form-data">
                             <div data-v-7d0a628e="" class="editor-image-list">
                             </div>
+                            </form>
                         </div>
                         <!---->
                         <div data-v-486b7620="" data-v-33cf7b62="" class="editor-contents"><span data-v-486b7620=""
@@ -92,6 +95,7 @@
                 </div>
                 <!---->
             </section>
+<!--            </form>-->
             <div data-v-54d1e5f9="" class="v-portal" style="display: none;"></div>
             <!---->
         </div>

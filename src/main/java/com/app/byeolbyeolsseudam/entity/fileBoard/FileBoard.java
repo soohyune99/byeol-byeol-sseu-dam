@@ -17,23 +17,21 @@ public class FileBoard extends Period {
     private Long fileBoardId;
     @NotNull
     private String fileBoardName;
-    @NotNull
     private String fileBoardPath;
-    @NotNull
     private String fileBoardUuid;
-    @NotNull @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 
-    public void changeBoard(Board board){
+    @Builder
+    public FileBoard(String fileBoardName, Board board) {
+        this.fileBoardName = fileBoardName;
         this.board = board;
     }
 
-    @Builder
-    public FileBoard(String fileBoardName, String fileBoardPath, String fileBoardUuid) {
-        this.fileBoardName = fileBoardName;
-        this.fileBoardPath = fileBoardPath;
-        this.fileBoardUuid = fileBoardUuid;
-    }
+//    public void setBoard(Board board){
+//        this.board = board;
+//        board.getFiles().add(this);
+//    }
 
     public void update(FileBoardDTO fileBoardDTO) {
         this.fileBoardName = fileBoardDTO.getFileBoardName();

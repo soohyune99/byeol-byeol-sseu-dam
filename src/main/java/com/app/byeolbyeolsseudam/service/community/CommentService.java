@@ -10,4 +10,6 @@ import java.util.List;
 public interface CommentService {
     public List<CommentDTO> getCommentList(Long boardId);
     public void saveComment(CommentDTO commentDTO);
+    public void updateComment(CommentDTO commentDTO);
+    public void deleteComment(Long commentId);
 }

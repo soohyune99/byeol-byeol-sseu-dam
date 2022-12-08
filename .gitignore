@@ -450,3 +450,6 @@ replay_pid*
 
 # application.yml
 *.yml
+
+# build.gradle
+build.gradle
