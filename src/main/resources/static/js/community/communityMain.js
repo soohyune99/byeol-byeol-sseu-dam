@@ -94,7 +94,7 @@ function showTopView(topViews){
     topViews.forEach(topView => {
         text += `<div data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false" class="slick-slide slick-active slick-current" style="outline: none; width: 204px;">`;
         text += `<div data-v-e4caeaf8="">`;
-        text += `<a data-v-0e0856ba="" data-v-2064f17f="" onclick="javascript:plusBoardView(` + topView.boardId + `)" class="" data-testid="curation-item" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;">`;
+        text += `<a data-v-0e0856ba="" data-v-2064f17f="" href="/community/` + topView.boardId + `" class="" data-testid="curation-item" tabindex="-1" data-v-e4caeaf8="" style="width: 100%; display: inline-block;">`;
         text += `<div data-v-0e0856ba="" class="curation-item notice">`;
         text += `<p data-v-0e0856ba="" class="topic sg-text-subhead7 sg-font-medium sg-text-gray-500">` + topView.boardCategory + `</p>`;
         text += `<h3 data-v-0e0856ba="" class="sg-text-subhead2 sg-font-bold sg-text-gray-900">` + topView.boardTitle + `</h3>`;
@@ -114,6 +114,8 @@ function showTopView(topViews){
 /* 최신순 게시글 */
 function showCommunityBoard(boards){
     let text = "";
+    let appendedBoards = 0;
+    $(".topview-block-wrap").css('display', 'block');
 
     boards.forEach(board => {
         text += `<li data-v-95718dd0="" data-v-7206b48f="" class="feed-item">`;
@@ -140,6 +142,13 @@ function showCommunityBoard(boards){
         text += `</a>`;
         text += `</li>`;
     });
+
+    appendedBoards = $(".feed-item");
+
+    if(appendedBoards.size == 0 && boards.length == 0){
+        $(".topview-block-wrap").css('display', 'none');
+        $(".no-board-div").css('display', 'block');
+    }
 
     $("ul.feed-list").append(text);
 }
@@ -175,6 +184,7 @@ function showSearchBoard(boards){
     });
 
     $("ul.feed-list").html(text);
+    $(".topview-block-wrap").css('display', 'none');
 }
 
 /* 조회수 증가 및 페이지 이동 */

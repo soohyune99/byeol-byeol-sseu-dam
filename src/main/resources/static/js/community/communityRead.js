@@ -173,14 +173,14 @@ function showBoardDetail(board){
     $boardUpdateBtn.attr('href', '/community/update?id=' + board.boardId);
     $(".board-content").html('<br>' + board.boardContent);
 
-    if(!board.files){
+    // if(!board.files){
         board.files.forEach(file => {
-            text += `<li data-v-7614b52f="" data-type="lightGallery" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160" data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg" data-sub-html=" " class="grid-image-list">`;
+            text += `<li data-v-7614b52f="" data-type="lightGallery board-file-img-wrap" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160" data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg" data-sub-html=" " class="grid-image-list">`;
             text += `<img data-v-7614b52f="" alt="4298D74C-9291-4543-8137-3820671DEA3C.jpg" class="image" data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg" src="` + file.fileBoardName + `" lazy="loaded">`;
             text += `</li>`;
         })
         $(".grid-image-wrapper").html(text);
-    }
+    // }
 
     $(".post-react-item.comments > span").html('댓글 ' + board.comments.length);
 
@@ -200,6 +200,23 @@ function deleteBoard(){
 // function plusAfterBoardView(boardView){
 //
 // }
+
+// $(document).on('ready', function(){
+//
+// });
+
+$(".grid-image-wrapper").on('click', ".image", function(){
+    let img = $(this).attr('src');
+
+    $(".lg-show-after-load").css('display', 'block');
+    $(".lg-show-after-load").css('z-index', 1060);
+    $(".lg-image").attr('src', img);
+});
+
+$(".lg-close.lg-icon").on('click', function(){
+    $(".lg-show-after-load").css('display', 'none');
+    $(".lg-show-after-load").css('z-index', 0);
+});
 
 
 /* ================================== Comment ==================================*/

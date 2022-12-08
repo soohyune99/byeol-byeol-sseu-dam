@@ -29,15 +29,24 @@ public class MypointTest {
 
     @Test
     public void saveTest(){
+        MypointDTO mypointDTO = new MypointDTO();
+
+        mypointDTO.setMypointContent("신규 회원 가입");
+        mypointDTO.setMypointInout(3000);
+
+        Mypoint mypoint = mypointDTO.toEntity();
+        mypointRepository.save(mypoint);
+        mypoint.changeMember(memberRepository.findById(1L).get());
+
         for(int i = 0; i < 3; i++){
-            MypointDTO mypointDTO = new MypointDTO();
+            MypointDTO mypointDTO2 = new MypointDTO();
 
-            mypointDTO.setMypointContent("줍깅 " + (i + 1) + "코스 참여");
-            mypointDTO.setMypointInout((i + 1) * 250);
+            mypointDTO2.setMypointContent("줍깅 " + (i + 1) + "코스 참여");
+            mypointDTO2.setMypointInout((i + 1) * 250);
 
-            Mypoint mypoint = mypointDTO.toEntity();
-            mypointRepository.save(mypoint);
-            mypoint.changeMember(memberRepository.findById(1L).get());
+            Mypoint mypoint2 = mypointDTO2.toEntity();
+            mypointRepository.save(mypoint2);
+            mypoint2.changeMember(memberRepository.findById(1L).get());
         }
     }
 

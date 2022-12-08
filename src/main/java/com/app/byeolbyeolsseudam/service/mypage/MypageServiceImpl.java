@@ -22,11 +22,6 @@ public class MypageServiceImpl implements MypageService{
     private final MyprogramRepository myprogramRepository;
 
     @Override
-    public List<MypointDTO> selectPoints(){
-        return mypointRepository.selectPoints();
-    }
-
-    @Override
     public List<MybadgeDTO> selectMybadges(){
         return mybadgeRepository.selectMybadges();
     }
@@ -39,5 +34,10 @@ public class MypageServiceImpl implements MypageService{
     @Override
     public List<MyprogramDTO> showMyprogramList(Long memberId){
         return myprogramRepository.showMyprogramList(memberId);
+    }
+
+    @Override
+    public List<MypointDTO> showMypointList(Long memberId){
+        return mypointRepository.showMypointList(memberId);
     }
 }

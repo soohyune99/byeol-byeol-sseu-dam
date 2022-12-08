@@ -34,29 +34,29 @@ public class CourseTest {
     @Test
     public void saveTest(){
 
-//        for(int i = 0; i < 5; i++){
-//            CourseDTO courseDTO = new CourseDTO();
-//            PossibleDate possibleDate = new PossibleDate();
-//            possibleDate.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
-//            possibleDate.setClosingDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
-//
-//            courseDTO.setCourseName( i + 1 + "코스");
-//            courseDTO.setCourseArea("강남구");
-//            courseDTO.setCourseGrade(CourseGrade.초급);
-//            courseDTO.setCourseTime("1시간");
-//            courseDTO.setCourseDistance("3km");
-//            courseDTO.setCourseStart("역삼역 3번 출구");
-//            courseDTO.setCourseFinish("할리스 역삼스타점");
-//            courseDTO.setCourseFileName("A-course.png");
-//            courseDTO.setCourseFilePath("/upload");
-//            courseDTO.setCourseFileUuid("course");
-//            courseDTO.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
-//            courseDTO.setClosingDate(LocalDateTime.of(2022, 1, 25, 0, 0,0));
-//
-//            Course course = courseDTO.toEntity();
-//
-//            courseRepository.save(course);
-//        }
+        for(int i = 0; i < 5; i++){
+            CourseDTO courseDTO = new CourseDTO();
+            PossibleDate possibleDate = new PossibleDate();
+            possibleDate.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
+            possibleDate.setClosingDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
+
+            courseDTO.setCourseName( i + 1 + "코스");
+            courseDTO.setCourseArea("강남구");
+            courseDTO.setCourseGrade(CourseGrade.초급);
+            courseDTO.setCourseTime( (i + 1) * 20 + "분");
+            courseDTO.setCourseDistance(i + 1 + "km");
+            courseDTO.setCourseStart("역삼역 3번 출구");
+            courseDTO.setCourseFinish("할리스 역삼스타점");
+            courseDTO.setCourseFileName("A-course.png");
+            courseDTO.setCourseFilePath("/upload");
+            courseDTO.setCourseFileUuid("course");
+            courseDTO.setOpeningDate(LocalDateTime.of(2022, 1, 1, 0, 0, 0));
+            courseDTO.setClosingDate(LocalDateTime.of(2022, 1, 25, 0, 0,0));
+
+            Course course = courseDTO.toEntity();
+
+            courseRepository.save(course);
+        }
 
             CourseDTO courseDTO = new CourseDTO();
             PossibleDate possibleDate = new PossibleDate();

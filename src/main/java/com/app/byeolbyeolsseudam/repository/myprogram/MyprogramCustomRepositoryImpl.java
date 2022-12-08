@@ -19,14 +19,13 @@ public class MyprogramCustomRepositoryImpl implements MyprogramCustomRepository{
 
     @Override
     public List<MyprogramDTO> showMyprogramList(Long memberId){
-//        return jpaQueryFactory.selectFrom(new QMyprogramDTO(myprogram.myprogramId,
-//                myprogram.member.memberId, myprogram.program.programId,
-//                myprogram.program.programName, myprogram.program.programPlace,
-//                myprogram.program.programStatus, myprogram.program.programFileProfileName,
-//                myprogram.createdDate))
-//                .where(myprogram.member.memberId.eq(memberId))
-//                .orderBy(myprogram.program.programDate.desc())
-//                .fetch();
-        return null;
+        return jpaQueryFactory.select(new QMyprogramDTO(myprogram.myprogramId,
+                myprogram.myprogramStatus, myprogram.member.memberId, myprogram.program.programId,
+                myprogram.program.programName, myprogram.program.programPlace,
+                myprogram.program.programDate, myprogram.program.programFileProfileName))
+                .from(myprogram)
+                .where(myprogram.member.memberId.eq(memberId))
+                .orderBy(myprogram.program.programDate.desc())
+                .fetch();
     }
 }

@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.controller.mypage;
 
+import com.app.byeolbyeolsseudam.domain.mypoint.MypointDTO;
 import com.app.byeolbyeolsseudam.domain.myprogram.MyprogramDTO;
 import com.app.byeolbyeolsseudam.service.mypage.MypageService;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,10 @@ public class MypageRestController {
     @GetMapping("/program/{memberId}")
     public List<MyprogramDTO> getMyprogramList(@PathVariable Long memberId){
         return mypageService.showMyprogramList(memberId);
+    }
+
+    @GetMapping("/point/{memberId}")
+    public List<MypointDTO> getMypointList(@PathVariable Long memberId){
+        return mypageService.showMypointList(memberId);
     }
 }
