@@ -17,11 +17,12 @@ public class MypointCustomRepositoryImpl implements MypointCustomRepository{
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<MypointDTO> selectPoints() {
+    public List<MypointDTO> showMypointList(Long memberId) {
         List<MypointDTO> mypoints = jpaQueryFactory.select(new QMypointDTO(
                 mypoint.mypointId, mypoint.mypointContent,
                 mypoint.mypointInout, mypoint.createdDate, mypoint.mypointId))
                 .from(mypoint)
+                .where(mypoint.member.memberId.eq(memberId))
                 .orderBy(mypoint.mypointId.desc())
                 .fetch();
 

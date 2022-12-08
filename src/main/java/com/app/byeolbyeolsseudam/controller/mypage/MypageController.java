@@ -45,8 +45,7 @@ public class MypageController {
     }
 
     @GetMapping("/point")
-    public String mypoint(Model model){
-        model.addAttribute("mypoints", mypageService.selectPoints());
+    public String mypoint(){
         return "/app/mypage/mypagePoint";
     }
 
@@ -71,9 +70,7 @@ public class MypageController {
     }
 
     @GetMapping("/badge")
-    public String badge(Model model){
-        model.addAttribute("badges", mypageService.showBadgeList());
-        model.addAttribute("mybadges", mypageService.selectMybadges());
+    public String badge(){
         return "/app/mypage/mypageBadge";
     }
 
@@ -83,7 +80,7 @@ public class MypageController {
     }
 
     @GetMapping("/program")
-    public String program(Model model){
+    public String program(){
         return "/app/mypage/mypageProgram";
     }
 

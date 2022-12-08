@@ -5,9 +5,9 @@ let mypageService = (function(){
         $.ajax({
             url: "/mypage/program/" + memberId,
             type: "get",
-            success: function(comments, status, xhr){
+            success: function(programs, status, xhr){
                 if(callback){
-                    callback(comments);
+                    callback(programs);
                 }
             },
             error: function(xhr, status, err){
@@ -18,8 +18,25 @@ let mypageService = (function(){
         });
     }
 
-    return { getMyProgramList:getMyProgramList }
-});
+    function getMypointList(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/point/" + memberId,
+            type: "get",
+            success: function(programs, status, xhr){
+                if(callback){
+                    callback(programs);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    return { getMyProgramList:getMyProgramList, getMypointList:getMypointList }
+})();
 
 
 

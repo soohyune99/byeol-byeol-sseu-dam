@@ -7,6 +7,7 @@ import com.app.byeolbyeolsseudam.entity.myprogram.QMyprogram;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.myprogram.MyprogramRepository;
 import com.app.byeolbyeolsseudam.repository.program.ProgramRepository;
+import com.app.byeolbyeolsseudam.type.MyprogramStatus;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -38,22 +39,23 @@ public class MyprogramTest {
     @Test
     public void saveTest(){
         MyprogramDTO myprogramDTO = new MyprogramDTO();
-        ProgramDTO programDTO = new ProgramDTO();
+//        ProgramDTO programDTO = new ProgramDTO();
+//
+//        programDTO.setProgramName("");
+//        programDTO.setProgramStatus(ProgramStatus.마감);
+//        programDTO.setProgramTime(3);
+//        programDTO.setProgramLimitCount(10);
+//        programDTO.setProgramPlace("역삼역");
+//        programDTO.setProgramDate(LocalDateTime.of(2022, 11, 27, 0, 0, 0));
+//        programDTO.setOpeningDate(LocalDateTime.of(2022,12,1,0,0,0));
+//        programDTO.setClosingDate(LocalDateTime.of(2022, 12, 5, 0, 0,0, 0));
+//
+//        programRepository.save(programDTO.toEntity());
 
-        programDTO.setProgramName("원데이 업사이클링");
-        programDTO.setProgramStatus(ProgramStatus.모집예정);
-        programDTO.setProgramTime(3);
-        programDTO.setProgramLimitCount(10);
-        programDTO.setProgramPlace("역삼역");
-        programDTO.setProgramDate(LocalDateTime.of(2022, 11, 27, 0, 0, 0));
-        programDTO.setOpeningDate(LocalDateTime.of(2022,12,1,0,0,0));
-        programDTO.setClosingDate(LocalDateTime.of(2022, 12, 5, 0, 0,0, 0));
-
-        programRepository.save(programDTO.toEntity());
-
-        Myprogram myprogram = new Myprogram();
+        myprogramDTO.setMyprogramStatus(MyprogramStatus.수강완료);
+        Myprogram myprogram = myprogramDTO.toEntity();
         myprogram.changeMember(memberRepository.findById(1L).get());
-        myprogram.changeProgram(programRepository.findAll().get(0));
+        myprogram.changeProgram(programRepository.findAll().get(3));
         myprogramRepository.save(myprogram);
     }
 

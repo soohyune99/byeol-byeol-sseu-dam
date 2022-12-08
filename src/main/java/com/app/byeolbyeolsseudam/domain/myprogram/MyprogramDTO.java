@@ -1,5 +1,7 @@
 package com.app.byeolbyeolsseudam.domain.myprogram;
 
+import com.app.byeolbyeolsseudam.entity.myprogram.Myprogram;
+import com.app.byeolbyeolsseudam.type.MyprogramStatus;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
@@ -13,25 +15,29 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class MyprogramDTO {
     private Long myprogramId;
+    private MyprogramStatus myprogramStatus;
     private Long memberId;
     private Long programId;
     private String programName;
     private String programPlace;
-    private ProgramStatus programStatus;
+    private LocalDateTime programDate;
     private String programFileProfileName;
-    private String programFileProfilePath;
-    private String programFileProfileUuid;
-    private LocalDateTime createdDate;
 
     @QueryProjection
-    public MyprogramDTO(Long myprogramId, Long memberId, Long programId, String programName, String programPlace, ProgramStatus programStatus, String programFileProfileName, String programFileProfilePath, String programFileProfileUuid, LocalDateTime createdDate) {
+    public MyprogramDTO(Long myprogramId, MyprogramStatus myprogramStatus, Long memberId, Long programId, String programName, String programPlace, LocalDateTime programDate, String programFileProfileName) {
         this.myprogramId = myprogramId;
+        this.myprogramStatus = myprogramStatus;
         this.memberId = memberId;
         this.programId = programId;
         this.programName = programName;
         this.programPlace = programPlace;
-        this.programStatus = programStatus;
+        this.programDate = programDate;
         this.programFileProfileName = programFileProfileName;
-        this.createdDate = createdDate;
+    }
+
+    public Myprogram toEntity(){
+        return Myprogram.builder()
+                .myprogramStatus(myprogramStatus)
+                .build();
     }
 }

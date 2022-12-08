@@ -362,14 +362,11 @@ doz_category="default">
                                                 </tr>
                                                 </thead>
                                                 <tbody id="shop_mypage_pointlist">
-                                                <th:block th:each="mypoint:${mypoints}">
-                                                <tr class="content" th:object="${mypoint}">
-                                                    <td class="point-date" th:text="${#temporals.format(mypoint.createdDate, 'yyyy. MM. dd')}"></td>
-                                                    <td th:text="*{mypointContent}"></td>
-                                                    <td class="text-right text-success point-change"
-                                                        th:text="*{mypointInout} + ' 포인트'"></td>
+                                                <tr class="content">
+                                                    <td class="point-date"></td>
+                                                    <td></td>
+                                                    <td class="text-right text-success point-change"></td>
                                                 </tr>
-                                                </th:block>
                                                 </tbody>
                                                 <tbody id="shop_mypage_pointlist_more" style="display: none;">
                                                 <tr class="content more">
@@ -413,5 +410,8 @@ doz_category="default">
 <!-- Code injected-->
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/mypage/mypageModule.js"></script>
+<script src="/js/mypage/mypagePoint.js"></script>
 <script src="/js/mypage/mypageCourse.js"></script>
+<script src="/js/fix/headerLogin.js"></script>
 </html>
