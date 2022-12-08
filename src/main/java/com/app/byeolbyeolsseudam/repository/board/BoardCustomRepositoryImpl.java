@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.repository.board;
 
+import com.app.byeolbyeolsseudam.domain.Criteria;
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
 import com.app.byeolbyeolsseudam.domain.board.QBoardDTO;
 import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
@@ -7,11 +8,14 @@ import com.app.byeolbyeolsseudam.domain.comment.QCommentDTO;
 import com.app.byeolbyeolsseudam.domain.fileBoard.FileBoardDTO;
 import com.app.byeolbyeolsseudam.domain.fileBoard.QFileBoardDTO;
 import com.app.byeolbyeolsseudam.entity.board.Board;
+import com.app.byeolbyeolsseudam.entity.board.QBoard;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -29,6 +33,19 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
     /* 조회수 TOP 3 조회 */
     @Override
     public List<BoardDTO> selectTopView(){
+//        List<BoardDTO> boards = new ArrayList<>();
+
+//        List<Board> entityBoards = jpaQueryFactory.selectFrom(board)
+//                .orderBy(board.boardView.desc())
+//                .limit(3)
+//                .fetch();
+
+//        entityBoards.stream().map(entity -> new QBoardDTO(board.boardId, board.boardCategory,
+//                board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
+//                board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
+//                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
+//                .forEach(boardDTO -> boards.add(boardDTO.newInstance()));
+
         List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
@@ -37,6 +54,10 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                 .orderBy(board.boardView.desc())
                 .limit(3)
                 .fetch();
+
+//        boards.stream().forEach(commentDTO -> {
+//
+//        });
 
         boards.stream().forEach(board -> {
             List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
@@ -135,22 +156,30 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
     /* 특정 게시글 보기 */
     @Override
     public BoardDTO readBoard(Long boardId){
-        BoardDTO boardDTO = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
-                board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
-                board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
-                .from(board)
-                .where(board.boardId.eq(boardId))
+
+        Board board = jpaQueryFactory.selectFrom(QBoard.board)
+                .where(QBoard.board.boardId.eq(boardId))
+                .fetchOne();
+
+        BoardDTO boardDTO = jpaQueryFactory.select(new QBoardDTO(QBoard.board.boardId,
+                        QBoard.board.boardCategory, QBoard.board.boardTitle,
+                        QBoard.board.boardContent, QBoard.board.boardView, QBoard.board.member.memberId,
+                        QBoard.board.member.memberName, QBoard.board.member.memberProfileName,
+                        QBoard.board.member.memberProfilePath,
+                        QBoard.board.member.memberProfileUuid, QBoard.board.createdDate, QBoard.board.updatedDate)
+                ).from(QBoard.board)
+                .where(QBoard.board.boardId.eq(boardId))
                 .fetchOne();
 
         List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
                 comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
                 comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
                 comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-                comment.board.boardId, comment.createdDate, board.updatedDate))
+                comment.board.boardId, comment.createdDate, comment.updatedDate))
                 .from(comment)
                 .where(comment.board.boardId.eq(boardId))
                 .fetch();
+
 
         List<FileBoardDTO> files = jpaQueryFactory.select(new QFileBoardDTO(
                 fileBoard.fileBoardId, fileBoard.fileBoardName, fileBoard.fileBoardPath,
@@ -179,12 +208,6 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
     /* 게시글 수정 */
     @Override
     public Board updateBoard(BoardDTO boardDTO){
-        log.info("보드!!!!!!!!!!!!!!!!!!!" + boardDTO.getBoardId());
-        log.info("보드!!!!!!!!!!!!!!!!!!!" + boardDTO.getBoardCategory());
-        log.info(boardDTO.getBoardTitle());
-        log.info(boardDTO.getBoardContent());
-        log.info("보드!!!!!!!!!!!!!!!!!!!" + boardDTO.getMemberId());
-
         Board updatedBoard = jpaQueryFactory.selectFrom(board)
                 .where(board.boardId.eq(boardDTO.getBoardId()))
                 .fetchOne();
@@ -194,15 +217,18 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
         return updatedBoard;
     }
 
+    /* 무한스크롤 */
     @Override
-    public List<BoardDTO> selectScrollBoards(int page){
-        List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
+    public List<BoardDTO> selectScrollBoards(Criteria criteria){
+        List<BoardDTO> boards =  jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
                 board.member.memberProfileUuid, board.createdDate, board.updatedDate))
                 .from(board)
-                .orderBy(board.createdDate.desc())
-                .offset(page * 10)
+                .where(
+                        titleLike(criteria.getKeyword()), contentLike(criteria.getKeyword()), categoryEq(criteria.getCategory())
+                        )
+                .offset(criteria.getPage() * 10)
                 .limit(10)
                 .fetch();
 
@@ -218,6 +244,19 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
             board.setComments(comments);
         });
         return boards;
+    }
+
+    /* 무한스크롤 동적쿼리 조건 */
+    private BooleanExpression titleLike(String title){
+        return StringUtils.hasText(title)? board.boardTitle.contains(title) : null;
+    }
+
+    private BooleanExpression contentLike(String content){
+        return StringUtils.hasText(content)? board.boardTitle.contains(content) : null;
+    }
+
+    private BooleanExpression categoryEq(String category){
+        return StringUtils.hasText(category)? board.boardCategory.eq(BoardCategory.valueOf(category)) : null;
     }
 
     @Override

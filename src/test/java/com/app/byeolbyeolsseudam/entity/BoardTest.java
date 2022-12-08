@@ -47,9 +47,9 @@ public class BoardTest {
         for(int i = 0; i < 10; i++){
             BoardDTO boardDTO = new BoardDTO();
 
-            boardDTO.setBoardCategory(BoardCategory.추천가게);
-            boardDTO.setBoardTitle("점메추 " + i);
-            boardDTO.setBoardContent("저메추" + i);
+            boardDTO.setBoardCategory(BoardCategory.환경활동);
+            boardDTO.setBoardTitle("안녕 " + i);
+            boardDTO.setBoardContent("안녕" + i);
             boardDTO.setBoardView(i * 10);
 
             Board board = boardDTO.toEntity();

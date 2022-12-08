@@ -88,12 +88,15 @@ let communityService = (function(){
         });
     }
 
-    function saveBoard(boardDTO, callback, error){
+    function saveBoard(formData, callback, error){
         $.ajax({
             url: "/board/write",
             type: "post",
-            data: JSON.stringify(boardDTO),
-            contentType: "application/json; charset=utf-8",
+            data: formData,
+            enctype:'multipart/form-data',
+            cache:false,
+            contentType:false,
+            processData:false,
             success: function(status, xhr){
                 if(callback){
                     callback();
@@ -107,12 +110,15 @@ let communityService = (function(){
         });
     }
 
-    function updateBoard(boardDTO, callback, error){
+    function updateBoard(formData, callback, error){
         $.ajax({
-            url: "/board/update" + boardDTO.boardId,
-            type: "patch",
-            data: JSON.stringify(boardDTO),
-            contentType: "application/json; charset=utf-8",
+            url: "/board/update" + boardId,
+            type: "post",
+            data: formData,
+            enctype:'multipart/form-data',
+            cache:false,
+            contentType:false,
+            processData:false,
             success: function(boardId, status, xhr){
                 if(callback){
                     callback(boardId);
@@ -162,10 +168,15 @@ let communityService = (function(){
         });
     }
 
-    function infiniteScroll(page, callback, error){
+    function infiniteScroll(formData, callback, error){
         $.ajax({
-            url: "/board/scroll/" + page,
-            type: "get",
+            url: "/board/scroll/",
+            type: "post",
+            data:formData,
+            enctype:'multipart/form-data',
+            cache:false,
+            contentType:false,
+            processData:false,
             success: function(boards, status, xhr){
                 if(callback){
                     callback(boards);
@@ -203,10 +214,9 @@ let communityService = (function(){
     }
 
     function uploadBoardFile(file, callback, error){
-        console.log(file);
         var data = new FormData();
         data.append("file", file);
-        console.log(data);
+
         $.ajax({
             url: "/board/upload",
             type: "post",

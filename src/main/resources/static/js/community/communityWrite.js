@@ -71,32 +71,6 @@ function submitBtn() {
     $updateBtn.removeAttr("disabled");
 }
 
-// /* 사진 첨부 시 div 생성 */
-// $writeFile.on('change', function (e) {
-    // var reader = new FileReader();
-    // let type = e.target.files[0].type;
-    //
-    // reader.readAsDataURL(e.target.files[0]);
-    //
-    // reader.onload = function (e) {
-    //     let url = e.target.result;
-    //     let text = "";
-    //
-    //     if (url.includes('image')) {
-    //         text += `<div data-v-7d0a628e="" class="image-preview ` + fileIndex + `">`;
-    //         text += `<img data-v-7d0a628e="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik01LjM2NCA0LjIzNGEuNzk4Ljc5OCAwIDEgMC0xLjEzIDEuMTNMNi44NyA4LjAwMWwtMi42MzcgMi42MzZhLjguOCAwIDAgMCAxLjEzIDEuMTI5TDggOS4xM2wyLjYzNiAyLjYzNWEuNzk4Ljc5OCAwIDEgMCAxLjEzLTEuMTNMOS4xMyA4LjAwMmwyLjYzNy0yLjYzN2EuOC44IDAgMCAwLTEuMTMtMS4xMjlMOCA2Ljg3IDUuMzY0IDQuMjM0eiIgZmlsbD0iI0ZGRiIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=" class="delete-badge ` + fileIndex +`">`;
-    //         text += `<img data-v-7d0a628e="" src="` + url + `" alt="badge.png" class="view">`;
-    //         text += `</div>`;
-    //
-    //         $(".editor-image-list").append(text);
-    //         fileIndex++;
-    //     } else {
-    //         alert("사진파일만 업로드 가능합니다.");
-    //         return;
-    //     }
-    // }
-// });
-
 
 /* ================================== Board ==================================*/
 
@@ -117,32 +91,39 @@ function writeOrupdate(){
 }
 
 /* 게시글 등록 버튼 클릭 시 */
-$submitBtn.on('click', function(){
-    if(!$category.val()){
-        alert("카테고리를 선택하세요.");
-        return;
-    }
-    if(!$title.val()){
-        alert("제목을 입력하세요.");
-        return;
-    }
-    if(!$content.val()){
-        alert("내용을 입력하세요.");
-        return;
-    }
+$(document).ready(function(){
+    let arrayFile = [];
+    $submitBtn.on('click', function(){
+        if(!$category.val()){
+            alert("카테고리를 선택하세요.");
+            return;
+        }
+        if(!$title.val()){
+            alert("제목을 입력하세요.");
+            return;
+        }
+        if(!$content.val()){
+            alert("내용을 입력하세요.");
+            return;
+        }
 
-    // let files = new Array();
-    //
-    // for(var i = 0; i <= fileIndex; i ++){
-    //     files.push($(".image-preview." + i + " > img.view").attr('src'));
-    // }
-    communityService.saveBoard({
-        boardCategory: $category.val(),
-        boardTitle: $title.val(),
-        boardContent: $content.val(),
-        memberId: 3
-    }, saveBoard());
+        let formData = new FormData();
 
+        formData.append('boardCategory', $category.val());
+        formData.append('boardTitle', $title.val());
+        formData.append('boardContent', $content.val());
+        formData.append('memberId', 3);
+
+        if(fileIndex != 0){
+            for(var i = 0; i < fileIndex; i++){
+                let selector = "input[name='files[" + i + "].fileBoardName']";
+                formData.append('files[' + i + '].fileBoardName', $(selector).val());
+            }
+        }
+
+        communityService.saveBoard(
+            formData, saveBoard);
+    });
 });
 
 function saveBoard(){
@@ -167,16 +148,29 @@ function updateBoard(board){
 
 /* 수정완료 버튼 클릭 시 */
 $updateBtn.on('click', function(){
-    communityService.updateBoard({
-        boardId: boardId,
-        boardCategory: $category.val(),
-        boardTitle: $title.val(),
-        boardContent: $content.val(),
-        boardView: board.boardView
-    }, updateAfterBoard);
+
+    let formData = new FormData();
+
+    formData.append('boardId', boardId);
+    formData.append('boardCategory', $category.val());
+    formData.append('boardTitle', $title.val());
+    formData.append('boardContent', $content.val());
+    formData.append('boardView', board.boardView);
+    formData.append('memberId', 3);
+
+    if(fileIndex != 0){
+        for(var i = 0; i < fileIndex; i++){
+            let selector = "input[name='files[" + i + "].fileBoardName']";
+            formData.append('files[' + i + '].fileBoardName', $(selector).val());
+        }
+    }
+
+    communityService.updateBoard(
+        formData, updateAfterBoard
+    );
 });
 
-function updateAfterBoard(boardId){
+function updateAfterBoard(){
     location.href="/community/" + boardId;
 }
 
@@ -196,8 +190,9 @@ function afterUploadFile(file){
     text += `<div data-v-7d0a628e="" class="image-preview ` + fileIndex + `">`;
     text += `<img data-v-7d0a628e="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik01LjM2NCA0LjIzNGEuNzk4Ljc5OCAwIDEgMC0xLjEzIDEuMTNMNi44NyA4LjAwMWwtMi42MzcgMi42MzZhLjguOCAwIDAgMCAxLjEzIDEuMTI5TDggOS4xM2wyLjYzNiAyLjYzNWEuNzk4Ljc5OCAwIDEgMCAxLjEzLTEuMTNMOS4xMyA4LjAwMmwyLjYzNy0yLjYzN2EuOC44IDAgMCAwLTEuMTMtMS4xMjlMOCA2Ljg3IDUuMzY0IDQuMjM0eiIgZmlsbD0iI0ZGRiIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=" class="delete-badge ` + fileIndex +`">`;
     text += `<img data-v-7d0a628e="" src="` + file + `" alt="badge.png" class="view">`;
-    text += `</div>`;
+    text += `<input type="hidden" name="files[` + fileIndex + `].fileBoardName" class="board-file-input ` + fileIndex + `" value="` + file + `"></div>`;
 
+    console.log(`name=".files[` + fileIndex + `].fileBoardName"`);
     $(".editor-image-list").append(text);
     fileIndex++;
 }

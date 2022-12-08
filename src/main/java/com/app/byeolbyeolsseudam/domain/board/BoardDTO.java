@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,6 +48,24 @@ public class BoardDTO {
         this.memberProfileUuid = memberProfileUuid;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
+    }
+
+    @QueryProjection
+    public BoardDTO(Long boardId, BoardCategory boardCategory, String boardTitle, String boardContent, int boardView, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, LocalDateTime createdDate, LocalDateTime updatedDate, List<FileBoardDTO> files, List<CommentDTO> comments) {
+        this.boardId = boardId;
+        this.boardCategory = boardCategory;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.boardView = boardView;
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.memberProfileName = memberProfileName;
+        this.memberProfilePath = memberProfilePath;
+        this.memberProfileUuid = memberProfileUuid;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+        this.files = files;
+        this.comments = comments;
     }
 
     public Board toEntity(){

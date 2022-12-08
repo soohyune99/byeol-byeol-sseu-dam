@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.repository.board;
 
+import com.app.byeolbyeolsseudam.domain.Criteria;
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
 import com.app.byeolbyeolsseudam.entity.board.Board;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
@@ -11,9 +12,10 @@ public interface BoardCustomRepository {
     public List<BoardDTO> selectBoards();
     public List<BoardDTO> selectBoardsofCategory(BoardCategory boardCategory);
     public List<BoardDTO> selectBoardsofKeyword(String keyword);
-    public List<BoardDTO> selectScrollBoards(int page);
+    public List<BoardDTO> selectScrollBoards(Criteria criteria);
     public BoardDTO readBoard(Long boardId);
     public void saveMemberofBoard(BoardDTO boardDTO, Board board);
+//    public List<FileBoard> saveFilesofBoard(BoardDTO boardDTO, Board board);
     public Board updateBoard(BoardDTO boardDTO);
     public Board plusView(BoardDTO boardDTO);
 }
