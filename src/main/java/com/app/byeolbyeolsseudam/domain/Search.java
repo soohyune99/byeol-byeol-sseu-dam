@@ -8,4 +8,5 @@ import org.springframework.stereotype.Component;
 public class Search {
     private String keyword;
     private String programStatus;
+//    private int page;
 }

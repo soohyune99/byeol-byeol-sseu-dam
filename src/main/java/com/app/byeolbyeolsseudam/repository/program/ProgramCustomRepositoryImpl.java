@@ -1,14 +1,20 @@
 package com.app.byeolbyeolsseudam.repository.program;
 
+import com.app.byeolbyeolsseudam.domain.Search;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.domain.program.QProgramDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.entity.program.Program;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -41,7 +47,9 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
                 program.programFileDetailUuid,
                 program.createdDate
         )).from(program)
-                .where(program.programName.contains(keyword)).orderBy(program.programDate.desc())
+                .where(program.programName.contains(keyword))
+                .orderBy(program.programDate.desc())
+//                .limit(9)
                 .fetch();
     }
 
@@ -66,7 +74,8 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
                 program.programFileDetailPath,
                 program.programFileDetailUuid,
                 program.createdDate
-        )).from(program).orderBy(program.programDate.desc())//.limit(9)
+        )).from(program).orderBy(program.programDate.desc())
+//                .limit(9)
                 .fetch();
     }
 
@@ -93,6 +102,7 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
                 program.createdDate
         )).from(program)
                 .where(program.programStatus.eq(programStatus)).orderBy(program.programDate.desc())
+//                .limit(9)
                 .fetch();
     }
 
@@ -122,8 +132,8 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
     }
 
     @Override
-    public List<ProgramDTO> selectScrollPrograms(int page) {
-        return jpaQueryFactory.select(new QProgramDTO(
+    public Page<ProgramDTO> selectScrollPrograms (Search search, Pageable pageable) {
+        List<ProgramDTO> programDTOS = jpaQueryFactory.select(new QProgramDTO(
                 program.programId,
                 program.programName,
                 program.programPlace,
@@ -141,9 +151,84 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
                 program.programFileDetailPath,
                 program.programFileDetailUuid,
                 program.createdDate
-        )).from(program).orderBy(program.programDate.desc()).offset(page * 9).limit(9).fetch();
+                ))
+                .from(program)
+                .orderBy(program.programDate.desc())
+                .where(
+                        keywordContains(search.getKeyword()), // 검색 Keyword 일치
+                        programStatusEq(search.getProgramStatus()) // 상태 일치 확인
+                )
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        long total = jpaQueryFactory.select(new QProgramDTO(
+                program.programId,
+                program.programName,
+                program.programPlace,
+                program.possibleDate.openingDate,
+                program.possibleDate.closingDate,
+                program.programTime,
+                program.programDate,
+                program.programContent,
+                program.programLimitCount,
+                program.programStatus,
+                program.programFileProfileName,
+                program.programFileProfilePath,
+                program.programFileProfileUuid,
+                program.programFileDetailName,
+                program.programFileDetailPath,
+                program.programFileDetailUuid,
+                program.createdDate
+        ))
+                .from(program)
+                .fetch().size();
+
+        return new PageImpl<>(programDTOS,pageable,total);
 
     }
+
+    /* Keyword 일치 여부 확인 메소드 */
+    private BooleanExpression keywordContains(String keyword){
+        return StringUtils.hasText(keyword) ? program.programName.contains(keyword) : null;
+    }
+
+    /* 상태 일치 여부 확인 메소드 */
+    private BooleanExpression programStatusEq(String programStatus){
+        return StringUtils.hasText(programStatus) ? (program.programStatus.stringValue()).eq(programStatus) : null;
+    }
+
+//    @Override
+//    public List<ProgramDTO> selectScrollPrograms(Search search) {
+//        return jpaQueryFactory.select(new QProgramDTO(
+//                program.programId,
+//                program.programName,
+//                program.programPlace,
+//                program.possibleDate.openingDate,
+//                program.possibleDate.closingDate,
+//                program.programTime,
+//                program.programDate,
+//                program.programContent,
+//                program.programLimitCount,
+//                program.programStatus,
+//                program.programFileProfileName,
+//                program.programFileProfilePath,
+//                program.programFileProfileUuid,
+//                program.programFileDetailName,
+//                program.programFileDetailPath,
+//                program.programFileDetailUuid,
+//                program.createdDate
+//        )).from(program).orderBy(program.programDate.desc())
+//                .where(
+//                        keywordContains(search.getKeyword()), // 검색 Keyword 일치
+//                        programStatusEq(search.getProgramStatus()) // 상태 일치 확인
+//                )
+//                .offset(search.getPage() * 9).limit(9).fetch();
+//
+//    }
+
+
+    /* ==============================================================================================*/
 
 
 //    @Override
