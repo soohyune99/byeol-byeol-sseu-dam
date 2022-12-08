@@ -25,6 +25,8 @@ public interface ProgramService {
     /* 프로그램 Article 클릭시 해당 Detail 페이지로 이동 */
     public ProgramDTO findProgramDetail(Long programId);
 
+    public List<ProgramDTO> selectScrollPrograms(int page);
+
 //    /* program Detail _ 상세보기 클릭시 상세페이지 */
 //    public ProgramDTO programDetailPage(Model model, Member member, Long programId);
 //

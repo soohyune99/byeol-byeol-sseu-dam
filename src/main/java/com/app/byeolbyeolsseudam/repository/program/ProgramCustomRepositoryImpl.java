@@ -66,7 +66,7 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
                 program.programFileDetailPath,
                 program.programFileDetailUuid,
                 program.createdDate
-        )).from(program).orderBy(program.programDate.desc())
+        )).from(program).orderBy(program.programDate.desc())//.limit(9)
                 .fetch();
     }
 
@@ -121,13 +121,29 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
         return programDTO;
     }
 
+    @Override
+    public List<ProgramDTO> selectScrollPrograms(int page) {
+        return jpaQueryFactory.select(new QProgramDTO(
+                program.programId,
+                program.programName,
+                program.programPlace,
+                program.possibleDate.openingDate,
+                program.possibleDate.closingDate,
+                program.programTime,
+                program.programDate,
+                program.programContent,
+                program.programLimitCount,
+                program.programStatus,
+                program.programFileProfileName,
+                program.programFileProfilePath,
+                program.programFileProfileUuid,
+                program.programFileDetailName,
+                program.programFileDetailPath,
+                program.programFileDetailUuid,
+                program.createdDate
+        )).from(program).orderBy(program.programDate.desc()).offset(page * 9).limit(9).fetch();
 
-
-
-
-
-
-
+    }
 
 
 //    @Override
