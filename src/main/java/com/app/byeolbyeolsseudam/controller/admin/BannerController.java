@@ -40,7 +40,6 @@ public class BannerController {
     /* 베너관리- 베너 수정 */
     @PostMapping("/modified")
     public RedirectView adminBannerModify(BannerDTO bannerDTO){
-        log.info("controller" + bannerDTO);
         bannerService.updateBanner(bannerDTO, bannerDTO.getBannerId());
 
         return new RedirectView("/admin/banner");

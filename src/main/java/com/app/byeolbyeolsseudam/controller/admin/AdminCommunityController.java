@@ -27,18 +27,22 @@ public class AdminCommunityController {
 
     /* 게시글 삭제 */
     @PostMapping("/board/delete")
-    public RedirectView adminProgramDelete(@RequestParam List<String> checkedValue){
+    public RedirectView adminBoardDelete(@RequestParam List<String> checkedValue){
         adminCommunityService.removeBoard(checkedValue);
 
         return new RedirectView("/admin/community/board");
     }
-
-
 
 //  댓글 목록
     @GetMapping("/comment")
     public String adminComment(Model model){
         model.addAttribute("comments", adminCommunityService.showCommentList());
         return "/app/admin/adminComment";
+    }
+    @PostMapping("/comment/delete")
+    public RedirectView adminCommentDelete(@RequestParam List<String> checkedValue){
+        adminCommunityService.removeComment(checkedValue);
+
+        return new RedirectView("/admin/community/comment");
     }
 }

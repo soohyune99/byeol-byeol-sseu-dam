@@ -18,23 +18,23 @@ public class AdminMemberRepositoryImpl implements AdminMemberCustomRepository{
 
     @Override
     public List<MemberDTO> showMemberList() {
-//        return jpaQueryFactory.select(new QMemberDTO(
-//                member.memberId,
-//                member.memberLoginType,
-//                member.memberCategory,
-//                member.memberName,
-//                member.memberPassword,
-//                member.memberPhone,
-//                member.memberEmail,
-//                member.memberPoint,
-//                member.memberProfileName,
-//                member.memberProfilePath,
-//                member.memberProfileUuid,
-//                member.createdDate
-//        )).from(member)
-//                .orderBy(member.memberId.desc())
-//                .limit(10)
-//                .fetch();
-        return null;
+        return jpaQueryFactory.select(new QMemberDTO(
+                member.memberId,
+                member.memberLoginType,
+                member.memberCategory,
+                member.memberName,
+                member.memberPassword,
+                member.memberPhone,
+                member.memberAddress,
+                member.memberEmail,
+                member.memberPoint,
+                member.memberProfileName,
+                member.memberProfilePath,
+                member.memberProfileUuid,
+                member.createdDate
+        )).from(member)
+                .orderBy(member.memberId.desc())
+                .limit(10)
+                .fetch();
     }
 }

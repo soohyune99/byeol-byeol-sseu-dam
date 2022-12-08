@@ -21,6 +21,10 @@ public class AdminProgramService {
         return adminProgramRepository.showList();
     }
 
+    public void saveProgram(ProgramDTO programDTO){
+        adminProgramRepository.save(programDTO.toEntity());
+    }
+
     public void removeProgram(List<String> programIds){
 
         List<Long> programIdLong = new ArrayList<>();

@@ -26,11 +26,16 @@ public class AdminCommunityService {
         boardIdstr.stream().map(Long::parseLong).forEach(boardId::add);
         boardId.forEach(adminBoardRepository::deleteById);
 
-
     }
-
 
     public List<CommentDTO> showCommentList(){
         return adminCommentRepository.showCommentList();
+    }
+
+    public void removeComment(List<String> commentIdstr){
+        List<Long> commentId = new ArrayList<>();
+        commentIdstr.stream().map(Long::parseLong).forEach(commentId::add);
+        commentId.forEach(adminCommentRepository::deleteById);
+
     }
 }

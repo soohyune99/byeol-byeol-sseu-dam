@@ -28,4 +28,24 @@ public class AdminNoticeRepositoryImpl implements AdminNoticeCustomRepository {
                 .limit(10)
                 .fetch();
     }
+
+    @Override
+    public NoticeDTO selectById(Long noticeID) {
+        return jpaQueryFactory.select(new QNoticeDTO(
+                notice.noticeId,
+                notice.noticeTitle,
+                notice.noticeContent,
+                notice.noticeCategory,
+                notice.createdDate
+        )).from(notice)
+                .where(notice.noticeId.eq(noticeID))
+                .fetchOne();
+    }
+
+    @Override
+    public void update(NoticeDTO noticeDTO) {
+        jpaQueryFactory.selectFrom(notice)
+                .where(notice.noticeId.eq(noticeDTO.getNoticeId()))
+                .fetchOne().update(noticeDTO);
+    }
 }

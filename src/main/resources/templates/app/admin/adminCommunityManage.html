@@ -375,10 +375,9 @@
 	var $checkboxes = $(".form-check-input.checkbox");
 	$("#deleteCommunityBtn").on('click', function () {
 		if ($checkboxes.filter(":checked").length == 0) {
-			alert("삭제할 프로그램을 선택하세요.");
+			alert("삭제할 게시글을 선택하세요.");
 			return;
 		}
-
 		$("form[name='deleteForm']").submit();
 	});
 </script>
