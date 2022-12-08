@@ -1,10 +1,13 @@
 package com.app.byeolbyeolsseudam.service.program;
 
+import com.app.byeolbyeolsseudam.domain.Search;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.repository.program.ProgramRepository;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -40,10 +43,17 @@ public class ProgramSearchService implements ProgramService {
         return programDTO;
     }
 
+    /* 무한 스크롤 - 동적 쿼리 */
     @Override
-    public List<ProgramDTO> selectScrollPrograms(int page) {
-        return programRepository.selectScrollPrograms(page);
+    public Page<ProgramDTO> selectScrollPrograms(Search search, Pageable pageable) {
+        return programRepository.selectScrollPrograms(search, pageable);
     }
+
+
+//    @Override
+//    public Page<ProgramDTO> selectScrollPrograms(Search search, Pageable pageable) {
+//        return programRepository.selectScrollPrograms(search, pageable);
+//    }
 
 
 //    @Override

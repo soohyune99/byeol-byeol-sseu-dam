@@ -4,7 +4,6 @@ import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.entity.program.Program;
 import com.app.byeolbyeolsseudam.domain.Search;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
-import com.app.byeolbyeolsseudam.repository.program.ProgramDynamicRepository;
 import com.app.byeolbyeolsseudam.repository.program.ProgramRepository;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import lombok.extern.slf4j.Slf4j;
@@ -31,8 +30,8 @@ public class ProgramTest {
     @Autowired
     MemberRepository memberRepository;
 
-    @Autowired
-    ProgramDynamicRepository programDynamicRepository;
+//    @Autowired
+//    ProgramDynamicRepository programDynamicRepository;
 
     @Test
     public void saveProgramTest(){
@@ -424,12 +423,12 @@ public class ProgramTest {
     public void programDynamicListTest (){
         Search search = new Search();
         search.setKeyword(""); //검색은 빈문자열도 가능 (엔드로 되어있는건 안보임)
-//        search.setProgramStatus("");
-        search.setProgramStatus(ProgramStatus.모집예정.name());
+        search.setProgramStatus("");
+//        search.setProgramStatus(ProgramStatus.모집예정.name());
 //        search.setProgramStatus(ProgramStatus.모집중.name());
 //        search.setProgramStatus(ProgramStatus.모집완료);
 //        search.setProgramStatus(ProgramStatus.마감);
-        log.info(" 검색어 , 상태 : " + programDynamicRepository.programDynamicList(search).size());
+        log.info(" 검색어 , 상태 : " + programRepository.searchProgram("쓰담").size());
 //        programDynamicRepository.programDynamicList("","");
     }
 
