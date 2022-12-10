@@ -3,7 +3,6 @@ package com.app.byeolbyeolsseudam.service.community;
 import com.app.byeolbyeolsseudam.domain.Criteria;
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
 import com.app.byeolbyeolsseudam.entity.board.Board;
-import com.app.byeolbyeolsseudam.entity.fileBoard.FileBoard;
 import com.app.byeolbyeolsseudam.repository.board.BoardRepository;
 import com.app.byeolbyeolsseudam.repository.fileBoard.FileBoardRepository;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class CommunityServiceImpl implements CommunityService{
+public class CommunityServiceImpl implements CommunityService {
     private final BoardRepository boardRepository;
     private final FileBoardRepository fileBoardRepository;
     private final MemberRepository memberRepository;

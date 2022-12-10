@@ -3,9 +3,7 @@ package com.app.byeolbyeolsseudam.controller.mypage;
 import com.app.byeolbyeolsseudam.service.mypage.MypageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -29,7 +27,7 @@ public class MypageController {
         return "/app/mypage/mypageCancelList";
     }
 
-    @GetMapping("/order/detail")
+    @GetMapping("/order/{orderId}")
     public String orderlistdetail(){
         return "/app/mypage/mypageOrderDetail";
     }
@@ -54,7 +52,7 @@ public class MypageController {
         return "/app/mypage/mypagePickupList";
     }
 
-    @GetMapping("/pickup/detail")
+    @GetMapping("/pickup/{pickupId}")
     public String pickupdetail(){
         return "/app/mypage/mypagePickupDetail";
     }

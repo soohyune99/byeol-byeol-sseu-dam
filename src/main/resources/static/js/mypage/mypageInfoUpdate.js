@@ -265,9 +265,9 @@ function verifyPhoneTest(){
     return false;
 }
 
-/* 프로필 사진 변경 시 썸네일 변경 */
-
+/* 프로필 사진 변경 시 썸네일 변경 및 업로드 파일에 저장 */
 $file.on('change', function(e){
+    let file = $file[0].files[0];
     var reader = new FileReader();
     let type = e.target.files[0].type;
 
@@ -275,8 +275,6 @@ $file.on('change', function(e){
 
     reader.onload = function(e){
         let url = e.target.result;
-        console.log(url);
-        console.log(url.includes('image'));
 
         if(url.includes('image')){
             $thumbnail.attr('src', url);
@@ -284,4 +282,22 @@ $file.on('change', function(e){
             $thumbnail.attr('src', 'https://www.jigushop.co.kr/common/img/default_profile.png');
         }
     }
+
+    communityService.uploadProfileFile(
+        file, afterUploadeProfileFile
+    );
 });
+
+function afterUploadeProfileFile() {;}
+
+function updateOkMyinfo(){
+    let formData = new FormData();
+
+    formData.append('memberName', $("input[name='memberName']").val());
+    formData.append()
+
+}
+
+function afterUpdateMyinfo(){
+    location.href='http://localhost:10001/mypage/info';
+}

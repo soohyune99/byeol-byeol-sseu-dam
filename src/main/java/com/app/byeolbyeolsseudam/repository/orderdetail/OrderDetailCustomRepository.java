@@ -1,6 +1,6 @@
-//package com.app.byeolbyeolsseudam.repository.orderdetail;
-//
-//public interface OrderDetailCustomRepository {
-//
-//
-//}
+package com.app.byeolbyeolsseudam.repository.orderdetail;
+
+public interface OrderDetailCustomRepository {
+
+
+}

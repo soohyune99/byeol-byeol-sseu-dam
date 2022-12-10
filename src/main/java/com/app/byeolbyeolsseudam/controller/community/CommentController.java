@@ -1,17 +1,13 @@
 package com.app.byeolbyeolsseudam.controller.community;
 
 import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
-import com.app.byeolbyeolsseudam.entity.comment.Comment;
-import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.service.community.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 

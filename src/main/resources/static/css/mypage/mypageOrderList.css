@@ -132,7 +132,8 @@ main {
 }
 
 #s202001038f5e33413dcec.side_basic main .inside, #s202001038f5e33413dcec .site_prod_nav_wrap.scroll-to-fixed-fixed ul.site_prod_nav, .doz_sys #s202001038f5e33413dcec .col-dz-12 .extend_thumbs {
-    max-width: 1208px;
+    /*max-width: 1208px;*/
+    max-width: 1035px;
 }
 
 .doz_sys .inside {

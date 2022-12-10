@@ -22,8 +22,20 @@ public class CommentDTO {
     private String memberProfilePath;
     private String memberProfileUuid;
     private Long boardId;
+    private String boardTitle;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
+
+    @QueryProjection
+    public CommentDTO(Long commentId, String commentContent, Long memberId, Long boardId, String boardTitle, LocalDateTime createdDate, LocalDateTime updatedDate) {
+        this.commentId = commentId;
+        this.commentContent = commentContent;
+        this.memberId = memberId;
+        this.boardId = boardId;
+        this.boardTitle = boardTitle;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+    }
 
     @QueryProjection
     public CommentDTO(Long commentId, String commentContent, String commentFileName, String commentFilePath, String commentFileUuid, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, Long boardId, LocalDateTime createdDate, LocalDateTime updatedDate) {

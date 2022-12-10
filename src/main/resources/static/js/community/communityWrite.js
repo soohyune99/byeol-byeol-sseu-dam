@@ -148,13 +148,6 @@ function updateBoard(board){
 
 /* 수정완료 버튼 클릭 시 */
 $updateBtn.on('click', function(){
-
-    console.log(boardId);
-    console.log($category.val());
-    console.log($title.val());
-    console.log($content.val());
-    console.log(board.boardView);
-
     let formData = new FormData();
 
     formData.append('boardId', boardId);

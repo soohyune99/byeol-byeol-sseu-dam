@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="/css/fix/header77.css">
     <link rel="stylesheet" href="/css/fix/header37.css">
 </head>
-
 <body>
 <div id="wrapper">
     <header th:replace="/app/fix/header.html :: header"></header>
@@ -308,6 +307,7 @@
                     aria-label="" style="display: inline-block;">취소
             </button>
         </div>
+        <input type="hidden" id="sessionMember" th:value="${session.member}">
         <div class="swal2-footer" style="display: none;"></div>
     </div>
 </div>

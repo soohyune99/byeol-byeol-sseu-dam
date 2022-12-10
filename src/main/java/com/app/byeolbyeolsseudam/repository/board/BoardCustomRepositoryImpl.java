@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.app.byeolbyeolsseudam.entity.board.QBoard.board;
@@ -26,7 +25,7 @@ import static com.app.byeolbyeolsseudam.entity.fileBoard.QFileBoard.fileBoard;
 @Repository
 @Slf4j
 @RequiredArgsConstructor
-public class BoardCustomRepositoryImpl implements BoardCustomRepository{
+public class BoardCustomRepositoryImpl implements BoardCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     /* 조회수 TOP 3 조회 */
@@ -251,4 +250,19 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
     private BooleanExpression categoryEq(String category){
         return StringUtils.hasText(category)? board.boardCategory.eq(BoardCategory.valueOf(category)) : null;
     }
+
+    /* 마이페이지 내가 쓴 글 조회 */
+    @Override
+    public List<BoardDTO> selectBoardsofMypage(Long memberId, int page){
+        return jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
+                board.boardTitle, board.boardContent, board.member.memberId,
+                board.createdDate, board.updatedDate))
+                .from(board)
+                .where(board.member.memberId.eq(memberId))
+                .orderBy(board.createdDate.desc())
+                .offset(page * 5)
+                .limit(5)
+                .fetch();
+    }
 }
+

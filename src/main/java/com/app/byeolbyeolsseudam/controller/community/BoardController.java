@@ -80,7 +80,7 @@ public class BoardController {
     @PostMapping("/upload")
     public void uploadBoardFile(MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
         response.setContentType("text/html; charset=utf-8");
-        String uploadPath = "C:/upload/";
+        String uploadPath = "C:/upload/community/";
 
         File uploadFolder = new File(uploadPath, createDirectoryByNow());
         if(!uploadFolder.exists()){
@@ -95,7 +95,7 @@ public class BoardController {
         log.info(file.toString());
         log.info(uploadPath + storedFileName);
         file.transferTo(new File(uploadFolder + "/" + storedFileName + originalFileExtension));
-        out.print("/upload/" + createDirectoryByNow() + "/" + storedFileName + originalFileExtension);
+        out.print("/upload/community/" + createDirectoryByNow() + "/" + storedFileName + originalFileExtension);
         out.close();
     }
 

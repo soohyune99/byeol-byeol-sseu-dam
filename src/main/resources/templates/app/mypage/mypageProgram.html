@@ -415,30 +415,30 @@
         </div>
     </main>
 </div>
-<div id="cocoaModal" role="dialog" aria-hidden="false" class="modal in modal_order_cancel_detail" data-backdrop="true"
+<div id="programDetailModal" role="dialog" aria-hidden="false" class="modal in modal_order_cancel_detail" data-backdrop="true"
      data-keyboard="true" style="display: none;">
     <div class="modal-dialog ui-draggable" style="margin: 10%!important;">
         <div class="modal-content" style="border: 1px solid #d2d2d2;">
             <div class="layer_pop">
                 <div class="top-block">
                     <div class="text-brand set-tit text-center">수강 상세내역</div>
-                    <a href="javascript:cancelModalClose();" data-dismiss="modal" class="bt bt-flat bt-default"
+                    <a href="javascript:closeMyprogramModal();" data-dismiss="modal" class="bt bt-flat bt-default"
                        data-toggle="tooltip" data-placement="bottom" data-original-title="닫기"><i
                             class="btl bt-times"></i></a>
                 </div>
                 <div class="body-block">
                     <div class="tabled full-width prod_preview" style="border: none;">
                         <div class="table-cell vertical-middle width-2">
-                            <img width="60" height="60" src="http://www.bongchuny.or.kr/upload/editor/se2/3659220484.png">
+                            <img class="myprogram-image" width="60" height="60" src="http://www.bongchuny.or.kr/upload/editor/se2/3659220484.png">
                         </div>
                         <div class="table-cell vertical-middle">
-                            <span class="text-15">[비건 요리]</span>
+                            <span class="text-13" style="color: #00C7AE; font-weight: bold;">쓰담학교</span>
                             <div class="text-13 text-gray-bright">
-                                <div>내가 먹는 채소, 어디까지 키워봤어요?</div>
+                                <div class="modal-programName">내가 먹는 채소, 어디까지 키워봤어요?</div>
 
                             </div>
                         </div>
-                        <div class="text-13 table-cell vertical-middle text-right width-2">수강완료</div>
+                        <div class="text-13 table-cell vertical-middle text-right width-2 modal-myprogramStatus">수강완료</div>
                     </div>
                     <div class="prod_detail">
                         <div class="form-group">
@@ -447,11 +447,11 @@
                                 <div class="tabled full-width">
                                     <div class="table-row">
                                         <div class="text-gray-bright table-cell width-3">수강 장소</div>
-                                        <div class="table-cell">쓰담놀이터(서울 강남구 역삼동)</div>
+                                        <div class="table-cell modal-programPlace">쓰담놀이터(서울 강남구 역삼동)</div>
                                     </div>
                                     <div class="table-row">
                                         <div class="text-gray-bright table-cell width-3">수강 날짜</div>
-                                        <div class="table-cell">2022-11-11</div>
+                                        <div class="table-cell modal-programDate">2022-11-11</div>
                                     </div>
                                 </div>
                             </div>
@@ -460,7 +460,7 @@
                 </div>
                 <div class="foot-block no-padding margin-bottom-xxxl text-center">
 
-                    <a href="javascript:cancelModalClose();" class="btn-brand" data-dismiss="modal"
+                    <a href="javascript:closeMyprogramModal();" class="btn-brand" data-dismiss="modal"
                        data-original-title="" title="">확인</a>
                 </div>
             </div>
@@ -473,6 +473,5 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/mypage/mypageModule.js"></script>
 <script src="/js/mypage/mypageProgram.js"></script>
-<script src="/js/mypage/mypageCancelList.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 </html>
