@@ -2,7 +2,7 @@ package com.app.byeolbyeolsseudam.controller.program;
 
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
-import com.app.byeolbyeolsseudam.service.program.ProgramService;
+import com.app.byeolbyeolsseudam.service.program.ProgramDynamicService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/program/*")
 @Slf4j
 public class ProgramController {
-    private final ProgramService programService;
-//    private final ProgramDynamicService programDynamicService;
+//    private final ProgramService programService;
+    private final ProgramDynamicService programDynamicService;
 
     /* 프로그램 기본 List */
     @GetMapping("/list")
@@ -25,12 +25,12 @@ public class ProgramController {
         return "/app/program/program"; // 이동할 html 파일 경로
     }
 
-    /* 프로그램 DETAIL 이동 */
-    @GetMapping("/detail")
-    public String findProgramDetail(Long programId, Model model){
-        model.addAttribute("program",programService.findProgramDetail(programId));
-        return"/app/program/programDetail";
-    }
+//    /* 프로그램 DETAIL 이동 */
+//    @GetMapping("/detail")
+//    public String findProgramDetail(Long programId, Model model){
+//        model.addAttribute("program",programService.findProgramDetail(programId));
+//        return"/app/program/programDetail";
+//    }
 
     /* 프로그램 DETAIL -> mypage */
     @GetMapping("/sussess")

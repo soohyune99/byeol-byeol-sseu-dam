@@ -194,7 +194,7 @@
                                                                                         rowspan="1"
                                                                                         colspan="1"
                                                                                         aria-label="">
-                                                                                        Email
+                                                                                        이메일
                                                                                     </th>
                                                                                     <!-- memberPointTitle -->
                                                                                     <th class="min-w-125px sorting memberPointTitle"
@@ -223,10 +223,11 @@
                                                                                 <tbody class="fw-semibold text-gray-600">
 
                                                                                 <!-- 회원 -->
-                                                                                <form th:action="@{member/delete}" method="post" name="deleteForm">
+                                                                                <form th:action="@{/admin/member/delete}" method="post" name="deleteForm">
                                                                                 <th:block th:each="member:${members}">
                                                                                 <tr class="row_member" th:object="${member}">
                                                                                     <!-- memberCheckBox -->
+
                                                                                     <td class="memberCheckbox">
                                                                                         <div class="form-check form-check-sm form-check-custom form-check-solid">
                                                                                             <input class="form-check-input checkbox" type="checkbox" name="checkedValue" th:value="*{memberId}">
@@ -267,53 +268,25 @@
                                                                     <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
                                                                         <div class="dataTables_paginate paging_simple_numbers"
                                                                              id="kt_ecommerce_products_table_paginate">
-                                                                            <ul class="pagination">
+                                                                            <ul class="pagination" th:if="${!members.isEmpty()}">
                                                                                 <li class="paginate_button page-item previous disabled"
-                                                                                    id="kt_ecommerce_products_table_previous">
-                                                                                    <a href="#"
+                                                                                    id="kt_ecommerce_products_table_previous" th:if="${members.hasPrevious()}">
+                                                                                    <a th:href="@{|/admin/member/${members.number}|}"
                                                                                        aria-controls="kt_ecommerce_products_table"
                                                                                        data-dt-idx="0"
                                                                                        tabindex="0"
                                                                                        class="page-link"><</a>
                                                                                 </li>
-                                                                                <li class="paginate_button page-item active">
-                                                                                    <a href="#"
+                                                                                <li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, members.totalPages)}">
+                                                                                    <a th:text="${page}" th:href="@{|/admin/member/${page}|}"
                                                                                        aria-controls="kt_ecommerce_products_table"
                                                                                        data-dt-idx="1"
                                                                                        tabindex="0"
-                                                                                       class="page-link">1</a>
-                                                                                </li>
-                                                                                <li class="paginate_button page-item ">
-                                                                                    <a href="#"
-                                                                                       aria-controls="kt_ecommerce_products_table"
-                                                                                       data-dt-idx="2"
-                                                                                       tabindex="0"
-                                                                                       class="page-link">2</a>
-                                                                                </li>
-                                                                                <li class="paginate_button page-item ">
-                                                                                    <a href="#"
-                                                                                       aria-controls="kt_ecommerce_products_table"
-                                                                                       data-dt-idx="3"
-                                                                                       tabindex="0"
-                                                                                       class="page-link">3</a>
-                                                                                </li>
-                                                                                <li class="paginate_button page-item ">
-                                                                                    <a href="#"
-                                                                                       aria-controls="kt_ecommerce_products_table"
-                                                                                       data-dt-idx="4"
-                                                                                       tabindex="0"
-                                                                                       class="page-link">4</a>
-                                                                                </li>
-                                                                                <li class="paginate_button page-item ">
-                                                                                    <a href="#"
-                                                                                       aria-controls="kt_ecommerce_products_table"
-                                                                                       data-dt-idx="5"
-                                                                                       tabindex="0"
-                                                                                       class="page-link">5</a>
+                                                                                       class="page-link"></a>
                                                                                 </li>
                                                                                 <li class="paginate_button page-item next"
-                                                                                    id="kt_ecommerce_products_table_next">
-                                                                                    <a href="#"
+                                                                                    id="kt_ecommerce_products_table_next" th:if="${members.hasNext()}">
+                                                                                    <a th:href="@{|/admin/member/${members.number +2}|}"
                                                                                        aria-controls="kt_ecommerce_products_table"
                                                                                        data-dt-idx="6"
                                                                                        tabindex="0"

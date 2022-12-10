@@ -27,8 +27,6 @@ public class MarketController {
     // 마켓 상세보기 조회
     @GetMapping("/{productId}")
     public String Read(@PathVariable Long productId, Model model){
-        log.info("상세보기 들어옴");
-        log.info("" + productId);
         return "/app/market/marketDetail";
     }
 
@@ -41,8 +39,6 @@ public class MarketController {
     public String basket(){
         return "/app/market/marketBasket";
     }
-
-
 
     @GetMapping("/paid")
     public String paid(){
