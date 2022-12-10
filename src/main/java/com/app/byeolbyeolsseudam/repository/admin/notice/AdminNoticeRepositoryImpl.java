@@ -33,6 +33,16 @@ public class AdminNoticeRepositoryImpl implements AdminNoticeCustomRepository {
     }
 
     @Override
+    public List<NoticeDTO> searchNotice(String keyword) {
+        return jpaQueryFactory.select(new QNoticeDTO(
+                notice.noticeId, notice.noticeTitle,
+                notice.noticeContent, notice.noticeCategory, notice.createdDate
+        )).from(notice)
+                .where(notice.noticeTitle.contains(keyword).or(notice.noticeContent.contains(keyword)))
+                .orderBy(notice.noticeId.desc())
+                .fetch();
+    }
+    @Override
     public NoticeDTO selectById(Long noticeID) {
         return jpaQueryFactory.select(new QNoticeDTO(
                 notice.noticeId,
@@ -52,14 +62,5 @@ public class AdminNoticeRepositoryImpl implements AdminNoticeCustomRepository {
                 .fetchOne().update(noticeDTO);
     }
 
-    @Override
-    public List<NoticeDTO> searchNotice(String keyword) {
-        return jpaQueryFactory.select(new QNoticeDTO(
-                notice.noticeId, notice.noticeTitle,
-                notice.noticeContent, notice.noticeCategory, notice.createdDate
-        )).from(notice)
-                .where(notice.noticeTitle.contains(keyword).or(notice.noticeContent.contains(keyword)))
-                .orderBy(notice.noticeId.desc())
-                .fetch();
-    }
+
 }

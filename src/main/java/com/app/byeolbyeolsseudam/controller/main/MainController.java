@@ -10,18 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/main/*")
+@RequestMapping(value = {"/main/*","/main"})
 public class MainController {
     private final BannerService bannerService;
-
     private final MainService mainService;
 
-//    @GetMapping("/main")
-//    public String main(){
-//        return "/app/main/main";
-//    }
-
-    @GetMapping("/main")
+    @GetMapping("")
     public String read(Model model){
         model.addAttribute("banners", bannerService.showMainBanner());
         model.addAttribute("programs", mainService.showProgram());
@@ -32,5 +26,4 @@ public class MainController {
         model.addAttribute("boards", mainService.showBoardList());
         return "/app/main/main";
     }
-
 }

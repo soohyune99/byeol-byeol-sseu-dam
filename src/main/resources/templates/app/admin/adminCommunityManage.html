@@ -108,9 +108,9 @@
                                                                                 </svg>
                                                                             </span>
 																			<!--end::Svg Icon-->
-																			<form>
-																				<input type="text" style="display:none">
-																				<input type="text" name="enter"
+																			<form th:action="@{/admin/community/board}" name="boardFindForm">
+																				<input type="hidden" style="display:none" name="page" value="1">
+																				<input type="text" name="keyword"
 																					   onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
 																					   data-kt-ecommerce-product-filter="search"
 																					   class="form-control form-control-solid w-250px ps-14"
@@ -206,7 +206,7 @@
 																				<tbody class="fw-semibold text-gray-600">
 
 																				<!-- 게시글 -->
-																				<form th:action="@{board/delete}" method="post" name="deleteForm">
+																				<form th:action="@{/admin/community/board/delete}" method="post" name="deleteForm">
 																				<th:block th:each="board:${boards}">
 																				<tr th:object="${board}" class="odd productList1">
 																					<!--begin::Checkbox-->
@@ -286,54 +286,54 @@
 																			<!-- 우측 하단 페이징 처리 -->
 																			<div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
 																				<div class="dataTables_paginate paging_simple_numbers"
-																					 id="kt_ecommerce_products_table_paginate">
-																					<ul class="pagination">
+																					 id="kt_ecommerce_products_table_paginate" th:if="${#strings.isEmpty(keyword)}">
+																					<ul class="pagination" th:if="${!boards.isEmpty()}">
 																						<li class="paginate_button page-item previous disabled"
-																							id="kt_ecommerce_products_table_previous">
-																							<a href="#"
+																							id="kt_ecommerce_products_table_previous" th:if="${boards.hasPrevious()}">
+																							<a th:href="@{|/admin/community/board/${boards.number}|}"
 																							   aria-controls="kt_ecommerce_products_table"
 																							   data-dt-idx="0"
 																							   tabindex="0"
 																							   class="page-link"><</a>
 																						</li>
-																						<li class="paginate_button page-item active">
-																							<a href="#"
+																						<li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, boards.totalPages)}">
+																							<a th:text="${page}" th:href="@{|/admin/community/board/${page}|}"
 																							   aria-controls="kt_ecommerce_products_table"
 																							   data-dt-idx="1"
 																							   tabindex="0"
-																							   class="page-link">1</a>
-																						</li>
-																						<li class="paginate_button page-item ">
-																							<a href="#"
-																							   aria-controls="kt_ecommerce_products_table"
-																							   data-dt-idx="2"
-																							   tabindex="0"
-																							   class="page-link">2</a>
-																						</li>
-																						<li class="paginate_button page-item ">
-																							<a href="#"
-																							   aria-controls="kt_ecommerce_products_table"
-																							   data-dt-idx="3"
-																							   tabindex="0"
-																							   class="page-link">3</a>
-																						</li>
-																						<li class="paginate_button page-item ">
-																							<a href="#"
-																							   aria-controls="kt_ecommerce_products_table"
-																							   data-dt-idx="4"
-																							   tabindex="0"
-																							   class="page-link">4</a>
-																						</li>
-																						<li class="paginate_button page-item ">
-																							<a href="#"
-																							   aria-controls="kt_ecommerce_products_table"
-																							   data-dt-idx="5"
-																							   tabindex="0"
-																							   class="page-link">5</a>
+																							   class="page-link"></a>
 																						</li>
 																						<li class="paginate_button page-item next"
-																							id="kt_ecommerce_products_table_next">
-																							<a href="#"
+																							id="kt_ecommerce_products_table_next" th:if="${boards.hasNext()}">
+																							<a th:href="@{|/admin/community/board/${boards.number +2}|}"
+																							   aria-controls="kt_ecommerce_products_table"
+																							   data-dt-idx="6"
+																							   tabindex="0"
+																							   class="page-link">></a>
+																						</li>
+																					</ul>
+																				</div>
+																				<div class="dataTables_paginate paging_simple_numbers"
+																					 id="kt_ecommerce_products_table_paginate" th:if="${not #strings.isEmpty(keyword)}">
+																					<ul class="pagination" th:if="${!boards.isEmpty()}">
+																						<li class="paginate_button page-item previous disabled"
+																							id="kt_ecommerce_products_table_previous" th:if="${boards.hasPrevious()}">
+																							<a th:href="@{/admin/community/board(page=${boards.number},keyword=${keyword})}"
+																							   aria-controls="kt_ecommerce_products_table"
+																							   data-dt-idx="0"
+																							   tabindex="0"
+																							   class="page-link"><</a>
+																						</li>
+																						<li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, boards.totalPages)}">
+																							<a th:text="${page}" th:href="@{/admin/community/board(page=${page}, keyword=${keyword})}"
+																							   aria-controls="kt_ecommerce_products_table"
+																							   data-dt-idx="1"
+																							   tabindex="0"
+																							   class="page-link"></a>
+																						</li>
+																						<li class="paginate_button page-item next"
+																							id="kt_ecommerce_products_table_next" th:if="${boards.hasNext()}">
+																							<a th:href="@{/admin/community/board(page=${boards.number +2},keyword=${keyword})}"
 																							   aria-controls="kt_ecommerce_products_table"
 																							   data-dt-idx="6"
 																							   tabindex="0"
