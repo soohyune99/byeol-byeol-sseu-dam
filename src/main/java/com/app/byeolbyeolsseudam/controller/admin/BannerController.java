@@ -47,14 +47,14 @@ public class BannerController {
 
     /* 베너관리- 베너 수정 */
     @PostMapping("/modified")
-    public RedirectView adminBannerModify(BannerDTO bannerDTO){
+    public RedirectView adminBannerModified(BannerDTO bannerDTO){
         bannerService.updateBanner(bannerDTO, bannerDTO.getBannerId());
 
         return new RedirectView("/admin/banner/1");
     }
 
     @GetMapping("/modify")
-    public String adminBannerModified(@RequestParam(name = "bannerId") Long bannerId, Model model ){
+    public String adminBannerModify(@RequestParam(name = "bannerId") Long bannerId, Model model){
         model.addAttribute("oldBanner", bannerService.selectById(bannerId));
 
         return "/app/admin/adminBannerModify";
