@@ -234,7 +234,9 @@ function showComment(){
     );
 }
 
+/* 리뷰 등록 버튼 눌렀을 때 */
 $commentSubmitBtn.on("click", function(){
+    console.log("작성 등록 누름");
     saveComment();
 });
 

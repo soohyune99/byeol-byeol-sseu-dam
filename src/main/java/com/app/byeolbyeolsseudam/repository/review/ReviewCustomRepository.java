@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface ReviewCustomRepository {
 
-    // 리뷰 등록
-    public void saveReview(ReviewDTO reviewDTO, Review review);
+    /* 리뷰 조회 */
+    public List<ReviewDTO> getReviewList(Long productId);
 
-    // 상품 리뷰 조회
-    public List<ReviewDTO> showAll(Long productId);
+    /* 리뷰 더보기 */
+    public List<ReviewDTO> getMoreReview(Long productId, int page);
 }
