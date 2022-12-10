@@ -2,12 +2,6 @@ package com.app.byeolbyeolsseudam.repository.comment;
 
 import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
 import com.app.byeolbyeolsseudam.domain.comment.QCommentDTO;
-import com.app.byeolbyeolsseudam.entity.board.Board;
-import com.app.byeolbyeolsseudam.entity.board.QBoard;
-import com.app.byeolbyeolsseudam.entity.comment.Comment;
-import com.app.byeolbyeolsseudam.entity.comment.QComment;
-import com.app.byeolbyeolsseudam.entity.member.Member;
-import com.app.byeolbyeolsseudam.entity.member.QMember;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +16,11 @@ import static com.app.byeolbyeolsseudam.entity.member.QMember.member;
 @Repository
 @Slf4j
 @RequiredArgsConstructor
-public class CommentCustomRepositoryImpl implements CommentCustomRepository{
+public class CommentCustomRepositoryImpl implements CommentCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<CommentDTO> getCommentList(Long boardId){
+    public List<CommentDTO> selectCommentList(Long boardId){
         return jpaQueryFactory.select(new QCommentDTO(comment.commentId, comment.commentContent,
                 comment.commentFileName, comment.commentFilePath, comment.commentFileUuid,
                 comment.member.memberId, comment.member.memberName, comment.member.memberProfileName,
@@ -40,7 +34,7 @@ public class CommentCustomRepositoryImpl implements CommentCustomRepository{
     }
 
     @Override
-    public List<CommentDTO> getMoreComment(Long boardId, int page){
+    public List<CommentDTO> selectMoreComment(Long boardId, int page){
         return jpaQueryFactory.select(new QCommentDTO(comment.commentId, comment.commentContent,
                 comment.commentFileName, comment.commentFilePath, comment.commentFileUuid,
                 comment.member.memberId, comment.member.memberName, comment.member.memberProfileName,
@@ -48,6 +42,19 @@ public class CommentCustomRepositoryImpl implements CommentCustomRepository{
                 comment.board.boardId, comment.createdDate, comment.updatedDate))
                 .from(comment)
                 .where(comment.board.boardId.eq(boardId))
+                .orderBy(comment.createdDate.desc())
+                .offset(page * 5)
+                .limit(5)
+                .fetch();
+    }
+
+    @Override
+    public List<CommentDTO> selectMyCommentList(Long memberId, int page){
+        return jpaQueryFactory.select(new QCommentDTO(comment.commentId,
+                comment.commentContent, comment.member.memberId, comment.board.boardId,
+                comment.board.boardTitle, comment.createdDate, comment.updatedDate))
+                .from(comment)
+                .where(comment.member.memberId.eq(memberId))
                 .orderBy(comment.createdDate.desc())
                 .offset(page * 5)
                 .limit(5)

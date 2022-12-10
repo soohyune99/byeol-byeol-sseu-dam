@@ -1,7 +1,6 @@
 package com.app.byeolbyeolsseudam.service.community;
 
 import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
-import com.app.byeolbyeolsseudam.entity.comment.Comment;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.app.byeolbyeolsseudam.service.kakao;
+package com.app.byeolbyeolsseudam.service.login;
 
 import com.google.gson.JsonElement;
 import lombok.extern.slf4j.Slf4j;

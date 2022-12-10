@@ -19,12 +19,12 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<CommentDTO> getCommentList(Long boardId){
-        return commentRepository.getCommentList(boardId);
+        return commentRepository.selectCommentList(boardId);
     }
 
     @Override
     public List<CommentDTO> getMoreComment(Long boardId, int page){
-        return commentRepository.getMoreComment(boardId, page);
+        return commentRepository.selectMoreComment(boardId, page);
     }
 
     @Override

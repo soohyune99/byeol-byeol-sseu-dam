@@ -505,8 +505,10 @@ body {
 
 .editor-image-list-wrapper .editor-image-list .image-preview .delete-badge[data-v-7d0a628e] {
     position: absolute;
-    top: -0.375rem;
-    right: -0.375rem;
+    /*top: -0.375rem;*/
+    /*right: -0.375rem;*/
+    top: -0.475rem;
+    right: 0.2rem;
     width: 1.25rem;
     height: 1.25rem;
     padding: 0.125rem;

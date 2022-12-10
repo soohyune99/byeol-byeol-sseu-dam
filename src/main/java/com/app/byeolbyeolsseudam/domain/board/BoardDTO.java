@@ -35,6 +35,17 @@ public class BoardDTO {
     private List<CommentDTO> comments;
 
     @QueryProjection
+    public BoardDTO(Long boardId, BoardCategory boardCategory, String boardTitle, String boardContent, Long memberId, LocalDateTime createdDate, LocalDateTime updatedDate) {
+        this.boardId = boardId;
+        this.boardCategory = boardCategory;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.memberId = memberId;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+    }
+
+    @QueryProjection
     public BoardDTO(Long boardId, BoardCategory boardCategory, String boardTitle, String boardContent, int boardView, Long memberId, String memberName, String memberProfileName, String memberProfilePath, String memberProfileUuid, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.boardId = boardId;
         this.boardCategory = boardCategory;

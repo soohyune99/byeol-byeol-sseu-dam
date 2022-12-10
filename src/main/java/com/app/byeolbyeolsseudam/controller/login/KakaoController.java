@@ -1,6 +1,6 @@
 package com.app.byeolbyeolsseudam.controller.login;
 
-import com.app.byeolbyeolsseudam.service.kakao.KakaoService;
+import com.app.byeolbyeolsseudam.service.login.KakaoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

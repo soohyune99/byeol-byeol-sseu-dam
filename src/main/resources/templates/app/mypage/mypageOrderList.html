@@ -277,8 +277,8 @@ doz_footer_repeat="N" doz_category="default">
                                         <div class="im-body-size-140 im-line-height-120 text-bold hidden-xs">주문
                                             조회</div>
                                         <div class="table-wrap" id="shop_mypage_orderlist" style="">
-                                            <table class="table no-margin shop-table shop-table2">
-                                                <!-- 주문별 반복구간 -->
+                                            <!--<table class="table no-margin shop-table shop-table2">
+                                                &lt;!&ndash; 주문별 반복구간 &ndash;&gt;
                                                 <colgroup>
                                                     <col>
                                                     <col class="width-6">
@@ -308,7 +308,7 @@ doz_footer_repeat="N" doz_category="default">
                                                 </thead>
                                                 <tbody style="background: #fff;">
                                                 <tr class="content">
-                                                    <!-- 리스트 반복구간 시작 -->
+                                                    &lt;!&ndash; 리스트 반복구간 시작 &ndash;&gt;
                                                     <td class="im-xs-align-top">
                                                         <a class="im-flex im-justify-between"
                                                            href="http://localhost:10001/mypage/order/detail"
@@ -346,7 +346,7 @@ doz_footer_repeat="N" doz_category="default">
                                                                href="http://localhost:10001/mypage/order/detail">주문상세</a>
                                                         </div>
                                                     </td>
-                                                </tr><!-- 리스트 반복구간 종료 -->
+                                                </tr>&lt;!&ndash; 리스트 반복구간 종료 &ndash;&gt;
                                                 </tbody>
                                                 <tbody id="shop_mypage_orderlist_empty" style="display: none">
                                                 <tr style="background: transparent; padding: 0">
@@ -357,9 +357,9 @@ doz_footer_repeat="N" doz_category="default">
                                                     </td>
                                                 </tr>
                                                 </tbody>
-                                            </table><!-- 주문별 반복구간 종 -->
+                                            </table>&lt;!&ndash; 주문별 반복구간 종 &ndash;&gt;
                                             <table class="table no-margin shop-table shop-table2">
-                                                <!-- 주문별 반복구간 -->
+                                                &lt;!&ndash; 주문별 반복구간 &ndash;&gt;
                                                 <colgroup>
                                                     <col>
                                                     <col class="width-6">
@@ -389,7 +389,7 @@ doz_footer_repeat="N" doz_category="default">
                                                 </thead>
                                                 <tbody style="background: #fff;" id="">
                                                 <tr class="content">
-                                                    <!-- 리스트 반복구간 시작 -->
+                                                    &lt;!&ndash; 리스트 반복구간 시작 &ndash;&gt;
                                                     <td class="im-xs-align-top">
                                                         <a class="im-flex im-justify-between"
                                                            href="/shop_mypage/?m2=order&amp;idx=93984774"
@@ -427,9 +427,9 @@ doz_footer_repeat="N" doz_category="default">
                                                                href="javascript:;">주문상세</a>
                                                         </div>
                                                     </td>
-                                                </tr><!-- 리스트 반복구간 종료 -->
+                                                </tr>&lt;!&ndash; 리스트 반복구간 종료 &ndash;&gt;
                                                 </tbody>
-                                                <tbody style="display: none"><!--id="shop_mypage_orderlist_empty"-->
+                                                <tbody style="display: none">&lt;!&ndash;id="shop_mypage_orderlist_empty"&ndash;&gt;
                                                 <tr style="background: transparent; padding: 0">
                                                     <td colspan="2"
                                                         style="padding: 70px; text-align: center;">
@@ -438,7 +438,7 @@ doz_footer_repeat="N" doz_category="default">
                                                     </td>
                                                 </tr>
                                                 </tbody>
-                                            </table><!-- 주문별 반복구간 종 -->
+                                            </table>-->
                                         </div>
                                         <div style="font-size: 15px; padding: 70px; text-align: center; display: none;"
                                              class="body_font_color_40"> <!--id="shop_mypage_orderlist_empty"-->
@@ -468,5 +468,7 @@ doz_footer_repeat="N" doz_category="default">
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/mypage/mypageModule.js"></script>
+<script src="/js/mypage/mypageOrder.js"></script>
 <script src="/js/mypage/mypageCourse.js"></script>
 </html>

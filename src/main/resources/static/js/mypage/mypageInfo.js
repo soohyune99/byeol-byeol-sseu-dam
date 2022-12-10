@@ -1,25 +1,24 @@
 /* mypageInfo.js */
 
-const $file = $("#__BVID__268");
-const $thumbnail = $("#user-profile");
+const memberId = 1;
 
-/* 프로필 사진 변경 시 썸네일 변경 */
+showMyInfo();
 
-$file.on('change', function(e){
-    var reader = new FileReader();
-    let type = e.target.files[0].type;
+function showMyInfo(){
+    mypageService.getMyInfo(
+      memberId, showMyInfoCallback
+    );
+}
 
-    reader.readAsDataURL(e.target.files[0]);
+function showMyInfoCallback(myinfo){
+    let memberPhone = myinfo.memberPhone || "전화번호로 본인인증을 진행해주세요."
+    let memberLoginType = myinfo.memberLoginType == '일반' ? '일반회원' : myinfo.memberLoginType;
 
-    reader.onload = function(e){
-        let url = e.target.result;
-        console.log(url);
-        console.log(url.includes('image'));
+    $("#user-profile").attr('src', myinfo.memberProfileName);
+    // $("#user-profile").attr('alt', 'https://www.jigushop.co.kr/common/img/default_profile.png');
+    $(".member-logtype").html(memberLoginType);
+    $(".member-name").html(myinfo.memberName);
+    $(".member-email").html(myinfo.memberEmail);
+    $(".member-phoneNumber").html(memberPhone);
 
-        if(url.includes('image')){
-            $thumbnail.attr('src', url);
-        } else {
-            $thumbnail.attr('src', 'https://www.jigushop.co.kr/common/img/default_profile.png');
-        }
-    }
-});
+}
