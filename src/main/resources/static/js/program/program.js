@@ -1017,3 +1017,469 @@ function selectKeyword(e){
 //
 //     }
 // });
+
+
+/* ======== 2022 12 09 백업 =========================================================================================================*/
+/* ======== 2022 12 09 백업 =========================================================================================================*/
+/* ======== 2022 12 09 백업 =========================================================================================================*/
+/* ======== 2022 12 09 백업 =========================================================================================================*/
+/* ======== 2022 12 09 백업 =========================================================================================================*/
+/* ======== 2022 12 09 백업 =========================================================================================================*/
+/* ======== 2022 12 09 백업 =========================================================================================================*/
+/* ======== 2022 12 09 백업 =========================================================================================================*/
+//
+// let $searchBar = $("input#__BVID__183"); // 검색창
+//
+// let programStatus= $(".programStatus") || ""; // 프로그램 상태 (모집예정, 모집중, 모집완료, 마감)
+// let keyword = $searchBar.val() || "";;// 검색어
+// let count // 프로그램 수
+//
+// globalThis.pageNumber = 0;
+//
+// /* ================================== Infinite Scroll ==================================*/
+//
+// /* 스크롤을 할때 실행 */
+// $(window).scroll(function(){
+//
+//     let formData = new FormData();
+//     keyword = $searchBar.val() || "";
+//     programStatus= $(".programStatus") || "";
+//
+//     formData.append("keyword", keyword);
+//     formData.append("programStatus",programStatus);
+//     formData.append("pageNumber", globalThis.pageNumber);
+//
+//     // console.log("window.scrollTop: "+$(window).scrollTop()+ "|" + "document.height(): "+$(document).height()+"|"+"window.height():"+$(window).height());
+//
+//     if($(window).scrollTop() >= $(document).height() - $(window).height()){
+//         setTimeout(()=>{
+//             globalThis.pageNumber++;
+//             infiniteScroll(formData, show);//programList
+//             // alert("globalThis.pageNumber"+globalThis.pageNumber); //증가 확인 ok
+//             // alert("pageNumber"+pageNumber);//증가 확인 ok
+//         },400); // 0.4 초 delay ( 중복 불러오는 경우 방지 )
+//     }
+//
+// });
+//
+// /* 스크롤 작동시 실행될 함수 */
+// function infiniteScroll(formData, callback, error){
+//     $.ajax({
+//         url: "/pro/scroll/"+globalThis.pageNumber,
+//         type: "get",
+//         data: {formData,"keyword":keyword, "programStatus":programStatus},
+//         enctype:'multipart/form-data',
+//         catch: false,
+//         contentType: false,
+//         processData: false,
+//         success: function(programs, status, xhr){
+//             if(callback){
+//                 callback(programs);
+//             }
+//         },
+//         error: function(xhr, status, err){
+//             if(error){
+//
+//                 error(err);
+//             }
+//         }
+//     });
+// }
+//
+// /* ================================== / Infinite Scroll ==================================*/
+//
+// globalThis.programFileProfilePath = undefined;
+//
+// /* 전체 program List _ Ajax */
+//
+// show(); // program.html 들어오면 바로 실행되는 함수
+//
+// /* '전체' 클릭시 실행되는 함수  */
+// $(".programAllList").on('click', function () {
+//     show(); // show 실행
+// });
+//
+// /* 원하는 programs로 programList를 실행하는 함수 */
+// function show() {
+//     // alert("show 안에 있는 글로벌디스 "+ globalThis.pageNumber); // 증가 확인 ok
+//     $.ajax({
+//         url: "/pro/scroll/"+globalThis.pageNumber, //전체 programAllList()를 실행한 programs 를 가지고 작동
+//         type: "get",
+//
+//         success: function (programs) {
+//             if (true) {
+//                 programList(programs);
+//                 programCountNum(programs); // 프로그램 수 Count 함수
+//
+//             } else {
+//                 noProgramList(); // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+//                 programCountNum(programs); // 프로그램 수 Count 함수
+//             }
+//         }
+//     });
+// }
+//
+// /* '프로그램 상태' 클릭시 실행되는 함수 */
+// $(".programStatus").on('click', function () {
+//     programStatus = $(this).text(); //programStatus class 의 누른 text로 실행
+//     // alert(programStatus);
+//     $.ajax({
+//         url: "/pro/list/" + programStatus, // 경로 뒤에 programStatus 붙여서 해당 restController 사용
+//         type: "get",
+//         success: function (programs) {
+//             if (programs.length != 0) {
+//                 programList(programs);
+//                 programCountNum(programs); // 프로그램 수 Count 함수
+//             } else {
+//                 noProgramList(); // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+//                 programCountNum(programs); // 프로그램 수 Count 함수
+//             }
+//         }
+//     });
+// });
+//
+//
+// /* keyword 입력시 실행되는 함수 */
+// function searchList(theForm) {
+//     keyword = theForm.enter.value; // keyword = enter키로 작동한 form 태그 안에 있는 값
+//     // keyword = $("#__BVID__183").val(); // keyword = enter키로 작동한 form 태그 안에 있는 값
+//
+//     // 빈칸 입력시
+//     if (keyword == "") {
+//         alert("검색어를 입력하세요");
+//         $keywordBox.hide(); // 추천서비스 닫기
+//         $category.removeClass("router-link-exact-active");
+//         $(".programAllList").addClass("router-link-exact-active");
+//         return false;
+//     }
+//     // 글자 입력시
+//     $.ajax({
+//         url: "/pro/scroll/1", // 경로 뒤에 keyword 붙여서 해당 restController 사용
+//         type: "post",
+//         data: {"keyword":keyword, "programStatus":programStatus},
+//         success: function (programs) {
+//             $category.removeClass("router-link-exact-active");
+//             $(".programAllList").addClass("router-link-exact-active");
+//             $(".keyword-box").hide(); // 엔터 입력시 keyword 박스 닫힘.
+//
+//             if (programs.length != 0) {
+//                 programList(programs);
+//                 programCountNum(programs); // 프로그램 수 Count 함수
+//             } else {
+//                 noProgramList();// 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+//                 programCountNum(programs); // 프로그램 수 Count 함수
+//             }
+//             /* 검색 후 다른 상태 누른 경우 text 내용 없애기 */
+//             $(".programStatus").on('click', function () {
+//                 $searchArea.val("");
+//             });
+//         }
+//     });
+// }
+//
+// /* 해당 프로그램 개수에 따라 article을 반복해서 html에 넣어줄 함수 */
+// function programList(programs) {
+//     let text = "";
+//     console.log("programList안에있는 programs");
+//     console.log(programs)
+//
+//     Array.from(programs.content).forEach(program => {
+//         text += "<article data-v-85c61b32='' data-v-18e85706='' class='product-list-item responsive'>";
+//         text += "<input type='hidden' id='programId' href='" + program.programId + "'>"
+//         /* a태그 안에 link 수정 필요 */
+//         text += "<a data-v-85c61b32='' onclick='moveDetail(this)' data-testid='product-list-item' style='cursor: pointer;'>";
+//         text += "<div data-v-85c61b32='' class='item-image'>";
+//         text += "<article data-v-1a98b297='' data-v-85c61b32='' class='preview-image'>";
+//         text += "<div data-v-1a98b297='' class='image-wrap' style='padding-top: 66.6667%;'>";
+//         /* 해당 이미지 경로 */
+//         text += "<img data-v-1a98b297='' src='" + program.programFileProfilePath + "'>";
+//         text += "</div>";
+//         text += "</article>";
+//         text += "</div>";
+//         text += "<div data-v-85c61b32='' class='service-name'>";
+//         /* 프로그램 상태 : 모집예정 greenIcon , 모집중 blueIcon, 모집완료 redIcon, 마감 grayIcon / class 다르게 줘야함, 수정필요 */
+//         if(program.programStatus == '모집예정'){
+//             text += "<span data-v-85c61b32='' class='programStatusIcon greenIcon'>" + program.programStatus + "</span>";
+//         } else if(program.programStatus == '모집중'){
+//             text += "<span data-v-85c61b32='' class='programStatusIcon blueIcon'>" + program.programStatus + "</span>";
+//         } else if(program.programStatus == '모집완료'){
+//             text += "<span data-v-85c61b32='' class='programStatusIcon redIcon'>" + program.programStatus + "</span>";
+//         } else if(program.programStatus == '마감'){
+//             text += "<span data-v-85c61b32='' class='programStatusIcon grayIcon'>" + program.programStatus + "</span>";
+//         }
+//         text += "</div>";
+//         text += "<div data-v-85c61b32='' class='item-title'>";
+//         text += "<div data-v-a3afae98='' data-v-85c61b32='' class='collapsed'>";
+//         text += "<div data-v-a3afae98='' class='line-clamp'\n" +
+//             "            style='line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;'>";
+//         /* 프로그램 TITLE 들어가는 자리 */
+//         text += "<h3 data-v-85c61b32='' data-v-a3afae98=''> " + program.programName + "</h3>";
+//         text += "</div>";
+//         text += "</div>";
+//         text += "</div>";
+//         text += "</a>";
+//         text += "</article>";
+//
+//     });
+//     $("#programListId").append(text);// #programListId 밑에 반복 해서 text들을 넣어줌
+//     // $("#programListId").append(text); //무한스크롤때 쓰기....하지만 다른기능들이 안됨.....ㅠㅠㅠㅠㅠ
+//     $("#noArticle1").html("");// 프로그램이 없는 경우 ""로 div를 채워줌
+//
+// }
+//
+// /* 해당 프로그램이 없는 경우 보여줄 돋보기 함수 */
+// function noProgramList() {
+//     let text = "";
+//     text += "<div class='infinite-status-prompt'>"
+//     text += "<article class='no-items align-self-center text-center no-items'>"
+//     text += "<i data-v-414f00e5=''><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icHJlZml4X19hIiB4MT0iMCUiIHgyPSIxMDAlIiB5MT0iNTAlIiB5Mj0iNTAlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwQzdBRSIvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0Q0M4RTUiLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBmaWxsPSIjRkZGIiBkPSJNMCAwSDM3NVY2NjdIMHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSB0cmFuc2xhdGUoNDQgMTQ2KSI+CiAgICAgICAgICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjQwIiBmaWxsPSJ1cmwoI3ByZWZpeF9fYSkiIGZpbGwtb3BhY2l0eT0iLjUiIGZpbGwtcnVsZT0ibm9uemVybyIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMTYgNjRMNjQgNjQgNjQgMTYgMTYgMTZ6Ii8+CiAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjMiIGQ9Ik00NS40ODYgMjguNTE1YzQuNjg1IDQuNjg3IDQuNjg1IDEyLjI4MyAwIDE2Ljk3LTQuNjg3IDQuNjg3LTEyLjI4NiA0LjY4Ny0xNi45NyAwLTQuNjg4LTQuNjg3LTQuNjg4LTEyLjI4MyAwLTE2Ljk3IDQuNjg0LTQuNjg3IDEyLjI4My00LjY4NyAxNi45NyAwek00NiA0Nmw5IDkiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=' alt='empty'></i>"
+//     text += "<h3 data-v-414f00e5=''></h3>"
+//     text += "<p data-v-414f00e5='' class='help-block p2'>"
+//     text += "<strong> 선택하신 조건으로 <br> 진행중인 프로그램이 없습니다. </strong><br> 다른 쓰담 프로그램을 탐색해보세요.</p>"
+//     text += "</article>"
+//     text += "</div>"
+//     text += "<div class='infinite-status-prompt noArticle2'>"
+//     text += "</div>"
+//     text += "<div data-v-644ea9c9='' class='infinite-status-prompt noArticle2'>"
+//     text += "<button class='btn-try-infinite'></button>"
+//     text += "</div>"
+//     $("#noArticle1").html(text); // #noArticleProgram 밑에 text들을 넣어줌
+//     $("#programListId").html(""); // 프로그램이 없는 경우 ""로 div를 채워줌
+// }
+//
+// /* 프로그램 수 Count */
+// function programCountNum(programs) {
+//     count = programs.totalElements;
+//     let text = "";
+//     text +="<strong data-v-219a3136=''>" + count + "</strong>"
+//     text +="<span data-v-219a3136=''> 개 서비스 </span>"
+//
+//     $("#totalCountPlace").html(text);
+// }
+//
+// /* 프로그램 클릭시 programId를 이용하여 해당 program 선택 */
+// function moveDetail(obj) {
+//     // alert($(obj).closest(".responsive").find('#programId').attr("href"));
+//     location.href = "/program/detail" + "?programId=" + $(obj).closest(".responsive").find('#programId').attr("href");
+// }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// // let programStatus = null; // 프로그램 상태 (모집예정, 모집중, 모집완료, 마감)
+// // let keyword = null;// 검색어
+//
+// /* ------------------- 검색어 입력시 검색어 가져오기 -------------------- */
+//
+// // id 로 __BVID__183 객체를 가져온다.
+// let input = document.getElementById("__BVID__183");
+// function searchKeyword(value) {
+//     if(value==""){
+//         alert("검색어를 입력하세요");
+//         return;
+//     }
+//
+// }
+// // 가져온 객체에 EventListener 를 추가한다. keypress = 키입력 감지
+// function keyPress(keyword){
+//
+//     input.addEventListener('keypress', function (key) {
+//         // key.key 의 값이 Enter 일 경우 코드 실행
+//         // key.keyCode == 13 도 동일한 기능을 한다.
+//         if (key.key == 'Enter') {
+//              keyword = input.value;
+//             // console.log(keyword); //확인 ok
+//         }
+//     })
+//     return keyword;
+// }
+//
+// // console.log(keyword); //확인 X - null
+//
+// /* -------------------- programStatus 클릭시 text -------------------- */
+// function statusClick(programStatus){
+//     $(".programStatus").on('click', function () {
+//         programStatus = $(this).text();
+//         // console.log(programStatus); // 확인 ok
+//     });
+//     // console.log(programStatus); //확인 X - null
+//     return programStatus;
+// }
+//
+//
+//
+//
+// /* ------------------------- program MAIN  -------------------------- */
+// // programList // 프로그램 개수에 따라 article을 반복
+// // noProgramList // 해당 프로그램이 없는 경우
+//
+// show();
+//
+// // function show(keyword, programStatus) {
+// //     console.log(keyword);//확인 X - undefined
+// //     console.log(programStatus);//확인 X - undefined
+// //
+// //     keyPress(keyword);
+// //     statusClick(programStatus);
+// //
+// //     let search = {keyword, programStatus}
+// //
+// //     $.ajax({
+// //         url: "/prod/list",
+// //         data: JSON.stringify(search),
+// //         type: "get",
+// //         contentType: "application/json; charset=utf-8",
+// //         // dataType: "application/json; charset=utf-8",
+// //         success: function (programs) {
+// //             if(programs.length != 0){
+// //                 alert("ffffff");
+// //                 programList(programs);
+// //             }else {
+// //                 noProgramList();
+// //             }
+// //
+// //
+// //         }
+// //
+// //
+// //
+// //     })
+// // }
+//
+// // let programStatus // 프로그램 상태 (모집예정, 모집중, 모집완료, 마감)
+// // let keyword // 검색어
+// // let count // 프로그램 수
+// //
+// // /* 전체 program List _ Ajax */
+// //
+// // show(); // program.html 들어오면 바로 실행되는 함수
+// //
+// // /* '전체' 클릭시 실행되는 함수  */
+// // $(".programAllList").on('click', function () {
+// //     show(); // show 실행
+// // });
+// //
+// // /* 원하는 programs로 programList를 실행하는 함수 */
+// function show() {
+//     // let search = {keyword, programStatus}
+//     $.ajax({
+//         url: "/prod/list", //전체 programAllList()를 실행한 programs 를 가지고 작동
+//         type: "get",
+//         // data: JSON.stringify(search),
+//         // contentType: "application/json; charset=utf-8",
+//
+//         success: function (programs) {
+//             if (programs.length != 0) {
+//                 programList(programs);
+//                 // programCountNum(programs); // 프로그램 수 Count 함수
+//             } else {
+//                 noProgramList(); // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+//                 // programCountNum(programs); // 프로그램 수 Count 함수
+//             }
+//         }
+//     });
+// }
+//
+//
+//
+// /* ------------------- 프로그램 개수에 따라 article을 반복하는 곳 ----------------------- */
+//
+// function programList(programs) {
+//     let text = "";
+//     programs.forEach(program => {
+//         text += "<article data-v-85c61b32='' data-v-18e85706='' class='product-list-item responsive'>";
+//         text += "<input type='hidden' id='programId' href='" + program.programId + "'>"
+//         /* a태그 안에 link 수정 필요 */
+//         text += "<a data-v-85c61b32='' onclick='moveDetail(this)' data-testid='product-list-item' style='cursor: pointer;'>";
+//         text += "<div data-v-85c61b32='' class='item-image'>";
+//         text += "<article data-v-1a98b297='' data-v-85c61b32='' class='preview-image'>";
+//         text += "<div data-v-1a98b297='' class='image-wrap' style='padding-top: 66.6667%;'>";
+//         /* 해당 이미지 경로 */
+//         text += "<img data-v-1a98b297='' src='" + program.programFileProfilePath + "'>";
+//         text += "</div>";
+//         text += "</article>";
+//         text += "</div>";
+//         text += "<div data-v-85c61b32='' class='service-name'>";
+//         /* 프로그램 상태 : 모집예정 greenIcon , 모집중 blueIcon, 모집완료 redIcon, 마감 grayIcon / class 다르게 줘야함, 수정필요 */
+//         if (program.programStatus == '모집예정') {
+//             text += "<span data-v-85c61b32='' class='programStatusIcon greenIcon'>" + program.programStatus + "</span>";
+//         } else if (program.programStatus == '모집중') {
+//             text += "<span data-v-85c61b32='' class='programStatusIcon blueIcon'>" + program.programStatus + "</span>";
+//         } else if (program.programStatus == '모집완료') {
+//             text += "<span data-v-85c61b32='' class='programStatusIcon redIcon'>" + program.programStatus + "</span>";
+//         } else if (program.programStatus == '마감') {
+//             text += "<span data-v-85c61b32='' class='programStatusIcon grayIcon'>" + program.programStatus + "</span>";
+//         }
+//         text += "</div>";
+//         text += "<div data-v-85c61b32='' class='item-title'>";
+//         text += "<div data-v-a3afae98='' data-v-85c61b32='' class='collapsed'>";
+//         text += "<div data-v-a3afae98='' class='line-clamp'\n" +
+//             "            style='line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;'>";
+//         /* 프로그램 TITLE 들어가는 자리 */
+//         text += "<h3 data-v-85c61b32='' data-v-a3afae98=''> " + program.programName + "</h3>";
+//         text += "</div>";
+//         text += "</div>";
+//         text += "</div>";
+//         text += "</a>";
+//         text += "</article>";
+//
+//     });
+//     $("#programListId").html(text);// #programListId 밑에 반복 해서 text들을 넣어줌
+//     $("#noArticle1").html("");// 프로그램이 없는 경우 ""로 div를 채워줌
+// }
+//
+// /* ------------------- 해당 프로그램이 없는 경우 보여줄 돋보기 함수 ----------------------- */
+//
+// function noProgramList() {
+//     let text = "";
+//     text += "<div class='infinite-status-prompt'>"
+//     text += "<article class='no-items align-self-center text-center no-items'>"
+//     text += "<i data-v-414f00e5=''><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icHJlZml4X19hIiB4MT0iMCUiIHgyPSIxMDAlIiB5MT0iNTAlIiB5Mj0iNTAlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwQzdBRSIvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0Q0M4RTUiLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBmaWxsPSIjRkZGIiBkPSJNMCAwSDM3NVY2NjdIMHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSB0cmFuc2xhdGUoNDQgMTQ2KSI+CiAgICAgICAgICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjQwIiBmaWxsPSJ1cmwoI3ByZWZpeF9fYSkiIGZpbGwtb3BhY2l0eT0iLjUiIGZpbGwtcnVsZT0ibm9uemVybyIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMTYgNjRMNjQgNjQgNjQgMTYgMTYgMTZ6Ii8+CiAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjMiIGQ9Ik00NS40ODYgMjguNTE1YzQuNjg1IDQuNjg3IDQuNjg1IDEyLjI4MyAwIDE2Ljk3LTQuNjg3IDQuNjg3LTEyLjI4NiA0LjY4Ny0xNi45NyAwLTQuNjg4LTQuNjg3LTQuNjg4LTEyLjI4MyAwLTE2Ljk3IDQuNjg0LTQuNjg3IDEyLjI4My00LjY4NyAxNi45NyAwek00NiA0Nmw5IDkiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=' alt='empty'></i>"
+//     text += "<h3 data-v-414f00e5=''></h3>"
+//     text += "<p data-v-414f00e5='' class='help-block p2'>"
+//     text += "<strong> 선택하신 조건으로 <br> 진행중인 프로그램이 없습니다. </strong><br> 다른 쓰담 프로그램을 탐색해보세요.</p>"
+//     text += "</article>"
+//     text += "</div>"
+//     text += "<div class='infinite-status-prompt noArticle2'>"
+//     text += "</div>"
+//     text += "<div data-v-644ea9c9='' class='infinite-status-prompt noArticle2'>"
+//     text += "<button class='btn-try-infinite'></button>"
+//     text += "</div>"
+//     $("#noArticle1").html(text); // #noArticleProgram 밑에 text들을 넣어줌
+//     $("#programListId").html(""); // 프로그램이 없는 경우 ""로 div를 채워줌
+// }
+//
+// /* ------------------------- 프로그램 수 Count ---------------------------- */
+// // 한번에 length로 받을 수 있으면 하기
+// function programCountNum(programs) {
+//     count = programs.length;
+//     let text = "";
+//     text +="<strong data-v-219a3136=''>" + count + "</strong>"
+//     text +="<span data-v-219a3136=''> 개 서비스 </span>"
+//
+//     $("#totalCountPlace").html(text);
+// }
+//
+// /* 프로그램 클릭시 programId를 이용하여 해당 program 선택 */
+// function moveDetail(obj) {
+//     // alert($(obj).closest(".responsive").find('#programId').attr("href"));
+//     location.href = "/program/detail" + "?programId=" + $(obj).closest(".responsive").find('#programId').attr("href");
+// }
