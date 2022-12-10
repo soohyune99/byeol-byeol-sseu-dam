@@ -11,9 +11,9 @@ import java.util.List;
 @Service
 public interface ReviewService {
 
-    public Review saveReview(ReviewDTO reviewDTO);
-    public void updateReview(ReviewDTO reviewDTO, Review review);
+    public List<ReviewDTO> getReviewList(Long productId);
 
-    // 상품 리뷰 조회
-    public List<ReviewDTO> showReview(Long productId);
+    public List<ReviewDTO> getMoreReview(Long productId, int page);
+
+    public void saveReview(ReviewDTO ReviewDTO);
 }

@@ -1,7 +1,6 @@
 package com.app.byeolbyeolsseudam.repository.product;
 
 import com.app.byeolbyeolsseudam.domain.Criteria;
-import com.app.byeolbyeolsseudam.domain.notice.NoticeDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
 

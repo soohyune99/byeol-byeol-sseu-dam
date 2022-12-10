@@ -36,7 +36,7 @@
                                                 <div data-v-e4caeaf8="">
                                                     <article tabindex="-1" class="preview-image" style="width:100%;display:inline-block;" data-v-1a98b297="" data-v-5a004a22="" data-v-e4caeaf8="">
                                                         <div class="image-wrap">
-                                                            <img src="/images/market/kitchen2.png" data-v-1a98b297="">
+<!--                                                            <img src="/images/market/kitchen2.png" data-v-1a98b297="">-->
                                                         </div>
                                                     </article>
                                                 </div>
@@ -80,11 +80,11 @@
                         </section>
 
                         <a id="review"></a>
+                        <!-- 리뷰 별 평균 -->
                         <section class="categorize review-box">
                             <div class="_detail_detail_wrap fr-view" id="fixed_tab">
                                 <div class="review_summary_wrap _review_summary_wrap " style="display: block;">
                                     <div class="summary_table">
-                                        <!-- 평점 -->
                                         <div class="rating_point_wrap">
                                             <div class="interlock_star_point inline-blocked">
                                                 <a class="bts bt-star active"></a>
@@ -140,8 +140,11 @@
                                 <a href="javascript:openReviewModal();" class="btn btn-primary review-btn" role="button" style="float: right;">
                                     구매평 작성
                                 </a>
+
                                 <!-- 리뷰 쓰는 곳-->
                                 <div class="review_top margin-top-xxxl margin-bottom-xl" id="review_top">
+
+                                    <!--리뷰 별점 -->
                                     <div data-v-46ebf5ea="" data-v-7b931710="" class="star-rate-wrapper">
                                         <section data-v-5bd6bb59="" data-v-46ebf5ea="" class="provider-star-rate" data-v-7b931710="">
                                             <h2 data-v-5bd6bb59="" class="title">✏️제품은 어떠셨나요?</h2>
@@ -267,16 +270,19 @@
                                         <input type="hidden" name="review_comment_token" value="TInRex1/D9VTWV4fHL/SeDuga8+er1EraFQHAhLGsxLQqb37ORZvjtYK1wiJdQ8GUE3UY2rEPpFTcLIqC1tK3FpnkTLskp2TrDItQzPVc/JsjqeO6oV2EqhDPkqXSooH">
                                         <input type="hidden" name="review_comment_token_key" value="6619">
                                         <div class="postmeta comment-comment">
-                                            <!--댓글에 댓글을 입력할 경우-->
+                                            <!--리뷰 작성 창-->
                                             <div class="textarea_block">
-                                                <textarea placeholder="구매평을 작성하세요." name="body" id="review_comment_body"></textarea>
+                                                <textarea placeholder="구매평을 작성하세요." name="review-input" id="review_comment_body"></textarea>
                                                 <div class="file-add-block margin-bottom-xl" style="display: none;" id="review_comment_image_box_c202206217f7c30ccb91ca"></div>
-                                                <a href="javascript:void(0)" class="finish btn btn-brand btn-sm _style">등록</a>
+                                                <a href="" class="write-review-submit finish btn btn-brand btn-sm _style">등록</a>
                                                 <div class="inline-blocked holder icon-wrap">
                                                     <i class="icon-picture icon vertical-middle holder">
                                                         <img data-v-60f50a1e="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=" alt="이미지 첨부" class="attach-image-icon">
                                                         <input type="hidden" name="use_secret_review" id="use_secret_review" value="N">
-                                                        <input type="file" multiple="" class="comment_image_upload" id="review_image_upload_btn_c202206217f7c30ccb91ca">
+<!--                                                        <input type="file" name="uploadFile" class="comment_image_upload" id="review_image_upload_btn_c202206217f7c30ccb91ca" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp" enctype="multipart/form-data">-->
+                                                        <input type="file" id="file-input" name="uploadFile"
+                                                               accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
+                                                               class="comment_image_upload" style="z-index: -5;">
                                                     </i>
                                                 </div>
                                             </div>
@@ -284,130 +290,58 @@
 <!--                                    </form>-->
                                 </div>
 
+                                <!-- 리뷰 조회 -->
                                 <ul class="list_review_wrap">
                                     <li class="list_review_inner _show_more_review _comment_c20221106fbfb68ae0a11a">
-                                        <div class="tabled full-width">
-                                            <div class="table-cell vertical-top txt_wrap">
+                                        <!--<div class="tabled full-width">-->
+                                            <!--<div class="table-cell vertical-top txt_wrap">
                                                 <div class="interlock_star_point inline-blocked">
                                                     <div class="star_point_wrap">
-                                                        <a class="bts bt-star active">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 102" width="15" height="15" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">
-                                                                <defs>
-                                                                    <clipPath id="__lottie_element_2">
-                                                                        <rect width="102" height="102" x="0" y="0"></rect>
-                                                                    </clipPath>
-                                                                </defs>
-                                                                <g clip-path="url(#__lottie_element_2)">
-                                                                    <g transform="matrix(1,0,0,1,51,50.42300033569336)" opacity="1" style="display: block;">
-                                                                        <g opacity="1" transform="matrix(3,0,0,3,0,0)">
-                                                                            <path fill="rgb(255,206,33)" fill-opacity="1" d=" M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934"></path>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="bts bt-star active">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 102" width="15" height="15" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">
-                                                                <defs>
-                                                                    <clipPath id="__lottie_element_2">
-                                                                        <rect width="102" height="102" x="0" y="0"></rect>
-                                                                    </clipPath>
-                                                                </defs>
-                                                                <g clip-path="url(#__lottie_element_2)">
-                                                                    <g transform="matrix(1,0,0,1,51,50.42300033569336)" opacity="1" style="display: block;">
-                                                                        <g opacity="1" transform="matrix(3,0,0,3,0,0)">
-                                                                            <path fill="rgb(255,206,33)" fill-opacity="1" d=" M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934"></path>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="bts bt-star active">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 102" width="15" height="15" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">
-                                                                <defs>
-                                                                    <clipPath id="__lottie_element_2">
-                                                                        <rect width="102" height="102" x="0" y="0"></rect>
-                                                                    </clipPath>
-                                                                </defs>
-                                                                <g clip-path="url(#__lottie_element_2)">
-                                                                    <g transform="matrix(1,0,0,1,51,50.42300033569336)" opacity="1" style="display: block;">
-                                                                        <g opacity="1" transform="matrix(3,0,0,3,0,0)">
-                                                                            <path fill="rgb(255,206,33)" fill-opacity="1" d=" M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934"></path>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="bts bt-star active">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 102" width="15" height="15" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">
-                                                                <defs>
-                                                                    <clipPath id="__lottie_element_2">
-                                                                        <rect width="102" height="102" x="0" y="0"></rect>
-                                                                    </clipPath>
-                                                                </defs>
-                                                                <g clip-path="url(#__lottie_element_2)">
-                                                                    <g transform="matrix(1,0,0,1,51,50.42300033569336)" opacity="1" style="display: block;">
-                                                                        <g opacity="1" transform="matrix(3,0,0,3,0,0)">
-                                                                            <path fill="rgb(255,206,33)" fill-opacity="1" d=" M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934"></path>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                            </svg>
-                                                        </a>
-                                                        <a class="bts bt-star active">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 102" width="15" height="15" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">
-                                                                <defs>
-                                                                    <clipPath id="__lottie_element_2">
-                                                                        <rect width="102" height="102" x="0" y="0"></rect>
-                                                                    </clipPath>
-                                                                </defs>
-                                                                <g clip-path="url(#__lottie_element_2)">
-                                                                    <g transform="matrix(1,0,0,1,51,50.42300033569336)" opacity="1" style="display: block;">
-                                                                        <g opacity="1" transform="matrix(3,0,0,3,0,0)">
-                                                                            <path fill="rgb(255,206,33)" fill-opacity="1" d=" M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934"></path>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                            </svg>
-                                                        </a>
+                                                        <a class="bts bt-star active"></a>
                                                     </div>
                                                 </div>
-                                                <div class="reviews"></div>
+                                                <div class="text-13 margin-bottom-xl body_font_color_70">
+                                                    <span class="prod_option">[옵션] 색상: 그린</span>
+                                                </div>
+                                                <div class="text-14">
+                                                    <span class="txt _txt _review_body _block_ _review_code_c202208031f8f652f3b1f7" block-review-code="c202208031f8f652f3b1f7" block="false">
+                                                        <div class="dummy _dummy"><br><br><br><br><br><br><br></div>
+                                                        가방 너무 귀여워요!! 많이 들어가요!<br>
+                                                    </span>
+                                                    <span class="_block_review_command_" style="display: block"></span>
+                                                </div>-->
+
+                                                <!--<div class="clearfix thumb_img_wrap margin-top-xxl _review_img _block_">
+                                                    <div class="blocked float_l thumb-wrap">
+                                                        <div class="board_thumb" style="background: url(https://cdn.imweb.me/thumbnail/20220827/8fd6f43a558b4.jpg) center center no-repeat; background-size: cover">
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+
+                                                <<div class="thumb_detail_img_wrap margin-top-xl margin-bottom-xxxl _review_img _block_">
+<!--                                                    <img src="https://phinf.pstatic.net/checkout.phinf/20220803_52/1659529431591EC7Ka_JPEG/9471E4B3-33AD-4D4A-9B1F-BB86CFE1C907.jpeg?type=w640" style="max-width: 640px; margin-top: 10px;">-->
+                                                </div>
+                                                <!--<div class="review_comment_wrap_c202208031f8f652f3b1f7">
+                                                </div>
+                                                </span>
                                             </div>
-                                        </div>
+                                            <div class="table-cell vertical-top width-5 text-13 use_summary">
+                                                <div>kdin****</div>
+                                                <div>2022-08-03 21:24</div>
+                                                <div class="margin-top-xxl text-12 review_tools clearfix">
+                                                </div>
+                                            </div>
+                                        </div>-->
                                     </li>
                                 </ul>
-                                <!-- 페이징 -->
-                                <nav class="paging-block">
-                                    <ul class="pagination">
-                                        <li>
-                                            <a href="javascript:;" class="disabled">
-                                                <i aria-hidden="true" class="icon-arrow-left"></i>
-                                            </a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="javascript:;">1</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">3</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">4</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" class="disabled">
-                                                <i aria-hidden="true" class="icon-arrow-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
                             </div>
                         </section>
                     </div>
                 </div>
+
+
+
+                <!-- 상품 소개 및 주문 장바구니 -->
 <!--                <form  method="post" class="count-form">-->
                 <div class="flex-aside right" data-v-08563466="">
                     <div class="product-controller" data-v-08563466="">
@@ -602,6 +536,8 @@
             </article>
         </div>
     </div>
+
+    <!-- 장바구니 담았다는 모달 -->
     <div tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" class="modal in modal_site_alert" id="shop_detail_add_cart_alarm">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -617,6 +553,8 @@
             </div>
         </div>
     </div>
+
+    <!-- 리뷰는 구매한 사람만 작성-->
     <div class="swal2-container swal2-center sg-swal swal2-shown" style="overflow-y: auto;">
         <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="width: 320px; display: flex;">
             <div class="swal2-header">
@@ -632,12 +570,14 @@
             <div class="swal2-footer" style="display: none;"></div>
         </div>
     </div>
+
+
 </div>
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/market/marketModule.js"></script>
+<script src="/js/market/reviewModule.js"></script>
 <script src="/js/market/marketDetail.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
-<script src="/js/market/review.js"></script>
 </html>
