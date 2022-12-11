@@ -34,6 +34,34 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
     }
 
     @Override
+    public List<ReviewDTO> getAllReviewList(Long productId){
+        return jpaQueryFactory.select(new QReviewDTO(
+                review.reviewId, review.reviewContent, review.reviewStar,
+                review.product.productId,review.member.memberId,
+                review.member.memberName,review.reviewFileName,
+                review.reviewFilePath, review.reviewFileUuid,
+                review.createdDate))
+                .from(review)
+                .where(review.product.productId.eq(productId))
+                .orderBy(review.createdDate.desc())
+                .fetch();
+    }
+
+    @Override
+    public List<ReviewDTO> getReviewFileList(Long productId){
+        return jpaQueryFactory.select(new QReviewDTO(
+                review.reviewId, review.reviewContent, review.reviewStar,
+                review.product.productId,review.member.memberId,
+                review.member.memberName,review.reviewFileName,
+                review.reviewFilePath, review.reviewFileUuid,
+                review.createdDate))
+                .from(review)
+                .where(review.product.productId.eq(productId).and(review.reviewFileName.isNotNull()))
+                .orderBy(review.createdDate.desc())
+                .fetch();
+    }
+
+    @Override
     public List<ReviewDTO> getMoreReview(Long productId, int page){
         return jpaQueryFactory.select(new QReviewDTO(
                 review.reviewId, review.reviewContent, review.reviewStar,
@@ -48,4 +76,5 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
                 .limit(5)
                 .fetch();
     }
+
 }

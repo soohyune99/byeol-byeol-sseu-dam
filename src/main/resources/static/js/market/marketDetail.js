@@ -1,6 +1,5 @@
 /* marketDetail.html */
 // let $purchaseBtn = $(".purchase-btn");
-// let $productCount = document.getElementById('orderCount').value;
 
 // getedNumber();
 
@@ -27,6 +26,8 @@ let $deleteFileBtn = $("img.delete-badge");
 
 /* 리뷰 별점 */
 globalThis.starRateTemp = 0;
+/* 페이지 */
+globalThis.page = 1;
 
 /* 장바구니 모달 열기 */
 function basketModalOpen(){
@@ -151,6 +152,10 @@ console.log("js 들어옴");
 let url = decodeURI(window.location.href).split("/");
 let productId = url[url.length - 1];
 
+/* 상품 수량 */
+let $productCount = document.getElementById('orderCount').value;
+console.log($productCount);
+
 readProduct(productId);
 
 /* 상품 상세 조회 */
@@ -227,7 +232,7 @@ $(".starRate").on('click', function(){
 });
 
 /* 댓글 사진 첨부 시 div 생성 */
-$file.on('change', function (e) {
+/*$file.on('change', function (e) {
     var reader = new FileReader();
     let type = e.target.files[0].type;
 
@@ -253,7 +258,7 @@ $file.on('change', function (e) {
             return;
         }
     }
-});
+});*/
 
 /* 첨부파일 x 클릭 시 div 삭제 */
 $(".textarea_block").on('click', '.delete-badge', function(){
@@ -265,44 +270,29 @@ $(".textarea_block").on('click', '.delete-badge', function(){
 
 /* 포토리뷰 클릭 시 사진 확대하기 */
 $(".thumb_detail_img_wrap").on('click', function(){
+    console.log("포토사진 클릭");
     let $flag = $(this).find('img').css('width');
     $flag = $flag == '80px'? '350px' : '80px';
 
     $(this).find('img').eq(0).css({'width':  $flag, 'height':  $flag});
 });
 
-/*function getedNumber(){
-    $("input[name='inputValue']").val(product);
+/* 주문하기 버튼 누를 시 */
+/*let $purchaseBtn = $(".purchase-btn");
+
+$purchaseBtn.on("click", function() {
+    orderService
 }*/
 
+
 /* ================================== Review ==================================*/
-globalThis.page = 1;
 let reviewCount = 0;
 let realReviewCount = 0;
 let $reviewFileForm = $("input[name='uploadFile']");
 let $reviewContent = $("textarea[name='review-input']");
+let $reviewStar = $("path.starRate");
 let $reviewSubmitBtn = $(".write-review-submit");
-
-/* 이름 마스킹 */
-/*name : function(str){
-    let originStr = str;
-    let maskingStr;
-    let strLength;
-
-    if(this.checkNull(originStr) == true){
-        return originStr;
-    }
-
-    strLength = originStr.length;
-
-    if(strLength < 3){
-        maskingStr = originStr.replace(/(?<=.{1})./gi, "*");
-    }else {
-        maskingStr = originStr.replace(/(?<=.{2})./gi, "*");
-    }
-
-    return maskingStr;
-}*/
+let $reviewPhotoBtn = $(".photo_button");
 
 showReview();
 
@@ -315,10 +305,12 @@ function showReview() {
 
 /* 리뷰 더보기 눌렀을 시 */
 function clickMoreReviewBtn(){
-    console.log("더보기 누름누름");
     if(globalThis.page != 0) {
         $(".comment-more-btn").remove();
     }
+    console.log("더보기");
+    console.log(globalThis.page);
+    console.log(typeof globalThis.page);
 
     reviewService.getMoreReview(
         productId, globalThis.page, showReviewMore
@@ -326,27 +318,14 @@ function clickMoreReviewBtn(){
     globalThis.page++;
 }
 
+/* 사진 리뷰만 보기 눌렀을 시 */
+$reviewPhotoBtn.on("click", function() {
+    console.log("포토 리뷰만 버튼 누름");
+    showPhoto();
+});
 
-/* 리뷰 작성 */
-$reviewSubmitBtn.on("click", function(){
-    console.log("리뷰작성");
-    saveReview();
-})
-
-function saveReview(){
-    reviewService.save({
-        productId: productId,
-        memberId: 1,
-        reviewContent : $reviewContent.val(),
-        reviewFileName: $("input[name='uploadFile']").val(),
-        reviewStar: globalThis.starRateTemp,
-        reviewFilePath: $("input[name='reviewFilePath']").val(),
-        reviewFileUuid: $("input[name='reviewFileUuid']").val(),
-    }, function(){
-        $reviewContent.val('');
-        console.log("리뷰 작성 성공");
-        showReview();
-    });
+function showPhoto() {
+    reviewService.getPhotoReview(productId,showPhotoReview);
 }
 
 /* 리뷰 첨부파일 등록 시 upload 저장 */
@@ -355,18 +334,46 @@ $reviewFileForm.on('change', function () {
     reviewService.uploadReviewFile(
         file, afterUploadReviewFile
     );
-
 });
+
+console.log($reviewSubmitBtn);
+
+/* 리뷰 작성 */
+$reviewSubmitBtn.on("click", function(){
+    console.log("리뷰 작성 버튼 누름");
+    saveReview();
+})
+
+function saveReview(){
+    if(!$reviewContent.val() || !globalThis.starRateTemp){
+        alert("리뷰를 다 입력하세요");
+        $reviewSubmitBtn.removeClass("active");
+        return;
+    }
+    reviewService.save({
+        productId: productId,
+        memberId: 1,
+        reviewContent : $reviewContent.val(),
+        reviewStar: globalThis.starRateTemp,
+        reviewFileName: $("input[name='reviewFileName']").val()
+    }, function(){
+        $reviewContent.val('');
+        $reviewStar.val("");
+        $("input[name='reviewFileName']").val('');
+        $reviewSubmitBtn.removeClass("active");
+        console.log("등록 성공")
+        showReview();
+    });
+}
+
 
 function showReviewList(reviews) {
     let text = "";
 
-    console.log(reviews);
     reviews.forEach(review => {
         text += `<div class="tabled full-width">`;
         text += `<div class="table-cell vertical-top txt_wrap">`;
         text += `<div class="interlock_star_point inline-blocked">`;
-
         text += `<div class="star_point_wrap">`;
         text += `<a class="bts bt-star active"></a>`;
         text += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 102" width="15" height="15" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">`;
@@ -384,7 +391,6 @@ function showReviewList(reviews) {
         text += `</g>`;
         text += `</svg>`;
         text += `</div>`;
-
         text += `</div>`;
         text += `<div class="text-13 margin-bottom-xl body_font_color_70">`;
         text += `<span class="prod_option"></span>`;
@@ -396,6 +402,16 @@ function showReviewList(reviews) {
         text += `</span>`;
         text += `<span class="_block_review_command_" style="display: block"></span>`;
         text += `</div>`;
+        text += `<div class="clearfix thumb_img_wrap margin-top-xxl _review_img _block_">`;
+        text += `<div class="blocked float_l thumb-wrap">`;
+        text += `<div class="board_thumb" style="background: url(https://cdn.imweb.me/thumbnail/20220826/944ecbb77f63c.jpg) center center no-repeat; background-size: cover">`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `<div class="thumb_detail_img_wrap margin-top-xl margin-bottom-xxxl _review_img _block_">`;
+        text += review.reviewFileName != null ? `<img src="` + review.reviewFileName + `" style="max-width: 640px; margin-top: 10px;" alt="2">`: '';
+        text += `</div>`;
+        text += `<span class="_block_review_command_" style="display: block">`;
         text += `<div class="review_comment_wrap_c202208031f8f652f3b1f7">`;
         text += `</div>`;
         text += `</span>`;
@@ -409,19 +425,62 @@ function showReviewList(reviews) {
         text += `</div>`;
     });
 
-
     if(reviews.length >= 5){
         text += `<button onclick="javascript:clickMoreReviewBtn();" class="comment-more-btn" style="width: 100%; background: transparent; border: none; font-size: 12px;">더보기</button>`;
     }
+
     $(".list_review_inner").html(text);
     $file.removeAttr('disabled');
     $(".attach-image-icon").css('cursor', 'pointer');
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
+
+    reviewService.getReviewStarRate(
+        productId, reviewCallback
+    )
 }
 
+/* 별점 평균 */
+let total = 0;
+let avg = 0;
+let totalOne = 0;
+let totalTwo = 0;
+let totalThree = 0;
+let totalFour = 0;
+let totalFive = 0;
+
+function reviewCallback(reviews){
+    reviews.forEach(review => {
+        total += review.reviewStar
+
+        if(review.reviewStar == 5){
+            totalFive++;
+        }else if(review.reviewStar == 4){
+            totalFour++;
+        }else if(review.reviewStar == 3){
+            totalThree++;
+        }else if(review.reviewStar == 2){
+            totalTwo++;
+        }else{
+            totalOne++;
+        }
+    })
+    avg = total / reviews.length;
+    $(".rating_point").html(avg.toFixed(1));
+    $(".review_count").html("총" + reviews.length + "개의 구매평");
+    $(".five_bar").css('width', (totalFive / total * 100) + "%");
+    $(".four_bar").css('width', (totalFour / total * 100) + "%");
+    $(".three_bar").css('width', (totalThree / total * 100) + "%");
+    $(".two_bar").css('width', (totalTwo / total * 100) + "%");
+    $(".one_bar").css('width', (totalOne / total * 100) + "%");
+    console.log("별점 최대값");
+    console.log(Math.max(totalOne, totalTwo, totalThree, totalFour, totalFive));
+    (Math.max(totalOne, totalTwo, totalThree, totalFour, totalFive).eq($(".rating_bar").addClass("active")));
+
+
+    total = 0;
+}
 /* 더보기 */
 function showReviewMore(reviews) {
-    console.log("더보기 누름");
     let text ="";
 
     reviews.forEach(review => {
@@ -456,6 +515,16 @@ function showReviewMore(reviews) {
         text += `</span>`;
         text += `<span class="_block_review_command_" style="display: block"></span>`;
         text += `</div>`;
+        text += `<div class="clearfix thumb_img_wrap margin-top-xxl _review_img _block_">`;
+        text += `<div class="blocked float_l thumb-wrap">`;
+        text += `<div class="board_thumb" style="background: url(https://cdn.imweb.me/thumbnail/20220826/944ecbb77f63c.jpg) center center no-repeat; background-size: cover">`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `<div class="thumb_detail_img_wrap margin-top-xl margin-bottom-xxxl _review_img _block_">`;
+        text += review.reviewFileName != null ? `<img src="` + review.reviewFileName + `" style="max-width: 640px; margin-top: 10px;" alt="2">`: '';
+        text += `</div>`;
+        text += `<span class="_block_review_command_" style="display: block">`;
         text += `<div class="review_comment_wrap_c202208031f8f652f3b1f7">`;
         text += `</div>`;
         text += `</span>`;
@@ -478,20 +547,84 @@ function showReviewMore(reviews) {
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
 }
 
+/* 포토 리뷰만 */
+function showPhotoReview(reviews) {
+    let text ="";
 
+    reviews.forEach(review => {
+        text += `<div class="tabled full-width">`;
+        text += `<div class="table-cell vertical-top txt_wrap">`;
+        text += `<div class="interlock_star_point inline-blocked">`;
+        text += `<div class="star_point_wrap">`;
+        text += `<a class="bts bt-star active"></a>`;
+        text += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102 102" width="15" height="15" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">`;
+        text += `<defs>`;
+        text += `<clipPath id="__lottie_element_2">`;
+        text += `<rect width="102" height="102" x="0" y="0"></rect>`;
+        text += `</clipPath>`;
+        text += `</defs>`;
+        text += `<g clip-path="url(#__lottie_element_2)">`;
+        text += `<g transform="matrix(1,0,0,1,51,50.42300033569336)" opacity="1" style="display: block;">`;
+        text += `<g opacity="1" transform="matrix(3,0,0,3,0,0)">`;
+        text += `<path fill="rgb(255,206,33)" fill-opacity="1" d=" M2.369999885559082,-12.887999534606934 C2.369999885559082,-12.887999534606934 5.730000019073486,-6.3480000495910645 5.730000019073486,-6.3480000495910645 C5.730000019073486,-6.3480000495910645 13.229999542236328,-5.297999858856201 13.229999542236328,-5.297999858856201 C15.399999618530273,-4.998000144958496 16.270000457763672,-2.427999973297119 14.699999809265137,-0.9580000042915344 C14.699999809265137,-0.9580000042915344 9.270000457763672,4.131999969482422 9.270000457763672,4.131999969482422 C9.270000457763672,4.131999969482422 10.550000190734863,11.321999549865723 10.550000190734863,11.321999549865723 C10.920000076293945,13.402000427246094 8.649999618530273,14.991999626159668 6.710000038146973,14.01200008392334 C6.710000038146973,14.01200008392334 0,10.612000465393066 0,10.612000465393066 C0,10.612000465393066 -6.710000038146973,14.01200008392334 -6.710000038146973,14.01200008392334 C-8.649999618530273,14.991999626159668 -10.920000076293945,13.402000427246094 -10.550000190734863,11.321999549865723 C-10.550000190734863,11.321999549865723 -9.270000457763672,4.131999969482422 -9.270000457763672,4.131999969482422 C-9.270000457763672,4.131999969482422 -14.699999809265137,-0.9580000042915344 -14.699999809265137,-0.9580000042915344 C-16.270000457763672,-2.427999973297119 -15.399999618530273,-4.998000144958496 -13.229999542236328,-5.297999858856201 C-13.229999542236328,-5.297999858856201 -5.730000019073486,-6.3480000495910645 -5.730000019073486,-6.3480000495910645 C-5.730000019073486,-6.3480000495910645 -2.369999885559082,-12.887999534606934 -2.369999885559082,-12.887999534606934 C-1.399999976158142,-14.777999877929688 1.399999976158142,-14.777999877929688 2.369999885559082,-12.887999534606934"></path>`;
+        text += `</g>`;
+        text += `</g>`;
+        text += `</g>`;
+        text += `</svg>`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `<div class="text-13 margin-bottom-xl body_font_color_70">`;
+        text += `<span class="prod_option"></span>`;
+        text += `</div>`;
+        text += `<div class="text-14">`;
+        text += `<span class="txt _txt _review_body _block_ _review_code_c2022112817dddb73ae187" block-review-code="c2022112817dddb73ae187" block="false">`;
+        text += `<div class="dummy _dummy"><br><br><br><br><br><br><br></div>`;
+        text +=  review.reviewContent + `<br>`;
+        text += `</span>`;
+        text += `<span class="_block_review_command_" style="display: block"></span>`;
+        text += `</div>`;
+        text += `<div class="clearfix thumb_img_wrap margin-top-xxl _review_img _block_">`;
+        text += `<div class="blocked float_l thumb-wrap">`;
+        text += `<div class="board_thumb" style="background: url(https://cdn.imweb.me/thumbnail/20220826/944ecbb77f63c.jpg) center center no-repeat; background-size: cover">`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `<div class="thumb_detail_img_wrap margin-top-xl margin-bottom-xxxl _review_img _block_">`;
+        text += review.reviewFileName != null ? `<img src="` + review.reviewFileName + `" style="max-width: 640px; margin-top: 10px;" alt="2">`: '';
+        text += `</div>`;
+        text += `<span class="_block_review_command_" style="display: block">`;
+        text += `<div class="review_comment_wrap_c202208031f8f652f3b1f7">`;
+        text += `</div>`;
+        text += `</span>`;
+        text += `</div>`;
+        text += `<div class="table-cell vertical-top width-5 text-13 use_summary">`;
+        text += `<div>` + review.memberName + `</div>`;
+        text += `<div>` + reviewService.timeForToday(review.createdDate)+ `</div>`;
+        text += `<div class="margin-top-xxl text-12 review_tools clearfix">`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `</div>`;
+    });
+
+    if(reviews.length >= 5){
+        text += `<button onclick="javascript:clickMoreReviewBtn();" class="comment-more-btn" style="width: 100%; background: transparent; border: none; font-size: 12px;">더보기</button>`;
+    }
+    $(".list_review_inner").append(text);
+    $file.removeAttr('disabled');
+    $(".attach-image-icon").css('cursor', 'pointer');
+    $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
+}
 
 function afterUploadReviewFile(file) {
     let text = "";
-    text += `<div class="clearfix thumb_img_wrap margin-top-xxl _review_img _block_">`;
-    text += `<div class="blocked float_l thumb-wrap">`;
-    text += `<div class="board_thumb" style="center center no-repeat; background-size: cover">`;
+    text += `<div data-v-60f50a1e="" class="image-preview after-upload">`;
+    text += `<img data-v-60f50a1e="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik01LjM2NCA0LjIzNGEuNzk4Ljc5OCAwIDEgMC0xLjEzIDEuMTNMNi44NyA4LjAwMWwtMi42MzcgMi42MzZhLjguOCAwIDAgMCAxLjEzIDEuMTI5TDggOS4xM2wyLjYzNiAyLjYzNWEuNzk4Ljc5OCAwIDEgMCAxLjEzLTEuMTNMOS4xMyA4LjAwMmwyLjYzNy0yLjYzN2EuOC44IDAgMCAwLTEuMTMtMS4xMjlMOCA2Ljg3IDUuMzY0IDQuMjM0eiIgZmlsbD0iI0ZGRiIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=" class="delete-badge">`;
     text += `<img data-v-60f50a1e="" src="` + file + `" class="image">`;
     text += `<input type="hidden" name="reviewFileName" value ="` + file + `">`;
     text += `</div>`;
-    text += `</div> `;
-    text += `</div>`;
 
-    $(".thumb_detail_img_wrap").append(text);
+
+    $(".textarea_block").append(text);
     $file.attr('disabled', 'true');
     $(".attach-image-icon").css('cursor', 'default');
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iI0M1QzVDNSIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');

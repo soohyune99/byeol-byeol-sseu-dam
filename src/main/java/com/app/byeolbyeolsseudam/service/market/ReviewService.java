@@ -13,7 +13,12 @@ public interface ReviewService {
 
     public List<ReviewDTO> getReviewList(Long productId);
 
+    public List<ReviewDTO> getReviewAllList(Long productId);
+
     public List<ReviewDTO> getMoreReview(Long productId, int page);
 
-    public void saveReview(ReviewDTO ReviewDTO);
+    public List<ReviewDTO> getReviewFileList(Long productId);
+
+    public void saveReview(ReviewDTO reviewDTO);
+
 }

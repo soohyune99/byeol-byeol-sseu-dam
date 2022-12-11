@@ -30,7 +30,7 @@ public class MarketController {
         return "/app/market/marketDetail";
     }
 
-    /*@GetMapping(value = {"/payment"})
+/*    @GetMapping(value = {"/payment"})
     public String payment(@RequestParam Long productId, @RequestParam int orderCount){
         return "/app/market/marketPayment";
     }*/
