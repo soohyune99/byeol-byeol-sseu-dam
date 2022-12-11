@@ -3,11 +3,13 @@ package com.app.byeolbyeolsseudam.controller.program;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.service.program.ProgramDynamicService;
+import com.app.byeolbyeolsseudam.service.program.ProgramService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
 @RequestMapping("/program/*")
 @Slf4j
 public class ProgramController {
-//    private final ProgramService programService;
+    private final ProgramService programService;
     private final ProgramDynamicService programDynamicService;
 
     /* 프로그램 기본 List */
@@ -25,19 +27,18 @@ public class ProgramController {
         return "/app/program/program"; // 이동할 html 파일 경로
     }
 
-//    /* 프로그램 DETAIL 이동 */
-//    @GetMapping("/detail")
-//    public String findProgramDetail(Long programId, Model model){
-//        model.addAttribute("program",programService.findProgramDetail(programId));
-//        return"/app/program/programDetail";
-//    }
+    /* 프로그램 DETAIL 이동 */
+    @GetMapping("/detail")
+    public String findProgramDetail(Long programId, Model model){
+        model.addAttribute("program",programService.findProgramDetail(programId));
+        return"/app/program/programDetail";
+    }
 
-    /* 프로그램 DETAIL -> mypage */
-    @GetMapping("/sussess")
-    public String programSuccess(Long programId, Model model, @SessionAttribute Member member){
-//        model.addAttribute("successPrograms",programService.programAllList(member.getMemberId()));
-//        model.addAttribute("program",programService.findProgramDetail(programId));
-        return"/app/mypage/myprogram";
+    /* 프로그램 멤버 시청 */
+    @GetMapping("/saveMember")
+    public RedirectView programSaveMember(Long programId, Long memberId){
+//        programService.programMemberSave(programId, memberId); // 로그인 완성시 사용
+        return new RedirectView("/mypage/program");
     }
 
 //    @GetMapping("/scroll/{page}")

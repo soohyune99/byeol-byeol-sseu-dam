@@ -32,10 +32,10 @@ public interface ProgramCustomRepository{
 
     /* 신청하기 클릭시 */
 
-//    /* program Detail _ 상세보기 클릭시 상세페이지 */
-//    public ProgramDTO programDetailPage(Model model, @SessionAttribute Member member, Long programId);
-//
-//    /* program Detail _ 상세보기 클릭시 상세페이지 */
-//    public ProgramDTO programDetailPage1(Long programId);
+    /* program Detail _ 상세보기 클릭시 상세페이지 */
+    public ProgramDTO programDetailPage(Model model, @SessionAttribute Member member, Long programId);
+
+    /* program Detail _ 상세보기 클릭시 상세페이지 */
+    public ProgramDTO programDetailPage1(Long programId);
 
 }

@@ -1,6 +1,9 @@
 package com.app.byeolbyeolsseudam.service;
 
+import com.app.byeolbyeolsseudam.service.program.ProgramService;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Rollback(false)
 public class ProgramTest {
+
+    @Autowired
+    ProgramService programService;
 
 //    @Autowired
 //    ProgramDynamicService programDynamicService;
@@ -40,5 +46,11 @@ public class ProgramTest {
 //    public void programStatusIngList() {
 //        programService.programStatusIngList(ProgramStatus.모집중).stream().map(ProgramDTO::toString).forEach(log::info);
 //    }
+
+    @Test
+    public void saveTest(){
+        programService.programMemberSave(35L, 134L);
+    }
+
 
 }

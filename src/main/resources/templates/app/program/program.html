@@ -26,6 +26,25 @@
             padding: 10px 0px;
             display: none;
         }
+
+        .goHome {
+            /* width: 5rem; */
+            /* align-content: center; */
+            /* align-items: center; */
+            display: flex;
+            align-items: center;
+            /* align-content: center; */
+            background: #f4f4f4;
+            border: 0;
+            border-radius: 8px;
+            /* width: 100%; */
+            height: 2.75rem;
+            /* text-align: center; */
+            /* margin: 0 auto; */
+            margin-left: 3px;
+            padding: 0px 13px;
+            font-size: 15px;
+        }
     </style>
 </head>
 
@@ -68,6 +87,7 @@
                                         <input name="enter" autocomplete='off' value=""
                                                onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
 
+
                                                data-v-78206d9f="" type="text" placeholder="원하는 프로그램을 검색해보세요"
                                                class="pro-form-control" maxlength="20" id="__BVID__183">
                                     </form>
@@ -80,7 +100,15 @@
                                     </div>
                                     <!---->
                                 </div>
+                                <!--                                <div>-->
+                                <!--                                    <button data-v-3a2c0d3c="" type="button" class="btn pro-signup-btn right-section-item btn-primary">-->
+                                <!--                                        <a data-v-3a2c0d3c="" class="">전체목록</a></button>-->
+                                <!--                                </div>-->
+                                <div class="goHome" onclick="goHome()">
+                                    <img src="/images/program/returngray.png" style="width: 1.4rem">
+                                </div>
                             </div>
+
 
                             <!-- BEGIN : 추천 서비스 -->
                             <div data-v-78206d9f="" class="keyword-box">
@@ -103,7 +131,7 @@
                     <ul data-v-e052d09c="" class="tab">
                         <li data-v-e052d09c=""><a data-v-e052d09c="" href="javascript:;"
                                                   class="btn router-link-exact-active btn-link programAllList"
-                                                  target="_self">전체</a></li>
+                                                  target="_self" onclick="programAllList()">전체</a></li>
                         <li data-v-e052d09c="" id="group-1" data-testid="group-filter"><a data-v-e052d09c=""
                                                                                           href="javascript:;"
                                                                                           class="btn btn-link router-link-active programStatus"
@@ -184,6 +212,227 @@
 <script src="/js/fix/headerLogin.js"></script>
 <script src="/js/fix/header.js"></script>
 <script>
+    let $searchBar = $("input#__BVID__183"); // 검색창
+    // let programStatus= $(".programStatus") || ""; // 프로그램 상태 (모집예정, 모집중, 모집완료, 마감)
+    let programStatus; // 프로그램 상태 (모집예정, 모집중, 모집완료, 마감)
+    let keyword = $searchBar.val() || "";// 검색어
+    let count // 프로그램 수
+    // globalThis.pageNumber = 0;
+    let pageNumber = 0;
+    let $url;
 
+    /* 해당 컨트롤러로 보낼 url */
+    function url() {
+        if (keyword == "" && programStatus == undefined) {
+            // 검색 X , 상태 선택 X
+            $url = "/prod/dynamic" + "/" + pageNumber;
+        } else if (keyword == "") {
+            // 검색 X , 상태 선택 O
+            $url = "/prod/dynamic" + "/" + pageNumber + "/" + "status" + "/" + programStatus;
+        } else if (programStatus == undefined) {
+            // 검색 O , 상태 선택 X
+            $url = "/prod/dynamic" + "/" + pageNumber + "/" + keyword;
+        } else {
+            // 검색 O , 상태 선택 O
+            $url = "/prod/dynamic" + "/" + pageNumber + "/" + keyword + "/" + programStatus;
+        }
+    }
+
+    url();
+    show();
+
+    /* 원하는 programs로 programList를 실행하는 함수 */
+    function show() {
+        $.ajax({
+            url: $url, // 상태별 url 입력
+            type: "get",
+
+            success: function (programs) {
+                if (programs.length != 0) {
+                    programCountNum(programs); // 프로그램 수 Count 함수
+                    programList(programs);
+
+                } else {
+                    programCountNum(programs); // 프로그램 수 Count 함수
+                    noProgramList(); // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
+                }
+            }
+        });
+    }
+
+    /* ================================== showStart_ Infinite Scroll ==================================*/
+
+    /* show_스크롤을 할때 실행 */
+    $(window).scroll(function () {
+
+        let formData = new FormData();
+        formData.append("page", pageNumber);
+        formData.append("keyword", keyword);
+        formData.append("programStatus", programStatus);
+
+        if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+            setTimeout(() => {
+                pageNumber++;
+                url();
+                infiniteScroll(formData, show); //programList
+            }, 400); // 0.4 초 delay ( 중복 불러오는 경우 방지 )
+        }
+
+    });
+
+    /* 스크롤 작동시 실행될 함수 */
+    function infiniteScroll(formData, callback, error) {
+        $.ajax({
+            url: $url,
+            type: "get",
+            data: {formData},
+            enctype: 'multipart/form-data',
+            catch: false,
+            contentType: false,
+            processData: false,
+            success: function (programs, status, xhr) {
+                if (callback) {
+                    callback(programs);
+                }
+            },
+            error: function (xhr, status, err) {
+                if (error) {
+
+                    error(err);
+                }
+            }
+        });
+    }
+
+    /* ================================== /  showStart_ Infinite Scroll ==================================*/
+
+    /* 해당 프로그램 개수에 따라 article을 반복해서 html에 넣어줄 함수 */
+    function programList(programs) {
+        let text = "";
+        console.log("programList안에있는 programs");
+        console.log(programs)
+
+        Array.from(programs.content).forEach(program => {
+            text += "<article data-v-85c61b32='' data-v-18e85706='' class='product-list-item responsive'>";
+            text += "<input type='hidden' id='programId' href='" + program.programId + "'>"
+            /* a태그 안에 link 수정 필요 */
+            text += "<a data-v-85c61b32='' onclick='moveDetail(this)' data-testid='product-list-item' style='cursor: pointer;'>";
+            text += "<div data-v-85c61b32='' class='item-image'>";
+            text += "<article data-v-1a98b297='' data-v-85c61b32='' class='preview-image'>";
+            text += "<div data-v-1a98b297='' class='image-wrap' style='padding-top: 66.6667%;'>";
+            /* 해당 이미지 경로 */
+            text += "<img data-v-1a98b297='' src='" + program.programFileProfilePath + "'>";
+            text += "</div>";
+            text += "</article>";
+            text += "</div>";
+            text += "<div data-v-85c61b32='' class='service-name'>";
+            /* 프로그램 상태 : 모집예정 greenIcon , 모집중 blueIcon, 모집완료 redIcon, 마감 grayIcon / class 다르게 줘야함, 수정필요 */
+            if (program.programStatus == '모집예정') {
+                text += "<span data-v-85c61b32='' class='programStatusIcon greenIcon'>" + program.programStatus + "</span>";
+            } else if (program.programStatus == '모집중') {
+                text += "<span data-v-85c61b32='' class='programStatusIcon blueIcon'>" + program.programStatus + "</span>";
+            } else if (program.programStatus == '모집완료') {
+                text += "<span data-v-85c61b32='' class='programStatusIcon redIcon'>" + program.programStatus + "</span>";
+            } else if (program.programStatus == '마감') {
+                text += "<span data-v-85c61b32='' class='programStatusIcon grayIcon'>" + program.programStatus + "</span>";
+            }
+            text += "</div>";
+            text += "<div data-v-85c61b32='' class='item-title'>";
+            text += "<div data-v-a3afae98='' data-v-85c61b32='' class='collapsed'>";
+            text += "<div data-v-a3afae98='' class='line-clamp'\n" +
+                "            style='line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;'>";
+            /* 프로그램 TITLE 들어가는 자리 */
+            text += "<h3 data-v-85c61b32='' data-v-a3afae98=''> " + program.programName + "</h3>";
+            text += "</div>";
+            text += "</div>";
+            text += "</div>";
+            text += "</a>";
+            text += "</article>";
+
+        });
+        $("#programListId").append(text);// #programListId 밑에 반복 해서 text들을 넣어줌
+        // $("#programListId").append(text); //무한스크롤때 쓰기....하지만 다른기능들이 안됨.....ㅠㅠㅠㅠㅠ
+        $("#noArticle1").html("");// 프로그램이 없는 경우 ""로 div를 채워줌
+
+    }
+
+    /* 해당 프로그램이 없는 경우 보여줄 돋보기 함수 */
+    function noProgramList() {
+        let text = "";
+        text += "<div class='infinite-status-prompt'>"
+        text += "<article class='no-items align-self-center text-center no-items'>"
+        text += "<i data-v-414f00e5=''><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icHJlZml4X19hIiB4MT0iMCUiIHgyPSIxMDAlIiB5MT0iNTAlIiB5Mj0iNTAlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwQzdBRSIvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0Q0M4RTUiLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBmaWxsPSIjRkZGIiBkPSJNMCAwSDM3NVY2NjdIMHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NCAtMTQ2KSB0cmFuc2xhdGUoNDQgMTQ2KSI+CiAgICAgICAgICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjQwIiBmaWxsPSJ1cmwoI3ByZWZpeF9fYSkiIGZpbGwtb3BhY2l0eT0iLjUiIGZpbGwtcnVsZT0ibm9uemVybyIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMTYgNjRMNjQgNjQgNjQgMTYgMTYgMTZ6Ii8+CiAgICAgICAgICAgIDxwYXRoIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjMiIGQ9Ik00NS40ODYgMjguNTE1YzQuNjg1IDQuNjg3IDQuNjg1IDEyLjI4MyAwIDE2Ljk3LTQuNjg3IDQuNjg3LTEyLjI4NiA0LjY4Ny0xNi45NyAwLTQuNjg4LTQuNjg3LTQuNjg4LTEyLjI4MyAwLTE2Ljk3IDQuNjg0LTQuNjg3IDEyLjI4My00LjY4NyAxNi45NyAwek00NiA0Nmw5IDkiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=' alt='empty'></i>"
+        text += "<h3 data-v-414f00e5=''></h3>"
+        text += "<p data-v-414f00e5='' class='help-block p2'>"
+        text += "<strong> 선택하신 조건으로 <br> 진행중인 프로그램이 없습니다. </strong><br> 다른 쓰담 프로그램을 탐색해보세요.</p>"
+        text += "</article>"
+        text += "</div>"
+        text += "<div class='infinite-status-prompt noArticle2'>"
+        text += "</div>"
+        text += "<div data-v-644ea9c9='' class='infinite-status-prompt noArticle2'>"
+        text += "<button class='btn-try-infinite'></button>"
+        text += "</div>"
+        $("#noArticle1").html(text); // #noArticleProgram 밑에 text들을 넣어줌
+        $("#programListId").html(""); // 프로그램이 없는 경우 ""로 div를 채워줌
+    }
+
+    /* 프로그램 수 Count */
+    function programCountNum(programs) {
+        let count = programs.pageable.totalPages;
+        let text = "";
+        text += "<strong data-v-219a3136=''>" + count + "</strong>"
+        text += "<span data-v-219a3136=''> 개 서비스 </span>"
+
+        $("#totalCountPlace").html(text);
+    }
+
+    /* 프로그램 클릭시 programId를 이용하여 해당 program 선택 */
+    function moveDetail(obj) {
+        // alert($(obj).closest(".responsive").find('#programId').attr("href"));
+        location.href = "/program/detail" + "?programId=" + $(obj).closest(".responsive").find('#programId').attr("href");
+    }
+
+    function searchList(theForm) {
+        if (theForm.enter.value == "") {
+            alert("검색어를 입력하세요");
+            return false;
+        }
+        pageNumber = 0;
+        programStatus = undefined;
+        keyword = theForm.enter.value;
+        reSet();
+        url();
+        show();
+    }
+
+
+    function reSet() {
+        let text = "";
+
+        $("#programListId").html(text);// #programListId 밑에 반복 해서 text들을 넣어줌
+        // $("#programListId").append(text); //무한스크롤때 쓰기....하지만 다른기능들이 안됨.....ㅠㅠㅠㅠㅠ
+
+    }
+
+    $(".programStatus").on('click', function () {
+        programStatus = $(this).text(); //programStatus class 의 누른 text로 실행
+        pageNumber = 0;
+        reSet() //기존 내용 없애기
+        url(); // url 생성
+        show(); // 리스트 보여주기
+    });
+
+
+    function goHome() {
+        location.href = "/program/list"
+    }
+
+    function programAllList() {
+        programStatus = undefined;
+        pageNumber = 0;
+        reSet();
+        url();
+        show();
+    }
 </script>
 </html>
