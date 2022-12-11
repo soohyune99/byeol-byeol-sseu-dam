@@ -8,6 +8,7 @@ import com.app.byeolbyeolsseudam.domain.mybadge.MybadgeDTO;
 import com.app.byeolbyeolsseudam.domain.mypoint.MypointDTO;
 import com.app.byeolbyeolsseudam.domain.myprogram.MyprogramDTO;
 import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
+import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +22,17 @@ public interface MypageService {
     public List<MypointDTO> getMypointList(Long memberId, int page);
     public List<BoardDTO> getMyCommunityList(Long memberId, int page);
     public List<CommentDTO> getMyCommentList(Long memberId, int page);
+
     public MemberDTO getMyInfo(Long memberId);
+    public Boolean checkPassword(Long memberId, String password);
+    public MemberDTO updateMyInfo(MemberDTO memberDTO);
+    public void dropOutMember(Long memberId);
+
     public List<OrderDTO> getMyOrderList(Long memberId, int page);
     public List<OrderDTO> getMyCancelList(Long memberId, int page);
     public OrderDTO getMyOrder(Long orderId);
+    public Long cancelMyOrder(Long orderId);
+
+    public List<PickupDTO> getMyPickupList(Long memberId, int page);
+    public PickupDTO getMyPickup(Long pickupId);
 }

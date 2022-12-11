@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>별별쓰담 | 나의 코스</title>
+    <title>별별쓰담 | 마이페이지</title>
     <link rel="icon" href="/images/fix/favicon.png">
     <link rel="stylesheet" href="/css/fix/font.css">
     <link rel="stylesheet" href="/css/mypage/mypageOrderList.css">
@@ -128,33 +128,34 @@
                                                                 <a href="javascript:;"
                                                                    onclick="SITE_MEMBER.editProfile('L3Nob3BfbXlwYWdl');">
                                                                     <div id="mypage_profile_img" class="img-circle"
-                                                                         style="width: 85px; height: 85px; background: url('https://www.jigushop.co.kr/common/img/default_profile.png')  50% 50% / cover no-repeat;">
+                                                                         style="width: 85px; height: 85px;">
+                                                                        <img class="mypage-memberProfileName" src="">
                                                                     </div>
                                                                     <span class="sr-only">정보 수정</span>
                                                                 </a>
                                                             </div>
                                                             <div
                                                                     class="nick text-default-dark table-cell vertical-middle no-margin-top">
-                                                                    <span class="ug_name text-brand">기본<a
+                                                                    <span class="ug_name text-brand mypage-memberType">기본<a
                                                                             href="javascript:;"
                                                                             class="btn hidden-lg hidden-md hidden-sm"
                                                                             role="button" data-toggle="popover"
                                                                             data-placement="bottom"
                                                                             data-popover-content="#list-popover"
                                                                             data-original-title=""
-                                                                            title="">등급혜택</a></span> <span>성은지 님
-                                                                        안녕하세요.</span>
+                                                                            title="">등급혜택</a></span>
+                                                                <span class="mypage-memberName">성은지</span><span> 님 안녕하세요.</span>
 
 
                                                                 <div class="text-15 use_grade">
-                                                                    <div class="ug_text">sej07@naver.com</div>
+                                                                    <div class="ug_text mypage-memberEmail">sej07@naver.com</div>
                                                                     <div class="ug_btn">
                                                                         <a href="http://localhost:10001/mypage/info" class="btn hidden-xs "
                                                                            role="button" data-toggle="popover"
                                                                            data-placement="bottom"
                                                                            data-popover-content="#list-popover"
                                                                            data-original-title="" title="">정보수정</a>
-                                                                        <div id="list-popover" style="display: none"
+                                                                        <!--<div id="list-popover" style="display: none"
                                                                              class="list_popover">
                                                                             <div
                                                                                     class="lp_header_wrap hidden-lg hidden-md hidden-sm">
@@ -283,7 +284,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
+                                                                        </div>-->
                                                                     </div>
                                                                 </div>
 
@@ -293,7 +294,7 @@
                                                     <div class="table-cell vertical-middle point-view text-center">
                                                         <a href="http://localhost:10001/mypage/point">
                                                             <p>포인트</p>
-                                                            <span class="text-bold text-32">0</span>
+                                                            <span class="text-bold text-32 mypage-memberPoint">0</span>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -409,7 +410,7 @@
                                                                                                          style="display: none;"><input type="file" class="swal2-file" style="display: none;">
             <div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select
                 class="swal2-select" style="display: none;"></select>
-            <div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox"
+            <div class="swal2-radio" style="display: none;"></div><label class="swal2-checkbox"
                                                                          style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea
                 class="swal2-textarea" style="display: none;"></textarea>
             <div class="swal2-validation-message" id="swal2-validation-message"></div>
@@ -425,5 +426,6 @@
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/mypage/mypageModule.js"></script>
 <script src="/js/mypage/mypageCourse.js"></script>
 </html>

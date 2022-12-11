@@ -127,7 +127,6 @@ $boardDeleteBtn.on('click', function(){
     communityService.deleteBoard(boardId, deleteBoard);
 });
 
-
 function showBoardDetail(board){
     let text = "";
 
@@ -196,6 +195,9 @@ showComment();
 
 /* 댓글 목록 보기 */
 function showComment(){
+    $commentContent.val('');
+    $commentSubmitBtn.removeClass("active");
+
     commentService.getCommentList(
         boardId, showCommentList
     );
@@ -240,9 +242,6 @@ $commentFileForm.on('change', function(){
             commentContent: $commentContent.val(),
             commentFileName: $("input[name='commentFileName']").val()
         }, function () {
-            $commentContent.val('');
-            $commentSubmitBtn.removeClass("active");
-            console.log("등록 성공")
             showComment();
         });
     }
@@ -287,18 +286,14 @@ function updateOKComment(commentId){
         boardId: boardId,
         memberId: 1,
         commentFileName: $("input[name='commentFileName']").val()
-    }, function(){
-        console.log("수정성공")
-        showComment();
-    });
+    }, showComment);
 }
 
 /* 댓글 삭제 */
 function deleteComment(commentId){
     commentService.deleteComment(
-        commentId, function(){
-            showComment();
-    });
+        commentId, showComment
+    );
 }
 
 function showCommentList(comments){
@@ -316,11 +311,11 @@ function showCommentList(comments){
         text += `<p data-v-6f126738="" class="text sg-text-body2 sg-font-regular">`;
         text += `<span data-v-6f126738="" class="commentContent ` + comment.commentId + `">` + comment.commentContent + `</span>`;
         text += `</p></div>`;
-        text += `<ul data-v-25f837a2="" class="attached-image-wrapper">`;
-        text += `<li data-v-25f837a2="" data-type="lightGallery" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg" data-sub-html=" " class="attached-image-item">`;
-        text += `<img data-v-25f837a2="" class="image" data-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg" src="` + comment.commentFileName + `" lazy="loaded">`;
-        text += `</li>`;
-        text += `</ul>`;
+        text += comment.commentFileName != null ? `<ul data-v-25f837a2="" class="attached-image-wrapper">` : '';
+        text += comment.commentFileName != null ? `<li data-v-25f837a2="" data-type="lightGallery" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg" data-sub-html=" " class="attached-image-item">` : '';
+        text += comment.commentFileName != null ? `<img data-v-25f837a2="" class="image" src="` + comment.commentFileName + `" lazy="loaded">` : '';
+        text += comment.commentFileName != null ? `</li>` : '';
+        text += comment.commentFileName != null ? `</ul>` : '';
         text += `<div data-v-6f126738="" class="comment-action-group sg-text-description sg-font-regular">`;
         text += `<div data-v-6f126738="" class="comment-react">`;
         text += `<span data-v-6f126738="" class="text">`;
@@ -376,11 +371,11 @@ function showCommentMore(comments){
         text += `<p data-v-6f126738="" class="text sg-text-body2 sg-font-regular">`;
         text += `<span data-v-6f126738="" class="commentContent ` + comment.commentId + `">` + comment.commentContent + `</span>`;
         text += `</p></div>`;
-        text += `<ul data-v-25f837a2="" class="attached-image-wrapper">`;
-        text += `<li data-v-25f837a2="" data-type="lightGallery" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg" data-sub-html=" " class="attached-image-item">`;
+        text += comment.commentFileName != null ?`<ul data-v-25f837a2="" class="attached-image-wrapper">` : '';
+        text += comment.commentFileName != null ?`<li data-v-25f837a2="" data-type="lightGallery" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg" data-sub-html=" " class="attached-image-item">` : '';
         text += comment.commentFileName != null ? `<img data-v-25f837a2="" class="image" src="` + comment.commentFileName + `" lazy="loaded">` : '';
-        text += `</li>`;
-        text += `</ul>`;
+        text += comment.commentFileName != null ?`</li>` : '';
+        text += comment.commentFileName != null ?`</ul>` : '';
         text += `<div data-v-6f126738="" class="comment-action-group sg-text-description sg-font-regular">`;
         text += `<div data-v-6f126738="" class="comment-react">`;
         text += `<span data-v-6f126738="" class="text">`;

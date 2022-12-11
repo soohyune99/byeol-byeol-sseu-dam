@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>별별쓰담 | 수거상세</title>
+    <title>별별쓰담 | 마이페이지</title>
     <link rel="icon" href="/images/fix/favicon.png">
     <link rel="stylesheet" href="/css/fix/font.css">
     <link rel="stylesheet" href="/css/mypage/myPageOrderList.css">
@@ -86,7 +86,7 @@ doz_category="default">
                                                 <a href="http://localhost:10001/mypage/point"
                                                    class="text-gray-dark _fade_link">나의 포인트</a>
                                             </li>
-                                            <li class="on">
+                                            <li class="">
                                                 <a href="http://localhost:10001/mypage/order"
                                                    class="text-gray-dark _fade_link">주문조회</a>
                                             </li>
@@ -99,7 +99,7 @@ doz_category="default">
                                                    class="text-gray-dark _fade_link"><span
                                                         class="hidden-xs">장바구니</span></a>
                                             </li> -->
-                                            <li class="">
+                                            <li class="on">
                                                 <a href="http://localhost:10001/mypage/pickup"
                                                    class="text-gray-dark _fade_link">수거신청내역</a>
                                             </li>
@@ -126,22 +126,22 @@ doz_category="default">
                                                             <a href="javascript:;"
                                                                onclick="SITE_MEMBER.editProfile('L3Nob3BfbXlwYWdl');">
                                                                 <div id="mypage_profile_img" class="img-circle"
-                                                                     style="width: 85px; height: 85px; background: url('https://www.jigushop.co.kr/common/img/default_profile.png')  50% 50% / cover no-repeat;">
+                                                                     style="width: 85px; height: 85px;">
+                                                                    <img class="mypage-memberProfileName" src="">
                                                                 </div>
                                                                 <span class="sr-only">정보 수정</span>
                                                             </a>
                                                         </div>
                                                         <div
                                                                 class="nick text-default-dark table-cell vertical-middle no-margin-top">
-                                                                <span class="ug_name text-brand">기본<a
+                                                                <span class="ug_name text-brand mypage-memberType">기본<a
                                                                         href="javascript:;"
                                                                         class="btn hidden-lg hidden-md hidden-sm"
                                                                         role="button" data-toggle="popover"
                                                                         data-placement="bottom"
                                                                         data-popover-content="#list-popover"
                                                                         data-original-title="" title="">등급혜택</a></span>
-                                                            <span>성은지 님
-                                                                    안녕하세요.</span>
+                                                            <span class="mypage-memberName">성은지</span><span> 님 안녕하세요.</span>
 
 
                                                             <div class="text-15 use_grade">
@@ -271,7 +271,7 @@ doz_category="default">
                                                 <div class="table-cell vertical-middle point-view text-center">
                                                     <a href="http://localhost:10001/mypage/point">
                                                         <p>포인트</p>
-                                                        <span class="text-bold text-32">0</span>
+                                                        <span class="text-bold text-32 mypage-memberPoint">0</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -286,11 +286,11 @@ doz_category="default">
                                                 <div class="tip-off im-flex im-xs-flex-col im-body-size">
                                                         <span>
                                                             <span class="opacity-70">신청일자</span>
-                                                            <span class="text-bold">2022-11-16</span>
+                                                            <span class="text-bold pickup-date">2022-11-16</span>
                                                         </span>
                                                     <span>
                                                             <span class="opacity-70">신청번호</span>
-                                                            <span class="text-bold">2022111623848</span>
+                                                            <span class="text-bold pickup-pickupId">2022111623848</span>
                                                         </span>
                                                 </div>
                                             </div>
@@ -317,13 +317,13 @@ doz_category="default">
                                                                     <div class="im-body-size">[쓰담수거]</div>
                                                                     <div class="im-body-size-90 opacity-70">
                                                                         플라스틱 및 페트병</div>
-                                                                    <div class="im-body-size-90">7 개
+                                                                    <div class="im-body-size-90 pickup-petCount">7 개
                                                                     </div>
                                                                 </a>
                                                                 <div
                                                                         class="im-status-wrap im-xs-flex-col hidden-lg hidden-md hidden-sm">
                                                                     <div
-                                                                            class="text-bold im-body-size text-default opacity-70">
+                                                                            class="text-bold im-body-size text-default opacity-70 pickup-pickupStatus">
                                                                         취소완료</div>
                                                                     <div class="im-inline-flex im-flex-col-reverse im-xs-flex im-xs-flex-row-reverse im-xs-flex-wrap-reverse cart-btn-tools _btn_tool_row"
                                                                          style="width: 24px;">
@@ -360,11 +360,11 @@ doz_category="default">
                                                                     <div class="im-body-size">[쓰담수거]</div>
                                                                     <div class="im-body-size-90 opacity-70">
                                                                         유리 및 병</div>
-                                                                    <div class="im-body-size-90">5 개
+                                                                    <div class="im-body-size-90 pickup-glassCount">5 개
                                                                     </div>
                                                                 </a>
                                                                 <div class="im-status-wrap im-xs-flex-col hidden-lg hidden-md hidden-sm">
-                                                                    <div class="text-bold im-body-size text-default opacity-70">
+                                                                    <div class="text-bold im-body-size text-default opacity-70 pickup-pickupStatus">
                                                                         취소완료</div>
                                                                     <div class="im-inline-flex im-flex-col-reverse im-xs-flex im-xs-flex-row-reverse im-xs-flex-wrap-reverse cart-btn-tools _btn_tool_row" style="width: 24px;">
                                                                     </div>
@@ -372,20 +372,6 @@ doz_category="default">
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <!-- <td class="im-deliv-price hidden-xs im-body-size-95"
-                                                        rowspan="1">
-                                                        3,000원 </td>
-                                                    <td class="hidden-xs">
-                                                        <div
-                                                            class="im-flex im-justify-between im-items-center im-xs-flex-col">
-                                                            <div
-                                                                class="text-bold im-body-size text-default opacity-70">
-                                                                취소완료</div>
-                                                            <div class="im-inline-flex im-flex-col-reverse im-xs-flex im-xs-flex-row-reverse im-xs-flex-wrap-reverse cart-btn-tools _btn_tool_row"
-                                                                style="width: 24px;">
-                                                            </div>
-                                                        </div>
-                                                    </td> -->
                                                 </tr>
                                                 <tr
                                                         class="hidden-lg hidden-md hidden-sm im-xs-deliv-price im-body-size im-body-line-height">
@@ -403,214 +389,32 @@ doz_category="default">
                                                 <div class="tip-off im-body-size im-body-line-height">
                                                     <div class="im-flex">
                                                         <span class="im-label">신청자</span>
-                                                        <span>성은지</span>
+                                                        <span class="pickup-memberName">성은지</span>
                                                     </div>
                                                     <div class="im-flex">
                                                         <span class="im-label">연락처</span>
-                                                        <span>010-6555-9107</span>
+                                                        <span class="pickup-memberPhone">010-6555-9107</span>
                                                     </div>
                                                     <div class="im-flex">
                                                         <span class="im-label">이메일</span>
-                                                        <span>sejjes07@gmail.com</span>
+                                                        <span class="pickup-memberEmail">sejjes07@gmail.com</span>
                                                     </div>
                                                 </div>
                                                 <span class="im-order-title im-body-size-120">수거지 정보</span>
                                                 <div class="tip-off im-body-size im-body-line-height">
-                                                    <div class="im-flex">
+                                                    <!--<div class="im-flex">
                                                         <span class="im-label">연락처</span>
                                                         <span>010-6555-9107</span>
-                                                    </div>
+                                                    </div>-->
                                                     <div class="im-flex">
                                                         <span class="im-label">수거지</span>
-                                                        <div>(06236) 서울 강남구 테헤란로 지하 156 (역삼동, 역삼역) <br> 401호 </div>
+                                                        <div class="pickup-pickupAddress">(06236) 서울 강남구 테헤란로 지하 156 (역삼동, 역삼역) <br> 401호 </div>
                                                     </div>
                                                     <div class="im-flex">
                                                         <span class="im-label">메모</span>
-                                                        <span></span>
+                                                        <span class="pickup-pickupMessage"></span>
                                                     </div>
                                                 </div>
-                                                <!--   <span class="im-order-title im-body-size-120">주문 금액 상세</span>
-                                                  <div class="im-order-price">
-                                                      <div class="im-flex im-xs-flex-col">
-                                                          <div class="im-flex im-flex-col im-flex-1 im-order-row">
-                                                              <div
-                                                                  class="im-flex im-justify-between im-order-price-header im-line-height-120">
-                                                                  <span
-                                                                      class="im-body-size im-xs-body-size-95">주문금액</span>
-                                                                  <span
-                                                                      class="im-body-size-150 im-xs-body-size">5,800원</span>
-                                                              </div>
-                                                              <div
-                                                                  class="im-flex-col im-order-price-body im-grow im-body-line-height">
-                                                                  <div
-                                                                      class="im-flex im-justify-between im-items-center">
-                                                                      <span class="im-body-size-95 opacity-70"><i
-                                                                              class="im-icon im-ico-under hidden-lg hidden-md hidden-sm"></i>상품금액</span>
-                                                                      <span class="im-body-size">2,800원</span>
-                                                                  </div>
-                                                                  <div
-                                                                      class="im-flex im-justify-between im-items-center">
-                                                                      <span class="im-body-size-95 opacity-70"><i
-                                                                              class="im-icon im-ico-under hidden-lg hidden-md hidden-sm"></i>배송비</span>
-                                                                      <span class="im-body-size">3,000원</span>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                          <div class="im-flex im-flex-col im-flex-1 im-order-row">
-                                                              <div
-                                                                  class="im-flex im-justify-between im-order-price-header im-line-height-120">
-                                                                  <svg height="20px" style="enable-background:new 0 0 32 32;"
-                                                              version="1.1" viewBox="0 0 32 32" width="20px"
-                                                              xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                                                              xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                              <g id="Layer_1" />
-                                                              <g id="minus_x5F_alt">
-                                                                  <path
-                                                                      d="M16,0C7.164,0,0,7.164,0,16s7.164,16,16,16s16-7.164,16-16S24.836,0,16,0z M24,18H8v-4h16V18z"
-                                                                      style="fill:gray;" />
-                                                              </g>
-                                                          </svg>
-                                                                  <span
-                                                                      class="im-body-size im-xs-body-size-95">할인금액</span>
-                                                                  <span
-                                                                      class="im-body-size-150 im-xs-body-size">0원</span>
-                                                              </div>
-                                                              <div
-                                                                  class="im-flex-col im-order-price-body im-grow im-body-line-height">
-                                                              </div>
-                                                          </div>
-                                                          <div class="im-flex im-flex-col im-flex-1 im-order-row">
-                                                              <div
-                                                                  class="im-flex im-justify-between im-order-price-header im-line-height-120">
-                                                                  <svg height="20px" style="enable-background:new 0 0 32 32;"
-                                                              version="1.1" viewBox="0 0 32 32" width="20px"
-                                                              xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                                                              xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Layer_1" /><g id="minus_x5F_alt">
-                                                                  <path d="M16,0C7.164,0,0,7.164,0,16s7.164,16,16,16s16-7.164,16-16S24.836,0,16,0z M24,18H8v-4h16V18z" style="fill:gray;" />
-                                                              </g></svg>
-                                                                  <span class="im-body-size">총 주문금액 </span>
-                                                                  <span class="text-brand im-body-size-150 im-xs-body-size-120">5,800원</span>
-                                                              </div>
-                                                              <div
-                                                                  class="im-flex-col im-order-price-body im-pay-type-detail im-grow hidden-xs im-body-line-height">
-
-                                                                  <p class="im-body-size im-pay-type-detail-title">
-                                                                      무통장입금</p>
-
-                                                                  <div class="im-pay-type-detail-group">
-                                                                      <div
-                                                                          class="im-body-size-95 im-body-line-height opacity-70">
-                                                                          <p class="im-pay-type-detail-body">우리은행
-                                                                              1006301467973</p>
-                                                                          <p class="im-pay-type-detail-body">예금주
-                                                                              주식회사피스온테이블</p>
-                                                                          <p class="im-pay-type-detail-body">
-                                                                              2022-11-13 14:11 까지</p>
-                                                                      </div>
-                                                                  </div>
-
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                                  <div class="hidden-lg hidden-md hidden-sm">
-                                                      <span class="im-order-title im-body-size-120">결제수단</span>
-                                                      <div class="tip-off">
-                                                          <div class="margin-bottom-xxxl">
-                                                              <p class="im-body-size im-pay-type-detail-title">
-                                                                  무통장입금 </p>
-                                                          </div>
-                                                          <div class="margin-bottom-xxxl">
-                                                              <p class="subtitle">계좌 정보</p>
-                                                              <p>우리은행 1006301467973 예금주: 주식회사피스온테이블</p>
-                                                          </div>
-                                                          <div>
-                                                              <p class="subtitle">입금 기간</p>
-                                                              <p>2022-11-13 14:11 까지</p>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                                  <span class="im-order-title im-body-size-120">취소/환불 금액 상세</span>
-                                                  <div class="im-order-price">
-                                                      <div class="im-flex im-xs-flex-col">
-
-                                                          <div class="im-flex im-flex-col im-flex-1 im-order-row">
-
-                                                              <div
-                                                                  class="im-flex im-justify-between im-order-price-header im-line-height-120">
-                                                                  <span class="im-body-size im-xs-body-size-95">취소
-                                                                      주문금액</span>
-                                                                  <span
-                                                                      class="im-body-size-150 im-xs-body-size">5,800원</span>
-                                                              </div>
-
-                                                              <div
-                                                                  class="im-flex-col im-order-price-body im-grow im-body-line-height">
-                                                                  <div
-                                                                      class="im-flex im-justify-between im-items-center">
-                                                                      <span
-                                                                          class="im-body-size-95 opacity-70">상품금액</span>
-                                                                      <span class="im-body-size">2,800원</span>
-                                                                  </div>
-                                                                  <div
-                                                                      class="im-flex im-justify-between im-items-center">
-                                                                      <span
-                                                                          class="im-body-size-95 opacity-70">배송비</span>
-                                                                      <span class="im-body-size">3,000원</span>
-                                                                  </div>
-                                                              </div>
-
-
-                                                          </div>
-                                                          <div class="im-flex im-flex-col im-flex-1 im-order-row">
-                                                              <div
-                                                                  class="im-flex im-justify-between im-order-price-header im-line-height-120">
-
-                                                                  <svg height="20px" style="enable-background:new 0 0 32 32;"
-                                                              version="1.1" viewBox="0 0 32 32" width="20px"
-                                                              xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                                                              xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                              <g id="Layer_1" />
-                                                              <g id="minus_x5F_alt">
-                                                                  <path
-                                                                      d="M16,0C7.164,0,0,7.164,0,16s7.164,16,16,16s16-7.164,16-16S24.836,0,16,0z M24,18H8v-4h16V18z"
-                                                                      style="fill:gray;" />
-                                                              </g>
-                                                          </svg>
-                                                                  <span
-                                                                      class="im-body-size im-xs-body-size-95">차감금액</span>
-                                                                  <span
-                                                                      class="im-body-size-150 im-xs-body-size">0원</span>
-                                                              </div>
-                                                              <div
-                                                                  class="im-flex-col im-order-price-body im-grow im-body-line-height">
-                                                              </div>
-                                                          </div>
-                                                          <div class="im-flex im-flex-col im-flex-1 im-order-row">
-                                                              <div
-                                                                  class="im-flex im-justify-between im-order-price-header im-line-height-120">
-                                                                  <svg height="20px" style="enable-background:new 0 0 32 32;"
-                                                              version="1.1" viewBox="0 0 32 32" width="20px"
-                                                              xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                                                              xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                              <g id="Layer_1" />
-                                                              <g id="minus_x5F_alt">
-                                                                  <path
-                                                                      d="M16,0C7.164,0,0,7.164,0,16s7.164,16,16,16s16-7.164,16-16S24.836,0,16,0z M24,18H8v-4h16V18z"
-                                                                      style="fill:gray;" />
-                                                              </g>
-                                                          </svg>
-                                                                  <span class="im-body-size">환불금액</span>
-                                                                  <span
-                                                                      class="text-brand im-body-size-150 im-xs-body-size-120">5,800원</span>
-                                                              </div>
-                                                              <div
-                                                                  class="im-flex-col im-order-price-body im-grow im-body-line-height">
-
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </div> -->
                                             </div>
                                         </div>
                                         <div style="font-size: 15px; padding: 70px; text-align: center; display: none;"
@@ -640,5 +444,7 @@ doz_category="default">
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/mypage/mypageModule.js"></script>
+<script src="/js/mypage/mypagePickupDetail.js"></script>
 <script src="/js/mypage/mypageCourse.js"></script>
 </html>

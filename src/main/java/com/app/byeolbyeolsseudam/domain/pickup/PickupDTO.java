@@ -27,6 +27,19 @@ public class PickupDTO {
     private LocalDateTime createdDate;
 
     @QueryProjection
+    public PickupDTO(Long pickupId, int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Long memberId, String memberName, LocalDateTime createdDate) {
+        this.pickupId = pickupId;
+        this.petCount = petCount;
+        this.glassCount = glassCount;
+        this.pickupAddress = pickupAddress;
+        this.pickupMessage = pickupMessage;
+        this.pickupStatus = pickupStatus;
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.createdDate = createdDate;
+    }
+
+    @QueryProjection
     public PickupDTO(Long pickupId, int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Long memberId, LocalDateTime createdDate) {
         this.pickupId = pickupId;
         this.petCount = petCount;

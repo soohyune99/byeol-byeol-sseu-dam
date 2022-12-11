@@ -86,6 +86,64 @@ let mypageService = (function(){
         });
     }
 
+    function checkPassword(memberId, password, callback, error){
+        $.ajax({
+            url: "/mypage/check/" + memberId,
+            type: "post",
+            data: JSON.stringify(password),
+            contentType: "application/json; charset=utf-8",
+            success: function(check, status, xhr){
+                if(callback){
+                    callback(check);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function updateUserInfo(formData, callback, error) {
+        $.ajax({
+            url: "/mypage/update",
+            type: "post",
+            data: formData,
+            enctype: 'multipart/form-data',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (member, status, xhr) {
+                if (callback) {
+                    callback(member);
+                }
+            },
+            error: function (xhr, status, err) {
+                if (error) {
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function dropOutMember(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/dropout/" + memberId,
+            type: "get",
+            success: function(myinfo, status, xhr){
+                if(callback){
+                    callback(myinfo);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
     function getMyOrderList(memberId, page, callback, error){
         $.ajax({
             url: "/mypage/order/" + memberId + "/" + page,
@@ -120,13 +178,30 @@ let mypageService = (function(){
         });
     }
 
-    function getMyCancel(cancelId, callback, error){
+    function getMyOrder(cancelId, callback, error){
         $.ajax({
             url: "/mypage/cancel/" + cancelId,
             type: "get",
             success: function(mycancel, status, xhr){
                 if(callback){
                     callback(mycancel);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function cancelMyOrder(orderId, callback, error){
+        $.ajax({
+            url: "/mypage/cancelOrder/" + orderId,
+            type: "get",
+            success: function(orderId, status, xhr){
+                if(callback){
+                    callback(orderId);
                 }
             },
             error: function(xhr, status, err){
@@ -154,7 +229,22 @@ let mypageService = (function(){
         });
     }
 
-
+    function getMyPickup(pickupId, callback, error){
+        $.ajax({
+            url: "/mypage/pickup/" + pickupId,
+            type: "post",
+            success: function(mypickup, status, xhr){
+                if(callback){
+                    callback(mypickup);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
 
     function uploadProfileFile(file, callback, error) {
         var data = new FormData();
@@ -182,8 +272,9 @@ let mypageService = (function(){
     }
 
     return { getMyProgramList:getMyProgramList, getMypointList:getMypointList, getMyCommunityList:getMyCommunityList,
-        getMyCommentList:getMyCommentList, getMyInfo:getMyInfo, getMyOrderList:getMyOrderList, getMyCancelList:getMyCancelList,
-        getMyCancel:getMyCancel, getMyPickupList:getMyPickupList, uploadProfileFile:uploadProfileFile }
+        getMyCommentList:getMyCommentList, getMyInfo:getMyInfo, checkPassword:checkPassword, updateUserInfo:updateUserInfo,
+        getMyOrderList:getMyOrderList, getMyCancelList:getMyCancelList, getMyOrder:getMyOrder, cancelMyOrder:cancelMyOrder,
+        getMyPickupList:getMyPickupList, getMyPickup:getMyPickup, uploadProfileFile:uploadProfileFile }
 })();
 
 

@@ -32,9 +32,14 @@ public class MypageController {
         return "/app/mypage/mypageOrderDetail";
     }
 
-    @GetMapping("/updateinfo")
+    @GetMapping("/info/update")
     public String myinfoupdate(){
         return "/app/mypage/mypageInfoUpdate";
+    }
+
+    @GetMapping("/info/password")
+    public String myinfopassword(){
+        return "/app/mypage/mypageInfopassword";
     }
 
     @GetMapping("/info")

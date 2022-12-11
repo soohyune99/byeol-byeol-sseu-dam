@@ -1,14 +1,17 @@
 /* mypageInfoUpdate.html */
 
+/* 프로필 파일 선택 모달 */
 let $profileModal = $("#__BVID__264___BV_modal_outer_");
 let $profileModalBackground = $("#__BVID__264");
 let $profileModalCancelBtn = $(".modal-cancel-btn");
 
+/* 탈퇴 모달 */
 let $dropOutBtn = $(".delete-account");
 let $dropOutModal = $(".swal2-container.dropout-modal");
 let $dropOutModalCancelBtn = $(".swal2-confirm");
 
-let $inputName = $("input[name='username']");
+/* 회원정보 입력 */
+let $inputName = $("input[name='memberName']");
 let $inputEmail = $("input[name='email']");
 let $inputCurrentPassword = $("input[name='currentPassword']");
 let $inputNewPassword = $("input[name='password']");
@@ -17,9 +20,11 @@ let $inputRestPhone = $("input[name='requestPhone']");
 let $inputVerifyPhone = $("input[name='requestVerifyPhone']");
 let $inputPhoneNumberBtn = $("#request-phone-btn");
 
+/* 회원 프로필 */
 const $file = $("#__BVID__268");
 const $thumbnail = $("#user-profile");
 
+const memberId = 546;
 
 $(".user-profile-picture").on('click', function(){
     profileModalOpen();
@@ -91,7 +96,6 @@ function profileModalClose(){
     $profileModal.css('display', 'none');
 }
 
-
 /* 탈퇴 모달 띄우기 */
 function dropOutModalOpen(){
     $dropOutModal.css('display', '');
@@ -102,37 +106,44 @@ function dropOutModalClose(){
     $dropOutModal.css('display', 'none');
 }
 
-
 /* 회원정보 수정 유효성 검사 */
 function modifyOKUserInfo(){
-    /* 이름 적었는지 확인 */
+    /* 이름 입력했는지 확인 */
     if(!inputNameTest()){
         $inputName.focus();
         return;
     }
-    /* 이메일 적었는지 확인 */
-    if(!inputEmailTest()){
-        $inputEmail.focus();
+    // /* 이메일 적었는지 확인 */
+    // if(!inputEmailTest()){
+    //     $inputEmail.focus();
+    //     return;
+    // }
+    // /* 현재 비밀번호를 적었는지, DB에 있는 비밀번호와 일치하는지 확인하기 */
+    // if(!inputCurrentPasswordTest()){
+    //     $inputCurrentPassword.focus();
+    //     return;
+    // }
+    /* 비밀번호 입력했는지 확인 */
+    if(!inputNewPasswordTest()){
+        $inputNewPassword.focus();
         return;
     }
-    /* 현재 비밀번호를 적었는지, DB에 있는 비밀번호와 일치하는지 확인하기 */
-    if(!inputCurrentPasswordTest()){
-        $inputCurrentPassword.focus();
-        return;
-    }
+
     /* 새 비밀번호를 적었다면 비밀번호 확인까지 입력했는지 */
-    if(inputNewPasswordTest()){
+    // if(inputNewPasswordTest()){
         if(!inputNewPasswordConfirmTest()){
             $inputNewPasswordConfirm.focus();
             return;
         }
-    }
-    /* 전화번호 재설정을 눌렀다면 인증번호 확인까지 완료했는지 */
-    if(!inputDisabledTest()){
-        if(!verifyPhoneTest) { return; }
-    }
+    // }
+    // /* 전화번호 재설정을 눌렀다면 인증번호 확인까지 완료했는지 */
+    // if(!inputDisabledTest()){
+    //     if(!verifyPhoneTest) { return; }
+    // }
 
-    $(".modify-info-modal").css('display', 'block');
+    // if(!$inputName.val() && !$inputNewPasswordConfirm.val()){
+        updateOkMyinfo();
+    // }
 }
 
 /* 이름 유효성 검사 */
@@ -145,31 +156,31 @@ function inputNameTest(){
     return true;
 }
 
-/* 이메일 유효성 검사 */
-function inputEmailTest(){
-    var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+// /* 이메일 유효성 검사 */
+// function inputEmailTest(){
+//     var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+//
+//     if($inputEmail.val() == "") {
+//         $(".mypage-invalid-feedback.email").css('display', 'block');
+//         return false;
+//     }else if(!filter.test($inputEmail.val())){
+//         $(".mypage-invalid-feedback.email").html("올바른 이메일 주소를 입력해주세요.")
+//         $(".mypage-invalid-feedback.email").css('display', 'block');
+//         return false;
+//     }
+//     $(".mypage-invalid-feedback.email").css('display', 'none');
+//     return true;
+// }
 
-    if($inputEmail.val() == "") {
-        $(".mypage-invalid-feedback.email").css('display', 'block');
-        return false;
-    }else if(!filter.test($inputEmail.val())){
-        $(".mypage-invalid-feedback.email").html("올바른 이메일 주소를 입력해주세요.")
-        $(".mypage-invalid-feedback.email").css('display', 'block');
-        return false;
-    }
-    $(".mypage-invalid-feedback.email").css('display', 'none');
-    return true;
-}
-
-/* 기존 비밀번호 유효성 검사 */
-function inputCurrentPasswordTest(){
-    if(!$inputCurrentPassword.val()) {
-        $(".mypage-invalid-feedback.current-password").css('display', 'block');
-        return false;
-    }
-    $(".mypage-invalid-feedback.current-password").css('display', 'none');
-    return true;
-}
+// /* 기존 비밀번호 유효성 검사 */
+// function inputCurrentPasswordTest(){
+//     if(!$inputCurrentPassword.val()) {
+//         $(".mypage-invalid-feedback.current-password").css('display', 'block');
+//         return false;
+//     }
+//     $(".mypage-invalid-feedback.current-password").css('display', 'none');
+//     return true;
+// }
 
 /* 비밀번호 표시 전환 */
 $(".current-password button.btn").on('click', function(){
@@ -223,6 +234,7 @@ function inputDisabledTest(){
         $inputRestPhone.attr('placeholder', '예) 01012345678');
         $inputRestPhone.removeAttr('disabled');
         $inputRestPhone.removeClass('complete-phone-auth');
+        $("#request-phone").val('');
         return false;
 
     }else if($inputPhoneNumberBtn.text() == '전송'){
@@ -265,6 +277,36 @@ function verifyPhoneTest(){
     return false;
 }
 
+/* ================================= update =================================*/
+
+getMemberInfo();
+
+/* 회원 기존 정보 조회 */
+function getMemberInfo(){
+    mypageService.getMyInfo(
+        memberId, showMemberInfo
+    )
+}
+
+/* 회원정보조회 callback */
+function showMemberInfo(member){
+    $("#user-profile").attr('src', member.memberProfileName);
+    $("input[name='memberName']").val(member.memberName);
+    $("input[name='email']").val(member.memberEmail);
+
+    if(member.memberPhone == 'undefined' || member.memberPhone == null){
+        $("legend[for='request-phone']").text("휴대전화 번호 인증");
+        $inputPhoneNumberBtn.text("전송");
+        $inputPhoneNumberBtn.attr('disabled', 'true');
+        $inputPhoneNumberBtn.addClass('disabled');
+        $inputRestPhone.attr('placeholder', '예) 01012345678');
+        $inputRestPhone.removeAttr('disabled');
+        $inputRestPhone.removeClass('complete-phone-auth');
+    }else {
+        $("#request-phone").val(member.memberPhone);
+    }
+}
+
 /* 프로필 사진 변경 시 썸네일 변경 및 업로드 파일에 저장 */
 $file.on('change', function(e){
     let file = $file[0].files[0];
@@ -283,21 +325,35 @@ $file.on('change', function(e){
         }
     }
 
-    communityService.uploadProfileFile(
+    mypageService.uploadProfileFile(
         file, afterUploadeProfileFile
     );
 });
 
 function afterUploadeProfileFile() {;}
 
+/* 수정 완료 눌렀을 때 */
 function updateOkMyinfo(){
     let formData = new FormData();
 
-    formData.append('memberName', $("input[name='memberName']").val());
-    formData.append()
+    formData.append('memberId', memberId);
+    formData.append('memberName', $inputName.val());
+    formData.append('memberPassword', $inputNewPasswordConfirm.val());
+    formData.append('memberPhone', $inputRestPhone.val());
+    formData.append('memberProfileName', $thumbnail.attr('src'));
 
+    mypageService.updateUserInfo(
+        formData, afterUpdateMyinfo
+    );
 }
 
-function afterUpdateMyinfo(){
-    location.href='http://localhost:10001/mypage/info';
+function afterUpdateMyinfo(member){
+    console.log(member.memberName);
+    $(".update-memberName").html(member.memberName);
+    $(".modify-info-modal").css('display', 'block');
+}
+
+/* 탈퇴 버튼 눌렀을 때 */
+function dropOutMember(memberId){
+    mypageService.drop
 }

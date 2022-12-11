@@ -5,12 +5,13 @@ globalThis.page = 0;
 let $cancelModal = $("#cocoaModal");
 
 showMyCancel();
+getMemberInfo();
 
 /* 취소 상세 모달 열기 */
 function cancelModalOpen(cancelId){
     $cancelModal.css('display', 'block');
 
-    mypageService.getMyCancel(
+    mypageService.getMyOrder(
         cancelId, getMyCancel
     );
 }
@@ -18,6 +19,21 @@ function cancelModalOpen(cancelId){
 /* 취소 상세 모달 닫기 */
 function cancelModalClose(mycancel){
     $cancelModal.css('display', 'none');
+}
+
+/* 기본 회원 정보 조회 */
+function getMemberInfo(){
+    mypageService.getMyInfo(
+        memberId, showMemberInfo
+    )
+}
+
+function showMemberInfo(member){
+    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
+    $(".mypage-memberName").html(member.memberName);
+    $(".mypage-memberEmail").html(member.memberEmail);
+    $(".mypage-memberType").html(member.memberCategory);
+    $(".mypage-memberPoint").html(member.memberPoint);
 }
 
 /* 주문취소 조회 */

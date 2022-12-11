@@ -40,4 +40,8 @@ public class Order extends Period {
     public void update(OrderDTO orderDTO) {
         this.orderStatus = orderDTO.getOrderStatus();
     }
+
+    public void updateStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }

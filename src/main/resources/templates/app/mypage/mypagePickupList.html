@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>별별쓰담 | 수거조회</title>
+    <title>별별쓰담 | 마이페이지</title>
     <link rel="icon" href="/images/fix/favicon.png">
     <link rel="stylesheet" href="/css/fix/font.css">
     <link rel="stylesheet" href="/css/mypage/myPageOrderList.css">
@@ -124,26 +124,27 @@
                                                                 <a href="javascript:;"
                                                                    onclick="SITE_MEMBER.editProfile('L3Nob3BfbXlwYWdl');">
                                                                     <div id="mypage_profile_img" class="img-circle"
-                                                                         style="width: 85px; height: 85px; background: url('https://www.jigushop.co.kr/common/img/default_profile.png')  50% 50% / cover no-repeat;">
+                                                                         style="width: 85px; height: 85px;">
+                                                                        <img class="mypage-memberProfileName" src="">
                                                                     </div>
                                                                     <span class="sr-only">정보 수정</span>
                                                                 </a>
                                                             </div>
                                                             <div
                                                                     class="nick text-default-dark table-cell vertical-middle no-margin-top">
-                                                                    <span class="ug_name text-brand">기본<a
+                                                                    <span class="ug_name text-brand mypage-memberType">기본<a
                                                                             href="javascript:;"
                                                                             class="btn hidden-lg hidden-md hidden-sm"
                                                                             role="button" data-toggle="popover"
                                                                             data-placement="bottom"
                                                                             data-popover-content="#list-popover"
                                                                             data-original-title=""
-                                                                            title="">등급혜택</a></span> <span>성은지 님
-                                                                        안녕하세요.</span>
+                                                                            title="">등급혜택</a></span>
+                                                                <span class="mypage-memberName">성은지</span><span> 님 안녕하세요.</span>
 
 
                                                                 <div class="text-15 use_grade">
-                                                                    <div class="ug_text">sej07@naver.com</div>
+                                                                    <div class="ug_text mypage-memberEmail">sej07@naver.com</div>
                                                                     <div class="ug_btn">
                                                                         <a href="http://localhost:10001/mypage/info" class="btn hidden-xs "
                                                                            role="button" data-toggle="popover"
@@ -271,7 +272,7 @@
                                                     <div class="table-cell vertical-middle point-view text-center">
                                                         <a href="http://localhost:10001/mypage/point">
                                                             <p>포인트</p>
-                                                            <span class="text-bold text-32">0</span>
+                                                            <span class="text-bold text-32 mypage-memberPoint">0</span>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -280,8 +281,8 @@
                                                 수거신청내역
                                             </div>
                                             <div class="table-wrap" id="shop_mypage_orderlist">
-                                                <table class="table no-margin shop-table shop-table2">
-                                                    <!-- 주문별 반복구간 -->
+                                                <!--<table class="table no-margin shop-table shop-table2">
+                                                    &lt;!&ndash; 주문별 반복구간 &ndash;&gt;
                                                     <colgroup>
                                                         <col>
                                                         <col class="width-6">
@@ -311,7 +312,7 @@
                                                     </thead>
                                                     <tbody style="background: #fff;">
                                                     <tr class="content">
-                                                        <!-- 리스트 반복구간 시작 -->
+                                                        &lt;!&ndash; 리스트 반복구간 시작 &ndash;&gt;
                                                         <td class="im-xs-align-top">
                                                             <a class="im-flex im-justify-between"
                                                                href="http://localhost:10001/mypage/pickup/detail"
@@ -349,7 +350,7 @@
                                                                    href="http://localhost:10001/mypage/pickup/detail">상세보기</a>
                                                             </div>
                                                         </td>
-                                                    </tr><!-- 리스트 반복구간 종료 -->
+                                                    </tr>&lt;!&ndash; 리스트 반복구간 종료 &ndash;&gt;
                                                     </tbody>
                                                     <tbody id="shop_mypage_orderlist_empty" style="display: none">
                                                     <tr style="background: transparent; padding: 0">
@@ -360,9 +361,9 @@
                                                         </td>
                                                     </tr>
                                                     </tbody>
-                                                </table><!-- 주문별 반복구간 종 -->
+                                                </table>&lt;!&ndash; 주문별 반복구간 종 &ndash;&gt;
                                                 <table class="table no-margin shop-table shop-table2">
-                                                    <!-- 주문별 반복구간 -->
+                                                    &lt;!&ndash; 주문별 반복구간 &ndash;&gt;
                                                     <colgroup>
                                                         <col>
                                                         <col class="width-6">
@@ -392,7 +393,7 @@
                                                     </thead>
                                                     <tbody style="background: #fff;" id="">
                                                     <tr class="content">
-                                                        <!-- 리스트 반복구간 시작 -->
+                                                        &lt;!&ndash; 리스트 반복구간 시작 &ndash;&gt;
                                                         <td class="im-xs-align-top">
                                                             <a class="im-flex im-justify-between"
                                                                href="/shop_mypage/?m2=order&amp;idx=93984774"
@@ -431,9 +432,9 @@
                                                                    onclick="SITE_SHOP_MYPAGE.showCancelDetail(95608757)">상세보기</a>
                                                             </div>
                                                         </td>
-                                                    </tr><!-- 리스트 반복구간 종료 -->
+                                                    </tr>&lt;!&ndash; 리스트 반복구간 종료 &ndash;&gt;
                                                     </tbody>
-                                                    <tbody style="display: none"><!--id="shop_mypage_orderlist_empty"-->
+                                                    <tbody style="display: none">&lt;!&ndash;id="shop_mypage_orderlist_empty"&ndash;&gt;
                                                     <tr style="background: transparent; padding: 0">
                                                         <td colspan="2"
                                                             style="padding: 70px; text-align: center;">
@@ -442,7 +443,7 @@
                                                         </td>
                                                     </tr>
                                                     </tbody>
-                                                </table><!-- 주문별 반복구간 종 -->
+                                                </table>-->
                                             </div>
                                             <div style="font-size: 15px; padding: 70px; text-align: center; display: none;"
                                                  class="body_font_color_40"> <!--id="shop_mypage_orderlist_empty"-->

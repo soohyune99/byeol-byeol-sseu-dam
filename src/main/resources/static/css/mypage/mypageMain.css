@@ -189,7 +189,8 @@ body {
     overflow: hidden;
     background-size: cover;
     background-position: 50% 50%;
-    background-color: #e1e1e1;
+    /*background-color: #e1e1e1;*/
+    background: transparent !important;
 }
 
 .user-profile-picture div[data-name=image].is-square[data-v-0ee3c6fc] {
