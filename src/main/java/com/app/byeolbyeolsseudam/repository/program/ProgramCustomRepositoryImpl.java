@@ -231,54 +231,54 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
     /* ==============================================================================================*/
 
 
-//    @Override
-//    public ProgramDTO programDetailPage(Model model, Member member, Long programId) {
-//        return jpaQueryFactory.select(new QProgramDTO(
-//                program.programId,
-//                program.programName,
-//                program.programPlace,
-//                program.possibleDate.openingDate,
-//                program.possibleDate.closingDate,
-//                program.programTime,
-//                program.programDate,
-//                program.programContent,
-//                program.programLimitCount,
-//                program.programStatus,
-//                program.programFileProfileName,
-//                program.programFileProfilePath,
-//                program.programFileProfileUuid,
-//                program.programFileDetailName,
-//                program.programFileDetailPath,
-//                program.programFileDetailUuid,
-//                program.createdDate
-//        )).from(program)
-//                .where(program.programId.eq(programId))
-//                .fetchOne();
-//    }
-//
-//    @Override
-//    public ProgramDTO programDetailPage1(Long programId) {
-//        return jpaQueryFactory.select(new QProgramDTO(
-//                program.programId,
-//                program.programName,
-//                program.programPlace,
-//                program.possibleDate.openingDate,
-//                program.possibleDate.closingDate,
-//                program.programTime,
-//                program.programDate,
-//                program.programContent,
-//                program.programLimitCount,
-//                program.programStatus,
-//                program.programFileProfileName,
-//                program.programFileProfilePath,
-//                program.programFileProfileUuid,
-//                program.programFileDetailName,
-//                program.programFileDetailPath,
-//                program.programFileDetailUuid,
-//                program.createdDate
-//        )).from(program)
-//                .where(program.programId.eq(programId)).fetchOne();
-//    }
+    @Override
+    public ProgramDTO programDetailPage(Model model, Member member, Long programId) {
+        return jpaQueryFactory.select(new QProgramDTO(
+                program.programId,
+                program.programName,
+                program.programPlace,
+                program.possibleDate.openingDate,
+                program.possibleDate.closingDate,
+                program.programTime,
+                program.programDate,
+                program.programContent,
+                program.programLimitCount,
+                program.programStatus,
+                program.programFileProfileName,
+                program.programFileProfilePath,
+                program.programFileProfileUuid,
+                program.programFileDetailName,
+                program.programFileDetailPath,
+                program.programFileDetailUuid,
+                program.createdDate
+        )).from(program)
+                .where(program.programId.eq(programId))
+                .fetchOne();
+    }
+
+    @Override
+    public ProgramDTO programDetailPage1(Long programId) {
+        return jpaQueryFactory.select(new QProgramDTO(
+                program.programId,
+                program.programName,
+                program.programPlace,
+                program.possibleDate.openingDate,
+                program.possibleDate.closingDate,
+                program.programTime,
+                program.programDate,
+                program.programContent,
+                program.programLimitCount,
+                program.programStatus,
+                program.programFileProfileName,
+                program.programFileProfilePath,
+                program.programFileProfileUuid,
+                program.programFileDetailName,
+                program.programFileDetailPath,
+                program.programFileDetailUuid,
+                program.createdDate
+        )).from(program)
+                .where(program.programId.eq(programId)).fetchOne();
+    }
 
 
 }
