@@ -119,29 +119,29 @@
                                                                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                  style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
                                                                                 <div class="w-100 mw-150px">
-                                                                                    <a href="http://localhost:10001/admin/adminprogram"
+                                                                                    <a href="http://localhost:10001/admin/program/1"
                                                                                        style="padding: 9px 20px 9px 20px;"
                                                                                        class="btn btn-primary">돌아가기</a>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                            <div class="dataTables_wrapper dt-bootstrap4 no-footer" th:object="${program}">
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 29.4%; margin-right: 9px;"> 강좌명 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 70.6%;"> 줍깅의 유래와 이해 </div>
+                                                                                         style="width: 70.6%;" th:text="*{programName}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 현재 신청인원 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 21 명 </div>
+                                                                                         style="width: 75%;" th:text="${registers.size}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 프로그램 상태 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 진행중 </div>
+                                                                                         style="width: 75%;" th:text="*{programStatus}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
@@ -152,50 +152,17 @@
                                                                                     <div class="form-control form-control-solid programMemberTBL2">수강신청 번호</div>
                                                                                     <div class="form-control form-control-solid programMemberTBL3">회원 번호</div>
                                                                                     <div class="form-control form-control-solid programMemberTBL4">회원 이름</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL5">회원 전화번호</div>
+<!--                                                                                    <div class="form-control form-control-solid programMemberTBL5">회원 전화번호</div>-->
                                                                                 </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid programMemberTBL1">01</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL2">00123</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221364</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL4">한동석</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-1234-1234</div>
+                                                                                <th:block th:each="register:${registers}">
+                                                                                <div class="d-flex align-items-center position-relative my-1" th:object="${register}">
+                                                                                    <div class="form-control form-control-solid programMemberTBL1" th:text="${registerStat.count}"></div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL2" th:text="*{myprogramId}"></div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL3" th:text="${register.memberId}"></div>
+                                                                                    <div class="form-control form-control-solid programMemberTBL4" th:text="${register.memberName}"></div>
+<!--                                                                                    <div class="form-control form-control-solid programMemberTBL5" th:text="*{myprogramId}">010-1234-1234</div>-->
                                                                                 </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid programMemberTBL1">02</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL2">00129</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221398</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL4">정재훈</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-4152-0000</div>
-                                                                                </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid programMemberTBL1">03</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL2">00159</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL3">20211212</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL4">문승희</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-9845-9546</div>
-                                                                                </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid programMemberTBL1">04</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL2">00129</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221219</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL4">성은지</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-7777-7894</div>
-                                                                                </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid programMemberTBL1">05</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL2">00198</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221287</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL4">홍수현</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-9987-9987</div>
-                                                                                </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid programMemberTBL1">06</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL2">00178</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL3">20221281</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL4">장선홍</div>
-                                                                                    <div class="form-control form-control-solid programMemberTBL5">010-7521-7410</div>
-                                                                                </div>
+                                                                                </th:block>
                                                                             </div>
                                                                             <div class="row">
                                                                             </div>

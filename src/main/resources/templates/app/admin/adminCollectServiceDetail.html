@@ -90,61 +90,58 @@
                                                                     <div id="kt_ecommerce_products_table_wrapper"
                                                                          class="dataTables_wrapper dt-bootstrap4 no-footer">
                                                                         <div class="table-responsive">
-
                                                                         </div>
-
-
                                                                         <div style="width: 60%; margin: 0 auto 48px auto;">
                                                                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                  style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
                                                                                 <div class="w-100 mw-150px">
-                                                                                    <a href="http://localhost:10001/admin/admincollectservice"
+                                                                                    <a href="http://localhost:10001/admin/pickup/1"
                                                                                        style="padding: 9px 20px 9px 20px;"
                                                                                        class="btn btn-primary">돌아가기</a>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                            <div class="dataTables_wrapper dt-bootstrap4 no-footer" th:object="${pickupDetail}">
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 29.4%; margin-right: 9px;"> 수거 신청 번호 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 70.6%;"> 55151648 </div>
+                                                                                         style="width: 70.6%;" th:text="*{pickupId}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 신청 날짜 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 2022. 11. 21 </div>
+                                                                                         style="width: 75%;" th:text="${#temporals.format(pickupDetail.createdDate, 'yyyy-MM-dd')}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 25%; margin-right: 9px;"> 신청자 (회원번호) </div>
+                                                                                         style="width: 25%; margin-right: 9px;"> 신청자 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 2150516 </div>
+                                                                                         style="width: 75%;" th:text="*{memberName}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 주소 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 경기도 성남시 분당구 돌마로 51 </div>
+                                                                                         style="width: 75%;" th:text="*{pickupAddress}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 수거 물품_병 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 5 개 </div>
+                                                                                         style="width: 75%;" th:text="*{glassCount}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 수거 물품_페트 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 10 개 </div>
+                                                                                         style="width: 75%;" th:text="*{petCount}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 수거 메세지 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 오전 11시 이후에 문밖에 놓을게요! </div>
+                                                                                         style="width: 75%;" th:text="*{pickupMessage}"></div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">

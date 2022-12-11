@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.repository.admin.program;
 
+import com.app.byeolbyeolsseudam.domain.myprogram.MyprogramDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import org.springframework.data.domain.Pageable;
 
@@ -11,4 +12,5 @@ public interface AdminProgramCustomRepository {
     public List<ProgramDTO> searchProgramPaging(String keyword, Pageable pageable);
     public ProgramDTO selectById(Long programId);
     public void update(ProgramDTO programDTO);
+    public List<MyprogramDTO> showRegisterList(Long programId);
 }

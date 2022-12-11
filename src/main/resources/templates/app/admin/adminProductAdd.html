@@ -92,7 +92,7 @@
                                                                         <div class="table-responsive">
                                                                         </div>
 
-                                                                        <form th:action="@{admin/product/save}" name="productForm" method="post">
+                                                                        <form th:action="@{/admin/product/save}" name="productForm" method="post">
                                                                             <div style="width: 60%; margin: 0 auto 48px auto;">
                                                                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                      style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
@@ -170,6 +170,8 @@
                                                                                                  id="thumbnail2"
                                                                                                  style="width: 100%; height: 100%;">
                                                                                         </label>
+                                                                                        <div id="profileImgInfo"></div>
+                                                                                        <div id="detailImgInfo"></div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="row">
@@ -204,5 +206,79 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script th:inline="javascript">
+    let arrayFile = [];
+    let $inputProfile = $("#icon_img1");
+    let $inputDetail = $("#icon_img2");
+    $inputProfile.on("change",function () {
+        let formData = new FormData();
 
+        let files = $inputProfile[0].files;
+
+        Array.from(files).forEach(file => arrayFile.push(file));
+        const dataTransfer = new DataTransfer();
+        arrayFile.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $(files).each(function(i, file){
+            formData.append("upload", file);
+        });
+
+        $.ajax({
+            url: "/product/profile/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: insertProfile
+        });
+    });
+
+
+    $inputDetail.on("change",function () {
+        let formData = new FormData();
+
+        let files = $inputDetail[0].files;
+
+        Array.from(files).forEach(file => arrayFile.push(file));
+        const dataTransfer = new DataTransfer();
+        arrayFile.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $(files).each(function(i, file){
+            formData.append("upload", file);
+        });
+
+        $.ajax({
+            url: "/product/detail/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: insertDetail
+        });
+    });
+
+    function insertProfile(files) {
+        let text = "";
+
+        $(files).each(function (i, file) {
+            text += `<input name="productFileProfileName" type="hidden" value="`+ file.productFileProfileName +`">`;
+            text += `<input name="productFileProfilePath" type="hidden" value="`+ file.productFileProfilePath +`">`;
+            text += `<input name="productFileProfileUuid" type="hidden" value="`+ file.productFileProfileUuid +`">`;
+        });
+        $("#profileImgInfo").html(text);
+
+    }
+    function insertDetail(files) {
+        let text = "";
+
+        $(files).each(function (i, file) {
+            text += `<input name="productFileDetailName" type="hidden" value="`+ file.productFileDetailName +`">`;
+            text += `<input name="productFileDetailPath" type="hidden" value="`+ file.productFileDetailPath +`">`;
+            text += `<input name="productFileDetailUuid" type="hidden" value="`+ file.productFileDetailUuid +`">`;
+        });
+        $("#detailImgInfo").html(text);
+    }
+</script>
 </html>

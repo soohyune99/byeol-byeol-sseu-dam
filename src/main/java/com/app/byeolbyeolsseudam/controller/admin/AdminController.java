@@ -21,7 +21,7 @@ import java.util.UUID;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/admin/*")
+@RequestMapping(value = {"/admin","/admin"})
 public class AdminController {
 
     /* ############################### 공통  ################################### */
@@ -33,8 +33,8 @@ public class AdminController {
     /* ############################### 대시 보드  ############################### */
 
     /* 대시보드 */
-    @GetMapping("adminmain")
-    public String adminMain(){ return "/app/admin/adminMain.html"; }
+    @GetMapping("")
+    public String adminMain(){ return "/app/admin/adminMain"; }
 
     /* ############################### 회원 관리  ############################### */
 
@@ -42,11 +42,11 @@ public class AdminController {
 
     /* ############################### 주문 관리 ################################ */
 
-   //AdminProductController
+    //AdminProductController
 
     /* ############################### 프로그램 관리 ############################# */
 
-//    AdminProgramController
+    //AdminProgramController
 
     /* ############################### 줍깅 관리 ################################ */
 
@@ -107,18 +107,7 @@ public class AdminController {
 
     /* ############################### 수거서비스 ############################### */
 
-    /* 수거 서비스 - 수거 목록*/
-    @GetMapping("admincollectservice")
-    public String adminCollectService(){
-        return "/app/admin/adminCollectService.html";
-    }
-
-    /* 수거 서비스 - 수거 목록 + 상세 내역 */
-    @GetMapping("admincollectservicedetail")
-    public String adminCollectServiceDetail(){
-        return "/app/admin/adminCollectServiceDetail.html";
-    }
-
+    //AdminPickupController
 
     /* ############################### 게시판 관리 ############################## */
 
@@ -128,12 +117,7 @@ public class AdminController {
 
     //AdminNoticeController
 
-
     /* ############################### 배너 관리 ############################### */
 
     //BannerController
-
-
-
-
 }

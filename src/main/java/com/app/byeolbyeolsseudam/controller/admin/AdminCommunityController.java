@@ -21,12 +21,10 @@ public class AdminCommunityController {
 
     //게시글 목록
     @GetMapping("/board/{page}")
-//    페이징 처리하고 adminCommunityService에 키워드, Pageable 받는 메소드 만들기
     public String adminBoard(@PathVariable("page") Integer page, Model model){
         page = Optional.ofNullable(page).orElse(1);
 
         Pageable pageable = PageRequest.of(page-1,10, Sort.Direction.DESC, "boardId");
-
 
         model.addAttribute("boards", adminCommunityService.searchBoard(pageable));
         return "/app/admin/adminCommunityManage";
