@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = {"/main/*","/main"})
+@RequestMapping("/main")
 public class MainController {
     private final BannerService bannerService;
     private final MainService mainService;

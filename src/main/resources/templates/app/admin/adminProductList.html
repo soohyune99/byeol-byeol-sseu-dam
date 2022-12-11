@@ -94,9 +94,9 @@
                                                                                 </svg>
                                                                             </span>
                                                                             <!--end::Svg Icon-->
-                                                                            <form>
-                                                                                <input type="text" style="display:none">
-                                                                                <input type="text" name="enter" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
+                                                                            <form th:action="@{/admin/product}" name="productSearchForm">
+                                                                                <input type="hidden" style="display:none" name="page" value="1">
+                                                                                <input type="text" name="keyword" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
                                                                                        data-kt-ecommerce-product-filter="search"
                                                                                        class="form-control form-control-solid w-250px ps-14"
                                                                                        placeholder="제품명 검색">
@@ -112,7 +112,7 @@
                                                                         <div class="w-100 mw-150px">
                                                                         </div>
                                                                         <!--begin::Add product-->
-                                                                        <a href="http://localhost:10001/admin/adminproductadd"
+                                                                        <a href="http://localhost:10001/admin/product/add"
                                                                            class="btn btn-primary">제품 추가</a>
                                                                         <a href="javascript:void(0)"
                                                                            class="btn btn-primary" id="deleteProductBtn" style="background: #f1416c ; margin-left: 10px;">삭제</a>
@@ -152,13 +152,13 @@
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
-                                                                                        style="width: 260.15px;">제품명
+                                                                                        style="width: 260.15px;">제품 번호
                                                                                     </th>
                                                                                     <th class="text-end min-w-100px sorting productIdTitle"
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
-                                                                                        style="width: 131.475px;">제품 번호
+                                                                                        style="width: 131.475px;">제품명
                                                                                     </th>
                                                                                     <th class="text-end min-w-70px sorting productCountTitle"
                                                                                         tabindex="0"
@@ -207,62 +207,63 @@
 
                                                                                 <!--begin::Table body-->
                                                                                 <tbody class="fw-semibold text-gray-600">
-
+                                                                                <form th:action="@{/admin/product/delete}" method="post" name="productDeleteForm">
+                                                                                <th:block th:each="product:${products}">
                                                                                 <!-- 제품목록_제품리스트-->
-                                                                                <tr class="odd productList">
+                                                                                <tr class="odd productList" th:object="${product}">
                                                                                     <!--begin::Checkbox-->
                                                                                     <td class="productCheckbox">
                                                                                         <div
                                                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                                             <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
+                                                                                                   type="checkbox" name="checkedValue" th:value="*{productId}">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::Checkbox-->
 
                                                                                     <!--begin::제품명=-->
-                                                                                    <td class="text-end pe-0 productName">
-                                                                                        <span class="fw-bold">스트롱 고체치약</span>
+                                                                                    <td class="text-end pe-0  productIdTitle">
+                                                                                        <span class="fw-bold" th:text="*{productId}"></span>
                                                                                     </td>
                                                                                     <!--end::제품명=-->
 
                                                                                     <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0 productIdTitle">
-                                                                                        <span class="fw-bold">02905009</span>
+                                                                                    <td class="text-end pe-0 productName">
+                                                                                        <span class="fw-bold" th:text="*{productName}"></span>
                                                                                     </td>
                                                                                     <!--end::제품 번호=-->
 
                                                                                     <!--begin::수량=-->
                                                                                     <td class="text-end pe-0 productCount"
                                                                                         data-order="15">
-                                                                                        <span class="fw-bold ms-3">15</span>
+                                                                                        <span class="fw-bold ms-3" th:text="*{productCount}"></span>
                                                                                     </td>
                                                                                     <!--end::수량=-->
 
                                                                                     <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0 productPrice">13,400
+                                                                                    <td class="text-end pe-0 productPrice" th:text="*{productPrice}">
                                                                                     </td>
                                                                                     <!--end::Price=-->
 
                                                                                     <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0 productCategory">욕실</td>
+                                                                                    <td class="text-end pe-0 productCategory" th:text="*{productCategory}">욕실</td>
                                                                                     <!--end::카테고리=-->
 
                                                                                     <!--begin::리뷰 평점-->
                                                                                     <td class="text-end pe-0 reviewStar"
                                                                                         data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
+                                                                                        <div class="rating justify-content-end" th:text="${product.reviews}">
+
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::리뷰 평점-->
 
                                                                                     <!--begin::대표사진=-->
-                                                                                    <td class="text-end productFileProfile">치약_대표.jpg</td>
+                                                                                    <td class="text-end productFileProfile" th:text="*{productFileProfileName}"></td>
                                                                                     <!--end::대표사진=-->
 
                                                                                     <!--begin::상세사진=-->
-                                                                                    <td class="text-end productFileDetail">치약_상세.jpg</td>
+                                                                                    <td class="text-end productFileDetail" th:text="*{productFileDetailName}"></td>
                                                                                     <!--end::상세사진=-->
 
                                                                                     <!--begin::수정/삭제=-->
@@ -270,622 +271,13 @@
                                                                                         data-order="Inactive">
                                                                                         <!--begin::수정-->
                                                                                         <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/adminproductmodify">수정</a>
+                                                                                            <a th:href="@{/admin/product/modify(productId=*{productId})}">수정</a>
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::수정-->
                                                                                 </tr>
-
-                                                                                <!-- BEGIN : 삭제할 데이터 - 날리기 ######################### -->
-
-                                                                                <!-- 제품목록_제품리스트 -->
-                                                                                <tr class="even productList2">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::제품명-->
-
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">혀클리너</span>
-                                                                                    </td>
-                                                                                    <!--end::제품명=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905119</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">46</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">2,000
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">욕실</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            4
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::대표사진=-->
-                                                                                    <td class="text-end">혀클_대표.jpg</td>
-                                                                                    <!--end::대표사진=-->
-
-                                                                                    <!--begin::상세사진=-->
-                                                                                    <td class="text-end">혀클_상세.jpg</td>
-                                                                                    <!--end::상세사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 제품목록_제품리스트 -->
-                                                                                <tr class="even productList3">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::제품명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">고무장갑</span>
-                                                                                    </td>
-                                                                                    <!--end::제품명=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02901237</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">89</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">3,000
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">주방</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::대표사진=-->
-                                                                                    <td class="text-end">장갑_대표.jpg</td>
-                                                                                    <!--end::대표사진=-->
-
-                                                                                    <!--begin::상세사진=-->
-                                                                                    <td class="text-end">장갑_상세.jpg</td>
-                                                                                    <!--end::상세사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 제품목록_제품리스트 -->
-                                                                                <tr class="even productList3">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::제품명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">고무장갑</span>
-                                                                                    </td>
-                                                                                    <!--end::제품명=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02901237</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">89</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">3,000
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">주방</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::대표사진=-->
-                                                                                    <td class="text-end">장갑_대표.jpg</td>
-                                                                                    <!--end::대표사진=-->
-
-                                                                                    <!--begin::상세사진=-->
-                                                                                    <td class="text-end">장갑_상세.jpg</td>
-                                                                                    <!--end::상세사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 제품목록_제품리스트-->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::제품명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">스트롱 고체치약</span>
-                                                                                    </td>
-                                                                                    <!--end::제품명=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">15</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">욕실</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::대표사진=-->
-                                                                                    <td class="text-end">치약_대표.jpg</td>
-                                                                                    <!--end::대표사진=-->
-
-                                                                                    <!--begin::상세사진=-->
-                                                                                    <td class="text-end">치약_상세.jpg</td>
-                                                                                    <!--end::상세사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 제품목록_제품리스트 -->
-                                                                                <tr class="even productList2">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::제품명-->
-
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">혀클리너</span>
-                                                                                    </td>
-                                                                                    <!--end::제품명=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905119</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">46</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">2,000
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">욕실</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            4
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::대표사진=-->
-                                                                                    <td class="text-end">혀클_대표.jpg</td>
-                                                                                    <!--end::대표사진=-->
-
-                                                                                    <!--begin::상세사진=-->
-                                                                                    <td class="text-end">혀클_상세.jpg</td>
-                                                                                    <!--end::상세사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 제품목록_제품리스트 -->
-                                                                                <tr class="even productList3">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::제품명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">고무장갑</span>
-                                                                                    </td>
-                                                                                    <!--end::제품명=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02901237</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">89</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">3,000
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">주방</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::대표사진=-->
-                                                                                    <td class="text-end">장갑_대표.jpg</td>
-                                                                                    <!--end::대표사진=-->
-
-                                                                                    <!--begin::상세사진=-->
-                                                                                    <td class="text-end">장갑_상세.jpg</td>
-                                                                                    <!--end::상세사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 제품목록_제품리스트-->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::제품명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">스트롱 고체치약</span>
-                                                                                    </td>
-                                                                                    <!--end::제품명=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905009</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">15</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">13,400
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">욕실</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::대표사진=-->
-                                                                                    <td class="text-end">치약_대표.jpg</td>
-                                                                                    <!--end::대표사진=-->
-
-                                                                                    <!--begin::상세사진=-->
-                                                                                    <td class="text-end">치약_상세.jpg</td>
-                                                                                    <!--end::상세사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 제품목록_제품리스트 -->
-                                                                                <tr class="even productList2">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::제품명-->
-
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">혀클리너</span>
-                                                                                    </td>
-                                                                                    <!--end::제품명=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02905119</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">46</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">2,000
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">욕실</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            4
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::대표사진=-->
-                                                                                    <td class="text-end">혀클_대표.jpg</td>
-                                                                                    <!--end::대표사진=-->
-
-                                                                                    <!--begin::상세사진=-->
-                                                                                    <td class="text-end">혀클_상세.jpg</td>
-                                                                                    <!--end::상세사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 제품목록_제품리스트 -->
-                                                                                <tr class="even productList3">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::제품명=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">고무장갑</span>
-                                                                                    </td>
-                                                                                    <!--end::제품명=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">02901237</span>
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::수량=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">89</span>
-                                                                                    </td>
-                                                                                    <!--end::수량=-->
-
-                                                                                    <!--begin::Price=-->
-                                                                                    <td class="text-end pe-0">3,000
-                                                                                    </td>
-                                                                                    <!--end::Price=-->
-
-                                                                                    <!--begin::카테고리=-->
-                                                                                    <td class="text-end pe-0">주방</td>
-                                                                                    <!--end::카테고리=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            3
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::대표사진=-->
-                                                                                    <td class="text-end">장갑_대표.jpg</td>
-                                                                                    <!--end::대표사진=-->
-
-                                                                                    <!--begin::상세사진=-->
-                                                                                    <td class="text-end">장갑_상세.jpg</td>
-                                                                                    <!--end::상세사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
+                                                                                </th:block>
+                                                                                </form>
 
                                                                                 <!-- END : 삭제할 데이터 - 날리기 ########################### -->
 
@@ -917,55 +309,57 @@
                                                                             <!-- 우측 하단 페이징 처리 -->
                                                                             <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
                                                                                 <div class="dataTables_paginate paging_simple_numbers"
-                                                                                     id="kt_ecommerce_products_table_paginate">
-                                                                                    <ul class="pagination">
+                                                                                     id="kt_ecommerce_products_table_paginate" th:if="${#strings.isEmpty(keyword)}">
+                                                                                    <ul class="pagination" th:if="${!products.isEmpty()}">
                                                                                         <li class="paginate_button page-item previous disabled"
-                                                                                            id="kt_ecommerce_products_table_previous">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_previous" th:if="${products.hasPrevious()}">
+                                                                                            <a th:href="@{|/admin/product/${products.number}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="0"
                                                                                                tabindex="0"
                                                                                                class="page-link"><i
                                                                                                     class="previous"></i><</a>
                                                                                         </li>
-                                                                                        <li class="paginate_button page-item active">
-                                                                                            <a href="#"
+                                                                                        <li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, products.totalPages)}">
+                                                                                            <a th:text="${page}" th:href="@{|/admin/product/${page}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="1"
                                                                                                tabindex="0"
-                                                                                               class="page-link">1</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="2"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">2</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="3"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">3</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="4"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">4</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="5"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">5</a>
+                                                                                               class="page-link"></a>
                                                                                         </li>
                                                                                         <li class="paginate_button page-item next"
-                                                                                            id="kt_ecommerce_products_table_next">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_next" th:if="${products.hasNext()}">
+                                                                                            <a th:href="@{|/admin/product/${products.number +2}|}"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="6"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"><i
+                                                                                                    class="next"></i>></a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                                                     id="kt_ecommerce_products_table_paginate" th:if="${not #strings.isEmpty(keyword)}">
+                                                                                    <ul class="pagination" th:if="${!products.isEmpty()}">
+                                                                                        <li class="paginate_button page-item previous disabled"
+                                                                                            id="kt_ecommerce_products_table_previous" th:if="${products.hasPrevious()}">
+                                                                                            <a th:href="@{/admin/product(page=${products.number},keyword=${keyword})}"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="0"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"><i
+                                                                                                    class="previous"></i><</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, products.totalPages)}">
+                                                                                            <a th:text="${page}" th:href="@{/admin/product(page=${page}, keyword=${keyword})}"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="1"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"></a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item next"
+                                                                                            id="kt_ecommerce_products_table_next" th:if="${products.hasNext()}">
+                                                                                            <a th:href="@{/admin/product(page=${products.number +2},keyword=${keyword})}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="6"
                                                                                                tabindex="0"
@@ -1004,5 +398,29 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script>
+    //리스트 체크박스
+    var $checkboxes = $(".form-check-input.checkbox");
 
+    // // 검색 _ 엔터로 submit 가능 / 빈칸 입력시 alert
+    // function searchList(theForm) {
+    //     if (theForm.enter.value==""){
+    //         alert("검색어를 입력하세요");
+    //         return false;
+    //     }
+    //     theForm.submit();
+    // }
+
+    // 제품 삭제
+    $("#deleteProductBtn").on('click', function () {
+
+        if ($checkboxes.filter(":checked").length == 0) {
+            alert("삭제할 제품을 선택하세요.");
+            return;
+        }
+
+        $("form[name='productDeleteForm']").submit();
+    });
+
+</script>
 </html>

@@ -56,7 +56,10 @@ public class AdminProgramController {
 
     /* 프로그램 - 프로그램 세부 내역 */
     @GetMapping("/detail")
-    public String adminProgramDetail(){
+    public String adminProgramDetail(@RequestParam(name = "programId") String programId, Model model){
+        model.addAttribute("program", adminProgramService.selectById(programId));
+        model.addAttribute("registers", adminProgramService.showRegisterList(programId));
+
         return "/app/admin/adminProgramDetail";
     }
 
@@ -74,7 +77,7 @@ public class AdminProgramController {
 
     /* 프로그램 관리 - 프로그램 목록 + 프로그램 수정 */
     @GetMapping("/modify")
-    public String adminProgramModify(@RequestParam(name = "programId") Long programId, Model model){
+    public String adminProgramModify(@RequestParam(name = "programId") String programId, Model model){
         model.addAttribute("oldProgram", adminProgramService.selectById(programId));
 
         return "/app/admin/adminProgramModify";

@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.service.admin;
 
+import com.app.byeolbyeolsseudam.domain.myprogram.MyprogramDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.entity.program.Program;
 import com.app.byeolbyeolsseudam.repository.admin.program.AdminProgramRepository;
@@ -51,7 +52,8 @@ public class AdminProgramService {
         return programSearchList;
     }
 
-    public ProgramDTO selectById(Long programId){
+    public ProgramDTO selectById(String programIdstr){
+        Long programId = Long.parseLong(programIdstr);
         return adminProgramRepository.selectById(programId);
     }
 
@@ -59,7 +61,11 @@ public class AdminProgramService {
         adminProgramRepository.update(programDTO);
         Program program = adminProgramRepository.findById(programId).get();
         adminProgramRepository.save(program);
+    }
 
+    public List<MyprogramDTO> showRegisterList(String programIdstr){
+        Long programId = Long.parseLong(programIdstr);
+        return adminProgramRepository.showRegisterList(programId);
     }
 
 }

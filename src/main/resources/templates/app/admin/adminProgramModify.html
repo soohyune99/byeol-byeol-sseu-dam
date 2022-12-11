@@ -138,8 +138,8 @@
                                                                                                 id="programStatus"
                                                                                                 style="width: 20%;" name="programStatus">
 <!--                                                                                            <option value="status" disabled selected hidden>상태</option>-->
-                                                                                            th:classappend="${!paging.hasNext} ? 'disabled'"
-                                                                                            th:attr       ="${#strings.equals(oldProgram.programStatus , '모집예정')} ? 'selected'"
+<!--                                                                                            th:classappend="${!paging.hasNext} ? 'disabled'"-->
+<!--                                                                                            th:attr       ="${#strings.equals(oldProgram.programStatus , '모집예정')} ? 'selected'"-->
                                                                                             <option value="모집예정" th:selected="${#strings.equals(oldProgram.programStatus , '모집예정')}">모집예정</option>
                                                                                             <option value="모집중" th:selected="${#strings.equals(oldProgram.programStatus , '모집중')}">모집중</option>
                                                                                             <option value="모집완료" th:selected="${#strings.equals(oldProgram.programStatus , '모집완료')}">모집완료</option>

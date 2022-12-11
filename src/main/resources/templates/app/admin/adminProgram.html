@@ -245,7 +245,7 @@
                                                                                     </td>
                                                                                     <!--end::Checkbox-->
 
-                                                                                    <!--begin::강좌 번호=-->
+                                                                                    <!--begin::강좌 번호=사랑해요 재훈이형-->
                                                                                     <td class="text-end pe-0">
                                                                                         <span th:text="*{programId}" class="fw-bold"></span>
                                                                                     </td>
@@ -254,7 +254,7 @@
                                                                                     <!--begin::강좌명=-->
                                                                                     <td class="text-end pe-0">
                                                                                         <span class="fw-bold">
-                                                                                            <a  th:text="*{programName}" href="http://localhost:10001/admin/program/detail"></a>
+                                                                                            <a th:text="*{programName}" th:href="@{/admin/program/detail(programId=${program.programId})}"></a>
                                                                                         </span>
                                                                                     </td>
                                                                                     <!--end::강좌명=-->

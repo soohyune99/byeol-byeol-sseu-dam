@@ -1,5 +1,7 @@
 package com.app.byeolbyeolsseudam.repository.admin.program;
 
+import com.app.byeolbyeolsseudam.domain.myprogram.MyprogramDTO;
+import com.app.byeolbyeolsseudam.domain.myprogram.QMyprogramDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.domain.program.QProgramDTO;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.app.byeolbyeolsseudam.entity.myprogram.QMyprogram.myprogram;
 import static com.app.byeolbyeolsseudam.entity.program.QProgram.program;
 
 @Repository
@@ -123,5 +126,16 @@ public class AdminProgramRepositoryImpl implements AdminProgramCustomRepository{
         jpaQueryFactory.selectFrom(program)
                 .where(program.programId.eq(programDTO.getProgramId()))
                 .fetchOne().update(programDTO);
+    }
+
+    @Override
+    public List<MyprogramDTO> showRegisterList(Long programId) {
+        return jpaQueryFactory.select(new QMyprogramDTO(myprogram.myprogramId,
+                myprogram.myprogramStatus, myprogram.member.memberId, myprogram.member.memberName, myprogram.program.programId,
+                myprogram.program.programName, myprogram.program.programPlace,
+                myprogram.program.programDate, myprogram.program.programFileProfileName))
+                .from(myprogram).where(myprogram.program.programId.eq(programId))
+                .orderBy(myprogram.createdDate.desc())
+                .fetch();
     }
 }
