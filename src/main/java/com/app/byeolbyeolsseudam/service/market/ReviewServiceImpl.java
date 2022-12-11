@@ -8,11 +8,13 @@ import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
 import com.app.byeolbyeolsseudam.repository.review.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
     private final MemberRepository memberRepository;
@@ -24,6 +26,10 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public List<ReviewDTO> getReviewAllList(Long productId){
+        return reviewRepository.getAllReviewList(productId);
+    }
+    @Override
     public List<ReviewDTO> getMoreReview(Long productId, int page){
         return reviewRepository.getMoreReview(productId, page);
     }
@@ -34,6 +40,11 @@ public class ReviewServiceImpl implements ReviewService {
         review.changeMember(memberRepository.findById(reviewDTO.getMemberId()).get());
         review.changeProduct(productRepository.findById(reviewDTO.getProductId()).get());
         reviewRepository.save(review);
+    }
+
+    @Override
+    public List<ReviewDTO> getReviewFileList(Long productId){
+        return reviewRepository.getReviewFileList(productId);
     }
 
 

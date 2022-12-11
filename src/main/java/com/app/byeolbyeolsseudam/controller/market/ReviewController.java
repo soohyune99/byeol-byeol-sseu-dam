@@ -35,27 +35,38 @@ public class ReviewController {
         return reviewService.getReviewList(productId);
     }
 
+    /* 리뷰 전체 조회 */
+    @PostMapping("/all/{productId}")
+    public List<ReviewDTO> getReviewAllList(@PathVariable Long productId){
+        return reviewService.getReviewAllList(productId);
+    }
+
+    /* 사진 리뷰만 보기*/
+    @PostMapping("/photo/{productId}")
+    public List<ReviewDTO> getReviewFile(@PathVariable Long productId){
+        return reviewService.getReviewFileList(productId);
+    }
+
     /* 리뷰 더보기 */
-    @PostMapping("/{productId}/{page}")
+    @GetMapping("/{productId}/{page}")
     public List<ReviewDTO> getMoreReview(@PathVariable Long productId, @PathVariable int page){
         return reviewService.getMoreReview(productId, page);
     }
 
     /* 리뷰 작성 */
     @PostMapping(value = "/new", consumes = "application/json", produces = "text/plain; charset=utf-8")
-    public ResponseEntity<String> saveReview(@RequestBody ReviewDTO reviewDTO) throws UnsupportedEncodingException {
-        log.info("--------------- 리뷰 작성 완료 중 ---------------------");
+    public ResponseEntity<String> saveComment(@RequestBody ReviewDTO reviewDTO) throws UnsupportedEncodingException {
+        log.info("---------------여기 리뷰 컨트롤러-----------------------" );
         reviewService.saveReview(reviewDTO);
-        return new ResponseEntity<>(new String("review success".getBytes(), "UTF-8"), HttpStatus.OK);
+        return new ResponseEntity<>(new String("write success".getBytes(), "UTF-8"), HttpStatus.OK);
     }
 
     /* 리뷰 사진 첨부*/
     @ResponseBody
     @PostMapping("/upload")
     public void uploadReviewFile(MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        log.info("---------------------리뷰 사진 컨트롤러 들엉ㅁ");
         response.setContentType("text/html; charset=utf-8");
-        String uploadPath = "C:/upload/review";
+        String uploadPath = "C:/upload/review/";
 
         File uploadFolder = new File(uploadPath, createDirectoryByNow());
         if(!uploadFolder.exists()){
@@ -65,8 +76,12 @@ public class ReviewController {
         PrintWriter out = response.getWriter();
         String originalFileExtension = file.getOriginalFilename();
         String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");// + originalFileExtension
+        log.info("storedFileName : " + storedFileName);
+        log.info("originalFileExtension : " + originalFileExtension);
+        log.info(file.toString());
+        log.info(uploadPath + storedFileName);
         file.transferTo(new File(uploadFolder + "/" + storedFileName + originalFileExtension));
-        out.print("/upload/review" + createDirectoryByNow() + "/" + storedFileName + originalFileExtension);
+        out.print("/upload/review/" + createDirectoryByNow() + "/" + storedFileName + originalFileExtension);
         out.close();
     }
 

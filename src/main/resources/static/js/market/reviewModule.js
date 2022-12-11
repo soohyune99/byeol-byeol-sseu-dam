@@ -20,7 +20,48 @@ let reviewService = (function(){
         });
     }
 
+    function getReviewStarRate(productId, callback, error){
+        $.ajax({
+            url: "/review/all/" + productId,
+            type: "post",
+            data: JSON.stringify(productId),
+            contentType: "application/json; charset=utf-8",
+            success: function (reviews, status, xhr) {
+                if(callback){
+                    callback(reviews);
+                }
+            },
+            error: function (xhr, status, err) {
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function getPhotoReview(productId, callback, error){
+        $.ajax({
+            url: "/review/photo/" + productId,
+            type: "post",
+            data: JSON.stringify(productId),
+            contentType: "application/json; charset=utf-8",
+            success: function (reviews, status, xhr) {
+                if(callback){
+                    callback(reviews);
+                }
+            },
+            error: function (xhr, status, err) {
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
     function getMoreReview(productId, page, callback, error){
+        console.log("ajax");
+        console.log(typeof page);
+        console.log(page);
         $.ajax({
             url: "/review/" + productId + "/" + page,
             type: "get",
@@ -38,7 +79,9 @@ let reviewService = (function(){
             }
         });
     }
+
     function save(review, callback, error){
+        console.log("리뷰 작성 ajax");
         console.log(review);
         $.ajax({
             url: "/review/new",
@@ -47,10 +90,12 @@ let reviewService = (function(){
             contentType: "application/json; charset=utf-8",
             success: function(result, status, xhr){
                 if(callback){
+                    console.log("리뷰 작성 ajax 성공")
                     callback(result);
                 }
             },
             error: function(xhr, status, err){
+                console.log("리뷰 작성 ajax 실패")
                 if(error){
                     error(err);
                 }
@@ -58,8 +103,8 @@ let reviewService = (function(){
         });
     }
 
-    let data = new FormData();
     function uploadReviewFile(file, callback, error){
+        var data = new FormData();
         data.append("file", file);
 
         $.ajax({
@@ -71,13 +116,13 @@ let reviewService = (function(){
             contentType: false,
             processData: false,
             success: function (file, status, xhr) {
-                console.log("성공??")
+                console.log("upload 성공")
                 if(callback){
                     callback(file);
                 }
             },
             error: function (xhr, status, err) {
-                console.log("실패ㅠㅠ")
+                console.log("upload 실패")
                 if(error){
                     error(err);
                 }
@@ -107,6 +152,6 @@ let reviewService = (function(){
 
         return `${Math.floor(betweenTimeDay / 365)}년전`;
     }
-    return{getReviewList:getReviewList, getMoreReview:getMoreReview, save:save,
-        uploadReviewFile:uploadReviewFile, timeForToday:timeForToday}
+    return{getReviewList:getReviewList,getReviewStarRate:getReviewStarRate,getMoreReview:getMoreReview,
+        getPhotoReview:getPhotoReview ,save:save, uploadReviewFile:uploadReviewFile, timeForToday:timeForToday}
 })();

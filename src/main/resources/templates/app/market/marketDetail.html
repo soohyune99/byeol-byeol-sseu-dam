@@ -93,38 +93,38 @@
                                                 <a class="bts bt-star active"></a>
                                                 <a class="bts bt-star active"></a>
                                             </div>
-                                            <div class="rating_point">4.9</div>
-                                            <div class="review_count">(총 38개의 구매평)</div>
+                                            <div class="rating_point"></div>
+                                            <div class="review_count"></div>
                                         </div>
                                         <div class="rating_graph_wrap">
                                             <div class="rating_bar_wrap">
                                                 <span class="rating_name">5점</span>
                                                 <div class="rating_bar_background">
-                                                    <div class="rating_bar active" style="width: 89.4736842105%; "> </div>
+                                                    <div class="five_bar rating_bar" style="width: 89.4736842105%; "> </div>
                                                 </div>
                                             </div>
                                             <div class="rating_bar_wrap">
                                                 <span class="rating_name">4점</span>
                                                 <div class="rating_bar_background">
-                                                    <div class="rating_bar " style="width: 10.5263157895%; "></div>
+                                                    <div class="four_bar rating_bar " style="width: 10.5263157895%; "></div>
                                                 </div>
                                             </div>
                                             <div class="rating_bar_wrap">
                                                 <span class="rating_name">3점</span>
                                                 <div class="rating_bar_background">
-                                                    <div class="rating_bar " style="width: 0%; "></div>
+                                                    <div class="three_bar rating_bar " style="width: 0%; "></div>
                                                 </div>
                                             </div>
                                             <div class="rating_bar_wrap">
-                                                <span class="rating_name">2점</span>
+                                                <span class="rating_name 2">2점</span>
                                                 <div class="rating_bar_background">
-                                                    <div class="rating_bar " style="width: 0%; "></div>
+                                                    <div class="two_bar rating_bar " style="width: 0%; "></div>
                                                 </div>
                                             </div>
                                             <div class="rating_bar_wrap">
                                                 <span class="rating_name">1점</span>
                                                 <div class="rating_bar_background">
-                                                    <div class="rating_bar " style="width: 0%; "></div>
+                                                    <div class="one_bar rating_bar " style="width: 0%; "></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,17 +250,17 @@
                                                 .st0 { fill: #64646499; }
                                             </style>
                                             <g>
-                                                <g id="Icon-Image" transform="translate(278.000000, 232.000000)">
+                                                <!--<g id="Icon-Image" transform="translate(278.000000, 232.000000)">
                                                     <path class="st0" d="M-226.2-181.6h-39.5c-2.3,0-4.2-1.9-4.2-4.2v-28.2c0-2.3,1.9-4.2,4.2-4.2h39.5     c2.3,0,4.2,1.9,4.2,4.2v28.2C-222-183.5-223.9-181.6-226.2-181.6L-226.2-181.6z M-265.8-215.5c-0.8,0-1.4,0.6-1.4,1.4v28.2     c0,0.8,0.6,1.4,1.4,1.4h39.5c0.8,0,1.4-0.6,1.4-1.4v-28.2c0-0.8-0.6-1.4-1.4-1.4H-265.8L-265.8-215.5z" id="Fill-12"></path>
                                                     <path class="st0" d="M-238.9-201.5c-3.1,0-5.5-2.5-5.5-5.5s2.5-5.5,5.5-5.5s5.5,2.5,5.5,5.5     S-235.9-201.5-238.9-201.5L-238.9-201.5z M-238.9-210c-1.6,0-2.9,1.3-2.9,2.9c0,1.6,1.3,2.9,2.9,2.9c1.6,0,2.9-1.3,2.9-2.9     C-236-208.7-237.3-210-238.9-210L-238.9-210z" id="Fill-13"></path>
                                                     <polyline class="st0" id="Fill-14" points="-231.4,-182.1 -254.5,-203.8 -267.7,-191.6 -269.5,-193.5 -254.5,-207.4 -229.6,-184      -231.4,-182.1    ">
                                                     </polyline>
                                                     <polyline class="st0" id="Fill-15" points="-224.2,-189.3 -231.9,-195.5 -238.3,-190.2 -240,-192.3 -231.9,-198.9 -222.6,-191.3      -224.2,-189.3    ">
                                                     </polyline>
-                                                </g>
+                                                </g>-->
                                             </g>
                                         </svg>
-                                        <div class="inline-blocked">포토 구매평만 보기</div>
+<!--                                        <div class="photo_button inline-blocked">포토 구매평만 보기</div>-->
                                     </a>
                                 </div>
                                 <div class="comment_textarea">
@@ -274,15 +274,19 @@
                                             <div class="textarea_block">
                                                 <textarea placeholder="구매평을 작성하세요." name="review-input" id="review_comment_body"></textarea>
                                                 <div class="file-add-block margin-bottom-xl" style="display: none;" id="review_comment_image_box_c202206217f7c30ccb91ca"></div>
-                                                <a href="" class="write-review-submit finish btn btn-brand btn-sm _style">등록</a>
-                                                <div class="inline-blocked holder icon-wrap">
+<!--                                                <a href="javascript:void(0)" class="write-review-submit finish btn btn-brand btn-sm _style">등록</a>-->
+                                                <div data-v-60f50a1e="" class="write-review-submit finish btn btn-brand btn-sm _style"> 등록 </div>
+                                                <div class="review_detail_img_wrap inline-blocked holder icon-wrap">
                                                     <i class="icon-picture icon vertical-middle holder">
+<!--                                                        <img data-v-60f50a1e="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=" alt="이미지 첨부" class="attach-image-icon">-->
+<!--                                                        <input type="hidden" name="use_secret_review" id="use_secret_review" value="N">-->
+<!--                                                        <input type="file" id="file-input" name="uploadFile" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp" class="comment_image_upload" style="z-index: -5;">-->
+                                                        <!-- 이미지 올리는 버튼 -->
                                                         <img data-v-60f50a1e="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=" alt="이미지 첨부" class="attach-image-icon">
+
                                                         <input type="hidden" name="use_secret_review" id="use_secret_review" value="N">
-<!--                                                        <input type="file" name="uploadFile" class="comment_image_upload" id="review_image_upload_btn_c202206217f7c30ccb91ca" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp" enctype="multipart/form-data">-->
-                                                        <input type="file" id="file-input" name="uploadFile"
-                                                               accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
-                                                               class="comment_image_upload" style="z-index: -5;">
+                                                        <input type="file" multiple="" name="uploadFile" class="comment_image_upload" id="review_image_upload_btn_c202206217f7c30ccb91ca">
+
                                                     </i>
                                                 </div>
                                             </div>
@@ -318,9 +322,9 @@
                                                     </div>
                                                 </div>-->
 
-                                                <<div class="thumb_detail_img_wrap margin-top-xl margin-bottom-xxxl _review_img _block_">
+<!--                                                <<div class="thumb_detail_img_wrap margin-top-xl margin-bottom-xxxl _review_img _block_">-->
 <!--                                                    <img src="https://phinf.pstatic.net/checkout.phinf/20220803_52/1659529431591EC7Ka_JPEG/9471E4B3-33AD-4D4A-9B1F-BB86CFE1C907.jpeg?type=w640" style="max-width: 640px; margin-top: 10px;">-->
-                                                </div>
+<!--                                                </div>-->
                                                 <!--<div class="review_comment_wrap_c202208031f8f652f3b1f7">
                                                 </div>
                                                 </span>
