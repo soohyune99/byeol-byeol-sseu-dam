@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_MEMBER")
-@Getter @Setter
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends Period {
     @Id @GeneratedValue @NotNull
@@ -52,16 +52,26 @@ public class Member extends Period {
     }
 
     public void update(MemberDTO memberDTO){
-        this.memberLoginType = memberDTO.getMemberLoginType();
-        this.memberCategory = memberDTO.getMemberCategory();
         this.memberName = memberDTO.getMemberName();
         this.memberPassword = memberDTO.getMemberPassword();
         this.memberPhone = memberDTO.getMemberPhone();
         this.memberAddress = memberDTO.getMemberAddress();
-        this.memberEmail = memberDTO.getMemberEmail();
-        this.memberPoint = memberDTO.getMemberPoint();
         this.memberProfileName = memberDTO.getMemberProfileName();
-        this.memberProfilePath = memberDTO.getMemberProfilePath();
-        this.memberProfileUuid = memberDTO.getMemberProfileUuid();
+    }
+
+    public void updateMemberCategory(MemberCategory memberCategory){
+        this.memberCategory = memberCategory;
+    }
+
+    public void updateMemberCategory(MemberDTO memberDTO){
+        this.memberCategory = memberDTO.getMemberCategory();
+    }
+
+    public void updateMemberPhone(MemberDTO memberDTO){
+        this.memberPoint = memberDTO.getMemberPoint();
+    }
+
+    public void updateMemberPassword(MemberDTO memberDTO){
+        this.memberPassword = memberDTO.getMemberPassword();
     }
 }

@@ -4,6 +4,7 @@ const memberId = 1;
 globalThis.page = 0;
 
 changeTab();
+getMemberInfo();
 
 function changeTab(tab){
     globalThis.page = 0;
@@ -22,7 +23,23 @@ function changeTab(tab){
     }
 }
 
+/* ============================= memberInfo ============================= */
 
+
+/* 기본 회원 정보 조회 */
+function getMemberInfo(){
+    mypageService.getMyInfo(
+        memberId, showMemberInfo
+    )
+}
+
+function showMemberInfo(member){
+    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
+    $(".mypage-memberName").html(member.memberName);
+    $(".mypage-memberEmail").html(member.memberEmail);
+    $(".mypage-memberType").html(member.memberCategory);
+    $(".mypage-memberPoint").html(member.memberPoint);
+}
 
 /* ================================== Board ==================================*/
 

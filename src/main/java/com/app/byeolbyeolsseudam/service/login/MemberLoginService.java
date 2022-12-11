@@ -61,7 +61,7 @@ public class MemberLoginService {
     public void UpdatePassword(MemberDTO memberDTO, String tempPassword){
 
         Member member = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
-        member.setMemberPassword(tempPassword);
+//        member.setMemberPassword(tempPassword);
         memberRepository.save(member);
 
     }

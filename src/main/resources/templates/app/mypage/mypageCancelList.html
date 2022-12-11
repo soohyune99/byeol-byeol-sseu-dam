@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>별별쓰담 | 주문취소</title>
+    <title>별별쓰담 | 마이페이지</title>
     <link rel="icon" href="/images/fix/favicon.png">
     <link rel="stylesheet" href="/css/fix/font.css">
     <link rel="stylesheet" href="/css/mypage/mypageOrderList.css">
@@ -124,26 +124,27 @@
                                                                 <a href="javascript:;"
                                                                    onclick="SITE_MEMBER.editProfile('L3Nob3BfbXlwYWdl');">
                                                                     <div id="mypage_profile_img" class="img-circle"
-                                                                         style="width: 85px; height: 85px; background: url('https://www.jigushop.co.kr/common/img/default_profile.png')  50% 50% / cover no-repeat;">
+                                                                         style="width: 85px; height: 85px;">
+                                                                        <img class="mypage-memberProfileName" src="">
                                                                     </div>
                                                                     <span class="sr-only">정보 수정</span>
                                                                 </a>
                                                             </div>
                                                             <div
                                                                     class="nick text-default-dark table-cell vertical-middle no-margin-top">
-                                                                    <span class="ug_name text-brand">기본<a
+                                                                    <span class="ug_name text-brand mypage-memberType">기본<a
                                                                             href="javascript:;"
                                                                             class="btn hidden-lg hidden-md hidden-sm"
                                                                             role="button" data-toggle="popover"
                                                                             data-placement="bottom"
                                                                             data-popover-content="#list-popover"
                                                                             data-original-title=""
-                                                                            title="">등급혜택</a></span> <span>성은지 님
-                                                                        안녕하세요.</span>
+                                                                            title="">등급혜택</a></span>
+                                                                <span class="mypage-memberName">성은지</span><span> 님 안녕하세요.</span>
 
 
                                                                 <div class="text-15 use_grade">
-                                                                    <div class="ug_text">sej07@naver.com</div>
+                                                                    <div class="ug_text mypage-memberEmail">sej07@naver.com</div>
                                                                     <div class="ug_btn">
                                                                         <a href="http://localhost:10001/mypage/info" class="btn hidden-xs "
                                                                            role="button" data-toggle="popover"
@@ -270,7 +271,22 @@
                                                     <div class="table-cell vertical-middle point-view text-center">
                                                         <a href="http://localhost:10001/mypage/point">
                                                             <p>포인트</p>
-                                                            <span class="text-bold text-32">0</span>
+                                                            <span class="text-bold text-32 mypage-memberPointgetMemberInfo();
+
+/* 기본 회원 정보 조회 */
+function getMemberInfo(){
+    mypageService.getMyInfo(
+        memberId, showMemberInfo
+    )
+}
+
+function showMemberInfo(member){
+    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
+                                                            $(".mypage-memberName").html(member.memberName);
+                                                            $(".mypage-memberEmail").html(member.memberEmail);
+                                                            $(".mypage-memberType").html(member.memberCategory);
+                                                            $(".mypage-memberPoint").html(member.memberPoint);
+                                                            }">0</span>
                                                         </a>
                                                     </div>
                                                 </div>

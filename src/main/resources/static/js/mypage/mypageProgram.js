@@ -4,6 +4,22 @@ const memberId = 1;
 globalThis.page = 0;
 
 showMyprogram();
+getMemberInfo();
+
+/* 기본 회원 정보 조회 */
+function getMemberInfo(){
+    mypageService.getMyInfo(
+        memberId, showMemberInfo
+    )
+}
+
+function showMemberInfo(member){
+    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
+    $(".mypage-memberName").html(member.memberName);
+    $(".mypage-memberEmail").html(member.memberEmail);
+    $(".mypage-memberType").html(member.memberCategory);
+    $(".mypage-memberPoint").html(member.memberPoint);
+}
 
 /* 수강 내역 조회 */
 function showMyprogram(){

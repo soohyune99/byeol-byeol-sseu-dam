@@ -4,6 +4,22 @@ const memberId = 1;
 globalThis.page = 0;
 
 showMyOrder();
+getMemberInfo();
+
+/* 기본 회원 정보 조회 */
+function getMemberInfo(){
+    mypageService.getMyInfo(
+        memberId, showMemberInfo
+    )
+}
+
+function showMemberInfo(member){
+    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
+    $(".mypage-memberName").html(member.memberName);
+    $(".mypage-memberEmail").html(member.memberEmail);
+    $(".mypage-memberType").html(member.memberCategory);
+    $(".mypage-memberPoint").html(member.memberPoint);
+}
 
 /* 주문조회 */
 function showMyOrder(){
@@ -73,7 +89,7 @@ function showMyOrderList(myorders){
             text += `</td>`;
             text += `<td class="cart-btn-tools text-right">`;
             text += `<div class="im-inline-flex im-flex-col-reverse im-xs-flex im-xs-flex-row-reverse im-xs-flex-wrap-reverse _btn_tool_row" style="width: 87px;">`;
-            text += `<a class="btn-order-cancel im-flex-1" href="http://localhost:10001/mypage/order/detail">상세보기</a>`;
+            text += `<a class="btn-order-cancel im-flex-1" href="/mypage/order/` + myorder.orderId + `">상세보기</a>`;
             text += `</div>`;
             text += `</td>`;
             text += `</tr>`;

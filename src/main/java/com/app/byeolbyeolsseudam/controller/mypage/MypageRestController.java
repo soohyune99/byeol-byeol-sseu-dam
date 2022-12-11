@@ -6,18 +6,22 @@ import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.domain.mypoint.MypointDTO;
 import com.app.byeolbyeolsseudam.domain.myprogram.MyprogramDTO;
 import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
+import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
 import com.app.byeolbyeolsseudam.service.mypage.MypageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -53,6 +57,16 @@ public class MypageRestController {
         return mypageService.getMyInfo(memberId);
     }
 
+    @PostMapping("/check/{memberId}")
+    public Boolean checkPassword(@PathVariable Long memberId, @RequestBody String password){
+        return mypageService.checkPassword(memberId, password);
+    }
+
+    @PostMapping("/update")
+    public MemberDTO updateMyinfo(MemberDTO memberDTO){
+        return mypageService.updateMyInfo(memberDTO);
+    }
+
     @GetMapping("/order/{memberId}/{page}")
     public List<OrderDTO> getMyOrderList(@PathVariable Long memberId, @PathVariable int page){
         return mypageService.getMyOrderList(memberId, page);
@@ -64,8 +78,28 @@ public class MypageRestController {
     }
 
     @GetMapping("/cancel/{orderId}")
-    public OrderDTO getMyCancel(@PathVariable Long orderId){
+    public OrderDTO getMyOrder(@PathVariable Long orderId){
         return mypageService.getMyOrder(orderId);
+    }
+
+    @GetMapping("/cancelOrder/{orderId}")
+    public Long cancelMyOrder(@PathVariable Long orderId){
+        return mypageService.cancelMyOrder(orderId);
+    }
+
+    @GetMapping("/dropout/{memberId}")
+    public void dropOutMember(@PathVariable Long memberId){
+        mypageService.dropOutMember(memberId);
+    }
+
+    @GetMapping("/pickup/{memberId}/{page}")
+    public List<PickupDTO> getMyPickupList(@PathVariable Long memberId, @PathVariable int page){
+        return mypageService.getMyPickupList(memberId, page);
+    }
+
+    @PostMapping("/pickup/{pickupId}")
+    public PickupDTO getMyPickup(@PathVariable Long pickupId){
+        return mypageService.getMyPickup(pickupId);
     }
 
     @ResponseBody
@@ -96,5 +130,6 @@ public class MypageRestController {
         Date now = new Date();
         return format.format(now);
     }
+
 
 }
