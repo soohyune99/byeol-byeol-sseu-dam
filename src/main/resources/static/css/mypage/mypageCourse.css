@@ -308,8 +308,8 @@ blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4,
 }
 
 @keyframes changeWidth {
-    from {width: 0px; }
-    to {width: 50%; }
+    from {width: 0%; }
+    to {width: auto; }
 }
 
 /* 미완주 코스 클릭 시 모달 start */

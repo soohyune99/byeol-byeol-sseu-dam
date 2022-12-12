@@ -10,4 +10,5 @@ public interface CourseCustomRepository {
     public CourseDTO showCourse(int courseNumber);
     public CourseDTO showSpecialCourse();
     public List<CourseDTO> selectMyCourseList(Long memberId);
+    public CourseDTO selectCourse(Long courseId);
 }

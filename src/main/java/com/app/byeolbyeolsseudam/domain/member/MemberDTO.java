@@ -30,6 +30,18 @@ public class MemberDTO {
     private LocalDateTime createdDate;
 
     @QueryProjection
+    public MemberDTO(Long memberId, MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPhone, String memberEmail, int memberPoint, String memberProfileName) {
+        this.memberId = memberId;
+        this.memberLoginType = memberLoginType;
+        this.memberCategory = memberCategory;
+        this.memberName = memberName;
+        this.memberPhone = memberPhone;
+        this.memberEmail = memberEmail;
+        this.memberPoint = memberPoint;
+        this.memberProfileName = memberProfileName;
+    }
+
+    @QueryProjection
     public MemberDTO(Long memberId, MemberLoginType memberLoginType, MemberCategory memberCategory, String memberName, String memberPassword, String memberPhone, String memberEmail, int memberPoint, String memberProfileName) {
         this.memberId = memberId;
         this.memberLoginType = memberLoginType;

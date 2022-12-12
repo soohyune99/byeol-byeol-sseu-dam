@@ -24,36 +24,23 @@ import java.util.ArrayList;
 @Slf4j
 public class MemberLoginService {
     private final MemberRepository memberRepository;
-
     JavaMailSender mailSender;
 
 
-    public Member Get(MemberDTO memberDTO){
-
+    public Member getMemberEmail(MemberDTO memberDTO){
         return memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
-
     }
 
     public boolean login(MemberDTO memberDTO){
-
-
         Member finderMember = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
-
-//        Member finderMember = memberLoginService.Get(memberDTO);
-
         if(finderMember ==  null){
-
             return false;
-
         }
 
         if(!finderMember.getMemberPassword().equals(memberDTO.getMemberPassword())){
-
             return false;
         }
-
         return true;
-
     }
 
 

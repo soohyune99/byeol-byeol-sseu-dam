@@ -11,6 +11,7 @@ import com.app.byeolbyeolsseudam.domain.mypoint.MypointDTO;
 import com.app.byeolbyeolsseudam.domain.myprogram.MyprogramDTO;
 import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
 import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
+import com.app.byeolbyeolsseudam.entity.mycourse.Mycourse;
 import com.app.byeolbyeolsseudam.service.mypage.MypageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -113,13 +114,17 @@ public class MypageRestController {
 
     @GetMapping("/course/{memberId}")
     public List<CourseDTO> getCourseList (@PathVariable Long memberId){
-        log.info("컨트롤러 멤버아이디==================================" + memberId);
         return mypageService.getCourseList(memberId);
     }
 
     @GetMapping("/mycourse/{memberId}")
     public List<MycourseDTO> getMyCourseList(@PathVariable Long memberId){
         return mypageService.getMyCourseList(memberId);
+    }
+
+    @PostMapping("/course/{courseId}")
+    public CourseDTO getCourse (@PathVariable Long courseId){
+        return mypageService.getCourse(courseId);
     }
 
     @PostMapping("/badge")

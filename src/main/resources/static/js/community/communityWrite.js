@@ -191,7 +191,6 @@ function afterUploadFile(file){
     text += `<img data-v-7d0a628e="" src="` + file + `" alt="badge.png" class="view">`;
     text += `<input type="hidden" name="files[` + fileIndex + `].fileBoardName" class="board-file-input ` + fileIndex + `" value="` + file + `"></div>`;
 
-    console.log(`name=".files[` + fileIndex + `].fileBoardName"`);
     $(".editor-image-list").append(text);
     fileIndex++;
 }
@@ -199,6 +198,9 @@ function afterUploadFile(file){
 /* 첨부파일 x 클릭 시 div 삭제 */
 $(".editor-image-list").on('click', '.delete-badge', function(){
     let index = $(this).eq(0).attr('class').split(" ")[1];
+    let fileName = $(".image-preview." + index).children().eq(1).attr('src');
 
     $(".image-preview." + index).remove();
+
+    communityService.deleteBoardFile(fileName);
 });

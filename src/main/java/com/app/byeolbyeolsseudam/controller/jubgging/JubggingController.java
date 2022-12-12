@@ -43,9 +43,8 @@ public class JubggingController {
         return "/app/jubgging/jubgging";
     }
 
-
-    @GetMapping("/jubgging-qr")
-    public String programQr(){
-        return "/app/jubgging/jubggingqr";
+    @GetMapping("/{courseName}/{spotNumber}")
+    public String jubggingQr(@PathVariable String courseName, @PathVariable int spotNumber){
+        return "/app/login/login";
     }
 }
