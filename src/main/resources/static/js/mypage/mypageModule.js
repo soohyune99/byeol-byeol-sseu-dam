@@ -69,6 +69,23 @@ let mypageService = (function(){
         });
     }
 
+    function plusBoardView(boardId, callback, error){
+        $.ajax({
+            url: "/board/view/" + boardId,
+            type: "patch",
+            success: function(boardId, status, xhr){
+                if(callback){
+                    callback(boardId);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
     function getMyInfo(memberId, callback, error){
         $.ajax({
             url: "/mypage/" + memberId,
@@ -121,6 +138,23 @@ let mypageService = (function(){
             },
             error: function (xhr, status, err) {
                 if (error) {
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function sendVerification(phoneNumber, callback, error){
+        $.ajax({
+            url: "/mypage/send/" + phoneNumber,
+            type: "post",
+            success: function(vertificationNumber, status, xhr){
+                if(callback){
+                    callback(vertificationNumber);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
                     error(err);
                 }
             }
@@ -246,6 +280,74 @@ let mypageService = (function(){
         });
     }
 
+    function getCourses(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/course/" + memberId,
+            type: "get",
+            success: function(courses, status, xhr){
+                if(callback){
+                    callback(courses);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function getMyCourses(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/mycourse/" + memberId,
+            type: "get",
+            success: function(mycourses, status, xhr){
+                if(callback){
+                    callback(mycourses);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function getBadges(callback, error){
+        $.ajax({
+            url: "/mypage/badge",
+            type: "post",
+            success: function(badges, status, xhr){
+                if(callback){
+                    callback(badges);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function getMybadges(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/badge/" + memberId,
+            type: "get",
+            success: function(mybadges, status, xhr){
+                if(callback){
+                    callback(mybadges);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
     function uploadProfileFile(file, callback, error) {
         var data = new FormData();
         data.append("file", file);
@@ -272,9 +374,11 @@ let mypageService = (function(){
     }
 
     return { getMyProgramList:getMyProgramList, getMypointList:getMypointList, getMyCommunityList:getMyCommunityList,
-        getMyCommentList:getMyCommentList, getMyInfo:getMyInfo, checkPassword:checkPassword, updateUserInfo:updateUserInfo,
+        getMyCommentList:getMyCommentList, plusBoardView:plusBoardView, getMyInfo:getMyInfo, checkPassword:checkPassword,
+        updateUserInfo:updateUserInfo, sendVerification:sendVerification, dropOutMember:dropOutMember,
         getMyOrderList:getMyOrderList, getMyCancelList:getMyCancelList, getMyOrder:getMyOrder, cancelMyOrder:cancelMyOrder,
-        getMyPickupList:getMyPickupList, getMyPickup:getMyPickup, uploadProfileFile:uploadProfileFile }
+        getMyPickupList:getMyPickupList, getMyPickup:getMyPickup, getCourses:getCourses, getMyCourses:getMyCourses,
+        getBadges:getBadges, getMybadges:getMybadges, uploadProfileFile:uploadProfileFile }
 })();
 
 

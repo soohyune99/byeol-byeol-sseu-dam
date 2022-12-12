@@ -87,10 +87,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public void plusView(BoardDTO boardDTO){
+    public Long plusView(Long boardId){
+        BoardDTO boardDTO = boardRepository.readBoard(boardId);
         boardDTO.setBoardView(boardDTO.getBoardView() + 1);
-        Board board = boardRepository.findById(boardDTO.getBoardId()).get();
+        Board board = boardRepository.findById(boardId).get();
         board.update(boardDTO);
         boardRepository.save(board);
+        return boardId;
     }
 }

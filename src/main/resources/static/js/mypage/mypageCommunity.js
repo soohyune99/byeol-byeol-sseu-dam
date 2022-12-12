@@ -58,7 +58,7 @@ function showMyCommunityList(myboards){
 
     myboards.forEach(myboard => {
         text += `<li data-v-6de74f26="" data-v-be5cd312="" class="community-activity-item">`;
-        text += `<a href="/community/` + myboard.boardId + `">`;
+        text += `<a href="javascript:clickBoard(` + myboard.boardId + `)">`;
         text += `<span data-v-6de74f26="" class="community-activity-badge sg-text-subhead7 sg-font-medium sg-text-gray-500">` + myboard.boardCategory + `</span>`;
         text += `<div data-v-a3afae98="" data-v-6de74f26="" class="collapsed">`;
         text += `<div data-v-a3afae98="" class="line-clamp" style="line-height: 1.5; max-height: 3rem; -webkit-line-clamp: 2;">`;
@@ -100,13 +100,25 @@ function clickMoreMyboards(){
     globalThis.page++;
 }
 
+/* 게시물 조회수 증가 */
+function clickBoard(boardId){
+    mypageService.plusBoardView(
+        boardId, plusBoardView
+    )
+}
+
+/* 조회수 증가 후 해당 게시물로 이동 */
+function plusBoardView(boardId){
+    location.href='/community/' + boardId;
+}
+
 
 /* ================================== Comment ==================================*/
 
 
 /* 내가 쓴 댓글 조회 */
 function showMyComment(){
-    mypageService.getMyCommunityList(
+    mypageService.getMyCommentList(
         memberId, globalThis.page, showMyCommentList
     );
     globalThis.page ++;
@@ -143,7 +155,7 @@ function showMyCommentList(mycomments){
     appendedComment = $(".community-activity-item");
 
     if(mycomments.size == 0 && appendedComment.length == 0){
-        $(".").css('display', 'block');
+        $(".community-content-section.white").css('display', 'block');
     }
 }
 

@@ -20,6 +20,17 @@ public class SpotDTO {
     private String spotQrUuid;
     private Long courseId;
 
+
+
+    @QueryProjection
+    public SpotDTO(Long spotId, String spotName, String spotAddress, int spotNumber, Long courseId) {
+        this.spotId = spotId;
+        this.spotName = spotName;
+        this.spotAddress = spotAddress;
+        this.spotNumber = spotNumber;
+        this.courseId = courseId;
+    }
+
     @QueryProjection
     public SpotDTO(Long spotId, String spotName, String spotAddress, int spotNumber, String spotQrName, String spotQrPath, String spotQrUuid) {
         this.spotId = spotId;

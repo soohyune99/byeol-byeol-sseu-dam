@@ -24,16 +24,15 @@ public class BadgeTest {
     @Test
     public void saveTest(){
 
-        for(int i = 0; i < 18; i++){
+//        for(int i = 0; i < 6; i++){
             BadgeDTO badgeDTO = new BadgeDTO();
 
-            badgeDTO.setBadgeName("배지" + i);
-            badgeDTO.setBadgeFileName("test.png");
-            badgeDTO.setBadgeFilePath("/upload");
-            badgeDTO.setBadgeFileUuid("aabbcc" + i);
+            badgeDTO.setBadgeName("줍깅 배지6");
+            badgeDTO.setBadgeInfo("줍깅 챌린지 30회 완주");
+            badgeDTO.setBadgeFileName("badge.png");
 
             badgeRepository.save(badgeDTO.toEntity());
-        }
+//        }
     }
 
     @Test

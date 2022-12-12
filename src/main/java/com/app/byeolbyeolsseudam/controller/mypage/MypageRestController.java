@@ -1,8 +1,12 @@
 package com.app.byeolbyeolsseudam.controller.mypage;
 
+import com.app.byeolbyeolsseudam.domain.badge.BadgeDTO;
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
 import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
+import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
+import com.app.byeolbyeolsseudam.domain.mybadge.MybadgeDTO;
+import com.app.byeolbyeolsseudam.domain.mycourse.MycourseDTO;
 import com.app.byeolbyeolsseudam.domain.mypoint.MypointDTO;
 import com.app.byeolbyeolsseudam.domain.myprogram.MyprogramDTO;
 import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
@@ -67,6 +71,16 @@ public class MypageRestController {
         return mypageService.updateMyInfo(memberDTO);
     }
 
+    @PostMapping("/send/{phoneNumber}")
+    public String sendVerification(@PathVariable String phoneNumber){
+        return mypageService.sendVerificationNumber(phoneNumber);
+    }
+
+    @GetMapping("/dropout/{memberId}")
+    public void dropOutMember(@PathVariable Long memberId){
+        mypageService.dropOutMember(memberId);
+    }
+
     @GetMapping("/order/{memberId}/{page}")
     public List<OrderDTO> getMyOrderList(@PathVariable Long memberId, @PathVariable int page){
         return mypageService.getMyOrderList(memberId, page);
@@ -87,11 +101,6 @@ public class MypageRestController {
         return mypageService.cancelMyOrder(orderId);
     }
 
-    @GetMapping("/dropout/{memberId}")
-    public void dropOutMember(@PathVariable Long memberId){
-        mypageService.dropOutMember(memberId);
-    }
-
     @GetMapping("/pickup/{memberId}/{page}")
     public List<PickupDTO> getMyPickupList(@PathVariable Long memberId, @PathVariable int page){
         return mypageService.getMyPickupList(memberId, page);
@@ -100,6 +109,27 @@ public class MypageRestController {
     @PostMapping("/pickup/{pickupId}")
     public PickupDTO getMyPickup(@PathVariable Long pickupId){
         return mypageService.getMyPickup(pickupId);
+    }
+
+    @GetMapping("/course/{memberId}")
+    public List<CourseDTO> getCourseList (@PathVariable Long memberId){
+        log.info("컨트롤러 멤버아이디==================================" + memberId);
+        return mypageService.getCourseList(memberId);
+    }
+
+    @GetMapping("/mycourse/{memberId}")
+    public List<MycourseDTO> getMyCourseList(@PathVariable Long memberId){
+        return mypageService.getMyCourseList(memberId);
+    }
+
+    @PostMapping("/badge")
+    public List<BadgeDTO> getBadgeList(){
+        return mypageService.getBadgeList();
+    }
+
+    @GetMapping("/badge/{memberId}")
+    public List<MybadgeDTO> getMyBadgeList(@PathVariable Long memberId){
+        return mypageService.getMybadgesList(memberId);
     }
 
     @ResponseBody

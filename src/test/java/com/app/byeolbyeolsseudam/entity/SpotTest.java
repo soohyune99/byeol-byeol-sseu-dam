@@ -59,7 +59,7 @@ public class SpotTest {
                     .limit(1)
                     .fetchOne();
 
-            spotDTO.setSpotName("1코스 " + (i + 1) + "지점");
+            spotDTO.setSpotName("SPECIAL코스 " + (i + 1) + "지점");
             spotDTO.setSpotNumber(i + 1);
             spotDTO.setSpotAddress("서울 블라구 블라블라동");
             spotDTO.setSpotQrName("course.png");
@@ -69,7 +69,7 @@ public class SpotTest {
             Spot spot = spotDTO.toEntity();
 
             spotRepository.save(spot);
-            spot.changeCourse(courseRepository.findById(2L).get());
+            spot.changeCourse(courseRepository.findById(7L).get());
         }
     }
 

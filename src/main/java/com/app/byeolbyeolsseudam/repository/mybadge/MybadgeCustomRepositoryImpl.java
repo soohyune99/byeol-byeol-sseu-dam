@@ -17,10 +17,11 @@ public class MybadgeCustomRepositoryImpl implements MybadgeCustomRepository{
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<MybadgeDTO> selectMybadges(){
+    public List<MybadgeDTO> selectMybadges(Long memberId){
         return jpaQueryFactory.select(new QMybadgeDTO(mybadge.mybadgeId,
                 mybadge.member.memberId, mybadge.badge.badgeId, mybadge.createdDate))
                 .from(mybadge)
+                .where(mybadge.member.memberId.eq(memberId))
                 .fetch();
     }
 }

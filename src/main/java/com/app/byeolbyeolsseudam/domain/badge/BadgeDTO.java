@@ -18,13 +18,11 @@ public class BadgeDTO {
     private String badgeFilePath;
 
     @QueryProjection
-    public BadgeDTO(Long badgeId, String badgeName, String badgeInfo, String badgeFileName, String badgeFileUuid, String badgeFilePath) {
+    public BadgeDTO(Long badgeId, String badgeName, String badgeInfo, String badgeFileName) {
         this.badgeId = badgeId;
         this.badgeName = badgeName;
         this.badgeInfo = badgeInfo;
         this.badgeFileName = badgeFileName;
-        this.badgeFileUuid = badgeFileUuid;
-        this.badgeFilePath = badgeFilePath;
     }
 
     public Badge toEntity(){
@@ -32,8 +30,6 @@ public class BadgeDTO {
                 .badgeName(badgeName)
                 .badgeInfo(badgeInfo)
                 .badgeFileName(badgeFileName)
-                .badgeFilePath(badgeFilePath)
-                .badgeFileUuid(badgeFileUuid)
                 .build();
     }
 }

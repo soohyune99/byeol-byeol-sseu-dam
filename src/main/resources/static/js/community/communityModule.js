@@ -149,15 +149,13 @@ let communityService = (function(){
         });
     }
 
-    function plusBoardView(boardDTO, callback, error){
+    function plusBoardView(boardId, callback, error){
         $.ajax({
-            url: "/board/view/" + boardDTO.boardId,
+            url: "/board/view/" + boardId,
             type: "patch",
-            data: JSON.stringify(boardDTO),
-            contentType: "application/json; charset=utf-8",
-            success: function(boardView, status, xhr){
+            success: function(boardId, status, xhr){
                 if(callback){
-                    callback(boardView);
+                    callback(boardId);
                 }
             },
             error: function(xhr, status, err){

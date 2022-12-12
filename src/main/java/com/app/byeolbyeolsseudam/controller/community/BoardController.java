@@ -72,8 +72,8 @@ public class BoardController {
     }
 
     @PatchMapping("/view/{boardId}")
-    public void plusBoardView(@PathVariable Long boardId, @RequestBody BoardDTO boardDTO){
-        communityService.plusView(boardDTO);
+    public Long plusBoardView(@PathVariable Long boardId){
+        return communityService.plusView(boardId);
     }
 
     @ResponseBody
