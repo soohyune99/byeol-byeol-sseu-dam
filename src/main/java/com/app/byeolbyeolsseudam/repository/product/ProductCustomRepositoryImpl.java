@@ -182,6 +182,18 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
         return StringUtils.hasText(category)? product.productCategory.eq(ProductCategory.valueOf(category)) : null;
     }
 
+    // 주문하기
+    @Override
+    public ProductDTO selectProduct(Long productId){
+        return jpaQueryFactory.select(new QProductDTO(
+                product.productId,product.productCategory, product.productName,
+                product.productPrice,product.productCount,product.productFileDetailName,
+                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
+                product.productFileProfilePath,product.productFileProfileUuid))
+                .from(product)
+                .where(product.productId.eq(productId))
+                .fetchOne();
+    }
 
 
 

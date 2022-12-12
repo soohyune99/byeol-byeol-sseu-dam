@@ -30,10 +30,11 @@ public class MarketController {
         return "/app/market/marketDetail";
     }
 
-/*    @GetMapping(value = {"/payment"})
-    public String payment(@RequestParam Long productId, @RequestParam int orderCount){
+    // 주문하기 이동
+    @GetMapping("/payment")
+    public String payment(@RequestParam(value = "productId") Long productId, @RequestParam(value = "count") int count){
         return "/app/market/marketPayment";
-    }*/
+    }
 
 /*    @GetMapping("/basket")
     public String basket(){

@@ -46,7 +46,6 @@ let marketService = (function(){
             url: "/product/" + keyword,
             type: "post",
             success: function (products, status, xhr){
-                console.log(keyword);
                 if(callback){
                     callback(products);
                 }

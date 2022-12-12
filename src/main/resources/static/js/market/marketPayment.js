@@ -174,3 +174,76 @@ function useMypoint(){
 
     $("input._input_point").val($mypoint);
 }
+
+// 이용 약관
+const $all = $("#paymentAllCheck");
+const $terms = $(".terms");
+
+// 전체 동의 클릭
+$all.on("click", function(){
+    //각각의 약관의 checked 프로퍼티를 모두 전체동의의 checked 상태로 변경시켜준다.
+    // 전체 동의가 true면 나머지 다 true
+    $terms.prop("checked", $(this).is(":checked"));
+});
+
+// 각각의 약관 동의 클릭
+$terms.on("click", function(){
+    // 각각의 약관의 checked 프로퍼티가 true인 개수를 가져온 뒤
+    // 2개 모두 true일 경우 전체 동의도 true이다.
+    $all.prop("checked", $terms.filter(":checked").length == $terms.length);
+});
+
+
+/* ================================== MarketPayment ==================================*/
+const memberId = 1;
+let url = decodeURI(window.location.href).split("=");
+
+let count = url[url.length - 1];    // 주문 수량
+let product = url[url.length - 2].split("&");
+let productId = product[product.length - 2];    // 상품 번호
+
+getOrderDetailList();
+
+function getOrderDetailList(){
+    orderService.getOrderMember(
+        memberId, showOrderMemberDetail
+    );
+
+    orderService.getOrderDetail(
+        productId, showOrderProductDetail
+    );
+}
+
+function showOrderMemberDetail(member){
+    $("info_name").html(member.memberName);
+    $("info-email").html(member.memberEmail);
+}
+
+function showOrderProductDetail(products){
+    let text = "";
+
+    products.forEach(product => {
+        text += `<a href="/bathroom/?idx=24" target="_blank">`;
+        text += `<div class="product_img_wrap">`;
+        text += `<img src="` + product.productFileProfileName + `" alt="주문상품 이미지">`;
+        text += `</div>`;
+        text += `<div class="product_info_wrap">`;
+        text += `<span class="shop_item_title"></span>`;
+        text += `<div class="shop_item_opt">`;
+        text += `<p>`;
+        text += `<em class="list_badge badge_latest">필수</em>`;
+        text += `<p>` + count + `</p>`;
+        text += `</p>`;
+        text += ` </div>`;
+        text += `<div class="shop_item_pay">`;
+        text += `<span class="text-bold text-14">` + product.productPrice + `</span>`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `</a>`;
+    });
+
+    $("shop_item_thumb").append(text);
+
+}
+
+
