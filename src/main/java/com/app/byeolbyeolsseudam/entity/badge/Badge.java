@@ -33,15 +33,11 @@ public class Badge extends Period {
         this.badgeName = badgeName;
         this.badgeInfo = badgeInfo;
         this.badgeFileName = badgeFileName;
-        this.badgeFilePath = badgeFilePath;
-        this.badgeFileUuid = badgeFileUuid;
     }
 
     public void update(BadgeDTO badgeDTO){
         this.badgeName = badgeDTO.getBadgeName();
         this.badgeInfo = badgeDTO.getBadgeInfo();
         this.badgeFileName = badgeDTO.getBadgeFileName();
-        this.badgeFilePath = badgeDTO.getBadgeFilePath();
-        this.badgeFileUuid = badgeDTO.getBadgeFileUuid();
     }
 }

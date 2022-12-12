@@ -62,11 +62,33 @@ blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4,
     cursor: pointer;
 }
 
+.mypage .myTabMenu ul li.unlock a {
+    filter: brightness(0.5);
+    display: flex;
+    font-size: 1rem;
+    color: #8e8ea2;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 13px 0;
+    -moz-box-align: center;
+    align-items: center;
+    display: -moz-box;
+    -moz-box-pack: center;
+    justify-content: center;
+    cursor: default;
+}
+
 .mypage .myTabMenu ul li.active a, .mypage .myTabMenu ul li:hover a {
     filter: brightness(1);
     color: #333;
     border-bottom: 3px solid #00c7ae;
     font-weight: bold;
+}
+
+.mypage .myTabMenu ul li.unlock a {
+    filter: brightness(0.5);
+    border: none;
 }
 
 /* 코스 탭 css start */
@@ -165,7 +187,7 @@ blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4,
     border: 1px solid #00c7ae;
     background-color: #fff;
     border-radius: 100px;
-    top: -28px;
+    top: -35%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -181,7 +203,7 @@ blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4,
     border: 1px solid #00c7ae;
     background-color: #00c7ae;
     border-radius: 100px;
-    top: -28px;
+    top: -35%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -236,12 +258,12 @@ blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4,
 }
 
 .mycourseLocation {
-    width: fit-content;
+    width: 100%;
     height: 170px;
     text-align: center;
-    margin-left: 41.8%;
+    padding-right: 38%;
+    padding-left: 0%;
     padding-top: 20px;
-
     animation: bounce 0.5s cubic-bezier(0.5, 0.05, 1, 0.5);
     animation-iteration-count: 2;
     animation-delay: 1s;
@@ -262,7 +284,7 @@ blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4,
 }
 
 .locationImg {
-    width: 70px;
+    width: 15%;
 }
 
 .courseLine{

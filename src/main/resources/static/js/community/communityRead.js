@@ -145,7 +145,7 @@ function showBoardDetail(board){
 
     board.files.forEach(file => {
         text += `<li data-v-7614b52f="" data-type="lightGallery board-file-img-wrap" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg?h=160&amp;w=160" data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg" data-sub-html=" " class="grid-image-list">`;
-        text += `<img data-v-7614b52f="" alt="4298D74C-9291-4543-8137-3820671DEA3C.jpg" class="image" data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg" src="` + file.fileBoardName + `" lazy="loaded">`;
+        text += `<img data-v-7614b52f="" alt="4298D74C-9291-4543-8137-3820671DEA3C.jpg" class="image"  onclick="javascript:openPhotoModal(this.src);" data-src="https://static.cdn.soomgo.com/upload/media/b057a7b9-b84d-49e1-a376-956cc5f087bc.jpg" src="` + file.fileBoardName + `" lazy="loaded">`;
         text += `</li>`;
     })
     $(".grid-image-wrapper").html(text);
@@ -159,32 +159,19 @@ function deleteBoard(){
     location.href = "/community";
 }
 
-// function plusBoardView(board){
-//     communityService.plusBoardView(
-//         board, plusAfterBoardView
-//     );
-// }
-//
-// function plusAfterBoardView(boardView){
-//
-// }
-
-// $(document).on('ready', function(){
-//
-// });
-
-$(".grid-image-wrapper").on('click', ".image", function(){
-    let img = $(this).attr('src');
-
+/* 사진 클릭 시 상세보기 모달 띄우기 */
+function openPhotoModal(img){
     $(".lg-show-after-load").css('display', 'block');
     $(".lg-show-after-load").css('z-index', 1060);
     $(".lg-image").attr('src', img);
-});
+}
 
+/* 사진 모달 닫기 */
 $(".lg-close.lg-icon").on('click', function(){
     $(".lg-show-after-load").css('display', 'none');
     $(".lg-show-after-load").css('z-index', 0);
 });
+
 
 
 /* ================================== Comment ==================================*/
@@ -313,7 +300,7 @@ function showCommentList(comments){
         text += `</p></div>`;
         text += comment.commentFileName != null ? `<ul data-v-25f837a2="" class="attached-image-wrapper">` : '';
         text += comment.commentFileName != null ? `<li data-v-25f837a2="" data-type="lightGallery" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg" data-sub-html=" " class="attached-image-item">` : '';
-        text += comment.commentFileName != null ? `<img data-v-25f837a2="" class="image" src="` + comment.commentFileName + `" lazy="loaded">` : '';
+        text += comment.commentFileName != null ? `<img data-v-25f837a2="" class="image" onclick="javascript:openPhotoModal(this.src);" src="` + comment.commentFileName + `" lazy="loaded">` : '';
         text += comment.commentFileName != null ? `</li>` : '';
         text += comment.commentFileName != null ? `</ul>` : '';
         text += `<div data-v-6f126738="" class="comment-action-group sg-text-description sg-font-regular">`;
@@ -347,15 +334,6 @@ function showCommentList(comments){
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
 }
 
-
-
-
-
-
-
-
-
-
 function showCommentMore(comments){
     let text = "";
 
@@ -373,7 +351,7 @@ function showCommentMore(comments){
         text += `</p></div>`;
         text += comment.commentFileName != null ?`<ul data-v-25f837a2="" class="attached-image-wrapper">` : '';
         text += comment.commentFileName != null ?`<li data-v-25f837a2="" data-type="lightGallery" data-exthumbimage="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-sub-html-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg?h=110&amp;w=110" data-src="https://static.cdn.soomgo.com/upload/media/0e9b2380-ea7a-4ffa-a75f-ff6d55bcfaa4.jpg" data-sub-html=" " class="attached-image-item">` : '';
-        text += comment.commentFileName != null ? `<img data-v-25f837a2="" class="image" src="` + comment.commentFileName + `" lazy="loaded">` : '';
+        text += comment.commentFileName != null ? `<img data-v-25f837a2="" class="image" onclick="javascript:openPhotoModal(this.src);" src="` + comment.commentFileName + `" lazy="loaded">` : '';
         text += comment.commentFileName != null ?`</li>` : '';
         text += comment.commentFileName != null ?`</ul>` : '';
         text += `<div data-v-6f126738="" class="comment-action-group sg-text-description sg-font-regular">`;

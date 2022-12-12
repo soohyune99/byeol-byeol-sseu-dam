@@ -35,6 +35,9 @@
 .badgeList ul li {
     width: 33%;
     margin-bottom: 20px;
+}
+
+.mybadgeWrap.acquired {
     cursor: pointer;
 }
 
@@ -43,7 +46,7 @@
     filter: grayscale(1);
 }
 
-.badgeList li .mybadgeImg.active {
+.badgeList li .mybadgeImg.acquired {
     width: 70px;
     filter: grayscale(0);
 }

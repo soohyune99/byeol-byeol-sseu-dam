@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TBL_MYBADGE")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor/*(access = AccessLevel.PROTECTED)*/
 public class Mybadge extends Period {
     @Id @GeneratedValue @NotNull
     private Long mybadgeId;
@@ -29,5 +29,4 @@ public class Mybadge extends Period {
     public void changeBadge(Badge badge){
         this.badge = badge;
     }
-
 }

@@ -16,15 +16,21 @@ let $inputEmail = $("input[name='email']");
 let $inputCurrentPassword = $("input[name='currentPassword']");
 let $inputNewPassword = $("input[name='password']");
 let $inputNewPasswordConfirm = $("input[name='newPasswordConfirm']");
+// 전화번호 입력 input
 let $inputRestPhone = $("input[name='requestPhone']");
+// 인증번호 입력 input
 let $inputVerifyPhone = $("input[name='requestVerifyPhone']");
 let $inputPhoneNumberBtn = $("#request-phone-btn");
+let $sendPhoneNumberBtn = $("#send-phone-btn");
+// 기존에 저장돼있거나 인증이 완료된 전화번호를 담고 있는 hidden input
+let $verificatedPhone = $("#verificated-phoneNumber");
 
 /* 회원 프로필 */
 const $file = $("#__BVID__268");
 const $thumbnail = $("#user-profile");
 
-const memberId = 546;
+const memberId = 1;
+globalThis.vertificationNumber = "";
 
 $(".user-profile-picture").on('click', function(){
     profileModalOpen();
@@ -225,23 +231,14 @@ function inputNewPasswordConfirmTest(){
 }
 
 /* 전화번호 재설정 버튼 클릭 시 disabled 해제 */
-function inputDisabledTest(){
-    if($inputPhoneNumberBtn.text() == '재설정'){
-        $("legend[for='request-phone']").text("휴대전화 번호 인증");
-        $inputPhoneNumberBtn.text("전송");
-        $inputPhoneNumberBtn.attr('disabled', 'true');
-        $inputPhoneNumberBtn.addClass('disabled');
-        $inputRestPhone.attr('placeholder', '예) 01012345678');
-        $inputRestPhone.removeAttr('disabled');
-        $inputRestPhone.removeClass('complete-phone-auth');
-        $("#request-phone").val('');
-        return false;
-
-    }else if($inputPhoneNumberBtn.text() == '전송'){
-        $(".phone-validation").css('display', 'block');
-        $("#__BVID__88").css('display', 'block');
-        return false;
-    }
+function inputDisabledTest() {
+    $("legend[for='request-phone']").text("휴대전화 번호 인증");
+    $sendPhoneNumberBtn.css('display', 'block');
+    $inputPhoneNumberBtn.css('display', 'none');
+    $inputRestPhone.attr('placeholder', '예) 01012345678');
+    $inputRestPhone.removeAttr('disabled');
+    $inputRestPhone.removeClass('complete-phone-auth');
+    $("#request-phone").val('');
 }
 
 /* 전화번호 입력 유효성 검사 */
@@ -259,22 +256,45 @@ function inputPhoneNumberTest(){
         return false;
     }
     $(".mypage-invalid-feedback.phoneNumber").css('display', 'none');
-    $(".send-button").removeAttr('disabled');
-    $(".send-button").removeClass("disabled");
-    return true;
+    $sendPhoneNumberBtn.removeAttr('disabled');
+    $sendPhoneNumberBtn.removeClass("disabled");
+}
+
+/* 전화번호 입력 후 인증번호 전송 */
+function sendVertification(){
+    $(".phone-validation").css('display', 'block');
+    $("#__BVID__88").css('display', 'block');
+
+    console.log($inputRestPhone.val())
+
+    mypageService.sendVerification(
+        $inputRestPhone.val(), saveVerification
+    )
+}
+
+function saveVerification(vertificationNumber){
+    console.log(vertificationNumber);
+    globalThis.vertificationNumber = vertificationNumber;
 }
 
 /* 인증번호 유효성 검사 */
 function verifyPhoneTest(){
-    if($inputVerifyPhone.val() == '0000'){
+    if($inputVerifyPhone.val() == globalThis.vertificationNumber){
         $inputVerifyPhone.attr('disabled', 'true');
         $inputVerifyPhone.addClass('complete-phone-auth');
+        $inputRestPhone.attr('disabled', 'true');
+        $inputRestPhone.addClass('complete-phone-auth');
+
+        $inputPhoneNumberBtn.css('display', 'block');
+        $sendPhoneNumberBtn.css('display', 'none');
+
+        $verificatedPhone.val($inputRestPhone.val());
+
         $(".validation-msg-wrapper.auth-key").text("인증되었습니다.");
+        $(".validation-msg-wrapper.auth-key").css('display', 'block');
         $(".validation-msg-wrapper.auth-key").css('color', '#00c7ae');
-        return true;
     }
     $(".validation-msg-wrapper.auth-key").css('display', 'block');
-    return false;
 }
 
 /* ================================= update =================================*/
@@ -296,14 +316,14 @@ function showMemberInfo(member){
 
     if(member.memberPhone == 'undefined' || member.memberPhone == null){
         $("legend[for='request-phone']").text("휴대전화 번호 인증");
-        $inputPhoneNumberBtn.text("전송");
-        $inputPhoneNumberBtn.attr('disabled', 'true');
-        $inputPhoneNumberBtn.addClass('disabled');
+        $sendPhoneNumberBtn.css('display', 'block');
+        $inputPhoneNumberBtn.css('display', 'none');
         $inputRestPhone.attr('placeholder', '예) 01012345678');
         $inputRestPhone.removeAttr('disabled');
         $inputRestPhone.removeClass('complete-phone-auth');
     }else {
         $("#request-phone").val(member.memberPhone);
+        $verificatedPhone.val(member.memberPhone);
     }
 }
 
@@ -339,7 +359,7 @@ function updateOkMyinfo(){
     formData.append('memberId', memberId);
     formData.append('memberName', $inputName.val());
     formData.append('memberPassword', $inputNewPasswordConfirm.val());
-    formData.append('memberPhone', $inputRestPhone.val());
+    formData.append('memberPhone', $verificatedPhone.val());
     formData.append('memberProfileName', $thumbnail.attr('src'));
 
     mypageService.updateUserInfo(
@@ -354,6 +374,12 @@ function afterUpdateMyinfo(member){
 }
 
 /* 탈퇴 버튼 눌렀을 때 */
-function dropOutMember(memberId){
-    mypageService.drop
+function dropOutMember(){
+    mypageService.dropOutMember(
+        memberId, afterDropOutMember
+    );
+}
+
+function afterDropOutMember(){
+    location.href='/main';
 }

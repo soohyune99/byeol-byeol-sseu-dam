@@ -2,10 +2,14 @@ package com.app.byeolbyeolsseudam.repository.course;
 
 import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.domain.course.QCourseDTO;
+import com.app.byeolbyeolsseudam.domain.mycourse.QMycourseDTO;
 import com.app.byeolbyeolsseudam.domain.spot.QSpotDTO;
 import com.app.byeolbyeolsseudam.entity.board.QBoard;
+import com.app.byeolbyeolsseudam.entity.course.QCourse;
+import com.app.byeolbyeolsseudam.entity.mycourse.QMycourse;
 import com.app.byeolbyeolsseudam.entity.spot.QSpot;
 import com.app.byeolbyeolsseudam.type.BoardCategory;
+import com.app.byeolbyeolsseudam.type.CourseFinishedStatus;
 import com.app.byeolbyeolsseudam.type.CourseGrade;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -16,6 +20,7 @@ import java.util.List;
 
 import static com.app.byeolbyeolsseudam.entity.board.QBoard.board;
 import static com.app.byeolbyeolsseudam.entity.course.QCourse.course;
+import static com.app.byeolbyeolsseudam.entity.mycourse.QMycourse.mycourse;
 import static com.app.byeolbyeolsseudam.entity.spot.QSpot.spot;
 
 
@@ -88,6 +93,39 @@ public class CourseCustomRepositoryImpl implements CourseCustomRepository {
                 .where(spot.course.courseId.eq(courseDTO.getCourseId()))
                 .fetch());
         return courseDTO;
+    }
+
+    @Override
+    public List<CourseDTO> selectMyCourseList(Long memberId){
+        List<CourseDTO> courses = jpaQueryFactory.select(new QCourseDTO(
+                course.courseId, course.courseName))
+                .from(course)
+                .orderBy(course.courseName.asc())
+                .limit(6)
+                .fetch();
+
+        courses.stream().forEach(course -> {
+            course.setSpots(
+                    jpaQueryFactory.select(new QSpotDTO(
+                            spot.spotId, spot.spotName, spot.spotAddress, spot.spotNumber, spot.course.courseId))
+                            .from(spot)
+                            .where(spot.course.courseId.eq(course.getCourseId()))
+                            .fetch()
+            );
+            course.setMycourses(
+                    jpaQueryFactory.select(new QMycourseDTO(
+                            mycourse.mycourseId, mycourse.courseFinishedStatus, mycourse.member.memberId,
+                            mycourse.course.courseId, mycourse.course.courseName, mycourse.spot.spotId,
+                            mycourse.spot.spotName, mycourse.spot.spotNumber))
+                    .from(mycourse)
+                    .where(mycourse.member.memberId.eq(memberId)
+                            .and(mycourse.courseFinishedStatus.ne(CourseFinishedStatus.미완주)))
+                    .orderBy(mycourse.course.courseName.asc())
+                    .fetch()
+            );
+        });
+
+        return courses;
     }
 
 }

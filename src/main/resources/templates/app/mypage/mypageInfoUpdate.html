@@ -141,14 +141,18 @@
                                           id="request-phone"
                                           maxlength="13" data-vv-validate-on="blur" disabled="disabled"
                                           data-testid="request-phone" aria-invalid="false" name="requestPhone"
-                                          autocomplete="off"><input data-v-84480e04="" type="checkbox"
-                                                                    name="isSendPhoneNumber"
+                                          autocomplete="off">
+                            <input data-v-84480e04="" type="checkbox" name="isSendPhoneNumber"
                                                                     data-vv-name="isSendPhoneNumber"
                                                                     hidden="hidden">
+                            <input type="hidden" value="" id="verificated-phoneNumber">
                             <div data-v-84480e04="" class="button-wrapper input-group-append">
                                 <button
                                         data-v-c1b7da3c="" data-v-84480e04="" id="request-phone-btn" type="button"
                                         class="btn send-button btn-primary btn-md sg-button">재설정</button>
+                                <button data-v-c1b7da3c="" data-v-84480e04="" id="send-phone-btn" type="button"
+                                        disabled="disabled" onclick="javascript:sendVertification();"
+                                        class="btn send-button btn-primary btn-md sg-button disabled" style="display: none;">전송</button>
                             </div>
                             <!---->
                         </div>
@@ -299,7 +303,7 @@
             <button type="button" class="swal2-confirm btn" aria-label=""
                     style="display: inline-block;">다시 생각해 볼게요
             </button>
-            <button type="button" class="swal2-cancel btn"
+            <button type="button" class="swal2-cancel btn" onclick="javascript:dropOutMember();"
                     aria-label="" style="display: inline-block;">계정 탈퇴
             </button>
         </div>
@@ -364,5 +368,6 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/mypage/mypageModule.js"></script>
 <script src="/js/mypage/mypageInfoUpdate.js"></script>
+<script src="/js/fix/header.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 </html>

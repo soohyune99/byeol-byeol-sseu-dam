@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.domain.mybadge;
 
+import com.app.byeolbyeolsseudam.entity.mybadge.Mybadge;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,5 +25,4 @@ public class MybadgeDTO {
         this.badgeId = badgeId;
         this.createdDate = createdDate;
     }
-
 }
