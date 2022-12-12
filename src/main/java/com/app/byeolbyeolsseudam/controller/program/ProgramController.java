@@ -34,11 +34,11 @@ public class ProgramController {
         return"/app/program/programDetail";
     }
 
-    /* 프로그램 멤버 시청 */
+    /* 프로그램 멤버 신청 */
     @GetMapping("/saveMember")
     public RedirectView programSaveMember(Long programId, Long memberId){
 //        programService.programMemberSave(programId, memberId); // 로그인 완성시 사용
-        return new RedirectView("/mypage/program");
+        return new RedirectView("/mypage/program"); // 마이페이지 _ 프로그램 신청내역페이지로 이동
     }
 
 //    @GetMapping("/scroll/{page}")
