@@ -52,6 +52,7 @@ public class ProgramDynamicCustomRepositoryImpl implements ProgramDynamicCustomR
                 .limit(pageable.getPageSize())
                 .fetch();
 
+        /* 계산될 전체 개수에서도 확인 가능해야함 _ 처음에는 where절이 안붙어있어서 전체 총개수만 가져왔었는데 이 부분에다가도 where절을 붙여서 해당 검색, 상태별 count가 가능하도록 진행 */
         long total = jpaQueryFactory.select(new QProgramDTO(
                 program.programId,
                 program.programName,
@@ -72,6 +73,10 @@ public class ProgramDynamicCustomRepositoryImpl implements ProgramDynamicCustomR
                 program.createdDate
         ))
                 .from(program)
+                .where(
+                        keywordContains(keyword), // 검색 Keyword 일치
+                        programStatusEq(programStatus) // 상태 일치 확인
+                )
                 .fetch().size();
 
         return new PageImpl<>(programs,pageable,total);

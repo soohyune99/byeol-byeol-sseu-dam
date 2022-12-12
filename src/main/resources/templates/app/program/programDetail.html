@@ -387,14 +387,16 @@
     //        location.href = "/program/programAddSuccess"
     //    })
 
-    /* 신청하기 클릭시 */
+    /* ProgramDetail-신청하기 -> ProgramDetail-Modal 신청하기 클릭시 */
     function insertProgram() {
         let memberId = $('.memberId').attr('href');
         let programId = $('.programId').attr('href')
 
         if (memberId == "") {
+            // 로그인 필요 모달창 띄우기
             $('.swal2-container').css('display', 'block');
         } else {
+            // 신청하기 눌렀을 때 memberId가 있다면(로그인이 되어있다면?) 경로로 보내줌
             location.href = "/program/saveMember" + "?programId=" + programId + "&memberId=" + memberId;
         }
 
