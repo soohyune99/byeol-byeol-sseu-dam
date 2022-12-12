@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.controller.admin;
 
+import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.service.admin.AdminProductService;
 import lombok.RequiredArgsConstructor;
@@ -76,8 +77,22 @@ public class AdminProductController {
 
 
     /* 주문 관리 _ 주문 목록 */
-    @GetMapping("/order")
-    public String adminOrderList(){ return "/app/admin/adminOrderList"; }
+    @GetMapping("/order/{page}")
+    public String adminOrderList(@PathVariable("page") Integer page, Model model){
+        page = Optional.ofNullable(page).orElse(1);
+
+        Pageable pageable = PageRequest.of(page-1,10, Sort.Direction.DESC, "orderDetailId");
+        model.addAttribute("orders", adminProductService.searchOrder(pageable));
+
+        return "/app/admin/adminOrderList"; }
+
+     @PostMapping("/order/modified")
+     public RedirectView adminOrderModified(OrderDTO orderDTO){
+        adminProductService.updateOrder(orderDTO, orderDTO.getOrderId());
+
+        return new RedirectView("/admin/product/order/1");
+     }
+
 
     /* 주문 관리 _ 주문 목록 + 주문 상세 내역 */
     @GetMapping("/order/detail")

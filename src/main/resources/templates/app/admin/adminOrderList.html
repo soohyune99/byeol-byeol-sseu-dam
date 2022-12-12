@@ -77,32 +77,32 @@
                                                                     <div class="card-title">
 
                                                                         <!--begin::Search-->
-                                                                        <div class="d-flex align-items-center position-relative my-1">
-                                                                            <!--begin::검색창 돋보기 Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                                                            <span class="svg-icon svg-icon-1 position-absolute ms-4">
-                                                                                <svg width="24" height="24"
-                                                                                     viewBox="0 0 24 24" fill="none"
-                                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                                    <rect opacity="0.5" x="17.0365"
-                                                                                          y="15.1223" width="8.15546"
-                                                                                          height="2" rx="1"
-                                                                                          transform="rotate(45 17.0365 15.1223)"
-                                                                                          fill="currentColor">
-                                                                                    </rect>
-                                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                                                                          fill="currentColor">
-                                                                                    </path>
-                                                                                </svg>
-                                                                            </span>
-                                                                            <!--end::Svg Icon-->
-                                                                            <form>
-                                                                                <input type="text" style="display:none">
-                                                                                <input type="text" name="enter" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
-                                                                                       data-kt-ecommerce-product-filter="search"
-                                                                                       class="form-control form-control-solid w-250px ps-14"
-                                                                                       placeholder="주문 검색">
-                                                                            </form>
-                                                                        </div>
+<!--                                                                        <div class="d-flex align-items-center position-relative my-1">-->
+<!--                                                                            &lt;!&ndash;begin::검색창 돋보기 Svg Icon | path: icons/duotune/general/gen021.svg&ndash;&gt;-->
+<!--                                                                            <span class="svg-icon svg-icon-1 position-absolute ms-4">-->
+<!--                                                                                <svg width="24" height="24"-->
+<!--                                                                                     viewBox="0 0 24 24" fill="none"-->
+<!--                                                                                     xmlns="http://www.w3.org/2000/svg">-->
+<!--                                                                                    <rect opacity="0.5" x="17.0365"-->
+<!--                                                                                          y="15.1223" width="8.15546"-->
+<!--                                                                                          height="2" rx="1"-->
+<!--                                                                                          transform="rotate(45 17.0365 15.1223)"-->
+<!--                                                                                          fill="currentColor">-->
+<!--                                                                                    </rect>-->
+<!--                                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"-->
+<!--                                                                                          fill="currentColor">-->
+<!--                                                                                    </path>-->
+<!--                                                                                </svg>-->
+<!--                                                                            </span>-->
+<!--                                                                            &lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            <form>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                <input type="text" style="display:none">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                <input type="text" name="keyword" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                       data-kt-ecommerce-product-filter="search"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                       class="form-control form-control-solid w-250px ps-14"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                       placeholder="주문 검색">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            </form>&ndash;&gt;-->
+<!--                                                                        </div>-->
                                                                         <!--end::Search-->
 
                                                                     </div>
@@ -177,78 +177,73 @@
 
                                                                                 <!--begin::Table body-->
                                                                                 <tbody class="fw-semibold text-gray-600">
-
-
+                                                                                <form th:action="@{/admin/product/order/modified}" method="post" name="statusForm">
+                                                                                <th:block th:each="order:${orders}">
                                                                                 <!-- begin :: 주문 목록 -->
-                                                                                <tr class="odd orderList">
+                                                                                <tr th:object="${order}" class="odd orderList">
                                                                                     <!--begin::Checkbox-->
                                                                                     <td class="orderCheckbox">
                                                                                         <div
                                                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                                             <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
+                                                                                                   type="checkbox" th:value="*{orderId}">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::Checkbox-->
 
                                                                                     <!--begin::주문 번호=-->
                                                                                     <td class="text-end pe-0 orderDetailId">
-                                                                                        <a href="http://localhost:10001/admin/adminorderdetail">
-                                                                                        <span class="fw-bold">2022111301</span>
+                                                                                        <a href="http://localhost:10001/admin/product/order/detail">
+                                                                                        <span class="fw-bold" th:text="*{orderId}"></span>
                                                                                         </a>
                                                                                     </td>
-                                                                                    <!--end::주문 번호=-->
-
-                                                                                    <!--begin::주문 날짜=-->
                                                                                     <td class="text-end pe-0 orderDate"
                                                                                         data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.13</span>
+                                                                                        <span class="fw-bold ms-3" th:text="${#temporals.format(order.createdDate, 'yyyy-MM-dd')}"></span>
                                                                                     </td>
                                                                                     <!--end::주문 날짜=-->
 
                                                                                     <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0 memberId">2022111301</td>
+                                                                                    <td class="text-end pe-0 memberId" th:text="*{memberName}"></td>
                                                                                     <!--end::회원 번호=-->
 
                                                                                     <!--begin::주문 상태=-->
                                                                                     <td class="text-end pe-0 orderStatus">
-                                                                                        <select class="form-control form-control-solid "
-                                                                                                id="orderStatus"
-                                                                                                style="font-size: 11px; padding-left: 17px; margin: 0 0 0 0;width: 59%;float: left;">
-                                                                                            <option value="orderStatus"
-                                                                                                    disabled selected
-                                                                                                    hidden>주문상태를 선택해주세요
+                                                                                        <div name="orderStatus" class="form-control form-control-solid " style="font-size: 11px; padding-left: 17px; margin: 0 0 0 0;width: 59%;float: left;">
+                                                                                            <span>
+                                                                                                배송 완료
+                                                                                            </span>
+                                                                                        </div>
+
+                                                                                            <select class="form-control form-control-solid "
+                                                                                                             name="orderStatus"
+                                                                                                             style="font-size: 11px; padding-left: 17px; margin: 0 0 0 0;width: 59%;float: left;text-align: center;display: none">
+                                                                                            <!--                                                                                            <option value="orderStatus"-->
+                                                                                            <!--                                                                                                    disabled selected-->
+                                                                                            <!--                                                                                                    hidden>주문상태를 선택해주세요-->
+                                                                                            <!--                                                                                            </option>-->
+                                                                                            <option value="주문완료">주문완료
                                                                                             </option>
-                                                                                            <option value="주문 완료">주문 완료
+                                                                                            <option value="주문취소">주문취소
                                                                                             </option>
-                                                                                            <option value="주문 취소">주문 취소
-                                                                                            </option>
-                                                                                            <option value="배송 대기중">배송 대기중
+                                                                                            <option value="배송대기중">배송대기중
                                                                                             </option>
                                                                                             <option value="배송중">배송중
                                                                                             </option>
-                                                                                            <option value="배송 완료">배송 완료
+                                                                                            <option value="배송완료">배송완료
                                                                                             </option>
                                                                                         </select>
+
                                                                                         <button type="button" style="font-family: inherit; width: 119px; float: right;font-size: 10px; height: 29px;display: block;"
-                                                                                                         class="btn btn-light-primary">수정 하기</button>
+                                                                                                         class="btn btn-light-primary modify">수정 하기</button>
                                                                                         <button type="button" style="background:#74c9ff;font-family: inherit; float: right;width: 59px;font-size: 7px; height: 29px; display: none;"
-                                                                                                class="btn btn-primary">수정</button>
+                                                                                                class="btn btn-primary confirm">수정</button>
                                                                                         <button type="button" style="background:#ec6e8e; font-family: inherit; float: right;width: 59px;margin-right: 1px; font-size: 7px; height: 29px; display: none;"
-                                                                                                class="btn btn-danger">취소</button>
-
-
+                                                                                                class="btn btn-danger cancel">취소</button>
                                                                                     </td>
-                                                                                    <!--end::주문 상태=-->
-
                                                                                 </tr>
-                                                                                <!-- end :: 주문 목록 -->
-
-                                                                                <!-- BEGIN : 삭제할 데이터 - 날리기 ######################### -->
-
-
-                                                                                <!-- END : 삭제할 데이터 - 날리기 ########################### -->
-
+                                                                                </th:block>
+                                                                                </form>
                                                                                 </tbody>
                                                                                 <!--end::Table body-->
 
@@ -346,5 +341,41 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script>
+    let $form = $("form[name='statusForm']");
+    $(".modify").on("click",function () {
 
+        $("div[name='orderStatus']").css("display", "block")
+        $("select[name='orderStatus']").css("display", "none")
+        $(".modify").css("display", "block")
+        $(".confirm").css("display", "none")
+        $(".cancel").css("display", "none")
+
+        $(this).siblings("div[name='orderStatus']").css("display", "none")
+        $(this).closest("td").find("select[name='orderStatus']").css("display", "block")
+        $(this).css("display", "none")
+        $(this).siblings(".confirm").css("display", "block")
+        $(this).siblings(".cancel").css("display", "block")
+
+
+    })
+
+    $(".cancel").on("click",function () {
+        $("div[name='orderStatus']").css("display", "block")
+        $("select[name='orderStatus']").css("display", "none")
+        $(".modify").css("display", "block")
+        $(".confirm").css("display", "none")
+        $(".cancel").css("display", "none")
+    })
+
+    $(".confirm").on("click",function () {
+        if(!$("select[name='orderStatus']").val()){
+            alert("주문 상태를 확인해주세요.")
+            return;
+        }
+        $form.submit();
+
+    })
+
+</script>
 </html>
