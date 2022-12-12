@@ -22,5 +22,8 @@ public interface ProductCustomRepository {
 
     // 무한 스크롤
     public List<ProductDTO> selectScrollProducts(Criteria criteria);
+    
+    // 주문하기
+    public ProductDTO selectProduct(Long productId);
 
 }

@@ -44,30 +44,30 @@
                                     <input type="hidden" name="deliv_information_show" id="deliv_information_show" value="Y">
                                     <input type="hidden" name="pg_back_url" value="https://jigushop.co.kr/shop_payment/?order_code=o202211116e39b947da4ea">
                                     <h1 class="shop-tit hidden-sm hidden-xs">결제하기</h1>
-                                    <div class="order_wrap _order_wrap " th:object="${product}">
+                                    <div class="order_wrap _order_wrap ">
                                         <div class="modify-tip-off ">
                                             <h6>주문 상품 정보</h6>
                                             <div class="modify-row">
                                                 <div class="col-xs-12 col_ctr">
                                                     <div>
                                                         <div class="shop_item_thumb">
-                                                            <a href="/bathroom/?idx=24" target="_blank">
+                                                            <!--<a href="/bathroom/?idx=24" target="_blank">
                                                                 <div class="product_img_wrap">
                                                                     <img src="https://cdn.imweb.me/thumbnail/20220117/6a329ba1bf9e7.jpg" alt="주문상품 이미지">
                                                                 </div>
                                                                 <div class="product_info_wrap">
-                                                                    <span class="shop_item_title" th:text="*{productName}"></span>
+                                                                    <span class="shop_item_title"></span>
                                                                     <div class="shop_item_opt">
                                                                         <p>
                                                                             <em class="list_badge badge_latest">필수</em>
-                                                                        <p th:text="|${count}개|"></p>
+                                                                        <p>수량</p>
                                                                         </p>
                                                                     </div>
                                                                     <div class="shop_item_pay">
-                                                                        <span class="text-bold text-14" th:text="|${#numbers.formatInteger(product.productPrice, 0, 'COMMA')}원|"></span>
+                                                                        <span class="text-bold text-14">가격</span>
                                                                     </div>
                                                                 </div>
-                                                            </a>
+                                                            </a>-->
                                                         </div>
                                                         <div class="im-payment-deliv">
                                                             <div>배송비 <span class="text-bold">3,000원</span></div>
@@ -81,8 +81,8 @@
                                                 <h6>주문자 정보</h6>
                                                 <div class="modify-row no-padding _orderer_preview_wrap">
                                                     <div class="col-xs-12 ordererInfo">
-                                                        <div class="info text-14 text-gray">성은지</div>
-                                                        <div class="info text-14 text-gray">sejjes07@gmail.com</div>
+<!--                                                        <div class="info-name info text-14 text-gray">성은지</div>-->
+<!--                                                        <div class="info-email info text-14 text-gray">sejjes07@gmail.com</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -185,7 +185,7 @@
                                                         <p class="use text-gray">포인트 사용</p>
                                                     </div>
                                                     <div class="col-xs-6 pay-number col_ctr">
-                                                        <p  th:text="|${#numbers.formatInteger(productPrice * count, 0, 'COMMA')}원|"></p>
+                                                        <p>가격</p>
                                                         <p>+3,000원</p>
                                                         <p class="use _use_point_text">-3,000원</p>
                                                     </div>
@@ -197,7 +197,7 @@
                                                     </div>
                                                     <div class="col-md-6 col-xs-6 col_ctr">
                                                         <p class="no-margin text-right">
-                                                            <span class="text-brand" th:text="|${#numbers.formatInteger((productPrice * count) + 3000, 0, 'COMMA')}원|">5,800원</span>
+                                                            <span class="text-brand" >총 가격</span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -405,28 +405,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/market/marketPayment.js"></script>
 <script src="/js/market/address.js"></script>
+<script src="/js/market/orderModule.js"></script>
+<script src="/js/market/marketPayment.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
-<script th:inline="javascript">
-
-    // 이용 약관
-    const $all = $("#paymentAllCheck");
-    const $terms = $(".terms");
-
-    // 전체 동의 클릭
-    $all.on("click", function(){
-        //각각의 약관의 checked 프로퍼티를 모두 전체동의의 checked 상태로 변경시켜준다.
-        // 전체 동의가 true면 나머지 다 true
-        $terms.prop("checked", $(this).is(":checked"));
-    });
-
-    // 각각의 약관 동의 클릭
-    $terms.on("click", function(){
-        // 각각의 약관의 checked 프로퍼티가 true인 개수를 가져온 뒤
-        // 2개 모두 true일 경우 전체 동의도 true이다.
-        $all.prop("checked", $terms.filter(":checked").length == $terms.length);
-    });
-
-</script>
 </html>

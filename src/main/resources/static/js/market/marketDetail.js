@@ -151,10 +151,8 @@ function totalPrice(){
 console.log("js 들어옴");
 let url = decodeURI(window.location.href).split("/");
 let productId = url[url.length - 1];
+console.log(productId);
 
-/* 상품 수량 */
-let $productCount = document.getElementById('orderCount').value;
-console.log($productCount);
 
 readProduct(productId);
 
@@ -175,7 +173,6 @@ function showProductDetail(product){
     $(".real_price").html(product.productPrice);
     $(".item_price").html(product.productPrice);
     $(".total_price").html(product.productPrice);
-    // $purchaseBtn.attr('href', '/market/payment?id=' + product.productId);
 }
 
 /* 구매하지 않은 제품일 경우 구매평 작성 불가 모달 띄우기 */
@@ -277,12 +274,6 @@ $(".thumb_detail_img_wrap").on('click', function(){
     $(this).find('img').eq(0).css({'width':  $flag, 'height':  $flag});
 });
 
-/* 주문하기 버튼 누를 시 */
-/*let $purchaseBtn = $(".purchase-btn");
-
-$purchaseBtn.on("click", function() {
-    orderService
-}*/
 
 
 /* ================================== Review ==================================*/
@@ -293,6 +284,15 @@ let $reviewContent = $("textarea[name='review-input']");
 let $reviewStar = $("path.starRate");
 let $reviewSubmitBtn = $(".write-review-submit");
 let $reviewPhotoBtn = $(".photo_button");
+
+/* 주문하기 버튼 누를 시 */
+let $purchaseBtn = $(".purchase-btn");
+
+$purchaseBtn.on("click", function() {
+    console.log("주문하기 버튼 누름");
+    let $productCount = $("input[name='orderCount']").val();
+    location.href ='/market/payment?productId='+ productId + '&count='+ $productCount;
+});
 
 showReview();
 
