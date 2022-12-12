@@ -588,7 +588,7 @@
                                                              tabindex="-1" data-v-e4caeaf8=""
                                                              style="width: 100%; display: inline-block;">
                                                         <a data-v-85c61b32=""
-                                                           href="/ip/products/63738d17369116432a2f4aa0?from=main"
+                                                           th:href="@{/program/detail(programId=${program.programId})}"
                                                            class="" data-testid="product-list-item">
                                                             <div data-v-85c61b32="" class="item-image">
                                                                 <article data-v-1a98b297="" data-v-85c61b32=""
@@ -647,7 +647,7 @@
                                          style="outline: none; width: 247px;">
                                         <div data-v-e4caeaf8="">
                                             <a data-v-cb8f7044=""
-                                               href="https://cdn.imweb.me/thumbnail/20210913/7f55e7a33833f.jpg" class=""
+                                               th:href="@{|/market/${kitchen.productId}|}" class=""
                                                tabindex="-1" data-v-e4caeaf8=""
                                                style="width: 100%; display: inline-block;">
                                                 <img data-v-cb8f7044="" alt="고무장갑 팔목라인" class="service-image"
@@ -693,8 +693,7 @@
                                          class="slick-slide slick-active slick-current"
                                          style="outline: none; width: 247px;">
                                         <div data-v-e4caeaf8=""><a data-v-cb8f7044=""
-                                                                   href="/hire/%EC%9E%90%EB%8F%99%EC%B0%A8-%EC%8D%AC%ED%8C%85?from=%EA%B8%B0%ED%9A%8D%EC%A0%84"
-                                                                   class="" tabindex="-1" data-v-e4caeaf8=""
+                                                                   th:href="@{|/market/${bath.productId}|}"                                                                   class="" tabindex="-1" data-v-e4caeaf8=""
                                                                    style="width: 100%; display: inline-block;"><img
                                                 data-v-cb8f7044="" alt="자동차 썬팅" class="service-image"
                                                 data-src="https://cdn.imweb.me/thumbnail/20220816/e7980fcbb4c59.jpg"
@@ -734,8 +733,7 @@
                                          class="slick-slide slick-active slick-current"
                                          style="outline: none; width: 247px;">
                                         <div data-v-e4caeaf8=""><a data-v-cb8f7044=""
-                                                                   href="/hire/%ED%8D%BC%EC%8A%A4%EB%84%90%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%8B%9D?from=%EA%B8%B0%ED%9A%8D%EC%A0%84"
-                                                                   class="" tabindex="-1" data-v-e4caeaf8=""
+                                                                   th:href="@{|/market/${life.productId}|}"                                                                   class="" tabindex="-1" data-v-e4caeaf8=""
                                                                    style="width: 100%; display: inline-block;"><img
                                                 data-v-cb8f7044="" alt="미니 에코백" class="service-image"
                                                 data-src="https://cdn.imweb.me/thumbnail/20220126/4487a182e52e5.jpg"
@@ -789,7 +787,7 @@
                                          class="slick-slide slick-active slick-current" style="outline: none;">
                                         <div data-v-e4caeaf8="">
                                             <a data-v-78b11936="" data-v-58af04c6=""
-                                               href="/search/pro/%EC%9A%A9%EB%8B%AC-%EC%9A%B4%EC%86%A1/address/%ED%99%88-%EB%A6%AC%EB%B9%99--%EC%9D%B4%EC%82%AC/review_count?from=main_best_pro"
+                                               th:href="@{/community/}"
                                                class="" tabindex="-1" data-v-e4caeaf8=""
                                                style="width: 100%; display: inline-block;">
                                                 <section data-v-78b11936="" class="meet-provider">
@@ -815,7 +813,7 @@
                                              style="outline: none; width: 198px;">
                                             <div data-v-e4caeaf8="">
                                                 <a data-v-2caa2ac0="" data-v-58af04c6=""
-                                                   href="/profile/users/2885276?from=main_best_pro" class=""
+                                                   th:href="@{|/community/${top.boardId}|}" class=""
                                                    tabindex="-1" data-v-e4caeaf8=""
                                                    style="width: 100%; display: inline-block;">
                                                     <div data-v-2caa2ac0="" data-testid="main-pro-card"
@@ -834,9 +832,6 @@
                                                             작성자</p>
                                                         <div th:text="*{boardTitle}" data-v-1c0b0670=""
                                                              style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                                            안녕하세요 23평 직사각형 마름모꼴의 노후된 상가건물입니다 렌탈스튜디오 운영겸 저의쇼핑몰 사무실공간을
-                                                            만들고도 싶은데요. 도배 장판 인테리어등 견적문의드립니다. 크림빛 화이트계열(아이보리) 호리존등 설치비용
-                                                            등등의 각종 인테리어 물어볼게많아서 채팅자세한 상담해주실고수님
                                                         </div>
                                                     </div>
                                                 </a>
@@ -872,7 +867,7 @@
                                     style="display: flex;flex-wrap: wrap">
                                     <th:block th:each="board:${boards}">
                                         <a th:object="${board}" data-v-287a2a80=""
-                                           href="/community/soomgo-life/posts/6370e559d7334c72676ba41b-%EC%87%BC%ED%95%91%EB%AA%B0-%EC%82%AC%EB%AC%B4%EC%8B%A4%EA%B2%B8-%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4-%EB%AC%B8%EC%9D%98"
+                                           th:href="@{|/community/${board.boardId}|}"
                                            class="curation-list-wrapper">
                                             <div data-v-287a2a80="" class="curation-contents has-thumbnail">
                                                 <p th:text="*{boardCategory}" data-v-287a2a80="" class="topic-name"></p>
@@ -883,7 +878,7 @@
                                                 <div data-v-287a2a80="" class="curation-reactions">
                                                     <span th:text="*{boardView}" data-v-287a2a80=""
                                                           class="view-count"></span>
-                                                    <span data-v-287a2a80="" class="comment-count">24</span>
+                                                    <span data-v-287a2a80="" th:text="${#lists.size(board.comments)}" class="comment-count"></span>
                                                 </div>
                                             </div>
                                             <div data-v-287a2a80="" class="curation-topic-image">

@@ -2,6 +2,8 @@ package com.app.byeolbyeolsseudam.repository.main;
 
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
 import com.app.byeolbyeolsseudam.domain.board.QBoardDTO;
+import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
+import com.app.byeolbyeolsseudam.domain.comment.QCommentDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.domain.product.QProductDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.app.byeolbyeolsseudam.entity.board.QBoard.board;
+import static com.app.byeolbyeolsseudam.entity.comment.QComment.comment;
 import static com.app.byeolbyeolsseudam.entity.product.QProduct.product;
 import static com.app.byeolbyeolsseudam.entity.program.QProgram.program;
 
@@ -88,7 +91,8 @@ public class MainRepository {
     }
     //메인페이지 게시글 목록 - 가장 뜨거운 게시물
     public List<BoardDTO> getMainTopBoardList(){
-        return jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
+
+        List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
                 board.member.memberProfileUuid, board.createdDate, board.updatedDate))
@@ -96,15 +100,41 @@ public class MainRepository {
                 .orderBy(board.boardView.desc())
                 .limit(8)
                 .fetch();
+
+        boards.stream().forEach(board ->{
+            List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
+                    comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
+                    comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
+                    comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
+                    comment.board.boardId, comment.createdDate, comment.updatedDate))
+                    .from(comment)
+                    .where(comment.board.boardId.eq(board.getBoardId()))
+                    .fetch();
+            board.setComments(comments);
+        });
+        return boards;
     }
     //메인페이지 게시글 목록 - 커뮤니티에 물어보세요
     public List<BoardDTO> getMainBoardList(){
-        return jpaQueryFactory.select(new QBoardDTO(
+        List<BoardDTO> boards =  jpaQueryFactory.select(new QBoardDTO(
                 board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
                 board.member.memberProfileUuid, board.createdDate,board.updatedDate
         )).from(board).orderBy(board.boardId.desc()).limit(6).fetch();
+
+        boards.stream().forEach(board ->{
+            List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
+                    comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
+                    comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
+                    comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
+                    comment.board.boardId, comment.createdDate, comment.updatedDate))
+                    .from(comment)
+                    .where(comment.board.boardId.eq(board.getBoardId()))
+                    .fetch();
+            board.setComments(comments);
+        });
+        return boards;
     }
 
 
