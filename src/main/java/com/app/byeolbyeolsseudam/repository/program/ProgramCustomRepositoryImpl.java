@@ -4,7 +4,6 @@ import com.app.byeolbyeolsseudam.domain.Search;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.domain.program.QProgramDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
-import com.app.byeolbyeolsseudam.entity.program.Program;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -151,7 +150,7 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
                 program.programFileDetailPath,
                 program.programFileDetailUuid,
                 program.createdDate
-                ))
+        ))
                 .from(program)
                 .orderBy(program.programDate.desc())
                 .where(
