@@ -1,5 +1,8 @@
 /* communityMain.html */
 
+console.log(memberId);
+console.log(memberName);
+
 let $writeBtn = $(".write-button");
 let $closeBtn = $(".swal2-cancel");
 let $loginModal = $(".swal2-container")
@@ -169,7 +172,7 @@ function showSearchBoard(boards){
         text += `<div data-v-95718dd0="">`;
         text += `<section data-v-95718dd0="" class="item-wrapper">`;
         text += `<h3 data-v-95718dd0="" class="sg-text-subhead5 sg-font-medium sg-text-gray-900">` + board.boardTitle + `</h3>`;
-        text += `<p data-v-95718dd0="" content="맛있는 채식~~~~~~~~~~~~~~!" class="content sg-text-body2 sg-font-regular sg-text-gray-500"></p>`;
+        text += `<p data-v-95718dd0="" content="" class="content sg-text-body2 sg-font-regular sg-text-gray-500"></p>`;
         text += `</section>`;
         text += `</div>`;
         text += `</div>`;
@@ -188,13 +191,10 @@ function showSearchBoard(boards){
     });
 
     $("ul.feed-list").html(text);
-    $(".topview-block-wrap").css('display', 'none');
 }
 
 
 /* ================================== Infinite Scroll ==================================*/
-
-
 
 let page = 1;
 
@@ -207,7 +207,6 @@ $(window).scroll(function(){
     formData.append('category', globalThis.category);
 
     if($(window).scrollTop() * 1.001 >= $(document).height() - $(window).height()){
-        console.log("무한스크롤 " + page);
         communityService.infiniteScroll(
             formData, showCommunityBoard
         );

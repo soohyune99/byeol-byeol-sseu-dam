@@ -17,7 +17,12 @@
 </head>
 <body>
 <div id="wrapper">
-    <header th:replace="/app/fix/header.html :: header"></header>
+    <th:block th:if="${session.member == null}">
+        <header th:replace="/app/fix/header.html :: header"></header>
+    </th:block>
+    <th:block th:if="${session.member != null}">
+        <header th:replace="/app/fix/headerLogin.html :: header"></header>
+    </th:block>
 <div id="app-body">
     <div data-v-b31e1ebe="" class="community-container container">
         <div data-v-54d1e5f9="" data-v-b31e1ebe="" class="soomgo-life-container">
@@ -307,13 +312,20 @@
                     aria-label="" style="display: inline-block;">취소
             </button>
         </div>
-        <input type="hidden" id="sessionMember" th:value="${session.member}">
         <div class="swal2-footer" style="display: none;"></div>
+        <th:block th:if="${session.member != null}">
+            <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+            <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+        </th:block>
     </div>
 </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='memberId']").val();
+    let memberName = $("input[name='memberName']").val();
+</script>
 <script src="/js/community/communityModule.js"></script>
 <script src="/js/community/communityMain.js"></script>
 <script src="/js/fix/headerLogin.js"></script>

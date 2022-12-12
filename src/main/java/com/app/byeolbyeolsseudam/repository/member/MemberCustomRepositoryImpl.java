@@ -25,4 +25,15 @@ public class MemberCustomRepositoryImpl implements MemberCustomRepository {
                 .where(member.memberId.eq(memberId))
                 .fetchOne();
     }
+
+    @Override
+    public MemberDTO getloginMember(Long memberId){
+        return jpaQueryFactory.select(new QMemberDTO(member.memberId,
+                member.memberLoginType, member.memberCategory, member.memberName,
+                member.memberPhone, member.memberEmail,
+                member.memberPoint, member.memberProfileName))
+                .from(member)
+                .where(member.memberId.eq(memberId))
+                .fetchOne();
+    }
 }

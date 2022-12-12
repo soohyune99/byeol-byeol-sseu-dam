@@ -314,13 +314,30 @@ let mypageService = (function(){
         });
     }
 
+    function getCourse(courseId, callback, error){
+        $.ajax({
+            url: "/mypage/course/" + courseId,
+            type: "post",
+            success: function(courses, status, xhr){
+                if(callback){
+                    callback(courses);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
     function getBadges(callback, error){
         $.ajax({
             url: "/mypage/badge",
             type: "post",
-            success: function(badges, status, xhr){
+            success: function(badge, status, xhr){
                 if(callback){
-                    callback(badges);
+                    callback(badge);
                 }
             },
             error: function(xhr, status, err){
@@ -378,7 +395,7 @@ let mypageService = (function(){
         updateUserInfo:updateUserInfo, sendVerification:sendVerification, dropOutMember:dropOutMember,
         getMyOrderList:getMyOrderList, getMyCancelList:getMyCancelList, getMyOrder:getMyOrder, cancelMyOrder:cancelMyOrder,
         getMyPickupList:getMyPickupList, getMyPickup:getMyPickup, getCourses:getCourses, getMyCourses:getMyCourses,
-        getBadges:getBadges, getMybadges:getMybadges, uploadProfileFile:uploadProfileFile }
+        getCourse:getCourse, getBadges:getBadges, getMybadges:getMybadges, uploadProfileFile:uploadProfileFile }
 })();
 
 

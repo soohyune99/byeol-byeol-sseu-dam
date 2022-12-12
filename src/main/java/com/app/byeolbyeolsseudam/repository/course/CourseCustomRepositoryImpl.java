@@ -1,10 +1,12 @@
 package com.app.byeolbyeolsseudam.repository.course;
 
+import com.app.byeolbyeolsseudam.domain.comment.QCommentDTO;
 import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.domain.course.QCourseDTO;
 import com.app.byeolbyeolsseudam.domain.mycourse.QMycourseDTO;
 import com.app.byeolbyeolsseudam.domain.spot.QSpotDTO;
 import com.app.byeolbyeolsseudam.entity.board.QBoard;
+import com.app.byeolbyeolsseudam.entity.course.Course;
 import com.app.byeolbyeolsseudam.entity.course.QCourse;
 import com.app.byeolbyeolsseudam.entity.mycourse.QMycourse;
 import com.app.byeolbyeolsseudam.entity.spot.QSpot;
@@ -124,8 +126,25 @@ public class CourseCustomRepositoryImpl implements CourseCustomRepository {
                     .fetch()
             );
         });
-
         return courses;
+    }
+
+    @Override
+    public CourseDTO selectCourse(Long courseId){
+        CourseDTO courseDTO = jpaQueryFactory.select(new QCourseDTO(
+                course.courseId, course.courseName))
+                .from(course)
+                .where(course.courseId.eq(courseId))
+                .fetchOne();
+
+        courseDTO.setSpots(
+                jpaQueryFactory.select(new QSpotDTO(
+                        spot.spotId, spot.spotName, spot.spotAddress, spot.spotNumber, spot.course.courseId))
+                        .from(spot)
+                        .where(spot.course.courseId.eq(courseId))
+                        .fetch()
+        );
+        return courseDTO;
     }
 
 }

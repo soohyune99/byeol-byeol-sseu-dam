@@ -1,6 +1,6 @@
 /* mypageBadge.html */
 
-let $mybadgeWrap = $(".mybadgeWrap.acquired");
+let $acquiredBadge = $(".acquired");
 let $badgeModal = $(".swal2-container");
 let $modalCloseBtn = $(".swal2-confirm.btn");
 
@@ -10,8 +10,9 @@ getMemberInfo();
 getBadge();
 getMybadge();
 
-$mybadgeWrap.on('click', function(){
-    badgeModalOpen();
+$(".mybadge").on('click', $(".mybadge .mybadgeImg.acquired"), function(){
+    $badgeModal.css('display', 'block');
+
 });
 
 $modalCloseBtn.on('click', function(){
@@ -19,8 +20,12 @@ $modalCloseBtn.on('click', function(){
 });
 
 /* 배지 정보 모달 열기 */
-function badgeModalOpen(){
+function badgeModalOpen(badgeId){
+    let $badgeImg = $(".mybadgeImg.acquired." + badgeId).val();
+    let $badgeInfo = $(".mybadgeImg.acquired." + badgeId).next().text();
     $badgeModal.css('display', 'block');
+    console.log($badgeImg);
+    console.log($badgeInfo);
 }
 
 /* 배지 정보 모달 닫기 */

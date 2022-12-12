@@ -29,8 +29,6 @@ public class MycourseCustomRepositoryImpl implements MycourseCustomRepository {
                 mycourse.course.courseName, mycourse.spot.spotId, mycourse.spot.spotName,
                 mycourse.spot.spotNumber))
                 .from(mycourse)
-                .join(course)
-                .join(spot)
                 .where(mycourse.member.memberId.eq(memberId))
                 .orderBy(mycourse.course.courseName.asc())
                 .orderBy(mycourse.spot.spotName.asc())

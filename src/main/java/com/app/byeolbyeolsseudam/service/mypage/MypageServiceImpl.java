@@ -174,6 +174,11 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
+    public CourseDTO getCourse(Long courseId){
+        return courseRepository.selectCourse(courseId);
+    }
+
+    @Override
     public List<CourseDTO> getCourseList(Long memberId){
         return courseRepository.selectMyCourseList(memberId);
     }

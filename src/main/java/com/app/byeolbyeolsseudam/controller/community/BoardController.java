@@ -99,6 +99,15 @@ public class BoardController {
         out.close();
     }
 
+    @PostMapping("/delete")
+    public void deleteBoardFile(String fileName){
+        File file = new File("C:", fileName);
+
+        if(file.exists()){
+            file.delete();
+        }
+    }
+
     public String createDirectoryByNow(){
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         Date now = new Date();

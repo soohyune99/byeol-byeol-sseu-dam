@@ -36,6 +36,7 @@ public interface MypageService {
     public OrderDTO getMyOrder(Long orderId);
     public Long cancelMyOrder(Long orderId);
 
+    public CourseDTO getCourse(Long courseId);
     public List<CourseDTO> getCourseList(Long memberId);
     public List<MycourseDTO> getMyCourseList(Long memberId);
 

@@ -236,9 +236,27 @@ let communityService = (function(){
         });
     }
 
+    function deleteBoardFile(fileName, callback, error){
+        $.ajax({
+            url: "/board/delete",
+            type: "post",
+            data: {fileName : fileName},
+            success: function(status, xhr){
+                if(callback){
+                    callback();
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
     return { getTopViewList:getTopViewList, getBoardList:getBoardList, getCategoryBoards:getCategoryBoards,
         getSearchBoards:getSearchBoards, getBoardDetail:getBoardDetail, saveBoard:saveBoard, deleteBoard:deleteBoard,
         updateBoard:updateBoard, plusBoardView:plusBoardView, uploadBoardFile:uploadBoardFile,
-        infiniteScroll:infiniteScroll, timeForToday:timeForToday }
+        deleteBoardFile:deleteBoardFile, infiniteScroll:infiniteScroll, timeForToday:timeForToday }
 })();
 
