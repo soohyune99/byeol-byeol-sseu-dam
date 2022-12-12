@@ -104,8 +104,8 @@
                                 <!--                                    <button data-v-3a2c0d3c="" type="button" class="btn pro-signup-btn right-section-item btn-primary">-->
                                 <!--                                        <a data-v-3a2c0d3c="" class="">전체목록</a></button>-->
                                 <!--                                </div>-->
-                                <div class="goHome" onclick="goHome()">
-                                    <img src="/images/program/returngray.png" style="width: 1.4rem">
+                                <div class="goHome" onclick="goHome()" style="cursor: pointer;">
+                                    <img src="/images/program/returngray.png" style="width: 1.2rem">
                                 </div>
                             </div>
 
@@ -209,14 +209,12 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/program/program.js"></script>
-<script src="/js/fix/headerLogin.js"></script>
-<script src="/js/fix/header.js"></script>
 <script>
+    let count;
     let $searchBar = $("input#__BVID__183"); // 검색창
     // let programStatus= $(".programStatus") || ""; // 프로그램 상태 (모집예정, 모집중, 모집완료, 마감)
     let programStatus; // 프로그램 상태 (모집예정, 모집중, 모집완료, 마감)
     let keyword = $searchBar.val() || "";// 검색어
-    let count // 프로그램 수
     // globalThis.pageNumber = 0;
     let pageNumber = 0;
     let $url;
@@ -248,12 +246,13 @@
             type: "get",
 
             success: function (programs) {
-                if (programs.length != 0) {
-                    programCountNum(programs); // 프로그램 수 Count 함수
+                count = programs.totalElements;
+                if (count) {
+                    programCountNum(programs, count); // 프로그램 수 Count 함수
                     programList(programs);
 
                 } else {
-                    programCountNum(programs); // 프로그램 수 Count 함수
+                    programCountNum(programs, count); // 프로그램 수 Count 함수
                     noProgramList(); // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
                 }
             }
@@ -377,9 +376,22 @@
     }
 
     /* 프로그램 수 Count */
-    function programCountNum(programs) {
+    function programCountNum(programs, count) {
+        // programs 가 유사배열객체?
+        // 12개가
+
         // let count = programs.pageable.totalPages;
-        let count = Array.from(programs.content).length; // 12개 이하의 count는 잘됨, 12개 이상의 content는 어떻게 count?
+        // let count = Array.prototype.slice.call(programs).length; //실패
+        // let count = Array.from(programs.content).length; // 12개 이하의 count는 잘됨, 12개 이상의 content는 어떻게 count? 무한스크롤되는 경우 바닥찍으면 0이 됨.
+        // 12개 이하의 count는 잘됨, 12개 이상의 content는 어떻게 count? 무한 스크롤되는 경우 바닥 찍으면 0이 됨.
+        /*
+        --------- 문제 해결 ---------
+        문제점 : 전체 count를 DB에서부터 잘못 불러오고 있었음
+        이전 : 처음에는 total에서 where절 자체가 없었음. 처음에 가져오는 where절에만 동적쿼리가 형성되어있었음.
+        이후 : ProgramDynamicCustomRepositoryImpl 에 있는 total 에 where절 추가
+        count 전역변수로 선언
+        */
+
         let text = "";
         text += "<strong data-v-219a3136=''>" + count + "</strong>"
         text += "<span data-v-219a3136=''> 개 서비스 </span>"
@@ -440,4 +452,6 @@
         show();
     }
 </script>
+<script src="/js/fix/headerLogin.js"></script>
+<script src="/js/fix/header.js"></script>
 </html>
