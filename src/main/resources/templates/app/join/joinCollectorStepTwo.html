@@ -40,16 +40,14 @@
                     <div data-v-66225419="" class="step-body">
                         <!---->
                         <div data-v-66225419="" class="form-group providername-wrap">
-                            <label data-v-66225419="" for="name">이름
-                            </label>
+                            <label data-v-66225419="" for="memberName">이름</label>
                             <input data-v-66225419="" type="text"
                                    th:field = "*{memberName}"
                                    placeholder="이름(실명)을 입력해주세요." class="input-lg form-control" minlength="2"
                                    maxlength="7" data-vv-validate-on="blur" aria-invalid="true"
                                    aria-required="true" autofocus>
                             <input data-v-66225419="" type="text"
-                                   th:field = "*{memberAddress}" style="display: none"
-                            >
+                                   th:field = "*{memberAddress}" style="display: none">
                             <div data-v-66225419="" class="invalid-feedback">
                                 <p data-v-66225419="" class="error">이름(실명)을 입력해주세요.</p>
                             </div>
@@ -128,17 +126,18 @@
                                     <div><label data-v-b5001060="" for="request-phone" class="input-label">휴대전화 번호
                                         인증</label>
                                         <div data-v-b5001060="" role="group" class="input-group input-group">
-                                            <!----><input data-v-b5001060=""
-                                                          th:field = "*{memberPhone}"
+                                            <!----><input data-v-b5001060="" id="phone-number-input"
                                                           type="tel" placeholder="예) 01012345678"
                                                           class="answer-input form-control is-invalid" maxlength="13"
-                                                          data-vv-validate-on="blur" aria-invalid="true"><input
+                                                          data-vv-validate-on="blur" aria-invalid="true">
+                                            <input
                                                 data-v-b5001060="" name="isSendPhoneNumber"
                                                 data-vv-name="isSendPhoneNumber" hidden="hidden"
                                                 aria-required="false" aria-invalid="true">
+                                            <input type="hidden" id="verified-phone-input" th:field="*{memberPhone}">
                                             <div data-v-b5001060="" class="button-wrapper input-group-append">
                                                 <button data-v-b5001060="" type="button" disabled="disabled"
-                                                        class="send-button disabled"> 전송
+                                                        class="send-button disabled" onclick="javascript:sendVertification();"> 전송
                                                 </button>
                                             </div>
                                             <!---->
@@ -167,7 +166,7 @@
                                                    aria-required="true" aria-invalid="true">
                                             <div data-v-b5001060="" class="button-wrapper input-group-append">
                                                 <button data-v-b5001060="" type="button" disabled="disabled"
-                                                        class="send-button disabled"> 인증하기
+                                                        class="send-button verificate-button disabled"> 인증하기
                                                 </button>
                                             </div><!----></div>
                                         <div data-v-b5001060="" class="validation-msg-wrapper"><!----><!----><p
@@ -215,6 +214,12 @@
                             data-v-f6f3ff14="" class="right btn-container"><button data-v-f6f3ff14="" type="submit" class="btn btn-primary"> 가입하기 </button></span>
                     </div>
                     <!---->
+                    <th:block th:if="${session.member != null}">
+                        <input type="hidden" name="hiddenMemberId" th:value="${session.member.memberId}">
+                        <input type="hidden" name="hiddenMemberName" th:value="${session.member.memberName}">
+                        <input type="hidden" name="hiddenMemberEmail" th:value="${session.member.memberEmail}">
+                        <input type="hidden" name="hiddenMemberPhone" th:value="${session.member.memberPhone}">
+                    </th:block>
                 </div>
             </form>
         </div>
@@ -222,6 +227,13 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='hiddenMemberId']").val();
+    let memberName = $("input[name='hiddenMemberName']").val();
+    let memberEmail = $("input[name='hiddenMemberEmail']").val();
+    let memberPhone = $("input[name='hiddenMemberPhone']").val();
+</script>
 <script src="/js/fix/headerLogin.js"></script>
-<script src="/js/join/joinCollectorStepTwo.js"></script>
+<script src="/js/join/joinModule.js"></script>
+<script src="/js/join/pickerJoinTwo.js"></script>
 </html>

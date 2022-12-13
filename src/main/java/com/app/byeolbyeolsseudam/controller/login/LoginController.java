@@ -3,7 +3,7 @@ package com.app.byeolbyeolsseudam.controller.login;
 import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.service.login.LoginService;
-import com.app.byeolbyeolsseudam.service.login.MemberLoginService;
+import com.app.byeolbyeolsseudam.type.MemberCategory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -22,50 +22,62 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/login/*")
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
+@RequestMapping(value = {"/login/*", "/login"})
 public class LoginController {
     private final LoginService loginService;
 
-    private final MemberLoginService memberLoginService;
-
-    @GetMapping("/login")
+    /* 로그인 페이지로 이동 */
+    @GetMapping("")
     public String login(MemberDTO memberDTO){
         return "/app/login/login";
     }
 
-    // Servlet HTTP 세션 사용
-    @PostMapping("/login")
+    /* 로그인 */
+    /* Servlet HTTP 세션 사용 */
+    @PostMapping("")
     public String login(@Valid @ModelAttribute("memberDTO") MemberDTO memberDTO, BindingResult bindingResult, HttpSession session) {
         if(bindingResult.hasErrors()){
             log.info("실패");
-            return "/login/login";
+            return "/main";
         }
         Member loginMember = loginService.login(memberDTO);
 
         if(loginMember == null){
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "/login";
+            return "redirect:/login?login=fail";
+        } else if(loginMember.getMemberCategory() == MemberCategory.탈퇴회원) {
+            return "redirect:/login?login=fail";
         }
+
         session.setAttribute("member", loginService.getMemberDTO(loginMember.getMemberId()));
 
         return "redirect:/main";
     }
 
-    @GetMapping("/logout")
-    public String logout(SessionStatus sessionStatus){
-        sessionStatus.setComplete();
-        return "redirect:/main";
+    /* 비밀번호 찾기 페이지로 이동 */
+    @GetMapping("/pw")
+    public String findPassword(MemberDTO memberDTO){
+        return "/app/login/findPassword";
+    }
+
+    @PostMapping("/pw")
+    public RedirectView send(MemberDTO memberDTO, RedirectAttributes redirectAttributes){
+        if(!loginService.send(memberDTO)){
+            return new RedirectView("/login/pw?pw=false");
+        }
+        redirectAttributes.addFlashAttribute("memberEmail", memberDTO.getMemberEmail());
+        return new RedirectView("/login/pw/done");
+    }
+
+    @GetMapping("/pw/done")
+    public String findPasswordDone(){
+        return "/app/login/findPasswordDone";
     }
 
     /* =========================================================================== */
 
-
-    @GetMapping("/findpassword")
-    public String findPassword(MemberDTO memberDTO){
-        return "/app/login/findPassword";
-    }
 
 //    @Transactional
 //    @PostMapping("/findpassword")
@@ -76,19 +88,9 @@ public class LoginController {
 //        return "/app/login/findPasswordDone";
 //    }
 
-    @PostMapping("/findpassword")
-    public RedirectView send(MemberDTO memberDTO, RedirectAttributes redirectAttributes){
-
-        memberLoginService.Send(memberDTO);
-
-        redirectAttributes.addFlashAttribute("memberEmail", memberDTO.getMemberEmail());
-
-        return new RedirectView("/login/findpassworddone");
-    }
-
-    @RequestMapping(value = "/findpassworddone", method = RequestMethod.GET)
-    public String findPasswordDone(){
-
-        return "/app/login/findPasswordDone";
-    }
+//    @RequestMapping(value = "/findpassworddone", method = RequestMethod.GET)
+//    public String findPasswordDone(){
+//
+//        return "/app/login/findPasswordDone";
+//    }
 }

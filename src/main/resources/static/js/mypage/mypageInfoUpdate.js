@@ -30,6 +30,7 @@ const $file = $("#__BVID__268");
 const $thumbnail = $("#user-profile");
 
 globalThis.vertificationNumber = "";
+globalThis.profileUrl = "";
 
 $(".user-profile-picture").on('click', function(){
     profileModalOpen();
@@ -51,24 +52,12 @@ $dropOutModalCancelBtn.on('click', function(){
     dropOutModalClose();
 });
 
-/* $dropOutModal.on('click', function(){
-    dropOutModalClose();
-}); */
-
 $(".modifyOK-info-btn").on('click', function(){
     modifyOKUserInfo();
 });
 
 $inputName.on('blur', function(){
     inputNameTest();
-});
-
-$inputEmail.on('blur', function(){
-    inputEmailTest();
-});
-
-$inputCurrentPassword.on('blur', function(){
-    inputCurrentPasswordTest();
 });
 
 $inputNewPassword.on('blur', function(){
@@ -126,13 +115,12 @@ function modifyOKUserInfo(){
     }
 
     /* 새 비밀번호를 적었다면 비밀번호 확인까지 입력했는지 */
-    // if(inputNewPasswordTest()){
-        if(!inputNewPasswordConfirmTest()){
-            $inputNewPasswordConfirm.focus();
-            return;
-        }
+    if(!inputNewPasswordConfirmTest()){
+        $inputNewPasswordConfirm.focus();
+        return;
+    }
 
-        updateOkMyinfo();
+    updateOkMyinfo();
 }
 
 /* 이름 유효성 검사 */
@@ -256,16 +244,23 @@ function verifyPhoneTest(){
 
 /* ================================= update =================================*/
 
-getMyInfo();
+getMemberInfo();
 
-/* 회원정보조회 */
-function getMyInfo(){
-    console.log(memberName)
-    $("#user-profile").attr('src', memberProfileName);
-    $("#__BVID__139").val(memberName);
-    $("input[name='email']").val(memberEmail);
+/* 기본 회원 정보 조회 */
+function getMemberInfo(){
+    mypageService.getMyInfo(
+        memberId, showMemberInfo
+    )
+}
 
-    if(memberPhone == 'undefined' || memberPhone == null){
+/* 회원 정보 조회 */
+function showMemberInfo(member){
+    console.log(member.memberName)
+    $("#user-profile").attr('src', member.memberProfileName);
+    $("#__BVID__139").val(member.memberName);
+    $("input[name='email']").val(member.memberEmail);
+
+    if(member.memberPhone == 'undefined' || member.memberPhone == null){
         $("legend[for='request-phone']").text("휴대전화 번호 인증");
         $sendPhoneNumberBtn.css('display', 'block');
         $inputPhoneNumberBtn.css('display', 'none');
@@ -273,8 +268,8 @@ function getMyInfo(){
         $inputRestPhone.removeAttr('disabled');
         $inputRestPhone.removeClass('complete-phone-auth');
     }else {
-        $("#request-phone").val(memberPhone);
-        $verificatedPhone.val(memberPhone);
+        $("#request-phone").val(member.memberPhone);
+        $verificatedPhone.val(member.memberPhone);
     }
 }
 
@@ -301,7 +296,9 @@ $file.on('change', function(e){
     );
 });
 
-function afterUploadeProfileFile() {;}
+function afterUploadeProfileFile(url) {
+    globalThis.profileUrl = url;
+}
 
 /* 수정 완료 눌렀을 때 */
 function updateOkMyinfo(){
@@ -311,7 +308,10 @@ function updateOkMyinfo(){
     formData.append('memberName', $inputName.val());
     formData.append('memberPassword', $inputNewPasswordConfirm.val());
     formData.append('memberPhone', $verificatedPhone.val());
-    formData.append('memberProfileName', $thumbnail.attr('src'));
+    formData.append('memberProfileName', globalThis.profileUrl);
+
+    console.log($thumbnail.attr('src'));
+    console.log(formData.get('memberProfileName'));
 
     mypageService.updateUserInfo(
         formData, afterUpdateMyinfo
@@ -327,10 +327,14 @@ function afterUpdateMyinfo(member){
 /* 탈퇴 버튼 눌렀을 때 */
 function dropOutMember(){
     mypageService.dropOutMember(
-        memberId, afterDropOutMember
+        memberId, logoutDropOutMember
     );
 }
 
-function afterDropOutMember(){
-    location.href='/main';
+function logoutDropOutMember(){
+    mypageService.logoutMember(
+        function(){
+            location.href='/main';
+        }
+    );
 }

@@ -74,15 +74,16 @@
                         </button>
                     </div>
                     <div data-v-149435f8="" class="reset-password-or-signup-wrapper col-12">
-                        <div data-v-149435f8=""><a data-v-149435f8="" href="http://localhost:10001/login/findpassword" class="">비밀번호 찾기</a>
+                        <div data-v-149435f8=""><a data-v-149435f8="" href="/login/pw" class="">비밀번호 찾기</a>
                             <div data-v-149435f8="" class="line"></div><a data-v-149435f8=""
                                                                           href="/sign-up?from=loginpage" class="">회원가입</a>
                         </div>
                     </div>
                     <div data-v-149435f8="" class="col-12">
                         <button data-v-6dfa1fbf="" data-v-149435f8="" type="button" class="btn kakao-login-btn btn-secondary"
-                                onclick="location.href= 'https://kauth.kakao.com/oauth/authorize?client_id=1875630bc63d4325a4f90a57ab4437ff&redirect_uri=\n'+
+                                onclick="location.href= 'https://kauth.kakao.com/oauth/authorize?client_id=b365527827a25dae48ba21331cda4133&redirect_uri=\n'+
                                         'http://localhost:10001/kakaologin&response_type=code'">
+
                             <img data-v-6dfa1fbf="" src="https://assets.cdn.soomgo.com/icons/icon-login-kakaotalk-btn.svg">
                             <span data-v-6dfa1fbf="">카카오로 시작</span>
                         </button>
@@ -94,7 +95,8 @@
                         </button>
                     </div>
                     <div data-v-149435f8="" class="col-12">
-                        <button data-v-0edf7af4="" data-v-149435f8="" type="button" class="btn google-login-btn btn-secondary">
+                        <button data-v-0edf7af4="" data-v-149435f8="" onclick="javascript:parseJwt();"
+                                type="button" class="btn google-login-btn btn-secondary" id="google-login-btn">
                             <img data-v-0edf7af4="" src="/images/login/google.png">
                             <span data-v-0edf7af4="">구글로 시작</span>
                         </button>
@@ -123,16 +125,16 @@
                 <div class="swal2-success-fix"></div>
                 <div class="swal2-success-circular-line-right"></div>
             </div><img class="swal2-image" style="display: none;">
-            <h2 class="swal2-title" id="swal2-title" style="display: flex;">로그인에 실패하였습니다</h2><button type="button"
+            <h2 class="swal2-title" id="swal2-title" style="display: flex;">로그인 실패</h2><button type="button"
                                                                                                      class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button>
         </div>
         <div class="swal2-content">
-            <div id="swal2-content" style="display: block;">이메일이나 비밀번호가 올바르게 입력되었는지 확인 후 다시 시도하십시오.</div><input
+            <div id="swal2-content" style="display: block;">이메일이나 비밀번호가<br> 올바르게 입력되었는지 확인 후<br> 다시 시도하십시오.</div><input
                 class="swal2-input" style="display: none;"><input type="file" class="swal2-file"
                                                                   style="display: none;">
             <div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select
                 class="swal2-select" style="display: none;"></select>
-            <div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox"
+            <div class="swal2-radio" style="display: none;"></div><label class="swal2-checkbox"
                                                                          style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea
                 class="swal2-textarea" style="display: none;"></textarea>
             <div class="swal2-validation-message" id="swal2-validation-message"></div>
@@ -146,6 +148,13 @@
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/fix/header.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script src="/js/login/login.js"></script>
+<script src="/js/login/kakaoLogin.js"></script>
+<script src="/js/login/googleLogin.js"></script>
 </html>

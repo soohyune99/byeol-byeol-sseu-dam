@@ -31,19 +31,6 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository {
     /* 조회수 TOP 3 조회 */
     @Override
     public List<BoardDTO> selectTopView(){
-//        List<BoardDTO> boards = new ArrayList<>();
-
-//        List<Board> entityBoards = jpaQueryFactory.selectFrom(board)
-//                .orderBy(board.boardView.desc())
-//                .limit(3)
-//                .fetch();
-
-//        entityBoards.stream().map(entity -> new QBoardDTO(board.boardId, board.boardCategory,
-//                board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
-//                board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-//                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
-//                .forEach(boardDTO -> boards.add(boardDTO.newInstance()));
-
         List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
@@ -53,10 +40,6 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository {
                 .limit(3)
                 .fetch();
 
-//        boards.stream().forEach(commentDTO -> {
-//
-//        });
-
         boards.stream().forEach(board -> {
             List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
                     comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
@@ -71,15 +54,20 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository {
         return boards;
     }
 
-    /* 게시글 목록 조회 */
+    /* 게시글 목록 조회, 검색 및 카테고리 선택 시, 무한스크롤 */
     @Override
-    public List<BoardDTO> selectBoards(){
-        List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
+    public List<BoardDTO> selectBoards(Criteria criteria){
+
+        List<BoardDTO> boards =  jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
                 board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
                 board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
                 board.member.memberProfileUuid, board.createdDate, board.updatedDate))
                 .from(board)
+                .where(
+                        titleLike(criteria.getKeyword()), contentLike(criteria.getKeyword()), categoryEq(criteria.getCategory())
+                )
                 .orderBy(board.createdDate.desc())
+                .offset(criteria.getPage() * 10)
                 .limit(10)
                 .fetch();
 
@@ -91,64 +79,24 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository {
                     comment.board.boardId, comment.createdDate, comment.updatedDate))
                     .from(comment)
                     .where(comment.board.boardId.eq(board.getBoardId()))
+                    .orderBy(comment.createdDate.desc())
                     .fetch();
             board.setComments(comments);
         });
         return boards;
     }
 
-    /* 카테고리별 목록 보기 */
-    public List<BoardDTO> selectBoardsofCategory(BoardCategory boardCategory){
-        List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
-                board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
-                board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
-                .from(board)
-                .where(board.boardCategory.eq(boardCategory))
-                .orderBy(board.createdDate.desc())
-                .limit(10)
-                .fetch();
-
-        boards.stream().forEach(board -> {
-                    List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
-                            comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
-                            comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
-                            comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-                            comment.board.boardId, comment.createdDate, comment.updatedDate))
-                            .from(comment)
-                            .where(comment.board.boardId.eq(board.getBoardId()))
-                            .fetch();
-                    board.setComments(comments);
-        });
-        return boards;
+    /* 동적쿼리 조건 */
+    private BooleanExpression titleLike(String title){
+        return StringUtils.hasText(title)? board.boardTitle.contains(title) : null;
     }
 
-    /* 검색어별 목록 보기 */
-    public List<BoardDTO> selectBoardsofKeyword(String keyword){
-        List<BoardDTO> boards = jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
-                board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
-                board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
-                .from(board)
-                .where(board.boardTitle.contains(keyword)
-                        .or(board.boardContent.contains(keyword)))
-//                        .or(board.boardCategory.eq(BoardCategory.valueOf(keyword))))
-                .orderBy(board.createdDate.desc())
-                .limit(10)
-                .fetch();
+    private BooleanExpression contentLike(String content){
+        return StringUtils.hasText(content)? board.boardTitle.contains(content) : null;
+    }
 
-        boards.stream().forEach(board -> {
-            List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
-                    comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
-                    comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
-                    comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-                    comment.board.boardId, comment.createdDate, comment.updatedDate))
-                    .from(comment)
-                    .where(comment.board.boardId.eq(board.getBoardId()))
-                    .fetch();
-            board.setComments(comments);
-        });
-        return boards;
+    private BooleanExpression categoryEq(String category){
+        return StringUtils.hasText(category)? board.boardCategory.eq(BoardCategory.valueOf(category)) : null;
     }
 
     /* 특정 게시글 보기 */
@@ -185,70 +133,6 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository {
         boardDTO.setFiles(files);
 
         return boardDTO;
-    }
-
-//    /* 글 작성 시 작성자 찾기 */
-//    @Override
-//    public void saveMemberofBoard(BoardDTO boardDTO, Board board){
-//        board.changeMember(
-//                jpaQueryFactory.selectFrom(member)
-//                .where(member.memberId.eq(boardDTO.getMemberId()))
-//                .fetchOne()
-//        );
-//    }
-
-//    /* 게시글 수정 */
-//    @Override
-//    public Board updateBoard(BoardDTO boardDTO){
-//        Board updatedBoard = jpaQueryFactory.selectFrom(board)
-//                .where(board.boardId.eq(boardDTO.getBoardId()))
-//                .fetchOne();
-//
-//        updatedBoard.update(boardDTO);
-//
-//        return updatedBoard;
-//    }
-
-    /* 무한스크롤 */
-    @Override
-    public List<BoardDTO> selectScrollBoards(Criteria criteria){
-        List<BoardDTO> boards =  jpaQueryFactory.select(new QBoardDTO(board.boardId, board.boardCategory,
-                board.boardTitle, board.boardContent, board.boardView, board.member.memberId,
-                board.member.memberName, board.member.memberProfileName, board.member.memberProfilePath,
-                board.member.memberProfileUuid, board.createdDate, board.updatedDate))
-                .from(board)
-                .where(
-                        titleLike(criteria.getKeyword()), contentLike(criteria.getKeyword()), categoryEq(criteria.getCategory())
-                        )
-                .offset(criteria.getPage() * 10)
-                .limit(10)
-                .fetch();
-
-        boards.stream().forEach(board -> {
-            List<CommentDTO> comments = jpaQueryFactory.select(new QCommentDTO(
-                    comment.commentId, comment.commentContent, comment.commentFileName, comment.commentFilePath,
-                    comment.commentFileUuid, comment.member.memberId, comment.member.memberName,
-                    comment.member.memberProfileName, comment.member.memberProfilePath, comment.member.memberProfileUuid,
-                    comment.board.boardId, comment.createdDate, comment.updatedDate))
-                    .from(comment)
-                    .where(comment.board.boardId.eq(board.getBoardId()))
-                    .fetch();
-            board.setComments(comments);
-        });
-        return boards;
-    }
-
-    /* 무한스크롤 동적쿼리 조건 */
-    private BooleanExpression titleLike(String title){
-        return StringUtils.hasText(title)? board.boardTitle.contains(title) : null;
-    }
-
-    private BooleanExpression contentLike(String content){
-        return StringUtils.hasText(content)? board.boardTitle.contains(content) : null;
-    }
-
-    private BooleanExpression categoryEq(String category){
-        return StringUtils.hasText(category)? board.boardCategory.eq(BoardCategory.valueOf(category)) : null;
     }
 
     /* 마이페이지 내가 쓴 글 조회 */

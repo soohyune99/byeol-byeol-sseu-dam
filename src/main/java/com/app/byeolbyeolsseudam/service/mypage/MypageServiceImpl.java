@@ -161,6 +161,7 @@ public class MypageServiceImpl implements MypageService {
         Member member = memberRepository.findById(memberId).get();
         member.updateMemberCategory(MemberCategory.탈퇴회원);
         memberRepository.save(member);
+
     }
 
     @Override

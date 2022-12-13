@@ -9,6 +9,8 @@ let $modal = $(".swal2-container");
 let $body = $("body.login");
 let $modalConfirm = $modal.find(".swal2-confirm");
 
+failLogin();
+
 function idCheck(){
     if(!$inputId.val()){
         $(".invalid-feedback").text("이메일 주소를 입력해주세요.");
@@ -30,10 +32,10 @@ function pwCheck(){
         $(".text-invalid").text("비밀번호를 입력해주세요.");
         $(".text-invalid").css("display", "block");
         $inputPw.addClass("invalid");
-    }else if(!pwFilter.test($inputPw.val())){
-        $(".text-invalid").text("영문+숫자+특수문자 조합 8자리 이상 입력해주세요.");
-        $(".text-invalid").css("display", "block");
-        $inputPw.addClass("invalid");
+    // }else if(!pwFilter.test($inputPw.val())){
+    //     $(".text-invalid").text("영문+숫자+특수문자 조합 8자리 이상 입력해주세요.");
+    //     $(".text-invalid").css("display", "block");
+    //     $inputPw.addClass("invalid");
     }else{
         $(".text-invalid").css("display", "none");
         $inputPw.removeClass("invalid");
@@ -64,8 +66,25 @@ $btn.on("click",function (e) {
         $body.css("overflow", "hidden")
     }
 })
+
 // 로그인 실패 모달 끄는 js
 $modalConfirm.on("click", function () {
     $modal.css("display","none")
     $body.css("overflow", "unset")
 })
+
+/* 로그인 실패 여부 판단 */
+function failLogin(){
+    let loginFlag = searchParam('login');
+
+    if(loginFlag == 'fail'){
+        // alert("로그인에 실패하셨습니다.");
+        $modal.css("display","flex")
+        $body.css("overflow", "hidden")
+    }
+}
+
+/* 쿼리스트링 가져오는 메소드 */
+function searchParam(key) {
+    return new URLSearchParams(location.search).get(key);
+};

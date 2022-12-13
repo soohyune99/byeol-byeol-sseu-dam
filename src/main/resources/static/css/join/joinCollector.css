@@ -445,7 +445,7 @@ button, select {
 }
 
 .send-button.disabled[data-v-b5001060] {
-    background-color: #e1e1e1;
+    background-color: rgb(200, 200, 200);
     pointer-events: none;
 }
 
@@ -640,7 +640,7 @@ div.step-navigator .wrapper .btn-container[data-v-f6f3ff14] {
 
 #step3 .addr-search[data-v-a46f16b0] {
     background-color: #fff;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0rem;
 }
 #step3 .addr-search .addr-input[data-v-a46f16b0] {
     display: flex;

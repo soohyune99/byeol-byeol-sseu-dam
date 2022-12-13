@@ -8,15 +8,12 @@ import java.util.List;
 
 public interface BoardCustomRepository {
     public List<BoardDTO> selectTopView();
-    public List<BoardDTO> selectBoards();
-    public List<BoardDTO> selectBoardsofCategory(BoardCategory boardCategory);
-    public List<BoardDTO> selectBoardsofKeyword(String keyword);
-    public List<BoardDTO> selectScrollBoards(Criteria criteria);
+    public List<BoardDTO> selectBoards(Criteria criteria);
+//    public List<BoardDTO> selectBoardsofCategory(BoardCategory boardCategory);
+//    public List<BoardDTO> selectBoardsofKeyword(String keyword);
+//    public List<BoardDTO> selectScrollBoards(Criteria criteria);
     public BoardDTO readBoard(Long boardId);
 
     public List<BoardDTO> selectBoardsofMypage(Long memberId, int page);
 
-//    public void saveMemberofBoard(BoardDTO boardDTO, Board board);
-//    public List<FileBoard> saveFilesofBoard(BoardDTO boardDTO, Board board);
-//    public Board updateBoard(BoardDTO boardDTO);
 }

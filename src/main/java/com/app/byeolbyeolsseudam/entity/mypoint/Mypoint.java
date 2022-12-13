@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TBL_MYPOINT")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor/*(access = AccessLevel.PROTECTED)*/
 public class Mypoint extends Period {
     @Id @GeneratedValue @NotNull
     private Long mypointId;

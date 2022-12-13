@@ -3,7 +3,9 @@ let emailFilter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]
 let $inputId = $("#memberEmail");
 let $btn = $(".btn-primary");
 
-// 이메일 유효성 검사
+successJoin();
+
+/* 이메일 유효성 검사 */
 function idCheck(){
     if(!$inputId.val()){
         $(".validate").css("display", "block");
@@ -24,8 +26,28 @@ function idCheck(){
 $inputId.on("blur", function () {
     idCheck();
 })
-//이메일 전송하기 버튼 눌렀을 때 유효성 검사
+
+/* 이메일 전송하기 버튼 눌렀을 때 유효성 검사 */
 $btn.on("click",function () {
     $btn.attr("type", "button");
     idCheck() ? $btn.attr("type", "submit") : false;
 })
+
+/* 임시비밀번호 이메일 전송 성공 여부 판단 */
+function successJoin(){
+    let sendFlag = searchParam('pw');
+
+    if(sendFlag == 'false'){
+        // alert("유효하지 않는 이메일입니다.");
+        $(".swal2-container").show();
+    }
+}
+
+/* 쿼리스트링 가져오는 메소드 */
+function searchParam(key) {
+    return new URLSearchParams(location.search).get(key);
+};
+
+function closeModal(){
+    $(".swal2-container").hide();
+}

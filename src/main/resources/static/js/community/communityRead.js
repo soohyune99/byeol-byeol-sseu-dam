@@ -223,7 +223,8 @@ $commentFileForm.on('change', function(){
 /* 댓글 등록 */
 // $(document).ready(function(){
     function saveComment() {
-        if(!$commentContent.val()) {
+        console.log($commentContent.val())
+        if(!$commentContent.val() || $commentContent.val() == '') {
             alert("내용을 입력하세요.");
             $commentSubmitBtn.removeClass("active");
             return;
