@@ -1,11 +1,10 @@
 /* mypageCancelList.html */
 
-const memberId = 1;
 globalThis.page = 0;
 let $cancelModal = $("#cocoaModal");
 
 showMyCancel();
-getMemberInfo();
+showMyInfo();
 
 /* 취소 상세 모달 열기 */
 function cancelModalOpen(cancelId){
@@ -21,19 +20,13 @@ function cancelModalClose(mycancel){
     $cancelModal.css('display', 'none');
 }
 
-/* 기본 회원 정보 조회 */
-function getMemberInfo(){
-    mypageService.getMyInfo(
-        memberId, showMemberInfo
-    )
-}
-
-function showMemberInfo(member){
-    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
-    $(".mypage-memberName").html(member.memberName);
-    $(".mypage-memberEmail").html(member.memberEmail);
-    $(".mypage-memberType").html(member.memberCategory);
-    $(".mypage-memberPoint").html(member.memberPoint);
+/* 회원 정보 */
+function showMyInfo(){
+    $(".mypage-memberProfileName").attr('src', memberProfileName);
+    $(".mypage-memberName").html(memberName);
+    $(".mypage-memberEmail").html(memberEmail);
+    $(".mypage-memberType").html(memberCategory);
+    $(".mypage-memberPoint").html(memberPoint);
 }
 
 /* 주문취소 조회 */

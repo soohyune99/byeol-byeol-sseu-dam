@@ -19,7 +19,12 @@
     <link rel="stylesheet" href="/css/fix/footer2.css">
 </head>
 <body>
-<header th:replace="/app/fix/headerlogin.html :: header"></header>
+<th:block th:if="${session.member == null}">
+    <header th:replace="/app/fix/header.html :: header"></header>
+</th:block>
+<th:block th:if="${session.member != null}">
+    <header th:replace="/app/fix/headerLogin.html :: header"></header>
+</th:block>
 <div id="app-body">
     <div class="container container-md">
         <div data-v-086b5673="" class="mypage-container">
@@ -31,7 +36,7 @@
                         <div data-v-0ee3c6fc="" data-name="image" class="is-square"
                              data-src="https://dmmj3ljielax6.cloudfront.net?h=320&amp;w=320" lazy="error"
                              style="border-radius: 50%;">
-                            <img class="member-profile-img" src="">
+                            <img class="member-profile-img" src="https://www.jigushop.co.kr/common/img/default_profile.png">
                         </div>
                     </div>
                 </div>
@@ -44,7 +49,7 @@
                         <span data-v-d535afec="" class="id-length mypage-memberEmail">sej07@naver.com</span>
                     </div>
                 </div>
-                <div data-v-d535afec="" class="account-setting"><button data-v-d535afec="" type="button"
+                <div data-v-d535afec="" class="account-setting"><button data-v-d535afec="" type="button" onclick="location.href='/logout'"
                                                                         class="btn btn-account-setting btn-secondary">로그아웃</button></div>
             </a>
                 <!---->
@@ -229,11 +234,16 @@
                                 data-v-69924ad4=""
                                 src="https://assets.cdn.soomgo.com/icons/icon-mypage-list-arrow.svg"></span>
                         </div>
-                        <!---->
                     </a></li>
                 </ul>
-                <!---->
-                <!---->
+                <th:block th:if="${session.member != null}">
+                    <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+                    <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+                    <input type="hidden" name="memberEmail" th:value="${session.member.memberEmail}">
+                    <input type="hidden" name="memberPoint" th:value="${session.member.memberPoint}">
+                    <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+                    <input type="hidden" name="memberProfileName" th:value="${session.member.memberProfileName}">
+                </th:block>
             </div>
         </div>
     </div>
@@ -241,6 +251,14 @@
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='memberId']").val();
+    let memberName = $("input[name='memberName']").val();
+    let memberEmail = $("input[name='memberEmail']").val();
+    let memberPoint = $("input[name='memberPoint']").val();
+    let memberCategory = $("input[name='memberCategory']").val();
+    let memberProfileName = $("input[name='memberProfileName']").val();
+</script>
 <script src="/js/mypage/mypageModule.js"></script>
 <script src="/js/mypage/mypageMain.js"></script>
 <script src="/js/fix/header.js"></script>

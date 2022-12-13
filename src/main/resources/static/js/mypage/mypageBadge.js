@@ -4,11 +4,9 @@ let $acquiredBadge = $(".acquired");
 let $badgeModal = $(".swal2-container");
 let $modalCloseBtn = $(".swal2-confirm.btn");
 
-const memberId = 1;
-
-getMemberInfo();
 getBadge();
 getMybadge();
+showMyInfo();
 
 $(".mybadge").on('click', $(".mybadge .mybadgeImg.acquired"), function(){
     $badgeModal.css('display', 'block');
@@ -24,8 +22,6 @@ function badgeModalOpen(badgeId){
     let $badgeImg = $(".mybadgeImg.acquired." + badgeId).val();
     let $badgeInfo = $(".mybadgeImg.acquired." + badgeId).next().text();
     $badgeModal.css('display', 'block');
-    console.log($badgeImg);
-    console.log($badgeInfo);
 }
 
 /* 배지 정보 모달 닫기 */
@@ -33,21 +29,14 @@ function badgeModalClose(){
     $badgeModal.css('display', 'none');
 }
 
-/* ============================= memberInfo ============================= */
-
-/* 기본 회원 정보 조회 */
-function getMemberInfo(){
-    mypageService.getMyInfo(
-        memberId, showMemberInfo
-    )
-}
-
-function showMemberInfo(member){
-    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
-    $(".mypage-memberName").html(member.memberName);
-    $(".mypage-memberEmail").html(member.memberEmail);
-    $(".mypage-memberType").html(member.memberCategory);
-    $(".mypage-memberPoint").html(member.memberPoint);
+/* 회원 정보 */
+function showMyInfo(){
+    $(".mypage-memberProfileName").attr('src', memberProfileName);
+    $(".mypage-memberName").html(memberName);
+    $(".mypage-memberEmail").html(memberEmail);
+    $(".mypage-memberType").html(memberCategory);
+    console.log(memberPoint);
+    $(".mypage-memberPoint").html(memberPoint);
 }
 
 /* ============================= badge ============================= */

@@ -140,6 +140,10 @@ function showBoardDetail(board){
         : "수정 " + communityService.timeForToday(board.updatedDate)
     );
     $(".board-boardView").html(' · 조회 ' + board.boardView);
+    if(board.memberId != memberId){
+        $("#__BVID__1550__BV_toggle_").hide();
+    }
+
     $boardUpdateBtn.attr('href', '/community/update?id=' + board.boardId);
     $(".board-content").html('<br>' + board.boardContent);
 
@@ -179,6 +183,7 @@ $(".lg-close.lg-icon").on('click', function(){
 globalThis.page = 1;
 
 showComment();
+hideCommentMenu();
 
 /* 댓글 목록 보기 */
 function showComment(){
@@ -283,6 +288,13 @@ function deleteComment(commentId){
     );
 }
 
+/* 본인 작성 댓글만 수정삭제 메뉴 보이게 하기 */
+function hideCommentMenu(){
+    console.log(".board-dropdown-toggle.member" + memberId)
+    $(".board-dropdown-toggle.btn-secondary.btn-comment").css('display', 'none');
+    $(".board-dropdown-toggle.member" + memberId).show();
+}
+
 function showCommentList(comments){
     let text = "";
 
@@ -312,7 +324,7 @@ function showCommentList(comments){
         text += `</div>`;
         text += `<div data-v-6f126738="" class="more-action">`;
         text += `<div data-v-6f126738="" class="dropdown b-dropdown show btn-group" id="__BVID__1555">`;
-        text += `<button aria-haspopup="true" aria-expanded="true" type="button" class="btn board-dropdown-toggle btn-secondary btn-comment ` + comment.commentId +`" onclick="javascript:openCommentMenu(` + comment.commentId + `)"></button>`;
+        text += `<button aria-haspopup="true" aria-expanded="true" type="button" class="btn board-dropdown-toggle btn-secondary btn-comment member` + comment.memberId + ' ' + comment.commentId +`" onclick="javascript:openCommentMenu(` + comment.commentId + `)"></button>`;
         text += `<ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-right comment-menu ` + comment.commentId + `" aria-labelledby="__BVID__1555__BV_toggle_" style="position: absolute; transform: translate3d(-116px, 22px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-end">`;
         text += `<li data-v-77f4e41c="" role="presentation">`;
         text += `<a role="menuitem" href="javascript:updateComment(` + comment.commentId + `)" target="_self" class="dropdown-item commentUpdate">수정</a>`;

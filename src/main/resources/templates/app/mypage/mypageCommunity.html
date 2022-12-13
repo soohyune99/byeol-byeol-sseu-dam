@@ -21,8 +21,12 @@
 </head>
 <body class="doz_sys _body_menu_m20200103e566d1814daef  shop_mypage  fixed-menu-on new_fixed_menu_on new_header_site  loggedin"
       id="doz_body">
-<header th:replace="/app/fix/header.html :: header"></header>
-<!-- Code injected by live-server -->
+<th:block th:if="${session.member == null}">
+    <header th:replace="/app/fix/header.html :: header"></header>
+</th:block>
+<th:block th:if="${session.member != null}">
+    <header th:replace="/app/fix/headerLogin.html :: header"></header>
+</th:block>
 <div doz_type="section"
      class="section_wrap  pc_section    section_first _section_first   mobile_section_first    side_basic grid_gutter_0 grid_v_gutter_0   "
      id="s202001038f5e33413dcec" doz_change_mobile=" N" doz_aside="N" doz_side_width="200"
@@ -363,6 +367,14 @@
                         </div>
                     </div>
                 </div>
+                <th:block th:if="${session.member != null}">
+                    <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+                    <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+                    <input type="hidden" name="memberEmail" th:value="${session.member.memberEmail}">
+                    <input type="hidden" name="memberPoint" th:value="${session.member.memberPoint}">
+                    <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+                    <input type="hidden" name="memberProfileName" th:value="${session.member.memberProfileName}">
+                </th:block>
             </div>
         </div>
     </main>
@@ -370,6 +382,14 @@
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='memberId']").val();
+    let memberName = $("input[name='memberName']").val();
+    let memberEmail = $("input[name='memberEmail']").val();
+    let memberPoint = $("input[name='memberPoint']").val();
+    let memberCategory = $("input[name='memberCategory']").val();
+    let memberProfileName = $("input[name='memberProfileName']").val();
+</script>
 <script src="/js/mypage/mypageModule.js"></script>
 <script src="/js/mypage/mypageCommunity.js"></script>
 <script src="/js/fix/header.js"></script>
