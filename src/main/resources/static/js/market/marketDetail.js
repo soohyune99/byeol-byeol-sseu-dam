@@ -308,9 +308,6 @@ function clickMoreReviewBtn(){
     if(globalThis.page != 0) {
         $(".comment-more-btn").remove();
     }
-    console.log("더보기");
-    console.log(globalThis.page);
-    console.log(typeof globalThis.page);
 
     reviewService.getMoreReview(
         productId, globalThis.page, showReviewMore

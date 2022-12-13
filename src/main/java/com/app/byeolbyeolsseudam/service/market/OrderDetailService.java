@@ -10,7 +10,9 @@ import java.util.List;
 @Service
 public interface OrderDetailService {
 
-    // 주문내역 뽑기
+    // 주문 관련 상품 조회
     public ProductDTO getOrderDetailList(Long productId);
+
+    // 회원 조회
     public MemberDTO getOrderMember(Long memberId);
 }

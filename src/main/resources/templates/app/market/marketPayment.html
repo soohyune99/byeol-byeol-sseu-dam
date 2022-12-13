@@ -20,7 +20,12 @@
 </head>
 
 <body class="doz_sys  _body_menu_m202001030f7c4943b091a  shop_payment  fixed-menu-on new_fixed_menu_on new_header_site  loggedin new_fixed_header_active" id="doz_body">
-<header th:replace="/app/fix/header.html :: header"></header>
+<th:block th:if="${session.member == null}">
+    <header th:replace="/app/fix/header.html :: header"></header>
+</th:block>
+<th:block th:if="${session.member != null}">
+    <header th:replace="/app/fix/headerLogin.html :: header"></header>
+</th:block>
 <div doz_type="section"
      class="section_wrap  pc_section    section_first _section_first   mobile_section_first    side_ static_section"
      id="s202001037c5d53c2ffaa5" doz_change_mobile="N" doz_aside="N" doz_side_width="230"
@@ -49,8 +54,8 @@
                                             <h6>주문 상품 정보</h6>
                                             <div class="modify-row">
                                                 <div class="col-xs-12 col_ctr">
-                                                    <div>
-                                                        <div class="shop_item_thumb">
+                                                    <div class="order-info">
+<!--                                                        <div class="shop_item_thumb">-->
                                                             <!--<a href="/bathroom/?idx=24" target="_blank">
                                                                 <div class="product_img_wrap">
                                                                     <img src="https://cdn.imweb.me/thumbnail/20220117/6a329ba1bf9e7.jpg" alt="주문상품 이미지">
@@ -68,10 +73,10 @@
                                                                     </div>
                                                                 </div>
                                                             </a>-->
-                                                        </div>
-                                                        <div class="im-payment-deliv">
-                                                            <div>배송비 <span class="text-bold">3,000원</span></div>
-                                                        </div>
+<!--                                                        </div>-->
+<!--                                                        <div class="im-payment-deliv">-->
+<!--                                                            <div>배송비 <span class="text-bold">3,000원</span></div>-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,8 +86,9 @@
                                                 <h6>주문자 정보</h6>
                                                 <div class="modify-row no-padding _orderer_preview_wrap">
                                                     <div class="col-xs-12 ordererInfo">
-<!--                                                        <div class="info-name info text-14 text-gray">성은지</div>-->
-<!--                                                        <div class="info-email info text-14 text-gray">sejjes07@gmail.com</div>-->
+                                                        <div class="info-member-name info text-14 text-gray"></div>
+                                                        <div class="info-member-email info text-14 text-gray"></div>
+                                                        <div class="info-member-phone info text-14 text-gray"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -102,7 +108,7 @@
                                                                     <input type="hidden" name="deliv_address_code" value="">
                                                                     <div class="col-xs-3 space_top" style="padding-right: 0;">
                                                                         <!-- <input id="order_postcode_input" class="form-control _btn_search_address_sub" type="tel" placeholder="우편번호" value="" readonly="">  -->
-                                                                        <input type="text" id="sample4_postcode" class="form-control _btn_search_address_sub"  placeholder="우편번호">
+                                                                        <input type="text" id="sample4_postcode" name="addr1" class="form-control _btn_search_address_sub"  placeholder="우편번호" disabled="disabled">
                                                                     </div>
                                                                     <div class="col-xs-3 space_top btn-tools">
                                                                         <!-- <a class="blocked text-13 text-center btn _btn_search_address_sub" href="javascript:;" style="height: 36px;border-radius: 3px; letter-spacing: 0; float: left; width: 133%; line-height: 34px; padding: 0 !important; margin-left: 2%; background-color: #00c7ae; border-color: #00c7ae; color: #fff; border-width: 0px;">
@@ -113,13 +119,13 @@
                                                                     <div class="col-xs-12 space_top" style="width: 87%;">
                                                                         <!-- <input class="form-control" type="hidden" id="deliv_postcode" name="deliv_postcode" placeholder="우편번호" data-group="shipping" value="08826" readonly="">
                                                                         <input id="order_address_input" name="deliv_address" class="form-control _btn_search_address" type="text" placeholder="주소" data-group="shipping" value="" readonly=""> -->
-                                                                        <input type="text" class="form-control _btn_search_address" id="sample4_roadAddress" placeholder="도로명주소" style="margin-bottom: 7px;">
+                                                                        <input type="text" name="addr2" class="form-control _btn_search_address" id="sample4_roadAddress" placeholder="도로명주소" style="margin-bottom: 7px;" disabled="disabled">
 <!--                                                                        <input type="text" class="form-control _btn_search_address"id="sample4_jibunAddress" placeholder="지번주소">-->
                                                                     </div>
                                                                     <div class="col-xs-12 space_top" style="width: 87%;">
                                                                         <!-- <input id="order_address_detail_input" name="deliv_address_detail" class="form-control" type="text" placeholder="상세주소" data-group="shipping" value=""> -->
-                                                                        <input type="text" class="form-control" id="sample4_detailAddress" placeholder="상세주소">
-<!--                                                                        <input type="text" class="form-control" id="sample4_extraAddress" placeholder="참고항목">-->
+                                                                        <input type="text" name="addr3" class="form-control" id="sample4_extraAddress" placeholder="참고항목" disabled="disabled">
+                                                                        <input type="text" name="addr4" class="form-control" id="sample4_jibunAddress" placeholder="상세주소" style="margin-top: 2%;">
                                                                     </div>
                                                                 </div>
 <!--                                                                <a href="javascript: modifyShippingInfo();"  class="btn btn-primary btn-sm-padding text-13 btn_top_right _btn_modify_shipping" role="button">등록</a>-->
@@ -131,7 +137,7 @@
                                                     <div class="col-xs-12" style="padding-top: 13px;">
                                                         <p class="text-14">배송메모</p>
                                                         <div class="form-select-wrap memo-select-wrap">
-                                                            <select class="form-control" name="deliv_memo" title="memo" data-group="shipping" style="outline: none;">
+                                                            <select id="category" class="form-control" onchange="chageSelect()" name="deliv_memo" title="memo" data-group="shipping" style="outline: none;">
                                                                 <option value="">배송메모를 선택해 주세요.</option>
                                                                 <option value="배송 전에 미리 연락 바랍니다.">배송 전에 미리 연락 바랍니다.</option>
                                                                 <option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요. </option>
@@ -157,7 +163,7 @@
                                                     <p class="text-14 margin-bottom-xl">포인트</p>
                                                     <div class="clearfix" style="display: flex; justify-content: space-around;">
                                                         <div class="input_tools holder" style="width:100%; margin-right: 35px;">
-                                                            <input title="보유" class="form-control text-brand _input_point" name="use_point" data-group="point" autocomplete="off" type="text" value="0" data-apply_point="0">
+                                                            <input title="보유" onblur='onblurPoint()' class="form-control text-brand _input_point" id="use_point" name="use_point" data-group="point" autocomplete="off" type="text" value="0" data-apply_point="0">
                                                             <a class="text-16 btn_close _btn_point_clear" href="javascript:">
                                                                 <i class="btl bt-times-circle"></i>
                                                             </a>
@@ -167,7 +173,7 @@
                                                         </a>
                                                     </div>
                                                     <p class="text-13 margin-top-xl no-margin-bottom holding-mypoint">
-                                                        보유 포인트 <strong>3000</strong>
+                                                        보유 포인트 <strong class="my-point"></strong>
                                                     </p>
                                                 </div>
                                             </div>
@@ -180,14 +186,14 @@
                                                 <h6>주문 요약</h6>
                                                 <div class="modify-row">
                                                     <div class="col-xs-6 pay-txt col_ctr">
-                                                        <p class="text-gray">상품가격</p>
+                                                        <p class="product-price text-gray">상품 가격</p>
                                                         <p class="text-gray">배송비</p>
-                                                        <p class="use text-gray">포인트 사용</p>
+                                                        <p class="use text-gray use_point_text"></p>
                                                     </div>
                                                     <div class="col-xs-6 pay-number col_ctr">
-                                                        <p>가격</p>
+                                                        <p class="order-product-price">가격</p>
                                                         <p>+3,000원</p>
-                                                        <p class="use _use_point_text">-3,000원</p>
+                                                        <p class="use use_point_number"></p>
                                                     </div>
                                                 </div>
 
@@ -197,14 +203,14 @@
                                                     </div>
                                                     <div class="col-md-6 col-xs-6 col_ctr">
                                                         <p class="no-margin text-right">
-                                                            <span class="text-brand" >총 가격</span>
+                                                            <span class="total-price text-brand" ></span>
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modify-tip-off bg-gray pay_area">
                                                 <p class="no-margin text-13">
-                                                    <span class="text-brand">56</span> 포인트 적립예정
+                                                    <span class="save-point text-brand">56</span> 포인트 적립예정
                                                 </p>
                                             </div>
                                         </div>
@@ -353,7 +359,16 @@
                                                     </div>
                                                 </div>-->
                                         <div class="modify-tip-off no-margin-bottom margin-top-xxl agree_wrap _agree_wrap">
-                                            <div class="checkbox-group _checkbox_group">
+                                            <label class="firstChecked">
+                                                <input type="checkbox" value="" id="paymentAllCheck"> 전체 동의
+                                            </label>
+                                            <label class="secondChecked" style="padding-left: 6%;">
+                                                <input type="checkbox" class="agree" data-alert="구매조건 확인 및 결제진행에 동의하여 주시기 바랍니다."> 구매조건 확인 및 결제진행에 동의
+                                            </label>
+                                            <label class="secondChecked" style="padding-left: 6%;">
+                                                <input type="checkbox" class="agree" data-alert="구매조건 확인 및 결제진행에 동의하여 주시기 바랍니다."> 개인정보 제 3자 정보 제공 동의
+                                            </label>
+                                            <!--<div class="checkbox-group _checkbox_group">
                                                 <div class="checkbox checkbox-styled">
                                                     <label class="firstChecked">
                                                         <input type="checkbox" value="" id="paymentAllCheck">전체 동의
@@ -364,7 +379,7 @@
                                                         <input type="checkbox" class="_agree" data-alert="구매조건 확인 및 결제진행에 동의하여 주시기 바랍니다.">구매조건 확인 및 결제진행에 동의
                                                     </label>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
                                                 <a href="http://localhost:10001/market/paid" style="width: 100%"
                                                    class="btn_start_payment text-16 text-bold btn bg-brand to-order blocked btn-lg margin-bottom-xl _btn_start_payment">결제하기</a>
@@ -405,7 +420,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/market/address.js"></script>
+<script src="https://js.bootpay.co.kr/bootpay-4.2.6.min.js" type="application/javascript"></script>
 <script src="/js/market/orderModule.js"></script>
 <script src="/js/market/marketPayment.js"></script>
 <script src="/js/fix/headerLogin.js"></script>

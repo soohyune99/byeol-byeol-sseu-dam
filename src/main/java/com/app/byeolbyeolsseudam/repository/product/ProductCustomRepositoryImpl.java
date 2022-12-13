@@ -194,7 +194,4 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
                 .where(product.productId.eq(productId))
                 .fetchOne();
     }
-
-
-
 }
