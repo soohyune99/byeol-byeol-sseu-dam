@@ -24,7 +24,7 @@
 <!-- 로그인 확인 모달창 -->
 <div class="swal2-container swal2-center sg-swal swal2-shown" style="overflow-y: auto;">
     <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show"
-         tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="width: 320px; display: flex;">
+         tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="width: 320px; display: flex; border-radius: 10px;">
         <div class="swal2-header">
             <ul class="swal2-progress-steps" style="display: none;"></ul>
             <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
@@ -65,7 +65,7 @@
                     onclick="goLogin()">로그인/회원가입
             </button>
             <button type="button" class="swal2-cancel btn" aria-label="" style="display: inline-block;"
-                    onclick="history.go(-1);">취소
+                    onclick="history.go(0);">취소
             </button>
         </div>
         <input type="hidden" id="sessionMember" value="">
@@ -136,7 +136,10 @@
                             <!--                            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
                             <!--                            !!!!!!!!!!!!!!!로그인 완료 되면 확인하기!!!!!!!!!!!!!!!-->
                             <!--                            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-                            <input type="hidden" class="memberId" th:href="${session.loginMember}">
+                            <th:block th:if="${session.member != null}">
+                                <input type="hidden" class="memberIdSession" th:href="${session.member.memberId}">
+                            </th:block>
+
                             <input type="hidden" class="programId" th:href="*{programId}">
 
 
@@ -382,30 +385,44 @@
 <script>
 
 
-    //    $("#modal_title").on("click", function () {
-    //        alert($(obj).closest(".responsive").find('#programId').attr("href"));
-    //        location.href = "/program/programAddSuccess"
-    //    })
+       // $("#modal_title").on("click", function () {
+       //     alert($(obj).closest(".responsive").find('#programId').attr("href"));
+       //     location.href = "/program/programAddSuccess"
+       // })
 
     /* ProgramDetail-신청하기 -> ProgramDetail-Modal 신청하기 클릭시 */
     function insertProgram() {
-        let memberId = $('.memberId').attr('href');
+        let memberId = $('.memberIdSession').attr('href');
         let programId = $('.programId').attr('href')
 
-        if (memberId == "") {
+        if (memberId == undefined) {
             // 로그인 필요 모달창 띄우기
-            $('.swal2-container').css('display', 'block');
+            $('.swal2-container').css('display', 'block').fadeIn();
         } else {
             // 신청하기 눌렀을 때 memberId가 있다면(로그인이 되어있다면?) 경로로 보내줌
             location.href = "/program/saveMember" + "?programId=" + programId + "&memberId=" + memberId;
         }
 
     }
+    /*
+    * $(function(){
+
+    $("#Apply").click(function(){
+      $(".modal");
+    });
+
+    $(".modal_content").click(function(){
+      $(".modal").fadeOut();
+    });
+
+  });
+    * */
 
     /* 로그인이 안되어있을 경우 _ 로그인/회원가입 창으로 가기 */
     function goLogin() {
         location.href = "/login/login";
     }
+
 
 </script>
 

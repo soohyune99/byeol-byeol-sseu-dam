@@ -17,18 +17,18 @@ public class RecyclingTest {
     @Autowired
     RecyclingService recyclingService;
 
-    @Test
-    public void saveTest(){
-        PickupDTO pickupDTO = new PickupDTO();
-        pickupDTO.setMemberId(134L);
-        pickupDTO.setGlassCount(10);
-        pickupDTO.setPetCount(15);
-        pickupDTO.setPickupAddress("경기도 수원시");
-        pickupDTO.setPickupMessage("문 앞에 보관");
-
-        recyclingService.recyclingSave(pickupDTO);
-
-    }
+//    @Test
+//    public void saveTest(){
+//        PickupDTO pickupDTO = new PickupDTO();
+//        pickupDTO.setMemberId(134L);
+//        pickupDTO.setGlassCount(10);
+//        pickupDTO.setPetCount(15);
+//        pickupDTO.setPickupAddress("경기도 수원시");
+//        pickupDTO.setPickupMessage("문 앞에 보관");
+//
+//        recyclingService.recyclingSave(pickupDTO);
+//
+//    }
 
 
 

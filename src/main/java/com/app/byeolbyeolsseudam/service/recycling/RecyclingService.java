@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public interface RecyclingService {
 
     /* 쓰담수거 _ 수거 신청 하기 */
-    public void recyclingSave(PickupDTO pickupDTO);
+    public void recyclingSave(PickupDTO pickupDTO, Long memberId);
 
 }
