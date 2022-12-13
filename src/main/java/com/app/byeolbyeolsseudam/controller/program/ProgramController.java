@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.controller.program;
 
+import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.service.program.ProgramDynamicService;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -36,8 +38,13 @@ public class ProgramController {
 
     /* 프로그램 멤버 신청 */
     @GetMapping("/saveMember")
-    public RedirectView programSaveMember(Long programId, Long memberId){
-//        programService.programMemberSave(programId, memberId); // 로그인 완성시 사용
+    public RedirectView programSaveMember(Long programId, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        Long memberId = memberDTO.getMemberId();
+
+        log.info(memberId + "");
+
+        programService.programMemberSave(programId, memberId); // 로그인 완성시 사용
         return new RedirectView("/mypage/program"); // 마이페이지 _ 프로그램 신청내역페이지로 이동
     }
 

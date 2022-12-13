@@ -20,11 +20,11 @@ public class RecyclingServiceImpl implements RecyclingService {
 
     /* 쓰담수거 _ 수거 신청 하기 */
     @Override
-    public void recyclingSave(PickupDTO pickupDTO) {
+    public void recyclingSave(PickupDTO pickupDTO, Long memberId) {
         pickupDTO.setPickupStatus(PickupStatus.수거대기중);// 처음 신청한 순간 default
 
         Pickup pickup = pickupDTO.toEntity();
-        pickup.changeMember(memberRepository.findById(pickupDTO.getMemberId()).get());
+        pickup.changeMember(memberRepository.findById(memberId).get());
 
         pickupRepository.save(pickup);
     }
