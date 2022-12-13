@@ -20,7 +20,8 @@
 </head>
 <body class="received-quotes">
 <div>
-    <header th:replace="/app/fix/headerpicker.html :: header"></header>
+    <!-- 로그인 된 기사님만 들어올 수 있음 -->
+    <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
     <div id="app-body">
         <div class="received-quote-list" data-v-adb80f6e="">
             <div data-v-c85c3b6a="" data-v-adb80f6e="" class="requested-service-header"
@@ -45,9 +46,8 @@
                             <div data-v-464dc29d="" data-name="profile" class="col-auto">
                                 <div data-v-0ee3c6fc="" data-v-464dc29d="" class="user-profile-picture">
                                     <div data-v-0ee3c6fc="" data-name="image" class="is-square"
-                                         data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
                                          lazy="loaded"
-                                         style="background-image: url(&quot;https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320&quot;);">
+                                         style="background-image: url('https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320');">
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                     </div>
                                     <div data-v-f32583c0="" class="quote-cta-wrapper">
                                         <button data-v-f32583c0="" type="button" style="width: 23%;"
-                                                class="btn quote-cta btn-primary" onclick="location.href=`http://localhost:10001/pickup/acceptedlist`">목록보기</button>
+                                                class="btn quote-cta btn-primary" onclick="history.go(-1);">목록보기</button>
                                         <button data-v-f32583c0="" type="button" style="width: 23%;"
                                                 class="btn quote-cta btn-primary" onclick="location.href=`http://localhost:10001/pickup/finishedlist`">수거완료</button>
                                     </div>
