@@ -4,11 +4,16 @@ import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
 import com.app.byeolbyeolsseudam.domain.board.QBoardDTO;
 import com.app.byeolbyeolsseudam.domain.comment.CommentDTO;
 import com.app.byeolbyeolsseudam.domain.comment.QCommentDTO;
+import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
+import com.app.byeolbyeolsseudam.domain.course.QCourseDTO;
+import com.app.byeolbyeolsseudam.domain.fileBoard.FileBoardDTO;
+import com.app.byeolbyeolsseudam.domain.fileBoard.QFileBoardDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.domain.product.QProductDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.domain.program.QProgramDTO;
 import com.app.byeolbyeolsseudam.entity.board.QBoard;
+import com.app.byeolbyeolsseudam.entity.fileBoard.QFileBoard;
 import com.app.byeolbyeolsseudam.entity.product.QProduct;
 import com.app.byeolbyeolsseudam.entity.program.QProgram;
 import com.app.byeolbyeolsseudam.type.ProductCategory;
@@ -20,6 +25,8 @@ import java.util.List;
 
 import static com.app.byeolbyeolsseudam.entity.board.QBoard.board;
 import static com.app.byeolbyeolsseudam.entity.comment.QComment.comment;
+import static com.app.byeolbyeolsseudam.entity.course.QCourse.course;
+import static com.app.byeolbyeolsseudam.entity.fileBoard.QFileBoard.fileBoard;
 import static com.app.byeolbyeolsseudam.entity.product.QProduct.product;
 import static com.app.byeolbyeolsseudam.entity.program.QProgram.program;
 
@@ -134,10 +141,38 @@ public class MainRepository {
                     .fetch();
             board.setComments(comments);
         });
+
+        boards.stream().forEach(board -> {
+            List<FileBoardDTO> files = jpaQueryFactory.select(new QFileBoardDTO(
+                    fileBoard.fileBoardName
+            )).from(fileBoard)
+                    .where(fileBoard.board.boardId.eq(board.getBoardId()))
+                    .fetch();
+            board.setFiles(files);
+        });
+
         return boards;
     }
 
-
+    public List<CourseDTO> getCourseList(){
+        return jpaQueryFactory.select(new QCourseDTO(
+                course.courseId,
+                course.courseName,
+                course.courseArea,
+                course.courseDistance,
+                course.courseTime,
+                course.courseStart,
+                course.courseFinish,
+                course.courseGrade,
+                course.courseFileName,
+                course.courseFilePath,
+                course.courseFileUuid,
+                course.possibleDate.openingDate,
+                course.possibleDate.closingDate
+        )).from(course)
+                .orderBy(course.courseName.asc())
+                .fetch();
+    }
 
 
 }

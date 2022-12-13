@@ -93,8 +93,8 @@
                                                                         <div class="table-responsive">
 
                                                                         </div>
-                                                                        <form th:action="@{adminjubjubbadge}"
-                                                                              name="addJubJubBadgeForm">
+                                                                        <form th:action="@{/admin/jubgging/badge/save}"
+                                                                              name="addJubJubBadgeForm" method="post">
                                                                         <div style="width: 60%; margin: 0 auto 48px auto;">
                                                                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                  style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
@@ -107,13 +107,15 @@
                                                                             <div class="dataTables_wrapper dt-bootstrap4 no-footer">
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <input hidden="hidden"/>
-                                                                                    <input type="text" name="BadgeName"
+                                                                                    <input type="text" name="badgeName"
                                                                                            data-kt-ecommerce-product-filter="search"
                                                                                            class="form-control form-control-solid w-250px ps-14"
                                                                                            placeholder="배지 이름"
                                                                                            style="width: 100%;">
                                                                                 </div>
-
+                                                                                <div>
+                                                                                    <input type="text" name="badgeInfo" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="획득 조건" style="width: 100%;">
+                                                                                </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="d-flex align-items-center position-relative my-1"
                                                                                          style="width:100%;
@@ -137,6 +139,9 @@
                                                                                             <img src="/images/admin/003.png"
                                                                                                  id="thumbnail" style="width: 100%; height: 100%;">
                                                                                         </label>
+                                                                                        <div id="badge">
+
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
 
@@ -176,5 +181,42 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script th:inline="javascript">
+    let arrayFile = [];
 
+    $("input[type='file']").on("change",function () {
+        let formData = new FormData();
+        let $inputFile = $("input#icon_img");
+        let files = $inputFile[0].files;
+
+        Array.from(files).forEach(file => arrayFile.push(file));
+        const dataTransfer = new DataTransfer();
+        arrayFile.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $(files).each(function(i, file){
+            formData.append("upload", file);
+        });
+
+        $.ajax({
+            url: "/file/badge/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: insertImg
+        });
+    });
+
+    function insertImg(files) {
+        let text = "";
+
+        $(files).each(function (i, file) {
+            text += `<input name="badgeFileName" type="hidden" value="`+ file.badgeFileName +`">`;
+        });
+        $("#badge").html(text);
+
+    }
+
+</script>
 </html>

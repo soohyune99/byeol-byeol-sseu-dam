@@ -23,81 +23,69 @@ import java.util.UUID;
 @Slf4j
 public class ProgramUploadController {
 
-    @PostMapping("profile/upload")
-    public List<ProgramDTO> uploadProfile(List<MultipartFile> upload) throws IOException {
-        String rootPath = "C:/upload/program";
-        String uploadFileName = null;
-        List<ProgramDTO> files = new ArrayList<>();
+//    @PostMapping("profile/upload")
+//    public List<ProgramDTO> uploadProfile(List<MultipartFile> upload) throws IOException {
+//        String rootPath = "C:/upload/program";
+//        String uploadFileName = null;
+//        List<ProgramDTO> files = new ArrayList<>();
+//
+//        File uploadPath = new File(rootPath, createDirectoryByNow());
+//        if(!uploadPath.exists()){
+//            uploadPath.mkdirs();
+//        }
+//
+//        for (MultipartFile multipartFile : upload){
+//            ProgramDTO programDTO = new ProgramDTO();
+//            UUID uuid = UUID.randomUUID();
+//            String fileName = multipartFile.getOriginalFilename();
+//            uploadFileName = uuid.toString() + "_" + fileName;
+//            programDTO.setProgramFileProfileName(fileName);
+//            programDTO.setProgramFileProfileUuid(uuid.toString());
+//            programDTO.setProgramFileProfilePath("/upload/program/" + createDirectoryByNow());
+//
+//            File saveFile =new File(uploadPath, uploadFileName);
+//            multipartFile.transferTo(saveFile);
+//
+//            files.add(programDTO);
+//
+//        }
+//        return files;
+//    }
 
-        File uploadPath = new File(rootPath, createDirectoryByNow());
-        if(!uploadPath.exists()){
-            uploadPath.mkdirs();
-        }
+//    @PostMapping("detail/upload")
+//    public List<ProgramDTO> uploadDetail(List<MultipartFile> upload) throws IOException {
+//        String rootPath = "C:/upload/program";
+//        String uploadFileName = null;
+//        List<ProgramDTO> files = new ArrayList<>();
+//
+//        File uploadPath = new File(rootPath, createDirectoryByNow());
+//        if(!uploadPath.exists()){
+//            uploadPath.mkdirs();
+//        }
+//
+//        for (MultipartFile multipartFile : upload){
+//            ProgramDTO programDTO = new ProgramDTO();
+//            UUID uuid = UUID.randomUUID();
+//            String fileName = multipartFile.getOriginalFilename();
+//            uploadFileName = uuid.toString() + "_" + fileName;
+//            programDTO.setProgramFileDetailName(fileName);
+//            programDTO.setProgramFileDetailUuid(uuid.toString());
+//            programDTO.setProgramFileDetailPath("/upload/program/" + createDirectoryByNow());
+//
+//            File saveFile =new File(uploadPath, uploadFileName);
+//            multipartFile.transferTo(saveFile);
+//
+//            files.add(programDTO);
+//
+//        }
+//        return files;
+//    }
 
-        for (MultipartFile multipartFile : upload){
-            ProgramDTO programDTO = new ProgramDTO();
-            UUID uuid = UUID.randomUUID();
-            String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            programDTO.setProgramFileProfileName(fileName);
-            programDTO.setProgramFileProfileUuid(uuid.toString());
-            programDTO.setProgramFileProfilePath("/upload/program/" + createDirectoryByNow());
-
-            File saveFile =new File(uploadPath, uploadFileName);
-            multipartFile.transferTo(saveFile);
-
-            files.add(programDTO);
-
-        }
-        return files;
-    }
-
-    @PostMapping("detail/upload")
-    public List<ProgramDTO> uploadDetail(List<MultipartFile> upload) throws IOException {
-        String rootPath = "C:/upload/program";
-        String uploadFileName = null;
-        List<ProgramDTO> files = new ArrayList<>();
-
-        File uploadPath = new File(rootPath, createDirectoryByNow());
-        if(!uploadPath.exists()){
-            uploadPath.mkdirs();
-        }
-
-        for (MultipartFile multipartFile : upload){
-            ProgramDTO programDTO = new ProgramDTO();
-            UUID uuid = UUID.randomUUID();
-            String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            programDTO.setProgramFileDetailName(fileName);
-            programDTO.setProgramFileDetailUuid(uuid.toString());
-            programDTO.setProgramFileDetailPath("/upload/program/" + createDirectoryByNow());
-
-            File saveFile =new File(uploadPath, uploadFileName);
-            multipartFile.transferTo(saveFile);
-
-            files.add(programDTO);
-
-        }
-        return files;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public String createDirectoryByNow(){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-        Date now = new Date();
-        return format.format(now);
-    }
+//
+//    public String createDirectoryByNow(){
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+//        Date now = new Date();
+//        return format.format(now);
+//    }
 
 }

@@ -1,6 +1,7 @@
 package com.app.byeolbyeolsseudam.service.main;
 
 import com.app.byeolbyeolsseudam.domain.board.BoardDTO;
+import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.repository.main.MainRepository;
@@ -35,6 +36,6 @@ public class MainService {
     public List<BoardDTO> showBoardList(){
         return mainRepository.getMainBoardList();
     }
-
+    public List<CourseDTO> showCourseList(){return mainRepository.getCourseList();}
 
 }

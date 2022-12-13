@@ -550,11 +550,17 @@ function modifyJubJubCourseSpot() {
 // 줍깅 관리 - 배지 목록 + 배지 추가
 
 function addJubJubBadge() {
-	if ($("input[name=BadgeName]").val() == "") {
+	if ($("input[name=badgeName]").val() == "") {
 		alert("배지이름을 입력하세요!");
-		$("input[name=BadgeName]").focus();
+		$("input[name=badgeName]").focus();
 		return;
 	}
+	if ($("input[name=badgeInfo]").val() == "") {
+		alert("획득조건을 입력하세요!");
+		$("input[name=badgeInfo]").focus();
+		return;
+	}
+
 	if ($("input[name=badgeFile]").next().attr("src") == "/images/admin/003.png") {
 		alert("배지사진을 업로드하세요!");
 		return;
