@@ -50,60 +50,7 @@ public class AdminController {
 
     /* ############################### 줍깅 관리 ################################ */
 
-    /* 줍깅 관리 - 코스 목록 */
-    @GetMapping("adminjubjubcourse")
-    public String adminJubJubCourse(){
-        return "/app/admin/adminJubJubCourse.html";
-    }
-
-    /* 줍깅 관리 - 코스 목록 + 코스 추가 */
-    @GetMapping("adminjubjubcourseadd")
-    public String adminJubJubCourseAdd(){
-        return "/app/admin/adminJubJubCourseAdd.html";
-    }
-
-    /* 줍깅 관리 - 코스 목록 + 코스 수정 */
-    @GetMapping("adminjubjubcoursemodify")
-    public String adminJubJubCourseModify(){
-        return "/app/admin/adminJubJubCourseModify.html";
-    }
-
-    /* 줍깅 관리 - 스팟 목록 */
-    @GetMapping("adminjubjubspot")
-    public String adminJubJubSpot(){
-        return "/app/admin/adminJubJubSpot.html";
-    }
-
-    /* 줍깅 관리 - 스팟 목록 + 스팟 추가 */
-    @GetMapping("adminjubjubspotadd")
-    public String adminJubJubSpotAdd(){
-        return "/app/admin/adminJubJubSpotAdd.html";
-    }
-
-    /* 줍깅 관리 - 스팟 목록 + 스팟 수정 */
-    @GetMapping("adminjubjubspotmodify")
-    public String adminJubJubSpotModify(){
-        return "/app/admin/adminJubJubSpotModify.html";
-    }
-
-    /* 줍깅 관리 - 배지 목록 */
-    @GetMapping("adminjubjubbadge")
-    public String adminJubJubBadge(){
-        return "/app/admin/adminJubJubBadge.html";
-    }
-
-    /* 줍깅 관리 - 배지 목록 + 배지 추가 */
-    @GetMapping("adminjubjubbadgeadd")
-    public String adminJubJubBadgeAdd(){
-        return "/app/admin/adminJubJubBadgeAdd.html";
-    }
-
-    /* 줍깅 관리 - 배지 목록 + 배지 수정 */
-    @GetMapping("adminjubjubbadgemodify")
-    public String adminJubJubBadgeModify(){
-        return "/app/admin/adminJubJubBadgeModify.html";
-    }
-
+    //AdminJubggingController
 
     /* ############################### 수거서비스 ############################### */
 

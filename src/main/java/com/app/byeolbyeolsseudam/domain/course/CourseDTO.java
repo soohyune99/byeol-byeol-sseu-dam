@@ -9,6 +9,7 @@ import com.app.byeolbyeolsseudam.type.CourseGrade;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -29,7 +30,9 @@ public class CourseDTO {
     private String courseFileName;
     private String courseFilePath;
     private String courseFileUuid;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime openingDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime closingDate;
 
     private List<MycourseDTO> mycourses;

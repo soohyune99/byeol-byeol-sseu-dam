@@ -109,59 +109,57 @@
                                                                         <div class="table-responsive">
 
                                                                         </div>
-
-
                                                                         <div style="width: 60%; margin: 0 auto 48px auto;">
                                                                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                  style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
                                                                                 <div class="w-100 mw-150px">
-                                                                                    <a href="http://localhost:10001/admin/adminorderlist"
+                                                                                    <a href="http://localhost:10001/admin/product/order/1"
                                                                                        style="padding: 9px 20px 9px 20px;"
                                                                                        class="btn btn-primary">돌아가기</a>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                            <div th:object="${detail}" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 29.4%; margin-right: 9px;"> 주문 번호 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 70.6%;"> 2022111301 </div>
+                                                                                         style="width: 70.6%;" th:text="*{orderId}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 주문 날짜 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 2022.11.13</div>
+                                                                                         style="width: 75%;" th:text="${#temporals.format(detail.createdDate, 'yyyy-MM-dd')}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 주문자 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 홍길동 </div>
+                                                                                         style="width: 75%;" th:text="*{memberName}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 배송 주소 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 경기도 성남시 분당구 돌마로 51번길 </div>
+                                                                                         style="width: 75%;" th:text="*{orderAddress}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 주문 상태  </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 주문 완료 </div>
+                                                                                         style="width: 75%;" th:text="*{orderStatus}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 총 결제 금액 </div>
-                                                                                    <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 22,000 </div>
+                                                                                    <div class="form-control form-control-solid w-250px ps-14 totalPrice"
+                                                                                         style="width: 75%;"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
                                                                                          style="width: 25%; margin-right: 9px;"> 배송 메세지 </div>
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
-                                                                                         style="width: 75%;"> 문 앞에 두고 벨 눌러주세요 </div>
+                                                                                         style="width: 75%;" th:text="*{orderMessage}"></div>
                                                                                 </div>
                                                                                 <div class="d-flex align-items-center position-relative my-1">
                                                                                     <div class="form-control form-control-solid w-250px ps-14"
@@ -174,41 +172,26 @@
                                                                                     <div class="form-control form-control-solid orderDetailTBL4">단가</div>
                                                                                     <div class="form-control form-control-solid orderDetailTBL5">결제금액</div>
                                                                                 </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid orderDetailTBL1">식품</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL2">사과</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL3">3</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL4">1,000</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL5">3,000</div>
+<!--                                                                                ${detailDTO.orderDetailCount} * ${detailDTO.productPrice}-->
+                                                                                <th:block th:each="detailDTO:${detail.orderDetails}">
+                                                                                <div th:object="${detailDTO}" class="d-flex align-items-center position-relative my-1">
+                                                                                    <div th:text="${detailDTO.productCategory}" class="form-control form-control-solid orderDetailTBL1"></div>
+                                                                                    <div th:text="${detailDTO.productName}" class="form-control form-control-solid orderDetailTBL2"></div>
+                                                                                    <div th:text="${detailDTO.orderDetailCount}" class="form-control form-control-solid orderDetailTBL3"></div>
+                                                                                    <div th:text="|${#numbers.formatInteger(detailDTO.productPrice, 0, 'COMMA')}원|" class="form-control form-control-solid orderDetailTBL4"></div>
+                                                                                    <div th:text="|${#numbers.formatInteger(detailDTO.orderDetailCount * detailDTO.productPrice, 0, 'COMMA')}원|" class="form-control form-control-solid orderDetailTBL5"></div>
+                                                                                    <div th:text="${detailDTO.orderDetailCount * detailDTO.productPrice}" class="form-control form-control-solid orderDetailTBL5 detailPrice" style="display: none"></div>
                                                                                 </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid orderDetailTBL1">반려동물</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL2">고구마인형</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL3">3</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL4">2,000</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL5">6,000</div>
-                                                                                </div>
-                                                                                <div class="d-flex align-items-center position-relative my-1">
-                                                                                    <div class="form-control form-control-solid orderDetailTBL1">식품</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL2">감자</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL3">10</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL4">1,300</div>
-                                                                                    <div class="form-control form-control-solid orderDetailTBL5">13,000</div>
-                                                                                </div>
-
+                                                                                </th:block>
                                                                             </div>
                                                                             <div class="row">
                                                                             </div>
                                                                         </div>
-                                                                        <!--end::Table-->
                                                                     </div>
                                                                     <!--end::Card body-->
                                                                 </div>
                                                                 <!--end::Products-->
                                                             </div>
-                                                            <!--end::Content container-->
-
-
                                                         </div><!-- /관련 내용 입력 부분 -->
                                                     </div>
                                                 </div>
@@ -228,4 +211,14 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script>
+    let $price = $(".detailPrice");
+    let totalPrice = 0;
+
+    for(let i = 0; i < $price.length; i++){
+       totalPrice += Number($($price.get(i)).text());
+    }
+
+    $(".totalPrice").text(totalPrice.toLocaleString() +"원");
+</script>
 </html>
