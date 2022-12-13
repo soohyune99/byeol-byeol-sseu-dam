@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderDetailServiceImpl implements OrderDetailService {
 
-    private final OrderDetailRepository orderDetailRepository;
+//    private final OrderDetailRepository orderDetailRepository;
     private final MemberRepository memberRepository;
     private final ProductRepository productRepository;
 

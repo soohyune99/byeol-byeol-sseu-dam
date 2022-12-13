@@ -118,6 +118,28 @@ $(document).keydown(function(e){
 
 /* ================================== Market ==================================*/
 
+let $searchBar = $("input#__BVID__183"); // 검색창
+let keyword = $searchArea.val() || ""; //검색어
+let category;   // 카테고리
+let $url;
+/* 해당 컨트롤러로 보낼 url */
+function url() {
+    if (keyword == "" && category == undefined) {
+        // 검색 X , 상태 선택 X
+        $url = "/product/dynamic";
+    } else if (keyword == "") {
+        // 검색 X , 상태 선택 O
+        $url = "/product/dynamic" + "/" + "status" + "/" + category;
+    } else if (category == undefined) {
+        // 검색 O , 상태 선택 X
+        $url = "/product/dynamic" + "/" + keyword;
+    } else {
+        // 검색 O , 상태 선택 O
+        $url = "/product/dynamic" + "/" + keyword + "/" + category;
+    }
+}
+
+url();
 show();
 
 /* 최신순 전체 조회 */
