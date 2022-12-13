@@ -88,7 +88,15 @@ public class AdminProductController {
 
      @PostMapping("/order/modified")
      public RedirectView adminOrderModified(OrderDTO orderDTO){
+        log.info("-----------:  " + orderDTO);
         adminProductService.updateOrder(orderDTO, orderDTO.getOrderId());
+
+        return new RedirectView("/admin/product/order/1");
+     }
+
+     @PostMapping("/order/delete")
+     public RedirectView adminOrderDelete(@RequestParam List<String> checkedValue){
+        adminProductService.removeOrder(checkedValue);
 
         return new RedirectView("/admin/product/order/1");
      }
@@ -96,10 +104,32 @@ public class AdminProductController {
 
     /* 주문 관리 _ 주문 목록 + 주문 상세 내역 */
     @GetMapping("/order/detail")
-    public String adminOrderDetail(){ return "/app/admin/adminOrderDetail"; }
+    public String adminOrderDetail(@RequestParam(name = "orderId") Long orderId, Model model){
+
+        model.addAttribute("detail", adminProductService.showOrderDetail(orderId));
+
+        return "/app/admin/adminOrderDetail"; }
+
+
 
     /* 주문 관리 _ 리뷰 목록 */
-    @GetMapping("review")
-    public String adminReviewList(){ return "/app/admin/adminReviewList"; }
+    @GetMapping("/review/{page}")
+    public String adminReviewList(@PathVariable("page") Integer page, Model model){
+        page = Optional.ofNullable(page).orElse(1);
+
+        Pageable pageable = PageRequest.of(page-1,10, Sort.Direction.DESC, "reviewId");
+        model.addAttribute("reviews", adminProductService.showReviewList(pageable));
+
+        log.info(" 관리자 확인" +adminProductService.showReviewList(pageable) );
+        return "/app/admin/adminReviewList"; }
+
+
+    @PostMapping("/review/delete")
+    public RedirectView adminReviewDelete(@RequestParam List<String> checkedValue){
+        adminProductService.removeReview(checkedValue);
+
+        return new RedirectView("/admin/product/review/1");
+    }
+
 
 }

@@ -77,32 +77,32 @@
                                                                     <div class="card-title">
 
                                                                         <!--begin::Search-->
-                                                                        <div class="d-flex align-items-center position-relative my-1">
-                                                                            <!--begin::검색창 돋보기 Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                                                            <span class="svg-icon svg-icon-1 position-absolute ms-4">
-                                                                                <svg width="24" height="24"
-                                                                                     viewBox="0 0 24 24" fill="none"
-                                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                                    <rect opacity="0.5" x="17.0365"
-                                                                                          y="15.1223" width="8.15546"
-                                                                                          height="2" rx="1"
-                                                                                          transform="rotate(45 17.0365 15.1223)"
-                                                                                          fill="currentColor">
-                                                                                    </rect>
-                                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                                                                          fill="currentColor">
-                                                                                    </path>
-                                                                                </svg>
-                                                                            </span>
-                                                                            <!--end::Svg Icon-->
-                                                                            <form>
-                                                                                <input type="text" style="display:none">
-                                                                                <input type="text" name="enter" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
-                                                                                       data-kt-ecommerce-product-filter="search"
-                                                                                       class="form-control form-control-solid w-250px ps-14"
-                                                                                       placeholder="코스 검색">
-                                                                            </form>
-                                                                        </div>
+<!--                                                                        <div class="d-flex align-items-center position-relative my-1">-->
+<!--                                                                            &lt;!&ndash;begin::검색창 돋보기 Svg Icon | path: icons/duotune/general/gen021.svg&ndash;&gt;-->
+<!--                                                                            <span class="svg-icon svg-icon-1 position-absolute ms-4">-->
+<!--                                                                                <svg width="24" height="24"-->
+<!--                                                                                     viewBox="0 0 24 24" fill="none"-->
+<!--                                                                                     xmlns="http://www.w3.org/2000/svg">-->
+<!--                                                                                    <rect opacity="0.5" x="17.0365"-->
+<!--                                                                                          y="15.1223" width="8.15546"-->
+<!--                                                                                          height="2" rx="1"-->
+<!--                                                                                          transform="rotate(45 17.0365 15.1223)"-->
+<!--                                                                                          fill="currentColor">-->
+<!--                                                                                    </rect>-->
+<!--                                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"-->
+<!--                                                                                          fill="currentColor">-->
+<!--                                                                                    </path>-->
+<!--                                                                                </svg>-->
+<!--                                                                            </span>-->
+<!--                                                                            &lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--                                                                            <form>-->
+<!--                                                                                <input type="text" style="display:none">-->
+<!--                                                                                <input type="text" name="enter" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"-->
+<!--                                                                                       data-kt-ecommerce-product-filter="search"-->
+<!--                                                                                       class="form-control form-control-solid w-250px ps-14"-->
+<!--                                                                                       placeholder="코스 검색">-->
+<!--                                                                            </form>-->
+<!--                                                                        </div>-->
                                                                         <!--end::Search-->
 
                                                                     </div>
@@ -113,7 +113,7 @@
                                                                         <div class="w-100 mw-150px">
                                                                         </div>
                                                                         <!--begin::Add product-->
-                                                                        <a href="http://localhost:10001/admin/adminjubjubcourseadd"
+                                                                        <a href="http://localhost:10001/admin/jubgging/course/add"
                                                                            class="btn btn-primary">코스 추가</a>
                                                                         <!--end::Add product-->
                                                                         <a href="javascript:void(0)"
@@ -215,70 +215,61 @@
 
                                                                                 <!--begin::Table body-->
                                                                                 <tbody class="fw-semibold text-gray-600">
-
+                                                                                <form th:action="@{/admin/jubgging/course/delete}" name="courseDeleteForm" method="post">
+                                                                                <th:block th:each="course:${courses}">
                                                                                 <!-- 코스 -->
-                                                                                <tr class="odd productList1">
+                                                                                <tr th:object="${course}" class="odd productList1">
                                                                                     <!--begin::Checkbox-->
                                                                                     <td>
                                                                                         <div
                                                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                                             <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
+                                                                                                   type="checkbox" name="checkedValue" th:value="*{courseId}">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::Checkbox-->
 
                                                                                     <!--begin::코스번호=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
+                                                                                        <span class="fw-bold" th:text="*{courseId}"></span>
                                                                                     </td>
                                                                                     <!--end::코스번호=-->
 
                                                                                     <!--begin::코스이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
+                                                                                        <span class="fw-bold" th:text="*{courseName}"></span>
                                                                                     </td>
-                                                                                    <!--end::코스이름=-->
-
                                                                                     <!--begin::코스지역=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
+                                                                                        <span class="fw-bold" th:text="*{courseArea}"></span>
                                                                                     </td>
                                                                                     <!--end::코스지역=-->
 
                                                                                     <!--begin::코스거리=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
+                                                                                        <span class="fw-bold" th:text="*{courseDistance}"></span>
                                                                                     </td>
                                                                                     <!--end::코스거리=-->
 
                                                                                     <!--begin::소요시간=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
+                                                                                        <span class="fw-bold" th:text="*{courseTime}"></span>
                                                                                     </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
+                                                                                        <span class="fw-bold" th:text="*{courseGrade}"></span>
                                                                                     </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
+                                                                                        <span class="fw-bold" th:text="*{courseStart}"></span>
                                                                                     </td>
                                                                                     <!--end::출발지=-->
 
                                                                                     <!--begin::도착지=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
+                                                                                        <span class="fw-bold" th:text="*{courseFinish}"></span>
                                                                                     </td>
-                                                                                    <!--end::도착지=-->
-
                                                                                     <!--begin::코스사진=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
+                                                                                        <span class="fw-bold" th:text="*{courseFileName}"></span>
                                                                                     </td>
                                                                                     <!--end::코스사진=-->
 
@@ -287,711 +278,14 @@
                                                                                         data-order="Inactive">
                                                                                         <!--begin::수정-->
                                                                                         <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/adminjubjubcoursemodify">수정</a>
+                                                                                            <a th:href="@{/admin/jubgging/course/modify(courseId=${course.courseId})}">수정</a>
                                                                                         </div>
                                                                                         <!--end::수정-->
                                                                                     </td>
                                                                                 </tr>
-
-                                                                                <!-- 코스 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::코스번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::코스번호=-->
-
-                                                                                    <!--begin::코스이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
-                                                                                    </td>
-                                                                                    <!--end::코스이름=-->
-
-                                                                                    <!--begin::코스지역=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
-                                                                                    </td>
-                                                                                    <!--end::코스지역=-->
-
-                                                                                    <!--begin::코스거리=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
-                                                                                    </td>
-                                                                                    <!--end::코스거리=-->
-
-                                                                                    <!--begin::소요시간=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
-                                                                                    </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
-                                                                                    </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
-                                                                                    </td>
-                                                                                    <!--end::출발지=-->
-
-                                                                                    <!--begin::도착지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
-                                                                                    </td>
-                                                                                    <!--end::도착지=-->
-
-                                                                                    <!--begin::코스사진=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::코스사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 코스 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::코스번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::코스번호=-->
-
-                                                                                    <!--begin::코스이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
-                                                                                    </td>
-                                                                                    <!--end::코스이름=-->
-
-                                                                                    <!--begin::코스지역=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
-                                                                                    </td>
-                                                                                    <!--end::코스지역=-->
-
-                                                                                    <!--begin::코스거리=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
-                                                                                    </td>
-                                                                                    <!--end::코스거리=-->
-
-                                                                                    <!--begin::소요시간=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
-                                                                                    </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
-                                                                                    </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
-                                                                                    </td>
-                                                                                    <!--end::출발지=-->
-
-                                                                                    <!--begin::도착지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
-                                                                                    </td>
-                                                                                    <!--end::도착지=-->
-
-                                                                                    <!--begin::코스사진=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::코스사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 코스 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::코스번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::코스번호=-->
-
-                                                                                    <!--begin::코스이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
-                                                                                    </td>
-                                                                                    <!--end::코스이름=-->
-
-                                                                                    <!--begin::코스지역=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
-                                                                                    </td>
-                                                                                    <!--end::코스지역=-->
-
-                                                                                    <!--begin::코스거리=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
-                                                                                    </td>
-                                                                                    <!--end::코스거리=-->
-
-                                                                                    <!--begin::소요시간=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
-                                                                                    </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
-                                                                                    </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
-                                                                                    </td>
-                                                                                    <!--end::출발지=-->
-
-                                                                                    <!--begin::도착지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
-                                                                                    </td>
-                                                                                    <!--end::도착지=-->
-
-                                                                                    <!--begin::코스사진=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::코스사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 코스 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::코스번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::코스번호=-->
-
-                                                                                    <!--begin::코스이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
-                                                                                    </td>
-                                                                                    <!--end::코스이름=-->
-
-                                                                                    <!--begin::코스지역=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
-                                                                                    </td>
-                                                                                    <!--end::코스지역=-->
-
-                                                                                    <!--begin::코스거리=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
-                                                                                    </td>
-                                                                                    <!--end::코스거리=-->
-
-                                                                                    <!--begin::소요시간=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
-                                                                                    </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
-                                                                                    </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
-                                                                                    </td>
-                                                                                    <!--end::출발지=-->
-
-                                                                                    <!--begin::도착지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
-                                                                                    </td>
-                                                                                    <!--end::도착지=-->
-
-                                                                                    <!--begin::코스사진=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::코스사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 코스 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::코스번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::코스번호=-->
-
-                                                                                    <!--begin::코스이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
-                                                                                    </td>
-                                                                                    <!--end::코스이름=-->
-
-                                                                                    <!--begin::코스지역=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
-                                                                                    </td>
-                                                                                    <!--end::코스지역=-->
-
-                                                                                    <!--begin::코스거리=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
-                                                                                    </td>
-                                                                                    <!--end::코스거리=-->
-
-                                                                                    <!--begin::소요시간=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
-                                                                                    </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
-                                                                                    </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
-                                                                                    </td>
-                                                                                    <!--end::출발지=-->
-
-                                                                                    <!--begin::도착지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
-                                                                                    </td>
-                                                                                    <!--end::도착지=-->
-
-                                                                                    <!--begin::코스사진=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::코스사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 코스 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::코스번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::코스번호=-->
-
-                                                                                    <!--begin::코스이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
-                                                                                    </td>
-                                                                                    <!--end::코스이름=-->
-
-                                                                                    <!--begin::코스지역=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
-                                                                                    </td>
-                                                                                    <!--end::코스지역=-->
-
-                                                                                    <!--begin::코스거리=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
-                                                                                    </td>
-                                                                                    <!--end::코스거리=-->
-
-                                                                                    <!--begin::소요시간=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
-                                                                                    </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
-                                                                                    </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
-                                                                                    </td>
-                                                                                    <!--end::출발지=-->
-
-                                                                                    <!--begin::도착지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
-                                                                                    </td>
-                                                                                    <!--end::도착지=-->
-
-                                                                                    <!--begin::코스사진=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::코스사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 코스 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::코스번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::코스번호=-->
-
-                                                                                    <!--begin::코스이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
-                                                                                    </td>
-                                                                                    <!--end::코스이름=-->
-
-                                                                                    <!--begin::코스지역=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
-                                                                                    </td>
-                                                                                    <!--end::코스지역=-->
-
-                                                                                    <!--begin::코스거리=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
-                                                                                    </td>
-                                                                                    <!--end::코스거리=-->
-
-                                                                                    <!--begin::소요시간=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
-                                                                                    </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
-                                                                                    </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
-                                                                                    </td>
-                                                                                    <!--end::출발지=-->
-
-                                                                                    <!--begin::도착지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
-                                                                                    </td>
-                                                                                    <!--end::도착지=-->
-
-                                                                                    <!--begin::코스사진=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::코스사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 코스 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::코스번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::코스번호=-->
-
-                                                                                    <!--begin::코스이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
-                                                                                    </td>
-                                                                                    <!--end::코스이름=-->
-
-                                                                                    <!--begin::코스지역=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
-                                                                                    </td>
-                                                                                    <!--end::코스지역=-->
-
-                                                                                    <!--begin::코스거리=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
-                                                                                    </td>
-                                                                                    <!--end::코스거리=-->
-
-                                                                                    <!--begin::소요시간=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
-                                                                                    </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
-                                                                                    </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
-                                                                                    </td>
-                                                                                    <!--end::출발지=-->
-
-                                                                                    <!--begin::도착지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
-                                                                                    </td>
-                                                                                    <!--end::도착지=-->
-
-                                                                                    <!--begin::코스사진=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::코스사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 코스 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::코스번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::코스번호=-->
-
-                                                                                    <!--begin::코스이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
-                                                                                    </td>
-                                                                                    <!--end::코스이름=-->
-
-                                                                                    <!--begin::코스지역=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">수원 만석공원</span>
-                                                                                    </td>
-                                                                                    <!--end::코스지역=-->
-
-                                                                                    <!--begin::코스거리=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">1.2km</span>
-                                                                                    </td>
-                                                                                    <!--end::코스거리=-->
-
-                                                                                    <!--begin::소요시간=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">30분</span>
-                                                                                    </td>
-                                                                                    <!--end::소요시간=-->
-
-                                                                                    <!--begin::난이도=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">초급</span>
-                                                                                    </td>
-                                                                                    <!--end::난이도=-->
-
-                                                                                    <!--begin::출발지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">KT위즈파크</span>
-                                                                                    </td>
-                                                                                    <!--end::출발지=-->
-
-                                                                                    <!--begin::도착지=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">만석공원 영화정</span>
-                                                                                    </td>
-                                                                                    <!--end::도착지=-->
-
-                                                                                    <!--begin::코스사진=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::코스사진=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-
-
-
+                                                                                </th:block>
+                                                                                </form>
                                                                                 </tbody>
-                                                                                <!--end::Table body-->
-
                                                                             </table>
                                                                         </div>
 
@@ -1015,64 +309,6 @@
 
 
                                                                             <!-- 우측 하단 페이징 처리 -->
-                                                                            <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
-                                                                                <div class="dataTables_paginate paging_simple_numbers"
-                                                                                     id="kt_ecommerce_products_table_paginate">
-                                                                                    <ul class="pagination">
-                                                                                        <li class="paginate_button page-item previous disabled"
-                                                                                            id="kt_ecommerce_products_table_previous">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="0"
-                                                                                               tabindex="0"
-                                                                                               class="page-link"><</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item active">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="1"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">1</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="2"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">2</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="3"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">3</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="4"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">4</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="5"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">5</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item next"
-                                                                                            id="kt_ecommerce_products_table_next">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="6"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">></a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div><!-- / 우측 하단 페이징 처리 -->
                                                                         </div>
                                                                     </div>
                                                                     <!--end::Table-->
@@ -1121,6 +357,8 @@
             alert("삭제할 코스를 선택하세요.");
             return;
         }
+
+        $("form[name='courseDeleteForm']").submit();
     });
 
 </script>

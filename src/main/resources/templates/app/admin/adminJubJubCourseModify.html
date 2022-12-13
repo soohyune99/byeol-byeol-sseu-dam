@@ -104,8 +104,8 @@
                                                                         <div class="table-responsive">
                                                                         </div>
 
-                                                                        <form th:action="@{adminjubjubcourse}"
-                                                                              name="modifyJubJubCourseForm">
+                                                                        <form th:action="@{/admin/jubgging/course/modified}"
+                                                                              name="modifyJubJubCourseForm" method="post">
                                                                             <div id="0special">
                                                                                 <img src="/images/admin/0special.png"
                                                                                      style="float: left; width: 11%;margin-left: 90px;">
@@ -124,8 +124,8 @@
                                                                                     </div>
                                                                                 </div>
 
-                                                                                <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-
+                                                                                <div th:object="${course}" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                                    <input type="hidden" th:value="*{courseId}" name="courseId">
 
                                                                                     <div class="d-flex align-items-center position-relative my-1">
                                                                                         <input type="text"
@@ -133,13 +133,13 @@
                                                                                                data-kt-ecommerce-product-filter="search"
                                                                                                class="form-control form-control-solid w-250px ps-14"
                                                                                                placeholder="코스명"
-                                                                                               style="width: 50%;">
+                                                                                               style="width: 50%;" th:value="*{courseName}">
                                                                                         <input type="text"
                                                                                                name="courseArea"
                                                                                                data-kt-ecommerce-product-filter="search"
                                                                                                class="form-control form-control-solid w-250px ps-14"
                                                                                                placeholder="코스 지역"
-                                                                                               style="width: 50%;margin-left: 9px;">
+                                                                                               style="width: 50%;margin-left: 9px;" th:value="*{courseArea}">
                                                                                     </div>
                                                                                     <div class="d-flex align-items-center position-relative my-1">
                                                                                         <input type="text"
@@ -147,27 +147,27 @@
                                                                                                data-kt-ecommerce-product-filter="search"
                                                                                                class="form-control form-control-solid w-250px ps-14"
                                                                                                placeholder="코스 거리 (km)"
-                                                                                               style="width: 33.3%;">
+                                                                                               style="width: 33.3%;" th:value="*{courseDistance}">
                                                                                         <input type="text"
                                                                                                name="courseTime"
                                                                                                data-kt-ecommerce-product-filter="search"
                                                                                                class="form-control form-control-solid w-250px ps-14"
                                                                                                placeholder="코스 소요시간"
-                                                                                               style="width: 33.3%; margin: 0 10px 10px 10px;">
+                                                                                               style="width: 33.3%; margin: 0 10px 10px 10px;" th:value="*{courseTime}">
                                                                                         <select class="form-control form-control-solid courseRank"
                                                                                                 style="width: 33.3%;"
-                                                                                                id="courseRank">
-                                                                                            <option value="grade"
-                                                                                                    disabled selected
-                                                                                                    hidden>난이도
+                                                                                                id="courseRank" name="courseGrade">
+<!--                                                                                            <option value="grade"-->
+<!--                                                                                                    disabled selected-->
+<!--                                                                                                    hidden>난이도-->
+<!--                                                                                            </option>-->
+                                                                                            <option value="초급" th:selected="${#strings.equals(course.courseGrade , '초급')}">초급
                                                                                             </option>
-                                                                                            <option value="초급">초급
+                                                                                            <option value="중급" th:selected="${#strings.equals(course.courseGrade, '중급')}">중급
                                                                                             </option>
-                                                                                            <option value="중급">중급
+                                                                                            <option value="고급" th:selected="${#strings.equals(course.courseGrade, '고급')}">고급
                                                                                             </option>
-                                                                                            <option value="고급">고급
-                                                                                            </option>
-                                                                                            <option value="Special">
+                                                                                            <option value="스페셜" th:selected="${#strings.equals(course.courseGrade, '스페셜')}">
                                                                                                 Special
                                                                                             </option>
                                                                                         </select>
@@ -179,29 +179,29 @@
                                                                                         </div>
                                                                                         <input type="datetime-local"
                                                                                                class="form-control form-control-solid"
-                                                                                               name="courseOpeningDate"
+                                                                                               name="openingDate"
                                                                                                style="width: 40%;margin: 0 9px 9px 9px;"
-                                                                                               value="2022-07-22T12:00">
+                                                                                               th:value="*{openingDate}">
                                                                                         <div class="form-control form-control-solid"
                                                                                              style="width: 10%;">마감일
                                                                                         </div>
                                                                                         <input type="datetime-local"
                                                                                                class="form-control form-control-solid"
-                                                                                               name="courseClosingDate"
+                                                                                               name="closingDate"
                                                                                                style="width: 40%;margin: 0 0 9px 9px;"
-                                                                                               value="2022-07-22T12:00">
+                                                                                               th:value="*{closingDate}">
                                                                                     </div>
                                                                                     <div class="d-flex align-items-center position-relative my-1">
                                                                                         <input type="text"
                                                                                                class="form-control form-control-solid w-250px ps-14"
                                                                                                placeholder="출발지"
                                                                                                name="courseStart"
-                                                                                               style="width: 50%;">
+                                                                                               style="width: 50%;" th:value="*{courseStart}">
                                                                                         <input type="text"
                                                                                                class="form-control form-control-solid w-250px ps-14"
                                                                                                placeholder="도착지"
                                                                                                name="courseFinish"
-                                                                                               style="width: 50%;margin-left: 9px;">
+                                                                                               style="width: 50%;margin-left: 9px;" th:value="*{courseFinish}">
                                                                                     </div>
                                                                                     <div class="d-flex align-items-center position-relative my-1"
                                                                                          style="background-color: #f5f8fa;
@@ -222,13 +222,17 @@
                                                                                                    name="courseFile"
                                                                                                    accept="image/jpeg, image/jpg, image/png, image/gif, image/svg+xml"
                                                                                                    style="display:none;margin: 0 auto;">
-                                                                                            <img src="/images/admin/001.png"
+                                                                                            <img th:src="|*{courseFilePath}/*{courseFileUuid}_*{courseFileName}|"
                                                                                                  id="thumbnail"
                                                                                                  style="width: 100%; height: 100%;">
                                                                                         </label>
+                                                                                        <div id="courseImgInfo">
+                                                                                            <input name="courseFileName" type="hidden" th:value="*{courseFileName}">
+                                                                                            <input name="courseFilePath" type="hidden" th:value="*{courseFilePath}">
+                                                                                            <input name="courseFileUuid" type="hidden" th:value="*{courseFileUuid}">
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-
 
                                                                                 <div class="row">
                                                                                 </div>
@@ -272,7 +276,7 @@
         $('.courseRank').change(function () {
             var check = $('.courseRank option:selected').val();
 
-            if (check == "Special") {
+            if (check == "스페셜") {
                 $('.specialDiv').css("display", "flex");
                 $('#0special').css("display", "block");
             } else {
@@ -360,9 +364,44 @@
                 return;
             }
         }
-        modifyJubJubCourseForm.submit();
+        $("form[name='modifyJubJubCourseForm']").submit();
     }
+    let arrayFile = [];
+    let $inputProfile = $("#icon_img1");
+    $inputProfile.on("change",function () {
+        let formData = new FormData();
 
+        let files = $inputProfile[0].files;
 
+        Array.from(files).forEach(file => arrayFile.push(file));
+        const dataTransfer = new DataTransfer();
+        arrayFile.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $(files).each(function(i, file){
+            formData.append("upload", file);
+        });
+
+        $.ajax({
+            url: "/course/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: insertProfile
+        });
+    });
+
+    function insertProfile(files) {
+        let text = "";
+
+        $(files).each(function (i, file) {
+            text += `<input name="courseFileName" type="hidden" value="`+ file.courseFileName +`">`;
+            text += `<input name="courseFilePath" type="hidden" value="`+ file.courseFilePath +`">`;
+            text += `<input name="courseFileUuid" type="hidden" value="`+ file.courseFileUuid +`">`;
+        });
+        $("#courseImgInfo").html(text);
+
+    }
 </script>
 </html>

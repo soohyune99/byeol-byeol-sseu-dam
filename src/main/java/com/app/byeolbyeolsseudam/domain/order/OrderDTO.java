@@ -6,6 +6,7 @@ import com.app.byeolbyeolsseudam.type.OrderStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,7 @@ public class OrderDTO {
     private String memberEmail;
     private String memberPhone;
     private int memberPoint;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createdDate;
 
     private List<OrderDetailDTO> orderDetails;
