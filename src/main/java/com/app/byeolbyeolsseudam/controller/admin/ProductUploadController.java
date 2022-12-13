@@ -23,69 +23,69 @@ import java.util.UUID;
 @Slf4j
 public class ProductUploadController {
 
-    @PostMapping("profile/upload")
-    public List<ProductDTO> uploadProfile(List<MultipartFile> upload) throws IOException {
-        String rootPath = "C:/upload/product";
-        String uploadFileName = null;
-        List<ProductDTO> files = new ArrayList<>();
+//    @PostMapping("profile/upload")
+//    public List<ProductDTO> uploadProfile(List<MultipartFile> upload) throws IOException {
+//        String rootPath = "C:/upload/product";
+//        String uploadFileName = null;
+//        List<ProductDTO> files = new ArrayList<>();
+//
+//        File uploadPath = new File(rootPath, createDirectoryByNow());
+//        if(!uploadPath.exists()){
+//            uploadPath.mkdirs();
+//        }
+//
+//        for (MultipartFile multipartFile : upload){
+//            ProductDTO productDTO = new ProductDTO();
+//            UUID uuid = UUID.randomUUID();
+//            String fileName = multipartFile.getOriginalFilename();
+//            uploadFileName = uuid.toString() + "_" + fileName;
+//            productDTO.setProductFileProfileName(fileName);
+//            productDTO.setProductFileProfileUuid(uuid.toString());
+//            productDTO.setProductFileProfilePath("/upload/product/" + createDirectoryByNow());
+//
+//            File saveFile =new File(uploadPath, uploadFileName);
+//            multipartFile.transferTo(saveFile);
+//
+//            files.add(productDTO);
+//
+//        }
+//        return files;
+//    }
 
-        File uploadPath = new File(rootPath, createDirectoryByNow());
-        if(!uploadPath.exists()){
-            uploadPath.mkdirs();
-        }
-
-        for (MultipartFile multipartFile : upload){
-            ProductDTO productDTO = new ProductDTO();
-            UUID uuid = UUID.randomUUID();
-            String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            productDTO.setProductFileProfileName(fileName);
-            productDTO.setProductFileProfileUuid(uuid.toString());
-            productDTO.setProductFileProfilePath("/upload/product/" + createDirectoryByNow());
-
-            File saveFile =new File(uploadPath, uploadFileName);
-            multipartFile.transferTo(saveFile);
-
-            files.add(productDTO);
-
-        }
-        return files;
-    }
-
-    @PostMapping("detail/upload")
-    public List<ProductDTO> uploadDetail(List<MultipartFile> upload) throws IOException {
-        String rootPath = "C:/upload/product";
-        String uploadFileName = null;
-        List<ProductDTO> files = new ArrayList<>();
-
-        File uploadPath = new File(rootPath, createDirectoryByNow());
-        if(!uploadPath.exists()){
-            uploadPath.mkdirs();
-        }
-
-        for (MultipartFile multipartFile : upload){
-            ProductDTO productDTO = new ProductDTO();
-            UUID uuid = UUID.randomUUID();
-            String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            productDTO.setProductFileDetailName(fileName);
-            productDTO.setProductFileDetailUuid(uuid.toString());
-            productDTO.setProductFileDetailPath("/upload/product/" + createDirectoryByNow());
-
-            File saveFile =new File(uploadPath, uploadFileName);
-            multipartFile.transferTo(saveFile);
-
-            files.add(productDTO);
-
-        }
-        return files;
-    }
+//    @PostMapping("detail/upload")
+//    public List<ProductDTO> uploadDetail(List<MultipartFile> upload) throws IOException {
+//        String rootPath = "C:/upload/product";
+//        String uploadFileName = null;
+//        List<ProductDTO> files = new ArrayList<>();
+//
+//        File uploadPath = new File(rootPath, createDirectoryByNow());
+//        if(!uploadPath.exists()){
+//            uploadPath.mkdirs();
+//        }
+//
+//        for (MultipartFile multipartFile : upload){
+//            ProductDTO productDTO = new ProductDTO();
+//            UUID uuid = UUID.randomUUID();
+//            String fileName = multipartFile.getOriginalFilename();
+//            uploadFileName = uuid.toString() + "_" + fileName;
+//            productDTO.setProductFileDetailName(fileName);
+//            productDTO.setProductFileDetailUuid(uuid.toString());
+//            productDTO.setProductFileDetailPath("/upload/product/" + createDirectoryByNow());
+//
+//            File saveFile =new File(uploadPath, uploadFileName);
+//            multipartFile.transferTo(saveFile);
+//
+//            files.add(productDTO);
+//
+//        }
+//        return files;
+//    }
 
 
-    public String createDirectoryByNow(){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-        Date now = new Date();
-        return format.format(now);
-    }
+//    public String createDirectoryByNow(){
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+//        Date now = new Date();
+//        return format.format(now);
+//    }
 
 }

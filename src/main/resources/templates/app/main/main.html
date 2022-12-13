@@ -66,22 +66,14 @@
 
 <body>
 <div id="wrap">
-    <header th:replace="/app/fix/headerLogin.html :: header"></header>
-
+    <th:block th:if="${session.member == null}">
+    <header th:replace="/app/fix/header.html :: header"></header>
+    </th:block>
+    <th:block th:if="${session.member != null}">
+        <header th:replace="/app/fix/headerLogin.html :: header"></header>
+    </th:block>
     <div id="app-body">
-        <!--배너 정보확인용 더미 코드. 추후에 bannerPath만 받아서 img태그 src에 전달 예정-->
-        <!--        <table>-->
-        <!--            <tbody>-->
-        <!--                <th:block th:each="banner:${banners}">-->
-        <!--                    <tr class="tBody" th:object="${banner}">-->
-        <!--                        <td th:text="*{bannerId}"></td>-->
-        <!--                        <td th:text="*{bannerName}"></td>-->
-        <!--                        <td th:text="*{bannerUuid}"></td>-->
-        <!--                        <td th:text="*{bannerPath}"></td>-->
-        <!--                    </tr>-->
-        <!--                </th:block>-->
-        <!--            </tbody>-->
-        <!--        </table>-->
+
         <div class="home" data-v-1346aca8="">
 
             <div class="observer-container" data-v-e0e63576="" data-v-1346aca8="">
@@ -822,11 +814,12 @@
                                                             <div data-v-2caa2ac0="" class="thumb"
                                                                  data-src="https://dmmj3ljielax6.cloudfront.net/upload/profile/d9a169e3-ff36-4af1-9d64-624638410c3b.jpg"
                                                                  lazy="loaded"
-                                                                 style="background-image: url(https://dmmj3ljielax6.cloudfront.net/upload/profile/d9a169e3-ff36-4af1-9d64-624638410c3b.jpg)"></div>
+                                                                 th:style="'background-image: url('+ ${top.memberProfileName} +');'"></div>
                                                             <div data-v-2caa2ac0="" class="review view-count">
                                                                 <span th:text="*{boardView}" style="color: #c5c5c5"
                                                                       data-v-2caa2ac0="" class="rate"></span>
                                                             </div>
+<!--                                                            <span class="image" th:style="'background-image:url(' + ${link. thumbnail} + ');'"></span>-->
                                                         </section>
                                                         <p th:text="*{memberName}" data-v-2caa2ac0="" class="name">
                                                             작성자</p>
@@ -882,11 +875,20 @@
                                                 </div>
                                             </div>
                                             <div data-v-287a2a80="" class="curation-topic-image">
-                                                <img data-v-287a2a80="" alt="519D8549-5386-45C2-8D53-FF4D19328570.jpg"
-                                                     class="topic-thumbnail-image"
-                                                     data-src="https://static.cdn.soomgo.com/upload/media/2b808418-abc6-4229-8df3-1531cae1c581.jpg"
-                                                     src="https://static.cdn.soomgo.com/upload/media/2b808418-abc6-4229-8df3-1531cae1c581.jpg"
-                                                     azy="loaded">
+<!--                                                <th:block th:if="${board.files.size != 0}">-->
+<!--                                                <img data-v-287a2a80="" alt="게시판 파일"-->
+<!--                                                     class="topic-thumbnail-image"-->
+<!--                                                     data-src="https://static.cdn.soomgo.com/upload/media/2b808418-abc6-4229-8df3-1531cae1c581.jpg"-->
+<!--                                                     th:src="@{${board.files.get(0).fileBoardName}}"-->
+<!--                                                     azy="loaded">-->
+<!--                                                </th:block>-->
+<!--                                                <th:block th:if="${board.files.size == 0}">-->
+<!--                                                    <img data-v-287a2a80="" alt="게시판 파일"-->
+<!--                                                         class="topic-thumbnail-image"-->
+<!--                                                         data-src="https://static.cdn.soomgo.com/upload/media/2b808418-abc6-4229-8df3-1531cae1c581.jpg"-->
+<!--                                                         src="null"-->
+<!--                                                         azy="loaded">-->
+<!--                                                </th:block>-->
                                             </div>
                                         </a>
                                     </th:block>
@@ -918,127 +920,28 @@
                         <div data-v-3d1a4f76="" class="slick-list">
                             <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-nine slick-track"
                                  style="width: 2632px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
-                                <div data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false"
+                                <th:block th:each="course:${courses}">
+                                <div th:object="${course}" data-v-e4caeaf8="" tabindex="-1" data-index="0" aria-hidden="false"
                                      class="slick-slide slick-active slick-current"
                                      style="outline: none; width: 329px;">
                                     <div data-v-e4caeaf8="">
                                         <ul class="location-list" data-v-06148408="">
                                             <li class="location-item" data-v-06148408="">
-                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408="" class="">1코스</a>
+                                                <a th:href="@{|/jubgging/${courseStat.count}|}" data-v-06148408="" class="" th:text="*{courseName}"></a>
                                             </li>
                                         </ul>
                                         <a data-v-0a3d71e7="" data-v-e4caeaf8=""
-                                           href="https://blog.naver.com/brave_mobile_mkt/222928179063" target="_blank"
+                                           th:href="@{|/jubgging/${courseStat.count}|}"
                                            tabindex="-1" style="width: 100%; display: inline-block;">
                                             <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"
                                                  lazy="loaded">
-                                                <img src="/images/jubgging/subjub1.png" alt=""
+                                                <img th:src="|*{courseFilePath}/*{courseFileUuid}_*{courseFileName}|" alt=""
                                                      style="width: 99%; height: 100%;">
                                             </div>
-                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고수인터뷰] 목소리처럼 표현하는 악기, 트럼펫의 매력을 알려드려요</p>-->
                                         </a>
                                     </div>
                                 </div>
-                                <div data-v-e4caeaf8="" tabindex="-1" data-index="1" aria-hidden="false"
-                                     class="slick-slide slick-active" style="outline: none; width: 329px;">
-                                    <div data-v-e4caeaf8="">
-                                        <ul class="location-list" data-v-06148408="">
-                                            <li class="location-item" data-v-06148408="">
-                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408="" class="">2코스</a>
-                                            </li>
-                                        </ul>
-                                        <a data-v-0a3d71e7="" data-v-e4caeaf8=""
-                                           href="https://blog.naver.com/brave_mobile_mkt/222360372143" target="_blank"
-                                           tabindex="-1" style="width: 100%; display: inline-block;">
-                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"
-                                                 lazy="loaded">
-                                                <img src="/images/jubgging/subjub2.png" alt=""
-                                                     style="width: 99%; height: 100%;">
-                                            </div>
-                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고객 인터뷰] 그림으로 다시 찾은 인생의 즐거움</p>-->
-                                        </a>
-                                    </div>
-                                </div>
-                                <div data-v-e4caeaf8="" tabindex="-1" data-index="2" aria-hidden="false"
-                                     class="slick-slide slick-active" style="outline: none; width: 329px;">
-                                    <div data-v-e4caeaf8="">
-                                        <ul class="location-list" data-v-06148408="">
-                                            <li class="location-item" data-v-06148408="">
-                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408="" class="">3코스</a>
-                                            </li>
-                                        </ul>
-                                        <a data-v-0a3d71e7="" data-v-e4caeaf8=""
-                                           href="https://blog.naver.com/brave_mobile_mkt/2226637349000" target="_blank"
-                                           tabindex="-1" style="width: 100%; display: inline-block;">
-                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"
-                                                 lazy="loaded">
-                                                <img src="/images/jubgging/subjub3.png" alt=""
-                                                     style="width: 99%; height: 100%;">
-                                            </div>
-                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고수 인터뷰] 방송에 나온 훈련법이 정답은 아니에요</p>-->
-                                        </a>
-                                    </div>
-                                </div>
-                                <div data-v-e4caeaf8="" tabindex="-1" data-index="3" aria-hidden="true"
-                                     class="slick-slide" style="outline: none; width: 329px;">
-                                    <div data-v-e4caeaf8="">
-                                        <ul class="location-list" data-v-06148408="">
-                                            <li class="location-item" data-v-06148408="">
-                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408="" class="">4코스</a>
-                                            </li>
-                                        </ul>
-                                        <a data-v-0a3d71e7="" data-v-e4caeaf8=""
-                                           href="https://blog.naver.com/brave_mobile_mkt/222484821507" target="_blank"
-                                           tabindex="-1" style="width: 100%; display: inline-block;">
-                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"
-                                                 lazy="loaded">
-                                                <img src="/images/jubgging/subjub4.png" alt=""
-                                                     style="width: 99%; height: 100%;">
-                                            </div>
-                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고객 인터뷰] 영어 초보 부장님의 회화 도전기</p>-->
-                                        </a>
-                                    </div>
-                                </div>
-                                <div data-v-e4caeaf8="" tabindex="-1" data-index="4" aria-hidden="true"
-                                     class="slick-slide" style="outline: none; width: 329px;">
-                                    <div data-v-e4caeaf8="">
-                                        <ul class="location-list" data-v-06148408="">
-                                            <li class="location-item" data-v-06148408="">
-                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408="" class="">5코스</a>
-                                            </li>
-                                        </ul>
-                                        <a data-v-0a3d71e7="" data-v-e4caeaf8=""
-                                           href="https://blog.naver.com/brave_mobile_mkt/222324635200" target="_blank"
-                                           tabindex="-1" style="width: 100%; display: inline-block;">
-                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"
-                                                 lazy="loaded">
-                                                <img src="/images/jubgging/subjub5.png" alt=""
-                                                     style="width: 99%; height: 100%;">
-                                            </div>
-                                            <!--                                <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고수 인터뷰] 꾹꾹 눌러왔던 감정을 멜로디에 담아</p>-->
-                                        </a>
-                                    </div>
-                                </div>
-                                <div data-v-e4caeaf8="" tabindex="-1" data-index="5" aria-hidden="true"
-                                     class="slick-slide" style="outline: none; width: 329px;">
-                                    <div data-v-e4caeaf8="">
-                                        <ul class="location-list" data-v-06148408="">
-                                            <li class="location-item" data-v-06148408="">
-                                                <a href="/a.%EC%84%9C%EC%9A%B8" data-v-06148408="" class="">이벤트</a>
-                                            </li>
-                                        </ul>
-                                        <a data-v-0a3d71e7="" data-v-e4caeaf8=""
-                                           href="https://blog.naver.com/brave_mobile_mkt/222632038351" target="_blank"
-                                           tabindex="-1" style="width: 100%; display: inline-block;">
-                                            <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"
-                                                 lazy="loaded">
-                                                <img src="/images/jubgging/subjub6.png" alt=""
-                                                     style="width: 99%; height: 100%;">
-                                            </div>
-                                            <!--                                    <p data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-name">[고수 인터뷰] 도배사 집안 출신의 진짜 고수 이야기</p>-->
-                                        </a>
-                                    </div>
-                                </div>
+                                </th:block>
                             </div>
                         </div>
                         <button data-v-21137603="" data-v-3d1a4f76="" type="button" data-role="none"
@@ -1124,11 +1027,21 @@
             <div class="main-modal-wrapper" data-v-1346aca8=""></div>
         </div>
     </div>
-    <footer th:replace="/app/fix/footer.html :: footer"></footer>
+
+        <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </div>
+    <th:block th:if="${session.member != null}">
+        <input type="hidden" th:value="${session.member.memberId}" name="memberId">
+        <input type="hidden" th:value="${session.member.memberCategory}" name="memberCategory">
+    </th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='memberId']").val();
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
 <script src="/js/main/main.js"></script>
 <script src="/js/fix/header.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
+<script src="/js/fix/footer.js"></script>
 </html>

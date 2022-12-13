@@ -21,49 +21,38 @@ import java.util.UUID;
 @RequestMapping("/course")
 public class CourseUploadController {
 
-    @PostMapping("/upload")
-    public List<CourseDTO> uploadProfile(List<MultipartFile> upload) throws IOException {
-        String rootPath = "C:/upload/course";
-        String uploadFileName = null;
-        List<CourseDTO> files = new ArrayList<>();
+//    @PostMapping("/upload")
+//    public List<CourseDTO> uploadProfile(List<MultipartFile> upload) throws IOException {
+//        String rootPath = "C:/upload/course";
+//        String uploadFileName = null;
+//        List<CourseDTO> files = new ArrayList<>();
+//
+//        File uploadPath = new File(rootPath, createDirectoryByNow());
+//        if(!uploadPath.exists()){
+//            uploadPath.mkdirs();
+//        }
+//
+//        for (MultipartFile multipartFile : upload){
+//            CourseDTO courseDTO = new CourseDTO();
+//            UUID uuid = UUID.randomUUID();
+//            String fileName = multipartFile.getOriginalFilename();
+//            uploadFileName = uuid.toString() + "_" + fileName;
+//            courseDTO.setCourseFileName(fileName);
+//            courseDTO.setCourseFileUuid(uuid.toString());
+//            courseDTO.setCourseFilePath("/upload/course/" + createDirectoryByNow());
+//
+//            File saveFile =new File(uploadPath, uploadFileName);
+//            multipartFile.transferTo(saveFile);
+//
+//            files.add(courseDTO);
+//
+//        }
+//        return files;
+//    }
 
-        File uploadPath = new File(rootPath, createDirectoryByNow());
-        if(!uploadPath.exists()){
-            uploadPath.mkdirs();
-        }
-
-        for (MultipartFile multipartFile : upload){
-            CourseDTO courseDTO = new CourseDTO();
-            UUID uuid = UUID.randomUUID();
-            String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            courseDTO.setCourseFileName(fileName);
-            courseDTO.setCourseFileUuid(uuid.toString());
-            courseDTO.setCourseFilePath("/upload/course/" + createDirectoryByNow());
-
-            File saveFile =new File(uploadPath, uploadFileName);
-            multipartFile.transferTo(saveFile);
-
-            files.add(courseDTO);
-
-        }
-        return files;
-    }
-
-    public String createDirectoryByNow(){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-        Date now = new Date();
-        return format.format(now);
-    }
-
-
-
-
-
-
-
-
-
-
-
+//    public String createDirectoryByNow(){
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+//        Date now = new Date();
+//        return format.format(now);
+//    }
 }

@@ -1,7 +1,10 @@
 package com.app.byeolbyeolsseudam.service.admin;
 
+import com.app.byeolbyeolsseudam.domain.badge.BadgeDTO;
 import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.entity.course.Course;
+import com.app.byeolbyeolsseudam.entity.program.Program;
+import com.app.byeolbyeolsseudam.repository.admin.badge.AdminBadgeRepository;
 import com.app.byeolbyeolsseudam.repository.admin.course.AdminCourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminJubggingService {
     private final AdminCourseRepository adminCourseRepository;
-
+    private final AdminBadgeRepository adminBadgeRepository;
 
     public List<CourseDTO> showCourse(){
         return adminCourseRepository.showCourseList();
@@ -38,9 +41,7 @@ public class AdminJubggingService {
         Course course = adminCourseRepository.findById(courseId).get();
         adminCourseRepository.save(course);
 
-//        adminProgramRepository.update(programDTO);
-//        Program program = adminProgramRepository.findById(programId).get();
-//        adminProgramRepository.save(program);
     }
+    public void saveBadge(BadgeDTO badgeDTO){adminBadgeRepository.save(badgeDTO.toEntity());}
 
 }

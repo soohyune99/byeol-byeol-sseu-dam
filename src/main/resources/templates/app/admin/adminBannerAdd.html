@@ -185,7 +185,7 @@
         });
 
         $.ajax({
-            url: "/file/upload",
+            url: "/file/banner/upload",
             type: "post",
             data: formData,
             contentType: false,
@@ -218,7 +218,7 @@
 
     function deleteFile(path, uuid, name) {
         $.ajax({
-            url: "/file/delete",
+            url: "/file/banner/delete",
             type: "post",
             data:{
                 uploadPath: path,

@@ -1,19 +1,21 @@
 package com.app.byeolbyeolsseudam.controller.admin;
 
+import com.app.byeolbyeolsseudam.domain.badge.BadgeDTO;
 import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.entity.course.Course;
 import com.app.byeolbyeolsseudam.service.admin.AdminJubggingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -91,16 +93,44 @@ public class AdminJubggingController {
 
 
     /* 줍깅 관리 - 배지 목록 페이징*/
-    @GetMapping("/badge")
-    public String adminJubJubBadge(){
+    @GetMapping("/badge/{page}")
+    public String adminJubJubBadge(@PathVariable("page") Integer page, Model model){
+        page = Optional.ofNullable(page).orElse(1);
+
+        Pageable pageable = PageRequest.of(page-1,10, Sort.Direction.DESC, "badgeId");
+//        model.addAttribute("programs",adminProgramService.searchProgram(pageable));
         return "/app/admin/adminJubJubBadge";
     }
+
+
+    @GetMapping("/badge")
+    public String adminBadgeSearch(@RequestParam(value = "keyword")String keyword, @RequestParam(value = "page", required = false) Integer page, Model model){
+        page = Optional.ofNullable(page).orElse(1);
+        keyword = Optional.ofNullable(keyword).orElse("");
+        Pageable pageable = PageRequest.of(page-1,10, Sort.Direction.DESC, "badgeId");
+
+        model.addAttribute("keyword", keyword);
+        //        model.addAttribute("programs", adminProgramService.searchProgramPaging(keyword, pageable));
+//        model.addAttribute("programsCount", adminProgramService.searchProgramPaging(keyword, pageable).getTotalElements());
+
+        return "/app/admin/adminJubJubBadge";
+    }
+
+
 
     /* 줍깅 관리 - 배지 목록 + 배지 추가 */
     @GetMapping("/badge/add")
     public String adminJubJubBadgeAdd(){
         return "/app/admin/adminJubJubBadgeAdd";
     }
+
+    @PostMapping("/badge/save")
+    public RedirectView adminBadgeSave(BadgeDTO badgeDTO){
+        adminJubggingService.saveBadge(badgeDTO);
+
+        return new RedirectView("/admin/jubgging/badge/");
+    }
+
 
     /* 줍깅 관리 - 배지 목록 + 배지 수정 */
     @GetMapping("/badge/modify")
