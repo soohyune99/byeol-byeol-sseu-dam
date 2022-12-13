@@ -77,51 +77,42 @@
                                                                     <div class="card-title">
 
                                                                         <!--begin::Search-->
-                                                                        <div class="d-flex align-items-center position-relative my-1">
-                                                                            <!--begin::검색창 돋보기 Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                                                            <span class="svg-icon svg-icon-1 position-absolute ms-4">
-                                                                                <svg width="24" height="24"
-                                                                                     viewBox="0 0 24 24" fill="none"
-                                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                                    <rect opacity="0.5" x="17.0365"
-                                                                                          y="15.1223" width="8.15546"
-                                                                                          height="2" rx="1"
-                                                                                          transform="rotate(45 17.0365 15.1223)"
-                                                                                          fill="currentColor">
-                                                                                    </rect>
-                                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                                                                          fill="currentColor">
-                                                                                    </path>
-                                                                                </svg>
-                                                                            </span>
-                                                                            <!--end::Svg Icon-->
-                                                                            <form>
-                                                                                <input type="text" style="display:none">
-                                                                                <input type="text" name="enter" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
-                                                                                       data-kt-ecommerce-product-filter="search"
-                                                                                       class="form-control form-control-solid w-250px ps-14"
-                                                                                       placeholder="리뷰 검색">
-                                                                            </form>
-                                                                        </div>
+<!--                                                                        <div class="d-flex align-items-center position-relative my-1">-->
+<!--                                                                            &lt;!&ndash;begin::검색창 돋보기 Svg Icon | path: icons/duotune/general/gen021.svg&ndash;&gt;-->
+<!--                                                                            <span class="svg-icon svg-icon-1 position-absolute ms-4">-->
+<!--                                                                                <svg width="24" height="24"-->
+<!--                                                                                     viewBox="0 0 24 24" fill="none"-->
+<!--                                                                                     xmlns="http://www.w3.org/2000/svg">-->
+<!--                                                                                    <rect opacity="0.5" x="17.0365"-->
+<!--                                                                                          y="15.1223" width="8.15546"-->
+<!--                                                                                          height="2" rx="1"-->
+<!--                                                                                          transform="rotate(45 17.0365 15.1223)"-->
+<!--                                                                                          fill="currentColor">-->
+<!--                                                                                    </rect>-->
+<!--                                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"-->
+<!--                                                                                          fill="currentColor">-->
+<!--                                                                                    </path>-->
+<!--                                                                                </svg>-->
+<!--                                                                            </span>-->
+<!--                                                                            &lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--                                                                            <form>-->
+<!--                                                                                <input type="text" style="display:none">-->
+<!--                                                                                <input type="text" name="enter" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"-->
+<!--                                                                                       data-kt-ecommerce-product-filter="search"-->
+<!--                                                                                       class="form-control form-control-solid w-250px ps-14"-->
+<!--                                                                                       placeholder="리뷰 검색">-->
+<!--                                                                            </form>-->
+<!--                                                                        </div>-->
                                                                         <!--end::Search-->
 
                                                                     </div>
-                                                                    <!--end::Card title-->
-
-                                                                    <!--begin::Card toolbar-->
                                                                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                                                         <div class="w-100 mw-150px">
                                                                         </div>
-                                                                        <!--begin::Add product-->
                                                                         <a href="javascript:void(0)" id="deleteReviewBtn" style="background: #f1416c;"
                                                                            class="btn btn-primary">리뷰 삭제</a>
-                                                                        <!--end::Add product-->
                                                                     </div>
-                                                                    <!--end::Card toolbar-->
                                                                 </div>
-                                                                <!--end::Card header-->
-
-                                                                <!--begin::Card body-->
                                                                 <div class="card-body pt-0">
                                                                     <!--begin::Table-->
                                                                     <div id="kt_ecommerce_products_table_wrapper"
@@ -174,575 +165,77 @@
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
-                                                                                        style="width: 12%;">회원 번호
+                                                                                        style="width: 12%;">작성자
                                                                                     <th class="text-end min-w-100px sorting"
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
                                                                                         style="width: 11%;">리뷰 평점
                                                                                     </th>
-                                                                                    <th class="text-end min-w-100px sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_ecommerce_products_table"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        style="width: 12%;">리뷰 사진
-                                                                                    </th>
+<!--                                                                                    <th class="text-end min-w-100px sorting"-->
+<!--                                                                                        tabindex="0"-->
+<!--                                                                                        aria-controls="kt_ecommerce_products_table"-->
+<!--                                                                                        rowspan="1" colspan="1"-->
+<!--                                                                                        style="width: 12%;">리뷰 사진-->
+<!--                                                                                    </th>-->
                                                                                 </tr>
                                                                                 <!--end::Table row-->
                                                                                 </thead>
-                                                                                <!--end::Table head-->
-
                                                                                 <!--begin::Table body-->
                                                                                 <tbody class="fw-semibold text-gray-600">
-
-
                                                                                 <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
+                                                                                <form th:action="@{/admin/product/review/delete}" method="post" name="reviewDeleteForm">
+                                                                                <th:block th:each="review:${reviews}">
+                                                                                <tr th:object="${review}" class="odd productList1">
                                                                                     <td>
                                                                                         <div
                                                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                                             <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
+                                                                                                   type="checkbox" name="checkedValue" th:value="*{reviewId}">
                                                                                         </div>
                                                                                     </td>
-                                                                                    <!--end::Checkbox-->
-
                                                                                     <!--begin::리뷰번호=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
+                                                                                        <span class="fw-bold" th:text="*{reviewId}"></span>
                                                                                     </td>
                                                                                     <!--end::리뷰번호=-->
 
                                                                                     <!--begin::리뷰 내용=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
+                                                                                        <span class="fw-bold" th:text="*{reviewContent}"></span>
                                                                                     </td>
                                                                                     <!--end::리뷰 내용=-->
 
                                                                                     <!--begin::작성 날짜=-->
                                                                                     <td class="text-end pe-0"
                                                                                         data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
+                                                                                        <span class="fw-bold ms-3" th:text="${#temporals.format(review.createdDate, 'yyyy-MM-dd')}"></span>
                                                                                     </td>
                                                                                     <!--end::작성 날짜=-->
 
                                                                                     <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
+                                                                                    <td class="text-end pe-0" th:text="*{productId}">
                                                                                     </td>
                                                                                     <!--end::제품 번호=-->
 
                                                                                     <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
+                                                                                    <td class="text-end pe-0" th:text="${review.memberName}"></td>
                                                                                     <!--end::회원번호=-->
-
                                                                                     <!--begin::리뷰 평점-->
                                                                                     <td class="text-end pe-0"
                                                                                         data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
+                                                                                        <div class="rating justify-content-end" th:text="*{reviewStar}">
                                                                                         </div>
                                                                                     </td>
-                                                                                    <!--end::리뷰 평점-->
-
                                                                                     <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
+<!--                                                                                    <td class="text-end">치약_리뷰.jpg</td>-->
                                                                                     <!--end::리뷰 사진=-->
                                                                                 </tr>
-
-                                                                                <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::리뷰번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰번호=-->
-
-                                                                                    <!--begin::리뷰 내용=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 내용=-->
-
-                                                                                    <!--begin::작성 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::작성 날짜=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::회원번호=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
-                                                                                    <!--end::리뷰 사진=-->
-                                                                                </tr>
-
-                                                                                <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::리뷰번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰번호=-->
-
-                                                                                    <!--begin::리뷰 내용=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 내용=-->
-
-                                                                                    <!--begin::작성 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::작성 날짜=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::회원번호=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
-                                                                                    <!--end::리뷰 사진=-->
-                                                                                </tr>
-
-                                                                                <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::리뷰번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰번호=-->
-
-                                                                                    <!--begin::리뷰 내용=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 내용=-->
-
-                                                                                    <!--begin::작성 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::작성 날짜=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::회원번호=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
-                                                                                    <!--end::리뷰 사진=-->
-                                                                                </tr>
-
-                                                                                <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::리뷰번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰번호=-->
-
-                                                                                    <!--begin::리뷰 내용=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 내용=-->
-
-                                                                                    <!--begin::작성 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::작성 날짜=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::회원번호=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
-                                                                                    <!--end::리뷰 사진=-->
-                                                                                </tr>
-
-                                                                                <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::리뷰번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰번호=-->
-
-                                                                                    <!--begin::리뷰 내용=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 내용=-->
-
-                                                                                    <!--begin::작성 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::작성 날짜=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::회원번호=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
-                                                                                    <!--end::리뷰 사진=-->
-                                                                                </tr>
-
-                                                                                <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::리뷰번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰번호=-->
-
-                                                                                    <!--begin::리뷰 내용=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 내용=-->
-
-                                                                                    <!--begin::작성 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::작성 날짜=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::회원번호=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
-                                                                                    <!--end::리뷰 사진=-->
-                                                                                </tr>
-
-                                                                                <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::리뷰번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰번호=-->
-
-                                                                                    <!--begin::리뷰 내용=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 내용=-->
-
-                                                                                    <!--begin::작성 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::작성 날짜=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::회원번호=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
-                                                                                    <!--end::리뷰 사진=-->
-                                                                                </tr>
-
-                                                                                <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::리뷰번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰번호=-->
-
-                                                                                    <!--begin::리뷰 내용=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 내용=-->
-
-                                                                                    <!--begin::작성 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::작성 날짜=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::회원번호=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
-                                                                                    <!--end::리뷰 사진=-->
-                                                                                </tr>
-
-                                                                                <!--리뷰 목록 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::리뷰번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">0290123745</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰번호=-->
-
-                                                                                    <!--begin::리뷰 내용=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">이번 치약은 잇몸이 안좋은</span>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 내용=-->
-
-                                                                                    <!--begin::작성 날짜=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3">2022.11.15</span>
-                                                                                    </td>
-                                                                                    <!--end::작성 날짜=-->
-
-                                                                                    <!--begin::제품 번호=-->
-                                                                                    <td class="text-end pe-0">02912237
-                                                                                    </td>
-                                                                                    <!--end::제품 번호=-->
-
-                                                                                    <!--begin::회원번호=-->
-                                                                                    <td class="text-end pe-0">029012366</td>
-                                                                                    <!--end::회원번호=-->
-
-                                                                                    <!--begin::리뷰 평점-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="rating-3">
-                                                                                        <div class="rating justify-content-end">
-                                                                                            5
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::리뷰 평점-->
-
-                                                                                    <!--begin::리뷰 사진=-->
-                                                                                    <td class="text-end">치약_리뷰.jpg</td>
-                                                                                    <!--end::리뷰 사진=-->
-                                                                                </tr>
-
-
+                                                                                </th:block>
+                                                                                </form>
                                                                                 </tbody>
-                                                                                <!--end::Table body-->
-
                                                                             </table>
                                                                         </div>
-
 
                                                                         <div class="row">
 
@@ -766,53 +259,25 @@
                                                                             <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
                                                                                 <div class="dataTables_paginate paging_simple_numbers"
                                                                                      id="kt_ecommerce_products_table_paginate">
-                                                                                    <ul class="pagination">
+                                                                                    <ul class="pagination" th:if="${!reviews.isEmpty()}">
                                                                                         <li class="paginate_button page-item previous disabled"
-                                                                                            id="kt_ecommerce_products_table_previous">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_previous" th:if="${reviews.hasPrevious()}">
+                                                                                            <a th:href="@{|/admin/product/review/${reviews.number}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="0"
                                                                                                tabindex="0"
                                                                                                class="page-link"><</a>
                                                                                         </li>
-                                                                                        <li class="paginate_button page-item active">
-                                                                                            <a href="#"
+                                                                                        <li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, reviews.totalPages)}">
+                                                                                            <a th:text="${page}" th:href="@{|/admin/product/review/${page}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="1"
                                                                                                tabindex="0"
-                                                                                               class="page-link">1</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="2"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">2</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="3"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">3</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="4"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">4</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="5"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">5</a>
+                                                                                               class="page-link"></a>
                                                                                         </li>
                                                                                         <li class="paginate_button page-item next"
-                                                                                            id="kt_ecommerce_products_table_next">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_next" th:if="${reviews.hasNext()}">
+                                                                                            <a th:href="@{|/admin/product/review/${reviews.number +2}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="6"
                                                                                                tabindex="0"
@@ -854,13 +319,15 @@
     //리스트 체크박스
     var $checkboxes = $(".form-check-input.checkbox");
 
-
     // 리뷰 삭제
     $("#deleteReviewBtn").on('click', function () {
         if ($checkboxes.filter(":checked").length == 0) {
             alert("삭제할 리뷰를 선택하세요.");
             return;
         }
+
+        $("form[name='reviewDeleteForm']").submit();
+
     });
 
     // 검색 _ 엔터로 submit 가능 / 빈칸 입력시 alert

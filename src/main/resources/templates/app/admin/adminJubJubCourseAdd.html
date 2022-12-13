@@ -104,7 +104,7 @@
                                                                         <div class="table-responsive">
                                                                         </div>
 
-                                                                        <form th:action="@{adminjubjubcourse}"
+                                                                        <form th:action="@{/admin/jubgging/course/save}" method="post"
                                                                               name="addJubJubCourseForm">
                                                                             <div id="0special">
                                                                                 <img src="/images/admin/0special.png"
@@ -112,7 +112,6 @@
                                                                             </div>
 
                                                                             <div style="width: 60%; margin: 0 auto 48px auto;">
-
                                                                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5"
                                                                                      style="float: right; margin-left: 10px; height: 36px;margin-top: 7px;">
                                                                                     <div class="w-100 mw-150px">
@@ -125,8 +124,6 @@
                                                                                 </div>
 
                                                                                 <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-
-
                                                                                     <div class="d-flex align-items-center position-relative my-1">
                                                                                         <input type="text"
                                                                                                name="courseName"
@@ -156,6 +153,7 @@
                                                                                                style="width: 33.3%; margin: 0 10px 10px 10px;">
                                                                                         <select class="form-control form-control-solid courseRank"
                                                                                                 style="width: 33.3%;"
+                                                                                                name="courseGrade"
                                                                                                 id="courseRank">
                                                                                             <option value="grade"
                                                                                                     disabled selected
@@ -167,7 +165,7 @@
                                                                                             </option>
                                                                                             <option value="고급">고급
                                                                                             </option>
-                                                                                            <option value="Special">
+                                                                                            <option value="스페셜">
                                                                                                 Special
                                                                                             </option>
                                                                                         </select>
@@ -179,17 +177,17 @@
                                                                                         </div>
                                                                                         <input type="datetime-local"
                                                                                                class="form-control form-control-solid"
-                                                                                               name="courseOpeningDate"
+                                                                                               name="openingDate"
                                                                                                style="width: 40%;margin: 0 9px 9px 9px;"
-                                                                                               value="2022-07-22T12:00">
+                                                                                               value="2022-12-22T12:00">
                                                                                         <div class="form-control form-control-solid"
                                                                                              style="width: 10%;">마감일
                                                                                         </div>
                                                                                         <input type="datetime-local"
                                                                                                class="form-control form-control-solid"
-                                                                                               name="courseClosingDate"
+                                                                                               name="closingDate"
                                                                                                style="width: 40%;margin: 0 0 9px 9px;"
-                                                                                               value="2022-07-22T12:00">
+                                                                                               value="2022-12-22T12:00">
                                                                                     </div>
                                                                                     <div class="d-flex align-items-center position-relative my-1">
                                                                                         <input type="text"
@@ -228,12 +226,11 @@
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
-
-
                                                                                 <div class="row">
                                                                                 </div>
                                                                             </div>
                                                                             <!--end::Table-->
+                                                                            <div id="courseInfo"></div>
                                                                         </form>
                                                                     </div>
                                                                     <!--end::Card body-->
@@ -263,13 +260,14 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
+    let arrayFile = [];
     //special 클릭시 시작일 마감일 보이고, special 아이콘 나오게
     $('#0special').css("display", "none");
     $(document).ready(function () {
         $('.courseRank').change(function () {
             var check = $('.courseRank option:selected').val();
 
-            if (check == "Special") {
+            if (check == "스페셜") {
                 $('.specialDiv').css("display", "flex");
                 $('#0special').css("display", "block");
             } else {
@@ -279,6 +277,42 @@
 
         })
     })
+
+    $("input[type='file']").on("change",function () {
+        let formData = new FormData();
+        let $inputFile = $("input#icon_img");
+        let files = $inputFile[0].files;
+
+        Array.from(files).forEach(file => arrayFile.push(file));
+        const dataTransfer = new DataTransfer();
+        arrayFile.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $(files).each(function(i, file){
+            formData.append("upload", file);
+        });
+
+        $.ajax({
+            url: "/course/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: insertImg
+        });
+    });
+
+    function insertImg(files) {
+        let text = "";
+
+        $(files).each(function (i, file) {
+            text += `<input name="courseFileName" type="hidden" value="`+ file.courseFileName +`">`;
+            text += `<input name="courseFilePath" type="hidden" value="`+ file.courseFilePath +`">`;
+            text += `<input name="courseFileUuid" type="hidden" value="`+ file.courseFileUuid +`">`;
+        });
+        $("#courseInfo").html(text);
+
+    }
 
 </script>
 </html>

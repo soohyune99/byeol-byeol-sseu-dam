@@ -177,76 +177,68 @@
 
                                                                                 <!--begin::Table body-->
                                                                                 <tbody class="fw-semibold text-gray-600">
-                                                                                <form th:action="@{/admin/product/order/modified}" method="post" name="statusForm">
-                                                                                <th:block th:each="order:${orders}">
-                                                                                <!-- begin :: 주문 목록 -->
-                                                                                <tr th:object="${order}" class="odd orderList">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td class="orderCheckbox">
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox" th:value="*{orderId}">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::주문 번호=-->
-                                                                                    <td class="text-end pe-0 orderDetailId">
-                                                                                        <a href="http://localhost:10001/admin/product/order/detail">
-                                                                                        <span class="fw-bold" th:text="*{orderId}"></span>
-                                                                                        </a>
-                                                                                    </td>
-                                                                                    <td class="text-end pe-0 orderDate"
-                                                                                        data-order="15">
-                                                                                        <span class="fw-bold ms-3" th:text="${#temporals.format(order.createdDate, 'yyyy-MM-dd')}"></span>
-                                                                                    </td>
-                                                                                    <!--end::주문 날짜=-->
-
-                                                                                    <!--begin::회원 번호=-->
-                                                                                    <td class="text-end pe-0 memberId" th:text="*{memberName}"></td>
-                                                                                    <!--end::회원 번호=-->
-
-                                                                                    <!--begin::주문 상태=-->
-                                                                                    <td class="text-end pe-0 orderStatus">
-                                                                                        <div name="orderStatus" class="form-control form-control-solid " style="font-size: 11px; padding-left: 17px; margin: 0 0 0 0;width: 59%;float: left;">
-                                                                                            <span>
-                                                                                                배송 완료
-                                                                                            </span>
-                                                                                        </div>
-
+                                                                                    <form th:action="@{/admin/product/order/delete}" method="post" name="statusForm">
+                                                                                    <th:block th:each="order:${orders}">
+                                                                                    <!-- begin :: 주문 목록 -->
+                                                                                    <tr th:object="${order}" class="odd orderList">
+                                                                                        <!--begin::Checkbox-->
+                                                                                        <td class="orderCheckbox">
+                                                                                            <div
+                                                                                                    class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                                                <input class="form-check-input checkbox"
+                                                                                                       type="checkbox" name="checkedValue" th:value="*{orderId}">
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td class="text-end pe-0 orderDetailId">
+                                                                                            <a th:href="@{/admin/product/order/detail(orderId=${order.orderId})}">
+                                                                                            <span class="fw-bold" th:text="*{orderId}"></span>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                        <td class="text-end pe-0 orderDate"
+                                                                                            data-order="15">
+                                                                                            <span class="fw-bold ms-3" th:text="${#temporals.format(order.createdDate, 'yyyy-MM-dd')}"></span>
+                                                                                        </td>
+                                                                                        <td class="text-end pe-0 memberId" th:text="*{memberName}"></td>
+                                                                                        <td class="text-end pe-0 orderStatus">
+                                                                                            <div name="orderStatus" class="form-control form-control-solid " style="font-size: 11px; padding-left: 17px; margin: 0 0 0 0;width: 59%;float: left;">
+                                                                                                <span th:text="*{orderStatus}"></span>
+                                                                                            </div>
                                                                                             <select class="form-control form-control-solid "
-                                                                                                             name="orderStatus"
-                                                                                                             style="font-size: 11px; padding-left: 17px; margin: 0 0 0 0;width: 59%;float: left;text-align: center;display: none">
-                                                                                            <!--                                                                                            <option value="orderStatus"-->
-                                                                                            <!--                                                                                                    disabled selected-->
-                                                                                            <!--                                                                                                    hidden>주문상태를 선택해주세요-->
-                                                                                            <!--                                                                                            </option>-->
-                                                                                            <option value="주문완료">주문완료
-                                                                                            </option>
-                                                                                            <option value="주문취소">주문취소
-                                                                                            </option>
-                                                                                            <option value="배송대기중">배송대기중
-                                                                                            </option>
-                                                                                            <option value="배송중">배송중
-                                                                                            </option>
-                                                                                            <option value="배송완료">배송완료
-                                                                                            </option>
-                                                                                        </select>
+                                                                                                                 name="orderStatus"
+                                                                                                                 style="font-size: 11px; padding-left: 17px; margin: 0 0 0 0;width: 59%;float: left;text-align: center;display: none">
+                                                                                                <!--  <option value="orderStatus"-->
+                                                                                                <!--  disabled selected-->
+                                                                                                <!--  hidden>주문상태를 선택해주세요-->
+                                                                                                <!--  </option>-->
+                                                                                                <option value="주문완료">주문완료
+                                                                                                </option>
+                                                                                                <option value="주문취소">주문취소
+                                                                                                </option>
+                                                                                                <option value="배송대기중">배송대기중
+                                                                                                </option>
+                                                                                                <option value="배송중">배송중
+                                                                                                </option>
+                                                                                                <option value="배송완료">배송완료
+                                                                                                </option>
+                                                                                            </select>
 
-                                                                                        <button type="button" style="font-family: inherit; width: 119px; float: right;font-size: 10px; height: 29px;display: block;"
-                                                                                                         class="btn btn-light-primary modify">수정 하기</button>
-                                                                                        <button type="button" style="background:#74c9ff;font-family: inherit; float: right;width: 59px;font-size: 7px; height: 29px; display: none;"
-                                                                                                class="btn btn-primary confirm">수정</button>
-                                                                                        <button type="button" style="background:#ec6e8e; font-family: inherit; float: right;width: 59px;margin-right: 1px; font-size: 7px; height: 29px; display: none;"
-                                                                                                class="btn btn-danger cancel">취소</button>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                </th:block>
-                                                                                </form>
+                                                                                            <button type="button" style="font-family: inherit; width: 119px; float: right;font-size: 10px; height: 29px;display: block;"
+                                                                                                             class="btn btn-light-primary modify">수정 하기</button>
+                                                                                            <button type="button" style="background:#74c9ff;font-family: inherit; float: right;width: 59px;font-size: 7px; height: 29px; display: none;"
+                                                                                                    class="btn btn-primary confirm">수정</button>
+                                                                                            <button type="button" style="background:#ec6e8e; font-family: inherit; float: right;width: 59px;margin-right: 1px; font-size: 7px; height: 29px; display: none;"
+                                                                                                    class="btn btn-danger cancel">취소</button>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    </th:block>
+                                                                                    </form>
+                                                                                    <form th:action="@{/admin/product/order/modified}" method="post" name="orderModifyForm">
+                                                                                        <input type="hidden" id="orderId" name="orderId">
+                                                                                        <input type="datetime-local" id="createdDate" name="createdDate" style="display: none">
+                                                                                        <input type="hidden" id="memberName" name="memberName">
+                                                                                        <input type="hidden" id="orderStatus" name="orderStatus">
+                                                                                    </form>
                                                                                 </tbody>
-                                                                                <!--end::Table body-->
-
                                                                             </table>
                                                                         </div>
 
@@ -257,53 +249,25 @@
                                                                             <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
                                                                                 <div class="dataTables_paginate paging_simple_numbers"
                                                                                      id="kt_ecommerce_products_table_paginate">
-                                                                                    <ul class="pagination">
+                                                                                    <ul class="pagination" th:if="${!orders.isEmpty()}">
                                                                                         <li class="paginate_button page-item previous disabled"
-                                                                                            id="kt_ecommerce_products_table_previous">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_previous" th:if="${orders.hasPrevious()}">
+                                                                                            <a th:href="@{|/admin/product/order/${orders.number}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="0"
                                                                                                tabindex="0"
                                                                                                class="page-link"><</a>
                                                                                         </li>
-                                                                                        <li class="paginate_button page-item active">
-                                                                                            <a href="#"
+                                                                                        <li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, orders.totalPages)}">
+                                                                                            <a th:text="${page}" th:href="@{|/admin/product/order/${page}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="1"
                                                                                                tabindex="0"
-                                                                                               class="page-link">1</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="2"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">2</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="3"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">3</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="4"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">4</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="5"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">5</a>
+                                                                                               class="page-link"></a>
                                                                                         </li>
                                                                                         <li class="paginate_button page-item next"
-                                                                                            id="kt_ecommerce_products_table_next">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_next" th:if="${orders.hasNext()}">
+                                                                                            <a th:href="@{|/admin/product/order/${orders.number +2}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="6"
                                                                                                tabindex="0"
@@ -342,6 +306,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
+    var $checkboxes = $(".form-check-input.checkbox");
     let $form = $("form[name='statusForm']");
     $(".modify").on("click",function () {
 
@@ -357,7 +322,13 @@
         $(this).siblings(".confirm").css("display", "block")
         $(this).siblings(".cancel").css("display", "block")
 
+        $("input#orderId").val($(this).closest("tr").find(".orderDetailId span").text())
+        $("input#createdDate").val($(this).closest("tr").find(".orderDate span").text())
+        $("input#memberName").val($(this).closest("tr").find(".memberId").text())
+    })
 
+    $("select[name='orderStatus']").on("click",function () {
+        $("input#orderStatus").val($(this).val())
     })
 
     $(".cancel").on("click",function () {
@@ -366,6 +337,11 @@
         $(".modify").css("display", "block")
         $(".confirm").css("display", "none")
         $(".cancel").css("display", "none")
+
+        $("input#orderId").val("")
+        $("input#createdDate").val("")
+        $("input#memberName").val("")
+        $("input#orderStatus").val("")
     })
 
     $(".confirm").on("click",function () {
@@ -373,9 +349,19 @@
             alert("주문 상태를 확인해주세요.")
             return;
         }
-        $form.submit();
 
+        $("form[name='orderModifyForm']").submit();
     })
+
+    $("#deleteOrderBtn").on("click",function () {
+        if ($checkboxes.filter(":checked").length == 0) {
+            alert("삭제할 주문을 선택하세요.");
+            return;
+        }
+
+        $form.submit();
+    })
+
 
 </script>
 </html>
