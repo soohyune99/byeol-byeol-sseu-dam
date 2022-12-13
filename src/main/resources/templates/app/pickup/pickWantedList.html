@@ -22,485 +22,195 @@
 <body class="sent-requests" data-modal-open-count="0" style>
 <div>
 
+    <!-- 로그인 된 기사님만 들어올 수 있음 -->
+    <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
+    <div id="app" data-browser="Chrome" data-is-loaded="true" class>
 
-<header th:replace="/app/fix/headerpicker.html :: header"></header>
-<div id="app" data-browser="Chrome" data-is-loaded="true" class>
-
-    <div id="app-body">
-        <article data-v-564412cd="" class="sent-request-list">
-            <section class="container" data-v-584c25b2="">
-                <div class="banner-list-user" data-v-5f3ed876="" data-v-584c25b2="">
-                    <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-5f3ed876="" dir="ltr"
-                         class="slick-slider slick-initialized">
-                        <div data-v-3d1a4f76="" class="slick-list">
-                            <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-track" style="opacity: 1;">
-                                <div data-v-e4caeaf8="" tabindex="-1" data-index="-1" aria-hidden="true"
-                                     class="slick-slide slick-cloned">
-                                    <div data-v-e4caeaf8="">
-                                        <div data-v-4721ba7d="" data-v-5f3ed876="" class="banner" tabindex="-1"
-                                             data-v-e4caeaf8=""
-                                             style="background-image: url(https://static.cdn.soomgo.com/upload/banner/c8a1fbc5-7437-4069-bff8-31e8bb3112d7.png); width: 100%; display: inline-block;">
+        <div id="app-body">
+            <article data-v-564412cd="" class="sent-request-list">
+                <section class="container" data-v-584c25b2="">
+                    <div class="banner-list-user" data-v-5f3ed876="" data-v-584c25b2="">
+                        <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-5f3ed876="" dir="ltr"
+                             class="slick-slider slick-initialized">
+                            <div data-v-3d1a4f76="" class="slick-list">
+                                <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-track" style="opacity: 1;">
+                                    <div data-v-e4caeaf8="" tabindex="-1" data-index="-1" aria-hidden="true"
+                                         class="slick-slide slick-cloned">
+                                        <div data-v-e4caeaf8="">
+                                            <div data-v-4721ba7d="" data-v-5f3ed876="" class="banner" tabindex="-1"
+                                                 data-v-e4caeaf8=""
+                                                 style="cursor: auto; background-image: url('https://static.cdn.soomgo.com/upload/banner/c8a1fbc5-7437-4069-bff8-31e8bb3112d7.png'); width: 100%; display: inline-block;">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section data-v-564412cd="" class="container">
-                <h1 data-v-564412cd="" class="page-heading-h1"><span data-v-564412cd="">수거신청</span><span
-                        data-v-564412cd="" class="user-guide">
-                            <button type="button"
-                                    class="FilterButton_ButtonClassName__PWHFf FilterInWdlist_filterButton__njVLF"
-                                    data-attribute-id="explore__filter__click" data-filter-name="region"
-                                    data-job-category-id="518" data-job-category="IT" data-job-role-id="all"
-                                    data-job-role="all"><span class="FilterButton_title__MNRKD">지역<span
-                                    class="FilteredCount_filteredCount__3PCO5 FilterInWdlist_filteredCount__f825_">1</span></span><span
-                                    class="ButtonDisplay_ButtonDisplay__4VTdg">한국</span></button>
-                        </span></h1>
-                <ul data-v-564412cd="" class="row quote-list no-gutters">
+                </section>
+                <section data-v-564412cd="" class="container">
 
-                    <tbody>
-                    <th:block th:each="pickup:${pickups}" th:object="${pickup}">
-                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
-                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
-                            <div data-v-05822788="" class="request-card-header align-items-center">
-                                <div data-v-05822788="" class="request-card-title text-truncate" th:text="*{pickupAddress}">
+                    <div>
+                        <h1 data-v-564412cd="" class="page-heading-h1" style="width: 150px; margin-bottom: 0.33rem;"><span data-v-564412cd="">수거신청</span>
+                        </h1>
+
+                        <!-- BEGIN : 시도 / 군구 / 동 -->
+                        <p data-v-564412cd="" class="user-guide" >
+
+                            <!-- BEGIN : 시도 / 군구 / 동 -->
+                            <fieldset style="text-align: right;">
+                                <select name="sido2" id="sido2" style="width: 70px;"></select>
+                                <select name="gugun2" id="gugun2" style="width: 100px;"></select>
+                                <select name="dong2" id="dong2" style="width: 150px;"></select>
+                            </fieldset>
+                        <!-- END :  시도 / 군구 / 동 -->
+
+                        </p>
+                        <!-- END :  시도 / 군구 / 동 -->
+                    </div>
+
+                    <ul data-v-564412cd="" class="row quote-list no-gutters">
+
+                        <tbody id="picupWantedList">
+
+                        <th:block th:each="pickup:${pickups}" th:object="${pickup}">
+                            <input type="hidden" th:href="*{pickupId}" id="pickupId">
+                            <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
+                                <div data-v-05822788="" data-v-564412cd="" data-testid="request-card"
+                                     class="request-card">
+                                    <div data-v-05822788="" class="request-card-header align-items-center">
+                                        <div data-v-05822788="" class="request-card-title text-truncate"
+                                             th:text="*{pickupAddress}">
+                                        </div>
+                                        <time data-v-05822788=""
+                                              th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd')}"></time>
+                                    </div>
+                                    <div data-v-05822788="" class="request-card-body">
+                                        <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
+                                            <div data-v-78eb3aa2="" class="progress">
+                                                <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                                     aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>
+                                            </div>
+                                            <div data-v-78eb3aa2="" class="status-wrapper">
+                                                <div data-v-78eb3aa2="" class="status bold">수거요청</div>
+                                                <div data-v-78eb3aa2="" class="status">수거진행</div>
+                                                <div data-v-78eb3aa2="" class="status"> 수거완료</div>
+                                            </div>
+                                        </div>
+                                        <div data-v-05822788="" class="quote-status-wrapper">
+                                            <div data-v-f02739d2="" data-v-05822788=""
+                                                 class="row quote-status flex-nowrap no-gutters">
+                                                <ul data-v-f02739d2="" class="avatar-wrapper">
+                                                    <li data-v-f02739d2="" class="avatar-profile">
+                                                        <img data-v-f02739d2="" alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
+                                                                                                       data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
+                                                                                                       src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
+                                                                                                       lazy="loaded"></li>
+                                                </ul>
+                                                <div data-v-f02739d2="" class="status-message">
+                                                    <!--<span data-v-f02739d2="" th:text="*{pickup.memberName}"></span>-->
+                                                    <span> 님의 수거 요청입니다.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button data-v-05822788="" data-testid="request-detail-btn" type="button"
+                                                onclick="showWantedPickup()" id="read"
+                                                class="btn quote-cta btn-primary btn-block">자세히 보기
+                                        </button>
+                                    </div>
                                 </div>
-                                <time data-v-05822788="" th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd')}"></time>
+                            </li>
+                        </th:block>
+
+
+                        <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
+                            <div data-v-05822788="" data-v-564412cd="" data-testid="request-card"
+                                 class="request-card">
+                                <div data-v-05822788="" class="request-card-header align-items-center">
+                                    <div data-v-05822788="" class="request-card-title text-truncate">주소들어갈 부분</div>
+                                    <time data-v-05822788="">수락일자</time>
+                                </div>
+                                <div data-v-05822788="" class="request-card-body">
+                                    <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
+                                        <div data-v-78eb3aa2="" class="progress">
+                                            <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                                 aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>
+                                        </div>
+                                        <div data-v-78eb3aa2="" class="status-wrapper">
+                                            <div data-v-78eb3aa2="" class="status bold">수거요청</div>
+                                            <div data-v-78eb3aa2="" class="status">수거진행</div>
+                                            <div data-v-78eb3aa2="" class="status"> 수거완료</div>
+                                        </div>
+                                    </div>
+                                    <div data-v-05822788="" class="quote-status-wrapper">
+                                        <div data-v-f02739d2="" data-v-05822788=""
+                                             class="row quote-status flex-nowrap no-gutters">
+                                            <ul data-v-f02739d2="" class="avatar-wrapper">
+                                                <li data-v-f02739d2="" class="avatar-profile">
+                                                    <img data-v-f02739d2="" alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
+                                                         data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
+                                                         src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
+                                                         lazy="loaded"></li>
+                                            </ul>
+                                            <div data-v-f02739d2="" class="status-message">
+                                                <span data-v-f02739d2="">디폴트_모양보는용 </span>
+                                                <span> 님의 수거 요청입니다.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button data-v-05822788="" data-testid="request-detail-btn" type="button"
+                                            onclick="showWantedPickup()" id=""
+                                            class="btn quote-cta btn-primary btn-block">자세히 보기
+                                    </button>
+                                </div>
                             </div>
-                            <div data-v-05822788="" class="request-card-body">
-                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
-                                    <div data-v-78eb3aa2="" class="progress">
-                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                             aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>
-                                    </div>
-                                    <div data-v-78eb3aa2="" class="status-wrapper">
-                                        <div data-v-78eb3aa2="" class="status bold">수거요청</div>
-                                        <div data-v-78eb3aa2="" class="status">수거진행</div>
-                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>
-                                    </div>
-                                </div>
-                                <div data-v-05822788="" class="quote-status-wrapper">
-                                    <div data-v-f02739d2="" data-v-05822788=""
-                                         class="row quote-status flex-nowrap no-gutters">
-                                        <ul data-v-f02739d2="" class="avatar-wrapper">
-                                            <li data-v-f02739d2="" class="avatar-profile"><img data-v-f02739d2=""
-                                                                                               alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
-                                                                                               data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                                                                               src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                                                                               lazy="loaded"></li>
-                                        </ul>
-                                        <div data-v-f02739d2="" class="status-message"><span data-v-f02739d2="" th:text="*{pickupId}"></span><span> 님의 수거 요청입니다.</span></div>
-                                    </div>
-                                </div>
-                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                        th:href="*{pickupId}" id="read"
-                                        class="btn quote-cta btn-primary btn-block">자세히 보기
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                    </th:block>
-                    </tbody>
+                        </li>
 
 
-<!--                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">-->
-<!--                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">-->
-<!--                            <div data-v-05822788="" class="request-card-header align-items-center">-->
-<!--                                <div data-v-05822788="" class="request-card-title text-truncate"> 에어컨 설치 및 수리</div>-->
-<!--                                <time data-v-05822788="">22.06.21</time>-->
-<!--                            </div>-->
-<!--                            <div data-v-05822788="" class="request-card-body">-->
-<!--                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">-->
-<!--                                    <div data-v-78eb3aa2="" class="progress">-->
-<!--                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"-->
-<!--                                             aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>-->
-<!--                                    </div>-->
-<!--                                    <div data-v-78eb3aa2="" class="status-wrapper">-->
-<!--                                        <div data-v-78eb3aa2="" class="status bold">수거요청</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status">수거진행</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div data-v-05822788="" class="quote-status-wrapper">-->
-<!--                                    <div data-v-f02739d2="" data-v-05822788=""-->
-<!--                                         class="row quote-status flex-nowrap no-gutters">-->
-<!--                                        <ul data-v-f02739d2="" class="avatar-wrapper">-->
-<!--                                            <li data-v-f02739d2="" class="avatar-profile"><img data-v-f02739d2=""-->
-<!--                                                                                               alt="에어컨설치및수리만 경력20년-->
-<!--에어컨설치및 서비스 자격증보유-->
-<!--방문후 과다한 추가비 없습니다-->
-
-<!--" data-src="https://static.cdn.soomgo.com/upload/profile/55cde9e0-af93-4515-a227-e2959bfed23b.jpg?h=320&amp;w=320"-->
-<!--                                                                                               src="https://static.cdn.soomgo.com/upload/profile/55cde9e0-af93-4515-a227-e2959bfed23b.jpg?h=320&amp;w=320"-->
-<!--                                                                                               lazy="loaded"></li>-->
-<!--                                        </ul>-->
-<!--                                        <div data-v-f02739d2="" class="status-message"><span data-v-f02739d2="">고수님과-->
-<!--                                                    거래를-->
-<!--                                                    완료했어요</span></div>-->
-<!--                                    </div>-->
-
-<!--                                </div>-->
-<!--                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"-->
-<!--                                        class="btn quote-cta btn-primary btn-block">자세히 보기-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">-->
-<!--                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">-->
-<!--                            <div data-v-05822788="" class="request-card-header align-items-center">-->
-<!--                                <div data-v-05822788="" class="request-card-title text-truncate"> 이사/입주 청소 업체</div>-->
-<!--                                <time data-v-05822788="">20.03.16</time>-->
-<!--                            </div>-->
-<!--                            <div data-v-05822788="" class="request-card-body">-->
-<!--                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">-->
-<!--                                    <div data-v-78eb3aa2="" class="progress">-->
-<!--                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"-->
-<!--                                             aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>-->
-<!--                                    </div>-->
-<!--                                    <div data-v-78eb3aa2="" class="status-wrapper">-->
-<!--                                        <div data-v-78eb3aa2="" class="status bold">수거요청</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status">수거진행</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div data-v-05822788="" class="quote-status-wrapper">-->
-<!--                                    <div data-v-f02739d2="" data-v-05822788=""-->
-<!--                                         class="row quote-status flex-nowrap no-gutters">-->
-<!--                                        <div data-v-f02739d2="" class="status-message closed"> 계획변경</div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;&ndash;&gt;-->
-<!--                                </div>-->
-<!--                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"-->
-<!--                                        class="btn quote-cta btn-primary btn-block">자세히 보기-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">-->
-<!--                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">-->
-<!--                            <div data-v-05822788="" class="request-card-header align-items-center">-->
-<!--                                <div data-v-05822788="" class="request-card-title text-truncate"> 이사/입주 청소 업체</div>-->
-<!--                                <time data-v-05822788="">20.03.16</time>-->
-<!--                            </div>-->
-<!--                            <div data-v-05822788="" class="request-card-body">-->
-<!--                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">-->
-<!--                                    <div data-v-78eb3aa2="" class="progress">-->
-<!--                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"-->
-<!--                                             aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>-->
-<!--                                    </div>-->
-<!--                                    <div data-v-78eb3aa2="" class="status-wrapper">-->
-<!--                                        <div data-v-78eb3aa2="" class="status bold">수거요청</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status">수거진행</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div data-v-05822788="" class="quote-status-wrapper">-->
-<!--                                    <div data-v-f02739d2="" data-v-05822788=""-->
-<!--                                         class="row quote-status flex-nowrap no-gutters">-->
-<!--                                        <div data-v-f02739d2="" class="status-message closed"> 계획변경</div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;&ndash;&gt;-->
-<!--                                </div>-->
-<!--                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"-->
-<!--                                        class="btn quote-cta btn-primary btn-block">자세히 보기-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">-->
-<!--                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">-->
-<!--                            <div data-v-05822788="" class="request-card-header align-items-center">-->
-<!--                                <div data-v-05822788="" class="request-card-title text-truncate"> 원룸/소형 이사</div>-->
-<!--                                <time data-v-05822788="">20.03.08</time>-->
-<!--                            </div>-->
-<!--                            <div data-v-05822788="" class="request-card-body">-->
-<!--                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">-->
-<!--                                    <div data-v-78eb3aa2="" class="progress">-->
-<!--                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"-->
-<!--                                             aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>-->
-<!--                                    </div>-->
-<!--                                    <div data-v-78eb3aa2="" class="status-wrapper">-->
-<!--                                        <div data-v-78eb3aa2="" class="status bold">수거요청</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status">수거진행</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div data-v-05822788="" class="quote-status-wrapper">-->
-<!--                                    <div data-v-f02739d2="" data-v-05822788=""-->
-<!--                                         class="row quote-status flex-nowrap no-gutters">-->
-<!--                                        <div data-v-f02739d2="" class="status-message closed"> 고용으로 인한 요청 중단</div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;&ndash;&gt;-->
-<!--                                </div>-->
-<!--                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"-->
-<!--                                        class="btn quote-cta btn-primary btn-block">자세히 보기-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">-->
-<!--                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">-->
-<!--                            <div data-v-05822788="" class="request-card-header align-items-center">-->
-<!--                                <div data-v-05822788="" class="request-card-title text-truncate"> 도배 시공</div>-->
-<!--                                <time data-v-05822788="">20.03.08-->
-<!--                                </time>-->
-<!--                            </div>-->
-<!--                            <div data-v-05822788="" class="request-card-body">-->
-<!--                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">-->
-<!--                                    <div data-v-78eb3aa2="" class="progress">-->
-<!--                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"-->
-<!--                                             aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>-->
-<!--                                    </div>-->
-<!--                                    <div data-v-78eb3aa2="" class="status-wrapper">-->
-<!--                                        <div data-v-78eb3aa2="" class="status bold">수거요청</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status">수거진행</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div data-v-05822788="" class="quote-status-wrapper">-->
-<!--                                    <div data-v-f02739d2="" data-v-05822788=""-->
-<!--                                         class="row quote-status flex-nowrap no-gutters">-->
-<!--                                        <div data-v-f02739d2="" class="status-message closed"> 마음에 드는 고수를 소개 받지-->
-<!--                                            못했습니다.-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;&ndash;&gt;-->
-<!--                                </div>-->
-<!--                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"-->
-<!--                                        class="btn quote-cta btn-primary btn-block">자세히 보기-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">-->
-<!--                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">-->
-<!--                            <div data-v-05822788="" class="request-card-header align-items-center">-->
-<!--                                <div data-v-05822788="" class="request-card-title text-truncate"> 원룸/소형 이사</div>-->
-<!--                                <time data-v-05822788="">19.03.13</time>-->
-<!--                            </div>-->
-<!--                            <div data-v-05822788="" class="request-card-body">-->
-<!--                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">-->
-<!--                                    <div data-v-78eb3aa2="" class="progress">-->
-<!--                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"-->
-<!--                                             aria-valuenow="50" class="progress-bar" style="width: 0%;"></div>-->
-<!--                                    </div>-->
-<!--                                    <div data-v-78eb3aa2="" class="status-wrapper">-->
-<!--                                        <div data-v-78eb3aa2="" class="status bold">수거요청</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status">수거진행</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div data-v-05822788="" class="quote-status-wrapper">-->
-<!--                                    <div data-v-f02739d2="" data-v-05822788=""-->
-<!--                                         class="row quote-status flex-nowrap no-gutters">-->
-<!--                                        <ul data-v-f02739d2="" class="avatar-wrapper">-->
-<!--                                            <li data-v-f02739d2="" class="avatar-profile"><img data-v-f02739d2=""-->
-<!--                                                                                               alt="김호영"-->
-<!--                                                                                               data-src="https://dmmj3ljielax6.cloudfront.net/upload/profile/f50153ca-a04e-427f-8c53-730e22ce9e5d.jpg?h=320&amp;w=320"-->
-<!--                                                                                               src="https://dmmj3ljielax6.cloudfront.net/upload/profile/f50153ca-a04e-427f-8c53-730e22ce9e5d.jpg?h=320&amp;w=320"-->
-<!--                                                                                               lazy="loaded"></li>-->
-<!--                                        </ul>-->
-<!--                                        <div data-v-f02739d2="" class="status-message"><span data-v-f02739d2=""> 1명의-->
-<!--                                                    고수와-->
-<!--                                                    상담해 보세요 </span></div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;&ndash;&gt;-->
-<!--                                </div>-->
-<!--                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"-->
-<!--                                        class="btn quote-cta btn-primary btn-block">자세히 보기-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">-->
-<!--                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">-->
-<!--                            <div data-v-05822788="" class="request-card-header align-items-center">-->
-<!--                                <div data-v-05822788="" class="request-card-title text-truncate"> 원룸/소형 이사</div>-->
-<!--                                <time data-v-05822788="">19.03.12</time>-->
-<!--                            </div>-->
-<!--                            <div data-v-05822788="" class="request-card-body">-->
-<!--                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">-->
-<!--                                    <div data-v-78eb3aa2="" class="progress">-->
-<!--                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"-->
-<!--                                             aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>-->
-<!--                                    </div>-->
-<!--                                    <div data-v-78eb3aa2="" class="status-wrapper">-->
-<!--                                        <div data-v-78eb3aa2="" class="status bold">수거요청</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status">수거진행</div>-->
-<!--                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div data-v-05822788="" class="quote-status-wrapper">-->
-<!--                                    <div data-v-f02739d2="" data-v-05822788=""-->
-<!--                                         class="row quote-status flex-nowrap no-gutters">-->
-<!--                                        <div data-v-f02739d2="" class="status-message closed"> 마음에 드는 고수를 소개 받지-->
-<!--                                            못했습니다.-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;&ndash;&gt;-->
-<!--                                </div>-->
-<!--                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"-->
-<!--                                        class="btn quote-cta btn-primary btn-block">자세히 보기-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-                </ul>
-                <!---->
-            </section>
-        </article>
-    </div>
-</div>
-<div class="Modal_root__aEM8D" style="display: none">
-    <div
-            class="Modal_modalContent__0zuTn LocationsPopup_container___6zbz LocationsPopup_hasSelectedLocationArea__Uicwe">
-        <div class="ModalHeader Header_Header__0d6dF">
-            <button type="button"
-                    class="LocationsPopup_ResetButton__Ko46W"><i class="icon-refresh"></i>초기화
-            </button>
-            <span>지역<span
-                    class="FilteredCount_filteredCount__3PCO5">1</span></span>
-            <button type="button" class="x-button">
-                <svg width="24"
-                     height="24" viewBox="0 0 24 24" color="#999">
-                    <path fill="currentColor"
-                          d="M17.97 19.03a.75.75 0 001.06-1.06l-6.5-6.5a.75.75 0 00-1.06 0l-6.5 6.5a.75.75 0 001.06 1.06L12 13.06l5.97 5.97zM12 10.94L6.03 4.97a.75.75 0 00-1.06 1.06l6.5 6.5a.75.75 0 001.06 0l6.5-6.5a.75.75 0 00-1.06-1.06L12 10.94z">
-                    </path>
-                </svg>
-            </button>
-        </div>
-        <div id="MODAL_BODY"
-             class="ModalBody Body_body__KI0OY LocationsPopup_bodyContainer__FyLa2 LocationsPopup_hasSelectedLocationArea__Uicwe">
-            <!-- <div class="Selector_container__tN_Jj">
-                <h6 class="Selector_header__uaMYg">국가</h6>
-                <div class="Selector_select__UG_Cu"><select>
-                        <option value="all">전세계</option>
-                        <option value="tw">대만</option>
-                        <option value="sg">싱가폴</option>
-                        <option value="jp">일본</option>
-                        <option value="kr">한국</option>
-                        <option value="others">기타</option>
-                    </select></div>
-            </div> -->
-            <div class="Locations_container__hZ3Ul">
-                <div class="Locations_column__Ibvto">
-                    <h6>지역</h6>
-                    <ul>
-                        <li>
-                            <button type="button"
-                                    class="Locations_selected__1YaAW Locations_lastSelected__ZVHyy Locations_currentParent__Yi84n">
-                                전국
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" class="">서울</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">부산</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">대구</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">인천</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">광주</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">대전</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">울산</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">세종</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">경기</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">강원</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">충북</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">충남</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">전북</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">전남</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">경북</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">경남</button>
-                        </li>
-                        <li>
-                            <button type="button" class="">제주</button>
-                        </li>
+                        </tbody>
                     </ul>
-                </div>
-                <div class="Locations_column__Ibvto">
-                    <h6>상세지역</h6>
-                    <div class="Locations_empty__c0Xdq">지역을 선택하면<br>상세 지역을 확인할 수 있습니다.</div>
-                </div>
-            </div>
-        </div>
-        <div
-                class="CommonFooter_container__PQC4V LocationsPopup_footerContainer__49FsP LocationsPopup_hasSelectedLocationArea__Uicwe">
-            <div class="SelectedLocations_selectedLocations__6PVR9">
-                <ul class="SelectedLocations_listContainer__46isv hidden-xs">
-                    <li class="SelectedLocations_locationItem__8j9AK"><span>한국 전국</span></li>
-                </ul>
-                <ul class="SelectedLocations_listContainer__46isv visible-xs">
-                    <li class="SelectedLocations_locationItem__8j9AK">
-                        <div class="SelectedLocations_locationItemInner__6JCAs"><span>한국 전국</span></div>
-                    </li>
-                </ul>
-                <p>최대 15개까지 선택 가능합니다.</p>
-            </div>
-            <button class="CommonFooter_button__sCywr" data-attribute-id="explore__filter__update"
-                    data-job-category-id="518" data-job-category="IT" data-job-role-id="all" data-job-role="all"
-                    data-filter-name="region" data-update-result="kr.all" type="submit">확인
-            </button>
+                    <!---->
+                </section>
+            </article>
         </div>
     </div>
-    <div role="presentation" class="Modal_modalOverlay__1sCXi false"></div>
-</div>
-<footer th:replace="/app/fix/footer.html :: footer"></footer>
+
+    <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
-<script>
-    $(".user-guide").on("click", function () {
-        $(".Modal_root__aEM8D").css("display", "block");
-    })
 
-    $(".x-button").on("click", function () {
-        $(".Modal_root__aEM8D").css("display", "none");
-    })
+<script type="text/javascript" src="/js/pickup/sojaeji.js"></script> <!-- 소재지 선택 셀렉박스 js 있음 -->
 
-    let pickupId = [[${pickupId}]];
-
-    const $read = $("#read");
-
-
-    $read.on("click", function(e){
-        e.preventDefault();
-        location.href = "/app/pickup/pickDetail" + "&boardNumber=" + $(this).attr("href");
-    });
-
+<script type="text/javascript">
+    /*  소재지 select  */
+    new sojaeji('sido2', 'gugun2', 'dong2');
 </script>
 
+
+<script>
+     // let pickupId = [[${pickupId}]];
+
+    // const $read = $("#read");
+
+
+    // $read.on("click", function (e) {
+    //     e.preventDefault();
+    //     location.href = "/app/pickup/pickDetail" + "&boardNumber=" + $(this).attr("href");
+    // });
+/*  #######################################################################################################################################  */
+
+     /* 자세히 보기 클릭시 실행될 함수 - 수거 신청 정보로 이동 */
+     function showWantedPickup() {
+         location.href = "/pickup/detail";
+
+     }
+
+
+/*  #######################################################################################################################################  */
+/*  #######################################################################################################################################  */
+
+</script>
 
 </html>

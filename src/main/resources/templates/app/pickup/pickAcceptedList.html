@@ -21,7 +21,8 @@
 
 <body class="sent-requests" data-modal-open-count="0" style>
 <div>
-<header th:replace="/app/fix/headerpicker.html :: header"></header>
+    <!-- 로그인 된 기사님만 들어올 수 있음 -->
+    <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
 <div id="app" data-browser="Chrome" data-is-loaded="true" class>
 
     <div id="app-body">
@@ -38,7 +39,7 @@
                                     <div data-v-e4caeaf8="">
                                         <div data-v-4721ba7d="" data-v-5f3ed876="" class="banner" tabindex="-1"
                                              data-v-e4caeaf8=""
-                                             style="background-image: url(https://static.cdn.soomgo.com/upload/banner/c8a1fbc5-7437-4069-bff8-31e8bb3112d7.png); width: 100%; display: inline-block;"></div>
+                                             style="cursor: auto; background-image: url(https://static.cdn.soomgo.com/upload/banner/c8a1fbc5-7437-4069-bff8-31e8bb3112d7.png); width: 100%; display: inline-block;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -49,114 +50,77 @@
             <section data-v-564412cd="" class="container">
                 <h1 data-v-564412cd="" class="page-heading-h1"><span data-v-564412cd="">수거현황</span></h1>
                 <ul data-v-564412cd="" class="row quote-list no-gutters">
-                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
-                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
-                            <div data-v-05822788="" class="request-card-header align-items-center">
-                                <div data-v-05822788="" class="request-card-title text-truncate"> 이사/입주 청소 업체</div>
-                                <time data-v-05822788="">20.03.16</time>
-                            </div>
-                            <div data-v-05822788="" class="request-card-body">
-                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
-                                    <div data-v-78eb3aa2="" class="progress">
-                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                             aria-valuenow="100" class="progress-bar" style="width: 50%;"></div>
+
+                    <!-- BEGIN  :  하나의 리스트가 실행될 곳  -->
+                    <th:block th:each="pickup:${pickups}" th:object="${pickup}">
+                        <input type="hidden" th:href="*{pickupId}" id="pickupId">
+                        <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
+                            <div data-v-05822788="" data-v-564412cd="" data-testid="request-card"
+                                 class="request-card">
+                                <div data-v-05822788="" class="request-card-header align-items-center">
+                                    <div data-v-05822788="" class="request-card-title text-truncate"
+                                         th:text="*{pickupAddress}">
                                     </div>
-                                    <div data-v-78eb3aa2="" class="status-wrapper">
-                                        <div data-v-78eb3aa2="" class="status">수거요청</div>
-                                        <div data-v-78eb3aa2="" class="status bold">수거진행</div>
-                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>
-                                    </div>
+                                    <time data-v-05822788=""
+                                          th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd')}"></time>
                                 </div>
-                                <div data-v-05822788="" class="quote-status-wrapper">
-                                    <div data-v-f02739d2="" data-v-05822788=""
-                                         class="row quote-status flex-nowrap no-gutters">
-                                        <div data-v-f02739d2="" class="status-message closed"> 계획변경</div>
-                                    </div>
-                                    <!---->
-                                </div>
-                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                        class="btn quote-cta btn-primary btn-block" onclick="location.href='http://localhost:10001/pickup/detaildone'">자세히 보기
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
-                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
-                            <div data-v-05822788="" class="request-card-header align-items-center">
-                                <div data-v-05822788="" class="request-card-title text-truncate"> 원룸/소형 이사</div>
-                                <time data-v-05822788="">20.03.08</time>
-                            </div>
-                            <div data-v-05822788="" class="request-card-body">
-                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
-                                    <div data-v-78eb3aa2="" class="progress">
-                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                             aria-valuenow="100" class="progress-bar" style="width: 50%;"></div>
-                                    </div>
-                                    <div data-v-78eb3aa2="" class="status-wrapper">
-                                        <div data-v-78eb3aa2="" class="status">수거요청</div>
-                                        <div data-v-78eb3aa2="" class="status bold">수거진행</div>
-                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>
-                                    </div>
-                                </div>
-                                <div data-v-05822788="" class="quote-status-wrapper">
-                                    <div data-v-f02739d2="" data-v-05822788=""
-                                         class="row quote-status flex-nowrap no-gutters">
-                                        <div data-v-f02739d2="" class="status-message closed"> 고용으로 인한 요청 중단</div>
-                                    </div>
-                                    <!---->
-                                </div>
-                                <button data-v-05822788="" data-testid="request-detail-btn" type="button" onclick="location.href='http://localhost:10001/pickup/okdetail'"
-                                        class="btn quote-cta btn-primary btn-block">자세히 보기
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
-                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
-                            <div data-v-05822788="" class="request-card-header align-items-center">
-                                <div data-v-05822788="" class="request-card-title text-truncate"> 도배 시공</div>
-                                <time
-                                        data-v-05822788="">20.03.08
-                                </time>
-                            </div>
-                            <div data-v-05822788="" class="request-card-body">
-                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
-                                    <div data-v-78eb3aa2="" class="progress">
-                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                             aria-valuenow="100" class="progress-bar" style="width: 50%;"></div>
-                                    </div>
-                                    <div data-v-78eb3aa2="" class="status-wrapper">
-                                        <div data-v-78eb3aa2="" class="status">수거요청</div>
-                                        <div data-v-78eb3aa2="" class="status bold">수거진행</div>
-                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>
-                                    </div>
-                                </div>
-                                <div data-v-05822788="" class="quote-status-wrapper">
-                                    <div data-v-f02739d2="" data-v-05822788=""
-                                         class="row quote-status flex-nowrap no-gutters">
-                                        <div data-v-f02739d2="" class="status-message closed"> 마음에 드는 고수를 소개 받지
-                                            못했습니다.
+                                <div data-v-05822788="" class="request-card-body">
+                                    <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
+                                        <div data-v-78eb3aa2="" class="progress">
+                                            <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                                 aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>
+                                        </div>
+                                        <div data-v-78eb3aa2="" class="status-wrapper">
+                                            <div data-v-78eb3aa2="" class="status bold">수거요청</div>
+                                            <div data-v-78eb3aa2="" class="status">수거진행</div>
+                                            <div data-v-78eb3aa2="" class="status"> 수거완료</div>
                                         </div>
                                     </div>
-                                    <!---->
+                                    <div data-v-05822788="" class="quote-status-wrapper">
+                                        <div data-v-f02739d2="" data-v-05822788=""
+                                             class="row quote-status flex-nowrap no-gutters">
+                                            <ul data-v-f02739d2="" class="avatar-wrapper">
+                                                <li data-v-f02739d2="" class="avatar-profile">
+                                                    <img data-v-f02739d2="" alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
+                                                         data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
+                                                         src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
+                                                         lazy="loaded"></li>
+                                            </ul>
+                                            <div data-v-f02739d2="" class="status-message">
+                                                <!--<span data-v-f02739d2="" th:text="*{pickup.memberName}"></span>-->
+                                                <span> 님의 수거 요청입니다.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button data-v-05822788="" data-testid="request-detail-btn" type="button"
+                                            onclick="showWantedPickup()" id="read"
+                                            class="btn quote-cta btn-primary btn-block">자세히 보기
+                                    </button>
                                 </div>
-                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                        class="btn quote-cta btn-primary btn-block" onclick="location.href='http://localhost:10001/pickup/detail'">자세히 보기
-                                </button>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    </th:block>
+                    <!-- END  :  하나의 리스트가 실행될 곳  -->
+
+
+
+
+
+
+
+
+
                     <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
                         <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
                             <div data-v-05822788="" class="request-card-header align-items-center">
-                                <div data-v-05822788="" class="request-card-title text-truncate"> 원룸/소형 이사</div>
-                                <time data-v-05822788="">19.03.13</time>
+                                <div data-v-05822788="" class="request-card-title text-truncate">주소들어갈 부분</div>
+                                <time data-v-05822788="">수락일자</time>
                             </div>
                             <div data-v-05822788="" class="request-card-body">
                                 <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
                                     <div data-v-78eb3aa2="" class="progress">
                                         <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                             aria-valuenow="50" class="progress-bar" style="width: 50%;"></div>
+                                             aria-valuenow="100" class="progress-bar" style="width: 50%;"></div>
                                     </div>
                                     <div data-v-78eb3aa2="" class="status-wrapper">
                                         <div data-v-78eb3aa2="" class="status">수거요청</div>
@@ -168,57 +132,24 @@
                                     <div data-v-f02739d2="" data-v-05822788=""
                                          class="row quote-status flex-nowrap no-gutters">
                                         <ul data-v-f02739d2="" class="avatar-wrapper">
-                                            <li data-v-f02739d2="" class="avatar-profile"><img data-v-f02739d2=""
-                                                                                               alt="김호영"
-                                                                                               data-src="https://dmmj3ljielax6.cloudfront.net/upload/profile/f50153ca-a04e-427f-8c53-730e22ce9e5d.jpg?h=320&amp;w=320"
-                                                                                               src="https://dmmj3ljielax6.cloudfront.net/upload/profile/f50153ca-a04e-427f-8c53-730e22ce9e5d.jpg?h=320&amp;w=320"
-                                                                                               lazy="loaded"></li>
+                                            <li data-v-f02739d2="" class="avatar-profile">
+                                                <img data-v-f02739d2="" alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
+                                                     data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
+                                                     src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
+                                                     lazy="loaded"></li>
                                         </ul>
-                                        <div data-v-f02739d2="" class="status-message"><span data-v-f02739d2=""> 1명의
-                                                    고수와
-                                                    상담해 보세요 </span></div>
+                                        <div data-v-f02739d2="" class="status-message closed">디폴트</div>
+                                        <div data-v-f02739d2="" class="status-message closed"> 님의 수거를 진행중입니다</div>
                                     </div>
                                     <!---->
                                 </div>
                                 <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                        class="btn quote-cta btn-primary btn-block">자세히 보기
+                                        class="btn quote-cta btn-primary btn-block" onclick="AcceptMyPickupDetail()">자세히 보기
                                 </button>
                             </div>
                         </div>
                     </li>
-                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
-                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
-                            <div data-v-05822788="" class="request-card-header align-items-center">
-                                <div data-v-05822788="" class="request-card-title text-truncate"> 원룸/소형 이사</div>
-                                <time data-v-05822788="">19.03.12</time>
-                            </div>
-                            <div data-v-05822788="" class="request-card-body">
-                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
-                                    <div data-v-78eb3aa2="" class="progress">
-                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                             aria-valuenow="100" class="progress-bar" style="width: 50%;"></div>
-                                    </div>
-                                    <div data-v-78eb3aa2="" class="status-wrapper">
-                                        <div data-v-78eb3aa2="" class="status">수거요청</div>
-                                        <div data-v-78eb3aa2="" class="status bold">수거진행</div>
-                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>
-                                    </div>
-                                </div>
-                                <div data-v-05822788="" class="quote-status-wrapper">
-                                    <div data-v-f02739d2="" data-v-05822788=""
-                                         class="row quote-status flex-nowrap no-gutters">
-                                        <div data-v-f02739d2="" class="status-message closed"> 마음에 드는 고수를 소개 받지
-                                            못했습니다.
-                                        </div>
-                                    </div>
-                                    <!---->
-                                </div>
-                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                        class="btn quote-cta btn-primary btn-block">자세히 보기
-                                </button>
-                            </div>
-                        </div>
-                    </li>
+
                 </ul>
                 <!---->
             </section>
@@ -230,4 +161,10 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
+<script>
+    /* 수거현황에서 자세히 보기 클릭시 _ 수거현황 detail 페이지 */
+    function AcceptMyPickupDetail() {
+        location.href = "/pickup/okdetail";
+    }
+</script>
 </html>

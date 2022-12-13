@@ -390,16 +390,16 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     font-weight: 500;
     height: 100%;
 }
-.sent-request-list>section .page-heading-h1 .user-guide[data-v-564412cd]:before {
-    content: "";
-    position: absolute;
-    width: 1.5rem;
-    height: 1.5rem;
-    padding: 0.125rem;
-    top: -0.125rem;
-    left: -1.625rem;
-    background: url(https://assets.cdn.soomgo.com/icons/icon-pro-navi-tip.svg) no-repeat;
-}
+/*.sent-request-list>section .page-heading-h1 .user-guide[data-v-564412cd]:before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    width: 1.5rem;*/
+/*    height: 1.5rem;*/
+/*    padding: 0.125rem;*/
+/*    top: -0.125rem;*/
+/*    left: -1.625rem;*/
+/*    background: url(https://assets.cdn.soomgo.com/icons/icon-pro-navi-tip.svg) no-repeat;*/
+/*}*/
 .Layer_1{
     margin-left: 88%;
 }
