@@ -30,7 +30,6 @@ function showMyInfo(){
     $(".mypage-memberName").html(memberName);
     $(".mypage-memberEmail").html(memberEmail);
     $(".mypage-memberType").html(memberCategory);
-    console.log(memberPoint);
     $(".mypage-memberPoint").html(memberPoint);
 }
 
@@ -69,7 +68,6 @@ function showCourse(courses){
 
     courses.forEach(course => {
         mycourseLength += course.mycourses.length;
-        console.log(mycourseLength);
 
         course.mycourses.forEach(mycourse => {
 
@@ -130,7 +128,6 @@ function showCourse(courses){
 
 function showMyCourse(course){
     let text = "";
-    console.log("콜백")
 
     course.spots.forEach(spot => {
         text += `<li class="noticeContentWrap active">`;

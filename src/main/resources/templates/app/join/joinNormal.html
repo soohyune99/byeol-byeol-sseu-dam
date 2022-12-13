@@ -30,7 +30,11 @@
             <div data-v-55fec228="">
                 <h1 data-v-55fec228="">숨고에 오신 것을 환영합니다</h1>
                 <div data-v-55fec228="" class="card">
-                    <form th:method="post" th:action="@{/join/join}" th:object="${memberDTO}">
+                    <form th:method="post" th:action="@{/join}" th:object="${memberDTO}">
+                        <input type="hidden" th:field="*{memberLoginType}" value="일반">
+                        <input type="hidden" th:field="*{memberCategory}" value="일반회원">
+                        <input type="hidden" th:field="*{memberPoint}" value="3000">
+                        <input type="hidden" th:field="*{memberProfileName}" value="https://www.jigushop.co.kr/common/img/default_profile.png">
                         <div data-v-79992f5d="" data-v-55fec228="" no-gutters="" data-testid="signup-form"
                              class="form-row signup-form">
                             <div data-v-79992f5d="" class="col-12">
@@ -150,8 +154,8 @@
                                 </div>
                             </div>
                             <div data-v-79992f5d="" class="col-12">
-                                <button data-v-79992f5d="" data-testid="btn-signup"
-                                        type="submit" class="btn btn-signup btn-primary">
+                                <button data-v-79992f5d=""
+                                        class="btn btn-signup btn-primary">
                                     <span data-v-79992f5d="">회원가입</span>
                                     <span data-v-79992f5d="" style="display: none;">
                                         <div data-v-fc3fcce8="" data-v-79992f5d="" class="">
@@ -184,8 +188,8 @@
                                     <span data-v-0edf7af4="">구글로 가입하기</span>
                                 </button>
                             </div>
-                            <div data-v-79992f5d="" class="col-12"><a data-v-79992f5d="" href="/pro"
-                                                                      class="pro-sign-up"> 고수로 가입하시나요? </a></div>
+                            <div data-v-79992f5d="" class="col-12"><a data-v-79992f5d="" href="/pickup/main"
+                                                                      class="pro-sign-up"> 기사로 가입하시나요? </a></div>
                         </div>
                     </form>
                 </div>

@@ -6,13 +6,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface MemberRepository extends JpaRepository<Member, Long>, MemberCustomRepository{
 
-    //    public List<Member> findByMemberEmail(@Param("memberEmail") String memberEmail);
-    public Member findByMemberEmail(@Param("memberEmail") String memberEmail);
-    public boolean existsByMemberEmail(@Param("memberEmail") String memberEmail);
+    public Member findByMemberEmail(String memberEmail);
+    public boolean existsByMemberEmail(String memberEmail);
 
-    /* ================================================================================ */
-
-
-    public Member findByMemberEmailAndMemberPassword(String memberEmail, String memberPassword);
 
 }

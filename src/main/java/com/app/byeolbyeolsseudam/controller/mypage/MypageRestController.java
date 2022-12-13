@@ -12,6 +12,7 @@ import com.app.byeolbyeolsseudam.domain.myprogram.MyprogramDTO;
 import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
 import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
 import com.app.byeolbyeolsseudam.entity.mycourse.Mycourse;
+import com.app.byeolbyeolsseudam.service.login.LoginService;
 import com.app.byeolbyeolsseudam.service.mypage.MypageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,7 @@ import java.util.UUID;
 @RequestMapping("/mypage/*")
 public class MypageRestController {
     private final MypageService mypageService;
+    private final LoginService loginService;
 
     @GetMapping("/program/{memberId}/{page}")
     public List<MyprogramDTO> getMyprogramList(@PathVariable Long memberId, @PathVariable int page){

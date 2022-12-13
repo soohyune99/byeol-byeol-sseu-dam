@@ -1,6 +1,5 @@
 /* mypagePoint.html */
 
-const memberId = 1;
 globalThis.page = 0;
 
 showMypoint();
@@ -11,6 +10,14 @@ function getMemberInfo(){
     mypageService.getMyInfo(
         memberId, showMemberInfo
     )
+}
+
+function showMemberInfo(member){
+    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
+    $(".mypage-memberName").html(member.memberName);
+    $(".mypage-memberEmail").html(member.memberEmail);
+    $(".mypage-memberType").html(member.memberCategory);
+    $(".mypage-memberPoint").html(member.memberPoint);
 }
 
 function showMemberInfo(member){

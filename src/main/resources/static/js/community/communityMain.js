@@ -10,6 +10,7 @@ let $categoryList = $("ul.topic.fixed > li.fixed");
 let $searchBar = $("input#__BVID__883");
 let $reset = $(".reset-keyword-btn");
 globalThis.category = "";
+globalThis.page = 0;
 
 $writeBtn.on('click', function(){
     openLoginModal();
@@ -51,22 +52,38 @@ show();
 
 /* 조회수 높은 TOP3와 최신순 게시글 조회 */
 function show(){
+    let formData = new FormData();
+    let keyword = $searchBar.val() || "";
+
     communityService.getTopViewList({
     }, showTopView);
 
-    communityService.getBoardList({
-    }, showCommunityBoard);
+    communityService.getBoardList(
+        formData, showCommunityBoard);
+    globalThis.page++;
 }
 
 /* 카테고리 클릭 시 카테고리 해당 게시글 조회 */
 $categoryList.on('click', function(){
+    let formData = new FormData();
+    let keyword = $searchBar.val() || "";
     globalThis.category = $(this).text().trim();
+    globalThis.page = 0;
+
     $categoryList.removeClass("selected");
     $(this).addClass("selected");
 
-    communityService.getCategoryBoards(
-        globalThis.category
-    , showSearchBoard);
+    if(category == '전체'){
+        globalThis.category = '';
+    }
+
+    formData.append('page', globalThis.page);
+    formData.append('keyword', keyword);
+    formData.append('category', globalThis.category);
+
+    communityService.getBoardList(
+        formData, showSearchBoard);
+    globalThis.page++;
 });
 
 /* 검색어 입력 시 해당 게시글 조회 */
@@ -76,10 +93,19 @@ function searchKeyword(){
         return;
     }
 
-    $categoryList.removeClass("selected");
-    communityService.getSearchBoards(
-        $searchBar.val()
-    , showSearchBoard);
+    // $categoryList.removeClass("selected");
+
+    let formData = new FormData();
+    let keyword = $searchBar.val() || "";
+    globalThis.page = 0;
+
+    formData.append('page', globalThis.page);
+    formData.append('keyword', keyword);
+    formData.append('category', globalThis.category);
+
+    communityService.getBoardList(
+       formData, showSearchBoard);
+    globalThis.page++;
 }
 
 /* 클릭한 게시물로 이동 및 조회수 증가 */
@@ -196,20 +222,19 @@ function showSearchBoard(boards){
 
 /* ================================== Infinite Scroll ==================================*/
 
-let page = 1;
 
 $(window).scroll(function(){
     let formData = new FormData();
     let keyword = $searchBar.val() || "";
 
-    formData.append('page', page);
+    formData.append('page', globalThis.page);
     formData.append('keyword', keyword);
     formData.append('category', globalThis.category);
 
     if($(window).scrollTop() * 1.001 >= $(document).height() - $(window).height()){
-        communityService.infiniteScroll(
+        communityService.getBoardList(
             formData, showCommunityBoard
         );
-        page++;
+        globalThis.page++;
     }
 });

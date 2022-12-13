@@ -22,6 +22,14 @@ function showMemberInfo(member){
     $(".mypage-memberPoint").html(member.memberPoint);
 }
 
+function showMemberInfo(member){
+    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
+    $(".mypage-memberName").html(member.memberName);
+    $(".mypage-memberEmail").html(member.memberEmail);
+    $(".mypage-memberType").html(member.memberCategory);
+    $(".mypage-memberPoint").html(member.memberPoint);
+}
+
 /* 수거신청내역 상세보기 조회 */
 function getMyPickupDetail(){
     mypageService.getMyPickup(

@@ -29,19 +29,19 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public List<BoardDTO> selectBoards(){
-        return boardRepository.selectBoards();
+    public List<BoardDTO> selectBoards(Criteria criteria){
+        return boardRepository.selectBoards(criteria);
     }
 
-    @Override
-    public List<BoardDTO> selectBoardsofCategory(BoardCategory boardCategory){
-        return boardRepository.selectBoardsofCategory(boardCategory);
-    }
-
-    @Override
-    public List<BoardDTO> selectBoardsofKeyword(String keyword){
-        return boardRepository.selectBoardsofKeyword(keyword);
-    }
+//    @Override
+//    public List<BoardDTO> selectBoardsofCategory(BoardCategory boardCategory){
+//        return boardRepository.selectBoardsofCategory(boardCategory);
+//    }
+//
+//    @Override
+//    public List<BoardDTO> selectBoardsofKeyword(String keyword){
+//        return boardRepository.selectBoardsofKeyword(keyword);
+//    }
 
     @Override
     public BoardDTO readBoard(Long boardId){
@@ -81,10 +81,10 @@ public class CommunityServiceImpl implements CommunityService {
         boardRepository.delete(board);
     }
 
-    @Override
-    public List<BoardDTO> selectScrollBoards(Criteria criteria){
-        return boardRepository.selectScrollBoards(criteria);
-    }
+//    @Override
+//    public List<BoardDTO> selectScrollBoards(Criteria criteria){
+//        return boardRepository.selectScrollBoards(criteria);
+//    }
 
     @Override
     public Long plusView(Long boardId){

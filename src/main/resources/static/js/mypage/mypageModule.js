@@ -86,22 +86,22 @@ let mypageService = (function(){
         });
     }
 
-    // function getMyInfo(memberId, callback, error){
-    //     $.ajax({
-    //         url: "/mypage/" + memberId,
-    //         type: "get",
-    //         success: function(myinfo, status, xhr){
-    //             if(callback){
-    //                 callback(myinfo);
-    //             }
-    //         },
-    //         error: function(xhr, status, err){
-    //             if(error){
-    //                 error(err);
-    //             }
-    //         }
-    //     });
-    // }
+    function getMyInfo(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/" + memberId,
+            type: "get",
+            success: function(myinfo, status, xhr){
+                if(callback){
+                    callback(myinfo);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
 
     function checkPassword(memberId, password, callback, error){
         $.ajax({
@@ -168,6 +168,23 @@ let mypageService = (function(){
             success: function(myinfo, status, xhr){
                 if(callback){
                     callback(myinfo);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function logoutMember(callback, error){
+        $.ajax({
+            url: "/logout/dropout",
+            type: "get",
+            success: function(status, xhr){
+                if(callback){
+                    callback();
                 }
             },
             error: function(xhr, status, err){
@@ -391,11 +408,12 @@ let mypageService = (function(){
     }
 
     return { getMyProgramList:getMyProgramList, getMypointList:getMypointList, getMyCommunityList:getMyCommunityList,
-        getMyCommentList:getMyCommentList, plusBoardView:plusBoardView, /*getMyInfo:getMyInfo,*/ checkPassword:checkPassword,
+        getMyCommentList:getMyCommentList, plusBoardView:plusBoardView, getMyInfo:getMyInfo, checkPassword:checkPassword,
         updateUserInfo:updateUserInfo, sendVerification:sendVerification, dropOutMember:dropOutMember,
         getMyOrderList:getMyOrderList, getMyCancelList:getMyCancelList, getMyOrder:getMyOrder, cancelMyOrder:cancelMyOrder,
         getMyPickupList:getMyPickupList, getMyPickup:getMyPickup, getCourses:getCourses, getMyCourses:getMyCourses,
-        getCourse:getCourse, getBadges:getBadges, getMybadges:getMybadges, uploadProfileFile:uploadProfileFile }
+        getCourse:getCourse, getBadges:getBadges, getMybadges:getMybadges, uploadProfileFile:uploadProfileFile,
+        logoutMember:logoutMember }
 })();
 
 

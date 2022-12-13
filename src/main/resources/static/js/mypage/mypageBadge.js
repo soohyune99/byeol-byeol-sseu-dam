@@ -35,7 +35,6 @@ function showMyInfo(){
     $(".mypage-memberName").html(memberName);
     $(".mypage-memberEmail").html(memberEmail);
     $(".mypage-memberType").html(memberCategory);
-    console.log(memberPoint);
     $(".mypage-memberPoint").html(memberPoint);
 }
 

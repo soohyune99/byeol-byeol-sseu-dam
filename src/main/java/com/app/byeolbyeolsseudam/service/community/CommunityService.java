@@ -10,10 +10,10 @@ import java.util.List;
 @Service
 public interface CommunityService {
     public List<BoardDTO> selectTopView();
-    public List<BoardDTO> selectBoards();
-    public List<BoardDTO> selectBoardsofCategory(BoardCategory boardCategory);
-    public List<BoardDTO> selectBoardsofKeyword(String keyword);
-    public List<BoardDTO> selectScrollBoards(Criteria criteria);
+    public List<BoardDTO> selectBoards(Criteria criteria);
+//    public List<BoardDTO> selectBoardsofCategory(BoardCategory boardCategory);
+//    public List<BoardDTO> selectBoardsofKeyword(String keyword);
+//    public List<BoardDTO> selectScrollBoards(Criteria criteria);
     public BoardDTO readBoard(Long boardId);
     public void updateBoard(BoardDTO boardDTO);
     public void deleteBoard(Long boardId);

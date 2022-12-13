@@ -25,24 +25,14 @@ import java.util.UUID;
 public class BoardController {
     private final CommunityService communityService;
 
-    @GetMapping("")
-    public List<BoardDTO> getBoardList() {
-        return communityService.selectBoards();
+    @PostMapping("")
+    public List<BoardDTO> getBoardList(Criteria criteria) {
+        return communityService.selectBoards(criteria);
     }
 
     @GetMapping("/topview")
     public List<BoardDTO> getTopViewList() {
        return communityService.selectTopView();
-    }
-
-    @GetMapping("/{boardCategory}")
-    public List<BoardDTO> getCategoryBoards(@PathVariable BoardCategory boardCategory) {
-        return communityService.selectBoardsofCategory(boardCategory);
-    }
-
-    @PostMapping("/{keyword}")
-    public List<BoardDTO> getSearchBoards(@PathVariable String keyword){
-        return communityService.selectBoardsofKeyword(keyword);
     }
 
     @GetMapping(value = {"/read/{boardId}", "update/{boardId}"})
@@ -64,11 +54,6 @@ public class BoardController {
     @DeleteMapping("/{boardId}")
     public void deleteBoard(@PathVariable Long boardId){
         communityService.deleteBoard(boardId);
-    }
-
-    @PostMapping("/scroll")
-    public List<BoardDTO> infiniteScroll(Criteria criteria){
-        return communityService.selectScrollBoards(criteria);
     }
 
     @PatchMapping("/view/{boardId}")

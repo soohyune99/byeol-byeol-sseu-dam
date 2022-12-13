@@ -1,5 +1,6 @@
 /* communityMain.html */
-
+/* communityRead.html */
+/* communityWrite.html */
 
 
 let communityService = (function(){
@@ -20,44 +21,15 @@ let communityService = (function(){
         });
     }
 
-    function getBoardList(board, callback, error){
+    function getBoardList(formData, callback, error){
         $.ajax({
             url: "/board",
-            type: "get",
-            success: function(boards, status, xhr){
-                if(callback){
-                    callback(boards);
-                }
-            },
-            error: function(xhr, status, err){
-                if(error){
-                    error(err);
-                }
-            }
-        });
-    }
-
-    function getCategoryBoards(boardCategory, callback, error){
-        $.ajax({
-            url: "/board/" + boardCategory,
-            type: "get",
-            success: function(boards, status, xhr){
-                if(callback){
-                    callback(boards);
-                }
-            },
-            error: function(xhr, status, err){
-                if(error){
-                    error(err);
-                }
-            }
-        });
-    }
-
-    function getSearchBoards(keyword, callback, error){
-        $.ajax({
-            url: "/board/" + keyword,
             type: "post",
+            data: formData,
+            enctype:'multipart/form-data',
+            cache:false,
+            contentType:false,
+            processData:false,
             success: function(boards, status, xhr){
                 if(callback){
                     callback(boards);
@@ -166,28 +138,6 @@ let communityService = (function(){
         });
     }
 
-    function infiniteScroll(formData, callback, error){
-        $.ajax({
-            url: "/board/scroll/",
-            type: "post",
-            data:formData,
-            enctype:'multipart/form-data',
-            cache:false,
-            contentType:false,
-            processData:false,
-            success: function(boards, status, xhr){
-                if(callback){
-                    callback(boards);
-                }
-            },
-            error: function(xhr, status, err){
-                if(error){
-                    error(err);
-                }
-            }
-        });
-    }
-
     function timeForToday(value) {
         const today = new Date();
         const timeValue = new Date(value);
@@ -254,9 +204,8 @@ let communityService = (function(){
         });
     }
 
-    return { getTopViewList:getTopViewList, getBoardList:getBoardList, getCategoryBoards:getCategoryBoards,
-        getSearchBoards:getSearchBoards, getBoardDetail:getBoardDetail, saveBoard:saveBoard, deleteBoard:deleteBoard,
-        updateBoard:updateBoard, plusBoardView:plusBoardView, uploadBoardFile:uploadBoardFile,
-        deleteBoardFile:deleteBoardFile, infiniteScroll:infiniteScroll, timeForToday:timeForToday }
+    return { getTopViewList:getTopViewList, getBoardList:getBoardList, getBoardDetail:getBoardDetail,
+        saveBoard:saveBoard, deleteBoard:deleteBoard, updateBoard:updateBoard, plusBoardView:plusBoardView,
+        uploadBoardFile:uploadBoardFile, deleteBoardFile:deleteBoardFile, timeForToday:timeForToday }
 })();
 

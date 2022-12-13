@@ -47,7 +47,7 @@ function idCheck(){
     }
     ;
 }
-//비밀번호 유효성 검사랑해요
+// 비밀번호 유효성 검사
 function pwCheck(){
     if (!$inputPw.val()) {
         $inputPw.parent().siblings(".invalid-feedback").text("비밀번호를 입력해주세요.");
@@ -92,7 +92,7 @@ $pwChecking.on("blur", function () {
     matchPw();
 })
 
-//회원가입 버튼 클릭 시 유효성 검사
+// 회원가입 버튼 클릭 시 유효성 검사
 $btn.on("click", function () {
     let name = false;
     let email = false;
@@ -125,6 +125,7 @@ $btn.on("click", function () {
         $btn.attr("type", "submit")
     }
 });
+
 //비밀번호 표시, 숨김 전환하는 js
 $passwordShowBtn.on("click", function () {
     if($(this).text() == "표시"){
@@ -135,6 +136,12 @@ $passwordShowBtn.on("click", function () {
         $(this).siblings().attr("type", "password");
     }
 })
+
+/* 중복검사 버튼 클릭 시 */
+$duplicationCheckBtn.on("click",function () {
+    checkEmailDuplication();
+})
+
 //이메일 중복검사하는 js
 function checkEmailDuplication() {
     const memberEmail = $("#memberEmail").val();
@@ -144,7 +151,6 @@ function checkEmailDuplication() {
         data: {memberEmail: memberEmail},
         contentType: "application/json; charset=utf-8",
         success: function (result) {
-            console.log("AJAX 들어옴" + result);
             if (result){
                 $inputEmail.parent().siblings(".invalid-feedback").text("중복된 이메일 주소입니다.");
                 $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
@@ -161,39 +167,5 @@ function checkEmailDuplication() {
 
         }
     })
-
-
-
-    //중복검사 예시
-    // if ($inputEmail.val() == "hds1234@gmail.com") {
-    //     $inputEmail.parent().siblings(".invalid-feedback").text("중복된 이메일 주소입니다.");
-    //     $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
-    //     $inputEmail.parent().siblings(".invalid-feedback").css("color", "#fa5963");
-    //     $inputEmail.addClass("invalid");
-    //     emailDuplicate = false;
-    // }else {
-    //     $inputEmail.parent().siblings(".invalid-feedback").text("사용 가능한 이메일 주소입니다.");
-    //     $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
-    //     $inputEmail.parent().siblings(".invalid-feedback").css("color", "#00c7ae");
-    //     $inputEmail.removeClass("invalid");
-    //     emailDuplicate = true;
-
-    // $.ajax({
-    //     success: function (condition) {
-    //         if(condition){
-    //             $inputEmail.parent().siblings(".invalid-feedback").text("중복된 이메일 주소입니다.");
-    //             $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
-    //             $inputEmail.addClass("invalid");
-    //         }else{
-    //             $inputEmail.parent().siblings(".invalid-feedback").text("사용가능한 이메일 주소입니다..");
-    //             $inputEmail.parent().siblings(".invalid-feedback").css("display", "block");
-    //             $inputEmail.removeClass("invalid");
-    //         }
-    //     }
-    // })
-
 }
 
-$duplicationCheckBtn.on("click",function () {
-    checkEmailDuplication();
-})

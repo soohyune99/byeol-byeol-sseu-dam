@@ -49,6 +49,6 @@ public class MainController {
         }
         // 세션이 유지되면 로그인으로 이동
         model.addAttribute("memberDTO", loginMember);
-        return "/login/login";
+        return "/login";
     }
 }
