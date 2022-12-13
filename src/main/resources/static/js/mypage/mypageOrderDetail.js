@@ -1,12 +1,11 @@
 /* mypageOrderDetail.html */
 
-const memberId = 1;
 let url = decodeURI(window.location.href).split("/");
 let orderId = url[url.length - 1];
 let $cancelModal = $("#cocoaModal");
 
 getMyOrderDetail();
-getMemberInfo();
+getMyInfo();
 
 /* 주문취소 모달 열기 */
 function cancelModalOpen(orderId){
@@ -36,18 +35,12 @@ function cancelModalClose(){
 /* ==================================== memberInfo ==================================== */
 
 /* 기본 회원 정보 조회 */
-function getMemberInfo(){
-    mypageService.getMyInfo(
-        memberId, showMemberInfo
-    )
-}
-
-function showMemberInfo(member){
-    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
-    $(".mypage-memberName").html(member.memberName);
-    $(".mypage-memberEmail").html(member.memberEmail);
-    $(".mypage-memberType").html(member.memberCategory);
-    $(".mypage-memberPoint").html(member.memberPoint);
+function getMyInfo(){
+    $(".mypage-memberProfileName").attr('src', memberProfileName);
+    $(".mypage-memberName").html(memberName);
+    $(".mypage-memberEmail").html(memberEmail);
+    $(".mypage-memberType").html(memberCategory);
+    $(".mypage-memberPoint").html(memberPoint);
 }
 
 /* 주문내역 상세보기 조회 */

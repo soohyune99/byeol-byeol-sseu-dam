@@ -3,12 +3,11 @@
 let $unlockCourse = $(".mycourseWrap .unlock");
 let $unlockCourseModal = $(".not-open-course");
 
-const memberId = 1;
 globalThis.activeCourseName = '';   // 진행중인 코스
 globalThis.activeSpotNumber = 0;    // 진행중인 스팟
 
 
-getMemberInfo();
+showMyInfo();
 
 
 $unlockCourse.on('click', function(){
@@ -25,20 +24,14 @@ function unlockCourseModalClose(){
     $unlockCourseModal.css('display', 'none');
 }
 
-/* ============================= memberInfo ============================= */
-
-function getMemberInfo(){
-    mypageService.getMyInfo(
-        memberId, showMemberInfo
-    )
-}
-
-function showMemberInfo(member){
-    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
-    $(".mypage-memberName").html(member.memberName);
-    $(".mypage-memberEmail").html(member.memberEmail);
-    $(".mypage-memberType").html(member.memberCategory);
-    $(".mypage-memberPoint").html(member.memberPoint);
+/* 회원 정보 */
+function showMyInfo(){
+    $(".mypage-memberProfileName").attr('src', memberProfileName);
+    $(".mypage-memberName").html(memberName);
+    $(".mypage-memberEmail").html(memberEmail);
+    $(".mypage-memberType").html(memberCategory);
+    console.log(memberPoint);
+    $(".mypage-memberPoint").html(memberPoint);
 }
 
 /* ================================ course ================================ */
@@ -67,10 +60,19 @@ function showCourse(courses){
     let spotText = "";
     let courseAr = [];                              // 진행중이거나 완주한 코스들
     let courseArray = [];                           // 중복 제거한 코스들
+    let mycourseLength = 0;                         // 내가 참여한 코스 수
+
+    if(courses.length == 0) {
+        $(".myTabContents.noticeTab").css('display', 'none');
+
+    }
 
     courses.forEach(course => {
+        mycourseLength += course.mycourses.length;
+        console.log(mycourseLength);
 
         course.mycourses.forEach(mycourse => {
+
             courseAr.push(mycourse.courseName);
 
             if (course.courseName == mycourse.courseName && mycourse.courseFinishedStatus == '진행중') {
@@ -78,6 +80,10 @@ function showCourse(courses){
                 globalThis.activeSpotNumber = mycourse.spotNumber;
             }
         });
+
+        if(mycourseLength == 0) {
+            $(".myTabContents.noticeTab").css('display', 'none');
+        }
     });
 
     courseArray = Array.from(new Set(courseAr));

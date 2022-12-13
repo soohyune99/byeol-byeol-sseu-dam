@@ -1,10 +1,9 @@
 /* mypageCommunity.html */
 
-const memberId = 1;
 globalThis.page = 0;
 
 changeTab();
-getMemberInfo();
+showMyInfo();
 
 function changeTab(tab){
     globalThis.page = 0;
@@ -23,22 +22,14 @@ function changeTab(tab){
     }
 }
 
-/* ============================= memberInfo ============================= */
-
-
-/* 기본 회원 정보 조회 */
-function getMemberInfo(){
-    mypageService.getMyInfo(
-        memberId, showMemberInfo
-    )
-}
-
-function showMemberInfo(member){
-    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
-    $(".mypage-memberName").html(member.memberName);
-    $(".mypage-memberEmail").html(member.memberEmail);
-    $(".mypage-memberType").html(member.memberCategory);
-    $(".mypage-memberPoint").html(member.memberPoint);
+/* 회원 정보 */
+function showMyInfo(){
+    $(".mypage-memberProfileName").attr('src', memberProfileName);
+    $(".mypage-memberName").html(memberName);
+    $(".mypage-memberEmail").html(memberEmail);
+    $(".mypage-memberType").html(memberCategory);
+    console.log(memberPoint);
+    $(".mypage-memberPoint").html(memberPoint);
 }
 
 /* ================================== Board ==================================*/

@@ -1,6 +1,5 @@
 /* mypageInfoPassword.html */
 
-const memberId = 1;
 let $inputCurrentPassword = $("input[name='currentPassword']");
 
 /* 비밀번호 표시 전환 */
