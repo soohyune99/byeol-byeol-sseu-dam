@@ -47,6 +47,7 @@ public class LoginController {
         if(loginMember == null){
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             return "redirect:/login?login=fail";
+
         } else if(loginMember.getMemberCategory() == MemberCategory.탈퇴회원) {
             return "redirect:/login?login=fail";
         }

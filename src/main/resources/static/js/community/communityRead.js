@@ -36,17 +36,12 @@ $(".board-dropdownmenu-menuBtn").on("click", function(){
     openBoardMenu($boardMenu);
 });
 
-
-// /* 댓글 도시락 버튼 클릭 시 수정, 삭제 메뉴 보이기 */
-// $("button#__BVID__1555__BV_toggle_").on("click", function(){
-//     openCommentMenu($commentMenu);
-// });
-
-
 /* 댓글 입력 시 로그인 안 되어 있을 경우 로그인 모달창 띄우기 */
-// $("#__BVID__1499").on("focus", function(){
-//     openLoginModal();
-// });
+$("#__BVID__1499").on("focus", function(){
+    if(memberId == null || memberId == ''){
+        openLoginModal();
+    }
+});
 
 
 /* 로그인 모달 취소 버튼 클릭 시 돌아가기 */
@@ -183,7 +178,6 @@ $(".lg-close.lg-icon").on('click', function(){
 globalThis.page = 1;
 
 showComment();
-hideCommentMenu();
 
 /* 댓글 목록 보기 */
 function showComment(){
@@ -231,7 +225,7 @@ $commentFileForm.on('change', function(){
         }
         commentService.save({
             boardId: boardId,
-            memberId: 1,
+            memberId: memberId,
             commentContent: $commentContent.val(),
             commentFileName: $("input[name='commentFileName']").val()
         }, function () {
@@ -277,7 +271,7 @@ function updateOKComment(commentId){
         commentId: commentId,
         commentContent: $("input.commentContent." + commentId).val(),
         boardId: boardId,
-        memberId: 1,
+        memberId: memberId,
         commentFileName: $("input[name='commentFileName']").val()
     }, showComment);
 }
@@ -289,11 +283,26 @@ function deleteComment(commentId){
     );
 }
 
+/* 댓글 개수 */
+function countComment(){
+    commentService.countCommentofBoard(
+        boardId, showCountofComment
+    );
+    console.log("하잇" + boardId);
+}
+
+function showCountofComment(count){
+    console.log("콜백")
+    console.log(count)
+    $(".comment-count").html("댓글 " + count);
+}
+
 /* 본인 작성 댓글만 수정삭제 메뉴 보이게 하기 */
 function hideCommentMenu(){
-    console.log(".board-dropdown-toggle.member" + memberId)
+    console.log(memberId);
+    console.log($(".member805"));
     $(".board-dropdown-toggle.btn-secondary.btn-comment").css('display', 'none');
-    $(".board-dropdown-toggle.member" + memberId).show();
+    $(".board-dropdown-toggle.member" + memberId).css('display', 'block');
 }
 
 function showCommentList(comments){
@@ -345,6 +354,9 @@ function showCommentList(comments){
     $file.removeAttr('disabled');
     $(".attach-image-icon").css('cursor', 'pointer');
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
+
+    countComment();
+    hideCommentMenu();
 }
 
 function showCommentMore(comments){
@@ -395,6 +407,8 @@ function showCommentMore(comments){
     $file.removeAttr('disabled');
     $(".attach-image-icon").css('cursor', 'pointer');
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iIzJEMkQyRCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
+
+    countComment();
 }
 
 /* 댓글 첨부파일 업로드 */

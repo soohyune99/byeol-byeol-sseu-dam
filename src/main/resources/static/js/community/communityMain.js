@@ -13,7 +13,11 @@ globalThis.category = "";
 globalThis.page = 0;
 
 $writeBtn.on('click', function(){
-    openLoginModal();
+    if(memberId == null || memberId == ''){
+        openLoginModal();
+        return;
+    }
+    location.href = '/community/write';
 });
 
 $closeBtn.on('click', function(){

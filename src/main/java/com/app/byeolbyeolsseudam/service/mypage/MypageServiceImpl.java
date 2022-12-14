@@ -30,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.apache.xerces.impl.dv.util.Base64;
 import org.json.simple.JSONObject;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.stereotype.Service;
@@ -91,13 +92,14 @@ public class MypageServiceImpl implements MypageService {
     @Override
     public Boolean checkPassword(Long memberId, String password){
         String memberPassword = memberRepository.findById(memberId).get().getMemberPassword();
-        memberPassword = "\"" + memberPassword + "\"";
-        return memberPassword.equals(password);
+        String decodedDBPW = "\"" + new String(Base64.decode(memberPassword)) + "\"";
+        return decodedDBPW.equals(password);
     }
 
     @Override
     public MemberDTO updateMyInfo(MemberDTO memberDTO){
         Member member = memberRepository.findById(memberDTO.getMemberId()).get();
+        memberDTO.setMemberPassword(Base64.encode(memberDTO.getMemberPassword().getBytes()));
         member.update(memberDTO);
         memberRepository.save(member);
         return memberRepository.selectMember(member.getMemberId());

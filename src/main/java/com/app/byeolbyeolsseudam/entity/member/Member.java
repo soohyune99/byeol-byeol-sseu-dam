@@ -59,6 +59,12 @@ public class Member extends Period {
         this.memberProfileName = memberDTO.getMemberProfileName();
     }
 
+    public void changingCrew(MemberDTO memberDTO) {
+        this.memberCategory = memberDTO.getMemberCategory();
+        this.memberPhone = memberDTO.getMemberPhone();
+        this.memberAddress = memberDTO.getMemberAddress();
+    }
+
     public void updateMemberCategory(MemberCategory memberCategory){
         this.memberCategory = memberCategory;
     }

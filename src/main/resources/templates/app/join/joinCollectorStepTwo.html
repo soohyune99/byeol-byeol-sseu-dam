@@ -19,8 +19,13 @@
     <link rel="stylesheet" href="/css/join/joinCollector.css">
 </head>
 <body class="pro-signup">
-<header th:replace="/app/fix/header.html :: header"></header>
 <div id="app" data-browser="chrome" data-is-loaded="true" class>
+    <th:block th:if="${session.member == null}">
+        <header th:replace="/app/fix/header.html :: header"></header>
+    </th:block>
+    <th:block th:if="${session.member != null}">
+        <header th:replace="/app/fix/headerLogin.html :: header"></header>
+    </th:block>
     <div id="app-body">
         <div data-v-61b32e29="" class="container">
             <form data-v-61b32e29="" id="id_pro_form" autocomplete="off"
@@ -41,13 +46,12 @@
                         <!---->
                         <div data-v-66225419="" class="form-group providername-wrap">
                             <label data-v-66225419="" for="memberName">이름</label>
-                            <input data-v-66225419="" type="text"
-                                   th:field = "*{memberName}"
+                            <input data-v-66225419="" type="text" th:field="*{memberName}"
                                    placeholder="이름(실명)을 입력해주세요." class="input-lg form-control" minlength="2"
                                    maxlength="7" data-vv-validate-on="blur" aria-invalid="true"
                                    aria-required="true" autofocus>
                             <input data-v-66225419="" type="text"
-                                   th:field = "*{memberAddress}" style="display: none">
+                                   th:field="*{memberAddress}" style="display: none">
                             <div data-v-66225419="" class="invalid-feedback">
                                 <p data-v-66225419="" class="error">이름(실명)을 입력해주세요.</p>
                             </div>
@@ -68,7 +72,7 @@
                             <label data-v-66225419="" for="email">이메일</label>
                             <div style="position: relative">
                                 <input data-v-66225419="" name="email" type="email"
-                                       th:field = "*{memberEmail}"
+                                       th:field="*{memberEmail}"
                                        placeholder="id@gmail.com" class="input-lg form-control" maxlength="255"
                                        data-vv-validate-on="blur" aria-invalid="true">
                                 <!--                            <span data-v-66225419="" class="form-action" style="display: none;">-->
@@ -76,7 +80,8 @@
                                 <!--                            </span>-->
                                 <button
                                         data-v-79992f5d="" type="button"
-                                        class="email-show" disabled>중복확인</button>
+                                        class="email-show" disabled>중복확인
+                                </button>
                             </div>
                             <div data-v-66225419="" class="d-block invalid-feedback">
                                 <p data-v-66225419="" class="error" style="display: none">이메일 주소를 입력해주세요.</p>
@@ -87,7 +92,7 @@
                             <div style="position: relative">
                                 <input
                                         data-v-66225419="" type="password"
-                                        th:field = "*{memberPassword}"
+                                        th:field="*{memberPassword}"
                                         placeholder="영문+숫자+특수문자 조합 8자리 이상 입력해주세요." autocomplete="new-password"
                                         class="input-lg form-control is-valid" v-validate="passwordValidatorRules"
                                         data-vv-validate-on="blur" aria-autocomplete="list">
@@ -131,13 +136,14 @@
                                                           class="answer-input form-control is-invalid" maxlength="13"
                                                           data-vv-validate-on="blur" aria-invalid="true">
                                             <input
-                                                data-v-b5001060="" name="isSendPhoneNumber"
-                                                data-vv-name="isSendPhoneNumber" hidden="hidden"
-                                                aria-required="false" aria-invalid="true">
+                                                    data-v-b5001060="" name="isSendPhoneNumber"
+                                                    data-vv-name="isSendPhoneNumber" hidden="hidden"
+                                                    aria-required="false" aria-invalid="true">
                                             <input type="hidden" id="verified-phone-input" th:field="*{memberPhone}">
                                             <div data-v-b5001060="" class="button-wrapper input-group-append">
                                                 <button data-v-b5001060="" type="button" disabled="disabled"
-                                                        class="send-button disabled" onclick="javascript:sendVertification();"> 전송
+                                                        class="send-button disabled"
+                                                        onclick="javascript:sendVertification();"> 전송
                                                 </button>
                                             </div>
                                             <!---->
@@ -152,7 +158,8 @@
                                     </div>
                                 </fieldset>
                                 <!---->
-                                <fieldset data-v-b5001060="" class="form-group form-group" id="__BVID__81" style="display: none"><!---->
+                                <fieldset data-v-b5001060="" class="form-group form-group" id="__BVID__81"
+                                          style="display: none"><!---->
                                     <div>
                                         <label data-v-b5001060="" for="request-verify-phone"
                                                class="input-label">인증번호</label>
@@ -170,7 +177,8 @@
                                                 </button>
                                             </div><!----></div>
                                         <div data-v-b5001060="" class="validation-msg-wrapper"><!----><!----><p
-                                                data-v-b5001060="" class="authentication" style="color: #00C7AE;"> 인증번호는 수신 후 15분 동안 유효합니다. </p>
+                                                data-v-b5001060="" class="authentication" style="color: #00C7AE;"> 인증번호는
+                                            수신 후 15분 동안 유효합니다. </p>
                                         </div><!----><!----><!----></div>
                                 </fieldset>
                             </div>
@@ -199,7 +207,8 @@
                                                                 for="more-than-14-checkbox-1668331384764">
                                 <p data-v-9224195e="" class="terms-wrapper">만 14세 이상 (필수)</p>
                             </label>
-                                <p data-v-9224195e="" class="error-message" style="display: none"> 만 14세 이상 가입에 동의해주세요. </p>
+                                <p data-v-9224195e="" class="error-message" style="display: none"> 만 14세 이상 가입에
+                                    동의해주세요. </p>
                                 <!---->
                             </div>
                         </div>
@@ -208,17 +217,25 @@
                 <div data-v-f6f3ff14="" data-v-61b32e29="" class="step-navigator footer">
                     <div data-v-f6f3ff14="" class="wrapper">
                         <div data-v-f6f3ff14="" class="warning"></div>
-                        <span data-v-f6f3ff14=""
-                              class="left btn-container"><button data-v-f6f3ff14="" type="button"
-                                                                 class="btn btn-prev btn-outline-primary"> 이전 </button></span><span
-                            data-v-f6f3ff14="" class="right btn-container"><button data-v-f6f3ff14="" type="submit" class="btn btn-primary"> 가입하기 </button></span>
+                        <span data-v-f6f3ff14="" class="left btn-container">
+                            <button data-v-f6f3ff14="" type="button" class="btn btn-prev btn-outline-primary"> 이전 </button>
+                        </span>
+                        <span data-v-f6f3ff14="" class="right btn-container">
+                        <button data-v-f6f3ff14="" type="button" class="btn btn-primary submit-btn"> 가입하기 </button>
+                        <button data-v-f6f3ff14="" type="button" class="btn btn-primary change-btn" style="display: none;"> 가입하기 </button>
+                        </span>
                     </div>
                     <!---->
                     <th:block th:if="${session.member != null}">
+                        <input type="hidden" th:field="*{memberId}" value="">
                         <input type="hidden" name="hiddenMemberId" th:value="${session.member.memberId}">
                         <input type="hidden" name="hiddenMemberName" th:value="${session.member.memberName}">
                         <input type="hidden" name="hiddenMemberEmail" th:value="${session.member.memberEmail}">
                         <input type="hidden" name="hiddenMemberPhone" th:value="${session.member.memberPhone}">
+<!--                        <input type="hidden" th:field="*{memberId}" th:value="${session.member.memberId}">-->
+<!--                        <input type="hidden" th:field="*{memberName}" th:value="${session.member.memberName}">-->
+<!--                        <input type="hidden" th:field="*{memberEmail}" th:value="${session.member.memberEmail}">-->
+<!--                        <input type="hidden" th:field="*{memberPhone}" th:value="${session.member.memberPhone}">-->
                     </th:block>
                 </div>
             </form>
@@ -232,6 +249,7 @@
     let memberName = $("input[name='hiddenMemberName']").val();
     let memberEmail = $("input[name='hiddenMemberEmail']").val();
     let memberPhone = $("input[name='hiddenMemberPhone']").val();
+    let memberAddress = $("input[name='MemberAddress']").val();
 </script>
 <script src="/js/fix/headerLogin.js"></script>
 <script src="/js/join/joinModule.js"></script>

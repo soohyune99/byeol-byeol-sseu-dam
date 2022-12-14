@@ -34,4 +34,16 @@ public class MycourseCustomRepositoryImpl implements MycourseCustomRepository {
                 .orderBy(mycourse.spot.spotName.asc())
                 .fetch();
     }
+
+    @Override
+    public List<MycourseDTO> selectMyCourse(Long memberId, String courseName, int SpotNumber){
+//        return jpaQueryFactory.select(new QMycourseDTO(mycourse.mycourseId,
+//                mycourse.courseFinishedStatus, mycourse.member.memberId, mycourse.course.courseId,
+//                mycourse.course.courseName, mycourse.spot.spotId, mycourse.spot.spotName,
+//                mycourse.spot.spotNumber))
+//                .from(mycourse)
+//                .where(mycourse.member.memberId.eq(memberId)
+//                        .and(mycourse.course.))
+        return null;
+    }
 }

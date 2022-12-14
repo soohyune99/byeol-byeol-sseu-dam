@@ -8,10 +8,10 @@ getBadge();
 getMybadge();
 showMyInfo();
 
-$(".mybadge").on('click', $(".mybadge .mybadgeImg.acquired"), function(){
-    $badgeModal.css('display', 'block');
-
-});
+// $("div.mybadge").on('click', ".acquired", function(){
+//     $badgeModal.css('display', 'block');
+//
+// });
 
 $modalCloseBtn.on('click', function(){
     badgeModalClose();
@@ -20,7 +20,13 @@ $modalCloseBtn.on('click', function(){
 /* 배지 정보 모달 열기 */
 function badgeModalOpen(badgeId){
     let $badgeImg = $(".mybadgeImg.acquired." + badgeId).val();
-    let $badgeInfo = $(".mybadgeImg.acquired." + badgeId).next().text();
+    let $badgeName = $(".mybadgeImg.acquired." + badgeId).next().text()
+    let $badgeInfo = $(".mybadgeImg.acquired." + badgeId).next().next().text();
+
+    $(".acquired-badgeName").html($badgeName);
+    $(".acquired-badgeImage").html($badgeImg);
+    $(".acquired-badgeInfo").html($badgeInfo);
+
     $badgeModal.css('display', 'block');
 }
 
@@ -145,6 +151,7 @@ function showMyBadges(mybadges){
     mybadges.forEach(mybadge => {
         $(".mybadgeWrap." + mybadge.badgeId).addClass("acquired");
         $(".mybadgeImg." + mybadge.badgeId).addClass("acquired");
+        $(".mybadgeImg." + mybadge.badgeId).attr('onclick', 'badgeModalOpen(' + mybadge.badgeId + ')');
     });
 
     $(".acquiredBadge").html(mybadges.length);

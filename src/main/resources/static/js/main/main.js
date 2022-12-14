@@ -12,6 +12,7 @@ let lastDiv = document.createElement("div.banner-item");
 current.innerHTML = 1;
 
 resizeWindow();
+successJoin();
 
 window.onresize = function(event){
     resizeWindow();
@@ -506,3 +507,17 @@ arrowTen.forEach(arrow => {
         }
     });
 });
+
+/* 가입 성공 여부 판단 */
+function successJoin(){
+    let joinFlag = searchParam('join');
+
+    if(joinFlag == 'true'){
+        alert("가입을 환영합니다🥳\n사이트 이용을 원하시면 로그인 부탁드립니다.");
+    }
+}
+
+/* 쿼리스트링 가져오는 메소드 */
+function searchParam(key) {
+    return new URLSearchParams(location.search).get(key);
+};

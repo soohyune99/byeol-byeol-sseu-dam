@@ -94,6 +94,24 @@ let commentService = (function(){
             }
         });
     }
-    return {getCommentList:getCommentList, getMoreComment:getMoreComment, save: save, updateOKComment:updateOKComment, deleteComment:deleteComment}
+
+    function countCommentofBoard(boardId, callback, error){
+        $.ajax({
+            url: "/comment/count/" + boardId,
+            type: "get",
+            success: function(count, status, xhr){
+                if(callback){
+                    callback(count);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+    return {getCommentList:getCommentList, getMoreComment:getMoreComment, save: save, updateOKComment:updateOKComment,
+        deleteComment:deleteComment, countCommentofBoard:countCommentofBoard}
 })();
 

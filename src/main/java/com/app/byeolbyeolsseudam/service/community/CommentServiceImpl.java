@@ -47,4 +47,9 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.delete(commentRepository.findById(commentId).get());
     }
 
+    @Override
+    public Long countCommentofBoard(Long boardId){
+        return commentRepository.countCommentsByBoard_BoardId(boardId);
+    }
+
 }
