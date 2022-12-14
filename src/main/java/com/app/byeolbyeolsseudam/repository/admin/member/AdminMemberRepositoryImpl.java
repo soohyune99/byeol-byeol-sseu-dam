@@ -18,6 +18,29 @@ public class AdminMemberRepositoryImpl implements AdminMemberCustomRepository{
 
     private final JPAQueryFactory jpaQueryFactory;
 
+
+    @Override
+    public List<MemberDTO> showAdminMember() {
+        return jpaQueryFactory.select(new QMemberDTO(
+                member.memberId,
+                member.memberLoginType,
+                member.memberCategory,
+                member.memberName,
+                member.memberPassword,
+                member.memberPhone,
+                member.memberAddress,
+                member.memberEmail,
+                member.memberPoint,
+                member.memberProfileName,
+                member.memberProfilePath,
+                member.memberProfileUuid,
+                member.createdDate
+        )).from(member)
+                .orderBy(member.memberId.desc())
+                .limit(3)
+                .fetch();
+    }
+
     @Override
     public List<MemberDTO> showMemberList(Pageable pageable) {
         return jpaQueryFactory.select(new QMemberDTO(

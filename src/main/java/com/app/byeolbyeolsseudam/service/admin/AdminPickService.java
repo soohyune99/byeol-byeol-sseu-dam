@@ -17,6 +17,10 @@ import java.util.List;
 public class AdminPickService {
     private final AdminPickupRepository adminPickupRepository;
 
+    public List<PickupDTO> showAdminPickupList(){
+        return adminPickupRepository.showAdminPickup();
+    }
+
     public Page<PickupDTO> showList(Pageable pageable){
         List<PickupDTO> pickups=  adminPickupRepository.showPickupList(pageable);
         final Page<PickupDTO> pickupList = new PageImpl<>(pickups, pageable, adminPickupRepository.findAll().size());

@@ -5,8 +5,10 @@ import com.app.byeolbyeolsseudam.domain.banner.BannerDTO;
 import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
+import com.app.byeolbyeolsseudam.domain.spot.SpotDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -228,7 +230,7 @@ public class BannerUploadController {
             String uuid = UUID.randomUUID().toString();
             String fileName = multipartFile.getOriginalFilename();
             uploadFileName = uuid + fileName;
-            badgeDTO.setBadgeFileName("/upload/badge/" + createDirectoryByNow() + uuid + fileName);
+            badgeDTO.setBadgeFileName("/upload/badge/" + createDirectoryByNow()+ "/" + uuid + fileName);
 
             File saveFile =new File(uploadPath, uploadFileName);
             multipartFile.transferTo(saveFile);
@@ -239,8 +241,39 @@ public class BannerUploadController {
         return files;
     }
 
+    @GetMapping("/qr/create")
+    public String generateQr(String courseNumber, int spotNumber){
+        String qrUrl = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=http://localhost:10001/login?course="+ courseNumber + "%26spot=" + spotNumber;
 
+        return qrUrl;
+    }
 
+    @PostMapping("/qr/upload")
+    public List<SpotDTO> uploadQr(List<MultipartFile> upload) throws IOException {
+        String rootPath = "C:/upload/spot";
+        String uploadFileName = null;
+        List<SpotDTO> files = new ArrayList<>();
+
+        File uploadPath = new File(rootPath, createDirectoryByNow());
+        if(!uploadPath.exists()){
+            uploadPath.mkdirs();
+        }
+
+        for (MultipartFile multipartFile : upload){
+            SpotDTO spotDTO = new SpotDTO();
+            String uuid = UUID.randomUUID().toString();
+            String fileName = multipartFile.getOriginalFilename();
+            uploadFileName = uuid + fileName;
+            spotDTO.setSpotQrName("/upload/spot/" + createDirectoryByNow()+ "/" + uuid + fileName);
+
+            File saveFile =new File(uploadPath, uploadFileName);
+            multipartFile.transferTo(saveFile);
+
+            files.add(spotDTO);
+
+        }
+        return files;
+    }
 
 
 

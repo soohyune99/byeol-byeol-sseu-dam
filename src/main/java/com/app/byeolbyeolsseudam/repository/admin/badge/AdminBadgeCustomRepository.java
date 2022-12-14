@@ -8,6 +8,6 @@ import java.util.List;
 public interface AdminBadgeCustomRepository {
     public List<BadgeDTO> searchBadge(String keyword);
     public List<BadgeDTO> searchBadgePaging(String keyword, Pageable pageable);
-    public List<BadgeDTO> selectById(Long badgeId);
+    public BadgeDTO selectById(Long badgeId);
     public void update(BadgeDTO badgeDTO);
 }

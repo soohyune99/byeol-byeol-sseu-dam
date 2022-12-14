@@ -2,6 +2,7 @@ package com.app.byeolbyeolsseudam.service.admin;
 
 import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.domain.member.QMemberDTO;
+import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.entity.member.QMember;
 import com.app.byeolbyeolsseudam.repository.admin.member.AdminMemberRepository;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
@@ -22,6 +23,11 @@ import static com.app.byeolbyeolsseudam.entity.member.QMember.member;
 @RequiredArgsConstructor
 public class AdminMemberService {
     private final AdminMemberRepository adminMemberRepository;
+
+    public List<MemberDTO> showAdminMemberList(){
+        return adminMemberRepository.showAdminMember();
+    }
+
     public Page<MemberDTO> showMemberList(Pageable pageable){
         List<MemberDTO> members = adminMemberRepository.showMemberList(pageable);
         final Page<MemberDTO> memberPage = new PageImpl<>(members,pageable,adminMemberRepository.findAll().size());
