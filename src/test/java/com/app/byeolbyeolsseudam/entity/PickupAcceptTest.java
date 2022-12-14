@@ -1,58 +1,64 @@
 package com.app.byeolbyeolsseudam.entity;
 
-import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
-import com.app.byeolbyeolsseudam.domain.pickupAccept.PickupAcceptDTO;
-import com.app.byeolbyeolsseudam.embaddable.Recyclable;
-import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
-import com.app.byeolbyeolsseudam.entity.pickup.QPickup;
-import com.app.byeolbyeolsseudam.entity.pickupAccept.PickupAccept;
-import com.app.byeolbyeolsseudam.entity.pickupAccept.QPickupAccept;
-import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.pickup.PickupRepository;
-import com.app.byeolbyeolsseudam.repository.pickupAccept.PickupAcceptCustomRepository;
 import com.app.byeolbyeolsseudam.repository.pickupAccept.PickupAcceptRepository;
-import com.app.byeolbyeolsseudam.service.pickup.PickupService2;
-import com.app.byeolbyeolsseudam.type.PickupStatus;
-import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.app.byeolbyeolsseudam.service.pickup.PickupService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
-import static com.app.byeolbyeolsseudam.entity.pickup.QPickup.*;
 
 @Slf4j
 @SpringBootTest
 @Transactional
 @Rollback(false)
 public class PickupAcceptTest {
-    @Autowired
-    private JPAQueryFactory jpaQueryFactory;
+//    @Autowired
+//    private JPAQueryFactory jpaQueryFactory;
+//
+//    @Autowired
+//    private PickupAcceptRepository pickupAcceptRepository;
+//
+//    @Autowired
+//    private MemberRepository memberRepository;
+//
+//    @Autowired
+//    private PickupRepository pickupRepository;
+//
+//    @Autowired
+//    private PickupAcceptCustomRepository pickupAcceptCustomRepository;
+//
+//    @Autowired
+//    private PickupService2 pickupService2;
+
+
 
     @Autowired
-    private PickupAcceptRepository pickupAcceptRepository;
+    private PickupService pickupService;
 
     @Autowired
-    private MemberRepository memberRepository;
+    private  PickupAcceptRepository pickupAcceptRepository;
 
     @Autowired
     private PickupRepository pickupRepository;
 
-    @Autowired
-    private PickupAcceptCustomRepository pickupAcceptCustomRepository;
-
-    @Autowired
-    private PickupService2 pickupService2;
-
-
-
-
+//    @Test
+//    public void findListPickupStatusSojaejiTest(){
+//        Pageable pageable = PageRequest.of(0,12);
+//        log.info("전체 리스트 : "+ pickupAcceptRepository.findListPickupStatusSojaeji("경남", pageable).getSize());
+//
+//        log.info("서울 지역 : " + pickupAcceptRepository.findListPickupStatusSojaeji("서울", pageable).getSize());
+//    }
+//
+//    @Test
+//    public void test(){
+//        log.info(pickupService.updatePickupStatusIng(182L).toString());
+//    }
 
 
 

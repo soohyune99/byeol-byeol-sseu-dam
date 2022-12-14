@@ -23,7 +23,10 @@
 <div>
 
     <!-- 로그인 된 기사님만 들어올 수 있음 -->
-    <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
+    <th:block th:if="${session.member != null}">
+        <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
+    </th:block>
+
     <div id="app" data-browser="Chrome" data-is-loaded="true" class>
 
         <div id="app-body">
@@ -176,20 +179,25 @@
     </div>
 
     <footer th:replace="/app/fix/footer.html :: footer"></footer>
+    <th:block th:if="${session.member !=null}">
+        <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    </th:block>
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
 <script src="/js/fix/headerLogin.js"></script>
 
 <script type="text/javascript" src="/js/pickup/sojaeji.js"></script> <!-- 소재지 선택 셀렉박스 js 있음 -->
 
 <script type="text/javascript">
     /*  소재지 select  */
+    // - 3개의 값을 한번에 Ajax로 넘겨서 진행필요
     new sojaeji('sido2', 'gugun2', 'dong2');
-</script>
 
-
-<script>
      // let pickupId = [[${pickupId}]];
 
     // const $read = $("#read");

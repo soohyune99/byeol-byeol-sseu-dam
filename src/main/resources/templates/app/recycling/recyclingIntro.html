@@ -20,10 +20,17 @@
 
 <body>
 <!-- header start -->
+<th:block th:if="${session.member == null}">
+    <header th:replace="/app/fix/header.html :: header"></header>
+</th:block>
+<th:block th:if="${session.member != null}">
+    <header th:replace="/app/fix/headerLogin.html :: header"></header>
+</th:block>
 <!-- header end -->
 
 <!-- title start -->
-<header th:replace="/app/fix/header.html :: header"></header>
+
+
 <section data-v-158066f9="" class="jumbotron"
          style="background-image: url('https://dmmj3ljielax6.cloudfront.net/upload/service-bg/service_362.jpg'); margin: 0;">
     <div data-v-158066f9="" class="title-wrapper" style="z-index: 3;">
@@ -232,12 +239,23 @@
 <!-- footer start -->
 <!-- footer end -->
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
+<th:block th:if="${session.member != null}">
+    <input type="hidden" th:value="${session.member.memberId}" name="memberId">
+    <input type="hidden" th:value="${session.member.memberCategory}" name="memberCategory">
+</th:block>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='memberId']").val();
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
 <script src="/js/recycling/recyclingIntro.js"></script>
 <script src="/js/fix/header.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
+<script src="/js/fix/footer.js"></script>
+
 <script>
 
     /* 비회원 - 로그인 창으로 이동 */
