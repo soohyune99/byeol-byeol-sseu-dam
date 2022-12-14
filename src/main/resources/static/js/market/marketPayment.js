@@ -250,16 +250,17 @@ function getOrderDetailList(){
 
 /* 회원 정보 */
 function showOrderMemberDetail(member){
-    console.log(member.memberName);
-    console.log(member.memberEmail);
-    console.log(member.memberPhone);
-    console.log(member.memberPoint);
 
     $(".info-member-id").html(member.memberId);
     $(".info-member-name").html(member.memberName);
     $(".info-member-email").html(member.memberEmail);
     $(".info-member-phone").html(member.memberPhone);
     $(".my-point").html(member.memberPoint);
+
+    console.log(member.memberName);
+    console.log(member.memberEmail);
+    console.log(member.memberPhone);
+    console.log(member.memberPoint);
 
 }
 
@@ -385,6 +386,5 @@ function showOrderProductDetail(products){
     console.log(savePoint);
 }
 
-/* ================================== 결제하기 ==================================*/
 
 

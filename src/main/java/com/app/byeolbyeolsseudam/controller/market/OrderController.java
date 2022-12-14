@@ -1,11 +1,16 @@
 package com.app.byeolbyeolsseudam.controller.market;
 
+import com.app.byeolbyeolsseudam.domain.Payment;
 import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
+import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.service.market.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @Slf4j
@@ -25,9 +30,22 @@ public class OrderController {
         return orderService.getOrderMember(memberId);
     }
 
-    @PostMapping(value = "/payment", consumes = "application/json", produces = "text/plain; charset=utf-8")
-    public void saveOrderList(@PathVariable int priceAmount){
-        log.info("=========================orderController============================");
+    // 주문하기
+    @PostMapping("/payment")
+    public Long saveOrderList(Payment payment){
+        return orderService.order(payment);
     }
+
+
+    // 주문 완료 조회
+    @PostMapping("/success/{memberId}")
+    public OrderDTO getOrderList(@PathVariable Long memberId){
+        log.info("---------------------------0" + memberId);
+        return orderService.getOrderList(memberId);
+    }
+
+
+
+
 
 }

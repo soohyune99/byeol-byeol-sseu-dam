@@ -96,4 +96,19 @@ public class OrderCustomRepositoryImpl implements OrderCustomRepository {
         );
         return myorder;
     }
+
+    @Override
+    public OrderDTO showReceipt(Long memberId){
+        return jpaQueryFactory.select(new QOrderDTO(order.orderId, order.orderStatus,
+                order.orderAddress, order.orderMessage, order.member.memberId, order.member.memberName,
+                order.member.memberEmail, order.member.memberPhone, order.member.memberPoint,
+                order.createdDate))
+                .from(order)
+                .where(order.member.memberId.eq(memberId))
+                .orderBy(order.createdDate.desc())
+                .limit(1)
+                .fetchOne();
+    }
+
+
 }

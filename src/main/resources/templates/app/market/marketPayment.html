@@ -465,8 +465,7 @@
                                                 </div>
                                             </div>-->
                                         </div>
-                                        <a href="javascript:payment()" style="width: 100%"
-                                           class="btn_start_payment text-16 text-bold btn bg-brand to-order blocked btn-lg margin-bottom-xl _btn_start_payment">결제하기</a>
+                                        <a href="javascript:payment()" style="width: 100%" class="btn_start_payment text-16 text-bold btn bg-brand to-order blocked btn-lg margin-bottom-xl _btn_start_payment">결제하기</a>
                                     </div>
                                     <div class="spacer"
                                          style="display: block; width: 325px; float: left;">
@@ -491,8 +490,10 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            <th:block th:if="${session.member != null}">
+                                <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+                                <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+                            </th:block>
                         </div>
                     </div>
                 </div>
@@ -509,6 +510,7 @@
 <script src="/js/market/marketPayment.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script th:inline="javascript">
+    /*================================== 결제 하기 ==================================*/
     async function payment(){
         // 결제 금액, 구매자의 이름, 이메일, 전화번호, 주소, 배송메시지, 포인트
         const s_zipNo = document.getElementById('sample4_postcode').value;
@@ -523,20 +525,14 @@
         const productId = $(".hidden-productId").text();
         const productName = $(".hidden-productName").text();
         const productPrice =$(".hidden-productPrice").text();
-        const memberId =  $(".info-member-id").val();
-        const memberName =  $(".info-member-name").val();
-        const memberPhone =  $(".info-member-phone").val();
-        const memberEmail =  $(".info-member-email").val();
-
-        console.log("결제하기 클릭 후")
-        console.log(price);
-        console.log(productId);
-        console.log(productName);
-        console.log(productPrice);
+        const memberId = $("input[name='memberId']").val();
+        const memberName = $("input[name='memberName']").val();
+        const memberPhone =  $(".info-member-phone").text();
+        const memberEmail =  $(".info-member-email").text();
 
         const response = await Bootpay.requestPayment({
             "application_id": "639762b8d01c7e0020feb95d",
-            "price": productPrice,      // 요청 금액
+            "price": price,      // 요청 금액
             "order_name":productName,
             "order_id":productId,
             "pg": "케이씨피",
@@ -548,17 +544,17 @@
                 "phone": memberPhone,
                 "email": memberEmail,
                 "add": buyerMemberAddress,
-                "msg": buyerMemberMsg
+                "msg": buyerMemberMsg,
+                "point": savePoint
             },
             "items": [
                 {
                     "id": productId,
                     "name": productName,
                     "qty": count,
-                    "price": price      // 상품 금액
+                    "price": productPrice      // 상품 금액
                 }
             ],
-            params: {callback1: 'memberId', callback2: 'productId', customvar1234: '변수'},
             "extra": {
                 "open_type": "iframe",
                 "card_quota": "0,2,3",
@@ -569,12 +565,20 @@
         })
         switch (response.event) {
             case 'done':
+                let formData = new FormData();
+                formData.append('zipcode', s_zipNo);
+                formData.append('roadAdd', roadAdd);
+                formData.append('detailAdd', detailAdd);
+                formData.append('writeAdd', writeAdd);
+                formData.append('message', buyerMemberMsg);
+                formData.append('buyCount', count);
+                formData.append('memberId', memberId);
+                formData.append('productId', productId);
+
                 // 결제 완료 처리
-                orderService.getSaveOrder({
-                    priceAmount: response.data.price,
-                    userId: $(".info-member-id").val()
-                });
-                break
+                orderService.getSaveOrder(
+                    formData);
+                break;
         }
     }
 </script>
