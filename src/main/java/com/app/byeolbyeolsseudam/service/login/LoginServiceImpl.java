@@ -40,11 +40,10 @@ public class LoginServiceImpl implements LoginService{
     public Member UpdatePassword(MemberDTO memberDTO, String tempPassword){
         if(Optional.ofNullable(memberRepository.findByMemberEmail(memberDTO.getMemberEmail())).isPresent()){
             Member member = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
-            memberDTO.setMemberPassword(tempPassword);
+            memberDTO.setMemberPassword(Base64.encode(tempPassword.getBytes()));
             member.updateMemberPassword(memberDTO);
             memberRepository.save(member);
             return member;
-
         }
         return null;
     }
@@ -78,7 +77,6 @@ public class LoginServiceImpl implements LoginService{
         Member member = UpdatePassword(memberDTO, tempPassword);
 
         message.setFrom("iloveEarth@byeolbyeol.com");
-//        message.setFrom("jsh5060@dreamwiz.com");
         message.setTo(member.getMemberEmail());
         message.setSubject("[별별쓰담] 임시비밀번호 안내 이메일 입니다");
         message.setText("안녕하세요. " + member.getMemberName() + "님\n"

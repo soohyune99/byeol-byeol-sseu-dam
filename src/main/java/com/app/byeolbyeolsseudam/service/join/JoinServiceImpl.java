@@ -54,6 +54,14 @@ public class JoinServiceImpl implements JoinService {
     }
 
     @Override
+    public void changeCrew(MemberDTO memberDTO){
+        Member member = memberRepository.findById(memberDTO.getMemberId()).get();
+        memberDTO.setMemberCategory(MemberCategory.기사회원);
+        member.changingCrew(memberDTO);
+        memberRepository.save(member);
+    }
+
+    @Override
     public boolean checkEmail(String memberEmail) {
         boolean checkEmail = memberRepository.existsByMemberEmail(memberEmail);
         return checkEmail;

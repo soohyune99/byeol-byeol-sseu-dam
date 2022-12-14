@@ -44,4 +44,8 @@ public class CommentController {
         commentService.deleteComment(commentId);
     }
 
+    @GetMapping("/count/{boardId}")
+    public Long countCommentofBoard(@PathVariable Long boardId){
+        return commentService.countCommentofBoard(boardId);
+    }
 }

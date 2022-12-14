@@ -12,4 +12,5 @@ public interface CommentService {
     public void saveComment(CommentDTO commentDTO);
     public void updateComment(CommentDTO commentDTO);
     public void deleteComment(Long commentId);
+    public Long countCommentofBoard(Long boardId);
 }

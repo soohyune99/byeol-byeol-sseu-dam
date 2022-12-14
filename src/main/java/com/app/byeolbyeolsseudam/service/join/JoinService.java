@@ -10,6 +10,8 @@ public interface JoinService {
     public void memberJoin(MemberDTO memberDTO);
     // 기사 가입
     public void crewJoin(MemberDTO memberDTO);
+    // 기사 전환
+    public void changeCrew(MemberDTO memberDTO);
     // 이메일 중복검사
     public  boolean checkEmail(String memberEmail);
 

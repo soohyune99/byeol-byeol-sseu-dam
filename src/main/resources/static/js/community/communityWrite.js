@@ -112,7 +112,7 @@ $(document).ready(function(){
         formData.append('boardCategory', $category.val());
         formData.append('boardTitle', $title.val());
         formData.append('boardContent', $content.val());
-        formData.append('memberId', 1);
+        formData.append('memberId', memberId);
 
         if(fileIndex != 0){
             for(var i = 0; i < fileIndex; i++){
@@ -155,7 +155,7 @@ $updateBtn.on('click', function(){
     formData.append('boardTitle', $title.val());
     formData.append('boardContent', $content.val());
     formData.append('boardView', board.boardView);
-    formData.append('memberId', 1);
+    formData.append('memberId', memberId);
 
     if(fileIndex != 0){
         for(var i = 0; i < fileIndex; i++){
@@ -176,6 +176,8 @@ function updateAfterBoard(){
 
 /* 파일 업로드 시 upload 폴더에 이미지 저장 */
 $writeFile.on('change', function(){
+    if(fileIndex == 4) { return; }
+    
     let file = $writeFile[0].files[0];
 
     communityService.uploadBoardFile(

@@ -49,10 +49,15 @@ public class JoinController {
         return "/app/join/joinCollectorStepTwo";
     }
 
-    /* 기사 회원가입 완료 시 */
+    /* 기사 회원가입 완료 시, 기사 전환 완료 시 */
     @PostMapping("/picker/detail")
     public RedirectView crewJoin(MemberDTO memberDTO){
-        joinService.crewJoin(memberDTO);
+        log.info("아이디ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ" + memberDTO.getMemberId());
+        if(memberDTO.getMemberId() == null){
+            joinService.crewJoin(memberDTO);
+        }else {
+            joinService.changeCrew(memberDTO);
+        }
         return new RedirectView ("/main?join=true");
     }
 

@@ -20,13 +20,13 @@
 </head>
 
 <body class="pro-signup">
-<th:block th:if="${session.member} != null">
-    <header th:replace="/app/fix/header.html :: header"></header>
-</th:block>
-<th:block th:if="${session.member} == null">
-    <header th:replace="/app/fix/headerLogin.html :: header"></header>
-</th:block>
 <div id="app" data-browser="Chrome" data-is-loaded="true" class>
+    <th:block th:if="${session.member == null}">
+        <header th:replace="/app/fix/header.html :: header"></header>
+    </th:block>
+    <th:block th:if="${session.member != null}">
+        <header th:replace="/app/fix/headerLogin.html :: header"></header>
+    </th:block>
     <div id="app-body">
         <div data-v-61b32e29="" class="container">
             <form data-v-61b32e29="" id="id_pro_form" autocomplete="off" th:method="get" th:action="@{/join/picker/detail}" th:object="${memberDTO}">
@@ -47,16 +47,15 @@
                     </div>
                     <!--                    map start-->
                     <div class="map-wrapx" style="text-align: center">
-                        <input type="text" style="display: none;">
-                        <input type="text" placeholder="주소" th:field = "*{memberAddress}" style="width: 400px;
-                                height: 48px; outline:none; border: 2px solid #00c7ae; border-radius: 5px;">
-                        <input type="text" style="display: none;">
+                        <input type="text" placeholder="주소" style="width: 400px;
+                                height: 48px; outline:none; border: 2px solid #00c7ae; border-radius: 5px;"
+                                class="disabled" id="show-address-input" disabled="disabled" value="">
+                        <input type="hidden" th:field="*{memberAddress}">
                         <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" style="color: #fff;
                                 background-color: #00c7ae;
                                 border-style: none;
                                 height: 48px;
                                 border-radius: 0.25rem;"><br>
-                        <input type="text" style="display: none;">
                         <div id="map" style="width:518px;height:300px;margin: 20px auto;display:none"></div>
                     </div>
                     <!--                    map end-->
@@ -64,10 +63,10 @@
                 <div data-v-f6f3ff14="" data-v-61b32e29="" class="step-navigator footer">
                     <div data-v-f6f3ff14="" class="wrapper">
                         <div data-v-f6f3ff14="" class="warning"></div>
-                        <span data-v-f6f3ff14="" class="left btn-container"><button data-v-f6f3ff14="" type="button" onclick="location.href='http://localhost:10001/join/picker/adr'"
+                        <span data-v-f6f3ff14="" class="left btn-container"><button data-v-f6f3ff14="" type="button" onclick="location.href='/join/picker'"
                                                                                     class="btn btn-prev btn-outline-primary"> 이전 </button></span><span
                             data-v-f6f3ff14="" class="right btn-container"><button data-v-f6f3ff14="" type="submit"
-                                                                                   onclick="location.href='http://localhost:10001/join/picker/detail'" class="btn btn-next btn-primary"> 다음 </button></span>
+                                                                                   onclick="location.href='/join/picker/detail'" class="btn btn-next btn-primary"> 다음 </button></span>
                     </div><!----></div>
             </form>
         </div>

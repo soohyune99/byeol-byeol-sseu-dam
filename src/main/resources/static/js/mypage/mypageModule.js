@@ -180,7 +180,7 @@ let mypageService = (function(){
 
     function logoutMember(callback, error){
         $.ajax({
-            url: "/logout/dropout",
+            url: "/logout/rest",
             type: "get",
             success: function(status, xhr){
                 if(callback){

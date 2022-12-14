@@ -185,7 +185,7 @@ div[doz_type="grid"] {
 }
 
 .doz_sys h5, .doz_sys h6 {
-    font-weight: normal;
+    font-weight: 500;
 }
 
 .shop_payment .shop-content h6, .shop_mypage .shop-content h6 {

@@ -14,7 +14,7 @@ let $inputPhone = $("#phone-number-input");
 let $verification = $("#request-verify-phone");
 // 인증 완료된 번호를 담을 input
 let $verificatedPhone = $("input#verified-phone-input");
-let $btn = $(".btn-primary");
+let $btn = $(".submit-btn");
 let verify = false;
 let emailDuplicate = false;
 let $agree = $("#agree-terms-checkbox-1668331384759");
@@ -23,6 +23,8 @@ let $passwordShow = $(".password-show");
 let $duplicationCheckBtn = $(".email-show");
 
 globalThis.vertificationNumber = "";
+
+changePicker();
 
 //이름 유효성 검사
 function nameCheck(){
@@ -211,8 +213,9 @@ $verification.siblings("div").find(".send-button").on("click", function () {
     verificationCheck();
 })
 
-//가입하기 눌렀을 때 전체 유효성 검사
+// 가입하기 눌렀을 때 전체 유효성 검사
 $btn.on("click", function () {
+    console.log("bye")
     $btn.attr("type", "button");
     let gender = false;
     let $agreeCheck = $agree.is(":checked");
@@ -227,36 +230,42 @@ $btn.on("click", function () {
         $inputGender.siblings(".invalid-feedback").find(".error").css("display", "block");
     }
 
+    console.log("성별 통과")
+
     if(!nameCheck()){
         $inputName.focus();
         return;
     }
 
+    console.log("이름 통과")
+
     if(!idCheck()){
         $inputEmail.focus();
         return;
     }
+
+    console.log("이메일 통과")
     if(!pwCheck()){
         $inputPw.focus();
         return;
     }
+    console.log("비번 통과")
 
     if(!matchPw()){
         $pwChecking.focus();
         return;
     }
+    console.log("비번 확인 통과")
 
     if(!phoneCheck()){
         $inputPhone.focus();
         return;
     }
-
-    console.log(".........................................인증번호..............")
+    console.log("폰번 통과")
 
     // if(!$("input#verified-phone-input").val()){
     //     return;
     // }
-    console.log(".........................................이메일 중복..............")
 
     if(!emailDuplicate){
         $inputEmail.addClass("is-invalid");
@@ -265,17 +274,15 @@ $btn.on("click", function () {
         $inputEmail.parent().siblings(".invalid-feedback").find(".error").css("color", "#fa5963");
         $inputEmail.focus();
     }
-
-    console.log(".........................................삼항..............")
+    console.log("중복 통과")
 
     $agreeCheck ? $agreeError.css("display", "none") : $agreeError.css("display", "block");
     $moreThan14Check ? $moreThan14Error.css("display", "none") : $moreThan14Error.css("display", "block");
 
-    console.log(".........................................if문 전..............")
+    console.log("동의 통과")
 
     if(gender && emailDuplicate && verify && $agreeCheck && $moreThan14Check){
         $btn.attr("type", "submit");
-        console.log("submit")
     }
 })
 
@@ -305,18 +312,6 @@ function checkEmailDuplication(){
     );
 }
 
-/* 휴대전화 입력 후 전송 버튼 클릭 시 인증번호 발송 */
-function sendVertification(){
-    joinService.sendVerification(
-        $inputPhone.val(), saveVerification
-    );
-}
-
-function saveVerification(vertificationNumber){
-    console.log(vertificationNumber);
-    globalThis.vertificationNumber = vertificationNumber;
-}
-
 function EmailDuplication(memberEmail, callback, error){
     $.ajax({
         url: "/join/checkEmail",
@@ -335,27 +330,91 @@ function EmailDuplication(memberEmail, callback, error){
             }
         }
     });
-
 }
 
-changePicker();
-console.log(memberId);
-console.log(memberName);
-console.log(memberName);
-console.log(memberName);
+/* 휴대전화 입력 후 전송 버튼 클릭 시 인증번호 발송 */
+function sendVertification(){
+    joinService.sendVerification(
+        $inputPhone.val(), saveVerification
+    );
+}
+
+function saveVerification(vertificationNumber){
+    console.log(vertificationNumber);
+    globalThis.vertificationNumber = vertificationNumber;
+}
 
 /* 기사전환 시 */
 function changePicker(){
-    console.log("들어옴");
-    if(memberId != ''){
+    if(memberId != '' && memberId != null){
+        console.log("if")
+
+        $("input[name='memberId']").val(memberId);
+
         $inputName.val(memberName);
         $inputName.attr('disabled', 'disabled');
         $inputName.addClass('disabled');
+
         $inputEmail.val(memberEmail);
         $inputEmail.attr('disabled', 'disabled');
         $inputEmail.addClass('disabled');
+        emailDuplicate = true;
+
         $inputPhone.val(memberPhone);
         $inputPhone.attr('disabled', 'disabled');
         $inputPhone.addClass('disabled');
+        $inputPhone.siblings("div").find(".send-button").attr('disabled', 'disabled');
+        $inputPhone.siblings("div").find(".send-button").css('background', '#c8c8c8');
+        $verificatedPhone.val(memberPhone);
+
+        $btn.hide();
+        $(".change-btn").show();
     }
 }
+
+/* 기사전환 시 가입하기 클릭 */
+console.log(memberId);
+console.log(memberName);
+console.log(memberPhone);
+console.log(memberAddress);
+
+$(".change-btn").on('click', function(){
+    let $agreeCheck = $agree.is(":checked");
+    let $agreeError = $agree.siblings("p.error-message");
+    let $moreThan14Check = $moreThan14.is(":checked");
+    let $moreThan14Error = $moreThan14.siblings("p.error-message");
+    console.log("hi")
+
+    if(!pwCheck()){
+        $inputPw.focus();
+        return;
+    }
+
+    if(!matchPw()){
+        $pwChecking.focus();
+        return;
+    }
+
+    $agreeCheck ? $agreeError.css("display", "none") : $agreeError.css("display", "block");
+    $moreThan14Check ? $moreThan14Error.css("display", "none") : $moreThan14Error.css("display", "block");
+
+    if($agreeCheck && $moreThan14Check){
+        $(".change-btn").attr("type", "submit");
+    }
+});
+
+// successJoin();
+//
+// /* memberAddress 값 넣어주기 */
+// function successJoin(){
+//     let memberAddress = searchParam('memberAddress');
+//
+//     if(memberAddress != ''){
+//         $("input[name='memberAddress']").val(memberAddress);
+//     }
+// }
+//
+// /* 쿼리스트링 가져오는 메소드 */
+// function searchParam(key) {
+//     return new URLSearchParams(location.search).get(key);
+// };

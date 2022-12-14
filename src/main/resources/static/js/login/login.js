@@ -9,7 +9,11 @@ let $modal = $(".swal2-container");
 let $body = $("body.login");
 let $modalConfirm = $modal.find(".swal2-confirm");
 
+globalThis.courseFlag = 0;
+globalThis.spotFlag = 0;
+
 failLogin();
+takeCourse();
 
 function idCheck(){
     if(!$inputId.val()){
@@ -51,6 +55,12 @@ $inputPw.on("blur", function () {pwCheck();})
 
 // 이메일 로그인 눌렀을 때 유효성 검사하는 js
 $btn.on("click",function (e) {
+    console.log(globalThis.courseFlag);
+    console.log(globalThis.spotNumber);
+    if(globalThis.courseFlag != 0 && globalThis.courseFlag != null && globalThis.courseFlag != undefined){
+        takeMycourse();
+        return;
+    }
     let email = false;
     let pw = false;
 
@@ -73,6 +83,11 @@ $modalConfirm.on("click", function () {
     $body.css("overflow", "unset")
 })
 
+/* 쿼리스트링 가져오는 메소드 */
+function searchParam(key) {
+    return new URLSearchParams(location.search).get(key);
+}
+
 /* 로그인 실패 여부 판단 */
 function failLogin(){
     let loginFlag = searchParam('login');
@@ -84,7 +99,37 @@ function failLogin(){
     }
 }
 
-/* 쿼리스트링 가져오는 메소드 */
-function searchParam(key) {
-    return new URLSearchParams(location.search).get(key);
-};
+/* 줍깅 QR 참여 시 url 만들기 */
+function takeCourse(){
+    globalThis.courseFlag = searchParam('course');
+    globalThis.spotFlag = searchParam('spot');
+
+    if(courseFlag != 0 && spotFlag != 0){
+        $(".btn-login").attr('type', 'button');
+    }
+}
+
+/* 로그인 후 url 이동 */
+function takeMycourse(){
+    let formData = new FormData();
+
+    formData.append('memberEmail', $("input[name='memberEmail']").val());
+    formData.append('memberPassword', $("input[name='memberPassword']").val());
+
+    $.ajax({
+        url: "/login/rest",
+        type: "post",
+        data: formData,
+        enctype: 'multipart/form-data',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(url, status, xhr){
+            let memberId = url.split("memberId=")[1]
+
+            if(memberId != ''){
+                location.href='/jubgging/' + memberId + "/" + globalThis.courseFlag + "/" + globalThis.spotFlag;
+            }
+        }
+    });
+}

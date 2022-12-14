@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(value = {"/logout/*", "/logout"})
 public class LogoutRestController {
 
-    @GetMapping("/dropout")
+    @GetMapping("/rest")
     public String logout(HttpSession session){
         session.invalidate();
         return "redirect:/main";

@@ -14,6 +14,7 @@ var marker = new daum.maps.Marker({
     map: map
 });
 
+globalThis.address = "";
 
 /* 주소 검색 */
 function sample5_execDaumPostcode() {
@@ -23,6 +24,7 @@ function sample5_execDaumPostcode() {
 
             // 주소 정보를 해당 필드에 넣는다.
             document.getElementById("memberAddress").value = addr;
+            document.getElementById("show-address-input").value = addr;
             // 주소로 상세 정보를 검색
             geocoder.addressSearch(data.address, function(results, status) {
                 // 정상적으로 검색이 완료됐으면
@@ -38,11 +40,19 @@ function sample5_execDaumPostcode() {
                     // 지도 중심을 변경한다.
                     map.setCenter(coords);
                     // 마커를 결과값으로 받은 위치로 옮긴다.
-                    marker.setPosition(coords)
+                    marker.setPosition(coords);
                 }
             });
         }
     }).open();
+}
+
+function insertValue(address){
+    globalThis.address = address;
+    console.log(globalThis.address);
+    console.log(address);
+
+    $("input#memberAddress").val(globalThis.address);
 }
 
 /* 기사전환 여부 판단 */
