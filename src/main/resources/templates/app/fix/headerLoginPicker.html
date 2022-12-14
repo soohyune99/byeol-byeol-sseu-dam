@@ -19,6 +19,7 @@
 
 
 <header id="app-header" class="global-header hide-border-bottom" data-v-50506024="">
+
     <div class="__cov-progress" style="background-color: rgb(0, 199, 174); opacity: 0; position: fixed; top: 0px; left: 0px; width: 0%; height: 2px; transition: opacity 0.6s ease 0s;"></div>
     <div data-v-3a2c0d3c="" data-v-50506024="" class="global-navigation-bar">
         <section data-v-3a2c0d3c="" class="mobile-header d-lg-none d-xl-none">
@@ -38,28 +39,28 @@
                             <img data-v-6c349158="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iYSIgZD0iTTkgNy44NjlMMTYuNDM0LjQzNGwxLjEzMiAxLjEzMkwxMC4xMyA5bDcuNDM1IDcuNDM0LTEuMTMyIDEuMTMyTDkgMTAuMTNsLTcuNDM0IDcuNDM1LTEuMTMyLTEuMTMyTDcuODcgOSAuNDM0IDEuNTY2IDEuNTY2LjQzNCA5IDcuODd6Ii8+CiAgICA8L2RlZnM+CiAgICA8dXNlIGZpbGw9IiMzMjMyMzIiIGZpbGwtcnVsZT0ibm9uemVybyIgeGxpbms6aHJlZj0iI2EiLz4KPC9zdmc+Cg==">
                         </button>
                     </div>
-                    <div data-v-6c349158="" class="body">
+                    <div data-v-6c349158="" class="body a">
                         <div data-v-6c349158="" data-name="user" class="row">
                             <div data-v-6c349158="" data-name="user-info" role="button" class="col">
-                                <h4 data-v-6c349158="">정재훈 고객님</h4>
+                                <h4 data-v-6c349158="" th:text="${session.member.memberName}"></h4>
                                 <p data-v-6c349158="" data-testid="login-btn"> 안녕하세요<span data-v-6c349158="" class="new-feature-badge" style="display: none;"></span><!----></p>
                             </div>
                             <div data-v-6c349158="" data-name="user-profile" class="col-auto">
-                                <div data-v-0ee3c6fc="" data-v-6c349158="" class="user-profile-picture moblie-profile">
-                                    <div data-v-0ee3c6fc="" data-name="image" class="" data-src="https://www.jigushop.co.kr/common/img/default_profile.png" lazy="loading" style="background-image: url('https://www.jigushop.co.kr/common/img/default_profile.png');">
+                                <div th:if="${session.member.memberProfileName}"  data-v-0ee3c6fc="" data-v-6c349158="" class="user-profile-picture moblie-profile">
+                                    <div data-v-0ee3c6fc="" data-name="image" class="" data-src="https://www.jigushop.co.kr/common/img/default_profile.png" lazy="loading" th:style="'background-image: url('+ ${session.member.memberProfileName} +  ');'">
                                     </div>
                                 </div>
                             </div>
                             <div data-v-6c349158="" class="user-controll col-12">
                                 <div data-v-6c349158="" class="row">
                                     <div data-v-6c349158="" data-name="logout" class="col">
-                                        <button data-v-6c349158="" class="btn btn-border">로그아웃</button>
+                                        <button data-v-6c349158="" class="btn btn-border" onclick="location.href='http://localhost:10001/logout'" >로그아웃</button>
                                     </div>
-                                    <div data-v-6c349158="" data-name="change-user-type" class="col">
-                                        <button data-v-6c349158="" class="btn btn-border change-user-type" onclick="location.href='http://localhost:10001/main/main'">
-                                            별별쓰담
-                                        </button>
-                                    </div>
+<!--                                    <div data-v-6c349158="" data-name="change-user-type" class="col">-->
+<!--                                        <button data-v-6c349158="" class="btn btn-border change-user-type" onclick="location.href='http://localhost:10001/main'">-->
+<!--                                            별별쓰담-->
+<!--                                        </button>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -119,48 +120,56 @@
                     <div data-v-0ef37ba8="" data-v-3a2c0d3c="" class="usermenu user-menu right-section-item">
                         <div data-v-0ef37ba8="" class="usermenu-button">
                             <div data-v-0ee3c6fc="" data-v-0ef37ba8="" class="user-profile-picture page-profile">
-                                <a data-v-6c349158="" href="/category-home?from=mobile_web_hamburger" class="lnb-link">
-                                    <div data-v-0ee3c6fc="" data-name="image" class="" data-src="https://www.jigushop.co.kr/common/img/default_profile.png" lazy="loading" style="background-image: url('https://www.jigushop.co.kr/common/img/default_profile.png');">
-                                    </div>
+                                <a data-v-6c349158="" href="/category-home?from=mobile_web_hamburger" class="lnb-link" style="width: inherit;height: inherit">
+<!--                                    <div data-v-0ee3c6fc="" data-name="image" class="" data-src="https://www.jigushop.co.kr/common/img/default_profile.png" lazy="loading" style="background-image: url('https://www.jigushop.co.kr/common/img/default_profile.png');">-->
+<!--                                    </div>-->
+                                    <img th:src="${session.member.memberProfileName}" style="width: inherit;height: inherit;border-radius: 50%">
                                 </a>
                             </div>
                             <img class="mypageBtn pageBtn" data-v-0ef37ba8="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgxMnYxMkgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwIDQgNiA4IDIgNCIvPgogICAgPC9nPgo8L3N2Zz4K">
                         </div>
                         <div data-v-0ef37ba8="" class="usermenu-dropdown page-dropdown" style="display: none;">
                             <div data-v-0ef37ba8="" data-name="user-info">
-                                <h4 data-v-0ef37ba8="" data-name="name">정재훈 고객님</h4>
+                                <h4 data-v-0ef37ba8="" data-name="name" th:text="${session.member.memberName}"></h4>
                             </div>
                             <ul data-v-0ef37ba8="" data-name="usermenu-control">
                                 <li data-v-0ef37ba8="" class="row" style="display: none;">
                                     <div data-v-0ef37ba8="" class="col">프로필 관리</div>
                                 </li>
                                 <li data-v-0ef37ba8="" class="row">
-                                    <a data-v-3a2c0d3c="" href="http://localhost:10001/mypage/main" class="gnb-link">
+                                    <a data-v-3a2c0d3c="" href="http://localhost:10001/mypage" class="gnb-link">
                                         <div data-v-0ef37ba8="" class="col">마이페이지</div>
                                     </a>
                                 </li>
                                 <li data-v-0ef37ba8="" class="row">
-                                    <a data-v-3a2c0d3c="" href="http://localhost:10001/notice/notice" class="gnb-link">
+                                    <a data-v-3a2c0d3c="" href="http://localhost:10001/notice/1" class="gnb-link">
                                         <div data-v-0ef37ba8="" class="col">공지사항 </div>
                                     </a>
                                 </li>
                             </ul>
                             <div data-v-0ef37ba8="" data-name="user-type-control">
-                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm" onclick="location.href='http://localhost:10001/main/main'">
-                                    <img data-v-0ef37ba8="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMSI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMzMjMyMzIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjIiPjxwYXRoIGQ9Ik0xMiAxLjV2M0g5bS04IDV2LTNoMyIvPjxwYXRoIGQ9Ik0yLjI1NSA0QTQuNSA0LjUgMCAwIDEgOS42OCAyLjMyTDEyIDQuNW0tMTEgMmwyLjMyIDIuMThBNC41IDQuNSAwIDAgMCAxMC43NDUgNyIvPjwvZz48L3N2Zz4=">별별쓰담
-                                </button>
+<!--                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm" onclick="location.href='http://localhost:10001/main'">-->
+<!--                                    <img data-v-0ef37ba8="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMSI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMzMjMyMzIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjIiPjxwYXRoIGQ9Ik0xMiAxLjV2M0g5bS04IDV2LTNoMyIvPjxwYXRoIGQ9Ik0yLjI1NSA0QTQuNSA0LjUgMCAwIDEgOS42OCAyLjMyTDEyIDQuNW0tMTEgMmwyLjMyIDIuMThBNC41IDQuNSAwIDAgMCAxMC43NDUgNyIvPjwvZz48L3N2Zz4=">별별쓰담-->
+<!--                                </button>-->
                             </div>
                             <div data-v-0ef37ba8="" data-name="signout-control">
-                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm">로그아웃</button>
+                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm" onclick="location.href='http://localhost:10001/logout'">로그아웃</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <th:block th:if="${session.member !=null}">
+            <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+        </th:block>
     </div>
 </header>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
 <script src="/js/fix/headerLogin.js"></script>
 </html>

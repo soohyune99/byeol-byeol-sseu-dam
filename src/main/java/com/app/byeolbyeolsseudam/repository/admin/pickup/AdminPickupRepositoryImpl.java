@@ -22,6 +22,27 @@ import static com.app.byeolbyeolsseudam.entity.pickupAccept.QPickupAccept.pickup
 public class AdminPickupRepositoryImpl implements AdminPickupCustomRepository{
     private final JPAQueryFactory jpaQueryFactory;
 
+    @Override
+    public List<PickupDTO> showAdminPickup() {
+        return jpaQueryFactory.select(new QPickupDTO(
+                pickup.pickupId,
+                pickup.recyclable.petCount,
+                pickup.recyclable.glassCount,
+                pickup.pickupAddress,
+                pickup.pickupMessage,
+                pickup.pickupStatus,
+                pickup.member.memberId,
+                pickup.member.memberName,
+                pickupAccept.member.memberId,
+                pickupAccept.member.memberName,
+                pickup.createdDate
+        )).from(pickup)
+                .join(pickupAccept)
+                .on(pickup.pickupId.eq(pickupAccept.pickup.pickupId))
+                .orderBy(pickup.pickupId.desc())
+                .limit(3)
+                .fetch();
+    }
 
     @Override
     public List<PickupDTO> showPickupList(Pageable pageable) {

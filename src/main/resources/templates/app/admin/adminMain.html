@@ -93,7 +93,7 @@
                                                                     <div class="card-toolbar">
                                                                         <div class="d-flex justify-content-end"
                                                                              data-kt-customer-table-toolbar="base">
-                                                                            <a href="http://localhost:10001/admin/adminusermanage"
+                                                                            <a href="http://localhost:10001/admin/member/1"
                                                                                class="btn btn-primary"
                                                                                style="background:#f1faff;color: #313534">
                                                                                 더보기
@@ -136,14 +136,6 @@
                                                                                         rowspan="1"
                                                                                         colspan="1"
                                                                                         aria-label="">
-                                                                                        전화번호
-                                                                                    </th>
-                                                                                    <th class="min-w-125px sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_customers_table"
-                                                                                        rowspan="1"
-                                                                                        colspan="1"
-                                                                                        aria-label="">
                                                                                         Email
                                                                                     </th>
                                                                                     <th class="min-w-125px sorting"
@@ -152,8 +144,16 @@
                                                                                         rowspan="1"
                                                                                         colspan="1"
                                                                                         aria-label="">
-                                                                                        프로필
+                                                                                        가입일
                                                                                     </th>
+<!--                                                                                    <th class="min-w-125px sorting"-->
+<!--                                                                                        tabindex="0"-->
+<!--                                                                                        aria-controls="kt_customers_table"-->
+<!--                                                                                        rowspan="1"-->
+<!--                                                                                        colspan="1"-->
+<!--                                                                                        aria-label="">-->
+<!--                                                                                        전화번호-->
+<!--                                                                                    </th>-->
                                                                                 </tr>
                                                                                 <!--end::Table row-->
                                                                                 </thead>
@@ -163,62 +163,21 @@
                                                                                 <tbody class="fw-semibold text-gray-600">
 
                                                                                 <!-- 회원1 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        일반회원
+                                                                                <th:block th:each="member:${members}">
+                                                                                <tr th:object="${member}" class="row_member">
+                                                                                    <td th:text="*{memberCategory}" class="member_list_value">
                                                                                     </td>
-                                                                                    <td class="member_list_value">
-                                                                                        문승희
+                                                                                    <td th:text="*{memberName}" class="member_list_value">
                                                                                     </td>
-                                                                                    <td class="member_list_value">
-                                                                                        010-1234-5678
+                                                                                    <td th:text="*{memberEmail}" class="member_list_value">
                                                                                     </td>
-                                                                                    <td class="member_list_value">
-                                                                                        ans1234@naver.com
+                                                                                    <td th:text="${#temporals.format(member.createdDate, 'yyyy-MM-dd')}" class="member_list_value">
                                                                                     </td>
-                                                                                    <td class="member_list_value">
-                                                                                        profile.jpg
-                                                                                    </td>
+<!--                                                                                    <td class="member_list_value">-->
+<!--                                                                                        010-1234-5678-->
+<!--                                                                                    </td>-->
                                                                                 </tr>
-
-                                                                                <!-- 회원2 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        일반회원
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        정재훈
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        010-5678-1234
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        wjd1234@naver.com
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        profileas.jpg
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 회원3 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        일반회원
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        홍수현
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        010-9874-6512
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        ghd1234@naver.com
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        teprofile.jpg
-                                                                                    </td>
-                                                                                </tr>
-
+                                                                                </th:block>
                                                                                 <!-- 회원이 없을 때  -->
                                                                                 <!--<tr>
                                                                                     <td colspan="9" align="center">가입된
@@ -255,7 +214,7 @@
                                                                     <div class="card-toolbar">
                                                                         <div class="d-flex justify-content-end"
                                                                              data-kt-customer-table-toolbar="base">
-                                                                            <a href="http://localhost:10001/admin/adminprogram"
+                                                                            <a href="http://localhost:10001/admin/program/1"
                                                                                class="btn btn-primary"
                                                                                style="background:#f1faff;color: #313534">
                                                                                 더보기
@@ -325,68 +284,23 @@
                                                                                 <tbody class="fw-semibold text-gray-600">
 
                                                                                 <!-- 프로그램1 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        줍깅의 역사와 이해
+                                                                                <th:block th:each="program:${programs}">
+                                                                                <tr th:object="${program}" class="row_member">
+                                                                                    <td th:text="*{programName}" class="member_list_value">
                                                                                     </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022.03.02.
+                                                                                    <td th:text="${#temporals.format(program.openingDate, 'yyyy-MM-dd')}" class="member_list_value">
                                                                                     </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022.03.25.
+                                                                                    <td th:text="${#temporals.format(program.closingDate, 'yyyy-MM-dd')}" class="member_list_value">
                                                                                     </td>
                                                                                     <td class="member_list_value">
                                                                                         15
                                                                                     </td>
                                                                                     <td class="member_list_value">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            진행중
+                                                                                        <div th:text="*{programStatus}" class="badge badge-light-primary">
                                                                                         </div>
                                                                                     </td>
                                                                                 </tr>
-
-                                                                                <!-- 프로그램2 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        줍깅 실습 ver2
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022.05.03.
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022.06.07.
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        13
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            진행중
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 프로그램3 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        환경 문제와 우리 삶
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022.02.01.
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022.02.28.
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        25
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        <div class="badge badge-light-danger">
-                                                                                            마감
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-
+                                                                                </th:block>
                                                                                 <!-- 회원이 없을 때  -->
                                                                                 <!--<tr>
                                                                                     <td colspan="9" align="center">프로그램이 없습니다
@@ -421,7 +335,7 @@
                                                                     <div class="card-toolbar">
                                                                         <div class="d-flex justify-content-end"
                                                                              data-kt-customer-table-toolbar="base">
-                                                                            <a href="http://localhost:10001/admin/admincollectservice"
+                                                                            <a href="http://localhost:10001/admin/pickup/1"
                                                                                class="btn btn-primary"
                                                                                style="background:#f1faff;color: #313534">
                                                                                 더보기
@@ -492,88 +406,22 @@
                                                                                 <tbody class="fw-semibold text-gray-600">
 
                                                                                 <!-- 4 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        1004
+                                                                                <th:block th:each="pickup:${pickups}">
+                                                                                <tr th:object="${pickup}" class="row_member">
+                                                                                    <td th:text="*{pickupId}" class="member_list_value">
+                                                                                    </td>
+                                                                                    <td th:text="${#temporals.format(pickup.createdDate, 'yyyy-MM-dd')}" class="member_list_value">
+                                                                                    </td>
+                                                                                    <td th:text="${pickup.memberName}" class="member_list_value">
+                                                                                    </td>
+                                                                                    <td th:text="${pickup.pickerName}" class="member_list_value">
                                                                                     </td>
                                                                                     <td class="member_list_value">
-                                                                                        2022.11.19.
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2113321
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        012
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            진행중
+                                                                                        <div th:text="*{pickupStatus}" class="badge badge-light-primary">
                                                                                         </div>
                                                                                     </td>
                                                                                 </tr>
-
-                                                                                <!-- 3 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        1003
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022.11.14.
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2021165
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        001
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        <div class="badge badge-light-danger">
-                                                                                            종료
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 2 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        1002
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022.11.13.
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2020111
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        063
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        <div class="badge badge-light-danger">
-                                                                                            종료
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 1 -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        1001
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022.11.12.
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2020020
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        001
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            진행중
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
+                                                                                </th:block>
 
                                                                                 <!-- 없을 때  -->
                                                                                 <!--<tr>
@@ -609,7 +457,7 @@
                                                                     <div class="card-toolbar">
                                                                         <div class="d-flex justify-content-end"
                                                                              data-kt-customer-table-toolbar="base">
-                                                                            <a href="http://localhost:10001/admin/adminorderlist"
+                                                                            <a href="http://localhost:10001/admin/product/order/1"
                                                                                class="btn btn-primary"
                                                                                style="background:#f1faff;color: #313534">
                                                                                 더보기
@@ -652,24 +500,25 @@
                                                                                         rowspan="1"
                                                                                         colspan="1"
                                                                                         aria-label="">
-                                                                                        회원번호
+                                                                                        회원명
                                                                                     </th>
-                                                                                    <th class="min-w-125px sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_customers_table"
-                                                                                        rowspan="1"
-                                                                                        colspan="1"
-                                                                                        aria-label="">
-                                                                                        제품번호
-                                                                                    </th>
-                                                                                    <th class="min-w-125px sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_customers_table"
-                                                                                        rowspan="1"
-                                                                                        colspan="1"
-                                                                                        aria-label="">
-                                                                                        총 가격
-                                                                                    </th>
+<!--                                                                                    <th class="min-w-125px sorting"-->
+<!--                                                                                        tabindex="0"-->
+<!--                                                                                        aria-controls="kt_customers_table"-->
+<!--                                                                                        rowspan="1"-->
+<!--                                                                                        colspan="1"-->
+<!--                                                                                        aria-label="">-->
+<!--                                                                                        총 가격-->
+<!--                                                                                    </th>-->
+<!--                                                                                    <th class="min-w-125px sorting"-->
+<!--                                                                                        tabindex="0"-->
+<!--                                                                                        aria-controls="kt_customers_table"-->
+<!--                                                                                        rowspan="1"-->
+<!--                                                                                        colspan="1"-->
+<!--                                                                                        aria-label="">-->
+<!--                                                                                        제품번호-->
+<!--                                                                                    </th>-->
+
                                                                                 </tr>
                                                                                 <!--end::Table row-->
                                                                                 </thead>
@@ -679,81 +528,22 @@
                                                                                 <tbody class="fw-semibold text-gray-600">
 
                                                                                 <!-- 주문 text -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        2022.11.13
+                                                                                <th:block th:each="order:${orders}">
+                                                                                <tr th:object="${order}" class="row_member">
+                                                                                    <td th:text="${#temporals.format(order.createdDate, 'yyyy-MM-dd')}" class="member_list_value">
                                                                                     </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2111030521
+                                                                                    <td th:text="*{orderId}" class="member_list_value">
                                                                                     </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2020210
+                                                                                    <td th:text="*{memberName}" class="member_list_value">
                                                                                     </td>
-                                                                                    <td class="member_list_value">
-                                                                                        0153
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        56,000
-                                                                                    </td>
+<!--                                                                                    <td class="member_list_value">-->
+<!--                                                                                        56,000-->
+<!--                                                                                    </td>-->
+<!--                                                                                    <td class="member_list_value">-->
+<!--                                                                                        0153-->
+<!--                                                                                    </td>-->
                                                                                 </tr>
-
-                                                                                <!-- 주문 text -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        2022.11.12
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022030596
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2020111
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        0153
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        83,000
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 주문 text -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        2022.11.10
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022030984
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2020311
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        0154
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        25,000
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                                <!-- 주문 text -->
-                                                                                <tr class="row_member">
-                                                                                    <td class="member_list_value">
-                                                                                        2022.11.02
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2022030522
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        2020190
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        0152
-                                                                                    </td>
-                                                                                    <td class="member_list_value">
-                                                                                        280,000
-                                                                                    </td>
-                                                                                </tr>
-
+                                                                                </th:block>
                                                                                 <!--  없을 때  -->
                                                                                 <!--<tr>
                                                                                     <td colspan="9" align="center">주문내역이 없습니다.

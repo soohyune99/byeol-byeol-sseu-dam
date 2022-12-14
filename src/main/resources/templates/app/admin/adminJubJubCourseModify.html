@@ -367,7 +367,7 @@
         $("form[name='modifyJubJubCourseForm']").submit();
     }
     let arrayFile = [];
-    let $inputProfile = $("#icon_img1");
+    let $inputProfile = $("#icon_img");
     $inputProfile.on("change",function () {
         let formData = new FormData();
 
@@ -383,7 +383,7 @@
         });
 
         $.ajax({
-            url: "/course/upload",
+            url: "/file/course/upload",
             type: "post",
             data: formData,
             contentType: false,

@@ -26,11 +26,10 @@ public class AdminBadgeRepositoryImpl implements AdminBadgeCustomRepository {
                 badge.badgeInfo,
                 badge.badgeFileName
         )).from(badge)
-                .where(badge.badgeName.eq(keyword).or(badge.badgeInfo.eq(keyword)))
+                .where(badge.badgeName.contains(keyword).or(badge.badgeInfo.contains(keyword)))
                 .orderBy(badge.badgeId.desc())
                 .fetch();
     }
-
 
     @Override
     public List<BadgeDTO> searchBadgePaging(String keyword, Pageable pageable) {
@@ -40,7 +39,7 @@ public class AdminBadgeRepositoryImpl implements AdminBadgeCustomRepository {
                 badge.badgeInfo,
                 badge.badgeFileName
         )).from(badge)
-                .where(badge.badgeName.eq(keyword).or(badge.badgeInfo.eq(keyword)))
+                .where(badge.badgeName.contains(keyword).or(badge.badgeInfo.contains(keyword)))
                 .orderBy(badge.badgeId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -48,7 +47,7 @@ public class AdminBadgeRepositoryImpl implements AdminBadgeCustomRepository {
     }
 
     @Override
-    public List<BadgeDTO> selectById(Long badgeId) {
+    public BadgeDTO selectById(Long badgeId) {
         return jpaQueryFactory.select(new QBadgeDTO(
                 badge.badgeId,
                 badge.badgeName,
@@ -56,7 +55,7 @@ public class AdminBadgeRepositoryImpl implements AdminBadgeCustomRepository {
                 badge.badgeFileName
         )).from(badge)
                 .where(badge.badgeId.eq(badgeId))
-                .fetch();
+                .fetchOne();
     }
 
     @Override

@@ -75,6 +75,11 @@ public class AdminProductService {
         return adminOrderRepository.showOrderDetail(orderId);
     }
 
+
+    public List<OrderDTO> showAdminOrderList(){
+        return adminOrderRepository.showAdminOrder();
+    }
+
     public Page<OrderDTO> searchOrder(Pageable pageable){
         List<OrderDTO> orders = adminOrderRepository.showOrderList(pageable);
         Page<OrderDTO> orderList = new PageImpl<>(orders, pageable, adminOrderRepository.findAll().size());

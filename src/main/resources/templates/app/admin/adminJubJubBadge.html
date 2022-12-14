@@ -95,9 +95,9 @@
                                                                                 </svg>
                                                                             </span>
                                                                             <!--end::Svg Icon-->
-                                                                            <form>
-                                                                                <input type="text" style="display:none">
-                                                                                <input type="text" name="enter" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
+                                                                            <form th:action="@{/admin/jubgging/badge}" name="findBadgeForm">
+                                                                                <input type="hidden" style="display:none" name="page" value="1">
+                                                                                <input type="text" name="keyword" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
                                                                                        data-kt-ecommerce-product-filter="search"
                                                                                        class="form-control form-control-solid w-250px ps-14"
                                                                                        placeholder="배지 검색">
@@ -166,7 +166,7 @@
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
                                                                                         rowspan="1" colspan="1"
-                                                                                        style="width: 30%;">첨부 파일
+                                                                                        style="width: 30%;">획득 조건
                                                                                     </th>
                                                                                     <th class="text-end min-w-100px sorting"
                                                                                         rowspan="1" colspan="1"
@@ -179,411 +179,49 @@
 
                                                                                 <!--begin::Table body-->
                                                                                 <tbody class="fw-semibold text-gray-600">
-
+                                                                                <form action="http://localhost:10001/admin/jubgging/badge/delete" name="deleteForm" method="post">
+                                                                                <th:block th:each="badge:${badges}">
                                                                                 <!--1_베너 -->
-                                                                                <tr class="odd productList1">
+                                                                                <tr th:object="${badge}" class="odd productList1">
                                                                                     <!--begin::Checkbox-->
                                                                                     <td>
                                                                                         <div
                                                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                                             <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
+                                                                                                   type="checkbox" name="checkedValue" th:value="*{badgeId}">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::Checkbox-->
 
                                                                                     <!--begin::배너번호=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
+                                                                                        <span class="fw-bold" th:text="*{badgeId}"></span>
                                                                                     </td>
                                                                                     <!--end::배너번호=-->
 
                                                                                     <!--begin::배너이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">줍린이</span>
+                                                                                        <span class="fw-bold" th:text="*{badgeName}"></span>
                                                                                     </td>
                                                                                     <!--end::배너이름=-->
 
                                                                                     <!--begin::배너이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">줍린이.jpg</span>
+                                                                                        <span class="fw-bold" th:text="*{badgeInfo}"></span>
                                                                                     </td>
-                                                                                    <!--end::배너이름=-->
-
                                                                                     <!--begin::수정/삭제=-->
                                                                                     <td class="text-end pe-0"
                                                                                         data-order="Inactive">
                                                                                         <!--begin::수정-->
                                                                                         <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/jubgging/badge/modify">수정</a>
+                                                                                            <a th:href="@{/admin/jubgging/badge/modify(badgeId=*{badgeId})}">수정</a>
                                                                                         </div>
                                                                                         <!--end::수정-->
                                                                                     </td>
                                                                                 </tr>
                                                                                 <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">002</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">줍깅새싹</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">줍깅새싹.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!--1_베너 -->
-                                                                                <tr class="odd productList1">
-                                                                                    <!--begin::Checkbox-->
-                                                                                    <td>
-                                                                                        <div
-                                                                                                class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                                            <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <!--end::Checkbox-->
-
-                                                                                    <!--begin::배너번호=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
-                                                                                    </td>
-                                                                                    <!--end::배너번호=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">오늘의 줍깅왕.jpg</span>
-                                                                                    </td>
-                                                                                    <!--end::배너이름=-->
-
-                                                                                    <!--begin::수정/삭제=-->
-                                                                                    <td class="text-end pe-0"
-                                                                                        data-order="Inactive">
-                                                                                        <!--begin::수정-->
-                                                                                        <div class="badge badge-light-primary">
-                                                                                            <a href="javascript:void(0)">수정</a>
-                                                                                        </div>
-                                                                                        <!--end::수정-->
-                                                                                    </td>
-                                                                                </tr>
-
-
-
-
+                                                                                </th:block>
+                                                                                </form>
                                                                                 </tbody>
                                                                                 <!--end::Table body-->
 
@@ -612,54 +250,54 @@
                                                                             <!-- 우측 하단 페이징 처리 -->
                                                                             <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
                                                                                 <div class="dataTables_paginate paging_simple_numbers"
-                                                                                     id="kt_ecommerce_products_table_paginate">
-                                                                                    <ul class="pagination">
+                                                                                     id="kt_ecommerce_products_table_paginate" th:if="${#strings.isEmpty(keyword)}">
+                                                                                    <ul class="pagination" th:if="${!badges.isEmpty()}">
                                                                                         <li class="paginate_button page-item previous disabled"
-                                                                                            id="kt_ecommerce_products_table_previous">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_previous" th:if="${badges.hasPrevious()}">
+                                                                                            <a th:href="@{|/admin/jubgging/badge/${badges.number}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="0"
                                                                                                tabindex="0"
                                                                                                class="page-link"><</a>
                                                                                         </li>
-                                                                                        <li class="paginate_button page-item active">
-                                                                                            <a href="#"
+                                                                                        <li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, badges.totalPages)}">
+                                                                                            <a th:text="${page}" th:href="@{|/admin/jubgging/badge/${page}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="1"
                                                                                                tabindex="0"
-                                                                                               class="page-link">1</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="2"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">2</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="3"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">3</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="4"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">4</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="5"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">5</a>
+                                                                                               class="page-link"></a>
                                                                                         </li>
                                                                                         <li class="paginate_button page-item next"
-                                                                                            id="kt_ecommerce_products_table_next">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_next" th:if="${badges.hasNext()}">
+                                                                                            <a th:href="@{|/admin/jubgging/badge/${badges.number +2}|}"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="6"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">></a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                                                     id="kt_ecommerce_products_table_paginate" th:if="${not #strings.isEmpty(keyword)}">
+                                                                                    <ul class="pagination" th:if="${!badges.isEmpty()}">
+                                                                                        <li class="paginate_button page-item previous disabled"
+                                                                                            id="kt_ecommerce_products_table_previous" th:if="${badges.hasPrevious()}">
+                                                                                            <a th:href="@{/admin/jubgging/badge(page=${badges.number},keyword=${keyword})}"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="0"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"><</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, badges.totalPages)}">
+                                                                                            <a th:text="${page}" th:href="@{/admin/jubgging/badge(page=${page}, keyword=${keyword})}"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="1"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"></a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item next"
+                                                                                            id="kt_ecommerce_products_table_next" th:if="${badges.hasNext()}">
+                                                                                            <a th:href="@{/admin/jubgging/badge(page=${badges.number +2},keyword=${keyword})}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="6"
                                                                                                tabindex="0"
@@ -697,5 +335,28 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
+<script>
+    //리스트 체크박스
+    var $checkboxes = $(".form-check-input.checkbox");
 
+    // 검색 _ 엔터로 submit 가능 / 빈칸 입력시 alert
+    function searchList(theForm) {
+        if (theForm.enter.value == "") {
+            alert("검색어를 입력하세요");
+            return false;
+        }
+        theForm.submit();
+    }
+
+    // 프로그램 삭제
+    $("#deleteBadgeBtn").on('click', function () {
+        if ($checkboxes.filter(":checked").length == 0) {
+            alert("삭제할 프로그램을 선택하세요.");
+            return;
+        }
+
+        $("form[name='deleteForm']").submit();
+    });
+
+</script>
 </html>

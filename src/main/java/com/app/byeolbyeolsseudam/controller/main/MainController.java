@@ -30,6 +30,7 @@ public class MainController {
         model.addAttribute("lives", mainService.showProductLife());
         model.addAttribute("topBoards", mainService.showTopViewBoardList());
         model.addAttribute("boards", mainService.showBoardList());
+        model.addAttribute("courses", mainService.showCourseList());
         return "/app/main/main";
     }
 

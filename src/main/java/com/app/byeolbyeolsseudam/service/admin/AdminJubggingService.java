@@ -2,10 +2,13 @@ package com.app.byeolbyeolsseudam.service.admin;
 
 import com.app.byeolbyeolsseudam.domain.badge.BadgeDTO;
 import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
+import com.app.byeolbyeolsseudam.domain.spot.SpotDTO;
 import com.app.byeolbyeolsseudam.entity.course.Course;
 import com.app.byeolbyeolsseudam.entity.program.Program;
+import com.app.byeolbyeolsseudam.entity.spot.Spot;
 import com.app.byeolbyeolsseudam.repository.admin.badge.AdminBadgeRepository;
 import com.app.byeolbyeolsseudam.repository.admin.course.AdminCourseRepository;
+import com.app.byeolbyeolsseudam.repository.admin.spot.AdminSpotRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,7 @@ import java.util.List;
 public class AdminJubggingService {
     private final AdminCourseRepository adminCourseRepository;
     private final AdminBadgeRepository adminBadgeRepository;
+    private final AdminSpotRepository adminSpotRepository;
 
     public List<CourseDTO> showCourse(){
         return adminCourseRepository.showCourseList();
@@ -44,4 +48,10 @@ public class AdminJubggingService {
     }
     public void saveBadge(BadgeDTO badgeDTO){adminBadgeRepository.save(badgeDTO.toEntity());}
 
+    public void saveSpot(SpotDTO spotDTO, String courseName){
+       Course course = adminCourseRepository.findByCourseNameContains(courseName);
+       Spot spot = spotDTO.toEntity();
+
+        spot.changeCourse(course);
+        adminSpotRepository.save(spot);}
 }

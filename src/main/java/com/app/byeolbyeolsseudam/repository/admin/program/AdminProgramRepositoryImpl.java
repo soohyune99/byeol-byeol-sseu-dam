@@ -39,7 +39,7 @@ public class AdminProgramRepositoryImpl implements AdminProgramCustomRepository{
                 program.programFileDetailPath,
                 program.programFileDetailUuid,
                 program.createdDate
-        )).from(program).orderBy(program.programId.desc()).limit(10).fetch();
+        )).from(program).orderBy(program.programId.desc()).limit(3).fetch();
     }
 
     @Override

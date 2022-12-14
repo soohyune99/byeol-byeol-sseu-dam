@@ -95,9 +95,9 @@
                                                                                 </svg>
                                                                             </span>
                                                                             <!--end::Svg Icon-->
-                                                                            <form>
-                                                                                <input type="text" style="display:none">
-                                                                                <input type="text" name="enter" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
+                                                                            <form th:action="@{/admin/jubgging/spot}" name="findSpotForm">
+                                                                                <input type="hidden" style="display:none" name="page" value="1">
+                                                                                <input type="text" name="keyword" onkeydown="javascript:if(event.keyCode==13)searchList(this.form);"
                                                                                        data-kt-ecommerce-product-filter="search"
                                                                                        class="form-control form-control-solid w-250px ps-14"
                                                                                        placeholder="스팟 검색">
@@ -174,12 +174,12 @@
                                                                                         rowspan="1" colspan="1"
                                                                                         style="width: 14.1%;">스팟 주소
                                                                                     </th>
-                                                                                    <th class="text-end min-w-100px sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="kt_ecommerce_products_table"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        style="width: 14.1%;">스팟 QR
-                                                                                    </th>
+<!--                                                                                    <th class="text-end min-w-100px sorting"-->
+<!--                                                                                        tabindex="0"-->
+<!--                                                                                        aria-controls="kt_ecommerce_products_table"-->
+<!--                                                                                        rowspan="1" colspan="1"-->
+<!--                                                                                        style="width: 14.1%;">스팟 QR-->
+<!--                                                                                    </th>-->
                                                                                     <th class="text-end min-w-100px sorting"
                                                                                         tabindex="0"
                                                                                         aria-controls="kt_ecommerce_products_table"
@@ -197,52 +197,53 @@
 
                                                                                 <!--begin::Table body-->
                                                                                 <tbody class="fw-semibold text-gray-600">
-
+                                                                                <form th:action="@{/admin/jubgging/spot/delete}" method="post" name="deleteForm">
+                                                                                <th:block th:each="spot:${spots}">
                                                                                 <!--1_베너 -->
-                                                                                <tr class="odd productList1">
+                                                                                <tr th:object="${spot}" class="odd productList1">
                                                                                     <!--begin::Checkbox-->
                                                                                     <td>
                                                                                         <div
                                                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                                             <input class="form-check-input checkbox"
-                                                                                                   type="checkbox">
+                                                                                                   type="checkbox" name="checkedValue" th:value="*{spotId}">
                                                                                         </div>
                                                                                     </td>
                                                                                     <!--end::Checkbox-->
 
                                                                                     <!--begin::배너번호=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">001</span>
+                                                                                        <span class="fw-bold" th:text="*{spotId}"></span>
                                                                                     </td>
                                                                                     <!--end::배너번호=-->
 
                                                                                     <!--begin::배너이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스 첫번째</span>
+                                                                                        <span class="fw-bold" th:text="*{spotName}"></span>
                                                                                     </td>
                                                                                     <!--end::배너이름=-->
 
                                                                                     <!--begin::배너이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">mid-1</span>
+                                                                                        <span class="fw-bold" th:text="*{spotNumber}"></span>
                                                                                     </td>
                                                                                     <!--end::배너이름=-->
 
                                                                                     <!--begin::배너이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">영화정</span>
+                                                                                        <span class="fw-bold" th:text="*{spotAddress}"></span>
                                                                                     </td>
                                                                                     <!--end::배너이름=-->
 
                                                                                     <!--begin::배너이름=-->
-                                                                                    <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스-1 OR.jpg</span>
-                                                                                    </td>
+<!--                                                                                    <td class="text-end pe-0">-->
+<!--                                                                                        <span class="fw-bold"></span>-->
+<!--                                                                                    </td>-->
                                                                                     <!--end::배너이름=-->
 
                                                                                     <!--begin::배너이름=-->
                                                                                     <td class="text-end pe-0">
-                                                                                        <span class="fw-bold">A코스</span>
+                                                                                        <span class="fw-bold" th:text="*{courseId}"></span>
                                                                                     </td>
                                                                                     <!--end::배너이름=-->
 
@@ -251,13 +252,13 @@
                                                                                         data-order="Inactive">
                                                                                         <!--begin::수정-->
                                                                                         <div class="badge badge-light-primary">
-                                                                                            <a href="http://localhost:10001/admin/jubgging/spot/modify">수정</a>
+                                                                                            <a th:href="@{/admin/jubgging/spot/modify(spotId=*{spotId})}">수정</a>
                                                                                         </div>
                                                                                         <!--end::수정-->
                                                                                     </td>
                                                                                 </tr>
-
-
+                                                                                </th:block>
+                                                                                </form>
 
 
                                                                                 </tbody>
@@ -288,54 +289,56 @@
                                                                             <!-- 우측 하단 페이징 처리 -->
                                                                             <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
                                                                                 <div class="dataTables_paginate paging_simple_numbers"
-                                                                                     id="kt_ecommerce_products_table_paginate">
-                                                                                    <ul class="pagination">
+                                                                                     id="kt_ecommerce_products_table_paginate" th:if="${#strings.isEmpty(keyword)}">
+                                                                                    <ul class="pagination" th:if="${!spots.isEmpty()}">
                                                                                         <li class="paginate_button page-item previous disabled"
-                                                                                            id="kt_ecommerce_products_table_previous">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_previous" th:if="${spots.hasPrevious()}">
+                                                                                            <a th:href="@{|/admin/jubgging/spot/${spots.number}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="0"
                                                                                                tabindex="0"
                                                                                                class="page-link"><</a>
                                                                                         </li>
-                                                                                        <li class="paginate_button page-item active">
-                                                                                            <a href="#"
+                                                                                        <li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, spots.totalPages)}">
+                                                                                            <a th:text="${page}" th:href="@{|/admin/jubgging/spot/${page}|}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="1"
                                                                                                tabindex="0"
-                                                                                               class="page-link">1</a>
+                                                                                               class="page-link"></a>
                                                                                         </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="2"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">2</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="3"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">3</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="4"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">4</a>
-                                                                                        </li>
-                                                                                        <li class="paginate_button page-item ">
-                                                                                            <a href="#"
-                                                                                               aria-controls="kt_ecommerce_products_table"
-                                                                                               data-dt-idx="5"
-                                                                                               tabindex="0"
-                                                                                               class="page-link">5</a>
-                                                                                        </li>
+
                                                                                         <li class="paginate_button page-item next"
-                                                                                            id="kt_ecommerce_products_table_next">
-                                                                                            <a href="#"
+                                                                                            id="kt_ecommerce_products_table_next" th:if="${spots.hasNext()}">
+                                                                                            <a th:href="@{|/admin/jubgging/spot/${spots.number +2}|}"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="6"
+                                                                                               tabindex="0"
+                                                                                               class="page-link">></a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                                                     id="kt_ecommerce_products_table_paginate" th:if="${not #strings.isEmpty(keyword)}">
+                                                                                    <ul class="pagination" th:if="${!spots.isEmpty()}">
+                                                                                        <li class="paginate_button page-item previous disabled"
+                                                                                            id="kt_ecommerce_products_table_previous" th:if="${spots.hasPrevious()}">
+                                                                                            <a th:href="@{/admin/jubgging/spot(page=${spots.number},keyword=${keyword})}"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="0"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"><</a>
+                                                                                        </li>
+                                                                                        <li class="paginate_button page-item active" th:each="page:${#numbers.sequence(1, spots.totalPages)}">
+                                                                                            <a th:text="${page}" th:href="@{/admin/jubgging/spot(page=${page}, keyword=${keyword})}"
+                                                                                               aria-controls="kt_ecommerce_products_table"
+                                                                                               data-dt-idx="1"
+                                                                                               tabindex="0"
+                                                                                               class="page-link"></a>
+                                                                                        </li>
+
+                                                                                        <li class="paginate_button page-item next"
+                                                                                            id="kt_ecommerce_products_table_next" th:if="${spots.hasNext()}">
+                                                                                            <a th:href="@{/admin/jubgging/spot(page=${spots.number +2},keyword=${keyword})}"
                                                                                                aria-controls="kt_ecommerce_products_table"
                                                                                                data-dt-idx="6"
                                                                                                tabindex="0"
@@ -374,7 +377,13 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script>
-
+    function searchList(theForm) {
+        if (theForm.enter.value == "") {
+            alert("검색어를 입력하세요");
+            return false;
+        }
+        theForm.submit();
+    }
 
     // 스팟 삭제
     $("#deleteSpotBtn").on('click', function () {
@@ -382,6 +391,7 @@
             alert("삭제할 스팟을 선택하세요.");
             return;
         }
+        $("form[name='deleteForm']").submit();
     });
 
 </script>

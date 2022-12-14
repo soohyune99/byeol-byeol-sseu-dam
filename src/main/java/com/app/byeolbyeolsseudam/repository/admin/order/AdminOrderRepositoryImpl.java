@@ -21,6 +21,25 @@ public class AdminOrderRepositoryImpl implements AdminOrderCustomRepository{
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
+    public List<OrderDTO> showAdminOrder() {
+        return jpaQueryFactory.select(new QOrderDTO(
+                order.orderId,
+                order.orderStatus,
+                order.orderAddress,
+                order.orderMessage,
+                order.member.memberId,
+                order.member.memberName,
+                order.member.memberEmail,
+                order.member.memberPhone,
+                order.member.memberPoint,
+                order.createdDate
+        )).from(order)
+                .orderBy(order.orderId.desc())
+                .limit(4)
+                .fetch();
+    }
+
+    @Override
     public List<OrderDTO> showOrderList(Pageable pageable) {
         return jpaQueryFactory.select(new QOrderDTO(
                 order.orderId,
