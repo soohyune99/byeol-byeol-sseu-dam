@@ -25,16 +25,18 @@ import static com.app.byeolbyeolsseudam.entity.review.QReview.review;
 public class ProductCustomRepositoryImpl implements ProductCustomRepository {
     public final JPAQueryFactory jpaQueryFactory;
 
-    // 전체 조회
+    // 전체 조회, 검색 및 카테고리 선택 시, 무한 스크롤
     @Override
-    public List<ProductDTO> selectProducts(){
+    public List<ProductDTO> selectProducts(Criteria criteria){
         List<ProductDTO> products = jpaQueryFactory.select(new QProductDTO(
                 product.productId,product.productCategory, product.productName,
                 product.productPrice,product.productCount,product.productFileDetailName,
                 product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
                 product.productFileProfilePath,product.productFileProfileUuid))
                 .from(product)
+                .where(nameLike(criteria.getKeyword()), categoryEq(criteria.getCategory()) )
                 .orderBy(product.createdDate.desc())
+                .offset(criteria.getPage() * 10)
                 .limit(12)
                 .fetch();
 
@@ -53,8 +55,45 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
         return products;
     }
 
-    // 카테고리 클릭 시 조회
+    /* 동적 쿼리 조건 */
+    private BooleanExpression nameLike(String name){
+        return StringUtils.hasText(name)? product.productName.contains(name) : null;
+    }
+
+    private BooleanExpression categoryEq(String category){
+        return StringUtils.hasText(category)? product.productCategory.eq(ProductCategory.valueOf(category)) : null;
+    }
+
+    // 상세 조회 + 댓글
     @Override
+    public ProductDTO readProduct(Long productId){
+
+        ProductDTO productDTO = jpaQueryFactory.select(new QProductDTO(
+                QProduct.product.productId,QProduct.product.productCategory, QProduct.product.productName,
+                QProduct.product.productPrice,QProduct.product.productCount,QProduct.product.productFileDetailName,
+                QProduct.product.productFileDetailPath,QProduct.product.productFileDetailUuid,QProduct.product.productFileProfileName,
+                QProduct.product.productFileProfilePath,QProduct.product.productFileProfileUuid))
+                .from(QProduct.product)
+                .where(QProduct.product.productId.eq(productId))
+                .fetchOne();
+
+        List<ReviewDTO> reviews = jpaQueryFactory.select(new QReviewDTO(
+                review.reviewId, review.reviewContent, review.reviewStar,
+                review.product.productId,review.member.memberId, review.member.memberName,
+                review.reviewFileName, review.reviewFilePath, review.reviewFileUuid,
+                review.createdDate))
+                .from(review)
+                .where(review.product.productId.eq(productId))
+                .fetch();
+
+        productDTO.setReviews(reviews);
+
+        return productDTO;
+    }
+
+
+    // 카테고리 클릭 시 조회
+/*    @Override
     public List<ProductDTO> selectProductofCategory(ProductCategory productCategory){
         List<ProductDTO> products = jpaQueryFactory.select(new QProductDTO(
                 QProduct.product.productId, QProduct.product.productCategory,QProduct.product.productName,
@@ -81,10 +120,10 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
             review.setReviews(reviews);
         });
         return products;
-    }
+    }*/
 
     // 마켓 검색
-    @Override
+  /*  @Override
     public List<ProductDTO> selectProductofKeyword(String keyword){
         List<ProductDTO> products = jpaQueryFactory.select(new QProductDTO(
                 QProduct.product.productId, QProduct.product.productCategory,QProduct.product.productName,
@@ -110,42 +149,10 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
             product.setReviews(reviews);
         });
         return products;
-    }
-
-
-    // 상세 조회 + 댓글
-    @Override
-    public ProductDTO readProduct(Long productId){
-
-        Product product = jpaQueryFactory.selectFrom(QProduct.product)
-                .where(QProduct.product.productId.eq(productId))
-                .fetchOne();
-
-        ProductDTO productDTO = jpaQueryFactory.select(new QProductDTO(
-                QProduct.product.productId,QProduct.product.productCategory, QProduct.product.productName,
-                QProduct.product.productPrice,QProduct.product.productCount,QProduct.product.productFileDetailName,
-                QProduct.product.productFileDetailPath,QProduct.product.productFileDetailUuid,QProduct.product.productFileProfileName,
-                QProduct.product.productFileProfilePath,QProduct.product.productFileProfileUuid))
-                .from(QProduct.product)
-                .where(QProduct.product.productId.eq(productId))
-                .fetchOne();
-
-        List<ReviewDTO> reviews = jpaQueryFactory.select(new QReviewDTO(
-                review.reviewId, review.reviewContent, review.reviewStar,
-                review.product.productId,review.member.memberId, review.member.memberName,
-                review.reviewFileName, review.reviewFilePath, review.reviewFileUuid,
-                review.createdDate))
-                .from(review)
-                .where(review.product.productId.eq(productId))
-                .fetch();
-
-        productDTO.setReviews(reviews);
-
-        return productDTO;
-    }
+    }*/
 
     // 무한 스크롤
-    @Override
+    /*@Override
     public List<ProductDTO> selectScrollProducts(Criteria criteria){
         List<ProductDTO> products = jpaQueryFactory.select(new QProductDTO(
                 QProduct.product.productId, QProduct.product.productCategory,QProduct.product.productName,
@@ -171,16 +178,7 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
             product.setReviews(reviews);
         });
         return products;
-    }
-
-    /* 무한스크롤 동적쿼리 조건 */
-    private BooleanExpression nameLike(String name){
-        return StringUtils.hasText(name)? product.productName.contains(name) : null;
-    }
-
-    private BooleanExpression categoryEq(String category){
-        return StringUtils.hasText(category)? product.productCategory.eq(ProductCategory.valueOf(category)) : null;
-    }
+    }*/
 
     // 주문하기
     @Override

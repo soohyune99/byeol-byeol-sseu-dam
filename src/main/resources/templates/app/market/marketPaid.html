@@ -54,7 +54,7 @@
                                 <div class="table_payment_complete">
                                     <table>
                                         <tbody>
-                                        <tr>
+                                        <!--<tr>
                                             <th>입금계좌 안내</th>
                                             <td>
                                                 우리은행<br>
@@ -62,26 +62,26 @@
                                                 주식회사피스온테이블<br>
                                                 <strong class="text-brand">5,800원</strong>
                                             </td>
-                                        </tr>
-                                        <tr>
+                                        </tr>-->
+                                        <!--<tr>
                                             <th>입금 기간</th>
                                             <td>2022-11-13 14:11 까지</td>
-                                        </tr>
+                                        </tr>-->
                                         <tr>
                                             <th>주문번호</th>
-                                            <td>2022111223848</td>
+                                            <td class="order-id"></td>
                                         </tr>
 
-                                        <tr>
-                                            <th>배송지</th>
+                                        <tr class="member-info">
+                                           <!-- <th>배송지</th>
                                             <td>
-                                                성은지<br> <!-- 수취인명 -->
+                                                성은지<br> &lt;!&ndash; 수취인명 &ndash;&gt;
                                                 <span style="color:#757575">010-6555-9107</span><br>
-                                                <!-- 수취인 연락처 -->
-                                                서울 강남구 테헤란로 지하 156 (역삼동, 역삼역) <br> 401호 <br><span
-                                                    style="color:#757575">(06236)</span><br>
-                                                <!-- full version 배송주소 -->
-                                            </td>
+                                                &lt;!&ndash; 수취인 연락처 &ndash;&gt;
+                                                서울 강남구 테헤란로 지하 156 (역삼동, 역삼역) <br> 401호 <br>
+                                                <span style="color:#757575">(06236)</span><br>
+                                                &lt;!&ndash; full version 배송주소 &ndash;&gt;
+                                            </td>-->
                                         </tr>
                                         <tr>
                                             <th>배송 방법</th>
@@ -98,21 +98,22 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <!--네이버 프리미엄 로그 전환추적(결제완료), 페이스북 픽셀, 구글 애드워즈 전환추적 -->
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <th:block th:if="${session.member != null}">
+            <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+            <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+        </th:block>
     </main>
 </div>
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/market/paidModule.js"></script>
+<script src="/js/market/marketPaid.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 </html>

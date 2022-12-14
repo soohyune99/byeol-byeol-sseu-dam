@@ -16,25 +16,8 @@ public class MarketServiceImpl implements MarketService {
 
     // 상품 전체 조회
     @Override
-    public List<ProductDTO> selectProducts(){
-        return productRepository.selectProducts();
-    }
-
-    // 상품 개수 조회
-    public long countProducts(){
-        return productRepository.count();
-    }
-
-    // 상품 카테고리별 조회
-    @Override
-    public List<ProductDTO> selectProductsofCategory(ProductCategory productCategory){
-        return productRepository.selectProductofCategory(productCategory);
-    }
-
-    // 상품 검색
-    @Override
-    public List<ProductDTO> selectProductsofKeyword(String keyword){
-        return productRepository.selectProductofKeyword(keyword);
+    public List<ProductDTO> selectProducts(Criteria criteria){
+        return productRepository.selectProducts(criteria);
     }
 
     // 상품 상세 조회
@@ -43,10 +26,27 @@ public class MarketServiceImpl implements MarketService {
         return productRepository.readProduct(productId);
     }
 
+    // 상품 개수 조회
+    public long countProducts(){
+        return productRepository.count();
+    }
+
+    // 상품 카테고리별 조회
+    /*@Override
+    public List<ProductDTO> selectProductsofCategory(ProductCategory productCategory){
+        return productRepository.selectProductofCategory(productCategory);
+    }*/
+
+    // 상품 검색
+    /*@Override
+    public List<ProductDTO> selectProductsofKeyword(String keyword){
+        return productRepository.selectProductofKeyword(keyword);
+    }*/
+
     // 무한 스크롤
-    @Override
+   /* @Override
     public List<ProductDTO> selectScrollProducts(Criteria criteria){
         return productRepository.selectScrollProducts(criteria);
-    }
+    }*/
 
 }

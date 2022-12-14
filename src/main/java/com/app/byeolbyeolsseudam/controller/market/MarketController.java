@@ -18,31 +18,33 @@ public class MarketController {
 
     private final MarketService marketService;
 
+    /* 마켓 페이지로 이동 */
     @GetMapping("")
     public String main(){
         return "/app/market/market";
     }
 
 
-    // 마켓 상세보기 조회
+     /* 마켓 상세보기로 이동 */
     @GetMapping("/{productId}")
     public String Read(@PathVariable Long productId, Model model){
         return "/app/market/marketDetail";
     }
 
-    // 주문하기 이동
+     /*주문하기 이동*/
     @GetMapping("/payment")
     public String payment(@RequestParam(value = "productId") Long productId, @RequestParam(value = "count") int count){
         return "/app/market/marketPayment";
     }
 
-/*    @GetMapping("/basket")
-    public String basket(){
+    @GetMapping("/paid/{orderId}")
+    public String paid(@PathVariable Long orderId){
+        return "/app/market/marketPaid";
+    }
+
+    @GetMapping("/basket")
+    public String basket(@RequestParam(value = "productId") Long productId, @RequestParam(value = "count") int count){
         return "/app/market/marketBasket";
     }
 
-    @GetMapping("/paid")
-    public String paid(){
-        return "/app/market/marketPaid";
-    }*/
 }

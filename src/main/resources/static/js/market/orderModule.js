@@ -47,16 +47,17 @@ let orderService = (function(){
         });
     }
 
-    function getSaveOrder(priceAmount, callback, error) {
-        console.log("결제 ajax");
-        console.log(priceAmount);
+    function getSaveOrder(formData, callback, error) {
         $.ajax({
             url:"/ordering/payment",
             type: "post",
-            data: JSON.stringify(priceAmount),
-            contentType: "application/json; charset=utf-8",
-            success: function (orderDTO) {
-                location.href = "/app/market/marketPaid";
+            data: formData,
+            enctype:'multipart/form-data',
+            cache:false,
+            contentType:false,
+            processData:false,
+            success: function(order){
+                location.href = "/market/paid/"+ order;
             },
             error: function (xhr, status, err) {
                 if(error){

@@ -1,7 +1,8 @@
 /* marketDetail.html */
 // let $purchaseBtn = $(".purchase-btn");
 
-// getedNumber();
+/* 세션에 있는 멤버 아이디 */
+const memberNumber = $("input[name='memberId']").val();
 
 /* 장바구니 모달 열고 닫기 변수 선언 */
 let $basketModal = $("#shop_detail_add_cart_alarm");
@@ -148,7 +149,6 @@ function totalPrice(){
 
 /* ================================== MarketDetail ==================================*/
 
-console.log("js 들어옴");
 let url = decodeURI(window.location.href).split("/");
 let productId = url[url.length - 1];
 console.log(productId);
@@ -293,6 +293,16 @@ $purchaseBtn.on("click", function() {
     let $productCount = $("input[name='orderCount']").val();
     location.href ='/market/payment?productId='+ productId + '&count='+ $productCount;
 });
+
+/* 장바구니 버튼 누를 시 */
+let $basketBtn = $(".cart-btn");
+
+$basketBtn.on("click", function(){
+    console.log("장바구니 버튼 누름");
+    let $productCount = $("input[name='orderCount']").val();
+    location.href ='/market/basket?productId='+ productId + '&count='+ $productCount;
+
+})
 
 showReview();
 

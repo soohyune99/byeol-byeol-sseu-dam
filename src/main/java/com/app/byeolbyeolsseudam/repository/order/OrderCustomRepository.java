@@ -8,4 +8,7 @@ public interface OrderCustomRepository {
     public List<OrderDTO> selectMyOrderList(Long memberId, int page);
     public List<OrderDTO> selectMyCancelList(Long memberId, int page);
     public OrderDTO selectMyOrder(Long orderId);
+
+    /* 주문 완료 */
+    public OrderDTO showReceipt(Long orderId);
 }
