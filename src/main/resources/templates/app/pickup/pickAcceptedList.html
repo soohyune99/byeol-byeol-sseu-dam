@@ -22,7 +22,10 @@
 <body class="sent-requests" data-modal-open-count="0" style>
 <div>
     <!-- 로그인 된 기사님만 들어올 수 있음 -->
-    <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
+    <th:block th:if="${session.member != null}">
+        <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
+    </th:block>
+
 <div id="app" data-browser="Chrome" data-is-loaded="true" class>
 
     <div id="app-body">
@@ -157,9 +160,17 @@
     </div>
 </div>
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
+    <th:block th:if="${session.member !=null}">
+        <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    </th:block>
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
+
 <script src="/js/fix/headerLogin.js"></script>
 <script>
     /* 수거현황에서 자세히 보기 클릭시 _ 수거현황 detail 페이지 */

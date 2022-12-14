@@ -1,5 +1,7 @@
 package com.app.byeolbyeolsseudam.domain.pickupAccept;
 
+import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
 import com.app.byeolbyeolsseudam.type.PickupStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
@@ -21,6 +23,8 @@ public class PickupAcceptDTO {
     private Long memberId;
     private String memberName;
     private LocalDateTime createdDate;
+    private Member member;
+    private Pickup pickup;
 
     @QueryProjection
     public PickupAcceptDTO(Long pickupAcceptId, Long pickupId, int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Long memberId, String memberName, LocalDateTime createdDate) {

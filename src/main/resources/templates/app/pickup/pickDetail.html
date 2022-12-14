@@ -21,7 +21,10 @@
 <body class="received-quotes">
 <div>
     <!-- 로그인 된 기사님만 들어올 수 있음 -->
-    <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
+    <th:block th:if="${session.member != null}">
+        <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
+    </th:block>
+
     <div id="app-body">
         <div class="received-quote-list" data-v-adb80f6e="">
             <div data-v-c85c3b6a="" data-v-adb80f6e="" class="requested-service-header"
@@ -90,15 +93,23 @@
         </div>
     </div>
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
+    <th:block th:if="${session.member !=null}">
+        <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    </th:block>
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
 <script src="/js/fix/headerLogin.js"></script>
 <script>
 
     /* 수락하기 버튼 클릭시 _ 수거현황으로 이동 */
     function okAcceptPickup(){
-        location.href = "/pickup/acceptedlist"; /* 수거현황으로 이동 */
+        let pickupId;
+        location.href = "/pickup/savePickup?pickupId=" + pickupId; /* 수거현황으로 이동 */
     }
 </script>
 </html>

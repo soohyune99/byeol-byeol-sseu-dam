@@ -1,9 +1,8 @@
 package com.app.byeolbyeolsseudam.repository.pickupAccept;
 
-
 import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
-import com.app.byeolbyeolsseudam.domain.pickupAccept.PickupAcceptDTO;
-import com.app.byeolbyeolsseudam.entity.pickupAccept.PickupAccept;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ public interface PickupAcceptCustomRepository {
 
     /* 수거 대기중 리스트 / 수거 신청페이지 _ 해당되는 지역에 따라 동적쿼리 사용*/
     /* 동적 쿼리 - 수거대기중인 상태에서 소재지 키워드 Contain 여부 확인 */
-    public List<PickupDTO> findListPickupStatusSojaeji(String sojaeji);
+    public Page<PickupDTO> findListPickupStatusSojaeji(String sojaeji, Pageable pageable);
 
     /* 수거중 리스트 _ 수거현황 페이지 _ 기사님이 수락한 리스트 */
     public List<PickupDTO> findListPickupStatusIng(Long memberId);
@@ -28,28 +27,9 @@ public interface PickupAcceptCustomRepository {
     /*-----------------------------------------------------------------------------------------------*/
 
     /* 수거대기중 상세페이지에서 _ 수락하기 버튼 누르면 실행 /  세션에 멤버아이디 가져오기 */
-    public void savePickupAccept(Long pickupId, Long memberId);
-
     /* 수거중 상세페이지에서 _ 수거완료하기 버튼 누르면 실행 /  세션에 멤버아이디 가져오기*/
-    public void CompletePickup(Long pickupId, Long memberId);
+
+    //  =>  픽업엔티티에 update메소드가 있기 때문에 서비스 에서 사용 후 컨트롤러에서 사용하면됨. 따로 만들필요 없음.
 
     /*-----------------------------------------------------------------------------------------------*/
-    /*-----------------------------------------------------------------------------------------------*/
-
-//    //  픽업 목록들 _ 상태를 기준으로 분류 진행
-//    public List<PickupDTO> findAllByPickupStatus();
-//
-//    //  픽업 목록 상세 조회
-//    public PickupDTO find(Long pickupId);
-//
-//    //  내가 진행중인 목록들
-//    public List<PickupDTO> findAllByMyPickup(Long memberId);
-//    //  내가 완료한 목록들
-//    public List<PickupDTO> findAllByComplete(Long memberId);
-//    //    픽업 수락하기 pickup 에서 -> pickupAccept
-////    public void Accept(Long memberId);
-////    목록들 상태 업데이트
-//    public void StatusUpdate(Long pickupId);
-//    //    목록들 상태 완료 업데이트
-//    public void Complete(Long pickupId);
 }

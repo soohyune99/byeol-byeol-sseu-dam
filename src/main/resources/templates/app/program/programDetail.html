@@ -75,7 +75,13 @@
 
 
 <div>
-    <header th:replace="/app/fix/header.html :: header"></header>
+    <th:block th:if="${session.member == null}">
+        <header th:replace="/app/fix/header.html :: header"></header>
+    </th:block>
+    <th:block th:if="${session.member != null}">
+        <header th:replace="/app/fix/headerLogin.html :: header"></header>
+    </th:block>
+
     <div id="app-body">
         <div class="instant-purchase-container">
             <article class="instant-purchase-product-detail no-recent-view" data-v-08563466="">

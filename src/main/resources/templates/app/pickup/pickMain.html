@@ -23,7 +23,10 @@
 <body class="fontLoaded">
 <div>
     <!-- 로그인 된 기사님만 들어올 수 있음 -->
-    <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
+    <th:block th:if="${session.member != null}">
+        <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
+    </th:block>
+
     <div id="app" style="opacity: 1">
         <div class="App__AppWrapper-nc5ti6-0 idXWQn">
             <div class="Top__TopToastMessage-boaj4f-0 ToastContainer__ExtendedTopToastMessage-sqfjqn-2 hKZUBk"
@@ -419,9 +422,16 @@
         </div>
     </div>
     <footer th:replace="/app/fix/footer.html :: footer"></footer>
+    <th:block th:if="${session.member !=null}">
+        <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    </th:block>
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
 <script src="/js/fix/header.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script src="/js/pickup/pickMain.js"></script>
