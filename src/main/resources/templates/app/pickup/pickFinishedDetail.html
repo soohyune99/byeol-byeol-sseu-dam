@@ -25,6 +25,9 @@
         <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
     </th:block>
 
+    <th:block th:object="${pickupFinishDetail}">
+        <input type="hidden" th:href="${session.member.memberId}" id="memberId">
+        <input type="hidden" th:href="${pickupFinishDetail.pickupId}" id="pickupId">
     <div id="app-body">
         <div class="received-quote-list" data-v-adb80f6e="">
             <div data-v-c85c3b6a="" data-v-adb80f6e="" class="requested-service-header"
@@ -32,7 +35,7 @@
                 <div data-v-c85c3b6a="" class="container">
                     <div data-v-c85c3b6a="" class="header-title">
                         <div data-v-c85c3b6a="" class="title"> 수거 완료 정보 </div>
-                        <div data-v-c85c3b6a="" class="date">2022.11.01</div>
+                        <div th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd')}" data-v-c85c3b6a="" class="date"></div>
                     </div>
                 </div>
             </div>
@@ -48,25 +51,27 @@
                             <div data-v-464dc29d="" data-name="profile" class="col-auto">
                                 <div data-v-0ee3c6fc="" data-v-464dc29d="" class="user-profile-picture">
                                     <div data-v-0ee3c6fc="" data-name="image" class="is-square"
-                                         data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                         lazy="loaded"
-                                         style="background-image: url('https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320');">
+                                         lazy="loaded">
+                                        <img th:src="*{pickupMemberProfilePath}" style="height: inherit;">
                                     </div>
                                 </div>
                             </div>
                             <div data-v-464dc29d="" class="service-info col">
                                 <div data-v-464dc29d="" class="name-wrapper">
-                                    <h5 data-v-464dc29d="" class="profile-name"> 김재섭 </h5>
+                                    <h5 th:text="*{pickupMemberName}" data-v-464dc29d="" class="profile-name"></h5>
+                                </div>
+                                <div data-v-2608d7d0="" data-v-464dc29d="" class="profile-badges">
+                                    <div th:text="*{pickupMemberPhone}" data-v-2608d7d0="" class="rate" style="font-size: larger;"><!--신청자 핸드폰번호--></div>
                                 </div>
                             </div>
                         </section>
                         <div data-v-f32583c0="" data-v-464dc29d="" class="quote-info-wrapper">
                             <div data-v-f32583c0="" class="quote-info">
                                 <ul data-v-f32583c0="" class="user-detail has-quote-profile">
-                                    <li data-v-f32583c0="" class="address">신청자 주소 들어올 자리</li>
-                                    <li data-v-f32583c0="" class="career">페트병 2개</li>
-                                    <li data-v-f32583c0="" class="career">유리병 5개</li>
-                                    <li data-v-f32583c0="" class="hired">수거 메시지 들어올 자리</li>
+                                    <li th:text="*{pickupAddress}" data-v-f32583c0="" class="address"><!--신청자 주소 들어올 자리--></li>
+                                    <li data-v-f32583c0="" class="career">페트병 <span th:text="*{petCount}"><!--2--></span>개</li>
+                                    <li data-v-f32583c0="" class="career">유리병 <span th:text="*{glassCount}"><!--2--></span>개</li>
+                                    <li th:text="*{pickupMessage}" data-v-f32583c0="" class="hired"><!--수거 메시지 들어올 자리--></li>
                                 </ul>
                                 <div data-v-f32583c0="" class="quote-price-wrapper">
                                     <div data-v-f32583c0="" class="quote-price">

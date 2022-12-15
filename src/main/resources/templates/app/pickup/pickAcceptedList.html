@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -26,140 +26,92 @@
         <header th:replace="/app/fix/headerLoginPicker.html :: header"></header>
     </th:block>
 
-<div id="app" data-browser="Chrome" data-is-loaded="true" class>
+    <div id="app" data-browser="Chrome" data-is-loaded="true" class>
 
-    <div id="app-body">
-        <article data-v-564412cd="" class="sent-request-list">
-            <section class="container" data-v-584c25b2="">
-                <div class="banner-list-user" data-v-5f3ed876="" data-v-584c25b2="">
-                    <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-5f3ed876="" dir="ltr"
-                         class="slick-slider slick-initialized">
-                        <div data-v-3d1a4f76="" class="slick-list">
-                            <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-track"
-                                 style="opacity: 1;">
-                                <div data-v-e4caeaf8="" tabindex="-1" data-index="-1" aria-hidden="true"
-                                     class="slick-slide slick-cloned">
-                                    <div data-v-e4caeaf8="">
-                                        <div data-v-4721ba7d="" data-v-5f3ed876="" class="banner" tabindex="-1"
-                                             data-v-e4caeaf8=""
-                                             style="cursor: auto; background-image: url(https://static.cdn.soomgo.com/upload/banner/c8a1fbc5-7437-4069-bff8-31e8bb3112d7.png); width: 100%; display: inline-block;"></div>
+        <div id="app-body">
+            <article data-v-564412cd="" class="sent-request-list">
+                <section class="container" data-v-584c25b2="">
+                    <div class="banner-list-user" data-v-5f3ed876="" data-v-584c25b2="">
+                        <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-5f3ed876="" dir="ltr"
+                             class="slick-slider slick-initialized">
+                            <div data-v-3d1a4f76="" class="slick-list">
+                                <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-track"
+                                     style="opacity: 1;">
+                                    <div data-v-e4caeaf8="" tabindex="-1" data-index="-1" aria-hidden="true"
+                                         class="slick-slide slick-cloned">
+                                        <div data-v-e4caeaf8="">
+                                            <div data-v-4721ba7d="" data-v-5f3ed876="" class="banner" tabindex="-1"
+                                                 data-v-e4caeaf8=""
+                                                 style="cursor: auto; background-image: url(https://static.cdn.soomgo.com/upload/banner/c8a1fbc5-7437-4069-bff8-31e8bb3112d7.png); width: 100%; display: inline-block;"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section data-v-564412cd="" class="container">
-                <h1 data-v-564412cd="" class="page-heading-h1"><span data-v-564412cd="">수거현황</span></h1>
-                <ul data-v-564412cd="" class="row quote-list no-gutters">
-
-                    <!-- BEGIN  :  하나의 리스트가 실행될 곳  -->
-                    <th:block th:each="pickup:${pickups}" th:object="${pickup}">
-                        <input type="hidden" th:href="*{pickupId}" id="pickupId">
-                        <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
-                            <div data-v-05822788="" data-v-564412cd="" data-testid="request-card"
-                                 class="request-card">
-                                <div data-v-05822788="" class="request-card-header align-items-center">
-                                    <div data-v-05822788="" class="request-card-title text-truncate"
-                                         th:text="*{pickupAddress}">
+                </section>
+                <section data-v-564412cd="" class="container">
+                    <h1 data-v-564412cd="" class="page-heading-h1"><span data-v-564412cd="">수거현황</span></h1>
+                    <ul data-v-564412cd="" class="row quote-list no-gutters">
+                        <tbody>
+                        <th:block th:each="pickup:${ingPickupDTOS}" th:object="${pickup}">
+                            <input type="hidden" th:href="${session.member.memberId}" id="memberId">
+                            <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12 ingPickup">
+                                <input type="hidden" th:href="*{pickupAcceptId}" id="pickupAcceptId">
+                                <div data-v-05822788="" data-v-564412cd="" data-testid="request-card"
+                                     class="request-card">
+                                    <div data-v-05822788="" class="request-card-header align-items-center">
+                                        <div th:text="*{pickupAddress}" data-v-05822788=""
+                                             class="request-card-title text-truncate"><!--주소들어갈 부분--></div>
+                                        <time th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd')}"
+                                              data-v-05822788=""><!--일자--></time>
                                     </div>
-                                    <time data-v-05822788=""
-                                          th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd')}"></time>
-                                </div>
-                                <div data-v-05822788="" class="request-card-body">
-                                    <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
-                                        <div data-v-78eb3aa2="" class="progress">
-                                            <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                                 aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>
-                                        </div>
-                                        <div data-v-78eb3aa2="" class="status-wrapper">
-                                            <div data-v-78eb3aa2="" class="status bold">수거요청</div>
-                                            <div data-v-78eb3aa2="" class="status">수거진행</div>
-                                            <div data-v-78eb3aa2="" class="status"> 수거완료</div>
-                                        </div>
-                                    </div>
-                                    <div data-v-05822788="" class="quote-status-wrapper">
-                                        <div data-v-f02739d2="" data-v-05822788=""
-                                             class="row quote-status flex-nowrap no-gutters">
-                                            <ul data-v-f02739d2="" class="avatar-wrapper">
-                                                <li data-v-f02739d2="" class="avatar-profile">
-                                                    <img data-v-f02739d2="" alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
-                                                         data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                                         src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                                         lazy="loaded"></li>
-                                            </ul>
-                                            <div data-v-f02739d2="" class="status-message">
-                                                <!--<span data-v-f02739d2="" th:text="*{pickup.memberName}"></span>-->
-                                                <span> 님의 수거 요청입니다.</span>
+                                    <div data-v-05822788="" class="request-card-body">
+                                        <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
+                                            <div data-v-78eb3aa2="" class="progress">
+                                                <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                                     aria-valuenow="100" class="progress-bar" style="width: 50%;"></div>
+                                            </div>
+                                            <div data-v-78eb3aa2="" class="status-wrapper">
+                                                <div data-v-78eb3aa2="" class="status">수거요청</div>
+                                                <div data-v-78eb3aa2="" class="status bold">수거진행</div>
+                                                <div data-v-78eb3aa2="" class="status"> 수거완료</div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                            onclick="showWantedPickup()" id="read"
-                                            class="btn quote-cta btn-primary btn-block">자세히 보기
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                    </th:block>
-                    <!-- END  :  하나의 리스트가 실행될 곳  -->
-
-
-
-
-
-
-
-
-
-                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
-                        <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
-                            <div data-v-05822788="" class="request-card-header align-items-center">
-                                <div data-v-05822788="" class="request-card-title text-truncate">주소들어갈 부분</div>
-                                <time data-v-05822788="">수락일자</time>
-                            </div>
-                            <div data-v-05822788="" class="request-card-body">
-                                <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
-                                    <div data-v-78eb3aa2="" class="progress">
-                                        <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                             aria-valuenow="100" class="progress-bar" style="width: 50%;"></div>
-                                    </div>
-                                    <div data-v-78eb3aa2="" class="status-wrapper">
-                                        <div data-v-78eb3aa2="" class="status">수거요청</div>
-                                        <div data-v-78eb3aa2="" class="status bold">수거진행</div>
-                                        <div data-v-78eb3aa2="" class="status"> 수거완료</div>
+                                        <div data-v-05822788="" class="quote-status-wrapper">
+                                            <div data-v-f02739d2="" data-v-05822788=""
+                                                 class="row quote-status flex-nowrap no-gutters">
+                                                <ul data-v-f02739d2="" class="avatar-wrapper">
+                                                    <li data-v-f02739d2="" class="avatar-profile">
+                                                        <img data-v-f02739d2="" alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
+                                                             th:src="*{pickupMemberProfilePath}"
+                                                             lazy="loaded"></li>
+                                                </ul>
+                                                <div th:text="*{pickupMemberName}" data-v-f02739d2=""
+                                                     class="status-message closed"><!--디폴트--></div>
+                                                <div data-v-f02739d2="" class="status-message closed"> 님의 수거를 진행중입니다
+                                                </div>
+                                            </div>
+                                            <!---->
+                                        </div>
+                                        <button data-v-05822788="" data-testid="request-detail-btn" type="button"
+                                                class="btn quote-cta btn-primary btn-block detailBtn"
+                                                >자세히 보기
+                                        </button>
                                     </div>
                                 </div>
-                                <div data-v-05822788="" class="quote-status-wrapper">
-                                    <div data-v-f02739d2="" data-v-05822788=""
-                                         class="row quote-status flex-nowrap no-gutters">
-                                        <ul data-v-f02739d2="" class="avatar-wrapper">
-                                            <li data-v-f02739d2="" class="avatar-profile">
-                                                <img data-v-f02739d2="" alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
-                                                     data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                                     src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                                     lazy="loaded"></li>
-                                        </ul>
-                                        <div data-v-f02739d2="" class="status-message closed">디폴트</div>
-                                        <div data-v-f02739d2="" class="status-message closed"> 님의 수거를 진행중입니다</div>
-                                    </div>
-                                    <!---->
-                                </div>
-                                <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                        class="btn quote-cta btn-primary btn-block" onclick="AcceptMyPickupDetail()">자세히 보기
-                                </button>
-                            </div>
-                        </div>
-                    </li>
+                            </li>
 
-                </ul>
-                <!---->
-            </section>
-        </article>
+                        </th:block>
+                        </tbody>
+
+                    </ul>
+                    <!---->
+                </section>
+            </article>
+        </div>
     </div>
-</div>
-<footer th:replace="/app/fix/footer.html :: footer"></footer>
+    <footer th:replace="/app/fix/footer.html :: footer"></footer>
     <th:block th:if="${session.member !=null}">
         <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
     </th:block>
@@ -170,12 +122,12 @@
 <script>
     let memberCategory = $("input[name='memberCategory']").val();
 </script>
-
 <script src="/js/fix/headerLogin.js"></script>
 <script>
+
     /* 수거현황에서 자세히 보기 클릭시 _ 수거현황 detail 페이지 */
-    function AcceptMyPickupDetail() {
-        location.href = "/pickup/okdetail";
-    }
+    $(".detailBtn").on("click",function () {
+        location.href = "/pickup/finisheddetail" + "?pickupAcceptId=" + $(this).closest("li.ingPickup").find('#pickupAcceptId').attr("href");
+    });
 </script>
 </html>
