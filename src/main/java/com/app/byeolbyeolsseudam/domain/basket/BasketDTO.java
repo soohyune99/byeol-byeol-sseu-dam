@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class BasketDTO {
     private Long basketId;
     private int basketCount;
-    private String memberId;
+    private Long memberId;
     private Long productId;
     private int productPrice;
     private String productName;
@@ -26,8 +26,9 @@ public class BasketDTO {
     private String productFileProfileUuid;
 
     @QueryProjection
-    public BasketDTO(Long basketId, String memberId, Long productId, ProductCategory productCategory, String productName, int productPrice, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid) {
+    public BasketDTO(Long basketId, int basketCount, Long memberId, Long productId, ProductCategory productCategory, String productName, int productPrice, String productFileDetailName, String productFileDetailPath, String productFileDetailUuid, String productFileProfileName, String productFileProfilePath, String productFileProfileUuid) {
         this.basketId = basketId;
+        this.basketCount = basketCount;
         this.memberId = memberId;
         this.productId = productId;
         this.productCategory = productCategory;

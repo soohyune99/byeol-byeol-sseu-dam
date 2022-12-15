@@ -43,7 +43,7 @@ public class MarketController {
     }
 
     @GetMapping("/basket")
-    public String basket(@RequestParam(value = "productId") Long productId, @RequestParam(value = "count") int count){
+    public String basket(){
         return "/app/market/marketBasket";
     }
 

@@ -514,7 +514,8 @@
                         </section>
                         <section class="buy-button pb-0" data-v-08563466="">
                             <div class="sticky-btn-group" data-v-08563466="">
-                                <button type="button" onclick="basketModalOpen();" class="btn btn-qna btn-none btn-block" data-v-fa78c050="" data-v-08563466="">
+<!--                                <button type="button" onclick="basketModalOpen();" class="btn btn-qna btn-none btn-block" data-v-fa78c050="" data-v-08563466="">-->
+                                <button type="button"class="btn btn-qna btn-none btn-block" data-v-fa78c050="" data-v-08563466="">
                                     <span data-v-fa78c050="" data-v-08563466="">
                                         <?xml version="1.0" ?>
                                         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:35px; height:35px;">
@@ -556,7 +557,7 @@
                     </div>
                     <div class="btn-group-justified">
                         <a href="javascript:basketModalClose();" class="btn modal-close-btn">계속쇼핑</a>
-                        <a href="javascript:0;" class="btn right cart-btn">장바구니</a>
+                        <a href="javascript:goBasket();" class="btn right cart-btn">장바구니</a>
                     </div>
                 </div>
             </div>
@@ -579,14 +580,18 @@
             <div class="swal2-footer" style="display: none;"></div>
         </div>
     </div>
-
-
+    <th:block th:if="${session.member != null}">
+        <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+        <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+    </th:block>
 </div>
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/market/marketModule.js"></script>
 <script src="/js/market/reviewModule.js"></script>
+<script src="/js/market/orderModule.js"></script>
+<script src="/js/market/marketBasketModule.js"></script>
 <script src="/js/market/marketDetail.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 </html>

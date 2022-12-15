@@ -59,9 +59,6 @@ let reviewService = (function(){
     }
 
     function getMoreReview(productId, page, callback, error){
-        console.log("ajax");
-        console.log(typeof page);
-        console.log(page);
         $.ajax({
             url: "/review/" + productId + "/" + page,
             type: "get",
@@ -81,8 +78,6 @@ let reviewService = (function(){
     }
 
     function save(review, callback, error){
-        console.log("리뷰 작성 ajax");
-        console.log(review);
         $.ajax({
             url: "/review/new",
             type: "post",
@@ -90,12 +85,10 @@ let reviewService = (function(){
             contentType: "application/json; charset=utf-8",
             success: function(result, status, xhr){
                 if(callback){
-                    console.log("리뷰 작성 ajax 성공")
                     callback(result);
                 }
             },
             error: function(xhr, status, err){
-                console.log("리뷰 작성 ajax 실패")
                 if(error){
                     error(err);
                 }
@@ -122,7 +115,6 @@ let reviewService = (function(){
                 }
             },
             error: function (xhr, status, err) {
-                console.log("upload 실패")
                 if(error){
                     error(err);
                 }

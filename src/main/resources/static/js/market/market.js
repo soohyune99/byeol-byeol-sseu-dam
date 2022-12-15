@@ -1,4 +1,7 @@
 /* market.html */
+/* 세션에 있는 멤버 아이디 & 이름 */
+const memberId = $("input[name='memberId']").val();
+const memberName = $("input[name='memberName']").val();
 
 const $marketSearch = $("section.market-keyword-search-form");
 const $searchArea = $("input#__BVID__183");

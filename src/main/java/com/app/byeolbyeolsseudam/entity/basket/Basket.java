@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.entity.basket;
 
+import com.app.byeolbyeolsseudam.domain.basket.BasketDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.entity.Period;
 import com.app.byeolbyeolsseudam.entity.product.Product;
@@ -30,6 +31,8 @@ public class Basket extends Period {
     public void changeProduct(Product product){
         this.product = product;
     }
+
+    public void updateBasketCount(BasketDTO basketDTO){this.basketCount = basketCount;}
 
     @Builder
     public Basket(int basketCount) {

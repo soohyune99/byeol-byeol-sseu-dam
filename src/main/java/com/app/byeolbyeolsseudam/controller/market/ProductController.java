@@ -20,7 +20,6 @@ public class ProductController {
     // 전체 조회
     @PostMapping("")
     public List<ProductDTO> getProductList(Criteria criteria) {
-        log.info("-----------------------controller------------------------" + criteria);
         return marketService.selectProducts(criteria);
     }
 
