@@ -27,7 +27,7 @@
                 <img class="moblieBtn" style="cursor: pointer;" data-v-3a2c0d3c="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxwYXRoIGQ9Ik00LjUgNmgxNW0tMTUgNmgxNW0tMTUgNmgxNSIgc3Ryb2tlPSIjMkQyRDJEIiBzdHJva2Utd2lkdGg9IjEuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" data-testid="side-nav-menu-icon" alt="네비게이션 메뉴 아이콘">
             </div>
             <div data-v-3a2c0d3c="" class="col-4 mobile-header-col center vue-portal-target">
-                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/main" class="logo">
+                <a data-v-3a2c0d3c="" href="/pickup/main" class="logo">
                     <img data-v-3a2c0d3c="" src="/images/fix/logo.png" alt="별별쓰담 로고" data-testid="main-logo">
                 </a>
             </div>
@@ -42,22 +42,22 @@
                     <div data-v-6c349158="" class="body a">
                         <div data-v-6c349158="" data-name="user" class="row">
                             <div data-v-6c349158="" data-name="user-info" role="button" class="col">
-                                <h4 data-v-6c349158="" th:text="${session.member.memberName}"></h4>
+                                <h4 class="memberName" data-v-6c349158=""></h4>
                                 <p data-v-6c349158="" data-testid="login-btn"> 안녕하세요<span data-v-6c349158="" class="new-feature-badge" style="display: none;"></span><!----></p>
                             </div>
                             <div data-v-6c349158="" data-name="user-profile" class="col-auto">
-                                <div th:if="${session.member.memberProfileName}"  data-v-0ee3c6fc="" data-v-6c349158="" class="user-profile-picture moblie-profile">
-                                    <div data-v-0ee3c6fc="" data-name="image" class="" data-src="https://www.jigushop.co.kr/common/img/default_profile.png" lazy="loading" th:style="'background-image: url('+ ${session.member.memberProfileName} +  ');'">
+                                <div data-v-0ee3c6fc="" data-v-6c349158="" class="user-profile-picture moblie-profile">
+                                    <div data-v-0ee3c6fc="" data-name="image" class="memberProfile" data-src="https://www.jigushop.co.kr/common/img/default_profile.png" lazy="loading">
                                     </div>
                                 </div>
                             </div>
                             <div data-v-6c349158="" class="user-controll col-12">
                                 <div data-v-6c349158="" class="row">
                                     <div data-v-6c349158="" data-name="logout" class="col">
-                                        <button data-v-6c349158="" class="btn btn-border" onclick="location.href='http://localhost:10001/logout'" >로그아웃</button>
+                                        <button data-v-6c349158="" class="btn btn-border logout">로그아웃</button>
                                     </div>
 <!--                                    <div data-v-6c349158="" data-name="change-user-type" class="col">-->
-<!--                                        <button data-v-6c349158="" class="btn btn-border change-user-type" onclick="location.href='http://localhost:10001/main'">-->
+<!--                                        <button data-v-6c349158="" class="btn btn-border change-user-type" onclick="location.href='/main'">-->
 <!--                                            별별쓰담-->
 <!--                                        </button>-->
 <!--                                    </div>-->
@@ -67,17 +67,17 @@
                         <nav data-v-6c349158="" class="gnb-list">
                             <ul data-v-6c349158="" class="service-menu">
                                 <li data-v-6c349158="" class="nav-item">
-                                    <a data-v-6c349158="" href="http://localhost:10001/pickup/wantedlist" class="lnb-link">
+                                    <a data-v-6c349158="" href="/pickup/wantedlist" class="lnb-link">
                                         <span data-v-6c349158="" class="menu-title">수거신청</span>
                                     </a>
                                 </li>
                                 <li data-v-6c349158="" class="nav-item">
-                                    <a data-v-6c349158="" href="http://localhost:10001/pickup/acceptedlist" class="lnb-link">
+                                    <a data-v-6c349158="" href="/pickup/acceptedlist" class="lnb-link">
                                         <span data-v-6c349158="" class="menu-title">수거현황</span>
                                     </a>
                                 </li>
                                 <li data-v-6c349158="" class="nav-item">
-                                    <a data-v-6c349158="" href="http://localhost:10001/pickup/finishedlist" class="lnb-link">
+                                    <a data-v-6c349158="" href="/pickup/finishedlist" class="lnb-link">
                                         <span data-v-6c349158="" class="menu-title">수거내역</span>
                                     </a>
                                 </li>
@@ -92,24 +92,24 @@
             <div data-v-3a2c0d3c="" class="desktop-header">
                 <div data-v-3a2c0d3c="" class="left-section">
                     <div data-v-3a2c0d3c="" class="logo">
-                        <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/main" class="">
+                        <a data-v-3a2c0d3c="" href="/pickup/main" class="">
                             <img data-v-3a2c0d3c="" src="/images/fix/logo.png" alt="숨고, 숨은고수">
                         </a>
                     </div>
                     <nav data-v-3a2c0d3c="">
                         <ul data-v-3a2c0d3c="" class="nav-list">
                             <li data-v-3a2c0d3c="" class="nav-item left-section-item">
-                                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/wantedlist" class="gnb-link">
+                                <a data-v-3a2c0d3c="" href="/pickup/wantedlist" class="gnb-link">
                                     <span data-v-3a2c0d3c="">수거신청</span>
                                 </a>
                             </li>
                             <li data-v-3a2c0d3c="" class="nav-item left-section-item">
-                                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/acceptedlist" class="gnb-link">
+                                <a data-v-3a2c0d3c="" href="/pickup/acceptedlist" class="gnb-link">
                                     <span data-v-3a2c0d3c="">수거현황</span>
                                 </a>
                             </li>
                             <li data-v-3a2c0d3c="" class="nav-item left-section-item">
-                                <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/finishedlist" class="gnb-link">
+                                <a data-v-3a2c0d3c="" href="/pickup/finishedlist" class="gnb-link">
                                     <span data-v-3a2c0d3c="">수거내역</span>
                                 </a>
                             </li>
@@ -123,37 +123,37 @@
                                 <a data-v-6c349158="" href="/category-home?from=mobile_web_hamburger" class="lnb-link" style="width: inherit;height: inherit">
 <!--                                    <div data-v-0ee3c6fc="" data-name="image" class="" data-src="https://www.jigushop.co.kr/common/img/default_profile.png" lazy="loading" style="background-image: url('https://www.jigushop.co.kr/common/img/default_profile.png');">-->
 <!--                                    </div>-->
-                                    <img th:src="${session.member.memberProfileName}" style="width: inherit;height: inherit;border-radius: 50%">
+                                    <img id="memberProfile" style="width: inherit;height: inherit;border-radius: 50%">
                                 </a>
                             </div>
                             <img class="mypageBtn pageBtn" data-v-0ef37ba8="" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgxMnYxMkgweiIvPgogICAgICAgIDxwYXRoIHN0cm9rZT0iIzg4OCIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEwIDQgNiA4IDIgNCIvPgogICAgPC9nPgo8L3N2Zz4K">
                         </div>
                         <div data-v-0ef37ba8="" class="usermenu-dropdown page-dropdown" style="display: none;">
                             <div data-v-0ef37ba8="" data-name="user-info">
-                                <h4 data-v-0ef37ba8="" data-name="name" th:text="${session.member.memberName}"></h4>
+                                <h4 class="memberName" data-v-0ef37ba8="" data-name="name"></h4>
                             </div>
                             <ul data-v-0ef37ba8="" data-name="usermenu-control">
                                 <li data-v-0ef37ba8="" class="row" style="display: none;">
                                     <div data-v-0ef37ba8="" class="col">프로필 관리</div>
                                 </li>
                                 <li data-v-0ef37ba8="" class="row">
-                                    <a data-v-3a2c0d3c="" href="http://localhost:10001/mypage" class="gnb-link">
+                                    <a data-v-3a2c0d3c="" href="/mypage" class="gnb-link">
                                         <div data-v-0ef37ba8="" class="col">마이페이지</div>
                                     </a>
                                 </li>
                                 <li data-v-0ef37ba8="" class="row">
-                                    <a data-v-3a2c0d3c="" href="http://localhost:10001/notice/1" class="gnb-link">
+                                    <a data-v-3a2c0d3c="" href="/notice/1" class="gnb-link">
                                         <div data-v-0ef37ba8="" class="col">공지사항 </div>
                                     </a>
                                 </li>
                             </ul>
                             <div data-v-0ef37ba8="" data-name="user-type-control">
-<!--                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm" onclick="location.href='http://localhost:10001/main'">-->
+<!--                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm" onclick="location.href='/main'">-->
 <!--                                    <img data-v-0ef37ba8="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMSI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMzMjMyMzIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjIiPjxwYXRoIGQ9Ik0xMiAxLjV2M0g5bS04IDV2LTNoMyIvPjxwYXRoIGQ9Ik0yLjI1NSA0QTQuNSA0LjUgMCAwIDEgOS42OCAyLjMyTDEyIDQuNW0tMTEgMmwyLjMyIDIuMThBNC41IDQuNSAwIDAgMCAxMC43NDUgNyIvPjwvZz48L3N2Zz4=">별별쓰담-->
 <!--                                </button>-->
                             </div>
                             <div data-v-0ef37ba8="" data-name="signout-control">
-                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm" onclick="location.href='http://localhost:10001/logout'">로그아웃</button>
+                                <button data-v-0ef37ba8="" type="button" class="btn btn-secondary btn-sm logout">로그아웃</button>
                             </div>
                         </div>
                     </div>

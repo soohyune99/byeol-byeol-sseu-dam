@@ -59,7 +59,6 @@ public class AdminJubggingController {
 
     @PostMapping("/course/modified")
     public RedirectView adminJubJubCourseModified(CourseDTO courseDTO){
-        log.info("뿌립니다" + courseDTO);
         adminJubggingService.updateCourse(courseDTO,courseDTO.getCourseId());
 
         return new RedirectView("/admin/jubgging/course");
@@ -97,7 +96,6 @@ public class AdminJubggingController {
 
         model.addAttribute("keyword", keyword);
         model.addAttribute("spots", adminSpotService.searchSpotPaging(keyword,pageable));
-
         return "/app/admin/adminJubJubSpot";
     }
 
@@ -133,7 +131,6 @@ public class AdminJubggingController {
     public RedirectView adminSpotDelete(@RequestParam List<String> checkedValue){
         adminSpotService.removeSpot(checkedValue);
         return new RedirectView("/admin/jubgging/spot/1");
-
     }
 
 
@@ -156,7 +153,6 @@ public class AdminJubggingController {
 
         model.addAttribute("keyword", keyword);
         model.addAttribute("badges", adminBadgeService.searchBadgePaging(keyword, pageable));
-
         return "/app/admin/adminJubJubBadge";
     }
 
@@ -169,7 +165,6 @@ public class AdminJubggingController {
     @PostMapping("/badge/save")
     public RedirectView adminBadgeSave(BadgeDTO badgeDTO){
         adminJubggingService.saveBadge(badgeDTO);
-
         return new RedirectView("/admin/jubgging/badge/1");
     }
 
@@ -177,7 +172,6 @@ public class AdminJubggingController {
     @GetMapping("/badge/modify")
     public String adminJubJubBadgeModify(@RequestParam(name = "badgeId") String badgeId, Model model){
         model.addAttribute("badge", adminBadgeService.selectById(badgeId));
-
         return "/app/admin/adminJubJubBadgeModify";
     }
 
@@ -192,5 +186,4 @@ public class AdminJubggingController {
         adminBadgeService.removeBadge(checkedValue);
         return new RedirectView("/admin/jubgging/badge/1");
     }
-
 }

@@ -4,11 +4,13 @@ import com.app.byeolbyeolsseudam.domain.pickup.PickupDTO;
 import com.app.byeolbyeolsseudam.embaddable.Recyclable;
 import com.app.byeolbyeolsseudam.entity.Period;
 import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.entity.pickupAccept.PickupAccept;
 import com.app.byeolbyeolsseudam.type.PickupStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "TBL_PICKUP")
@@ -28,6 +30,9 @@ public class Pickup extends Period {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+    @OneToMany(mappedBy = "pickup", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PickupAccept> pickupAccept;
 
     public void changeMember(Member member){
         this.member = member;

@@ -169,15 +169,12 @@
                                                                                                    style="display:none;margin: 0 auto;">
                                                                                             <img src="/images/admin/002.png"
                                                                                                  id="thumbnail" style="width: 100%; height: 100%;">
+                                                                                            <input type="hidden" name="spotQrName">;
                                                                                         </label>
                                                                                         <div id="spotQrInfo"></div>
                                                                                     </div>
                                                                                 </div>
-
-
                                                                             </div>
-
-
                                                                             <div class="row">
                                                                             </div>
                                                                         </div>
@@ -211,54 +208,16 @@
 <script src="/js/admin/admin.js"></script>
 <script>
     let $qrBtn = $("#generateQr");
-    let arrayFile = [];
+
     $qrBtn.on("click", function () {
         let $courseNumber = $("#courseSpot").val();
         let $spotNumber = $("#spotNumber").val();
 
-        $.ajax({
-            url:"/file/qr/create",
-            data:{courseNumber: $courseNumber, spotNumber: $spotNumber},
-            success: function (abc) {
-                window.open(abc);
-            }
-        })
-    })
+        let path = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=http://localhost:10001/login?course="+ $courseNumber + "&spot=" + $spotNumber;
 
-
-    $("input[type='file']").on("change",function () {
-        let formData = new FormData();
-        let $inputFile = $("input#icon_img");
-        let files = $inputFile[0].files;
-
-        Array.from(files).forEach(file => arrayFile.push(file));
-        const dataTransfer = new DataTransfer();
-        arrayFile.forEach(file => dataTransfer.items.add(file));
-        $(this)[0].files = dataTransfer.files;
-
-        $(files).each(function(i, file){
-            formData.append("upload", file);
-        });
-
-        $.ajax({
-            url: "/file/qr/upload",
-            type: "post",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: insertImg
-        });
+        $("img#thumbnail").attr("src",path)
+        $("input[name='spotQrName']").val(path);
     });
-
-    function insertImg(files) {
-        let text = "";
-
-        $(files).each(function (i, file) {
-            text += `<input name="spotQrName" type="hidden" value="`+ file.spotQrName +`">`;
-        });
-        $("#spotQrInfo").html(text);
-
-    }
 
 
 </script>

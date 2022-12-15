@@ -33,4 +33,20 @@ public class AdminOrderDetailRepositoryImpl implements AdminOrderDetailCustomRep
                 .limit(pageable.getPageSize())
                 .fetch();
     }
+
+    @Override
+    public List<OrderDetailDTO> showDetail(Long orderId) {
+        return jpaQueryFactory.select(new QOrderDetailDTO(
+                orderDetail.orderDetailId,
+                orderDetail.orderDetailCount,
+                orderDetail.order.orderId,
+                orderDetail.product.productId,
+                orderDetail.product.productCategory,
+                orderDetail.product.productName,
+                orderDetail.product.productPrice,
+                orderDetail.product.productFileProfileName
+        )).from(orderDetail)
+                .where(orderDetail.order.orderId.eq(orderId))
+                .fetch();
+    }
 }
