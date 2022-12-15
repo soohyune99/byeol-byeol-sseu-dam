@@ -128,7 +128,7 @@ function takeMycourse(){
             let memberId = url.split("memberId=")[1]
 
             if(memberId != ''){
-                location.href='/jubgging/' + memberId + "/" + globalThis.courseFlag + "/" + globalThis.spotFlag;
+                location.href='/jubgging/' + globalThis.courseFlag + "/" + globalThis.spotFlag;
             }
         }
     });

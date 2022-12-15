@@ -49,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Long countCommentofBoard(Long boardId){
-        return commentRepository.countCommentsByBoard_BoardId(boardId);
+        return commentRepository.countByBoardBoardId(boardId);
     }
 
 }

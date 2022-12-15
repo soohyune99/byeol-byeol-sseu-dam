@@ -52,7 +52,7 @@ function resetKeyword(){
 
 /* ================================== Board ==================================*/
 
-show();
+show()
 
 /* 조회수 높은 TOP3와 최신순 게시글 조회 */
 function show(){
@@ -172,8 +172,9 @@ function showCommunityBoard(boards){
         text += `<span data-v-95718dd0="" class="comment sg-text-description sg-font-regular sg-text-gray-300">` + board.comments.length + `</span>`;
         text += `</div>`;
         text += `<span data-v-95718dd0="" class="sg-text-description sg-font-regular sg-text-gray-300">`
-        text += board.createdDate == board.updatedDate ? "작성 " + communityService.timeForToday(board.createdDate)
-            : "수정 " + communityService.timeForToday(board.updatedDate);
+        text += `작성 ` + communityService.timeForToday(board.createdDate);
+        // text += board.createdDate == board.updatedDate ? "작성 " + communityService.timeForToday(board.createdDate)
+        //     : "수정 " + communityService.timeForToday(board.updatedDate);
         text += `</span>`;
         text += `</div>`;
         text += `</a>`;

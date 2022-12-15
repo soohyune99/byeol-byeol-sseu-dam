@@ -29,8 +29,8 @@
     <div class="container container-md">
         <div data-v-086b5673="" class="mypage-container">
             <h1 data-v-086b5673="" class="mypage-title">마이페이지</h1>
-            <div data-v-d535afec="" data-v-086b5673="" class="profile-container underline"><a data-v-d535afec=""
-                                                                                              href="http://localhost:10001/mypage/info" class="">
+            <div data-v-d535afec="" data-v-086b5673="" class="profile-container underline">
+                <a data-v-d535afec="" href="/mypage/info" class="">
                 <div data-v-d535afec="" class="thumb">
                     <div data-v-0ee3c6fc="" data-v-d535afec="" class="user-profile-picture h-100">
                         <div data-v-0ee3c6fc="" data-name="image" class="is-square"
@@ -52,8 +52,10 @@
                 </div>
                 <div data-v-d535afec="" class="account-setting">
                     <button data-v-d535afec="" type="button" onclick="javascript:logout();"
-                                                                        class="btn btn-account-setting btn-secondary">로그아웃</button></div>
+                            class="btn btn-account-setting btn-secondary">로그아웃</button>
+                </div>
             </a>
+<!--                <button onclick="location.href='https://kauth.kakao.com/oauth/logout?client_id=b365527827a25dae48ba21331cda4133&logout_redirect_uri=http://localhost:10001/kakao/logout'">카카오 로그아웃</button>-->
                 <!---->
             </div>
             <div data-v-3fa472b3="" data-v-086b5673="" class="my-page-menu">
@@ -62,7 +64,7 @@
                     </div>
                     </li>
                     <li data-v-69924ad4="" data-v-3fa472b3="" class="sub-menu-container soomgopay-list"><a
-                            data-v-69924ad4="" href="http://localhost:10001/mypage/badge" class="sub-menu-list">
+                            data-v-69924ad4="" href="/mypage/badge" class="sub-menu-list">
                         <div data-v-69924ad4="" class="sub-content">
                             <div data-v-69924ad4="" class="sub-menu"><span data-v-69924ad4=""
                                                                            class="sub-menu-title updated">나의 배지</span></div>
@@ -76,7 +78,7 @@
                         <!---->
                     </a></li>
                     <li data-v-69924ad4="" data-v-3fa472b3="" class="sub-menu-container soomgopay-list"><a
-                            data-v-69924ad4="" href="http://localhost:10001/mypage/course" class="sub-menu-list">
+                            data-v-69924ad4="" href="/mypage/course" class="sub-menu-list">
                         <div data-v-69924ad4="" class="sub-content">
                             <div data-v-69924ad4="" class="sub-menu"><span data-v-69924ad4=""
                                                                            class="sub-menu-title updated">나의 코스</span></div>
@@ -90,7 +92,7 @@
                         <!---->
                     </a></li>
                     <li data-v-69924ad4="" data-v-3fa472b3="" class="sub-menu-container soomgopay-list"><a
-                            data-v-69924ad4="" href="http://localhost:10001/mypage/point" class="sub-menu-list">
+                            data-v-69924ad4="" href="/mypage/point" class="sub-menu-list">
                         <div data-v-69924ad4="" class="sub-content">
                             <div data-v-69924ad4="" class="sub-menu"><span data-v-69924ad4=""
                                                                            class="sub-menu-title updated">나의 포인트</span></div>
@@ -110,7 +112,7 @@
                         <div data-v-3fa472b3="" class="sub-header"></div>
                     </li>
                     <li data-v-69924ad4="" data-v-3fa472b3="" class="sub-menu-container pro-bucket"><a
-                            data-v-69924ad4="" href="http://localhost:10001/mypage/order" class="sub-menu-list">
+                            data-v-69924ad4="" href="/mypage/order" class="sub-menu-list">
                         <div data-v-69924ad4="" class="sub-content">
                             <div data-v-69924ad4="" class="sub-menu"><span data-v-69924ad4=""
                                                                            class="sub-menu-title">주문조회</span></div>
@@ -124,7 +126,7 @@
                         <!---->
                     </a></li>
                     <li data-v-69924ad4="" data-v-3fa472b3="" class="sub-menu-container pro-bucket"><a
-                            data-v-69924ad4="" href="http://localhost:10001/mypage/cancel" class="sub-menu-list">
+                            data-v-69924ad4="" href="/mypage/cancel" class="sub-menu-list">
                         <div data-v-69924ad4="" class="sub-content">
                             <div data-v-69924ad4="" class="sub-menu"><span data-v-69924ad4=""
                                                                            class="sub-menu-title">주문취소</span></div>
@@ -155,7 +157,7 @@
                         <div data-v-3fa472b3="" class="sub-header"></div>
                     </li>
                     <li data-v-69924ad4="" data-v-3fa472b3="" class="sub-menu-container my-ip-buy-orders"><a
-                            data-v-69924ad4="" href="http://localhost:10001/mypage/pickup" class="sub-menu-list">
+                            data-v-69924ad4="" href="/mypage/pickup" class="sub-menu-list">
                         <div data-v-69924ad4="" class="sub-content">
                             <div data-v-69924ad4="" class="sub-menu"><span data-v-69924ad4=""
                                                                            class="sub-menu-title badge">수거신청내역</span></div>
@@ -169,7 +171,7 @@
                         <!---->
                     </a></li>
                     <li data-v-69924ad4="" data-v-3fa472b3="" class="sub-menu-container my-ip-qna"><a
-                            data-v-69924ad4="" href="http://localhost:10001/mypage/program" class="sub-menu-list">
+                            data-v-69924ad4="" href="/mypage/program" class="sub-menu-list">
                         <div data-v-69924ad4="" class="sub-content">
                             <div data-v-69924ad4="" class="sub-menu"><span data-v-69924ad4=""
                                                                            class="sub-menu-title">수강내역</span></div>
@@ -189,7 +191,7 @@
                         <div data-v-3fa472b3="" class="sub-header"></div>
                     </li>
                     <li data-v-69924ad4="" data-v-3fa472b3="" class="sub-menu-container soomgo-life-activities"><a
-                            data-v-69924ad4="" href="http://localhost:10001/mypage/community" class="sub-menu-list">
+                            data-v-69924ad4="" href="/mypage/community" class="sub-menu-list">
                         <div data-v-69924ad4="" class="sub-content">
                             <div data-v-69924ad4="" class="sub-menu"><span data-v-69924ad4=""
                                                                            class="sub-menu-title">작성글 / 작성댓글</span></div>
@@ -209,7 +211,7 @@
                         <div data-v-3fa472b3="" class="sub-header"></div>
                     </li>
                     <li data-v-69924ad4="" data-v-3fa472b3="" class="sub-menu-container notification"><a
-                            data-v-69924ad4="" href="http://localhost:10001/mypage/info" class="sub-menu-list">
+                            data-v-69924ad4="" href="/mypage/info" class="sub-menu-list">
                         <div data-v-69924ad4="" class="sub-content">
                             <div data-v-69924ad4="" class="sub-menu"><span data-v-69924ad4=""
                                                                            class="sub-menu-title">정보수정 / 탈퇴</span></div>
@@ -261,6 +263,7 @@
     let memberCategory = $("input[name='memberCategory']").val();
     let memberProfileName = $("input[name='memberProfileName']").val();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="/js/mypage/mypageModule.js"></script>
 <script src="/js/mypage/mypageMain.js"></script>
 <script src="/js/fix/header.js"></script>

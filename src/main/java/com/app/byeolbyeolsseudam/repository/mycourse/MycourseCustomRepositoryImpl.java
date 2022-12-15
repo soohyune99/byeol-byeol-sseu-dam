@@ -7,9 +7,11 @@ import com.app.byeolbyeolsseudam.entity.course.QCourse;
 import com.app.byeolbyeolsseudam.entity.mycourse.QMycourse;
 import com.app.byeolbyeolsseudam.entity.spot.QSpot;
 import com.app.byeolbyeolsseudam.repository.mybadge.MybadgeCustomRepository;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -30,20 +32,42 @@ public class MycourseCustomRepositoryImpl implements MycourseCustomRepository {
                 mycourse.spot.spotNumber))
                 .from(mycourse)
                 .where(mycourse.member.memberId.eq(memberId))
+                .orderBy(mycourse.createdDate.desc())
                 .orderBy(mycourse.course.courseName.asc())
                 .orderBy(mycourse.spot.spotName.asc())
                 .fetch();
     }
 
     @Override
-    public List<MycourseDTO> selectMyCourse(Long memberId, String courseName, int SpotNumber){
-//        return jpaQueryFactory.select(new QMycourseDTO(mycourse.mycourseId,
-//                mycourse.courseFinishedStatus, mycourse.member.memberId, mycourse.course.courseId,
-//                mycourse.course.courseName, mycourse.spot.spotId, mycourse.spot.spotName,
-//                mycourse.spot.spotNumber))
-//                .from(mycourse)
-//                .where(mycourse.member.memberId.eq(memberId)
-//                        .and(mycourse.course.))
-        return null;
+    public MycourseDTO selectMyCourse(Long memberId){
+        return jpaQueryFactory.select(new QMycourseDTO(mycourse.mycourseId,
+                mycourse.courseFinishedStatus, mycourse.member.memberId, mycourse.course.courseId,
+                mycourse.course.courseName, mycourse.spot.spotId, mycourse.spot.spotName,
+                mycourse.spot.spotNumber))
+                .from(mycourse)
+                .where(mycourse.member.memberId.eq(memberId))
+                .orderBy(mycourse.createdDate.desc())
+                .limit(1)
+                .fetchOne();
+    }
+
+    @Override
+    public int badgeCondition(Long memberId, String keyword){
+        List<MycourseDTO> mycourses =  jpaQueryFactory.select(new QMycourseDTO(mycourse.mycourseId,
+                mycourse.courseFinishedStatus, mycourse.member.memberId, mycourse.course.courseId,
+                mycourse.course.courseName, mycourse.spot.spotId, mycourse.spot.spotName,
+                mycourse.spot.spotNumber))
+                .from(mycourse)
+                .where(
+                        courseIdContains(keyword),
+                        mycourse.member.memberId.eq(memberId)
+                        )
+                .fetch();
+
+        return mycourses.size();
+    }
+
+    public BooleanExpression courseIdContains(String keywrod){
+        return StringUtils.hasText(keywrod)? mycourse.course.courseName.contains(keywrod) : null;
     }
 }

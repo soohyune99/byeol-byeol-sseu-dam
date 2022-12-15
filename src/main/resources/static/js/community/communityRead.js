@@ -131,8 +131,9 @@ function showBoardDetail(board){
     $(".board-writer-profile").attr('src', board.memberProfileName);
     $(".board-writer-name").html(board.memberName);
     $(".board-createdDate").html(
-        board.createdDate == board.updatedDate ? "작성 " + communityService.timeForToday(board.createdDate)
-        : "수정 " + communityService.timeForToday(board.updatedDate)
+        "작성 " + communityService.timeForToday(board.createdDate)
+        // board.createdDate == board.updatedDate ? "작성 " + communityService.timeForToday(board.createdDate)
+        // : "수정 " + communityService.timeForToday(board.updatedDate)
     );
     $(".board-boardView").html(' · 조회 ' + board.boardView);
     if(board.memberId != memberId){

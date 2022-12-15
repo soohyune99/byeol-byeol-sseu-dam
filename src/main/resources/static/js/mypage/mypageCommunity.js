@@ -61,7 +61,7 @@ function showMyCommunityList(myboards){
         text += `<p data-v-6de74f26="" class="community-activity-content sg-text-body2 sg-font-regular sg-text-gray-500" data-v-a3afae98="">` + myboard.boardContent + `</p>`;
         text += `</div>`;
         text += `</div>`;
-        text += `<span data-v-6de74f26="" class="sg-text-body2 sg-font-regular sg-text-gray-300">` + myboard.createdDate + `</span>`;
+        text += `<span data-v-6de74f26="" class="sg-text-body2 sg-font-regular sg-text-gray-300">` + mypageService.timeForToday(myboard.createdDate) + `</span>`;
         text += `</a>`;
         text += `</li>`;
     });
@@ -132,7 +132,7 @@ function showMyCommentList(mycomments){
         text += `<p data-v-6de74f26="" class="community-activity-title sg-text-body2 sg-font-regular sg-text-gray-500" data-v-a3afae98="">` + mycomment.commentContent + `</p>`;
         text += `</div>`;
         text += `</div>`;
-        text += `<span data-v-6de74f26="" class="sg-text-body2 sg-font-regular sg-text-gray-300">` + mycomment.createdDate + `</span>`;
+        text += `<span data-v-6de74f26="" class="sg-text-body2 sg-font-regular sg-text-gray-300">` + mypageService.timeForToday(mycomment.createdDate) + `</span>`;
         text += `</a>`;
         text += `</li>`;
     });

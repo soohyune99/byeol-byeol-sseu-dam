@@ -1,6 +1,5 @@
 /* mypagePickupDetail.html */
 
-const memberId = 1;
 let url = decodeURI(window.location.href).split("/");
 let pickupId = url[url.length - 1];
 
@@ -22,14 +21,6 @@ function showMemberInfo(member){
     $(".mypage-memberPoint").html(member.memberPoint);
 }
 
-function showMemberInfo(member){
-    $(".mypage-memberProfileName").attr('src', member.memberProfileName);
-    $(".mypage-memberName").html(member.memberName);
-    $(".mypage-memberEmail").html(member.memberEmail);
-    $(".mypage-memberType").html(member.memberCategory);
-    $(".mypage-memberPoint").html(member.memberPoint);
-}
-
 /* 수거신청내역 상세보기 조회 */
 function getMyPickupDetail(){
     mypageService.getMyPickup(
@@ -39,7 +30,7 @@ function getMyPickupDetail(){
 
 function showMyPickupDetail(mypickup){
     console.log(mypickup.pickupId);
-    $(".pickup-date").html(mypickup.createdDate);
+    $(".pickup-date").html(moment(mypickup.createdDate).format("YYYY-MM-DD"));
     $(".pickup-pickupId").html(mypickup.pickupId);
     $(".pickup-petCount").html(mypickup.petCount + "개");
     $(".pickup-glassCount").html(mypickup.glassCount + "개");
@@ -49,8 +40,6 @@ function showMyPickupDetail(mypickup){
     $(".pickup-pickupAddress").html(mypickup.pickupAddress);
     $(".pickup-pickupMessage").html(mypickup.pickupMessage);
 }
-
-
 
 
 

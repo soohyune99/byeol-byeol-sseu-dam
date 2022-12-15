@@ -32,6 +32,15 @@ public class LoginServiceImpl implements LoginService{
     }
 
     @Override
+    public Member loginOauth(MemberDTO memberDTO){
+        if(Optional.ofNullable(memberRepository.findOauth(memberDTO)).isPresent()){
+            return memberRepository.findOauth(memberDTO);
+        }else {
+            return null;
+        }
+    }
+
+    @Override
     public MemberDTO getMemberDTO(Long memberId){
         return memberRepository.selectMember(memberId);
     }

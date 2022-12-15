@@ -407,13 +407,37 @@ let mypageService = (function(){
         });
     }
 
+    function timeForToday(value) {
+        const today = new Date();
+        const timeValue = new Date(value);
+
+        const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+        if (betweenTime < 1) return '방금전';
+        if (betweenTime < 60) {
+            return `${betweenTime}분전`;
+        }
+
+        const betweenTimeHour = Math.floor(betweenTime / 60);
+        if (betweenTimeHour < 24) {
+            return `${betweenTimeHour}시간전`;
+        }
+
+        const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+        if (betweenTimeDay < 365) {
+            return `${betweenTimeDay}일전`;
+        }
+
+        return `${Math.floor(betweenTimeDay / 365)}년전`;
+    }
+
+
     return { getMyProgramList:getMyProgramList, getMypointList:getMypointList, getMyCommunityList:getMyCommunityList,
         getMyCommentList:getMyCommentList, plusBoardView:plusBoardView, getMyInfo:getMyInfo, checkPassword:checkPassword,
         updateUserInfo:updateUserInfo, sendVerification:sendVerification, dropOutMember:dropOutMember,
         getMyOrderList:getMyOrderList, getMyCancelList:getMyCancelList, getMyOrder:getMyOrder, cancelMyOrder:cancelMyOrder,
         getMyPickupList:getMyPickupList, getMyPickup:getMyPickup, getCourses:getCourses, getMyCourses:getMyCourses,
         getCourse:getCourse, getBadges:getBadges, getMybadges:getMybadges, uploadProfileFile:uploadProfileFile,
-        logoutMember:logoutMember }
+        logoutMember:logoutMember, timeForToday:timeForToday }
 })();
 
 
