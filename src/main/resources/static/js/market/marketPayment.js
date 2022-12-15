@@ -1,6 +1,10 @@
 /* marketPayment.html */
 
 
+/* 세션에 있는 멤버 아이디 & 이름 */
+const memberId = $("input[name='memberId']").val();
+const memberName = $("input[name='memberName']").val();
+
 let $totalAgreeBtn = $("#paymentAllCheck");
 let $agreeBtn = $(".agree");
 
@@ -228,8 +232,13 @@ $("select[name='deliv_memo']").on('click', function(){
 });
 
 /* ================================== MarketPayment ==================================*/
-const memberId = 1;
-let url = decodeURI(window.location.href).split("=");
+let url = decodeURI
+
+
+
+
+
+(window.location.href).split("=");
 
 let count = url[url.length - 1];    // 주문 수량
 let producturl = url[url.length - 2].split("&");

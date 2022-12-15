@@ -2,10 +2,12 @@
 // let $purchaseBtn = $(".purchase-btn");
 
 /* 세션에 있는 멤버 아이디 */
-const memberNumber = $("input[name='memberId']").val();
+/* 세션에 있는 멤버 아이디 & 이름 */
+const memberId = $("input[name='memberId']").val();
+const memberName = $("input[name='memberName']").val();
 
 /* 장바구니 모달 열고 닫기 변수 선언 */
-let $basketModal = $("#shop_detail_add_cart_alarm");
+const $basketModal = $("#shop_detail_add_cart_alarm");
 
 /* 상품 드롭메뉴 열고 닫기 변수 선언 */
 let $dropdownMenu = $(".form-select-wrap .dropdown-menu");
@@ -29,17 +31,6 @@ let $deleteFileBtn = $("img.delete-badge");
 globalThis.starRateTemp = 0;
 /* 페이지 */
 globalThis.page = 1;
-
-/* 장바구니 모달 열기 */
-function basketModalOpen(){
-    $basketModal.css('display', 'block');
-}
-
-/* 장바구니 모달 닫기 */
-function basketModalClose(){
-    $basketModal.css('display', 'none');
-}
-
 
 /* 상품 드롭 메뉴 열고 닫기 */
 function dropdownMenu(){
@@ -294,16 +285,6 @@ $purchaseBtn.on("click", function() {
     location.href ='/market/payment?productId='+ productId + '&count='+ $productCount;
 });
 
-/* 장바구니 버튼 누를 시 */
-let $basketBtn = $(".cart-btn");
-
-$basketBtn.on("click", function(){
-    console.log("장바구니 버튼 누름");
-    let $productCount = $("input[name='orderCount']").val();
-    location.href ='/market/basket?productId='+ productId + '&count='+ $productCount;
-
-})
-
 showReview();
 
 /* 리뷰 목록 보기 */
@@ -359,7 +340,7 @@ function saveReview(){
     }
     reviewService.save({
         productId: productId,
-        memberId: 1,
+        memberId: memberId,
         reviewContent : $reviewContent.val(),
         reviewStar: globalThis.starRateTemp,
         reviewFileName: $("input[name='reviewFileName']").val()
@@ -635,4 +616,42 @@ function afterUploadReviewFile(file) {
     $file.attr('disabled', 'true');
     $(".attach-image-icon").css('cursor', 'default');
     $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iI0M1QzVDNSIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
+}
+
+
+/* ================================== MarketBasket ==================================*/
+
+/* 장바구니 모달 열기 */
+/*function basketModalOpen(){
+    $basketModal.css('display', 'block');
+}*/
+
+/* 장바구니 모달 닫기 */
+function basketModalClose(){
+    $basketModal.css('display', 'none');
+}
+
+
+/* 장바구니 버튼 누를 시 바로 insert */
+let $basketBtn = $(".btn-block");
+
+$basketBtn.on("click", function(){
+    console.log("장바구니 버튼 누름");
+    saveBasketList();
+})
+
+function saveBasketList(){
+    let $productCount = $("input[name='orderCount']").val();
+
+    basketService.saveBasket({
+        productId: productId,
+        memberId: memberId,
+        basketCount: $productCount
+    },function(){
+        $basketModal.css('display', 'block');
+    });
+}
+
+function goBasket() {
+    location.href = "/market/basket"
 }

@@ -56,7 +56,6 @@ public class ReviewController {
     /* 리뷰 작성 */
     @PostMapping(value = "/new", consumes = "application/json", produces = "text/plain; charset=utf-8")
     public ResponseEntity<String> saveComment(@RequestBody ReviewDTO reviewDTO) throws UnsupportedEncodingException {
-        log.info("---------------여기 리뷰 컨트롤러-----------------------" );
         reviewService.saveReview(reviewDTO);
         return new ResponseEntity<>(new String("write success".getBytes(), "UTF-8"), HttpStatus.OK);
     }
