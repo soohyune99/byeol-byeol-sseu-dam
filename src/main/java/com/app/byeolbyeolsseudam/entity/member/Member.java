@@ -74,10 +74,12 @@ public class Member extends Period {
     }
 
     public void updateMemberPhone(MemberDTO memberDTO){
-        this.memberPoint = memberDTO.getMemberPoint();
+        this.memberPhone = memberDTO.getMemberPhone();
     }
 
     public void updateMemberPassword(MemberDTO memberDTO){
         this.memberPassword = memberDTO.getMemberPassword();
     }
+
+    public void updateMemberPoint(MemberDTO memberDTO){this.memberPoint = memberDTO.getMemberPoint();}
 }

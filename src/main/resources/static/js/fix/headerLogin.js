@@ -1,4 +1,54 @@
 // 프로필 선택 시
+
+getMemberInfo();
+
+/* 기본 회원 정보 조회 */
+function getMemberInfo(){
+    getMyInfo(
+        memberId, showMemberInfo
+    )
+}
+
+function getMyInfo(memberId, callback, error){
+    $.ajax({
+        url: "/mypage/" + memberId,
+        type: "get",
+        success: function(myinfo, status, xhr){
+            if(callback){
+                callback(myinfo);
+            }
+        },
+        error: function(xhr, status, err){
+            if(error){
+                error(err);
+            }
+        }
+    });
+}
+
+function showMemberInfo(member){
+    $("img#memberProfile").attr('src', member.memberProfileName);
+    $("div.memberProfile").css("background-image","url("+ member.memberProfileName +")");
+    $("h4.memberName").text(member.memberName);
+
+    if(member.memberLoginType == 'KAKAO'){
+        $("button.logout").attr("onclick","location.href='https://kauth.kakao.com/oauth/logout?client_id=b365527827a25dae48ba21331cda4133&logout_redirect_uri=http://localhost:10001/kakao/logout'")
+    }else if(member.memberLoginType == 'NAVER'){
+        $("button.logout").attr("onclick","location.href='/logout'")
+    }else if(member.memberLoginType == 'GOOGLE'){
+        $("button.logout").attr("onclick","location.href='/logout'")
+    }else{
+        $("button.logout").attr("onclick","location.href='/logout'")
+    }
+
+    // $(".mypage-memberType").html(member.memberCategory);
+    // $(".mypage-memberPoint").html(member.memberPoint);
+}
+
+
+
+
+
 let flag = true;
 let $memberCategory = $("input[name='memberCategory']").val();
 if($memberCategory != "일반회원"){

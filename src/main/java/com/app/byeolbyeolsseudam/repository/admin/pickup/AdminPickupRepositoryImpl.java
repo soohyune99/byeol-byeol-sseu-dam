@@ -37,7 +37,7 @@ public class AdminPickupRepositoryImpl implements AdminPickupCustomRepository{
                 pickupAccept.member.memberName,
                 pickup.createdDate
         )).from(pickup)
-                .join(pickupAccept)
+                .leftJoin(pickupAccept)
                 .on(pickup.pickupId.eq(pickupAccept.pickup.pickupId))
                 .orderBy(pickup.pickupId.desc())
                 .limit(3)
@@ -59,7 +59,7 @@ public class AdminPickupRepositoryImpl implements AdminPickupCustomRepository{
                 pickupAccept.member.memberName,
                 pickup.createdDate
                 )).from(pickup)
-                .join(pickupAccept)
+                .leftJoin(pickupAccept)
                 .on(pickup.pickupId.eq(pickupAccept.pickup.pickupId))
                 .orderBy(pickup.pickupId.desc())
                 .offset(pageable.getOffset())
@@ -82,7 +82,7 @@ public class AdminPickupRepositoryImpl implements AdminPickupCustomRepository{
                 pickupAccept.member.memberName,
                 pickup.createdDate
         )).from(pickup)
-                .join(pickupAccept)
+                .leftJoin(pickupAccept)
                 .on(pickup.pickupId.eq(pickupAccept.pickup.pickupId))
                 .where(pickup.pickupId.eq(pickupId))
                 .orderBy(pickup.pickupId.desc())
