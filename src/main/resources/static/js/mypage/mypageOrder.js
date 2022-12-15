@@ -55,12 +55,12 @@ function showMyOrderList(myorders){
         text += `<div class="im-flex im-items-center">`;
         text += `<span class="margin-right-xl">주문번호</span>`;
         text += `<span class="margin-right-lg"></span>`;
-        text += `<a class="text-primary" href="/shop_mypage/?m2=order&amp;idx=94638288">` + myorder.orderId + `<i class="im-icon im-ico-circle-arrow-right"></i></a>`;
+        text += `<a class="text-primary" href="/order/` + myorder.orderId + `">` + myorder.orderId + `<i class="im-icon im-ico-circle-arrow-right"></i></a>`;
         text += `</div>`;
         text += `</th>`;
         text += `<th class="text-right text-gray-bright no-padding-x im-body-size im-xs-body-size" colspan="2">`;
         text += `<span class="hidden-xs hidden-sm">주문일자 </span>`;
-        text += `<span class="im-xs-bold">` + myorder.createdDate + `</span>`;
+        text += `<span class="im-xs-bold">` + moment(myorder.createdDate).format("YYYY-MM-DD") + `</span>`;
         text += `<a href="/shop_mypage/?m2=order&amp;idx=94638288" class="text-brand hidden-lg hidden-md">주문 상세보기<i class="im-icon im-ico-circle-arrow-right"></i></a>`;
         text += `</th>`;
         text += `</tr>`;

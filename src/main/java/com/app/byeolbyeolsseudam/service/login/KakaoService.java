@@ -1,17 +1,29 @@
 package com.app.byeolbyeolsseudam.service.login;
 
-import com.google.gson.JsonElement;
-import lombok.extern.slf4j.Slf4j;
+import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.type.MemberCategory;
+import com.app.byeolbyeolsseudam.type.MemberLoginType;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonElement;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class KakaoService {
+    private final MemberRepository memberRepository;
 
     public String getKaKaoAccessToken(String code){
         String access_Token="";
@@ -30,8 +42,8 @@ public class KakaoService {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=1875630bc63d4325a4f90a57ab4437ff"); // TODO REST_API_KEY 입력
-            sb.append("&redirect_uri=http://localhost:10001/kakaologin"); // TODO 인가코드 받은 redirect_uri 입력
+            sb.append("&client_id=b365527827a25dae48ba21331cda4133"); // TODO REST_API_KEY 입력
+            sb.append("&redirect_uri=http://localhost:10001/kakao/login"); // TODO 인가코드 받은 redirect_uri 입력
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
@@ -68,10 +80,12 @@ public class KakaoService {
         return access_Token;
     }
 
-    public String getKakaoInfo(String token) throws Exception {
+    public MemberDTO getKakaoInfo(String token) throws Exception {
 
         String reqURL = "https://kapi.kakao.com/v2/user/me";
-        String email = null;
+
+        MemberDTO memberDTO = new MemberDTO();
+
         //access_token을 이용하여 사용자 정보 조회
         try {
             URL url = new URL(reqURL);
@@ -101,20 +115,37 @@ public class KakaoService {
 
             int id = element.getAsJsonObject().get("id").getAsInt();
             boolean hasEmail = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean();
+            JsonObject kakaoAccount = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+            JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+
+            String memberEmail = "";
+            String memberName = "";
+            String memberProfileName = "";
 
             if(hasEmail){
-                email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+                memberEmail = kakaoAccount.get("email").getAsString();
+                memberName = properties.get("nickname").getAsString();
+                memberProfileName = properties.get("profile_image").getAsString();
             }
 
             log.info("id : " + id);
-            log.info("email : " + email);
+            log.info("email : " + memberEmail);
+            log.info("name : " + memberName);
+            log.info("profile : " + memberProfileName);
+
+            memberDTO.setMemberLoginType(MemberLoginType.KAKAO);
+            memberDTO.setMemberCategory(MemberCategory.일반회원);
+//            memberDTO.setMemberEmail(memberEmail);
+            memberDTO.setMemberEmail(String.valueOf(id));
+            memberDTO.setMemberName(memberName);
+            memberDTO.setMemberProfileName(memberProfileName);
 
             br.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return email;
+        return memberDTO;
     }
 
     public void logoutKakao(String token){
@@ -140,6 +171,7 @@ public class KakaoService {
             }
             log.info("결과");
             log.info(result);
+
         }catch(IOException e) {
             e.printStackTrace();
         }

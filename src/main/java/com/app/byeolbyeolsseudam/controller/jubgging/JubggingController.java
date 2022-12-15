@@ -44,7 +44,7 @@ public class JubggingController {
     }
 
     /* 줍깅 QR 페이지로 이동 */
-    @GetMapping("/{memberId}/{courseName}/{spotNumber}")
+    @GetMapping("/{courseName}/{spotNumber}")
     public String jubggingQr(){
         return "/app/jubgging/jubggingqr";
     }

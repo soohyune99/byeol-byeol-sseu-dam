@@ -50,25 +50,25 @@
                                         <div class="col-md-2 col-sm-12 hidden-xs hidden-sm left-menu">
                                             <ul>
                                                 <li class="">
-                                                    <a href="http://localhost:10001/mypage/badge"
+                                                    <a href="/mypage/badge"
                                                        class="text-gray-dark _fade_link">나의 <span
                                                             class="hidden-xs">배지</span></a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="http://localhost:10001/mypage/course"
+                                                    <a href="/mypage/course"
                                                        class="text-gray-dark _fade_link">나의 <span
                                                             class="hidden-xs">코스</span></a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="http://localhost:10001/mypage/point"
+                                                    <a href="/mypage/point"
                                                        class="text-gray-dark _fade_link">나의 포인트</a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="http://localhost:10001/mypage/order"
+                                                    <a href="/mypage/order"
                                                        class="text-gray-dark _fade_link">주문조회</a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="http://localhost:10001/mypage/cancel"
+                                                    <a href="/mypage/cancel"
                                                        class="text-gray-dark _fade_link">주문취소</a>
                                                 </li>
                                                 <!-- <li class="">
@@ -77,19 +77,19 @@
                                                     class="hidden-xs">장바구니</span></a>
                                         </li> -->
                                                 <li class="on">
-                                                    <a href="http://localhost:10001/mypage/pickup"
+                                                    <a href="/mypage/pickup"
                                                        class="text-gray-dark _fade_link">수거신청내역</a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="http://localhost:10001/mypage/program"
+                                                    <a href="/mypage/program"
                                                        class="text-gray-dark _fade_link">수강내역</a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="http://localhost:10001/mypage/community"
+                                                    <a href="/mypage/community"
                                                        class="text-gray-dark _fade_link">쓰담글 / 쓰담댓글</a>
                                                 </li>
                                                 <li>
-                                                    <a href="http://localhost:10001/mypage/info"
+                                                    <a href="/mypage/info"
                                                        onclick="SITE_MEMBER.editProfile('L3Nob3BfbXlwYWdl');"
                                                        class="text-gray-dark _fade_link">정보수정 / 탈퇴</a>
                                             </ul>
@@ -104,7 +104,7 @@
                                                                    onclick="SITE_MEMBER.editProfile('L3Nob3BfbXlwYWdl');">
                                                                     <div id="mypage_profile_img" class="img-circle"
                                                                          style="width: 85px; height: 85px;">
-                                                                        <img class="mypage-memberProfileName" src="" style="width: 85px; height: 85px;">
+                                                                        <img class="mypage-memberProfileName" src="" style="border-radius: 50%; width: 85px; height: 85px;">
                                                                     </div>
                                                                     <span class="sr-only">정보 수정</span>
                                                                 </a>
@@ -125,7 +125,7 @@
                                                                 <div class="text-15 use_grade">
                                                                     <div class="ug_text mypage-memberEmail">sej07@naver.com</div>
                                                                     <div class="ug_btn">
-                                                                        <a href="http://localhost:10001/mypage/info" class="btn hidden-xs "
+                                                                        <a href="/mypage/info" class="btn hidden-xs "
                                                                            role="button" data-toggle="popover"
                                                                            data-placement="bottom"
                                                                            data-popover-content="#list-popover"
@@ -249,7 +249,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="table-cell vertical-middle point-view text-center">
-                                                        <a href="http://localhost:10001/mypage/point">
+                                                        <a href="/mypage/point">
                                                             <p>포인트</p>
                                                             <span class="text-bold text-32 mypage-memberPoint">0</span>
                                                         </a>
@@ -294,7 +294,7 @@
                                                         &lt;!&ndash; 리스트 반복구간 시작 &ndash;&gt;
                                                         <td class="im-xs-align-top">
                                                             <a class="im-flex im-justify-between"
-                                                               href="http://localhost:10001/mypage/pickup/detail"
+                                                               href="/mypage/pickup/detail"
                                                                target="_blank">
                                                                 <div class="im-flex">
                                                                     <img src="https://cdn.imweb.me/thumbnail/20220117/6a329ba1bf9e7.jpg"
@@ -326,7 +326,7 @@
                                                             <div class="im-inline-flex im-flex-col-reverse im-xs-flex im-xs-flex-row-reverse im-xs-flex-wrap-reverse _btn_tool_row"
                                                                  style="width: 87px;">
                                                                 <a class="btn-order-cancel im-flex-1"
-                                                                   href="http://localhost:10001/mypage/pickup/detail">상세보기</a>
+                                                                   href="/mypage/pickup/detail">상세보기</a>
                                                             </div>
                                                         </td>
                                                     </tr>&lt;!&ndash; 리스트 반복구간 종료 &ndash;&gt;
@@ -467,6 +467,7 @@
     let memberCategory = $("input[name='memberCategory']").val();
     let memberProfileName = $("input[name='memberProfileName']").val();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="/js/mypage/mypageModule.js"></script>
 <script src="/js/mypage/mypagePickup.js"></script>
 <script src="/js/mypage/mypageCourse.js"></script>

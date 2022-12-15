@@ -5,5 +5,6 @@ import com.app.byeolbyeolsseudam.entity.member.Member;
 
 public interface MemberCustomRepository {
     public MemberDTO selectMember(Long memberId);
-    public MemberDTO getloginMember(Long memberId);
+//    public MemberDTO getloginMember(Long memberId);
+    public Member findOauth(MemberDTO memberDTO);
 }

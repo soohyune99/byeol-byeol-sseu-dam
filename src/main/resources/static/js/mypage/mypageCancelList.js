@@ -69,7 +69,7 @@ function getMyCancelList(mycancels){
         text += `</th>`;
         text += `<th class="text-right text-gray-bright no-padding-x im-body-size im-xs-body-size" colspan="2">`;
         text += `<span class="hidden-xs hidden-sm">주문일자 </span>`;
-        text += `<span class="im-xs-bold">` + mycancel.createdDate + `</span>`;
+        text += `<span class="im-xs-bold">` + moment(mycancel.createdDate).format("YYYY-MM-DD") + `</span>`;
         text += `<a href="/shop_mypage/?m2=order&amp;idx=94638288" class="text-brand hidden-lg hidden-md">주문 상세보기<i class="im-icon im-ico-circle-arrow-right"></i></a>`;
         text += `</th>`;
         text += `</tr>`;
@@ -118,6 +118,8 @@ function getMyCancelList(mycancels){
     }
 
     $("#shop_mypage_orderlist").append(text);
+    $(".total-count").html(mycancels.length);
+    console.log(mycancels.length)
 }
 
 function getMyCancel(mycancel){

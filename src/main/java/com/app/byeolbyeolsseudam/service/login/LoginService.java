@@ -10,4 +10,5 @@ public interface LoginService {
     public Member login(MemberDTO memberDTO);
     public MemberDTO getMemberDTO(Long memberId);
     public Boolean send(MemberDTO memberDTO);
+    public Member loginOauth(MemberDTO memberDTO);
 }

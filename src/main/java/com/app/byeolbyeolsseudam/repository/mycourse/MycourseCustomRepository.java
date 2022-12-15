@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface MycourseCustomRepository {
     public List<MycourseDTO> selectMyCourseList(Long memberId);
-    public List<MycourseDTO> selectMyCourse(Long memberId, String courseName, int SpotNumber);
+    public MycourseDTO selectMyCourse(Long memberId);
+    public int badgeCondition(Long memberId, String keyword);
 }

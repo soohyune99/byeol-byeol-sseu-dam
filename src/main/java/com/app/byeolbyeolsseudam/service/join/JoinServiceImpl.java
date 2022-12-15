@@ -11,7 +11,6 @@ import com.app.byeolbyeolsseudam.type.MemberLoginType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.xerces.impl.dv.util.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -59,6 +58,21 @@ public class JoinServiceImpl implements JoinService {
         memberDTO.setMemberCategory(MemberCategory.기사회원);
         member.changingCrew(memberDTO);
         memberRepository.save(member);
+    }
+
+    @Override
+    public void oauthJoin(MemberDTO memberDTO){
+        Member oauthMember = memberDTO.toEntity();
+        memberRepository.save(oauthMember);
+
+        MypointDTO mypointDTO = new MypointDTO();
+        mypointDTO.setMypointInout(3000);
+        mypointDTO.setMypointContent("신규 가입 포인트");
+
+        Mypoint mypoint = mypointDTO.toEntity();
+        mypoint.changeMember(oauthMember);
+
+        mypointRepository.save(mypoint);
     }
 
     @Override

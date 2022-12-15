@@ -57,6 +57,31 @@ public class LoginController {
         return "redirect:/main";
     }
 
+    /* Oauth 로그인 */
+    /* Servlet HTTP 세션 사용 */
+    @GetMapping("/oauth")
+    public String oauthLogin(@Valid @ModelAttribute("memberDTO") MemberDTO memberDTO, BindingResult bindingResult, HttpSession session) {
+        if(bindingResult.hasErrors()){
+            log.info("실패");
+            return "/main";
+        }
+        Member loginMember = loginService.loginOauth(memberDTO);
+
+        if(loginMember == null){
+            bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
+            return "redirect:/login?login=fail";
+
+        } else if(loginMember.getMemberCategory() == MemberCategory.탈퇴회원) {
+            return "redirect:/login?login=fail";
+        }
+
+        session.setAttribute("member", loginService.getMemberDTO(loginMember.getMemberId()));
+
+        return "redirect:/main";
+    }
+
+
+
     /* 비밀번호 찾기 페이지로 이동 */
     @GetMapping("/pw")
     public String findPassword(MemberDTO memberDTO){

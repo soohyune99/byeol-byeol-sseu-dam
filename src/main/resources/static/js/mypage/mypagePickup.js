@@ -60,7 +60,7 @@ function showMyPickupList(mypickups){
         text += `</th>`;
         text += `<th class="text-right text-gray-bright no-padding-x im-body-size im-xs-body-size" colspan="2">`;
         text += `<span class="hidden-xs hidden-sm">신청일자 </span>`;
-        text += `<span class="im-xs-bold">` + mypickup.createdDate + `</span>`;
+        text += `<span class="im-xs-bold">` + moment(mypickup.createdDate).format("YYYY-MM-DD") + `</span>`;
         text += `<a href="/shop_mypage/?m2=order&amp;idx=94638288" class="text-brand hidden-lg hidden-md">주문 상세보기`;
         text += `<i class="im-icon im-ico-circle-arrow-right"></i></a>`;
         text += `</th>`;

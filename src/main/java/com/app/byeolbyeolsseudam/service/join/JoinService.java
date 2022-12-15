@@ -6,13 +6,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface JoinService {
-    // 회원 가입
+    /* 회원 가입 */
     public void memberJoin(MemberDTO memberDTO);
-    // 기사 가입
+    /* 기사 가입 */
     public void crewJoin(MemberDTO memberDTO);
-    // 기사 전환
+    /* 기사 전환 */
     public void changeCrew(MemberDTO memberDTO);
-    // 이메일 중복검사
+    /* Oauth 가입 */
+    public void oauthJoin(MemberDTO memberDTO);
+    /* 이메일 중복검사 */
     public  boolean checkEmail(String memberEmail);
 
 }

@@ -108,21 +108,55 @@
                                                                    class="btn btn-cancel btn-active btn-outline-secondary"
                                                                    target="_self">마이페이지 목록</a>
                     <button data-v-2825a58e="" type="button"
-                            onclick="location.href='http://localhost:10001/mypage/info/password'"
+                            onclick="javascript:openSocialLoginModal();"
                             class="btn btn-primary modifyOK-info-btn">수정하기
                     </button>
                 </footer>
-            </section><!----></main>
-        <th:block th:if="${session.member != null}">
-            <input type="hidden" name="memberId" th:value="${session.member.memberId}">
-            <input type="hidden" name="memberName" th:value="${session.member.memberName}">
-            <input type="hidden" name="memberEmail" th:value="${session.member.memberEmail}">
-            <input type="hidden" name="memberPhone" th:value="${session.member.memberPhone}">
-            <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
-            <input type="hidden" name="memberLoginType" th:value="${session.member.memberLoginType}">
-            <input type="hidden" name="memberProfileName" th:value="${session.member.memberProfileName}">
-        </th:block>
+            </section><!---->
+        </main>
     </div>
+</div>
+<div class="swal2-container swal2-center sg-swal swal2-shown" style="display: none; overflow-y: auto;">
+    <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="width: 320px; display: flex;">
+        <div class="swal2-header">
+            <ul class="swal2-progress-steps" style="display: none;"></ul>
+            <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>
+            </div>
+            <div class="swal2-icon swal2-question" style="display: none;"></div>
+            <div class="swal2-icon swal2-warning" style="display: none;"></div>
+            <div class="swal2-icon swal2-info" style="display: none;"></div>
+            <div class="swal2-icon swal2-success" style="display: none;">
+                <div class="swal2-success-circular-line-left"></div><span class="swal2-success-line-tip"></span>
+                <span class="swal2-success-line-long"></span>
+                <div class="swal2-success-ring"></div>
+                <div class="swal2-success-fix"></div>
+                <div class="swal2-success-circular-line-right"></div>
+            </div><img class="swal2-image" style="display: none;">
+            <h2 class="swal2-title" id="swal2-title" style="display: flex;">소셜 로그인 정보수정 불가</h2><button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button>
+        </div>
+        <div class="swal2-content">
+            <div id="swal2-content" style="display: block;">
+                소셜 로그인을 이용하여<br>로그인하신 경우에는<br>정보 수정이 불가능합니다.
+            </div>
+            <div class="swal2-range" style="display: none;"></div>
+            <div class="swal2-radio" style="display: none;"></div>
+            <div class="swal2-validation-message" id="swal2-validation-message"></div>
+        </div>
+        <div class="swal2-actions">
+            <button type="button" class="swal2-confirm btn" aria-label="" onclick="javascript:closeSocialLoginModal();"
+                    style="display: inline-block;">확인</button>
+        <div class="swal2-footer" style="display: none;"></div>
+    </div>
+    <th:block th:if="${session.member != null}">
+        <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+        <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+        <input type="hidden" name="memberEmail" th:value="${session.member.memberEmail}">
+        <input type="hidden" name="memberPhone" th:value="${session.member.memberPhone}">
+        <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+        <input type="hidden" name="memberLoginType" th:value="${session.member.memberLoginType}">
+        <input type="hidden" name="memberProfileName" th:value="${session.member.memberProfileName}">
+    </th:block>
+</div>
 </div>
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </body>
@@ -136,6 +170,7 @@
     let memberLoginType = $("input[name='memberLoginType']").val();
     let memberProfileName = $("input[name='memberProfileName']").val();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="/js/mypage/mypageModule.js"></script>
 <script src="/js/mypage/mypageInfo.js"></script>
 <script src="/js/fix/header.js"></script>
