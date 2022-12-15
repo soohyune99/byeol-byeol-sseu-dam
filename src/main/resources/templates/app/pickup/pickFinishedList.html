@@ -50,73 +50,23 @@
                     </div>
                 </div>
             </section>
+
             <section data-v-564412cd="" class="container">
                 <h1 data-v-564412cd="" class="page-heading-h1"><span data-v-564412cd="">수거완료내역</span></h1>
                 <ul data-v-564412cd="" class="row quote-list no-gutters">
 
+                    <tbody>
+                    <th:block th:each="pickup:${finishPickupDTOS}" th:object="${pickup}">
+                        <input type="hidden" th:href="${session.member.memberId}" id="memberId">
+                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12 finishPickup">
 
-                    <!-- BEGIN  :  하나의 리스트가 실행될 곳  -->
-                    <th:block th:each="pickup:${pickups}" th:object="${pickup}">
-                        <input type="hidden" th:href="*{pickupId}" id="pickupId">
-                        <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
-                            <div data-v-05822788="" data-v-564412cd="" data-testid="request-card"
-                                 class="request-card">
-                                <div data-v-05822788="" class="request-card-header align-items-center">
-                                    <div data-v-05822788="" class="request-card-title text-truncate"
-                                         th:text="*{pickupAddress}">
-                                    </div>
-                                    <time data-v-05822788=""
-                                          th:text="*{#temporals.format(createdDate, 'yyyy-MM-dd')}"></time>
-                                </div>
-                                <div data-v-05822788="" class="request-card-body">
-                                    <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
-                                        <div data-v-78eb3aa2="" class="progress">
-                                            <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                                                 aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>
-                                        </div>
-                                        <div data-v-78eb3aa2="" class="status-wrapper">
-                                            <div data-v-78eb3aa2="" class="status bold">수거요청</div>
-                                            <div data-v-78eb3aa2="" class="status">수거진행</div>
-                                            <div data-v-78eb3aa2="" class="status"> 수거완료</div>
-                                        </div>
-                                    </div>
-                                    <div data-v-05822788="" class="quote-status-wrapper">
-                                        <div data-v-f02739d2="" data-v-05822788=""
-                                             class="row quote-status flex-nowrap no-gutters">
-                                            <ul data-v-f02739d2="" class="avatar-wrapper">
-                                                <li data-v-f02739d2="" class="avatar-profile">
-                                                    <img data-v-f02739d2="" alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
-                                                         data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                                         src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                                         lazy="loaded"></li>
-                                            </ul>
-                                            <div data-v-f02739d2="" class="status-message">
-                                                <!--<span data-v-f02739d2="" th:text="*{pickup.memberName}"></span>-->
-                                                <span> 님의 수거 요청입니다.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button data-v-05822788="" data-testid="request-detail-btn" type="button"
-                                            onclick="showWantedPickup()" id=""
-                                            class="btn quote-cta btn-primary btn-block">자세히 보기
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                    </th:block>
-                    <!-- END  :  하나의 리스트가 실행될 곳  -->
-
-
-
-
-                    <!-- 주석 해놓음 추후 지울것  -->
-                    <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">
                         <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
-                            <a data-v-3a2c0d3c="" href="http://localhost:10001/pickup/finisheddetail" style="height: 66%;">
+                            <a class="detailFinishBtn" type="button" data-v-3a2c0d3c="" style="height: 66%;">
+                                <input type="hidden" th:href="*{pickupAcceptId}" id="pickupAcceptId">
                             <div data-v-05822788="" class="request-card-header align-items-center">
-                                <div data-v-05822788="" class="request-card-title text-truncate">주소가 들어갈 부분입니다
+                                <div th:text="*{pickupAddress}" data-v-05822788="" class="request-card-title text-truncate"><!--주소가 들어갈 부분입니다-->
                                 </div>
-                                <time data-v-05822788="">22.07.01</time>
+                                <time th:text="*{#temporals.format(updateDate, 'yyyy-MM-dd')}" data-v-05822788=""><!--일자--></time>
                             </div>
                             <div data-v-05822788="" class="request-card-body">
                                 <div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">
@@ -137,13 +87,12 @@
                                         <ul data-v-f02739d2="" class="avatar-wrapper">
                                             <li data-v-f02739d2="" class="avatar-profile"><img data-v-f02739d2=""
                                                                                                alt="김재섭 고수의 전기 배관 배선 설치 및  누전 수리 서비스"
-                                                                                               data-src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
-                                                                                               src="https://static.cdn.soomgo.com/upload/profile-default/soomgo_19.jpg?h=320&amp;w=320"
+                                                                                               th:src="*{pickupMemberProfilePath}"
                                                                                                lazy="loaded"></li>
                                         </ul>
                                         <div data-v-f02739d2="" class="status-message">
-                                            <span data-v-f02739d2="">디폴트_모양보는용 </span>
-                                            <span> 님의 수거 요청입니다.</span>
+                                            <span th:text="*{pickupMemberName}" data-v-f02739d2=""></span>
+                                            <span> 님의 수거 완료 내역입니다.</span>
                                         </div>
 
                                     </div>
@@ -153,6 +102,8 @@
                             </a>
                         </div>
                     </li>
+                    </th:block>
+                    </tbody>
 
 
                 </ul>
@@ -172,6 +123,13 @@
 <script>
     let memberCategory = $("input[name='memberCategory']").val();
 </script>
-
 <script src="/js/fix/headerLogin.js"></script>
+<script>
+    /* 수거완료내역에서 내역 클릭시 _ 수거완료내역 detail 페이지 */
+    $("a.detailFinishBtn").on("click",function () {
+        location.href = "/pickup/finisheddetail" + "?pickupAcceptId=" + $(this).find('#pickupAcceptId').attr("href");
+    });
+
+
+</script>
 </html>

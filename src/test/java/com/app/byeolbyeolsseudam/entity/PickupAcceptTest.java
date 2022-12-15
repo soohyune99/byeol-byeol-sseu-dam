@@ -1,17 +1,29 @@
 package com.app.byeolbyeolsseudam.entity;
 
+import com.app.byeolbyeolsseudam.domain.pickupAccept.PickupAcceptDTO;
+import com.app.byeolbyeolsseudam.domain.pickupAccept.QPickupAcceptDTO;
+import com.app.byeolbyeolsseudam.entity.pickupAccept.QPickupAccept;
 import com.app.byeolbyeolsseudam.repository.pickup.PickupRepository;
+import com.app.byeolbyeolsseudam.repository.pickupAccept.PickupAcceptCustomRepository;
 import com.app.byeolbyeolsseudam.repository.pickupAccept.PickupAcceptRepository;
 import com.app.byeolbyeolsseudam.service.pickup.PickupService;
+import com.app.byeolbyeolsseudam.type.PickupStatus;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+
+import java.util.List;
+
+import static com.app.byeolbyeolsseudam.entity.pickup.QPickup.pickup;
 
 @Slf4j
 @SpringBootTest
@@ -47,6 +59,11 @@ public class PickupAcceptTest {
     @Autowired
     private PickupRepository pickupRepository;
 
+    @Autowired
+    PickupAcceptCustomRepository pickupAcceptCustomRepository;
+
+    @Autowired
+    JPAQueryFactory jpaQueryFactory;
 //    @Test
 //    public void findListPickupStatusSojaejiTest(){
 //        Pageable pageable = PageRequest.of(0,12);
@@ -55,10 +72,43 @@ public class PickupAcceptTest {
 //        log.info("서울 지역 : " + pickupAcceptRepository.findListPickupStatusSojaeji("서울", pageable).getSize());
 //    }
 //
-//    @Test
-//    public void test(){
+    @Test
+    public void test(){
 //        log.info(pickupService.updatePickupStatusIng(182L).toString());
-//    }
+//        log.info(pickupAcceptCustomRepository.findListPickupStatusIng(192L).toString());
+        Pageable pageable = PageRequest.of(0,12, Sort.Direction.DESC,"createdDate");
+//        log.info(pickupService.findListPickupStatusSojaeji("충남", pageable).toString());
+
+
+        List<PickupAcceptDTO> pickupAcceptDTOS = jpaQueryFactory.select(new QPickupAcceptDTO(
+                QPickupAccept.pickupAccept.pickupAcceptId, // 수락번호
+                QPickupAccept.pickupAccept.pickup.pickupId, // 신청번호
+                QPickupAccept.pickupAccept.pickup.recyclable.petCount, // 페트병
+                QPickupAccept.pickupAccept.pickup.recyclable.glassCount, // 유리병
+                QPickupAccept.pickupAccept.pickup.pickupAddress, // 수거할 주소
+                QPickupAccept.pickupAccept.pickup.pickupMessage, // 수거 메세지
+                QPickupAccept.pickupAccept.pickup.pickupStatus, // 수거상태
+                QPickupAccept.pickupAccept.member.memberId, // 기사님
+                QPickupAccept.pickupAccept.member.memberName, // 기사님
+                QPickupAccept.pickupAccept.createdDate, // 수거 수락일
+                QPickupAccept.pickupAccept.updatedDate, // 수거 완료일
+                QPickupAccept.pickupAccept.pickup.member.memberId, // 신청자 아이디
+                QPickupAccept.pickupAccept.pickup.member.memberName, // 신청자 이름
+                QPickupAccept.pickupAccept.pickup.member.memberProfilePath, //신청자 프로필사진
+                QPickupAccept.pickupAccept.pickup.member.memberPhone // 신청자 핸드폰번호
+        )).from(QPickupAccept.pickupAccept)
+                .where(
+                        pickup.pickupStatus.eq(PickupStatus.수거대기중) // 수거대기중 리스트에서 사용
+                )
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .orderBy(pickup.createdDate.desc())
+                .fetch();
+
+        pickupAcceptDTOS.stream().map(PickupAcceptDTO::toString).forEach(log::info);
+
+    }
+
 
 
 

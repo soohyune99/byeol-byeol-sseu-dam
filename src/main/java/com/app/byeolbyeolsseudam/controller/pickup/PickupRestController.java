@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class PickupRestController {
     private final PickupService pickupService;
     /* 픽업 REST Controller */
-    @GetMapping(value = {"{page}","{page}/{sojaeji}"})
-    public Page<PickupDTO> findListPickupStatusSojaeji(@PathVariable(value = "sojaeji", required = false)String sojaeji, @PathVariable("page")Integer page, @PageableDefault(size = 12) Pageable pageable){
-        pageable = PageRequest.of(page,pageable.getPageSize(), Sort.Direction.DESC,"createdDate");
+    @GetMapping(value = {"{size}","{size}/{sojaeji}"})
+    public Page<PickupAcceptDTO> findListPickupStatusSojaeji(@PathVariable(value = "sojaeji", required = false)String searchSojaeji, @PathVariable("size")Integer size, @PageableDefault(page = 0, size = 12) Pageable pageable){
+        pageable = PageRequest.of(0, pageable.getPageSize(), Sort.Direction.DESC,"createdDate");
 
-        Page<PickupDTO> pickups = pickupService.findListPickupStatusSojaeji(sojaeji, pageable);
+        Page<PickupAcceptDTO> pickupAcceptDTOS = pickupService.findListPickupStatusSojaeji(searchSojaeji, pageable);
 
         log.info("-------------------");
         log.info("!!! pageable !!!!!!  : "+ pageable);
@@ -35,12 +35,12 @@ public class PickupRestController {
         log.info("!!! getOffset !!!!!  : "+ pageable.getOffset());
         log.info("!!! PageNumber !!!!  : "+ pageable.getPageNumber());
         log.info("-------------------");
-        log.info("||| PAGE ||||||||||||||| : "+ page);
-        log.info("||| sojaeji |||||||||||| : " + sojaeji);
-        log.info("||| pickups |||||||||||| : " + pickups);
-        log.info("||| getTotalElements ||| : " + pickups.getTotalElements());
+        log.info("||| size ||||||||||||||| : "+ size);
+        log.info("||| sojaeji |||||||||||| : " + searchSojaeji);
+        log.info("||| pickupAcceptDTOS |||||||||||| : " + pickupAcceptDTOS);
+        log.info("||| getTotalElements ||| : " + pickupAcceptDTOS.getTotalElements());
         log.info("-------------------");
 
-        return pickups;
+        return pickupAcceptDTOS;
     }
 }
