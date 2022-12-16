@@ -54,29 +54,34 @@
                 <section data-v-564412cd="" class="container">
 
                     <div>
-                        <h1 data-v-564412cd="" class="page-heading-h1" style="width: 150px; margin-bottom: 0.33rem;"><span data-v-564412cd="">수거신청</span>
+                        <h1 data-v-564412cd="" class="page-heading-h1" style="width: 150px; margin-bottom: 0.33rem;">
+                            <span data-v-564412cd="">수거신청</span>
                         </h1>
 
                         <!-- BEGIN : 시도 / 군구 / 동 -->
-                        <p data-v-564412cd="" class="user-guide" >
+                        <p data-v-564412cd="" class="user-guide">
 
                             <!-- BEGIN : 시도 / 군구 / 동 -->
-                            <fieldset style="text-align: right;">
-                                <select name="sido2" id="sido2" style="width: 70px;">
-                                </select>
-                                <select name="gugun2" id="gugun2" style="width: 100px;">
-                                </select>
-                                <select name="dong2" id="dong2" style="width: 150px;">
-                                </select>
-                            </fieldset>
+                        <fieldset style="text-align: right;">
+                            <select class="selectAddress" name="sido2" id="sido2" style="width: 70px;height: 28px;">
+                            </select>
+                            <select class="selectAddress" name="gugun2" id="gugun2" style="width: 100px;height: 28px;">
+                            </select>
+                            <select class="selectAddress" name="dong2" id="dong2" style="width: 150px;height: 28px;">
+                            </select>
+                            <button class="resetAddress" type="reset" style="width: 28px;height: 28px;background-color: #0dbda7; border-radius: 15px;">
+                                <img src="/images/program/returnBlack.png" style="width: 18px; height: 18px;margin: 0px -1px 3px 0px;filter: invert(1);">
+                            </button>
+                        </fieldset>
 
-                            <!-- 시도 군구 2개만 선택
-                            <fieldset style="text-align: right;">
-                                <select name="sido1" id="sido1" style="width: 70px;">
-                                </select>
-                                <select name="gugun1" id="gugun1" style="width: 100px;">
-                                </select>
-                            </fieldset>-->
+
+                        <!-- 시도 군구 2개만 선택
+                        <fieldset style="text-align: right;">
+                            <select name="sido1" id="sido1" style="width: 70px;">
+                            </select>
+                            <select name="gugun1" id="gugun1" style="width: 100px;">
+                            </select>
+                        </fieldset>-->
 
 
                         <!-- END :  시도 / 군구 / 동 -->
@@ -94,14 +99,16 @@
                         <!-- 수거 신청 내역 공간 -->
                     </ul>
                     <!---->
+                    <!-- 더보기 -->
+                    <button class="morePickup" type="button" style="background: #00a18d;">더보기</button>
                 </section>
             </article>
         </div>
     </div>
-
     <footer th:replace="/app/fix/footer.html :: footer"></footer>
     <th:block th:if="${session.member !=null}">
         <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+        <input type="hidden" name="memberId" th:value="${session.member.memberId}">
     </th:block>
 
 </div>
@@ -109,9 +116,9 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
     let memberCategory = $("input[name='memberCategory']").val();
+    let memberId = $("input[name='memberId']").val();
 </script>
 <script src="/js/fix/headerLogin.js"></script>
-
 <script type="text/javascript" src="/js/pickup/sojaeji.js"></script> <!-- 소재지 선택 셀렉박스 js 있음 -->
 <script type="text/javascript">
     new sojaeji('sido2', 'gugun2', 'dong2');
@@ -121,7 +128,7 @@
     let gugun2 = $("#gugun2");
     let dong2 = $("#dong2");
     let searchSojaeji = "";
-    globalThis.size = 12; // 12개씩
+    globalThis.size = 6; // 6개씩
     let $url;
 
     /* 해당 컨트롤러로 보낼 url */
@@ -129,41 +136,62 @@
         if (searchSojaeji == "") {
             // 검색 X , 상태 선택 X
             $url = "/pick/" + globalThis.size;
-        }else {
+        } else {
             // 검색 O , 상태 선택 O
             $url = "/pick/" + globalThis.size + "/" + searchSojaeji;
         }
     }
-
     // - 3개의 값을 한번에 Ajax로 넘겨서 진행필요
 
     /*  소재지 select  */
     sido2.on("change", function () {
-        setTimeout(() => {
-            searchSojaeji = (sido2.val() + " " + gugun2.val() + " " + dong2.val())+"";
-        },200);
 
+        setTimeout(() => {
+            searchSojaeji = sido2.val() + "";
+            globalThis.size = 6;
+            url();
+            show();
+        }, 300);
     })
     gugun2.on("change", function () {
 
         setTimeout(() => {
-            searchSojaeji = (sido2.val() + " " + gugun2.val() + " " + dong2.val())+"";
-        },200);
+            searchSojaeji = (sido2.val() + " " + gugun2.val()) + "";
+            globalThis.size = 6;
+            url();
+            show();
+        }, 300);
     })
     dong2.on("change", function () {
         setTimeout(() => {
-            searchSojaeji = (sido2.val() + " " + gugun2.val() + " " + dong2.val())+"";
-        },200);
+            searchSojaeji = (sido2.val() + " " + gugun2.val() + " " + dong2.val()) + "";
+            globalThis.size = 6;
+            url();
+            show();
+        }, 300);
     })
 
-/*  #######################################################################################################################################  */
+    /*  #######################################################################################################################################  */
 
-     /* 자세히 보기 클릭시 실행될 함수 - 수거 신청 정보로 이동 */
-    $("#showWantedPickup").on("click",function () {
-        location.href = "/pickup/detail";
+    /* 더보기 버튼 클릭시 */
+    $(".morePickup").on("click", function () {
+        globalThis.size = globalThis.size + 6;
+        url();
+        show();
     });
 
-/*  #######################################################################################################################################  */
+    /* 리셋 버튼 클릭시 */
+    $(".resetAddress").on("click", function () {
+        location.href = "/pickup/wantedlist";
+    });
+
+    // /* 자세히 보기 클릭시 실행될 함수 - 수거 신청 detaoil 페이지 이동 */
+    $("#wantedList").on("click","#showWantedPickup",function () {
+        // alert($(this).next('input#pickupId').val());
+        location.href = "/pickup/detail" + "?pickupId=" + $(this).next('input#pickupId').val();
+    })
+
+    /*  #######################################################################################################################################  */
 
     show();
 
@@ -176,66 +204,61 @@
             url: $url, // 상태별 url 입력
             type: "get",
 
-            success: function (pickupAcceptDTOS) {
-                count = pickupAcceptDTOS.totalElements;
+            success: function (pickupDTOS) {
+                count = pickupDTOS.totalElements;
                 if (count) {
-                    pickupWantedList(pickupAcceptDTOS, count); // 프로그램 수 Count 함수
+                    pickupWantedList(pickupDTOS, count); // 프로그램 수 Count 함수
                     // programList(pickupDTOS);
 
                 } else {
-                    pickupWantedList(pickupAcceptDTOS, count); // 프로그램 수 Count 함수
+                    pickupWantedList(pickupDTOS, count); // 프로그램 수 Count 함수
                     // noProgramList(); // 해당 programs가 없을 경우 실행되는 함수 추가 필요 (돋보기)
                 }
             }
         });
     }
 
-/*  ######## function ###########################################################################################################################  */
-
-
-/*  ######## DOM ###########################################################################################################################  */
+    /*  ######## DOM ###########################################################################################################################  */
 
     /* 수거신청 내역 */
-    function pickupWantedList(pickupAcceptDTOS) {
+    function pickupWantedList(pickupDTOS) {
         let text = "";
-        console.log("수거신청내역 : " + pickupAcceptDTOS.content);
+        console.log("수거신청내역 : " + pickupDTOS.content);
 
-        Array.from(pickupAcceptDTOS.content).forEach(pickupAcceptDTO =>{
+        Array.from(pickupDTOS.content).forEach(pickupDTO => {
 
             text += `<li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12">`;
-            text += `<input type="hidden"` + pickupAcceptDTO.pickupId + `id="pickupId">`;
-            text += `<div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">`;
-            text += `<div data-v-05822788="" class="request-card-header align-items-center">`;
-            text += `<div data-v-05822788="" class="request-card-header align-items-center">`;
-            text += `<div data-v-05822788="" class="request-card-header align-items-center">`;
-            text += `<div data-v-05822788="" class="request-card-title text-truncate">`+ pickupAcceptDTO.pickupAddress + `</div>`;
-            text += `<time data-v-05822788="">`+ pickupAcceptDTO.createdDate +`</time>`;
-            text += `</div>`;
-            text += `<div data-v-05822788="" class="request-card-body">`;
-            text += `<div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">`;
-            text += `<div data-v-78eb3aa2="" class="progress">`;
-            text += `<div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>`;
-            text += `</div>`;
-            text += `<div data-v-78eb3aa2="" class="status-wrapper">`;
-            text += `<div data-v-78eb3aa2="" class="status bold">수거요청</div>`;
-            text += `<div data-v-78eb3aa2="" class="status">수거진행</div>`;
-            text += `<div data-v-78eb3aa2="" class="status"> 수거완료</div>`;
-            text += `</div>`;
-            text += `</div>`;
-            text += `<div data-v-05822788="" class="quote-status-wrapper">`;
-            text += `<div data-v-f02739d2="" data-v-05822788="" class="row quote-status flex-nowrap no-gutters">`;
-            text += `<ul data-v-f02739d2="" class="avatar-wrapper">`;
-            text += `<li data-v-f02739d2="" class="avatar-profile">`;
-            text += `<img src="`+ pickupAcceptDTO.pickupMemberProfilePath +`" style="height: inherit;">`;
-            text += `</li>`;
-            text += `</ul>`;
-            text += `<div data-v-f02739d2="" class="status-message closed">`+ pickupAcceptDTO.pickupMemberName +`</div>`;
-            text += `<div data-v-f02739d2="" class="status-message closed"> 님의 수거요청 입니다</div>`;
-            text += `</div>`;
-            text += `</div>`;
-            text += `<button data-v-05822788="" data-testid="request-detail-btn" type="button" id="showWantedPickup" class="btn quote-cta btn-primary btn-block">자세히 보기</button>`;
-            text += `</div>`;
-            text += `</div>`;
+                text += `<div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">`;
+                            text += `<div data-v-05822788="" class="request-card-header align-items-center">`;
+                                 text += `<div data-v-05822788="" class="request-card-title text-truncate">` + pickupDTO.pickupAddress + `</div>`;
+                                    text += `<time data-v-05822788="">` + pickupDTO.createdDate + `</time>`;
+                            text += `</div>`;
+                            text += `<div data-v-05822788="" class="request-card-body">`;
+                                text += `<div data-v-78eb3aa2="" data-v-05822788="" class="request-progress-bar">`;
+                                    text += `<div data-v-78eb3aa2="" class="progress">`;
+                                        text += `<div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" class="progress-bar" style="width: 0%;"></div>`;
+                                    text += `</div>`;
+                                    text += `<div data-v-78eb3aa2="" class="status-wrapper">`;
+                                        text += `<div data-v-78eb3aa2="" class="status bold">수거요청</div>`;
+                                        text += `<div data-v-78eb3aa2="" class="status">수거진행</div>`;
+                                        text += `<div data-v-78eb3aa2="" class="status"> 수거완료</div>`;
+                                    text += `</div>`;
+                                text += `</div>`;
+                                text += `<div data-v-05822788="" class="quote-status-wrapper">`;
+                                    text += `<div data-v-f02739d2="" data-v-05822788="" class="row quote-status flex-nowrap no-gutters">`;
+                                        text += `<ul data-v-f02739d2="" class="avatar-wrapper">`;
+                                            text += `<li data-v-f02739d2="" class="avatar-profile" style="overflow: hidden;border-radius: 100%;">`;
+                                                text += `<img src="` + pickupDTO.memberProfilePath + `" style="height: inherit;">`;
+                                            text += `</li>`;
+                                        text += `</ul>`;
+                                        text += `<div data-v-f02739d2="" class="status-message closed">` + pickupDTO.memberName + `</div>`;
+                                        text += `<div data-v-f02739d2="" class="status-message closed"> 님의 수거요청 입니다</div>`;
+                                    text += `</div>`;
+                                text += `</div>`;
+                            text += `<button data-v-05822788="" data-testid="request-detail-btn" type="button" id="showWantedPickup" class="btn quote-cta btn-primary btn-block">자세히 보기</button>`;
+            text += `<input type="hidden" value="` + pickupDTO.pickupId + `" id="pickupId">`;
+                        text += `</div>`;
+                    text += `</div>`;
             text += `</li>`;
         })
         $("#wantedList").html(text);
@@ -288,3 +311,18 @@
                             </div>
                         </li>
                          DOM 전 SAVE용 -->
+
+<!--
+// /*  소재지 select  */
+// $('.selectAddress').on("change", function () {
+//     setTimeout(() => {
+//         selectAddressAdd();
+//     },200);
+//
+// })
+// function selectAddressAdd(){
+//     searchSojaeji = (sido2.val() + " " + gugun2.val() + " " + dong2.val())+"";
+//     globalThis.size = 6; // 주소 검색시 사이즈 초기화
+//     url();
+//     show();
+// }-->

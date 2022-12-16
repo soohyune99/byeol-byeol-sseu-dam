@@ -6,16 +6,14 @@ import com.app.byeolbyeolsseudam.domain.pickupAccept.PickupAcceptDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.entity.pickup.Pickup;
 import com.app.byeolbyeolsseudam.entity.pickupAccept.PickupAccept;
+import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.pickupAccept.PickupAcceptCustomRepository;
 import com.app.byeolbyeolsseudam.service.pickup.PickupService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
@@ -28,6 +26,8 @@ import java.util.List;
 public class PickupController {
 
     private final PickupService pickupService;
+
+    private final MemberRepository memberRepository;
 
 
 
@@ -56,17 +56,23 @@ public class PickupController {
     /* 수거 신청 목록 페이지 -> 수거 신청 디테일 정보 */
 
     @GetMapping("/detail")
-    public String pickDetail(){
+    public String pickDetail(Model model, Long pickupId){
+        model.addAttribute("pickupDetail",pickupService.findPickupIdNomal(pickupId));
+        log.info("--------------------------------------");
+        log.info("픽업아이디 : "+ pickupId);
+        log.info("pickupDetail : " + pickupService.findPickupIdNomal(pickupId));
+        log.info("--------------------------------------");
         return "/app/pickup/pickDetail";
     }
 
     /* --------------------------------------- 수거 대기중 -> 수거중  ----------------------------------------------------------------- */
     /* '수락 하기' 눌렀을 때 컨트롤러 */
 
-    @GetMapping("/savePickup")
+    @GetMapping("/savepickup")
     public RedirectView savePickup(Long pickupId, HttpSession session){
         Pickup pickup = pickupService.updatePickupStatusIng(pickupId); // 상태를 수거중으로 변경
-        Member member = (Member) session.getAttribute("member");
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        Member member = memberRepository.findById(memberDTO.getMemberId()).get();
 
         PickupAccept pickupAccept = new PickupAccept();
         pickupAccept.changeMember(member);
@@ -109,9 +115,9 @@ public class PickupController {
     /* -------------------------------------------- 수거중 -> 수거 완료  ------------------------------------------------------------ */
     /* '수거완료' 눌렀을 때 컨트롤러 */
 
-    @GetMapping("/completePickup")
+    @GetMapping("/completepickup")
     public RedirectView completePickup(Long pickupId){
-        pickupService.updatePickupStatusFinish(pickupId);
+        pickupService.updatePickupStatusFinish(pickupId); // 수거완료로 상태 변경 + 포인트 100 추가
 
         return new RedirectView("finishedlist");
     }
