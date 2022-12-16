@@ -41,6 +41,14 @@ function showMemberInfo(member){
         $("button.logout").attr("onclick","location.href='/logout'")
     }
 
+    if(member.memberLoginType != '일반' && member.memberCategory == '일반회원'){
+        $(".change-user-type").attr("onclick"," ");
+        $(".change-user-type").on("click",function () {
+            alert("소셜 아이디는 기사 가입을 지원하지 않습니다. 일반 계정으로 가입해주세요.")
+
+        })
+    }
+
     // $(".mypage-memberType").html(member.memberCategory);
     // $(".mypage-memberPoint").html(member.memberPoint);
 }
