@@ -167,6 +167,7 @@ function showProductDetail(product){
 }
 
 /* 구매하지 않은 제품일 경우 구매평 작성 불가 모달 띄우기 */
+
 function openReviewModal(){
     if(false){
         $(".swal2-container").css('display', 'block');
@@ -220,7 +221,7 @@ $(".starRate").on('click', function(){
 });
 
 /* 댓글 사진 첨부 시 div 생성 */
-/*$file.on('change', function (e) {
+$file.on('change', function (e) {
     var reader = new FileReader();
     let type = e.target.files[0].type;
 
@@ -240,13 +241,13 @@ $(".starRate").on('click', function(){
             $file.attr('disabled', 'true');
             $(".attach-image-icon").css('cursor', 'default');
             $(".attach-image-icon").attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Im0xMi43NSAyLjUgMS42NzggMS43NmgyLjkwNWMxLjAwOSAwIDEuODM0Ljc5IDEuODM0IDEuNzU5djEwLjU1NWMwIC45NjgtLjgyNSAxLjc2LTEuODM0IDEuNzZIMi42NjdjLTEuMDA5IDAtMS44MzQtLjc5Mi0xLjgzNC0xLjc2VjYuMDJjMC0uOTY4LjgyNS0xLjc2IDEuODM0LTEuNzZoMi45MDVMNy4yNSAyLjVoNS41ek0xMCA4LjE1NWMtMS44OTggMC0zLjQzOCAxLjUyLTMuNDM4IDMuMzkzIDAgMS44NzIgMS41NCAzLjM5MiAzLjQzOCAzLjM5MiAxLjg5OCAwIDMuNDM4LTEuNTIgMy40MzgtMy4zOTIgMC0xLjg3My0xLjU0LTMuMzkzLTMuNDM4LTMuMzkzeiIgZmlsbD0iI0M1QzVDNSIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPgo=');
-        } else {
+        }else {
             alert("사진파일만 업로드 가능합니다.");
 
             return;
         }
     }
-});*/
+});
 
 /* 첨부파일 x 클릭 시 div 삭제 */
 $(".textarea_block").on('click', '.delete-badge', function(){
@@ -275,15 +276,6 @@ let $reviewContent = $("textarea[name='review-input']");
 let $reviewStar = $("path.starRate");
 let $reviewSubmitBtn = $(".write-review-submit");
 let $reviewPhotoBtn = $(".photo_button");
-
-/* 주문하기 버튼 누를 시 */
-let $purchaseBtn = $(".purchase-btn");
-
-$purchaseBtn.on("click", function() {
-    console.log("주문하기 버튼 누름");
-    let $productCount = $("input[name='orderCount']").val();
-    location.href ='/market/payment?productId='+ productId + '&count='+ $productCount;
-});
 
 showReview();
 
@@ -619,8 +611,16 @@ function afterUploadReviewFile(file) {
 }
 
 
-/* ================================== MarketBasket ==================================*/
+/* ================================== MarketBasket & MarketPayment ==================================*/
 
+/* 주문하기 버튼 누를 시 */
+let $purchaseBtn = $(".purchase-btn");
+
+$purchaseBtn.on("click", function() {
+    let $productCount = $("input[name='orderCount']").val();
+    location.href ='/market/payment?productId='+ productId + '&count='+ $productCount;
+
+});
 /* 장바구니 모달 열기 */
 /*function basketModalOpen(){
     $basketModal.css('display', 'block');
@@ -636,7 +636,6 @@ function basketModalClose(){
 let $basketBtn = $(".btn-block");
 
 $basketBtn.on("click", function(){
-    console.log("장바구니 버튼 누름");
     saveBasketList();
 })
 

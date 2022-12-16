@@ -465,7 +465,8 @@
                                                 </div>
                                             </div>-->
                                         </div>
-                                        <a href="javascript:payment()" style="width: 100%" class="btn_start_payment text-16 text-bold btn bg-brand to-order blocked btn-lg margin-bottom-xl _btn_start_payment">결제하기</a>
+<!--                                        <a href="javascript:payment()" style="width: 100%" class="btn_start_payment text-16 text-bold btn bg-brand to-order blocked btn-lg margin-bottom-xl _btn_start_payment">결제하기</a>-->
+                                        <a href="javascript:clickPayBtn();" style="width: 100%" class="btn_start_payment text-16 text-bold btn bg-brand to-order blocked btn-lg margin-bottom-xl _btn_start_payment">결제하기</a>
                                     </div>
                                     <div class="spacer"
                                          style="display: block; width: 325px; float: left;">
@@ -508,78 +509,42 @@
 <script src="https://js.bootpay.co.kr/bootpay-4.2.6.min.js" type="application/javascript"></script>
 <script src="/js/market/orderModule.js"></script>
 <script src="/js/market/marketPayment.js"></script>
+<script src="/js/market/marketDetail.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script th:inline="javascript">
     /*================================== 결제 하기 ==================================*/
-    async function payment(){
-        // 결제 금액, 구매자의 이름, 이메일, 전화번호, 주소, 배송메시지, 포인트
+
+    /* 결제하기 버튼 누를 시 */
+
+
+    function clickPayBtn() {
+        console.log("결제 하기 버튼 누름");
         const s_zipNo = document.getElementById('sample4_postcode').value;
         const roadAdd = document.getElementById("sample4_roadAddress").value;
         const detailAdd = document.getElementById("sample4_extraAddress").value;
         const writeAdd = document.getElementById("sample4_jibunAddress").value;
         const buyerMemberAddress = s_zipNo + roadAdd + detailAdd + writeAdd;
         const buyerMemberMsg = document.getElementById("category").options[document.getElementById("category").selectedIndex].value;
-        const mypoint = $(".my-point").val();
-        const price = $(".total-price").text().split("원")[0]; //총 금액
-        const savePoint = $(".save-point").val();
-        const productId = $(".hidden-productId").text();
-        const productName = $(".hidden-productName").text();
-        const productPrice =$(".hidden-productPrice").text();
-        const memberId = $("input[name='memberId']").val();
-        const memberName = $("input[name='memberName']").val();
-        const memberPhone =  $(".info-member-phone").text();
-        const memberEmail =  $(".info-member-email").text();
 
-        const response = await Bootpay.requestPayment({
-            "application_id": "639762b8d01c7e0020feb95d",
-            "price": price,      // 요청 금액
-            "order_name":productName,
-            "order_id":productId,
-            "pg": "케이씨피",
-            "method": "카드",
-            "tax_free": 0,
-            "user": {
-                "id": memberId,
-                "username": memberName,
-                "phone": memberPhone,
-                "email": memberEmail,
-                "add": buyerMemberAddress,
-                "msg": buyerMemberMsg,
-                "point": savePoint
-            },
-            "items": [
-                {
-                    "id": productId,
-                    "name": productName,
-                    "qty": count,
-                    "price": productPrice      // 상품 금액
-                }
-            ],
-            "extra": {
-                "open_type": "iframe",
-                "card_quota": "0,2,3",
-                "escrow": false,
-                "display_success_result":true
-            }
-
-        })
-        switch (response.event) {
-            case 'done':
-                let formData = new FormData();
-                formData.append('zipcode', s_zipNo);
-                formData.append('roadAdd', roadAdd);
-                formData.append('detailAdd', detailAdd);
-                formData.append('writeAdd', writeAdd);
-                formData.append('message', buyerMemberMsg);
-                formData.append('buyCount', count);
-                formData.append('memberId', memberId);
-                formData.append('productId', productId);
-
-                // 결제 완료 처리
-                orderService.getSaveOrder(
-                    formData);
-                break;
-        }
+        orderService.getOrderDetailList(
+            productId, showProduct
+        )
     }
+    function showProduct(products){
+        console.log("주문하기 버튼 누를시 상품 조회");
+
+        const delivery = $(".delivery").text().split('원')[0].replace(',', '');
+        products.push($(".delivery").text().split('원')[0].replace(',', ''));
+
+        const usepoint = document.getElementById('use_point').value;
+        products.push(0 - document.getElementById('use_point').value);
+
+        console.log(products);
+
+        orderService.payment(
+            products, memberId
+        )
+    }
+
 </script>
 </html>

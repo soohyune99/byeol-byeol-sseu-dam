@@ -77,7 +77,7 @@ function modifyOKOrdererInfo(){
 
 
 /* 주문자 정보 수정 취소 */
-function cancelModificationOrderer(){
+function cancelModificationOrder(){
     text = "";
 
     text += `<div class="info text-14 text-gray">` + ordererName + `</div>`
@@ -127,22 +127,6 @@ function sample4_execDaumPostcode() {
             } else {
                 document.getElementById("sample4_extraAddress").value = '';
             }
-
-            /*  var guideTextBox = document.getElementById("guide");
-              // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-              if(data.autoRoadAddress) {
-                  var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                  guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                  guideTextBox.style.display = 'block';
-
-              } else if(data.autoJibunAddress) {
-                  var expJibunAddr = data.autoJibunAddress;
-                  guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                  guideTextBox.style.display = 'block';
-              } else {
-                  guideTextBox.innerHTML = '';
-                  guideTextBox.style.display = 'none';
-              }*/
         }
     }).open();
 }
@@ -233,11 +217,6 @@ $("select[name='deliv_memo']").on('click', function(){
 
 /* ================================== MarketPayment ==================================*/
 let url = decodeURI
-
-
-
-
-
 (window.location.href).split("=");
 
 let count = url[url.length - 1];    // 주문 수량
@@ -374,7 +353,7 @@ function showOrderProductDetail(products){
     text += `</div>`;
     text += `<div class="im-payment-deliv">`;
     text += `<div>`;
-    text += `배송비 <span class="text-bold"> 3,000원 </span>`;
+    text += `배송비 <span class="text-bold delivery"> 3,000원 </span>`;
     text += `</div>`;
     $(".order-info").append(text);
 
@@ -386,7 +365,9 @@ function showOrderProductDetail(products){
     $(".order-product-price").html(products.productPrice * count + "원");    // 상품 가격 * 수량
     $(".total-price").html(products.productPrice * count + 3000 + "원");    // 상품 가격 * 수량 + 배송비
     $(".save-point").html((products.productPrice * count + 3000) * 0.01);   // 포인트 적립
-
+    let deliver = $(".delivery").text().split('원')[0].replace(',', '');
+    console.log("배달비");
+    console.log(deliver);
     let totalPrice = $(".hidden-productPrice").val();
     let savePoint = $(".save-point").val();
     console.log("총 가격");

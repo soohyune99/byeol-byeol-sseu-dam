@@ -68,13 +68,35 @@ let basketService = (function(){
         console.log(basketId);
         console.log(basketCount);
         $.ajax({
-            url: "/cart/update" + basketId + "/" + basketCount,
+            url: "/cart/update/" + basketId + "/" + basketCount,
             type: "post",
             data: JSON.stringify(basketId, basketCount),
             contentType: "application/json; charset=utf-8",
-            success: function (basket, status, xhr) {
+            success: function (baskets, status, xhr) {
                 if (callback) {
-                    callback(basket);
+                    console.log("변경 성공");
+                    console.log(baskets);
+                    callback(baskets);
+                }
+            },
+            error: function (xhr, status, err) {
+                if (error) {
+                    error(err);
+                }
+            }
+        });
+    }
+
+    /* 상품 삭제 */
+    function deleteBasket(basketId, callback, error){
+        console.log("상품 삭제 ajax");
+        console.log(basketId);
+        $.ajax({
+            url: "/cart/delete/" + basketId,
+            type: "delete",
+            success: function (status, xhr) {
+                if(callback){
+                    callback();
                 }
             },
             error: function (xhr, status, err) {
@@ -86,5 +108,5 @@ let basketService = (function(){
     }
 
     return{saveBasket:saveBasket, getBasketList:getBasketList, getBasket:getBasket,
-        updateBasketCount:updateBasketCount}
+        updateBasketCount:updateBasketCount, deleteBasket:deleteBasket}
 })();

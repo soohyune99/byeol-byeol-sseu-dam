@@ -36,12 +36,18 @@ public class BasketController {
     }
 
     /* 장바구니 수량 변경 */
-    @PostMapping("/update")
-    public BasketDTO updateCount(BasketDTO basketDTO){
-        log.info("------------------" + basketDTO);
-        return basketService.updateBasket(basketDTO);
+    @PostMapping("/update/{basketId}/{basketCount}")
+    public void updateCount(@PathVariable Long basketId, @PathVariable int basketCount){
+        basketService.updateBasket(basketId, basketCount);
     }
 
+    /* 장바구니 상품 삭제 */
+    @DeleteMapping("/delete/{basketId}")
+    public void deleteBasket(@PathVariable Long basketId){
+        basketService.deleteBasket(basketId);
+    }
+
+    /* 장바구니 상품 한개 바로 구매*/
 
 
 }

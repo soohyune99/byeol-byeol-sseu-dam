@@ -64,16 +64,15 @@
                                         <tr class="hidden-xs text-14">
                                             <th class="item-info">
                                                 <div class="im-flex">
-                                                    <div class="im-cart-checkbox-wrap">
+<!--                                                    <div class="im-cart-checkbox-wrap">-->
                                                         <div class="checkbox checkbox-styled no-margin">
-                                                            <label class="no-margin-bottom">
-                                                                <input type="checkbox" value="" class="_all_check">
-                                                                <span></span>
+                                                            <label class="firstChecked">
+                                                                <input type="checkbox" value="" id="_all_check">
                                                             </label>
                                                         </div>
-                                                    </div>
-                                                    <span class="hidden-sm hidden-xs">상품 정보</span>
-                                                    <span class="hidden-lg hidden-md">전체선택</span>
+<!--                                                    </div>-->
+<!--                                                    <span class="hidden-sm hidden-xs">상품 정보</span>-->
+<!--                                                    <span class="hidden-lg hidden-md">전체선택</span>-->
                                                 </div>
                                             </th>
                                             <th class="amount text-center"><span
@@ -89,11 +88,14 @@
                                                         class="im-flex im-justify-between im-items-center im-cart-checkbox-wrap">
                                                     <div
                                                             class="im-flex im-items-center checkbox checkbox-styled no-margin">
-                                                        <label>
-                                                            <input type="checkbox" value="" class="_all_check">
-                                                            <span></span>
+<!--                                                        <label>-->
+<!--                                                            <input type="checkbox" value="" class="_all_check">-->
+<!--                                                            <span></span>-->
+<!--                                                        </label>-->
+                                                        <label class="firstChecked">
+<!--                                                            <input type="checkbox" value="" id="_all_check"> 전체 동의-->
                                                         </label>
-                                                        <span id="basketAllSelect" class="text-15" style="margin-left: 10px;">전체선택</span>
+<!--                                                        <span id="basketAllSelect" class="text-15" style="margin-left: 10px;">전체선택</span>-->
                                                     </div>
                                                     <div class="cart-btn-tools text-13">
                                                         <a href="javascript:;" class="btn">선택상품 삭제</a>
@@ -104,6 +106,7 @@
                                         </thead>
 
                                         <tbody class="startBakset">
+                                        <div style="display:none;" class="item_price 0"></div>
                                         <!--<tr class="content basket-list" style="overflow: visible;">
                                             <td class="slt img">
                                                 <div class="im-flex">
@@ -228,7 +231,6 @@
                                                     <div class="im-flex im-justify-between">
                                                         <div class="cart-btn-tools">
                                                             <a href="javascript:;" class="btn">선택상품 삭제</a>
-    <!--                                                        <a href="javascript:;" class="btn">품절상품 삭제</a>-->
                                                         </div>
                                                         <div class="text-right text-13 opacity-60">
                                                             <p class="no-margin-bottom">결제 시 추가 할인 적용에 따라 배송비가 변경될 수 있습니다.</p>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -23,6 +24,11 @@ public class OrderController {
     @GetMapping("/{productId}")
     public ProductDTO getProductList(@PathVariable Long productId){
         return orderService.getOrderDetailList(productId);
+    }
+
+    @PostMapping("/all/{productId}")
+    public List<ProductDTO> getProduct(@PathVariable Long productId){
+        return orderService.getOrderDetail(productId);
     }
 
     @PostMapping("/{memberId}")

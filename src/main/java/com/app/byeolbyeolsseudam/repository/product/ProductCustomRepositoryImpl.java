@@ -192,4 +192,18 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
                 .where(product.productId.eq(productId))
                 .fetchOne();
     }
+
+    @Override
+    public List<ProductDTO> selectProductAll(Long productId){
+        List<ProductDTO> products = jpaQueryFactory.select(new QProductDTO(
+                product.productId,product.productCategory, product.productName,
+                product.productPrice,product.productCount,product.productFileDetailName,
+                product.productFileDetailPath,product.productFileDetailUuid,product.productFileProfileName,
+                product.productFileProfilePath,product.productFileProfileUuid))
+                .from(product)
+                .where(product.productId.eq(productId))
+                .fetch();
+
+        return products;
+    }
 }

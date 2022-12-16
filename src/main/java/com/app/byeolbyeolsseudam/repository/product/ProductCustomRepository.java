@@ -23,5 +23,6 @@ public interface ProductCustomRepository {
     
     // 주문하기
     public ProductDTO selectProduct(Long productId);
+    public  List<ProductDTO> selectProductAll(Long productId);
 
 }

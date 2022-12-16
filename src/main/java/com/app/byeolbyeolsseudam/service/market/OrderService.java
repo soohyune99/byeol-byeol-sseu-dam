@@ -15,6 +15,7 @@ public interface OrderService {
 
     // 주문 관련 상품 조회
     public ProductDTO getOrderDetailList(Long productId);
+    public  List<ProductDTO> getOrderDetail(Long productId);
 
     // 회원 조회
     public MemberDTO getOrderMember(Long memberId);
