@@ -114,6 +114,7 @@
     <footer th:replace="/app/fix/footer.html :: footer"></footer>
     <th:block th:if="${session.member !=null}">
         <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+        <input type="hidden" name="memberId" th:value="${session.member.memberId}">
     </th:block>
 
 </div>
@@ -121,13 +122,14 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
     let memberCategory = $("input[name='memberCategory']").val();
+    let memberId = $("input[name='memberId']").val();
 </script>
 <script src="/js/fix/headerLogin.js"></script>
 <script>
 
     /* 수거현황에서 자세히 보기 클릭시 _ 수거현황 detail 페이지 */
     $(".detailBtn").on("click",function () {
-        location.href = "/pickup/finisheddetail" + "?pickupAcceptId=" + $(this).closest("li.ingPickup").find('#pickupAcceptId').attr("href");
+        location.href = "/pickup/okdetail" + "?pickupAcceptId=" + $(this).closest("li.ingPickup").find('#pickupAcceptId').attr("href");
     });
 </script>
 </html>

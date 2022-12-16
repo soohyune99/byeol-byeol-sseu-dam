@@ -23,10 +23,10 @@ public class PickupRestController {
     private final PickupService pickupService;
     /* 픽업 REST Controller */
     @GetMapping(value = {"{size}","{size}/{sojaeji}"})
-    public Page<PickupAcceptDTO> findListPickupStatusSojaeji(@PathVariable(value = "sojaeji", required = false)String searchSojaeji, @PathVariable("size")Integer size, @PageableDefault(page = 0, size = 12) Pageable pageable){
-        pageable = PageRequest.of(0, pageable.getPageSize(), Sort.Direction.DESC,"createdDate");
+    public Page<PickupDTO> findListPickupStatusSojaeji(@PathVariable(value = "sojaeji", required = false)String searchSojaeji, @PathVariable("size")Integer size, @PageableDefault(page = 0, size = 6) Pageable pageable){
+        pageable = PageRequest.of(0, size, Sort.Direction.DESC,"createdDate");
 
-        Page<PickupAcceptDTO> pickupAcceptDTOS = pickupService.findListPickupStatusSojaeji(searchSojaeji, pageable);
+        Page<PickupDTO> pickupDTOS= pickupService.findListPickupStatusSojaeji(searchSojaeji, pageable);
 
         log.info("-------------------");
         log.info("!!! pageable !!!!!!  : "+ pageable);
@@ -37,10 +37,10 @@ public class PickupRestController {
         log.info("-------------------");
         log.info("||| size ||||||||||||||| : "+ size);
         log.info("||| sojaeji |||||||||||| : " + searchSojaeji);
-        log.info("||| pickupAcceptDTOS |||||||||||| : " + pickupAcceptDTOS);
-        log.info("||| getTotalElements ||| : " + pickupAcceptDTOS.getTotalElements());
+        log.info("||| pickupDTOS |||||||||||| : " + pickupDTOS);
+        log.info("||| getTotalElements ||| : " + pickupDTOS.getTotalElements());
         log.info("-------------------");
 
-        return pickupAcceptDTOS;
+        return pickupDTOS;
     }
 }

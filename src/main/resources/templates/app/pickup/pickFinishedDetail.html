@@ -68,10 +68,10 @@
                         <div data-v-f32583c0="" data-v-464dc29d="" class="quote-info-wrapper">
                             <div data-v-f32583c0="" class="quote-info">
                                 <ul data-v-f32583c0="" class="user-detail has-quote-profile">
-                                    <li th:text="*{pickupAddress}" data-v-f32583c0="" class="address"><!--신청자 주소 들어올 자리--></li>
-                                    <li data-v-f32583c0="" class="career">페트병 <span th:text="*{petCount}"><!--2--></span>개</li>
-                                    <li data-v-f32583c0="" class="career">유리병 <span th:text="*{glassCount}"><!--2--></span>개</li>
-                                    <li th:text="*{pickupMessage}" data-v-f32583c0="" class="hired"><!--수거 메시지 들어올 자리--></li>
+                                    <li th:text="*{pickupAddress}" style="width: 50%;" data-v-f32583c0="" class="address"><!--신청자 주소 들어올 자리--></li>
+                                    <li data-v-f32583c0="" class="career" style="width: 50%;">페트병 <span th:text="*{petCount}"><!--2--></span>개</li>
+                                    <li data-v-f32583c0="" class="career" style="width: 50%;">유리병 <span th:text="*{glassCount}"><!--2--></span>개</li>
+                                    <li th:text="*{pickupMessage}" style="width: 50%;" data-v-f32583c0="" class="hired"><!--수거 메시지 들어올 자리--></li>
                                 </ul>
                                 <div data-v-f32583c0="" class="quote-price-wrapper">
                                     <div data-v-f32583c0="" class="quote-price">
@@ -90,16 +90,18 @@
             <!---->
         </div>
     </div>
-    <footer th:replace="/app/fix/footer.html :: footer"></footer>
-    <th:block th:if="${session.member !=null}">
-        <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
-    </th:block>
+        <footer th:replace="/app/fix/footer.html :: footer"></footer>
+        <th:block th:if="${session.member !=null}">
+            <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+            <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+        </th:block>
 
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
     let memberCategory = $("input[name='memberCategory']").val();
+    let memberId = $("input[name='memberId']").val();
 </script>
 
 <script src="/js/fix/headerLogin.js"></script>

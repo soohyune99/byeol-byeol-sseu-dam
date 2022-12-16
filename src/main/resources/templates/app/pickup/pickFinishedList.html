@@ -112,9 +112,10 @@
         </article>
     </div>
 </div>
-<footer th:replace="/app/fix/footer.html :: footer"></footer>
+    <footer th:replace="/app/fix/footer.html :: footer"></footer>
     <th:block th:if="${session.member !=null}">
         <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+        <input type="hidden" name="memberId" th:value="${session.member.memberId}">
     </th:block>
 
 </div>
@@ -122,6 +123,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
     let memberCategory = $("input[name='memberCategory']").val();
+    let memberId = $("input[name='memberId']").val();
 </script>
 <script src="/js/fix/headerLogin.js"></script>
 <script>
