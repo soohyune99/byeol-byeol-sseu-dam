@@ -1,9 +1,11 @@
 package com.app.byeolbyeolsseudam.repository.mycourse;
 
 import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
+import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.domain.mycourse.MycourseDTO;
 import com.app.byeolbyeolsseudam.domain.mycourse.QMycourseDTO;
 import com.app.byeolbyeolsseudam.entity.course.QCourse;
+import com.app.byeolbyeolsseudam.entity.mycourse.Mycourse;
 import com.app.byeolbyeolsseudam.entity.mycourse.QMycourse;
 import com.app.byeolbyeolsseudam.entity.spot.QSpot;
 import com.app.byeolbyeolsseudam.repository.mybadge.MybadgeCustomRepository;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.byeolbyeolsseudam.entity.course.QCourse.course;
 import static com.app.byeolbyeolsseudam.entity.mycourse.QMycourse.mycourse;
@@ -46,9 +49,22 @@ public class MycourseCustomRepositoryImpl implements MycourseCustomRepository {
                 mycourse.spot.spotNumber))
                 .from(mycourse)
                 .where(mycourse.member.memberId.eq(memberId))
-                .orderBy(mycourse.createdDate.desc())
+                .orderBy(mycourse.updatedDate.desc())
                 .limit(1)
                 .fetchOne();
+    }
+
+    @Override
+    public Mycourse findActiveCourse(MemberDTO memberDTO, String courseName){
+        Optional<Mycourse> courseOtional = Optional.ofNullable(
+                jpaQueryFactory.selectFrom(mycourse)
+                        .from(mycourse)
+                        .where(mycourse.member.memberId.eq(memberDTO.getMemberId())
+                                .and(mycourse.course.courseName.contains(courseName))
+                                .and(mycourse.spot.spotNumber.ne(5)))
+                        .fetchOne()
+        );
+        return courseOtional.orElse(null);
     }
 
     @Override
@@ -60,7 +76,8 @@ public class MycourseCustomRepositoryImpl implements MycourseCustomRepository {
                 .from(mycourse)
                 .where(
                         courseIdContains(keyword),
-                        mycourse.member.memberId.eq(memberId)
+                        mycourse.member.memberId.eq(memberId),
+                        mycourse.spot.spotNumber.eq(5)
                         )
                 .fetch();
 
