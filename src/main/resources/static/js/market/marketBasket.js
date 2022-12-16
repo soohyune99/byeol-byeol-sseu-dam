@@ -12,8 +12,8 @@ let $modalXBtn = $(".btn-cancel._modal_close_btn");
 let $selectBox = $(".dropdown-toggle");
 let $dropdownMenu = $(".dropdown-menu");
 
-let $totalSelectBtn = $("#basketAllSelect");
-let $selectBtn = $("._cartItemCheckbox");
+let $totalSelectBtn = $("#_all_check");
+let $selectBtn = $(".agree");
 
 
 /*$modalOpenBtn.on('click', function(){
@@ -28,20 +28,28 @@ $selectBox.on('click', function(){
     selectboxOpen();
 });
 
+/* 옵션 선택 박스 열기 */
+function selectboxOpen(){
+    $dropdownMenu.toggle();
+}
 
 // 전체 동의 클릭
-/*$totalSelectBtn.on("click", function(){
-    //각각의 약관의 checked 프로퍼티를 모두 전체동의의 checked 상태로 변경시켜준다.
+const arr1 = new Array();
+const arr2 = new Array();
+$totalSelectBtn.on("click", function(){
+    //각각의 약관의 checked 프로퍼티를 모두 전체 동의의 checked 상태로 변경시켜준다.
     // 전체 동의가 true면 나머지 다 true
-    $selectBtn.prop("checked", $(this).is(":checked"));
-});*/
+    $(".agree").prop("checked", $(this).is(":checked"));
+    arr1.push($(this));
+    console.log(arr1);
+});
 
 // 각각의 약관 동의 클릭
-/*$selectBtn.on("click", function(){
+$(".startBakset").on("click",".agree" ,function(){
     // 각각의 약관의 checked 프로퍼티가 true인 개수를 가져온 뒤
     // 2개 모두 true일 경우 전체 동의도 true이다.
-    $totalSelectBtn.prop("checked", $selectBtn.filter(":checked").length == $selectBtn.length);
-});*/
+    $totalSelectBtn.prop("checked", $(".agree").filter(":checked").length == $(".agree").length);
+});
 
 /* 상품 개수 조절 변수 선언 */
 let $totalItemCount = $(".body_font_color_70.itemCount");
@@ -101,7 +109,7 @@ function totalPrice(){
     let text = "";
     let total = 0;
     for(var i = index; i >= 0; i--) {
-        let itemIdentifier = ".product-price." + i;
+        let itemIdentifier = ".item_price." + i;
         let $itemPrice = $(itemIdentifier).text().split('원')[0].replace(',', '');
         let countIdentifier = ".form-control._order_count_mobile." + i;
         let $itemCount = $(countIdentifier);
@@ -109,7 +117,7 @@ function totalPrice(){
     }
     text += total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     text += "원";
-    $totalPrice.html(text);
+    $(".total-price").html(text);
 }
 /* ================================== MarketBasket ==================================*/
 
@@ -127,7 +135,7 @@ function showBasketList(baskets){
 
     let text = "";
     let check = 0;
-
+    let checkIndex = 0;
     $("._cart_item_count").html(baskets.length);
     baskets.forEach(basket => {
         text += `<tr class="content" style="overflow: visible;">`;
@@ -135,9 +143,8 @@ function showBasketList(baskets){
         text += `<div class="im-flex">`;
         text += `<div class="im-cart-checkbox-wrap">`;
         text += `<div class="checkbox checkbox-styled no-margin">`;
-        text += `<label>`;
-        text += `<input type="checkbox" value="i20221117b8f210ee88cd6" class="_cartItemCheckbox" checked="checked">`;
-        text += `<span></span>`;
+        text +=`<label class="secondChecked" style="padding-left: 6%;">`;
+        text += `<input type="checkbox" class="agree" id="` + basket.basketId + `">`;
         text += `</label>`;
         text += `</div>`;
         text += `</div>`;
@@ -149,7 +156,7 @@ function showBasketList(baskets){
         text += `<p class="cart-item-title text-15" id="shop_cart_title_i20221117b8f210ee88cd6">` + basket.productName + `</p>`;
         text += `</a>`;
         text += `<span class="cart-item-remove">`;
-        text += `<i class="btl bt-times" aria-hidden="true"></i>`;
+        text += `<i class="btl bt-times" aria-hidden="true" id="` + basket.basketId + `"></i>`;
         text += `</span>`;
         text += `</div>`;
         text += `</div>`;
@@ -197,7 +204,7 @@ function showBasketList(baskets){
         text += `<span class="text-bold text-20">` + (basket.productPrice * basket.basketCount) +`</span>`;
         text += `<p class="margin-top-xl no-margin-bottom">`;
         text += `<span class="cart-btn-tools">`;
-        text += `<a href="javascript:;" class="btn hidden-xs btn-primary no-margin-bottom">바로구매</a>`;
+        text += `<a href="javascript:;" id="` + basket.productId + `" class="pay-one-btn hidden-xs btn-primary no-margin-bottom">바로구매</a>`;
         text += `</span>`;
         text += `</p>`;
         text += `</td>`;
@@ -223,14 +230,17 @@ function showBasketList(baskets){
             text += `</div>`;
             text += `</td>`;
             check++;
+            $(".item_price").html(basket.productPrice);
         }
         text += `</tr>`;
-
     });
-    $(".startBakset").append(text);
+    $(".startBakset").html(text);
 
 }
-// 장바구니가 비어있을 때
+
+
+
+/* 장바구니가 비어 있을 때 */
 /*function emptyBasket(){
     let text = "";
 
@@ -254,16 +264,10 @@ function optionModalOpen(basketId){
     )
 }
 
-/* 옵션 변경 모달 x버튼으로 닫기 */
+/* 옵션 변경 모달 x 버튼으로 닫기 */
 function optionModalClose(){
     $optionModal.css('display', 'none');
 }
-
-/* 옵션 선택박스 열기 */
-function selectboxOpen(){
-    $dropdownMenu.toggle();
-}
-
 
 function showBasketModal(basket){
     let text = "";
@@ -278,128 +282,61 @@ function showBasketModal(basket){
 
 };
 
-let basketCount = $("input[name='changeCount']").val();
-let basketId = $("input[name='hidden-basket-id']").text();
+// let basketCount = $("input[name='changeCount']").val();
+// let basketId = $("input[name='hidden-basket-id']").text();
 
 /* 옵션 변경 버튼 누르면 update */
-function optionChangeModal(basketId){
+function optionChangeModal(){
+    let basketCount = $("input[name='changeCount']").val();
+    let basketId = $("input[name='hidden-basket-id']").text();
 
+    console.log($("input[name='hidden-basket-id']").text());
+    console.log($("input[name='changeCount']").val());
 
     basketService.updateBasketCount(
         basketId, basketCount, afterUpdateBasketModal
     );
+
 }
 
-function afterUpdateBasketModal(basket){
-    console.log(basket.basketCount);
-
-    let text = "";
-    let check = 0;
-
-    baskets.forEach(basket => {
-        text += `<tr class="content" style="overflow: visible;">`;
-        text += `<td class="slt img">`;
-        text += `<div class="im-flex">`;
-        text += `<div class="im-cart-checkbox-wrap">`;
-        text += `<div class="checkbox checkbox-styled no-margin">`;
-        text += `<label>`;
-        text += `<input type="checkbox" value="i20221117b8f210ee88cd6" class="_cartItemCheckbox" checked="checked">`;
-        text += `<span></span>`;
-        text += `</label>`;
-        text += `</div>`;
-        text += `</div>`;
-        text += `<div class="im-cart-img-wrap im-grow im-xs-flex im-xs-flex-col">`;
-        text += `<a class="cart-item-wrap" href="http://localhost:10001/market/detail">`;
-        text += `<div class="cart-item-img">`;
-        text += `<img src="` + basket.productFileProfileName + `" alt="cart item">`;
-        text += `</div>`;
-        text += `<p class="cart-item-title text-15" id="shop_cart_title_i20221117b8f210ee88cd6">` + basket.productName + `</p>`;
-        text += `</a>`;
-        text += `<span class="cart-item-remove">`;
-        text += `<i class="btl bt-times" aria-hidden="true"></i>`;
-        text += `</span>`;
-        text += `</div>`;
-        text += `</div>`;
-        text += `</div>`;
-        text += `</td>`;
-        text += `<td class="amount td-blocked hidden-xs">`;
-        text += `<div class="text-13 title text-center text-15">` + basket.basketCount +`</div>`;
-        text += `<div class="text-center margin-top-xl no-margin-bottom">`;
-        text += `<span class="cart-btn-tools">`;
-        text += `<a href="javascript:optionModalOpen(` + basket.basketId + `)"   class="change-btn btn _modal_open_btn no-margin-bottom">수량 변경</a>`;
-        text += `</span>`;
-        text += `</div>`;
-        text += `</td>`;
-        text += `<td class="amount td-blocked hidden-lg hidden-md hidden-sm no-margin-bottom">`;
-        text += `<div class="im-price-result im-flex im-justify-between">`;
-        text += `<div class="title"> 주문금액 </div>`;
-        text += `<div class="cont blocked text-20 text-bold">` + basket.productPrice +`</div>`;
-        text += `</div>`;
-        text += `<div class="im-flex im-justify-between margin-bottom-xl">`;
-        text += `<div class="title">`;
-        text += `<span>상품금액( <em class="hidden-lg hidden-md ">총</em>1개) </span>`;
-        text += `</div>`;
-        text += `<div class="cont blocked">` + basket.productPrice + `</div>`;
-        text += `</div>`;
-        text += `<div>`;
-        text += `<div class="im-flex im-justify-between margin-bottom-xl">`;
-        text += `<span class="title">배송비</span>`;
-        text += `<div class="cont text-12 text-right">`;
-        text += `<span>3,000원</span>`;
-        text += `<a href="javascript:;" class="html-popover deliv_price_info" data-toggle="popover" tabindex="0" data-trigger="focus" title="" data-content="<div class=&quot;&quot;><label class=&quot;text-bold text-13&quot;>배송비 안내</label><div class=&quot;table-responsive&quot;><table class=&quot;table no-margin table-no-padding-x&quot;><caption class=&quot;text-bold no-padding-top&quot;>조건부 무료배송</caption><tr><td colspan=&quot;2&quot;><p>기본 배송비 3,000원<br>50,000원 이상 구매 시 무료배송</p></td></tr></table></div></div>" data-placement="auto" data-original-title="">`;
-        text += `<i class="btm bt-question-circle opacity-60 text-13" aria-hidden="true"></i>`;
-        text += `<span class="sr-only">배송안내 툴팁</span>`;
-        text += `</a>`;
-        text += `</div>`;
-        text += `</div>`;
-        text += `<div class="im-flex im-justify-between margin-bottom-xl">`;
-        text += `<span class="title">배송수단</span>`;
-        text += `<div class="cont text-13 text-right">`;
-        text += `<span class="margin-bottom-lg">택배</span>`;
-        text += `</div>`;
-        text += `</div>`;
-        text += `</div>`;
-        text += `</td>`;
-        text += `<td class="price td-blocked text-center hidden-xs">`;
-        text += `<span class="text-bold text-20">9,900원</span>`;
-        text += `<p class="margin-top-xl no-margin-bottom">`;
-        text += `<span class="cart-btn-tools">`;
-        text += `<a href="javascript:;" class="btn hidden-xs btn-primary no-margin-bottom">바로구매</a>`;
-        text += `</span>`;
-        text += `</p>`;
-        text += `</td>`;
-        if(check == 0){
-            text += `<td class="hidden-xs td-blocked text-center row-span" rowspan=" ` + baskets.length + `">`;
-            text += `<div class="cont text-15 text-center im-flex im-justify-center im-items-center margin-bottom-lg">`;
-            text += `<span class="text-bold">`;
-            text += `<span>3,000원</span>`;
-            text += `</span>`;
-            text += `<a href="javascript:;" class="html-popover deliv_price_info margin-left-lg" data-toggle="popover" tabindex="0" data-trigger="focus" title="" data-content="<div class=&quot;&quot;><label class=&quot;text-bold text-15&quot;>배송비 안내</label><div class=&quot;table-responsive&quot;><table class=&quot;table no-margin&quot;><caption class=&quot;text-bold no-padding-top&quot;>조건부 무료배송</caption><tr><td colspan=&quot;2&quot;><p>기본 배송비 3,000원<br>50,000원 이상 구매 시 무료배송</p></td></tr></table></div></div>" data-placement="auto" data-original-title="">`;
-            text += `<i class="btm bt-question-circle opacity-60 text-13" aria-hidden="true"></i>`;
-            text += `<span class="sr-only">배송안내 툴팁</span>`;
-            text += `</a>`;
-            text += `</div>`;
-            text += `<div class="cont text-13 text-center opacity-60">`;
-            text += `<span class="margin-bottom-lg">택배</span>`;
-            text += `</div>`;
-            text += `</td>`;
-            text += `<td class="td-blocked hidden-lg hidden-md hidden-sm" style="margin-top: 6px;">`;
-            text += `<div class="im-flex cart-btn-tools">`;
-            text += `<a href="javascript:;" class="btn btn-cart-option full-width margin-right-lg _modal_open_btn">수량 변경</a>`;
-            text += `<a class="btn btn-cart-order full-width btn-primary" href="javascript:;">바로구매</a>`;
-            text += `</div>`;
-            text += `</td>`;
-            check++;
-        }
-        text += `</tr>`;
-
-    });
-    $(".startBakset").append(text);
+function afterUpdateBasketModal(){
+    $optionModal.css('display', 'none');
+    showBasket();
 }
 
 
+/* 선택 상품 삭제 */
+/*
+const arr1 = new Array();
+$(".startBakset").on("click", ".agree", function(){
+    arr1.push($(this));
+    console.log(arr1);
+});
+*/
+
+/* x 버튼 누르면 삭제 */
+$(".startBakset").on("click", ".bt-times", function(){
+    let basketId = $(this).attr("id");
+    basketService.deleteBasket(
+        basketId, showBasket
+    )
+});
 
 
 
+
+/* ================================== MarketPayment ==================================*/
+
+/* 개별 구매*/
+$(".startBakset").on("click", ".pay-one-btn", function(){
+    console.log("개별 구매");
+    let productId = $(this).attr("id");
+    console.log(productId);
+    let $productCount = $("input[name='changeCount']").val();
+    console.log($productCount);
+
+    location.href ='/market/payment?productId='+ productId + '&count='+ $productCount;
+
+});
 
 

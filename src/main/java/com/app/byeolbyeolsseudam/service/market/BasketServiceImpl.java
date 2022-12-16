@@ -48,14 +48,14 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public BasketDTO updateBasket(BasketDTO basketDTO){
-        Basket basket = basketRepository.findById(basketDTO.getBasketId()).get();
-        Member member = memberRepository.findById(basketDTO.getMemberId()).get();
-        Product product = productRepository.findById(basketDTO.getProductId()).get();
-
-        basketDTO.setBasketCount(basketDTO.getBasketCount());
-        basket.updateBasketCount(basketDTO);
+    public void updateBasket(Long basketId, int basketCount){
+        Basket basket = basketRepository.findById(basketId).get();
+        basket.updateBasketCount(basketCount);
         basketRepository.save(basket);
-        return basketRepository.selectBasket(basket.getBasketId());
+    }
+
+    @Override
+    public void deleteBasket(Long basketId){
+        basketRepository.delete(basketRepository.findById(basketId).get());
     }
 }

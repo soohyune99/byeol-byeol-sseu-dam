@@ -19,6 +19,9 @@ public interface BasketService {
     public BasketDTO selectBasket(Long basketId);
 
     // 장바구니 수량 변경
-    public BasketDTO updateBasket(BasketDTO basketDTO);
+    public void updateBasket(Long basketId, int basketCount);
+
+    // 장바구니 삭제
+    public void deleteBasket(Long basketId);
 
 }

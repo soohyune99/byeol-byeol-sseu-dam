@@ -424,8 +424,8 @@ div[doz_type="grid"] {
 
 .checkbox-styled:not(ie8) input[type="radio"], .radio-styled:not(ie8) input[type="radio"], .checkbox-styled:not(ie8) input[type="checkbox"], .radio-styled:not(ie8) input[type="checkbox"] {
     position: absolute;
-    z-index: -1;
-    opacity: 0;
+    /*z-index: -1;*/
+    /*opacity: 0;*/
     filter: alpha(opacity=0);
 }
 

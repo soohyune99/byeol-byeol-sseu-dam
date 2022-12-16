@@ -17,6 +17,8 @@ import com.app.byeolbyeolsseudam.type.OrderStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
@@ -30,6 +32,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public ProductDTO getOrderDetailList(Long productId){
         return productRepository.selectProduct(productId);
+    }
+
+    @Override
+    public List<ProductDTO> getOrderDetail(Long productId){
+        return productRepository.selectProductAll(productId);
     }
 
     @Override
