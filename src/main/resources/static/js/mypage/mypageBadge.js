@@ -148,13 +148,19 @@ function showBadges(badges){
 
 /* 획득한 배지 조회 callback */
 function showMyBadges(mybadges){
+    let badgeAr = [];
+    let badgeArray = [];
+
     mybadges.forEach(mybadge => {
+        badgeAr.push(mybadge.badgeId);
+
         $(".mybadgeWrap." + mybadge.badgeId).addClass("acquired");
         $(".mybadgeImg." + mybadge.badgeId).addClass("acquired");
         $(".mybadgeImg." + mybadge.badgeId).attr('onclick', 'badgeModalOpen(' + mybadge.badgeId + ')');
     });
+    badgeArray = Array.from(new Set(badgeAr));
 
-    $(".acquiredBadge").html(mybadges.length);
+    $(".acquiredBadge").html(badgeArray.length);
 }
 
 

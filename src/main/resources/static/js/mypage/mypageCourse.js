@@ -3,9 +3,10 @@
 let $unlockCourse = $(".mycourseWrap .unlock");
 let $unlockCourseModal = $(".not-open-course");
 
-globalThis.activeCourseName = '';   // 진행중인 코스
-globalThis.activeSpotNumber = 0;    // 진행중인 스팟
-
+globalThis.activeCourseName = '';   // 진행 중인 코스이름
+globalThis.activeSpotNumber = 0;    // 진행 중인 스팟순서
+globalThis.activeCourse = 0;        // 진행 중인 코스 수
+let clickTabFlag = true;            // 코스 탭을 클릭했는지 여부
 
 showMyInfo();
 
@@ -46,6 +47,7 @@ function getMyCourse(){
 
 /* 코스탭 클릭 시 */
 function clickCourseTab(courseId){
+    clickTabFlag = false;
     $(".mycourseTab").removeClass("active");
     $(".mycourseTab." + courseId).addClass("active");
 
@@ -57,9 +59,9 @@ function clickCourseTab(courseId){
 function showCourse(courses){
     let text = "";
     let spotText = "";
-    let courseAr = [];                              // 진행중이거나 완주한 코스들
-    let courseArray = [];                           // 중복 제거한 코스들
-    let mycourseLength = 0;                         // 내가 참여한 코스 수
+    let courseAr = [];                      // 진행중이거나 완주한 코스들
+    let courseArray = [];                   // 중복 제거한 코스들
+    let mycourseLength = 0;                 // 내가 참여한 코스 수
 
     if(courses.length == 0) {
         $(".myTabContents.noticeTab").css('display', 'none');
@@ -76,6 +78,7 @@ function showCourse(courses){
             if (course.courseName == mycourse.courseName && mycourse.courseFinishedStatus == '진행중') {
                 globalThis.activeCourseName = mycourse.courseName;
                 globalThis.activeSpotNumber = mycourse.spotNumber;
+                clickTabFlag = false;
             }
         });
 
@@ -120,7 +123,7 @@ function showCourse(courses){
             });
         }
 
-        showSpot(globalThis.activeSpotNumber);
+        showSpot(activeSpotNumber);
     });
     $(".mycourseWrap").html(text);
     $(".courseList").html(spotText);
@@ -151,8 +154,23 @@ function showMyCourse(course){
 function showSpot(activeSpotNumber){
     let $courseLocation = $(".mycourseLocation");   // 진행 위치
     let $statusBar = $(".participatingCourseLine"); // 진행상태 바
+    let text = "";
+
     $courseLocation.css("padding-right", '0%');
     $courseLocation.css("padding-left", '0%');
+
+    if(globalThis.activeCourse == 0 && clickTabFlag){
+        console.log("들어옴")
+        console.log(clickTabFlag)
+        $(".mycourseLocation").hide();
+        $(".noticeListWrap").hide();
+        $(".no-active-course").show();
+
+    }else {
+        $(".mycourseLocation").show();
+        $(".noticeListWrap").show();
+        $(".no-active-course").hide();
+    }
 
     if(activeSpotNumber == 1) {
         $courseLocation.css('padding-right', '76%');

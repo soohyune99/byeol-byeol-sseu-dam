@@ -16,8 +16,12 @@ function insertMycourse(){
     );
 }
 
-function afterInsertMycourse(){
-    console.log("콜백 돌아옴")
+function afterInsertMycourse(mycourse){
+    console.log("콜백")
+    console.log(mycourse);
+    console.log(mycourse.courseName)
+    $(".jubgging-courseName").html(mycourse.courseName);
+    $(".jubgging-spotNumber").html(mycourse.spotName);
 }
 
 

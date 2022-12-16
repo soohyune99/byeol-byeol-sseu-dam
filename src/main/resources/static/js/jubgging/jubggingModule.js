@@ -4,7 +4,7 @@ let jubggingService = (function(){
 
     function insertCourse(callback, error){
         $.ajax({
-            url: "/insert/" + courseName + "/" + spotNumber,
+            url: "/course/" + courseName + "/" + spotNumber,
             type: "get",
             success: function(status, xhr){
                 if(callback){

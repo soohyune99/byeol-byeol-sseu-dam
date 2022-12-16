@@ -110,7 +110,7 @@ function showMyOrderDetail(myorder){
     $(".myorder-memberPhone").html(myorder.memberPhone);
     $(".myorder-memberEmail").html(myorder.memberEmail);
     $(".myorder-orderAddress").html(myorder.orderAddress);
-    $(".myorder-orderPrice").html(totalPrice - 3000 + "원");
+    $(".myorder-orderPrice").html(totalPrice + "원");
     $(".myorder-totalPrice").html(totalPrice + "원");
 
 }

@@ -42,16 +42,16 @@ public class Mycourse extends Period {
         this.spot = spot;
     }
 
-    @Builder
-    public Mycourse(CourseFinishedStatus courseFinishedStatus) {
-        this.courseFinishedStatus = courseFinishedStatus;
-    }
-
     public void update(MycourseDTO mycourseDTO){
         this.courseFinishedStatus = mycourseDTO.getCourseFinishedStatus();
     }
 
     public void updateStatus(CourseFinishedStatus courseFinishedStatus){
+        this.courseFinishedStatus = courseFinishedStatus;
+    }
+
+    @Builder
+    public Mycourse(CourseFinishedStatus courseFinishedStatus) {
         this.courseFinishedStatus = courseFinishedStatus;
     }
 }

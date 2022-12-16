@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import static com.app.byeolbyeolsseudam.entity.badge.QBadge.badge;
@@ -69,45 +70,59 @@ public class JubggingServiceImpl implements JubggingService {
         Course course = courseRepository.findByCourseNameContains(courseName);
         Spot spot = spotRepository.findBySpotNumberAndCourseCourseName(spotNumber, course.getCourseName());
 
-        MycourseDTO mycourseDTO = new MycourseDTO();
-        mycourseDTO.setCourseFinishedStatus(
-                course.getSpots().size() == spotNumber? CourseFinishedStatus.완주 : CourseFinishedStatus.진행중
-        );
-        Mycourse mycourse = mycourseDTO.toEntity();
-        mycourse.changeMember(member);
-        mycourse.changeCourse(course);
-        mycourse.changeSpot(spot);
-        mycourseRepository.save(mycourse);
+        Mycourse mycourse = mycourseRepository.findActiveCourse(memberDTO, courseName);
+        MycourseDTO mycourseDTO = null;
 
-        giveJubggingBadge(memberDTO.getMemberId());
+        if(mycourse != null){
+            mycourse.changeSpot(spot);
+            mycourse.updateStatus(
+                    course.getSpots().size() == spotNumber ?
+                            CourseFinishedStatus.완주 : CourseFinishedStatus.진행중
+            );
+            mycourseRepository.save(mycourse);
 
+        } else {
+            mycourseDTO = new MycourseDTO();
+            mycourseDTO.setCourseFinishedStatus(
+                    course.getSpots().size() == spotNumber? CourseFinishedStatus.완주 : CourseFinishedStatus.진행중
+            );
+            mycourse = mycourseDTO.toEntity();
+            mycourse.changeMember(member);
+            mycourse.changeCourse(course);
+            mycourse.changeSpot(spot);
+            mycourseRepository.save(mycourse);
+        }
+
+        // 방금 저장 혹은 수정한 mycourse 불러오기
         mycourseDTO = mycourseRepository.selectMyCourse(memberDTO.getMemberId());
+
+        giveJubggingBadge(mycourseDTO);
 
         return mycourseDTO;
     }
 
     /* 달성 조건 만족 시 배지 지급 */
-    public void giveJubggingBadge(Long memberId){
+    public void giveJubggingBadge(MycourseDTO mycourseDTO){
         IntStream.rangeClosed(1, 5).forEach( i -> {
-            if(mycourseRepository.badgeCondition(memberId, i + "코스") > 0){
+            if(mycourseRepository.badgeCondition(mycourseDTO.getMemberId(), i + "코스") > 0){
                 Mybadge mybadge = new Mybadge();
-                mybadge.changeMember(memberRepository.findById(memberId).get());
+                mybadge.changeMember(memberRepository.findById(mycourseDTO.getMemberId()).get());
+                mybadge.changeBadge(badgeRepository.findByBadgeInfoContaining("줍깅 " + i + "코스"));
                 mybadgeRepository.save(mybadge);
-                mybadge.changeBadge(badgeRepository.findByBadgeInfoContaining(i + "코스"));
             }
         });
 
-        if(mycourseRepository.badgeCondition(memberId, "SPECIAL") > 0){
+        if(mycourseRepository.badgeCondition(mycourseDTO.getMemberId(), "SPECIAL") > 0){
             Mybadge mybadge = new Mybadge();
-            mybadge.changeMember(memberRepository.findById(memberId).get());
+            mybadge.changeMember(memberRepository.findById(mycourseDTO.getMemberId()).get());
+            mybadge.changeBadge(badgeRepository.findByBadgeInfoContaining("스페셜"));
             mybadgeRepository.save(mybadge);
-            mybadge.changeBadge(badgeRepository.findByBadgeInfoContaining("SPECIAL"));
         }
 
         for(int i = 1; i <= 6; i++){
-            if(mycourseRepository.badgeCondition(memberId, null) == i * 5){
+            if(mycourseRepository.badgeCondition(mycourseDTO.getMemberId(), null) == i * 5){
                 Mybadge mybadge = new Mybadge();
-                mybadge.changeMember(memberRepository.findById(memberId).get());
+                mybadge.changeMember(memberRepository.findById(mycourseDTO.getMemberId()).get());
                 mybadge.changeBadge(badgeRepository.findByBadgeInfoContaining((i * 5) + "회"));
                 mybadgeRepository.save(mybadge);
             }
