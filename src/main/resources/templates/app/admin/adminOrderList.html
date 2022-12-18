@@ -317,7 +317,7 @@
     var $checkboxes = $(".form-check-input.checkbox");
     let $form = $("form[name='statusForm']");
     $(".modify").on("click",function () {
-
+        $("input#orderStatus").val("주문완료")
         $("div[name='orderStatus']").css("display", "block")
         $("select[name='orderStatus']").css("display", "none")
         $(".modify").css("display", "block")
@@ -349,7 +349,7 @@
         $("input#orderId").val("")
         $("input#createdDate").val("")
         $("input#memberName").val("")
-        $("input#orderStatus").val("")
+        $("input#orderStatus").val("주문완료")
     })
 
     $(".confirm").on("click",function () {
