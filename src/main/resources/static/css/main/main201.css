@@ -978,7 +978,7 @@
 
 .meet-provider[data-v-78b11936] {
     width: 9.5rem;
-    height: 10rem;
+    height: 11.3rem;
     padding: .75rem;
     border-radius: 8px;
     background-color: #f2f2f2
@@ -1001,7 +1001,7 @@
 
 @media (min-width:768px) {
     .meet-provider .meet-provider-icon[data-v-78b11936] {
-        margin-bottom: 1rem;
+        margin-bottom: 1.25rem;
         width: 3.5rem;
         height: 3.5rem
     }

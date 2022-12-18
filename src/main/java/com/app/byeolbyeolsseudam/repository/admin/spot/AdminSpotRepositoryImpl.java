@@ -56,7 +56,8 @@ public class AdminSpotRepositoryImpl implements AdminSpotCustomRepository {
                 spot.spotNumber,
                 spot.spotQrName,
                 spot.spotQrPath,
-                spot.spotQrUuid
+                spot.spotQrUuid,
+                spot.course.courseId
         )).from(spot)
                 .where(spot.spotId.eq(spotId))
                 .fetchOne();

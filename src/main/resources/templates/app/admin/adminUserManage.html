@@ -314,8 +314,16 @@
     </div>
 </div>
 
+<th:block th:if="${session.member !=null}">
+    <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+</th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+    let memberName = $("input[name='memberName']").val();
+</script>
 <script src="/js/admin/admin.js"></script>
 <script>
     var $checkboxes = $(".form-check-input.checkbox");

@@ -32,7 +32,8 @@ function showMemberInfo(member){
     $("h4.memberName").text(member.memberName);
 
     if(member.memberLoginType == 'KAKAO'){
-        $("button.logout").attr("onclick","location.href='https://kauth.kakao.com/oauth/logout?client_id=b365527827a25dae48ba21331cda4133&logout_redirect_uri=http://localhost:10001/kakao/logout'")
+        // $("button.logout").attr("onclick","location.href='https://kauth.kakao.com/oauth/logout?client_id=b365527827a25dae48ba21331cda4133&logout_redirect_uri=http://localhost:10001/kakao/logout'")
+        $("button.logout").attr("onclick","location.href='/logout'")
     }else if(member.memberLoginType == 'NAVER'){
         $("button.logout").attr("onclick","location.href='/logout'")
     }else if(member.memberLoginType == 'GOOGLE'){

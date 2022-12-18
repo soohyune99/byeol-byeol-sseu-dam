@@ -19,6 +19,7 @@ import com.app.byeolbyeolsseudam.repository.admin.product.AdminProductRepository
 import com.app.byeolbyeolsseudam.repository.admin.review.AdminReviewRepository;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.mypoint.MypointRepository;
+import com.app.byeolbyeolsseudam.type.OrderStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -114,6 +115,8 @@ public class AdminProductService {
         order.updateStatus(orderDTO.getOrderStatus());
 
         adminOrderRepository.save(order);
+
+        if(orderDTO.getOrderStatus().equals(OrderStatus.배송완료)){
 //      주문 당사자
         Member member = order.getMember();
 
@@ -130,6 +133,7 @@ public class AdminProductService {
         member.updateMemberPoint(memberDTO);
 
         memberRepository.save(member);
+        }
     }
 
     public void removeOrder(List<String> orderIdstr){

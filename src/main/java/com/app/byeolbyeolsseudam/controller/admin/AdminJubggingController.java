@@ -123,6 +123,9 @@ public class AdminJubggingController {
 
     @PostMapping("/spot/modified")
     public RedirectView adminSpotModified(SpotDTO spotDTO){
+        log.info("스팟  "+ spotDTO.getSpotId());
+        log.info("코스  " + spotDTO.getCourseId());
+
         adminSpotService.updateSpot(spotDTO, spotDTO.getSpotId());
         return new RedirectView("/admin/jubgging/spot/1");
     }

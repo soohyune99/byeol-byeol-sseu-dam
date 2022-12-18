@@ -6,6 +6,7 @@ import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.entity.member.QMember;
 import com.app.byeolbyeolsseudam.repository.admin.member.AdminMemberRepository;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.type.MemberCategory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -42,6 +43,12 @@ public class AdminMemberService {
     public void removeMember(List<String> memberIdstr){
         List<Long> memberId = new ArrayList<>();
         memberIdstr.stream().map(Long::parseLong).forEach(memberId::add);
-        memberId.forEach(adminMemberRepository::deleteById);
+//        memberId.forEach(adminMemberRepository::deleteById);
+
+        memberId.stream().map(id->adminMemberRepository.findById(id).get()).forEach(member->{
+            member.updateMemberCategory(MemberCategory.탈퇴회원);
+            adminMemberRepository.save(member);
+        });
+
     }
 }

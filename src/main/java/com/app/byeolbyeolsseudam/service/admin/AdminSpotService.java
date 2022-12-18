@@ -7,6 +7,7 @@ import com.app.byeolbyeolsseudam.repository.admin.course.AdminCourseRepository;
 import com.app.byeolbyeolsseudam.repository.admin.spot.AdminSpotRepository;
 import com.app.byeolbyeolsseudam.repository.spot.SpotRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AdminSpotService {
     private final AdminSpotRepository adminSpotRepository;
     private final AdminCourseRepository adminCourseRepository;
@@ -41,6 +43,7 @@ public class AdminSpotService {
 
     public void updateSpot(SpotDTO spotDTO, Long spotId){
         adminSpotRepository.update(spotDTO);
+        log.info(spotDTO.getCourseId()+": 코스아이디");
         Course course = adminCourseRepository.findById(spotDTO.getCourseId()).get();
         Spot spot = adminSpotRepository.findById(spotId).get();
 

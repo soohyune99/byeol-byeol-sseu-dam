@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="/css/admin/adminCssAll.css">
     <style>
         .programMemberTBL1{
-            width: 6%; margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
+            width: 10%; margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
         }
         .programMemberTBL2{
-            width: 23%; margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
+            width: 30%; margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
         }
         .programMemberTBL3{
-            width: 23%;  margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
+            width: 30%;  margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
         }
         .programMemberTBL4{
-            width: 23%;  margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
+            width: 30%;  margin: 0px 6px 0px 0px ;text-align: center; background: rgba(206,238,217,0.45);
         }
         .programMemberTBL5{
             width: 25%; margin: 0px 0px 0px 0px ; text-align: center; background: rgba(206,238,217,0.45);
@@ -192,8 +192,16 @@
     </div>
 </div>
 
+<th:block th:if="${session.member !=null}">
+    <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+</th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+    let memberName = $("input[name='memberName']").val();
+</script>
 <script src="/js/admin/admin.js"></script>
 <script>
     //리스트 체크박스

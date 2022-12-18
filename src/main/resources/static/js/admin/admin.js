@@ -1,3 +1,17 @@
+
+checkAdmin();
+
+function checkAdmin() {
+	if(memberCategory != "관리자"){
+		alert("접근 권한이 없습니다.")
+		location.href="http://localhost:10001/main";
+	}else if($(location).attr('href') == "http://localhost:10001/admin"){
+		alert("관리자 "+ memberName +"님 환영합니다")
+	}
+}
+
+
+
 // 리스트 체크박스
 var $all = $(".form-check-input.total");
 var $checkboxes = $(".form-check-input.checkbox");

@@ -169,7 +169,7 @@
                                                                                                    style="display:none;margin: 0 auto;">
                                                                                             <img src="/images/admin/002.png"
                                                                                                  id="thumbnail" style="width: 100%; height: 100%;">
-                                                                                            <input type="hidden" name="spotQrName">;
+                                                                                            <input type="hidden" name="spotQrName">
                                                                                         </label>
                                                                                         <div id="spotQrInfo"></div>
                                                                                     </div>
@@ -203,8 +203,16 @@
     </div>
 </div>
 
+<th:block th:if="${session.member !=null}">
+    <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+</th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+    let memberName = $("input[name='memberName']").val();
+</script>
 <script src="/js/admin/admin.js"></script>
 <script>
     let $qrBtn = $("#generateQr");
@@ -213,7 +221,7 @@
         let $courseNumber = $("#courseSpot").val();
         let $spotNumber = $("#spotNumber").val();
 
-        let path = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=http://localhost:10001/login?course="+ $courseNumber + "&spot=" + $spotNumber;
+        let path = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=http://localhost:10001/login?course="+ $courseNumber + "%26spot=" + $spotNumber;
 
         $("img#thumbnail").attr("src",path)
         $("input[name='spotQrName']").val(path);
