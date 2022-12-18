@@ -5,22 +5,26 @@ import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
 import com.app.byeolbyeolsseudam.domain.orderdetail.OrderDetailDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
+import com.app.byeolbyeolsseudam.entity.basket.Basket;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.entity.order.Order;
 import com.app.byeolbyeolsseudam.entity.orderdetail.OrderDetail;
 import com.app.byeolbyeolsseudam.entity.product.Product;
+import com.app.byeolbyeolsseudam.repository.basket.BasketRepository;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
 import com.app.byeolbyeolsseudam.repository.order.OrderRepository;
 import com.app.byeolbyeolsseudam.repository.orderdetail.OrderDetailRepository;
 import com.app.byeolbyeolsseudam.repository.product.ProductRepository;
 import com.app.byeolbyeolsseudam.type.OrderStatus;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
 //    private final OrderDetailRepository orderDetailRepository;
@@ -28,6 +32,7 @@ public class OrderServiceImpl implements OrderService {
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
+    private final BasketRepository basketRepository;
 
     @Override
     public ProductDTO getOrderDetailList(Long productId){
@@ -46,28 +51,38 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Long order(Payment payment){
+        log.info("==================" + payment);
         OrderDTO orderDTO = new OrderDTO();
         OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
-
         Member member = memberRepository.findById(payment.getMemberId()).get();
-        Product product = productRepository.findById(payment.getProductId()).get();
-
         orderDTO.setOrderAddress(payment.getZipcode()+ payment.getRoadAdd() + payment.getDetailAdd() + payment.getWriteAdd());
         orderDTO.setOrderMessage(payment.getMessage());
         orderDTO.setOrderStatus(OrderStatus.주문완료);
 
         orderDetailDTO.setOrderDetailCount(payment.getBuyCount());
 
-        Order order = orderDTO.toEntity();
-        order.changeMember(member);
-        orderRepository.save(order);
+        Order orders = orderDTO.toEntity();
+        orders.changeMember(member);
+        orderRepository.save(orders);
 
         OrderDetail orderDetail = orderDetailDTO.toEntity();
-        orderDetail.changeOrder(order);
-        orderDetail.changeProduct(product);
-        orderDetailRepository.save(orderDetail);
+        orderDetail.changeOrder(orders);
 
-        return order.getOrderId();
+        if(productRepository.findById(payment.getProductId()).get() != null){
+            orderDetail.changeProduct(productRepository.findById(payment.getProductId()).get());
+            orderDetailRepository.save(orderDetail);
+        }else{
+            Basket basket = basketRepository.findById(payment.getBasketId()).get();
+            log.info("1111111111111111111111" + basket);
+            orderDetail.changeProduct(basket.getProduct());
+            log.info(",,,,,,,,,,,,,,,,,,," + basket.getProduct());
+            log.info("22222222222222222" + orderDetail);
+            orderDetailRepository.save(orderDetail);
+        }
+//        Product product = productRepository.findById(payment.getProductId()).get();
+//        Basket basket = basketRepository.findById(payment.getBasketId()).get();
+
+        return orders.getOrderId();
 
     }
 

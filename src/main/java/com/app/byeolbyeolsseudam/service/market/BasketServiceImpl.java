@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -55,7 +57,45 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public void deleteBasket(Long basketId){
-        basketRepository.delete(basketRepository.findById(basketId).get());
+    public void deleteBasket(String basketId){
+
+
+        if(!basketId.contains(",")){
+            basketRepository.deleteById(Long.valueOf(basketId));
+        }else{
+            String[] arr = basketId.split(",");
+
+            Arrays.stream(arr).forEach(id->{
+                    basketRepository.deleteById(Long.valueOf(id));
+            });
+        }
     }
+
+    @Override
+    public List<BasketDTO> buyBasket(String basketId){
+        log.info("==============" + basketId);
+        List<BasketDTO> basketDTOO = new ArrayList<>();
+        if(!basketId.contains(",")){
+            String one = basketId.replaceAll("\"","");
+            log.info("========111111======" + one);
+            basketDTOO.add(basketRepository.selectBasket(Long.valueOf(one)));
+        }else{
+            log.info("======2222222========" + basketId);
+            String s = basketId.replaceAll("\"","");
+            log.info("-------------------" + s);
+            String[] arr2 = s.split(",");
+            log.info("======3333333========" + arr2);
+            Arrays.stream(arr2).forEach(id ->{
+                log.info("======4444444========" + id);
+                basketDTOO.add(basketRepository.selectBasket(Long.valueOf(id)));
+            });
+        }
+        basketDTOO.forEach(basket -> {
+            log.info("=========================" + basket.getProductName());
+        });
+        return basketDTOO;
+//        basketId.stream().map(basketRepository::selectBasket).forEach(basketDTOO::add);
+//        return basketDTOO;
+    }
+
 }

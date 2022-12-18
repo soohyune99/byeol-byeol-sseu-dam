@@ -22,6 +22,9 @@ public interface BasketService {
     public void updateBasket(Long basketId, int basketCount);
 
     // 장바구니 삭제
-    public void deleteBasket(Long basketId);
+    public void deleteBasket(String basketId);
+
+    // 장바구니 구매
+    public List<BasketDTO> buyBasket(String basketId);
 
 }

@@ -223,33 +223,46 @@ let count = url[url.length - 1];    // 주문 수량
 let producturl = url[url.length - 2].split("&");
 let productId = producturl[producturl.length - 2];    // 상품 번호
 
-getOrderDetailList();
+getMemberDetailList();
+typePayment();
 
-/* 상품 & 회원 조회 */
-function getOrderDetailList(){
+/* 쿼리스트링 가져오는 메소드 */
+function searchParam(key) {
+    return new URLSearchParams(location.search).get(key);
+}
+let paymentFlag = searchParam('basketId');
+
+function typePayment(){
+    let paymentFlag = searchParam('basketId');
+    console.log(paymentFlag);
+
+    if(paymentFlag != '' && paymentFlag != null){          // 장바구니에서 넘어옴
+        console.log("if문");
+        basketService.buyBasketProduct(
+            paymentFlag, showOrderBasketDetail
+        )
+    }else{
+        console.log("else문");
+        orderService.getOrderDetail(
+            productId, showOrderProductDetail
+        );
+    }
+}
+
+/* 회원 조회 */
+function getMemberDetailList(){
     orderService.getOrderMember(
         memberId, showOrderMemberDetail
-    );
-
-    orderService.getOrderDetail(
-        productId, showOrderProductDetail
     );
 }
 
 /* 회원 정보 */
 function showOrderMemberDetail(member){
-
     $(".info-member-id").html(member.memberId);
     $(".info-member-name").html(member.memberName);
     $(".info-member-email").html(member.memberEmail);
     $(".info-member-phone").html(member.memberPhone);
     $(".my-point").html(member.memberPoint);
-
-    console.log(member.memberName);
-    console.log(member.memberEmail);
-    console.log(member.memberPhone);
-    console.log(member.memberPoint);
-
 }
 
 /* 포인트 사용 유효성 검사 - 전액 사용 */
@@ -262,7 +275,7 @@ function useMypoint(){
     $("input._input_point").val($mypoint);  // 포인트 input 태그 안에 자동으로 전액 포인트 입력
     $(".use_point_text").html("포인트 사용");
     $(".use_point_number").html(" - " + $mypoint + "원");  // 전액 포인트 사용
-    $(".total-price").html($productPrice - $mypoint + "원");
+    $(".total-price").html(($productPrice - $mypoint)+ "원");
     $(".save-point").html(($productPrice - $mypoint) * 0.01);
 
     console.log(document.getElementById('sample4_postcode').value); // 우편번호
@@ -276,7 +289,6 @@ function useMypoint(){
     let writeAdd = document.getElementById("sample4_jibunAddress").value;
     let allAdd = zipcode + roadAdd + detailAdd + writeAdd;
 
-    console.log(allAdd);    // 전체 배송 주소
 }
 
 /* 포인트 직접 입력 */
@@ -323,12 +335,9 @@ function chageSelect(){
 
 }
 
+
 /* 한개의 상품의 주문내역 */
 function showOrderProductDetail(products){
-    console.log("text");
-    console.log(products);
-    console.log(products.productPrice);
-    console.log(count);
 
     let text = "";
 
@@ -346,7 +355,7 @@ function showOrderProductDetail(products){
     text += `</p>`;
     text += ` </div>`;
     text += `<div class="shop_item_pay">`;
-    text += `<span class="text-bold text-14">` + products.productPrice + `</span>`;
+    text += `<span class="text-bold text-14">` + products.productPrice.toLocaleString() + "원" + `</span>`;
     text += `</div>`;
     text += `</div>`;
     text += `</a>`;
@@ -355,16 +364,75 @@ function showOrderProductDetail(products){
     text += `<div>`;
     text += `배송비 <span class="text-bold delivery"> 3,000원 </span>`;
     text += `</div>`;
+
     $(".order-info").append(text);
 
 
     let $productPrice = parseInt($(".total-price").text());
     $(".hidden-productId").html(products.productId);
     $(".hidden-productName").html(products.productName);
-    $(".hidden-productPrice").html(products.productPrice);
-    $(".order-product-price").html(products.productPrice * count + "원");    // 상품 가격 * 수량
-    $(".total-price").html(products.productPrice * count + 3000 + "원");    // 상품 가격 * 수량 + 배송비
+    $(".hidden-productPrice").html(products.productPrice.toLocaleString() + "원");
+    $(".order-product-price").html((products.productPrice * count).toLocaleString() + "원");    // 상품 가격 * 수량
+    $(".total-price").html((products.productPrice * count + 3000));    // 상품 가격 * 수량 + 배송비
     $(".save-point").html((products.productPrice * count + 3000) * 0.01);   // 포인트 적립
+    let deliver = $(".delivery").text().split('원')[0].replace(',', '');
+    let totalPrice = $(".hidden-productPrice").val();
+    let savePoint = $(".save-point").val();
+}
+
+
+/* 장바구니 결제 */
+function showOrderBasketDetail(baskets){
+    console.log("text");
+    console.log(baskets);
+
+    let text = "";
+    baskets.forEach(basket => {
+        text += `<div class="shop_item_thumb">`;
+        text += `<a href="/bathroom/?idx=24">`;
+        text += `<div class="product_img_wrap">`;
+        text += `<img src=" ` + basket.productFileProfileName + `" alt="주문상품 이미지">`;
+        text += `</div>`;
+        text += `<div class="product_info_wrap">`;
+        text += `<span class="shop_item_title">`+ basket.productName + `</span>`;
+        text += `<div class="shop_item_opt">`;
+        text += `<p>`;
+        text += `<em class="list_badge badge_latest">필수</em>`;
+        text += `<p class="basket-count">` + basket.basketCount + `</p>`;
+        text += `</p>`;
+        text += ` </div>`;
+        text += `<div class="shop_item_pay">`;
+        text += `<span class="text-bold text-14">` + basket.productPrice.toLocaleString() + "원" + `</span>`;
+        text += `<div class="hidden-price" style="display: none;">` + basket.productPrice+ `</div>`;
+        text += `</div>`;
+        text += `</div>`;
+        text += `</a>`;
+        text += `</div>`;
+    });
+    text += `<div class="im-payment-deliv">`;
+    text += `<div>`;
+    text += `배송비 <span class="text-bold delivery"> 3,000원 </span>`;
+    text += `</div>`;
+
+    $(".order-info").html(text);
+    console.log(baskets.length);
+    let all = 0;
+    for(let i = 0; i < baskets.length; i++ ){
+        let realprice = $($(".hidden-price")[i]).text();
+        console.log(realprice);
+        let realcount = $($(".basket-count")[i]).text();
+        console.log(realcount);
+        all += Number(realprice) * Number(realcount);
+    }
+    console.log("돈");
+    console.log(all);
+    $(".hidden-productId").html(baskets.productId);
+    $(".hidden-productName").html(baskets.productName);
+    // $(".hidden-productPrice").html(baskets.productPrice.toLocaleString() + "원");
+    $(".order-product-price").html(all.toLocaleString() + "원");    // 상품 가격 * 수량
+    $(".total-price").html(all + 3000);    // 상품 가격 * 수량 + 배송비
+    $(".save-point").html((all + 3000) * 0.01);   // 포인트 적립
+    let $productPrice = parseInt($(".total-price").text());
     let deliver = $(".delivery").text().split('원')[0].replace(',', '');
     console.log("배달비");
     console.log(deliver);

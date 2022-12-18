@@ -63,7 +63,7 @@
                                             <div class="hidden-productId" style="display: none;"></div>
                                             <div class="hidden-productName" style="display: none;"></div>
                                             <div class="hidden-productPrice" style="display: none;"></div>
-                                            <div class="modify-row">
+                                            <div class="modify-row basket-area">
                                                 <div class="col-xs-12 col_ctr">
                                                     <div class="order-info">
                                                         <!--                                                        <div class="shop_item_thumb">-->
@@ -508,17 +508,25 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://js.bootpay.co.kr/bootpay-4.2.6.min.js" type="application/javascript"></script>
 <script src="/js/market/orderModule.js"></script>
+<script src="/js/market/marketBasketModule.js"></script>
 <script src="/js/market/marketPayment.js"></script>
 <script src="/js/market/marketDetail.js"></script>
+<script src="/js/market/marketBasket.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script th:inline="javascript">
     /*================================== 결제 하기 ==================================*/
+    console.log("안녕");
 
     /* 결제하기 버튼 누를 시 */
+    function searchParam(key) {
+        return new URLSearchParams(location.search).get(key);
+    }
 
+    // let basketFlag = searchParamm('basketId');
 
     function clickPayBtn() {
         console.log("결제 하기 버튼 누름");
+        let basketFlag = searchParam('basketId');
         const s_zipNo = document.getElementById('sample4_postcode').value;
         const roadAdd = document.getElementById("sample4_roadAddress").value;
         const detailAdd = document.getElementById("sample4_extraAddress").value;
@@ -526,10 +534,25 @@
         const buyerMemberAddress = s_zipNo + roadAdd + detailAdd + writeAdd;
         const buyerMemberMsg = document.getElementById("category").options[document.getElementById("category").selectedIndex].value;
 
-        orderService.getOrderDetailList(
-            productId, showProduct
-        )
+        if(!s_zipNo && !roadAdd && !detailAdd && !writeAdd && !buyerMemberMsg){
+            alert("모든 정보를 다 입력해주세요.");
+            return;
+        }else{
+            console.log(basketFlag);
+            if(basketFlag != '' && basketFlag != null){          // 장바구니에서 넘어옴
+                console.log("if문");
+                orderService.getBasketOrderList(
+                    basketFlag, showBasket
+                )
+            }else{
+                console.log("else문");
+                orderService.getOrderDetailList(
+                    productId, showProduct
+                )
+            }
+        }
     }
+
     function showProduct(products){
         console.log("주문하기 버튼 누를시 상품 조회");
 
@@ -543,6 +566,22 @@
 
         orderService.payment(
             products, memberId
+        )
+    }
+
+    function showBasket(baskets){
+        console.log("주문하기 장바구니 버튼 누를시 상품 조회");
+
+        const basketDelivery = $(".delivery").text().split('원')[0].replace(',', '');
+        baskets.push($(".delivery").text().split('원')[0].replace(',', ''));
+
+        const basketUsepoint = document.getElementById('use_point').value;
+        baskets.push(0 - document.getElementById('use_point').value);
+
+        console.log(baskets);
+
+        orderService.basketPayment(
+            baskets, memberId
         )
     }
 

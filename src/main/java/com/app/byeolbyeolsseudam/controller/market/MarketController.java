@@ -1,5 +1,6 @@
 package com.app.byeolbyeolsseudam.controller.market;
 
+import com.app.byeolbyeolsseudam.domain.basket.BasketDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.entity.product.Product;
 import com.app.byeolbyeolsseudam.service.market.MarketService;
@@ -9,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,6 +37,11 @@ public class MarketController {
      /*주문하기 이동*/
     @GetMapping("/payment")
     public String payment(@RequestParam(value = "productId") Long productId, @RequestParam(value = "count") int count){
+        return "/app/market/marketPayment";
+    }
+
+    @GetMapping("/basket/payment")
+    public String basketpy(){
         return "/app/market/marketPayment";
     }
 

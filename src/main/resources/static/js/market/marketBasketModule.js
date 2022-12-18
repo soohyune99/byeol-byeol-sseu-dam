@@ -94,7 +94,9 @@ let basketService = (function(){
         $.ajax({
             url: "/cart/delete/" + basketId,
             type: "delete",
-            success: function (status, xhr) {
+            data: JSON.stringify(basketId),
+            contentType: "application/json; charset=utf-8",
+            success: function (baskets, status, xhr) {
                 if(callback){
                     callback();
                 }
@@ -107,6 +109,32 @@ let basketService = (function(){
         });
     }
 
+
+
+    /* 상품 구매 */
+    function buyBasketProduct(paymentFlag, callback, error) {
+        console.log("상품 구매 ajax");
+        console.log(paymentFlag);
+        $.ajax({
+            url: "/cart/buy",
+            type:"post",
+            data: JSON.stringify(paymentFlag),
+            contentType: "application/json; charset=utf-8",
+            success: function (baskets, status, xhr) {
+                if (callback) {
+                    console.log("변경 성공");
+                    callback(baskets);
+                }
+            },
+            error: function (xhr, status, err) {
+                if (error) {
+                    alert("오류");
+                    error(err);
+                }
+            }
+        });
+    }
+
     return{saveBasket:saveBasket, getBasketList:getBasketList, getBasket:getBasket,
-        updateBasketCount:updateBasketCount, deleteBasket:deleteBasket}
+        updateBasketCount:updateBasketCount, deleteBasket:deleteBasket, buyBasketProduct:buyBasketProduct}
 })();

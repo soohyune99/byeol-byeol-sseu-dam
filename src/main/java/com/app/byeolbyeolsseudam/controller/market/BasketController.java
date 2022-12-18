@@ -6,8 +6,11 @@ import com.app.byeolbyeolsseudam.entity.basket.Basket;
 import com.app.byeolbyeolsseudam.service.market.BasketService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -43,11 +46,19 @@ public class BasketController {
 
     /* 장바구니 상품 삭제 */
     @DeleteMapping("/delete/{basketId}")
-    public void deleteBasket(@PathVariable Long basketId){
+    public void deleteBasket(@PathVariable String basketId){
         basketService.deleteBasket(basketId);
     }
 
     /* 장바구니 상품 한개 바로 구매*/
+    @PostMapping("/buy")
+    public List<BasketDTO> paymentBasket(@RequestBody String paymentFlag){
+//        log.info("++++++++++++들어옴+++++++++++++++++++++");
+        log.info("============================" + paymentFlag);
+//        log.info("********************" +  basketService.buyBasket(basketId));
+        return basketService.buyBasket(paymentFlag);
+//        model.addAttribute("baskets", basketService.buyBasket(basketId));
+    }
 
 
 }
