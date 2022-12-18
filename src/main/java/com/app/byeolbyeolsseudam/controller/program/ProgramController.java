@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,11 +33,13 @@ public class ProgramController {
     /* 프로그램 DETAIL 이동 */
     @GetMapping("/detail")
     public String findProgramDetail(Long programId, Model model, HttpSession session){
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-        Long memberId = memberDTO.getMemberId();
+        if(Optional.ofNullable(session.getAttribute("member")).isPresent()){
+            MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+            Long memberId = memberDTO.getMemberId();
+            model.addAttribute("check", programService.checkMemberAndProgram(programId, memberId)); // 세션 멤버아이디
+        }
 
         model.addAttribute("program",programService.findProgramDetail(programId));
-        model.addAttribute("check", programService.checkMemberAndProgram(programId, memberId)); // 세션 멤버아이디
         return"/app/program/programDetail";
     }
 
