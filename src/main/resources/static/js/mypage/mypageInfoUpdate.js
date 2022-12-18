@@ -30,7 +30,7 @@ const $file = $("#__BVID__268");
 const $thumbnail = $("#user-profile");
 
 globalThis.vertificationNumber = "";
-globalThis.profileUrl = "";
+globalThis.profileUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png";
 
 $(".user-profile-picture.h-100").on('click', function(){
     profileModalOpen();
@@ -238,6 +238,7 @@ function verifyPhoneTest(){
         $(".validation-msg-wrapper.auth-key").text("인증되었습니다.");
         $(".validation-msg-wrapper.auth-key").css('display', 'block');
         $(".validation-msg-wrapper.auth-key").css('color', '#00c7ae');
+        $("#request-phone-btn").attr('disabled', 'disabled');
     }
     $(".validation-msg-wrapper.auth-key").css('display', 'block');
 }
