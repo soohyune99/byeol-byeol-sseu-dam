@@ -39,4 +39,6 @@ public interface ProgramService {
 
     /* 프로그램에 멤버 신청 */
     public void programMemberSave(Long programId, Long memberId);
+    /* 프로그램 신청했는지 안했는지 검사 */
+    public boolean checkMemberAndProgram(Long programId, Long memberId);
 }

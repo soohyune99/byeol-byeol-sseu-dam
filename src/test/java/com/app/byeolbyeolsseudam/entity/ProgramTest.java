@@ -2,6 +2,8 @@ package com.app.byeolbyeolsseudam.entity;
 
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.repository.program.ProgramCustomRepository;
+import com.app.byeolbyeolsseudam.repository.program.ProgramCustomRepositoryImpl;
 import com.app.byeolbyeolsseudam.repository.program.ProgramDynamicRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -28,6 +30,14 @@ public class ProgramTest {
     @Autowired
     ProgramDynamicRepository programDynamicRepository;
 
+    @Autowired
+    ProgramCustomRepositoryImpl programCustomRepository;
+
+    @Test
+    public void Test(){
+        log.info(programCustomRepository.findProgramDetail(11L).toString());
+
+    }
 //    @Test
 //    public void saveProgramTest(){
 //        ProgramDTO programDTO01 = new ProgramDTO();

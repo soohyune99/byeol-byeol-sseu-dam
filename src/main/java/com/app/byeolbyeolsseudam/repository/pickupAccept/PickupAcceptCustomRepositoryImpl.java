@@ -102,7 +102,8 @@ public class PickupAcceptCustomRepositoryImpl implements PickupAcceptCustomRepos
                 pickup.member.memberId,
                 pickup.member.memberName,
                 pickup.createdDate,
-                pickup.member.memberProfilePath
+                pickup.member.memberProfileName
+//                pickup.member.memberProfilePath
         )).from(pickup)
                 .orderBy(pickup.createdDate.desc())
                 .where(
@@ -179,7 +180,8 @@ public class PickupAcceptCustomRepositoryImpl implements PickupAcceptCustomRepos
                 QPickupAccept.pickupAccept.updatedDate, // 수거 완료일
                 QPickupAccept.pickupAccept.pickup.member.memberId, // 신청자 아이디
                 QPickupAccept.pickupAccept.pickup.member.memberName, // 신청자 이름
-                QPickupAccept.pickupAccept.pickup.member.memberProfilePath, //신청자 프로필사진
+                QPickupAccept.pickupAccept.pickup.member.memberProfileName, //신청자 프로필사진
+//                QPickupAccept.pickupAccept.pickup.member.memberProfilePath, //신청자 프로필사진
                 QPickupAccept.pickupAccept.pickup.member.memberPhone // 신청자 핸드폰번호
         )).from(QPickupAccept.pickupAccept)
                 .where(
@@ -231,7 +233,8 @@ public class PickupAcceptCustomRepositoryImpl implements PickupAcceptCustomRepos
                 QPickupAccept.pickupAccept.updatedDate, // 수거 완료일
                 QPickupAccept.pickupAccept.pickup.member.memberId, // 신청자 아이디
                 QPickupAccept.pickupAccept.pickup.member.memberName, // 신청자 이름
-                QPickupAccept.pickupAccept.pickup.member.memberProfilePath, //신청자 프로필사진
+                QPickupAccept.pickupAccept.pickup.member.memberProfileName, //신청자 프로필사진
+//                QPickupAccept.pickupAccept.pickup.member.memberProfilePath, //신청자 프로필사진
                 QPickupAccept.pickupAccept.pickup.member.memberPhone // 신청자 핸드폰번호
         )).from(QPickupAccept.pickupAccept)
                 .where(
@@ -283,7 +286,8 @@ public class PickupAcceptCustomRepositoryImpl implements PickupAcceptCustomRepos
                 QPickupAccept.pickupAccept.updatedDate, // 수거 완료일
                 QPickupAccept.pickupAccept.pickup.member.memberId, // 신청자 아이디
                 QPickupAccept.pickupAccept.pickup.member.memberName, // 신청자 이름
-                QPickupAccept.pickupAccept.pickup.member.memberProfilePath, //신청자 프로필사진
+                QPickupAccept.pickupAccept.pickup.member.memberProfileName, //신청자 프로필사진
+//                QPickupAccept.pickupAccept.pickup.member.memberProfilePath, //신청자 프로필사진
                 QPickupAccept.pickupAccept.pickup.member.memberPhone// 신청자 핸드폰번호
         )).from(QPickupAccept.pickupAccept)
                 .where(
@@ -305,7 +309,8 @@ public class PickupAcceptCustomRepositoryImpl implements PickupAcceptCustomRepos
                 pickup.member.memberId,
                 pickup.member.memberName,
                 pickup.createdDate,
-                pickup.member.memberProfilePath
+                pickup.member.memberProfileName
+//                pickup.member.memberProfilePath
         ))
                 .from(pickup)
                 .where(

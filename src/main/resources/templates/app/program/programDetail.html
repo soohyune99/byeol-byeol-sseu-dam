@@ -105,8 +105,10 @@
                                                              data-v-5a004a22="" data-v-e4caeaf8="">
                                                         <div class="image-wrap" style=""
                                                              data-v-1a98b297="">
-                                                            <img th:src="${program.programFileDetailPath}"
-                                                                 style="width: 600px;">
+<!--                                                            <img th:src="${program.programFileDetailPath}"-->
+<!--                                                                 style="width: 600px;">-->
+                                                            <img th:src="${program.programFileDetailName}"
+                                                                 style="width: 600px;">.
                                                             <!--                                                            <img src="/images/program/program1-1.png"-->
                                                             <!--                                                                 style="width: 600px;">-->
 
@@ -179,6 +181,7 @@
                                         <div th:if="${#strings.equals(program.programStatus, '마감')}"
                                              class="programStatusIcon grayIcon">마감
                                         </div>
+                                        <input type="hidden" class="programStatus" th:href="*{programStatus}">
                                     </div>
                                 </div>
                             </header>
@@ -301,9 +304,10 @@
                                 <button
                                         data-testid="purchase-btn" type="button" class="btn btn-buy btn-primary bigBtn"
                                         id="Apply"
-                                        data-v-08563466="" style="font-size: 16px">
+                                        data-v-08563466="" style="font-size: 16px" >
                                     신청하기
                                 </button>
+                                <input type="hidden" id="programLimitCount" th:href="${program.programLimitCount}">
                             </div>
                         </section>
                         <img src="/images/program/000program.png" style="margin-top: 10px;border-radius: 12px;">
@@ -384,31 +388,50 @@
         </div>
     </div>
 </div>
+<th:block th:if="${session.member != null}">
+    <input type="hidden" th:value="${session.member.memberId}" name="memberId">
+    <input type="hidden" th:value="${session.member.memberCategory}" name="memberCategory">
+</th:block>
 </body>
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='memberId']").val();
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
 <script src="/js/Program/programDetail.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script>
+    let programMemberCount = [[${program.programMemberCount}]];
+    let programLimitCount = [[${program.programLimitCount}]];
+    let check = [[${check}]]; // 신청가능/ 불가 (model 객체 사용)
 
-
-       // $("#modal_title").on("click", function () {
-       //     alert($(obj).closest(".responsive").find('#programId').attr("href"));
-       //     location.href = "/program/programAddSuccess"
-       // })
+    // $("#modal_title").on("click", function () {
+    //     alert($(obj).closest(".responsive").find('#programId').attr("href"));
+    //     location.href = "/program/programAddSuccess"
+    // })
 
     /* ProgramDetail-신청하기 -> ProgramDetail-Modal 신청하기 클릭시 */
     function insertProgram() {
         let memberId = $('.memberIdSession').attr('href');
-        let programId = $('.programId').attr('href')
+        let programId = $('.programId').attr('href');
+        let programStatus = $(".programStatus").attr('href');
 
         if (memberId == undefined) {
             // 로그인 필요 모달창 띄우기
             $('.swal2-container').css('display', 'block').fadeIn();
+        } else if(programStatus == '마감') {
+            alert("이미 마감된 프로그램입니다.")
+        } else if(programStatus == '모집예정'){
+            alert("모집 예정 프로그램입니다.")
+        } else if(check == false){
+            alert("이미 신청한 프로그램입니다.")
+        } else if(programMemberCount == programLimitCount){
+            alert("모집 인원이 가득찬 프로그램입니다.")
         } else {
             // 신청하기 눌렀을 때 memberId가 있다면(로그인이 되어있다면?) 경로로 보내줌
             location.href = "/program/saveMember" + "?programId=" + programId + "&memberId=" + memberId;
         }
-
     }
     /*
     * $(function(){

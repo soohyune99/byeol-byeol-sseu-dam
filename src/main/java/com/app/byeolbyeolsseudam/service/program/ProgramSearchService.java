@@ -49,6 +49,11 @@ public class ProgramSearchService implements ProgramService {
     @Override
     public ProgramDTO findProgramDetail(Long programId) {
         ProgramDTO programDTO = programRepository.findProgramDetail(programId);
+
+        long count = myprogramRepository.findByProgram_ProgramId(programId).size(); // 마이프로그램
+
+        programDTO.setProgramMemberCount(count); // 신청인원수 까지 넘김
+
         return programDTO;
     }
 
@@ -89,6 +94,14 @@ public class ProgramSearchService implements ProgramService {
         myprogram.changeMember(memberRepository.findById(memberId).get());
 
         myprogramRepository.save(myprogram);
+    }
+
+    /* 프로그램 신청했는지 안했는지 검사 */
+    @Override
+    public boolean checkMemberAndProgram(Long programId, Long memberId) {
+        boolean check = myprogramRepository.checkMemberAndProgram(programId, memberId);
+
+        return check;
     }
 
 

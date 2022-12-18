@@ -36,6 +36,7 @@ public class ProgramDTO {
     private String programFileDetailPath;
     private String programFileDetailUuid;
     private LocalDateTime createdDate;
+    private Long programMemberCount;
 
     @QueryProjection
     public ProgramDTO(Long programId, String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFileProfileName, String programFileProfilePath, String programFileProfileUuid, String programFileDetailName, String programFileDetailPath, String programFileDetailUuid, LocalDateTime createdDate) {
@@ -56,6 +57,28 @@ public class ProgramDTO {
         this.programFileDetailPath = programFileDetailPath;
         this.programFileDetailUuid = programFileDetailUuid;
         this.createdDate = createdDate;
+    }
+
+    @QueryProjection
+    public ProgramDTO(Long programId, String programName, String programPlace, LocalDateTime openingDate, LocalDateTime closingDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFileProfileName, String programFileProfilePath, String programFileProfileUuid, String programFileDetailName, String programFileDetailPath, String programFileDetailUuid, LocalDateTime createdDate, Long programMemberCount) {
+        this.programId = programId;
+        this.programName = programName;
+        this.programPlace = programPlace;
+        this.openingDate = openingDate;
+        this.closingDate = closingDate;
+        this.programTime = programTime;
+        this.programDate = programDate;
+        this.programContent = programContent;
+        this.programLimitCount = programLimitCount;
+        this.programStatus = programStatus;
+        this.programFileProfileName = programFileProfileName;
+        this.programFileProfilePath = programFileProfilePath;
+        this.programFileProfileUuid = programFileProfileUuid;
+        this.programFileDetailName = programFileDetailName;
+        this.programFileDetailPath = programFileDetailPath;
+        this.programFileDetailUuid = programFileDetailUuid;
+        this.createdDate = createdDate;
+        this.programMemberCount = programMemberCount;
     }
 
     public Program toEntity(){

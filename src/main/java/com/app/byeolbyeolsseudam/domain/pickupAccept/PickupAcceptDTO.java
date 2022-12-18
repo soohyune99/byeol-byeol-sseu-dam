@@ -30,7 +30,8 @@ public class PickupAcceptDTO {
 
     private Long pickupMemberId;  // 신청자 아이디
     private String pickupMemberName; // 신청자 이름
-    private String pickupMemberProfilePath; //신청자 프로필사진
+//    private String pickupMemberProfilePath; //신청자 프로필사진
+    private String pickupMemberProfileName; //신청자 프로필사진
     private String pickupMemberPhone; // 신청자 핸드폰번호
     private LocalDateTime updateDate; // 수거 완료일
 
@@ -48,8 +49,26 @@ public class PickupAcceptDTO {
         this.createdDate = createdDate;
     }
 
+//    @QueryProjection
+//    public PickupAcceptDTO(Long pickupAcceptId, Long pickupId, int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Long memberId, String memberName, LocalDateTime createdDate, LocalDateTime updateDate, Long pickupMemberId, String pickupMemberName, String pickupMemberProfilePath, String pickupMemberPhone) {
+//        this.pickupAcceptId = pickupAcceptId;
+//        this.pickupId = pickupId;
+//        this.petCount = petCount;
+//        this.glassCount = glassCount;
+//        this.pickupAddress = pickupAddress;
+//        this.pickupMessage = pickupMessage;
+//        this.pickupStatus = pickupStatus;
+//        this.memberId = memberId;
+//        this.memberName = memberName;
+//        this.createdDate = createdDate;
+//        this.updateDate = updateDate;
+//        this.pickupMemberId = pickupMemberId;
+//        this.pickupMemberName = pickupMemberName;
+//        this.pickupMemberProfilePath = pickupMemberProfilePath;
+//        this.pickupMemberPhone = pickupMemberPhone;
+//    }
     @QueryProjection
-    public PickupAcceptDTO(Long pickupAcceptId, Long pickupId, int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Long memberId, String memberName, LocalDateTime createdDate, LocalDateTime updateDate, Long pickupMemberId, String pickupMemberName, String pickupMemberProfilePath, String pickupMemberPhone) {
+    public PickupAcceptDTO(Long pickupAcceptId, Long pickupId, int petCount, int glassCount, String pickupAddress, String pickupMessage, PickupStatus pickupStatus, Long memberId, String memberName, LocalDateTime createdDate, LocalDateTime updateDate, Long pickupMemberId, String pickupMemberName, String pickupMemberProfileName, String pickupMemberPhone) {
         this.pickupAcceptId = pickupAcceptId;
         this.pickupId = pickupId;
         this.petCount = petCount;
@@ -63,7 +82,7 @@ public class PickupAcceptDTO {
         this.updateDate = updateDate;
         this.pickupMemberId = pickupMemberId;
         this.pickupMemberName = pickupMemberName;
-        this.pickupMemberProfilePath = pickupMemberProfilePath;
+        this.pickupMemberProfileName = pickupMemberProfileName;
         this.pickupMemberPhone = pickupMemberPhone;
     }
 
