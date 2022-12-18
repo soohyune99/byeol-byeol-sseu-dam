@@ -941,7 +941,7 @@
                                                  lazy="loaded">
 <!--                                                <img th:src="|*{courseFilePath}/*{courseFileUuid}_*{courseFileName}|" alt=""-->
 <!--                                                     style="width: 99%; height: 100%;">-->
-                                                <img th:src="*{courseFileName}" alt=""
+                                                <img th:src="@{|/images/jubgging/course${courseStat.count}.png|}" alt=""
                                                      style="width: 99%; height: 100%;">
                                             </div>
                                         </a>
