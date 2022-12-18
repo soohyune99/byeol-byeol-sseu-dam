@@ -32,7 +32,7 @@ const $thumbnail = $("#user-profile");
 globalThis.vertificationNumber = "";
 globalThis.profileUrl = "";
 
-$(".user-profile-picture").on('click', function(){
+$(".user-profile-picture.h-100").on('click', function(){
     profileModalOpen();
 });
 
