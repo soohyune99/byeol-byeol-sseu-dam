@@ -58,9 +58,9 @@
               data-v-a27bfd4a="" data-v-158066f9="" id data-testid="request-form" class="request-form container-fluid"
               autocomplete="off">
 
-<!--            &lt;!&ndash; 세션 완료되면 memberId 넣어서 실행시킬 부분  : 변경 필요 &ndash;&gt;-->
-<!--            <input type="hidden" class="memberId" th:field="*{memberId}" > &lt;!&ndash;임의로 넣은 값으로 테스트 가능&ndash;&gt; &lt;!&ndash;th:value=""&ndash;&gt;-->
-<!--&lt;!&ndash;            <input type="hidden" class="memberId">&ndash;&gt;-->
+            <!--            &lt;!&ndash; 세션 완료되면 memberId 넣어서 실행시킬 부분  : 변경 필요 &ndash;&gt;-->
+            <!--            <input type="hidden" class="memberId" th:field="*{memberId}" > &lt;!&ndash;임의로 넣은 값으로 테스트 가능&ndash;&gt; &lt;!&ndash;th:value=""&ndash;&gt;-->
+            <!--&lt;!&ndash;            <input type="hidden" class="memberId">&ndash;&gt;-->
             <!------------------------------------------------------------------------------>
             <!------------------------------------------------------------------------------>
             <!------------------------------------------------------------------------------>
@@ -85,7 +85,7 @@
                         <!-- 1 -->
                         <li data-v-c169ef14="" class="RequestForm--answer" id="li-1">
                             <div data-v-c169ef14="" class="RequestForm--answer-area">
-                                <label data-v-c169ef14=""  class="inputtext">
+                                <label data-v-c169ef14="" class="inputtext">
                                     <div data-v-c169ef14="" class="text-area">
                                         <div data-v-c169ef14="" class="text">페트 병 개수
                                         </div>
@@ -109,7 +109,7 @@
                         <!-- 2 -->
                         <li data-v-c169ef14="" class="RequestForm--answer" id="li-2">
                             <div data-v-c169ef14="" class="RequestForm--answer-area">
-                                <label data-v-c169ef14=""  class="inputtext">
+                                <label data-v-c169ef14="" class="inputtext">
                                     <div data-v-c169ef14="" class="text-area">
                                         <div data-v-c169ef14="" class="text">유리병 개수
                                         </div>
@@ -132,7 +132,7 @@
                         <!-- 3 -->
                         <li data-v-c169ef14="" class="RequestForm--answer" id="li-3">
                             <div data-v-c169ef14="" class="RequestForm--answer-area">
-                                <label data-v-c169ef14=""  class="inputtext">
+                                <label data-v-c169ef14="" class="inputtext">
                                     <div data-v-c169ef14="" class="text-area">
                                         <div data-v-c169ef14="" class="text">수거 신청자
                                             <span style="font-size: 13px; margin-left: 5px;">성함이 일치하는지 확인해주세요</span>
@@ -147,9 +147,10 @@
                                 <!-- 수거신청자 이름을 넣어주는 것 -->
                                 <!-- Session 에서 memberName을 가지고 와서 기본으로 보여줌 -->
                                 <th:block th:if="${session.member != null}">
-                                    <input data-v-c169ef14="" th:value="${session.member.memberName}" name="" type="" placeholder=""
+                                    <input data-v-c169ef14="" th:value="${session.member.memberName}" name="" type=""
+                                           placeholder=""
                                            class="form-control" maxlength="255" data-vv-name="requestExtraText"
-                                           data-vv-validate-on="blur" aria-invalid="false" readonly >
+                                           data-vv-validate-on="blur" aria-invalid="false" readonly>
                                 </th:block>
                                 <span data-v-c169ef14="" class="validation" style="display: none;"></span>
                             </div>
@@ -158,7 +159,7 @@
                         <!-- 4 -->
                         <li data-v-c169ef14="" class="RequestForm--answer" id="li-4">
                             <div data-v-c169ef14="" class="RequestForm--answer-area">
-                                <label data-v-c169ef14=""  class="inputtext">
+                                <label data-v-c169ef14="" class="inputtext">
                                     <div data-v-c169ef14="" class="text-area">
                                         <div data-v-c169ef14="" class="text">수거 할 주소
                                         </div>
@@ -169,10 +170,24 @@
                             </div>
                             <div data-v-c169ef14="" class="extra-area text">
                                 <!-- 4 input -->
-                                <input th:field="*{pickupAddress}" data-v-c169ef14="" id="address_kakao" name="address"
-                                       type="text" placeholder="클릭 후 상세주소를 추가 기입해주세요"
-                                       class="form-control" maxlength="255" data-vv-name="requestExtraText"
-                                       data-vv-validate-on="blur" aria-invalid="false" >
+                                <!--                                <input th:field="*{pickupAddress}" data-v-c169ef14="" id="address_kakao" name="address"-->
+                                <!--                                       type="text" placeholder="클릭 후 상세주소를 추가 기입해주세요"-->
+                                <!--                                       class="form-control" maxlength="255" data-vv-name="requestExtraText"-->
+                                <!--                                       data-vv-validate-on="blur" aria-invalid="false" >-->
+
+
+                                <input type="hidden" id="sample4_postcode" placeholder="우편번호">
+<!--                                <input type="hidden" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>-->
+                                <input type="hidden" id="sample4_roadAddress" placeholder="도로명주소">
+                                <input th:field="*{pickupAddress}" type="text" data-v-c169ef14="" name="address"
+                                       id="sample4_jibunAddress" placeholder="클릭 후 상세주소를 추가 기입해주세요" class="form-control"
+                                       maxlength="255" data-vv-name="requestExtraText"
+                                       data-vv-validate-on="blur" aria-invalid="false">
+                                <span id="guide" style="color:#999;display:none"></span>
+                                <input type="hidden" id="sample4_detailAddress" placeholder="상세주소">
+                                <input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
+
+
                                 <span data-v-c169ef14="" class="validation" style="display: none;"></span>
                             </div>
                         </li>
@@ -181,7 +196,7 @@
                         <!-- 5 -->
                         <li data-v-c169ef14="" class="RequestForm--answer" id="li-5">
                             <div data-v-c169ef14="" class="RequestForm--answer-area">
-                                <label data-v-c169ef14=""  class="inputtext">
+                                <label data-v-c169ef14="" class="inputtext">
                                     <div data-v-c169ef14="" class="text-area">
                                         <div data-v-c169ef14="" class="text">수거 메시지
                                         </div>
@@ -195,7 +210,7 @@
                                 <input th:field="*{pickupMessage}" data-v-c169ef14="" name="pickupMessage" type="text"
                                        placeholder="직접 입력" class="form-control"
                                        maxlength="255" data-vv-name="requestExtraText" data-vv-validate-on="blur"
-                                       aria-invalid="false" >
+                                       aria-invalid="false">
                                 <span data-v-c169ef14="" class="validation" style="display: none;"></span>
                             </div>
                         </li>
@@ -214,7 +229,7 @@
                 </div>
                 <div data-v-a27bfd4a="" class="button-wrapper formSubmit" id="submit"><!---->
                     <button data-v-a27bfd4a="" type="button" data-testid="request-next-btn" class="step-btn color-teal"
-                            id="" style="cursor:pointer" > 완료
+                            id="" style="cursor:pointer"> 완료
                     </button>
                 </div>
             </div>
@@ -1663,7 +1678,6 @@
 <!-- Modal -->
 
 
-
 <!-- footer start -->
 <!-- footer end -->
 <footer th:replace="/app/fix/footer.html :: footer"></footer>
@@ -1689,20 +1703,93 @@
         recycleForm.submit();
     })
 
+    // /* 주소 API */
+    // window.onload = function(){
+    //     document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+    //         //카카오 지도 발생
+    //         new daum.Postcode({
+    //             oncomplete: function(data) { //선택시 입력값 세팅
+    //                 document.getElementById("address_kakao").value = data.address; // 주소 넣기
+    //             }
+    //         }).open();
+    //         document.querySelector("input[name=address]").focus(); //상세입력 포커싱
+    //     });
+    // }
     /* 주소 API */
-    window.onload = function(){
-        document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+    window.onload = function () {
+        document.getElementById("sample4_jibunAddress").addEventListener("click", function () { //주소입력칸을 클릭하면
             //카카오 지도 발생
             new daum.Postcode({
-                oncomplete: function(data) { //선택시 입력값 세팅
-                    document.getElementById("address_kakao").value = data.address; // 주소 넣기
+                oncomplete: function (data) { //선택시 입력값 세팅
+                    document.getElementById("sample4_jibunAddress").value = data.address; // 주소 넣기
                 }
             }).open();
             document.querySelector("input[name=address]").focus(); //상세입력 포커싱
         });
     }
 
+    /* 지번만 입력하게... */
+    window.onload = function () {
+        document.getElementById("sample4_jibunAddress").addEventListener("click", function () {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+                    // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var roadAddr = data.roadAddress; // 도로명 주소 변수
+                    var extraRoadAddr = ''; // 참고 항목 변수
+
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                        extraRoadAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if (extraRoadAddr !== '') {
+                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('sample4_postcode').value = data.zonecode;
+                    document.getElementById("sample4_roadAddress").value = roadAddr;
+                    document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                    // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                    if (roadAddr !== '') {
+                        document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                    } else {
+                        document.getElementById("sample4_extraAddress").value = '';
+                    }
+
+                    var guideTextBox = document.getElementById("guide");
+                    // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                    if (data.autoRoadAddress) {
+                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                        guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                        guideTextBox.style.display = 'block';
+
+                    } else if (data.autoJibunAddress) {
+                        var expJibunAddr = data.autoJibunAddress;
+                        guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                        guideTextBox.style.display = 'block';
+                    } else {
+                        guideTextBox.innerHTML = '';
+                        guideTextBox.style.display = 'none';
+                    }
+                }
+            }).open();
+            document.querySelector("input[name=address]").focus(); //상세입력 포커싱
+
+        });
+    }
 
 </script>
-</html>
+
+</script>
+<
+/html>
