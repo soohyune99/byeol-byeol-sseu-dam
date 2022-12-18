@@ -20,8 +20,10 @@ function afterInsertMycourse(mycourse){
     console.log("콜백")
     console.log(mycourse);
     console.log(mycourse.courseName)
+    console.log(mycourse.createdDate)
     $(".jubgging-courseName").html(mycourse.courseName);
     $(".jubgging-spotNumber").html(mycourse.spotName);
+    $(".jubgging-date").html(mycourse.createdDate);
 }
 
 

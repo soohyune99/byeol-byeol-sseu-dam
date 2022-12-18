@@ -18,6 +18,23 @@ let mypageService = (function(){
         });
     }
 
+    function getCountMyprogram(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/program/count/" + memberId,
+            type: "get",
+            success: function(count, status, xhr){
+                if(callback){
+                    callback(count);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
     function getMypointList(memberId, page, callback, error){
         $.ajax({
             url: "/mypage/point/" + memberId + "/" + page,
@@ -212,6 +229,23 @@ let mypageService = (function(){
         });
     }
 
+    function getCountMyorder(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/order/count/" + memberId,
+            type: "get",
+            success: function(count, status, xhr){
+                if(callback){
+                    callback(count);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
     function getMyCancelList(memberId, page, callback, error){
         $.ajax({
             url: "/mypage/cancel/" + memberId + "/" + page,
@@ -219,6 +253,23 @@ let mypageService = (function(){
             success: function(myorders, status, xhr){
                 if(callback){
                     callback(myorders);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+    function getCountMycancel(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/cancel/count/" + memberId,
+            type: "get",
+            success: function(count, status, xhr){
+                if(callback){
+                    callback(count);
                 }
             },
             error: function(xhr, status, err){
@@ -279,6 +330,25 @@ let mypageService = (function(){
             }
         });
     }
+
+    function getCountMypickup(memberId, callback, error){
+        $.ajax({
+            url: "/mypage/pickup/count/" + memberId,
+            type: "get",
+            success: function(mypickups, status, xhr){
+                if(callback){
+                    callback(mypickups);
+                }
+            },
+            error: function(xhr, status, err){
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+
+
 
     function getMyPickup(pickupId, callback, error){
         $.ajax({
@@ -431,11 +501,14 @@ let mypageService = (function(){
     }
 
 
-    return { getMyProgramList:getMyProgramList, getMypointList:getMypointList, getMyCommunityList:getMyCommunityList,
-        getMyCommentList:getMyCommentList, plusBoardView:plusBoardView, getMyInfo:getMyInfo, checkPassword:checkPassword,
-        updateUserInfo:updateUserInfo, sendVerification:sendVerification, dropOutMember:dropOutMember,
-        getMyOrderList:getMyOrderList, getMyCancelList:getMyCancelList, getMyOrder:getMyOrder, cancelMyOrder:cancelMyOrder,
-        getMyPickupList:getMyPickupList, getMyPickup:getMyPickup, getCourses:getCourses, getMyCourses:getMyCourses,
+    return { getMyProgramList:getMyProgramList, getCountMyprogram:getCountMyprogram, getMypointList:getMypointList,
+        getMyCommunityList:getMyCommunityList, getMyCommentList:getMyCommentList, plusBoardView:plusBoardView,
+        getMyInfo:getMyInfo, checkPassword:checkPassword, updateUserInfo:updateUserInfo,
+        sendVerification:sendVerification, dropOutMember:dropOutMember,
+        getMyOrderList:getMyOrderList, getCountMyorder:getCountMyorder, getMyOrder:getMyOrder,
+        getMyCancelList:getMyCancelList, getCountMycancel:getCountMycancel, cancelMyOrder:cancelMyOrder,
+        getMyPickupList:getMyPickupList, getMyPickup:getMyPickup, getCountMypickup:getCountMypickup,
+        getCourses:getCourses, getMyCourses:getMyCourses,
         getCourse:getCourse, getBadges:getBadges, getMybadges:getMybadges, uploadProfileFile:uploadProfileFile,
         logoutMember:logoutMember, timeForToday:timeForToday }
 })();

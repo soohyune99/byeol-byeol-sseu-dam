@@ -177,7 +177,7 @@ function showSpot(activeSpotNumber){
         $statusBar.css('width', '13%');
         $(".mypage-courseStatus").html("참여 중인");
     } else if(activeSpotNumber == 2){
-        $courseLocation.css('padding-right', '38%%');
+        $courseLocation.css('padding-right', '38%');
         $statusBar.css('width', '32%');
         $(".mypage-courseStatus").html("참여 중인");
     } else if(activeSpotNumber == 3){

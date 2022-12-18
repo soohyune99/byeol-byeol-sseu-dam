@@ -44,6 +44,11 @@ public class MypageRestController {
         return mypageService.getMyprogramList(memberId, page);
     }
 
+    @GetMapping("/program/count/{memberId}")
+    public int getCountMyprogram(@PathVariable Long memberId){
+        return mypageService.getCountMyprogram(memberId);
+    }
+
     @GetMapping("/point/{memberId}/{page}")
     public List<MypointDTO> getMypointList(@PathVariable Long memberId, @PathVariable int page){
         return mypageService.getMypointList(memberId, page);
@@ -89,9 +94,19 @@ public class MypageRestController {
         return mypageService.getMyOrderList(memberId, page);
     }
 
+    @GetMapping("/order/count/{memberId}")
+    public int getCountMyorder(@PathVariable Long memberId){
+        return mypageService.getCountMyorder(memberId);
+    }
+
     @GetMapping("/cancel/{memberId}/{page}")
     public List<OrderDTO> getMyCancelList(@PathVariable Long memberId, @PathVariable int page){
         return mypageService.getMyCancelList(memberId, page);
+    }
+
+    @GetMapping("/cancel/count/{memberId}")
+    public int getCountMycancel(@PathVariable Long memberId){
+        return mypageService.getCountMycancel(memberId);
     }
 
     @GetMapping("/cancel/{orderId}")
@@ -112,6 +127,11 @@ public class MypageRestController {
     @PostMapping("/pickup/{pickupId}")
     public PickupDTO getMyPickup(@PathVariable Long pickupId){
         return mypageService.getMyPickup(pickupId);
+    }
+
+    @GetMapping("/pickup/count/{memberId}")
+    public int getCountMypickup(@PathVariable Long memberId){
+        return mypageService.getCountMypickup(memberId);
     }
 
     @GetMapping("/course/{memberId}")

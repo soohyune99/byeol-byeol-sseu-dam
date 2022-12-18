@@ -6,9 +6,9 @@ let jubggingService = (function(){
         $.ajax({
             url: "/course/" + courseName + "/" + spotNumber,
             type: "get",
-            success: function(status, xhr){
+            success: function(mycourse, status, xhr){
                 if(callback){
-                    callback();
+                    callback(mycourse);
                 }
             },
             error: function(xhr, status, err){

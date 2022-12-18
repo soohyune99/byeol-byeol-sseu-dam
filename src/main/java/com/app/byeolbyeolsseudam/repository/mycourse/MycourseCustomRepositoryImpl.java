@@ -32,7 +32,7 @@ public class MycourseCustomRepositoryImpl implements MycourseCustomRepository {
         return jpaQueryFactory.select(new QMycourseDTO(mycourse.mycourseId,
                 mycourse.courseFinishedStatus, mycourse.member.memberId, mycourse.course.courseId,
                 mycourse.course.courseName, mycourse.spot.spotId, mycourse.spot.spotName,
-                mycourse.spot.spotNumber))
+                mycourse.spot.spotNumber, mycourse.createdDate))
                 .from(mycourse)
                 .where(mycourse.member.memberId.eq(memberId))
                 .orderBy(mycourse.createdDate.desc())
@@ -46,7 +46,7 @@ public class MycourseCustomRepositoryImpl implements MycourseCustomRepository {
         return jpaQueryFactory.select(new QMycourseDTO(mycourse.mycourseId,
                 mycourse.courseFinishedStatus, mycourse.member.memberId, mycourse.course.courseId,
                 mycourse.course.courseName, mycourse.spot.spotId, mycourse.spot.spotName,
-                mycourse.spot.spotNumber))
+                mycourse.spot.spotNumber, mycourse.createdDate))
                 .from(mycourse)
                 .where(mycourse.member.memberId.eq(memberId))
                 .orderBy(mycourse.updatedDate.desc())
@@ -72,7 +72,7 @@ public class MycourseCustomRepositoryImpl implements MycourseCustomRepository {
         List<MycourseDTO> mycourses =  jpaQueryFactory.select(new QMycourseDTO(mycourse.mycourseId,
                 mycourse.courseFinishedStatus, mycourse.member.memberId, mycourse.course.courseId,
                 mycourse.course.courseName, mycourse.spot.spotId, mycourse.spot.spotName,
-                mycourse.spot.spotNumber))
+                mycourse.spot.spotNumber, mycourse.createdDate))
                 .from(mycourse)
                 .where(
                         courseIdContains(keyword),

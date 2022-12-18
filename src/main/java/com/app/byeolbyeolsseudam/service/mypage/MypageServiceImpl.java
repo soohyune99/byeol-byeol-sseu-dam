@@ -32,7 +32,6 @@ import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.apache.xerces.impl.dv.util.Base64;
 import org.json.simple.JSONObject;
-import org.springframework.boot.json.JsonParser;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -67,6 +66,11 @@ public class MypageServiceImpl implements MypageService {
     @Override
     public List<MyprogramDTO> getMyprogramList(Long memberId, int page){
         return myprogramRepository.selectMyprogramList(memberId, page);
+    }
+
+    @Override
+    public int getCountMyprogram(Long memberId){
+        return myprogramRepository.countByMemberMemberId(memberId);
     }
 
     @Override
@@ -129,6 +133,16 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
+    public int getCountMyorder(Long memberId){
+        return orderRepository.countByMemberMemberId(memberId);
+    }
+
+    @Override
+    public int getCountMycancel(Long memberId){
+        return orderRepository.countByMemberMemberIdAndOrderStatusEquals(memberId, OrderStatus.주문취소);
+    }
+
+    @Override
     public String sendVerificationNumber(String userPhoneNumber) {
         String api_key = "NCSSPLLWZCTD7ET7";
         String api_secret = "QMRPJQGEX3TZFCLXL0E56JUCSE3UJTKX";
@@ -174,6 +188,11 @@ public class MypageServiceImpl implements MypageService {
     @Override
     public PickupDTO getMyPickup(Long pickupId){
         return pickupRepository.getMyPickup(pickupId);
+    }
+
+    @Override
+    public int getCountMypickup(Long memberId){
+        return pickupRepository.countByMemberMemberId(memberId);
     }
 
     @Override

@@ -118,7 +118,7 @@ public class CourseCustomRepositoryImpl implements CourseCustomRepository {
                     jpaQueryFactory.select(new QMycourseDTO(
                             mycourse.mycourseId, mycourse.courseFinishedStatus, mycourse.member.memberId,
                             mycourse.course.courseId, mycourse.course.courseName, mycourse.spot.spotId,
-                            mycourse.spot.spotName, mycourse.spot.spotNumber))
+                            mycourse.spot.spotName, mycourse.spot.spotNumber, mycourse.createdDate))
                     .from(mycourse)
                     .where(mycourse.member.memberId.eq(memberId)
                             .and(mycourse.courseFinishedStatus.ne(CourseFinishedStatus.미완주)))

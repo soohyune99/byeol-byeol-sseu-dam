@@ -23,123 +23,210 @@
     <th:block th:if="${session.member != null}">
         <header th:replace="/app/fix/headerLogin.html :: header"></header>
     </th:block>
-<div id="app-body">
-    <div data-v-b31e1ebe="" class="community-container container">
-        <div data-v-54d1e5f9="" data-v-b31e1ebe="" class="soomgo-life-container">
-            <section data-v-daea50a6="" data-v-54d1e5f9="" id="community" class="community">
-                <div data-v-e0e63576="" data-v-daea50a6="" class="observer-container">
-                    <section data-v-daea50a6="" data-v-e0e63576="" data-observe="community-header"
-                             class="community-header" id="community-header">
-                        <h1 data-v-daea50a6="" data-v-e0e63576="" data-testid="community-main"
-                            class="community-title">커뮤니티</h1>
-                        <div data-v-daea50a6="" data-v-e0e63576="">
-                            <div data-v-3db8ff2e="" class="write-button-desktop">
-                                <button data-v-3db8ff2e=""
-                                        type="button" class="btn write-button btn-primary"> 글쓰기 <i data-v-3db8ff2e=""
-                                                                                                   class="write"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                    <!---->
-                </div>
-                <ul data-v-85114aa8="" data-v-daea50a6="" class="category">
-                    <li data-v-6e81a396="" data-v-85114aa8="" data-testid="category-soomgo-life"
-                        class="sg-text-subhead4 sg-font-bold lg:sg-text-subhead2 lg:sg-font-bold sg-text-gray-900 selected">
-                        <a data-v-6e81a396="" href="/community" class="link-text router-link-active">
-                            쓰담생활 </a>
-                    </li>
-                </ul>
-                <div data-v-daea50a6="" class="community-layout">
-                    <div data-v-daea50a6="" class="soomgo-life-topic-layout">
-                        <div data-v-daea50a6="" class="soomgo-life-search-bar d-lg-none">
-                            <form data-v-ebe7d0bc="" data-v-daea50a6="" class="search-bar">
-                                <div data-v-ebe7d0bc="" role="group" class="input-group">
-                                    <!---->
-                                    <div data-v-ebe7d0bc="" class="input-group-prepend"><img data-v-ebe7d0bc=""
-                                                                                             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEgMSkiIHN0cm9rZT0iI0M1QzVDNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBjeD0iNi42MTEiIGN5PSI2LjYxMSIgcj0iNS44NjEiLz4KICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im0xNS4yNSAxNS4yNS00LjI0My00LjI0MyIvPgogICAgPC9nPgo8L3N2Zz4K"
-                                                                                             alt="커뮤니티 검색 아이콘"
-                                                                                             class="search"></div>
-                                    <input data-v-ebe7d0bc="" onkeyup=""
-                                           type="text" disabled="disabled" placeholder="키워드를 검색할 수 있어요."
-                                           autocomplete="off" class="search-input form-control" maxlength="15"
-                                           id="__BVID__778">
-                                    <input type="text" style="display: none;">
-                                    <div data-v-ebe7d0bc="" class="input-group-append"><img data-v-ebe7d0bc=""
-                                                                                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMgMykiPgogICAgICAgICAgICA8Y2lyY2xlIGZpbGw9IiNDNUM1QzUiIGN4PSI5IiBjeT0iOSIgcj0iOSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im02IDYgNi4wMDUgNi4wMDZNMTIuMDA1IDYgNiAxMi4wMDYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
-                                                                                            alt="검색어 삭제 아이콘"
-                                                                                            class="reset"
-                                                                                            style="display: none;">
-                                    </div>
-                                    <!---->
+    <div id="app-body">
+        <div data-v-b31e1ebe="" class="community-container container">
+            <div data-v-54d1e5f9="" data-v-b31e1ebe="" class="soomgo-life-container">
+                <section data-v-daea50a6="" data-v-54d1e5f9="" id="community" class="community">
+                    <div data-v-e0e63576="" data-v-daea50a6="" class="observer-container">
+                        <section data-v-daea50a6="" data-v-e0e63576="" data-observe="community-header"
+                                 class="community-header" id="community-header">
+                            <h1 data-v-daea50a6="" data-v-e0e63576="" data-testid="community-main"
+                                class="community-title">커뮤니티</h1>
+                            <div data-v-daea50a6="" data-v-e0e63576="">
+                                <div data-v-3db8ff2e="" class="write-button-desktop">
+                                    <button data-v-3db8ff2e=""
+                                            type="button" class="btn write-button btn-primary"> 글쓰기 <i
+                                            data-v-3db8ff2e=""
+                                            class="write"></i>
+                                    </button>
                                 </div>
-                            </form>
-                        </div>
-                        <div data-v-e0e63576="" data-v-daea50a6="" class="observer-container d-lg-none">
-                            <div data-v-e0e63576="" id="observer-07c428b3-ab95-489f-9072-83445e688ccd"></div>
-                            <!---->
-                        </div>
-                        <section data-v-09f47c14="" data-v-daea50a6="" class="topic-filter-section">
-                            <ul data-v-09f47c14="" class="topic fixed">
-                                <li data-v-06211c10="" data-v-09f47c14="" class="selected fixed">
-                                    <a data-v-06211c10="" href="javascript:;"
-                                        class="topic-link-item router-link-exact-active router-link-active"
-                                        data-testid="topic-item">
-                                    <div data-v-06211c10="" class="icon-wrapper">
-                                        <img data-v-06211c10=""
-                                                  src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/634d181f-f6cc-470c-9a1a-cfed6d9c909a.png"
-                                                  alt="전체"></div>
-                                    <span data-v-06211c10=""
-                                          class="sg-text-subhead4 sg-font-bold sg-text-gray-900">전체</span>
-                                </a></li>
-                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
-                                    <a data-v-06211c10="" href="javascript:;"
-                                           class="topic-link-item"
-                                           data-testid="topic-item">
-                                    <div data-v-06211c10="" class="icon-wrapper">
-                                        <img data-v-06211c10=""
-                                          src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/f1e39209-9357-4412-b962-99a9d62e6cc5.png"
-                                          alt="환경활동"></div>
-                                    <span data-v-06211c10=""
-                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">환경활동</span>
-                                </a></li>
-                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
-                                    <a data-v-06211c10="" href="javascript:;"
-                                           class="topic-link-item"
-                                           data-testid="topic-item">
-                                    <div data-v-06211c10="" class="icon-wrapper">
-                                        <img data-v-06211c10=""
-                                              src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/b3326101-bf1e-4004-8fa1-b5a0724f9e62.png"
-                                              alt="비건레시피"></div>
-                                    <span data-v-06211c10=""
-                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">비건레시피</span>
-                                </a>
-                                </li>
-                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
-                                    <a data-v-06211c10="" class="topic-link-item" href="javascript:;"
-                                           data-testid="topic-item">
-                                    <div data-v-06211c10="" class="icon-wrapper">
-                                        <img data-v-06211c10=""
-                                              src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/ea04ebe5-4787-4b56-99a7-308c6310d972.png"
-                                              alt="추천가게"></div>
-                                    <span data-v-06211c10=""
-                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">추천가게</span>
-                                </a></li>
-                                <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
-                                    <a data-v-06211c10="" href="javascript:;"
-                                       class="topic-link-item"
-                                       data-testid="topic-item">
-                                <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""
-                                                                                      src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/8dbafccb-92f6-4be2-b50c-a4eade43585f.png"
-                                                                                      alt="사는이야기"></div>
-                                    <span data-v-06211c10=""
-                                          class="sg-text-body2 sg-font-regular sg-text-gray-400">사는이야기</span>
-                                </a></li>
-                            </ul>
+                            </div>
                         </section>
+                        <!---->
                     </div>
-                    <div data-v-daea50a6="" class="community-content-layout">
-                        <div data-v-6a3ac724="" data-v-daea50a6="" class="search-community d-none d-lg-block">
+                    <ul data-v-85114aa8="" data-v-daea50a6="" class="category">
+                        <li data-v-6e81a396="" data-v-85114aa8="" data-testid="category-soomgo-life"
+                            class="sg-text-subhead4 sg-font-bold lg:sg-text-subhead2 lg:sg-font-bold sg-text-gray-900 selected">
+                            <a data-v-6e81a396="" href="/community" class="link-text router-link-active">
+                                쓰담생활 </a>
+                        </li>
+                    </ul>
+                    <div data-v-daea50a6="" class="community-layout">
+                        <div data-v-daea50a6="" class="soomgo-life-topic-layout">
+                            <div data-v-daea50a6="" class="soomgo-life-search-bar d-lg-none">
+                                <form data-v-ebe7d0bc="" data-v-daea50a6="" class="search-bar">
+                                    <div data-v-ebe7d0bc="" role="group" class="input-group">
+                                        <!---->
+                                        <div data-v-ebe7d0bc="" class="input-group-prepend"><img data-v-ebe7d0bc=""
+                                                                                                 src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEgMSkiIHN0cm9rZT0iI0M1QzVDNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBjeD0iNi42MTEiIGN5PSI2LjYxMSIgcj0iNS44NjEiLz4KICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im0xNS4yNSAxNS4yNS00LjI0My00LjI0MyIvPgogICAgPC9nPgo8L3N2Zz4K"
+                                                                                                 alt="커뮤니티 검색 아이콘"
+                                                                                                 class="search"></div>
+                                        <input data-v-ebe7d0bc="" onkeyup=""
+                                               type="text" disabled="disabled" placeholder="키워드를 검색할 수 있어요."
+                                               autocomplete="off" class="search-input form-control" maxlength="15"
+                                               id="__BVID__778">
+                                        <input type="text" style="display: none;">
+                                        <div data-v-ebe7d0bc="" class="input-group-append"><img data-v-ebe7d0bc=""
+                                                                                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMgMykiPgogICAgICAgICAgICA8Y2lyY2xlIGZpbGw9IiNDNUM1QzUiIGN4PSI5IiBjeT0iOSIgcj0iOSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im02IDYgNi4wMDUgNi4wMDZNMTIuMDA1IDYgNiAxMi4wMDYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+                                                                                                alt="검색어 삭제 아이콘"
+                                                                                                class="reset"
+                                                                                                style="display: none;">
+                                        </div>
+                                        <!---->
+                                    </div>
+                                </form>
+                            </div>
+                            <div data-v-e0e63576="" data-v-daea50a6="" class="observer-container d-lg-none">
+                                <div data-v-e0e63576="" id="observer-07c428b3-ab95-489f-9072-83445e688ccd"></div>
+                                <!---->
+                            </div>
+                            <section data-v-09f47c14="" data-v-daea50a6="" class="topic-filter-section">
+                                <ul data-v-09f47c14="" class="topic fixed">
+                                    <li data-v-06211c10="" data-v-09f47c14="" class="selected fixed">
+                                        <a data-v-06211c10="" href="javascript:;"
+                                           class="topic-link-item router-link-exact-active router-link-active"
+                                           data-testid="topic-item">
+                                            <div data-v-06211c10="" class="icon-wrapper">
+                                                <img data-v-06211c10=""
+                                                     src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/634d181f-f6cc-470c-9a1a-cfed6d9c909a.png"
+                                                     alt="전체"></div>
+                                            <span data-v-06211c10=""
+                                                  class="sg-text-subhead4 sg-font-bold sg-text-gray-900">전체</span>
+                                        </a></li>
+                                    <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
+                                        <a data-v-06211c10="" href="javascript:;"
+                                           class="topic-link-item"
+                                           data-testid="topic-item">
+                                            <div data-v-06211c10="" class="icon-wrapper">
+                                                <!--                                                <img data-v-06211c10=""-->
+                                                <!--                                                     src="https://d2xc1tuir9mfs4.cloudfront.net/upload/community/f1e39209-9357-4412-b962-99a9d62e6cc5.png"-->
+                                                <!--                                                     alt="환경활동">-->
+                                                <svg height="24" width="24" style="enable-background:new 0 0 512 512;"
+                                                     version="1.1" viewBox="0 0 512 512"
+                                                     xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                                     xmlns:xlink="http://www.w3.org/1999/xlink"><g id="world_x2C__eco_x2C__leaves"><g><path d="M187.782,186.107h63.159v63.292h-69.799    C181.142,226.108,181.142,206.053,187.782,186.107L187.782,186.107z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M187.782,329.202h44.334    c2.943-25.253,8.832-47.255,18.324-66.507h-69.299C181.142,285.998,181.142,309.259,187.782,329.202L187.782,329.202z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M250.941,169.457V86.241    c-26.563,6.642-49.876,39.979-59.875,83.216H250.941z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M424.03,249.399h0.08c0-23.291-3.427-43.347-13.3-63.292    h-6.165C414.303,208.228,420.587,229.381,424.03,249.399L424.03,249.399z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M337.505,169.457h38.509l5.683-1.802l5.382-1.653l7.921,3.455    h9.151c-23.409-36.578-59.969-66.512-106.646-76.574C314.234,109.629,327.518,136.231,337.505,169.457L337.505,169.457z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M250.941,425.759v-4.584    c-6.086-5.458-11.687-12.014-16.639-19.859l-3.964-6.278l-0.225-3.049l-0.17-7.654c-0.342-14.806-0.043-28.706,0.917-41.785    h-39.794C201.064,389.217,224.378,419.128,250.941,425.759L250.941,425.759z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M324.228,169.457c-13.309-43.236-36.557-76.574-59.95-83.216    v83.216H324.228z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M87.89,262.695c0,23.303,6.668,46.563,13.304,66.507h69.954    c-3.448-19.943-6.641-43.204-6.641-66.507H87.89z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="    M174.335,342.549h-63.165c20.094,36.701,59.977,66.612,103.192,79.904C197.771,402.521,184.435,375.913,174.335,342.549    L174.335,342.549z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;stroke:#43B3E6;stroke-width:0.2268;stroke-miterlimit:10;"/><path
+                                                        d="M174.335,169.457c10.099-33.226,23.435-59.828,40.028-76.574    c-43.216,10.063-83.099,39.996-103.192,76.574H174.335z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M327.518,186.107h-63.24v53.918    c15.217-20.516,36.051-37.325,63.697-51.264L327.518,186.107L327.518,186.107z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M101.193,186.107c-6.636,19.946-13.304,40.001-13.304,63.292    h76.617c0-23.291,3.192-43.347,6.641-63.292H101.193z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#43B3E6;"/><path
+                                                        d="M244.689,388.184c12.798,20.273,95.39,60.045,141.744-5.203    c27.438-38.62,43.816-116.831,3.172-201.633C269.4,218.354,241.924,272.896,244.689,388.184L244.689,388.184z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#7AC143;"/><path
+                                                        d="M245.398,389.228c1.854,2.58,4.75,5.404,8.475,8.272    c39.132-21.587,93.316-65.004,130.533-149.672C384.406,247.828,328.509,340.576,245.398,389.228L245.398,389.228z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#3F8640;"/><path
+                                                        d="M286.167,308.395c-0.059,0.129-18.725,55.366-20.532,73.01    l12.152-6.057C279.489,358.74,286.108,308.511,286.167,308.395L286.167,308.395z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#3F8640;"/><path
+                                                        d="M328.769,290.369c-0.048,0.095-17.226,38.076-19.753,50.495    l9.065-3.443C320.465,325.716,328.721,290.464,328.769,290.369L328.769,290.369z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#3F8640;"/><path
+                                                        d="M366.233,337.251c-0.14,0.011-55.884,9.571-71.769,16.171    l10.768,7.567C320.198,354.764,366.1,337.262,366.233,337.251L366.233,337.251z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#3F8640;"/><path
+                                                        d="M353.484,270.509c-0.022,0.064-7.942,28.517-8.368,37.491    l5.975-3.4C351.496,296.146,353.462,270.573,353.484,270.509L353.484,270.509z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#3F8640;"/><path
+                                                        d="M387.19,298.673c-0.098,0-38.189,6.535-49.042,11.045    l7.355,5.179C355.734,310.644,387.1,298.673,387.19,298.673L387.19,298.673z"
+                                                        style="fill-rule:evenodd;clip-rule:evenodd;fill:#3F8640;"/></g></g>
+                                                    <g id="Layer_1"/></svg>
+                                            </div>
+                                            <span data-v-06211c10=""
+                                                  class="sg-text-body2 sg-font-regular sg-text-gray-400">환경활동</span>
+                                        </a></li>
+                                    <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
+                                        <a data-v-06211c10="" href="javascript:;"
+                                           class="topic-link-item"
+                                           data-testid="topic-item">
+                                            <div data-v-06211c10="" class="icon-wrapper">
+                                                <img data-v-06211c10=""
+                                                     src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/b3326101-bf1e-4004-8fa1-b5a0724f9e62.png"
+                                                     alt="비건레시피"></div>
+                                            <span data-v-06211c10=""
+                                                  class="sg-text-body2 sg-font-regular sg-text-gray-400">비건레시피</span>
+                                        </a>
+                                    </li>
+                                    <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
+                                        <a data-v-06211c10="" class="topic-link-item" href="javascript:;"
+                                           data-testid="topic-item">
+                                            <div data-v-06211c10="" class="icon-wrapper">
+                                                <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                     height="24">
+                                                    <defs>
+                                                        <style>.cls-1 {
+                                                            fill: #c3edf5;
+                                                        }
+
+                                                        .cls-2 {
+                                                            fill: #4d91bb;
+                                                        }
+
+                                                        .cls-3 {
+                                                            fill: #2175aa;
+                                                        }
+
+                                                        .cls-4 {
+                                                            fill: #87dbec;
+                                                        }
+
+                                                        .cls-5 {
+                                                            fill: #4dbab4;
+                                                        }
+
+                                                        .cls-6 {
+                                                            fill: #1fa49c;
+                                                        }</style>
+                                                    </defs>
+                                                    <title/>
+                                                    <g data-name="20 In-Store Promotion" id="_20_In-Store_Promotion">
+                                                        <rect class="cls-1" height="57" width="90" x="19" y="49"/>
+                                                        <rect class="cls-2" height="42" width="36" x="65" y="64"/>
+                                                        <polygon class="cls-3" points="65 64 101 65.09 101 64 65 64"/>
+                                                        <polygon class="cls-4"
+                                                                 points="19 106 109 103.5 109 106 19 106"/>
+                                                        <polygon class="cls-3"
+                                                                 points="65 104.72 65 106 101 106 101 103.72 65 104.72"/>
+                                                        <rect class="cls-5" height="30" width="30" x="27" y="64"/>
+                                                        <polygon class="cls-6" points="27 64 57 66.18 57 64 27 64"/>
+                                                        <polygon class="cls-4" points="27 94 57 96.18 57 94 27 94"/>
+                                                        <rect class="cls-5" height="6" width="96" x="16" y="106"/>
+                                                        <path class="cls-2"
+                                                              d="M100,16H28L16,49a12,12,0,0,0,24,0,12,12,0,0,0,24,0,12,12,0,0,0,24,0,12,12,0,0,0,24,0Z"/>
+                                                    </g>
+                                                </svg>
+                                                <!--<img data-v-06211c10=""
+                                                      src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/ea04ebe5-4787-4b56-99a7-308c6310d972.png"
+                                                      alt="추천가게"></div>-->
+                                                <span data-v-06211c10="" style="margin-top: auto; margin-left: 8px;"
+                                                      class="sg-text-body2 sg-font-regular sg-text-gray-400">추천가게</span>
+                                        </a></li>
+                                    <li data-v-06211c10="" data-v-09f47c14="" class="fixed">
+                                        <a data-v-06211c10="" href="javascript:;"
+                                           class="topic-link-item"
+                                           data-testid="topic-item">
+                                            <div data-v-06211c10="" class="icon-wrapper"><img data-v-06211c10=""
+                                                                                              src="https://d2xc1tuir9mfs4.cloudfront.net/upload/profile/8dbafccb-92f6-4be2-b50c-a4eade43585f.png"
+                                                                                              alt="사는이야기"></div>
+                                            <span data-v-06211c10=""
+                                                  class="sg-text-body2 sg-font-regular sg-text-gray-400">사는이야기</span>
+                                        </a></li>
+                                </ul>
+                            </section>
+                        </div>
+                        <div data-v-daea50a6="" class="community-content-layout">
+                            <div data-v-6a3ac724="" data-v-daea50a6="" class="search-community d-none d-lg-block">
                                 <div data-v-ebe7d0bc="" role="group" class="input-group">
                                     <!---->
                                     <div data-v-ebe7d0bc="" class="input-group-prepend">
@@ -153,136 +240,139 @@
                                     <input type="text" style="display: none;">
                                     <div data-v-ebe7d0bc="" class="input-group-append">
                                         <img data-v-ebe7d0bc="" onclick="javascript:resetKeyword();"
-                                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMgMykiPgogICAgICAgICAgICA8Y2lyY2xlIGZpbGw9IiNDNUM1QzUiIGN4PSI5IiBjeT0iOSIgcj0iOSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im02IDYgNi4wMDUgNi4wMDZNMTIuMDA1IDYgNiAxMi4wMDYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
-                                            alt="검색어 삭제 아이콘"
-                                            class="reset reset-keyword-btn"
-                                            style="display: none; cursor:pointer;">
+                                             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIvPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMgMykiPgogICAgICAgICAgICA8Y2lyY2xlIGZpbGw9IiNDNUM1QzUiIGN4PSI5IiBjeT0iOSIgcj0iOSIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im02IDYgNi4wMDUgNi4wMDZNMTIuMDA1IDYgNiAxMi4wMDYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+                                             alt="검색어 삭제 아이콘"
+                                             class="reset reset-keyword-btn"
+                                             style="display: none; cursor:pointer;">
                                     </div>
                                     <!---->
                                 </div>
-                            </form>
-                            <!---->
-                        </div>
-                        <section data-v-2064f17f="" data-v-daea50a6="" class="curation topview-block-wrap">
-                            <div data-v-2064f17f="" class="curation-header">
-                                <h2 data-v-2064f17f="" class="sg-text-headline sg-font-bold sg-text-gray-900">지금 가장
-                                    뜨거운 쓰담픽🔥</h2><!-- <span data-v-2064f17f="" class="curation-page">1/2</span> -->
+                                </form>
+                                <!---->
                             </div>
-                            <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-2064f17f="" dir="ltr"
-                                 class="slick-slider slick-initialized">
-                                <button data-v-21137603="" data-v-3d1a4f76=""
-                                        type="button" data-role="none" class="slick-arrow slick-prev slick-disabled"
-                                        style="display: block;">Previous
-                                </button>
-                                <div data-v-3d1a4f76="" class="slick-list">
-                                    <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-track"
-                                         style="width: 1224px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                            <section data-v-2064f17f="" data-v-daea50a6="" class="curation topview-block-wrap">
+                                <div data-v-2064f17f="" class="curation-header">
+                                    <h2 data-v-2064f17f="" class="sg-text-headline sg-font-bold sg-text-gray-900">지금 가장
+                                        뜨거운 쓰담픽🔥</h2><!-- <span data-v-2064f17f="" class="curation-page">1/2</span> -->
+                                </div>
+                                <div data-v-3d1a4f76="" data-v-55917fe8="" data-v-2064f17f="" dir="ltr"
+                                     class="slick-slider slick-initialized">
+                                    <button data-v-21137603="" data-v-3d1a4f76=""
+                                            type="button" data-role="none" class="slick-arrow slick-prev slick-disabled"
+                                            style="display: block;">Previous
+                                    </button>
+                                    <div data-v-3d1a4f76="" class="slick-list">
+                                        <div data-v-e4caeaf8="" data-v-3d1a4f76="" class="slick-track"
+                                             style="width: 1224px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
-                        <article data-v-7206b48f="" data-v-daea50a6="">
-                            <ul data-v-7206b48f="" class="feed-list">
-                            </ul>
-                            <div data-v-644ea9c9="" data-v-7206b48f="" class="infinite-loading-container">
-                                <div data-v-644ea9c9="" class="infinite-status-prompt" style="display: none;">
-                                    <figure data-v-7206b48f="" data-v-644ea9c9="" class="text-center">
-                                        <div data-v-fc3fcce8="" data-v-7206b48f="" class="" data-v-644ea9c9="">
-                                            <div data-v-fc3fcce8="" class="indicator-body center"
-                                                 style="width: 24px; height: 24px; border-width: 0.25rem; border-style: solid; border-color: rgb(0, 199, 174) rgba(0, 199, 174, 0.2) rgba(0, 199, 174, 0.2); border-image: initial;">
+                            </section>
+                            <article data-v-7206b48f="" data-v-daea50a6="">
+                                <ul data-v-7206b48f="" class="feed-list">
+                                </ul>
+                                <div data-v-644ea9c9="" data-v-7206b48f="" class="infinite-loading-container">
+                                    <div data-v-644ea9c9="" class="infinite-status-prompt" style="display: none;">
+                                        <figure data-v-7206b48f="" data-v-644ea9c9="" class="text-center">
+                                            <div data-v-fc3fcce8="" data-v-7206b48f="" class="" data-v-644ea9c9="">
+                                                <div data-v-fc3fcce8="" class="indicator-body center"
+                                                     style="width: 24px; height: 24px; border-width: 0.25rem; border-style: solid; border-color: rgb(0, 199, 174) rgba(0, 199, 174, 0.2) rgba(0, 199, 174, 0.2); border-image: initial;">
+                                                </div>
+                                                <p data-v-fc3fcce8="" style="display: none;"></p>
                                             </div>
-                                            <p data-v-fc3fcce8="" style="display: none;"></p>
-                                        </div>
-                                    </figure>
-                                </div>
-                                <div data-v-644ea9c9="" class="infinite-status-prompt no-board-div" style="display: none;">
-                                    <article data-v-414f00e5="" data-v-7206b48f=""
-                                             class="no-items align-self-center text-center no-items" data-v-644ea9c9="">
-                                        <i data-v-414f00e5=""><img data-v-7206b48f="" data-v-414f00e5=""
-                                                                   src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCB4MT0iMCUiIHkxPSI1MCUiIHgyPSIxMDAlIiB5Mj0iNTAlIiBpZD0iNzBwczBldXVvYSI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMEM3QUUiIG9mZnNldD0iMCUiLz4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzRDQzhFNSIgb2Zmc2V0PSIxMDAlIi8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsLW9wYWNpdHk9Ii41IiBmaWxsPSJ1cmwoIzcwcHMwZXV1b2EpIiBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiLz4KICAgICAgICA8cGF0aCBkPSJNMTYgNjRoNDhWMTZIMTZ6Ii8+CiAgICAgICAgPHBhdGggZD0iTTIyLjEwNiA1MS44MTdjMCAxLjUzLjM4NCAyLjY4NiAxLjE1MiAzLjQ2Ny43NjguNzggMS45MyAxLjE3IDMuNDg1IDEuMTdINTIuNjNjMS42MTcgMCAyLjgzMS0uNCAzLjY0Mi0xLjIuODEtLjggMS4yMTUtMS45OTUgMS4yMTUtMy41ODRWMjcuNzg2YzAtMS41OTgtLjQwNS0yLjc5Ny0xLjIxNS0zLjU5OC0uODExLS44LTIuMDI1LTEuMjAxLTMuNjQyLTEuMjAxSDMzLjc4N2MtMS42MTggMC0yLjgzMi40LTMuNjQzIDEuMjAxLS44MS44LTEuMjE1IDItMS4yMTUgMy41OTh2Ny41NDVoLTMuNzJjLS45NzMgMC0xLjczNC4yNTQtMi4yODEuNzYtLjU0OC41MDgtLjgyMiAxLjIxNy0uODIyIDIuMTI4djEzLjU5OHptMi40MjEtLjAwMlYzOC42OGMwLS4yODguMDgzLS41MTUuMjUtLjY4LjE2NS0uMTY0LjM5OC0uMjQ3LjY5Ny0uMjQ3aDMuNDU1djE0LjA2MmMwIC42NTEtLjIxMiAxLjE4My0uNjM1IDEuNTk3LS40MjMuNDE0LS45NC42MjEtMS41NTEuNjIxLS42MyAwLTEuMTU4LS4yMTItMS41ODEtLjYzNi0uNDIzLS40MjMtLjYzNS0uOTUtLjYzNS0xLjU4MnptNi4yNzEgMi4yMThjLjM2OC0uNjgxLjU1My0xLjQ2OS41NTMtMi4zNjNWMjcuOTJjMC0uODI3LjIxNC0xLjQ1My42NDMtMS44NzcuNDI5LS40MjQgMS4wNDItLjYzNiAxLjg0LS42MzZoMTguNzVjLjc5OCAwIDEuNDEuMjEyIDEuODQuNjM2LjQyOS40MjQuNjQzIDEuMDUuNjQzIDEuODc3djIzLjYxNGMwIC44MjctLjIxNCAxLjQ1LS42NDMgMS44Ny0uNDMuNDE4LTEuMDQyLjYyOC0xLjg0LjYyOEgzMC43OTh6bTQuNjU0LTIxLjc5NmgxNS41NDNhLjg5NS44OTUgMCAwIDAgLjY2Ny0uMjguOTI5LjkyOSAwIDAgMCAuMjcyLS42NzIuODYzLjg2MyAwIDAgMC0uMjcyLS42NDMuOTIuOTIgMCAwIDAtLjY2Ny0uMjY1SDM1LjQ1MmMtLjI3MiAwLS41LjA4OS0uNjguMjY1YS44NjMuODYzIDAgMCAwLS4yNzMuNjQzYzAgLjI2Mi4wOS40ODYuMjcyLjY3My4xODIuMTg2LjQwOS4yOC42ODEuMjh6bTAgNS41MTZoMTUuNTQzYS45Mi45MiAwIDAgMCAuNjY3LS4yNjUuODguODggMCAwIDAgLjI3Mi0uNjU3LjkwNC45MDQgMCAwIDAtLjI3Mi0uNjY2LjkwOC45MDggMCAwIDAtLjY2Ny0uMjcySDM1LjQ1MmMtLjI3MiAwLS41LjA5LS42OC4yNzJhLjkwNS45MDUgMCAwIDAtLjI3My42NjZjMCAuMjYxLjA5LjQ4LjI3Mi42NTdhLjkzNy45MzcgMCAwIDAgLjY4MS4yNjV6bTEwLjI1NSAxMS4xNjRoNC4wNWMuNTkgMCAxLjA1Mi0uMTY4IDEuMzg4LS41MDUuMzM3LS4zMzYuNTA1LS43OTguNTA1LTEuMzg2di0zLjY5N2MwLS41OTgtLjE2OC0xLjA2NS0uNTA1LTEuNDAyLS4zMzYtLjMzNi0uNzk5LS41MDQtMS4zODctLjUwNGgtNC4wNTFjLS41OTggMC0xLjA2NS4xNjgtMS40MDIuNTA0LS4zMzcuMzM3LS41MDUuODA0LS41MDUgMS40MDJ2My42OTdjMCAuNTg4LjE2OCAxLjA1LjUwNSAxLjM4Ni4zMzcuMzM3LjgwNC41MDUgMS40MDIuNTA1em0tMTAuMzY4LTUuNjM0aDUuODNhLjkxMi45MTIgMCAwIDAgLjY3NC0uMjY1Ljg3NS44NzUgMCAwIDAgLjI2NS0uNjQzLjkzNi45MzYgMCAwIDAtLjI2NS0uNjguOS45IDAgMCAwLS42NzMtLjI3MmgtNS44MzFhLjkuOSAwIDAgMC0uNjc0LjI3Mi45MzUuOTM1IDAgMCAwLS4yNjUuNjhjMCAuMjUyLjA4OC40NjYuMjY1LjY0M2EuOTE0LjkxNCAwIDAgMCAuNjc0LjI2NXptMCA1LjYzNGg1LjgzYS45MTIuOTEyIDAgMCAwIC42NzQtLjI2NS44NzYuODc2IDAgMCAwIC4yNjUtLjY0My45MzYuOTM2IDAgMCAwLS4yNjUtLjY4LjkuOSAwIDAgMC0uNjczLS4yNzNoLTUuODMxYS45LjkgMCAwIDAtLjY3NC4yNzMuOTM1LjkzNSAwIDAgMC0uMjY1LjY4YzAgLjI1Mi4wODguNDY3LjI2NS42NDNhLjkxMy45MTMgMCAwIDAgLjY3NC4yNjV6IiBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgIDwvZz4KPC9zdmc+Cg=="
-                                                                   alt="아직 글이 없어요"></i>
-                                        <h3 data-v-414f00e5="">아직 글이 없어요</h3>
-                                        <p data-v-414f00e5="" class="help-block p2"> 환경을 지키며 궁금한 것들,<br>환경에 대한 이야기를 올려보세요! </p>
-                                        <!---->
-                                    </article>
-                                </div>
-                                <div data-v-644ea9c9="" class="infinite-status-prompt"
-                                     style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
-                                </div>
-                                <div data-v-644ea9c9="" class="infinite-status-prompt"
-                                     style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
+                                        </figure>
+                                    </div>
+                                    <div data-v-644ea9c9="" class="infinite-status-prompt no-board-div"
+                                         style="display: none;">
+                                        <article data-v-414f00e5="" data-v-7206b48f=""
+                                                 class="no-items align-self-center text-center no-items"
+                                                 data-v-644ea9c9="">
+                                            <i data-v-414f00e5=""><img data-v-7206b48f="" data-v-414f00e5=""
+                                                                       src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCB4MT0iMCUiIHkxPSI1MCUiIHgyPSIxMDAlIiB5Mj0iNTAlIiBpZD0iNzBwczBldXVvYSI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMEM3QUUiIG9mZnNldD0iMCUiLz4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzRDQzhFNSIgb2Zmc2V0PSIxMDAlIi8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsLW9wYWNpdHk9Ii41IiBmaWxsPSJ1cmwoIzcwcHMwZXV1b2EpIiBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiLz4KICAgICAgICA8cGF0aCBkPSJNMTYgNjRoNDhWMTZIMTZ6Ii8+CiAgICAgICAgPHBhdGggZD0iTTIyLjEwNiA1MS44MTdjMCAxLjUzLjM4NCAyLjY4NiAxLjE1MiAzLjQ2Ny43NjguNzggMS45MyAxLjE3IDMuNDg1IDEuMTdINTIuNjNjMS42MTcgMCAyLjgzMS0uNCAzLjY0Mi0xLjIuODEtLjggMS4yMTUtMS45OTUgMS4yMTUtMy41ODRWMjcuNzg2YzAtMS41OTgtLjQwNS0yLjc5Ny0xLjIxNS0zLjU5OC0uODExLS44LTIuMDI1LTEuMjAxLTMuNjQyLTEuMjAxSDMzLjc4N2MtMS42MTggMC0yLjgzMi40LTMuNjQzIDEuMjAxLS44MS44LTEuMjE1IDItMS4yMTUgMy41OTh2Ny41NDVoLTMuNzJjLS45NzMgMC0xLjczNC4yNTQtMi4yODEuNzYtLjU0OC41MDgtLjgyMiAxLjIxNy0uODIyIDIuMTI4djEzLjU5OHptMi40MjEtLjAwMlYzOC42OGMwLS4yODguMDgzLS41MTUuMjUtLjY4LjE2NS0uMTY0LjM5OC0uMjQ3LjY5Ny0uMjQ3aDMuNDU1djE0LjA2MmMwIC42NTEtLjIxMiAxLjE4My0uNjM1IDEuNTk3LS40MjMuNDE0LS45NC42MjEtMS41NTEuNjIxLS42MyAwLTEuMTU4LS4yMTItMS41ODEtLjYzNi0uNDIzLS40MjMtLjYzNS0uOTUtLjYzNS0xLjU4MnptNi4yNzEgMi4yMThjLjM2OC0uNjgxLjU1My0xLjQ2OS41NTMtMi4zNjNWMjcuOTJjMC0uODI3LjIxNC0xLjQ1My42NDMtMS44NzcuNDI5LS40MjQgMS4wNDItLjYzNiAxLjg0LS42MzZoMTguNzVjLjc5OCAwIDEuNDEuMjEyIDEuODQuNjM2LjQyOS40MjQuNjQzIDEuMDUuNjQzIDEuODc3djIzLjYxNGMwIC44MjctLjIxNCAxLjQ1LS42NDMgMS44Ny0uNDMuNDE4LTEuMDQyLjYyOC0xLjg0LjYyOEgzMC43OTh6bTQuNjU0LTIxLjc5NmgxNS41NDNhLjg5NS44OTUgMCAwIDAgLjY2Ny0uMjguOTI5LjkyOSAwIDAgMCAuMjcyLS42NzIuODYzLjg2MyAwIDAgMC0uMjcyLS42NDMuOTIuOTIgMCAwIDAtLjY2Ny0uMjY1SDM1LjQ1MmMtLjI3MiAwLS41LjA4OS0uNjguMjY1YS44NjMuODYzIDAgMCAwLS4yNzMuNjQzYzAgLjI2Mi4wOS40ODYuMjcyLjY3My4xODIuMTg2LjQwOS4yOC42ODEuMjh6bTAgNS41MTZoMTUuNTQzYS45Mi45MiAwIDAgMCAuNjY3LS4yNjUuODguODggMCAwIDAgLjI3Mi0uNjU3LjkwNC45MDQgMCAwIDAtLjI3Mi0uNjY2LjkwOC45MDggMCAwIDAtLjY2Ny0uMjcySDM1LjQ1MmMtLjI3MiAwLS41LjA5LS42OC4yNzJhLjkwNS45MDUgMCAwIDAtLjI3My42NjZjMCAuMjYxLjA5LjQ4LjI3Mi42NTdhLjkzNy45MzcgMCAwIDAgLjY4MS4yNjV6bTEwLjI1NSAxMS4xNjRoNC4wNWMuNTkgMCAxLjA1Mi0uMTY4IDEuMzg4LS41MDUuMzM3LS4zMzYuNTA1LS43OTguNTA1LTEuMzg2di0zLjY5N2MwLS41OTgtLjE2OC0xLjA2NS0uNTA1LTEuNDAyLS4zMzYtLjMzNi0uNzk5LS41MDQtMS4zODctLjUwNGgtNC4wNTFjLS41OTggMC0xLjA2NS4xNjgtMS40MDIuNTA0LS4zMzcuMzM3LS41MDUuODA0LS41MDUgMS40MDJ2My42OTdjMCAuNTg4LjE2OCAxLjA1LjUwNSAxLjM4Ni4zMzcuMzM3LjgwNC41MDUgMS40MDIuNTA1em0tMTAuMzY4LTUuNjM0aDUuODNhLjkxMi45MTIgMCAwIDAgLjY3NC0uMjY1Ljg3NS44NzUgMCAwIDAgLjI2NS0uNjQzLjkzNi45MzYgMCAwIDAtLjI2NS0uNjguOS45IDAgMCAwLS42NzMtLjI3MmgtNS44MzFhLjkuOSAwIDAgMC0uNjc0LjI3Mi45MzUuOTM1IDAgMCAwLS4yNjUuNjhjMCAuMjUyLjA4OC40NjYuMjY1LjY0M2EuOTE0LjkxNCAwIDAgMCAuNjc0LjI2NXptMCA1LjYzNGg1LjgzYS45MTIuOTEyIDAgMCAwIC42NzQtLjI2NS44NzYuODc2IDAgMCAwIC4yNjUtLjY0My45MzYuOTM2IDAgMCAwLS4yNjUtLjY4LjkuOSAwIDAgMC0uNjczLS4yNzNoLTUuODMxYS45LjkgMCAwIDAtLjY3NC4yNzMuOTM1LjkzNSAwIDAgMC0uMjY1LjY4YzAgLjI1Mi4wODguNDY3LjI2NS42NDNhLjkxMy45MTMgMCAwIDAgLjY3NC4yNjV6IiBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgIDwvZz4KPC9zdmc+Cg=="
+                                                                       alt="아직 글이 없어요"></i>
+                                            <h3 data-v-414f00e5="">아직 글이 없어요</h3>
+                                            <p data-v-414f00e5="" class="help-block p2"> 환경을 지키며 궁금한 것들,<br>환경에 대한 이야기를
+                                                올려보세요! </p>
+                                            <!---->
+                                        </article>
+                                    </div>
+                                    <div data-v-644ea9c9="" class="infinite-status-prompt"
+                                         style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
+                                    </div>
+                                    <div data-v-644ea9c9="" class="infinite-status-prompt"
+                                         style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
 
-                                    <br data-v-644ea9c9="">
-                                    <button data-v-644ea9c9=""
-                                            class="btn-try-infinite"></button>
+                                        <br data-v-644ea9c9="">
+                                        <button data-v-644ea9c9=""
+                                                class="btn-try-infinite"></button>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
+                            </article>
+                        </div>
                     </div>
-                </div>
-            </section>
-            <div data-v-54d1e5f9="" class="v-portal" style="display: none;"></div>
+                </section>
+                <div data-v-54d1e5f9="" class="v-portal" style="display: none;"></div>
+                <!---->
+            </div>
             <!---->
         </div>
-        <!---->
     </div>
-</div>
-<div class="swal2-container swal2-center sg-swal swal2-shown" style="overflow-y: auto;">
-    <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show"
-         tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="width: 320px; display: flex;">
-        <div class="swal2-header">
-            <ul class="swal2-progress-steps" style="display: none;"></ul>
-            <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
-                    class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>
+    <div class="swal2-container swal2-center sg-swal swal2-shown" style="overflow-y: auto;">
+        <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show"
+             tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="width: 320px; display: flex;">
+            <div class="swal2-header">
+                <ul class="swal2-progress-steps" style="display: none;"></ul>
+                <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
+                        class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>
+                </div>
+                <div class="swal2-icon swal2-question" style="display: none;"></div>
+                <div class="swal2-icon swal2-warning" style="display: none;"></div>
+                <div class="swal2-icon swal2-info" style="display: none;"></div>
+                <div class="swal2-icon swal2-success" style="display: none;">
+                    <div class="swal2-success-circular-line-left"></div>
+                    <span class="swal2-success-line-tip"></span>
+                    <span class="swal2-success-line-long"></span>
+                    <div class="swal2-success-ring"></div>
+                    <div class="swal2-success-fix"></div>
+                    <div class="swal2-success-circular-line-right"></div>
+                </div>
+                <img class="swal2-image" style="display: none;">
+                <h2 class="swal2-title" id="swal2-title" style="display: flex;">로그인 필요</h2>
+                <button type="button"
+                        class="swal2-close" aria-label="Close this dialog" style="display: none;">×
+                </button>
             </div>
-            <div class="swal2-icon swal2-question" style="display: none;"></div>
-            <div class="swal2-icon swal2-warning" style="display: none;"></div>
-            <div class="swal2-icon swal2-info" style="display: none;"></div>
-            <div class="swal2-icon swal2-success" style="display: none;">
-                <div class="swal2-success-circular-line-left"></div>
-                <span class="swal2-success-line-tip"></span>
-                <span class="swal2-success-line-long"></span>
-                <div class="swal2-success-ring"></div>
-                <div class="swal2-success-fix"></div>
-                <div class="swal2-success-circular-line-right"></div>
+            <div class="swal2-content">
+                <div id="swal2-content" style="display: block;">로그인 후 서비스를 이용할 수 있습니다.</div>
+                <input class="swal2-input"
+                       style="display: none;"><input type="file" class="swal2-file" style="display: none;">
+                <div class="swal2-range" style="display: none;"><input type="range">
+                    <output></output>
+                </div>
+                <select
+                        class="swal2-select" style="display: none;"></select>
+                <div class="swal2-radio" style="display: none;"></div>
+                <label class="swal2-checkbox"
+                       style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea
+                    class="swal2-textarea" style="display: none;"></textarea>
+                <div class="swal2-validation-message" id="swal2-validation-message"></div>
             </div>
-            <img class="swal2-image" style="display: none;">
-            <h2 class="swal2-title" id="swal2-title" style="display: flex;">로그인 필요</h2>
-            <button type="button"
-                    class="swal2-close" aria-label="Close this dialog" style="display: none;">×
-            </button>
-        </div>
-        <div class="swal2-content">
-            <div id="swal2-content" style="display: block;">로그인 후 서비스를 이용할 수 있습니다.</div>
-            <input class="swal2-input"
-                   style="display: none;"><input type="file" class="swal2-file" style="display: none;">
-            <div class="swal2-range" style="display: none;"><input type="range">
-                <output></output>
+            <div class="swal2-actions">
+                <button type="button" class="swal2-confirm btn" aria-label=""
+                        onclick="location.href='/login'"
+                        style="display: inline-block;">로그인/회원가입
+                </button>
+                <button type="button" class="swal2-cancel btn"
+                        aria-label="" style="display: inline-block;">취소
+                </button>
             </div>
-            <select
-                    class="swal2-select" style="display: none;"></select>
-            <div class="swal2-radio" style="display: none;"></div>
-            <label class="swal2-checkbox"
-                   style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea
-                class="swal2-textarea" style="display: none;"></textarea>
-            <div class="swal2-validation-message" id="swal2-validation-message"></div>
+            <div class="swal2-footer" style="display: none;"></div>
+            <th:block th:if="${session.member != null}">
+                <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+                <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+            </th:block>
         </div>
-        <div class="swal2-actions">
-            <button type="button" class="swal2-confirm btn" aria-label=""
-                    onclick="location.href='/login'"
-                    style="display: inline-block;">로그인/회원가입
-            </button>
-            <button type="button" class="swal2-cancel btn"
-                    aria-label="" style="display: inline-block;">취소
-            </button>
-        </div>
-        <div class="swal2-footer" style="display: none;"></div>
-        <th:block th:if="${session.member != null}">
-            <input type="hidden" name="memberId" th:value="${session.member.memberId}">
-            <input type="hidden" name="memberName" th:value="${session.member.memberName}">
-        </th:block>
     </div>
-</div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -296,19 +386,21 @@
 <script src="/js/fix/headerLogin.js"></script>
 <!-- Channel Plugin Scripts -->
 <script>
-    (function() {
+    (function () {
         var w = window;
         if (w.ChannelIO) {
-            return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+            return (window.console.error || window.console.log || function () {
+            })('ChannelIO script included twice.');
         }
-        var ch = function() {
+        var ch = function () {
             ch.c(arguments);
         };
         ch.q = [];
-        ch.c = function(args) {
+        ch.c = function (args) {
             ch.q.push(args);
         };
         w.ChannelIO = ch;
+
         function l() {
             if (w.ChannelIOInitialized) {
                 return;
@@ -322,6 +414,7 @@
             var x = document.getElementsByTagName('script')[0];
             x.parentNode.insertBefore(s, x);
         }
+
         if (document.readyState === 'complete') {
             l();
         } else if (window.attachEvent) {

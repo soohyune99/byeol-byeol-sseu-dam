@@ -39,6 +39,13 @@ function clickMoreMyPickup(){
     globalThis.page++;
 }
 
+/* 총 개수 */
+function getCountMypickup(){
+    mypageService.getCountMypickup(
+        memberId, showCountMypickup
+    );
+}
+
 /* callback */
 function showMyPickupList(mypickups){
     let text = "";
@@ -77,7 +84,7 @@ function showMyPickupList(mypickups){
         text += `<div class="im-body-size-90 im-body-line-height">`;
         text += `<span class="blocked opacity-70">` + mypickup.pickupAddress + `</span>`;
         text += `<span class="blocked price"> 총 수거물품 ` + (mypickup.glassCount + mypickup.petCount)  + `개 </span>`;
-        text += `<span class="text-default opacity-70 im-body-size im-body-line-height text-bold hidden-lg hidden-md hidden-sm" style="margin-bottom: 5px;">취소완료</span>`;
+        text += `<!--<span class="text-default opacity-70 im-body-size im-body-line-height text-bold hidden-lg hidden-md hidden-sm" style="margin-bottom: 5px;">취소완료</span>-->`;
         text += `</div>`;
         text += `</div>`;
         text += `</div>`;
@@ -108,6 +115,11 @@ function showMyPickupList(mypickups){
     }
 
     $("#shop_mypage_orderlist").append(text);
+    getCountMypickup();
+}
+
+function showCountMypickup(count){
+    $(".total-count").html(count);
 }
 
 

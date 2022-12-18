@@ -76,8 +76,4 @@ public class JoinController {
         return joinService.checkEmail(memberEmail);
     }
 
-//    @PostMapping("/kakao")
-//    public void joinKakao(String kakaoId){;}
-
-
 }

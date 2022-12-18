@@ -40,6 +40,13 @@ function showMyprogramMore(){
     globalThis.page++;
 }
 
+/* 총 건수 */
+function showTotalCount(){
+    mypageService.getCountMyprogram(
+        memberId, showCountMyprogram
+    )
+}
+
 function showMyprogramList(myprograms){
     let text = "";
     myprograms.forEach(myprogram => {
@@ -62,12 +69,16 @@ function showMyprogramList(myprograms){
         text += `</li>`;
     });
 
-    if(myprograms.length == 3){
+    if(myprograms.length == 5){
         text += `<button onclick="javascript:showMyprogramMore();" class="myprogram-more-btn" style="width: 100%; height: 70px; background: transparent; border: none; font-size: 12px; font-weight:bold;">더보기</button>`;
     }
 
     $(".byeolbyeol-pay-list-item-wrap").append(text);
-    $(".total-count > strong").html(myprograms.length);
+    showTotalCount();
+}
+
+function showCountMyprogram(count){
+    $(".total-count > strong").html(count);
 }
 
 function openMyprogramModal(myprogramId){
