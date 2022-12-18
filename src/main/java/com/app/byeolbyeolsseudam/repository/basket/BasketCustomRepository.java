@@ -12,4 +12,9 @@ public interface BasketCustomRepository {
 
     // 장바구니 한개 조회
     public BasketDTO selectBasket(Long basketId);
+
+    // 장바구니 선택 구매
+//    public BasketDTO paymentBasket(Long basketId);
+
+
 }

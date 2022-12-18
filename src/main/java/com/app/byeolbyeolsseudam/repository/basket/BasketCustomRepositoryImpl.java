@@ -51,6 +51,21 @@ public class BasketCustomRepositoryImpl implements BasketCustomRepository {
                 .fetchOne();
     }
 
+   /* @Override
+    public List<BasketDTO> paymentBasket(Long basketId){
+        return jpaQueryFactory.select(new QBasketDTO(
+                basket.basketId, basket.basketCount, basket.member.memberId,
+                basket.product.productId, basket.product.productCategory,
+                basket.product.productName, basket.product.productPrice,
+                basket.product.productFileDetailName,basket.product.productFileDetailPath,
+                basket.product.productFileDetailUuid, basket.product.productFileProfileName,
+                basket.product.productFileProfilePath,
+                basket.product.productFileProfileUuid))
+                .from(basket)
+                .where(basket.basketId.eq(basketId))
+                .fetch();
+    }*/
+
 
 
 }

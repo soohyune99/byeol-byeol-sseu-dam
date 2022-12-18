@@ -106,7 +106,9 @@
                                         </thead>
 
                                         <tbody class="startBakset">
+                                        <form name = "deleteForm" method="post" action = "/cart/delete/">
                                         <div style="display:none;" class="item_price 0"></div>
+                                        </form>
                                         <!--<tr class="content basket-list" style="overflow: visible;">
                                             <td class="slt img">
                                                 <div class="im-flex">
@@ -230,7 +232,7 @@
                                                 <td>
                                                     <div class="im-flex im-justify-between">
                                                         <div class="cart-btn-tools">
-                                                            <a href="javascript:;" class="btn">선택상품 삭제</a>
+                                                            <a href="javascript:checkedProductDelete();" class="btn">선택상품 삭제</a>
                                                         </div>
                                                         <div class="text-right text-13 opacity-60">
                                                             <p class="no-margin-bottom">결제 시 추가 할인 적용에 따라 배송비가 변경될 수 있습니다.</p>
@@ -243,10 +245,10 @@
                                                 <td class="full-width">
                                                     <div class="im-flex im-justify-between im-items-center _cart_price_field">
                                                         <div class="pay-txt"> 상품금액(<em class="hidden-lg hidden-md ">총</em>
-                                                            <span class="text-primary _cart_count">2</span>개)
+                                                            <span class="text-primary _cart_count"></span>개)
                                                         </div>
                                                         <div class="pay-number">
-                                                            <span class="_cart_price">14,800원</span>
+                                                            <span class="_cart-real_price">14,800원</span>
                                                         </div>
                                                     </div>
                                                     <div class="im-flex im-justify-between im-items-center _cart_deliv_price_field">
@@ -283,7 +285,7 @@
                                         <thead>
                                         <tr>
                                             <th class="text-left text-14"> 총 주문 상품
-                                                <span class="text-primary _cart_count">2</span>개
+                                                <span class="text-primary _cart_check-count"></span>개
                                             </th>
                                         </tr>
                                         </thead>
@@ -293,7 +295,7 @@
                                                     <div class="im-cart-result-container _cart_result_container">
                                                         <div class="_cart_price_field">
                                                             <div class="im-cart-result-wrap">
-                                                                <p class="_cart_price">14,800원</p>
+                                                                <p class="_cart-real_price">원</p>
                                                                 <p>상품금액</p>
                                                             </div>
                                                         </div>
@@ -343,11 +345,9 @@
                                 <!--END-->
                                 <div class="bottom-btn clearfix btn-wrap">
                                     <div class="pay-box">
-                                        <a class="btn bg-brand to-order _fade_link _btn_order" href="http://localhost:10001/market/payment"
-                                           style="display: flex;">주문하기</a>
-
+                                        <a class="btn bg-brand to-order _fade_link _btn_order" href="javascript:checkedProductBuy()" style="display: flex;">주문하기</a>
                                     </div>
-                                    <a href="http://localhost:10001/market/main" class="cart-ctn ctn _fade_link">계속 쇼핑하기</a>
+                                    <a href="/market" class="cart-ctn ctn _fade_link">계속 쇼핑하기</a>
                                 </div>
                                 <div class="im-cart-info hidden-lg hidden-md hidden-sm">
                                     <p class="no-margin-bottom">결제 시 추가 할인 적용에 따라 배송비가 변경될 수 있습니다.</p>

@@ -243,7 +243,7 @@ function showMarketProduct(products) {
         text += `</div>`;
         text += `</div>`;
         text += `<div data-v-85c61b32="" class="item-price">`;
-        text += `<strong data-v-85c61b32="">` + product.productPrice +`</strong>`;
+        text += `<strong data-v-85c61b32="">` + product.productPrice.toLocaleString() + "원" +`</strong>`;
         text += `</div>`;
         text += `</a>`;
         text += `</article>`;
@@ -301,7 +301,7 @@ function showSearchProduct(products) {
         text += `</div>`;
         text += `</div>`;
         text += `<div data-v-85c61b32="" class="item-price">`;
-        text += `<strong data-v-85c61b32="">` + product.productPrice +`</strong>`;
+        text += `<strong data-v-85c61b32="">` + product.productPrice.toLocaleString() + "원" +`</strong>`;
         text += `</div>`;
         text += `</a>`;
         text += `</article>`;

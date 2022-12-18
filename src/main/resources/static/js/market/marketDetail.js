@@ -161,9 +161,9 @@ function showProductDetail(product){
 
     $(".productType").html(product.productCategory);
     $(".proName").html(product.productName);
-    $(".real_price").html(product.productPrice);
-    $(".item_price").html(product.productPrice);
-    $(".total_price").html(product.productPrice);
+    $(".real_price").html(product.productPrice.toLocaleString() + "원");
+    $(".item_price").html(product.productPrice.toLocaleString() + "원");
+    $(".total_price").html(product.productPrice.toLocaleString() + "원");
 }
 
 /* 구매하지 않은 제품일 경우 구매평 작성 불가 모달 띄우기 */
@@ -617,8 +617,13 @@ function afterUploadReviewFile(file) {
 let $purchaseBtn = $(".purchase-btn");
 
 $purchaseBtn.on("click", function() {
-    let $productCount = $("input[name='orderCount']").val();
-    location.href ='/market/payment?productId='+ productId + '&count='+ $productCount;
+    if(memberId == null){
+        alert("로그인을 해주세요.")
+        location.href="/login";
+    }else{
+        let $productCount = $("input[name='orderCount']").val();
+        location.href ='/market/payment?productId='+ productId + '&count='+ $productCount;
+    }
 
 });
 /* 장바구니 모달 열기 */
@@ -636,7 +641,12 @@ function basketModalClose(){
 let $basketBtn = $(".btn-block");
 
 $basketBtn.on("click", function(){
-    saveBasketList();
+    if(memberId == null){
+        alert("로그인을 해주세요.")
+        location.href="/login";
+    }else{
+        saveBasketList();
+    }
 })
 
 function saveBasketList(){
