@@ -4,6 +4,7 @@ import com.app.byeolbyeolsseudam.domain.Search;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.domain.program.QProgramDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.entity.myprogram.QMyprogram;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -108,6 +109,7 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
     /* 프로그램 Article 클릭시 해당 Detail 페이지로 이동 */
     @Override
     public ProgramDTO findProgramDetail(Long programId) {
+
         ProgramDTO programDTO = jpaQueryFactory.select(new QProgramDTO(
                 program.programId,
                 program.programName,
@@ -126,7 +128,10 @@ public class ProgramCustomRepositoryImpl implements ProgramCustomRepository {
                 program.programFileDetailPath,
                 program.programFileDetailUuid,
                 program.createdDate
-        )).from(program).where(program.programId.eq(programId)).fetchOne();
+        )).from(program)
+                .where(program.programId.eq(programId))
+                .fetchOne();
+
         return programDTO;
     }
 

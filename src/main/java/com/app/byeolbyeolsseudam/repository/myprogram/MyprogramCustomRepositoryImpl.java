@@ -30,4 +30,28 @@ public class MyprogramCustomRepositoryImpl implements MyprogramCustomRepository 
                 .limit(5)
                 .fetch();
     }
+    /* 신청한 프로그램 인지 여부 체크 */
+    @Override
+    public boolean checkMemberAndProgram(Long programId, Long memberId) {
+        boolean check;
+
+
+        List<MyprogramDTO> myProgramDTOS = jpaQueryFactory.select(new QMyprogramDTO(myprogram.myprogramId,
+                myprogram.myprogramStatus, myprogram.member.memberId, myprogram.program.programId,
+                myprogram.program.programName, myprogram.program.programPlace,
+                myprogram.program.programDate, myprogram.program.programFileProfileName
+        )).from(myprogram)
+                .where(myprogram.program.programId.eq(programId).and(myprogram.member.memberId.eq(memberId)))
+                .fetch();// fetch는 null 이면 빈 문자열 반환
+
+        /* 있는지 없는지 확인 */
+        if(myProgramDTOS.size() == 0){ // 신청한지 아닌지
+            check = true; // 신청가능
+        } else {
+            check = false; // 신청불가
+        }
+
+        return check;
+
+    }
 }

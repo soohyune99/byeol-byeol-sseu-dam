@@ -211,8 +211,17 @@
     </div>
     <!-- END : APP BODY -->
 </div>
+<th:block th:if="${session.member != null}">
+    <input type="hidden" th:value="${session.member.memberId}" name="memberId">
+    <input type="hidden" th:value="${session.member.memberCategory}" name="memberCategory">
+</th:block>
 </body>
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='memberId']").val();
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
 <script src="/js/program/program.js"></script>
 <script>
     let count;
@@ -325,7 +334,8 @@
             text += "<article data-v-1a98b297='' data-v-85c61b32='' class='preview-image'>";
             text += "<div data-v-1a98b297='' class='image-wrap' style='padding-top: 66.6667%;'>";
             /* 해당 이미지 경로 */
-            text += "<img data-v-1a98b297='' src='" + program.programFileProfilePath + "'>";
+            text += "<img data-v-1a98b297='' src='" + program.programFileProfileName + "'>";
+            /*text += "<img data-v-1a98b297='' src='" + program.programFileProfilePath + "'>";*/
             text += "</div>";
             text += "</article>";
             text += "</div>";
@@ -417,7 +427,7 @@
             return false;
         }
         pageNumber = 0;
-        programStatus = undefined;
+        // programStatus = undefined;
         keyword = theForm.enter.value;
         reSet();
         url();
@@ -461,4 +471,46 @@
 </script>
 <script src="/js/fix/headerLogin.js"></script>
 <script src="/js/fix/header.js"></script>
+<!-- Channel Plugin Scripts -->
+<script>
+    (function() {
+        var w = window;
+        if (w.ChannelIO) {
+            return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+        }
+        var ch = function() {
+            ch.c(arguments);
+        };
+        ch.q = [];
+        ch.c = function(args) {
+            ch.q.push(args);
+        };
+        w.ChannelIO = ch;
+        function l() {
+            if (w.ChannelIOInitialized) {
+                return;
+            }
+            w.ChannelIOInitialized = true;
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+            s.charset = 'UTF-8';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+        }
+        if (document.readyState === 'complete') {
+            l();
+        } else if (window.attachEvent) {
+            window.attachEvent('onload', l);
+        } else {
+            window.addEventListener('DOMContentLoaded', l, false);
+            window.addEventListener('load', l, false);
+        }
+    })();
+    ChannelIO('boot', {
+        "pluginKey": "9620d8f4-5a7a-4113-aa8d-0e440e89b936"
+    });
+</script>
+<!-- End Channel Plugin -->
 </html>

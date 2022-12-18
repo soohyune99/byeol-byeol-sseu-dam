@@ -31,8 +31,12 @@ public class ProgramController {
 
     /* 프로그램 DETAIL 이동 */
     @GetMapping("/detail")
-    public String findProgramDetail(Long programId, Model model){
+    public String findProgramDetail(Long programId, Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        Long memberId = memberDTO.getMemberId();
+
         model.addAttribute("program",programService.findProgramDetail(programId));
+        model.addAttribute("check", programService.checkMemberAndProgram(programId, memberId)); // 세션 멤버아이디
         return"/app/program/programDetail";
     }
 
