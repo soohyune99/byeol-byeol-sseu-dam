@@ -42,6 +42,17 @@ public class SpotDTO {
         this.spotQrUuid = spotQrUuid;
     }
 
+    @QueryProjection
+    public SpotDTO(Long spotId, String spotName, String spotAddress, int spotNumber, String spotQrName, String spotQrPath, String spotQrUuid, Long courseId) {
+        this.spotId = spotId;
+        this.spotName = spotName;
+        this.spotAddress = spotAddress;
+        this.spotNumber = spotNumber;
+        this.spotQrName = spotQrName;
+        this.spotQrPath = spotQrPath;
+        this.spotQrUuid = spotQrUuid;
+        this.courseId = courseId;
+    }
 
     public Spot toEntity(){
         return Spot.builder()

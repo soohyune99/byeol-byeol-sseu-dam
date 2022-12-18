@@ -82,18 +82,17 @@ public class AdminFileUploadController {
 
         for (MultipartFile multipartFile : upload){
             ProductDTO productDTO = new ProductDTO();
-            UUID uuid = UUID.randomUUID();
+            String uuid = UUID.randomUUID().toString();
             String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            productDTO.setProductFileProfileName(fileName);
-            productDTO.setProductFileProfileUuid(uuid.toString());
-            productDTO.setProductFileProfilePath("/upload/product/" + createDirectoryByNow());
+            uploadFileName = uuid + fileName;
+            productDTO.setProductFileProfileName("/upload/product/" + createDirectoryByNow() + "/" + uuid + fileName);
+            productDTO.setProductFileProfilePath(fileName);
 
             File saveFile =new File(uploadPath, uploadFileName);
             multipartFile.transferTo(saveFile);
 
             files.add(productDTO);
-
+//
         }
         return files;
     }
@@ -111,12 +110,12 @@ public class AdminFileUploadController {
 
         for (MultipartFile multipartFile : upload){
             ProductDTO productDTO = new ProductDTO();
-            UUID uuid = UUID.randomUUID();
+            String uuid = UUID.randomUUID().toString();
             String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            productDTO.setProductFileDetailName(fileName);
-            productDTO.setProductFileDetailUuid(uuid.toString());
-            productDTO.setProductFileDetailPath("/upload/product/" + createDirectoryByNow());
+            uploadFileName = uuid + fileName;
+
+            productDTO.setProductFileDetailName("/upload/product/" + createDirectoryByNow()+ "/" + uuid + fileName);
+            productDTO.setProductFileDetailPath(fileName);
 
             File saveFile =new File(uploadPath, uploadFileName);
             multipartFile.transferTo(saveFile);
@@ -141,13 +140,12 @@ public class AdminFileUploadController {
 
         for (MultipartFile multipartFile : upload){
             ProgramDTO programDTO = new ProgramDTO();
-            UUID uuid = UUID.randomUUID();
+            String uuid = UUID.randomUUID().toString();
             String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            programDTO.setProgramFileProfileName(fileName);
-            programDTO.setProgramFileProfileUuid(uuid.toString());
-            programDTO.setProgramFileProfilePath("/upload/program/" + createDirectoryByNow());
+            uploadFileName = uuid + fileName;
 
+            programDTO.setProgramFileProfileName("/upload/program/" + createDirectoryByNow()+ "/" + uuid + fileName);
+            programDTO.setProgramFileProfilePath(fileName);
             File saveFile =new File(uploadPath, uploadFileName);
             multipartFile.transferTo(saveFile);
 
@@ -170,13 +168,18 @@ public class AdminFileUploadController {
 
         for (MultipartFile multipartFile : upload){
             ProgramDTO programDTO = new ProgramDTO();
-            UUID uuid = UUID.randomUUID();
-            String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            programDTO.setProgramFileDetailName(fileName);
-            programDTO.setProgramFileDetailUuid(uuid.toString());
-            programDTO.setProgramFileDetailPath("/upload/program/" + createDirectoryByNow());
+//            UUID uuid = UUID.randomUUID();
+//            String fileName = multipartFile.getOriginalFilename();
+//            uploadFileName = uuid.toString() + "_" + fileName;
+//            programDTO.setProgramFileDetailName(fileName);
+//            programDTO.setProgramFileDetailUuid(uuid.toString());
+//            programDTO.setProgramFileDetailPath("/upload/program/" + createDirectoryByNow());
 
+            String uuid = UUID.randomUUID().toString();
+            String fileName = multipartFile.getOriginalFilename();
+            uploadFileName = uuid + fileName;
+            programDTO.setProgramFileDetailName("/upload/program/" + createDirectoryByNow()+ "/" + uuid + fileName);
+            programDTO.setProgramFileDetailPath(fileName);
             File saveFile =new File(uploadPath, uploadFileName);
             multipartFile.transferTo(saveFile);
 
@@ -199,13 +202,11 @@ public class AdminFileUploadController {
 
         for (MultipartFile multipartFile : upload){
             CourseDTO courseDTO = new CourseDTO();
-            UUID uuid = UUID.randomUUID();
+            String uuid = UUID.randomUUID().toString();
             String fileName = multipartFile.getOriginalFilename();
-            uploadFileName = uuid.toString() + "_" + fileName;
-            courseDTO.setCourseFileName(fileName);
-            courseDTO.setCourseFileUuid(uuid.toString());
-            courseDTO.setCourseFilePath("/upload/course/" + createDirectoryByNow());
-
+            uploadFileName = uuid + fileName;
+            courseDTO.setCourseFileName("/upload/course/" + createDirectoryByNow()+ "/" + uuid + fileName);
+            courseDTO.setCourseFilePath(fileName);
             File saveFile =new File(uploadPath, uploadFileName);
             multipartFile.transferTo(saveFile);
 
@@ -234,6 +235,7 @@ public class AdminFileUploadController {
             String fileName = multipartFile.getOriginalFilename();
             uploadFileName = uuid + fileName;
             badgeDTO.setBadgeFileName("/upload/badge/" + createDirectoryByNow()+ "/" + uuid + fileName);
+            badgeDTO.setBadgeFilePath(fileName);
 
             File saveFile =new File(uploadPath, uploadFileName);
             multipartFile.transferTo(saveFile);
@@ -243,6 +245,7 @@ public class AdminFileUploadController {
         }
         return files;
     }
+
 
     @PostMapping("/qr/download/{path}")
     public ResponseEntity<Resource> generateQr(@PathVariable(name = "path") String path) throws UnsupportedEncodingException {

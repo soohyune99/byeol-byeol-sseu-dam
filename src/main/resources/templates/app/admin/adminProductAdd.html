@@ -203,8 +203,16 @@
     </div>
 </div>
 
+<th:block th:if="${session.member !=null}">
+    <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+</th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+    let memberName = $("input[name='memberName']").val();
+</script>
 <script src="/js/admin/admin.js"></script>
 <script th:inline="javascript">
     let arrayFile = [];
@@ -225,7 +233,7 @@
         });
 
         $.ajax({
-            url: "/product/profile/upload",
+            url: "/file/product/profile/upload",
             type: "post",
             data: formData,
             contentType: false,
@@ -250,7 +258,7 @@
         });
 
         $.ajax({
-            url: "/product/detail/upload",
+            url: "/file/product/detail/upload",
             type: "post",
             data: formData,
             contentType: false,
@@ -265,7 +273,7 @@
         $(files).each(function (i, file) {
             text += `<input name="productFileProfileName" type="hidden" value="`+ file.productFileProfileName +`">`;
             text += `<input name="productFileProfilePath" type="hidden" value="`+ file.productFileProfilePath +`">`;
-            text += `<input name="productFileProfileUuid" type="hidden" value="`+ file.productFileProfileUuid +`">`;
+            // text += `<input name="productFileProfileUuid" type="hidden" value="`+ file.productFileProfileUuid +`">`;
         });
         $("#profileImgInfo").html(text);
 
@@ -276,7 +284,7 @@
         $(files).each(function (i, file) {
             text += `<input name="productFileDetailName" type="hidden" value="`+ file.productFileDetailName +`">`;
             text += `<input name="productFileDetailPath" type="hidden" value="`+ file.productFileDetailPath +`">`;
-            text += `<input name="productFileDetailUuid" type="hidden" value="`+ file.productFileDetailUuid +`">`;
+            // text += `<input name="productFileDetailUuid" type="hidden" value="`+ file.productFileDetailUuid +`">`;
         });
         $("#detailImgInfo").html(text);
     }

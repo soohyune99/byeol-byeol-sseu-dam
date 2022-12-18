@@ -186,7 +186,7 @@
                                                                                                    name="programFileProfile"
                                                                                                    accept="image/jpeg, image/jpg, image/png, image/gif, image/svg+xml"
                                                                                                    style="display:none;margin: 0 auto;">
-                                                                                            <img th:src="|*{programFileProfilePath}/*{programFileProfileUuid}_*{programFileProfileName}|"
+                                                                                            <img th:src="*{programFileProfileName}"
                                                                                                  id="thumbnail1"
                                                                                                  style="width: 100%; height: 100%;">
                                                                                         </label>
@@ -199,19 +199,19 @@
                                                                                                    name="programFileDetail"
                                                                                                    accept="image/jpeg, image/jpg, image/png, image/gif, image/svg+xml"
                                                                                                    style="display:none;margin: 0 auto;">
-                                                                                            <img th:src="|*{programFileDetailPath}/*{programFileDetailUuid}_*{programFileDetailName}|"
+                                                                                            <img th:src="*{programFileDetailName}"
                                                                                                  id="thumbnail2"
                                                                                                  style="width: 100%; height: 100%;">
                                                                                         </label>
                                                                                         <div id="profileImgInfo">
                                                                                             <input name="programFileProfileName" type="hidden" th:value="*{programFileProfileName}">
                                                                                             <input name="programFileProfilePath" type="hidden" th:value="*{programFileProfilePath}">
-                                                                                            <input name="programFileProfileUuid" type="hidden" th:value="*{programFileProfileUuid}">
+<!--                                                                                            <input name="programFileProfileUuid" type="hidden" th:value="*{programFileProfileUuid}">-->
                                                                                         </div>
                                                                                         <div id="detailImgInfo">
                                                                                             <input name="programFileDetailName" type="hidden" th:value="*{programFileDetailName}">
                                                                                             <input name="programFileDetailPath" type="hidden" th:value="*{programFileDetailPath}">
-                                                                                            <input name="programFileDetailUuid" type="hidden" th:value="*{programFileDetailUuid}">
+<!--                                                                                            <input name="programFileDetailUuid" type="hidden" th:value="*{programFileDetailUuid}">-->
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -246,8 +246,16 @@
     </div>
 </div>
 
+<th:block th:if="${session.member !=null}">
+    <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+</th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+    let memberName = $("input[name='memberName']").val();
+</script>
 <script src="/js/admin/admin.js"></script>
 <script th:inline="javascript">
     let arrayFile = [];
@@ -268,7 +276,7 @@
         });
 
         $.ajax({
-            url: "/program/profile/upload",
+            url: "/file/program/profile/upload",
             type: "post",
             data: formData,
             contentType: false,
@@ -292,7 +300,7 @@
         });
 
         $.ajax({
-            url: "/program/detail/upload",
+            url: "/file/program/detail/upload",
             type: "post",
             data: formData,
             contentType: false,
@@ -307,7 +315,7 @@
         $(files).each(function (i, file) {
             text += `<input name="programFileProfileName" type="hidden" value="`+ file.programFileProfileName +`">`;
             text += `<input name="programFileProfilePath" type="hidden" value="`+ file.programFileProfilePath +`">`;
-            text += `<input name="programFileProfileUuid" type="hidden" value="`+ file.programFileProfileUuid +`">`;
+            // text += `<input name="programFileProfileUuid" type="hidden" value="`+ file.programFileProfileUuid +`">`;
         });
         $("#profileImgInfo").html(text);
 
@@ -318,7 +326,7 @@
         $(files).each(function (i, file) {
             text += `<input name="programFileDetailName" type="hidden" value="`+ file.programFileDetailName +`">`;
             text += `<input name="programFileDetailPath" type="hidden" value="`+ file.programFileDetailPath +`">`;
-            text += `<input name="programFileDetailUuid" type="hidden" value="`+ file.programFileDetailUuid +`">`;
+            // text += `<input name="programFileDetailUuid" type="hidden" value="`+ file.programFileDetailUuid +`">`;
         });
         $("#detailImgInfo").html(text);
     }

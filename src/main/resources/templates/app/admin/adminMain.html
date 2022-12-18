@@ -7,6 +7,19 @@
     <title>별별쓰담 | 관리자 페이지</title>
     <link rel="icon" href="/images/admin/0PBC.png">
     <link rel="stylesheet" href="/css/admin/adminCssAll.css">
+    <style>
+        table{
+            table-layout: fixed;
+        }
+        td{
+            text-align: center;
+            font-size: 13px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+    </style>
 </head>
 <body>
 <header th:replace="/app/admin/adminSideBar.html :: sidebar"></header>
@@ -17,6 +30,7 @@
             <div class="app_wrapper">
 
                 <header class="app_header">
+
                     <div class="header_wrapper">
                         <div class="headerbar">
                             <div class="headerbar-left">
@@ -136,7 +150,7 @@
                                                                                         rowspan="1"
                                                                                         colspan="1"
                                                                                         aria-label="">
-                                                                                        Email
+                                                                                        아이디
                                                                                     </th>
                                                                                     <th class="min-w-125px sorting"
                                                                                         tabindex="0"
@@ -576,10 +590,16 @@
         </div>
     </div>
 </div>
-
+<th:block th:if="${session.member !=null}">
+    <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+    <input type="hidden" name="memberName" th:value="${session.member.memberName}">
+</th:block>
 </body>
-
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberCategory = $("input[name='memberCategory']").val();
+    let memberName = $("input[name='memberName']").val();
+</script>
 <script src="/js/admin/admin.js"></script>
 
 </html>

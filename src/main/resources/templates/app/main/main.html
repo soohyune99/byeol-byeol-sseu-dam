@@ -587,8 +587,9 @@
                                                                          class="preview-image">
                                                                     <div data-v-1a98b297="" class="image-wrap"
                                                                          style="padding-top: 66.6667%;">
+<!--                                                                        th:src="|*{programFileProfilePath}/*{programFileProfileUuid}_*{programFileProfileName}|"-->
                                                                         <img data-v-1a98b297=""
-                                                                             th:src="|*{programFileProfilePath}/*{programFileProfileUuid}_*{programFileProfileName}|">
+                                                                             th:src="*{programFileProfileName}">
                                                                     </div>
                                                                 </article>
                                                             </div>
@@ -642,10 +643,10 @@
                                                th:href="@{|/market/${kitchen.productId}|}" class=""
                                                tabindex="-1" data-v-e4caeaf8=""
                                                style="width: 100%; display: inline-block;">
+<!--                                                th:src="|*{productFileProfilePath}/*{productFileProfileUuid}_*{productFileProfileName}|"-->
                                                 <img data-v-cb8f7044="" alt="고무장갑 팔목라인" class="service-image"
                                                      data-src="https://cdn.imweb.me/thumbnail/20210913/7f55e7a33833f.jpg"
-                                                     src="https://cdn.imweb.me/thumbnail/20210913/7f55e7a33833f.jpg"
-                                                     lazy="loaded">
+                                                     th:src="*{productFileProfileName}"                                                     lazy="loaded">
                                                 <p th:text="*{productName}" data-v-cb8f7044="" class="service-name"></p>
                                             </a>
                                         </div>
@@ -653,10 +654,10 @@
                                             <strong th:text="|${#numbers.formatInteger(kitchen.productPrice, 0, 'COMMA')}원|"
                                                     data-v-85c61b32=""></strong>
                                         </div>
-                                        <div class="prod_icon icon_default"
-                                             style="display: inline-block; text-align: center; color: #fff; font-size: 11px; vertical-align: middle; text-rendering: optimizeLegibility; background: #fff; color: red; width: auto; font-weight: normal; font-size: 11px; padding: 2px 0px;">
-                                            BEST
-                                        </div>
+<!--                                        <div class="prod_icon icon_default"-->
+<!--                                             style="display: inline-block; text-align: center; color: #fff; font-size: 11px; vertical-align: middle; text-rendering: optimizeLegibility; background: #fff; color: red; width: auto; font-weight: normal; font-size: 11px; padding: 2px 0px;">-->
+<!--                                            BEST-->
+<!--                                        </div>-->
                                     </div>
                                 </th:block>
                             </div>
@@ -686,11 +687,12 @@
                                          style="outline: none; width: 247px;">
                                         <div data-v-e4caeaf8=""><a data-v-cb8f7044=""
                                                                    th:href="@{|/market/${bath.productId}|}"                                                                   class="" tabindex="-1" data-v-e4caeaf8=""
-                                                                   style="width: 100%; display: inline-block;"><img
+                                                                   style="width: 100%; display: inline-block;">
+<!--                                            th:src="|*{productFileProfilePath}/*{productFileProfileUuid}_*{productFileProfileName}|"-->
+                                            <img
                                                 data-v-cb8f7044="" alt="자동차 썬팅" class="service-image"
                                                 data-src="https://cdn.imweb.me/thumbnail/20220816/e7980fcbb4c59.jpg"
-                                                src="https://cdn.imweb.me/thumbnail/20220816/e7980fcbb4c59.jpg"
-                                                lazy="loaded">
+                                                th:src="*{productFileProfileName}"                                                lazy="loaded">
                                             <p th:text="*{productName}" data-v-cb8f7044="" class="service-name"></p>
                                         </a></div>
                                         <div data-v-85c61b32="" class="item-price">
@@ -726,10 +728,12 @@
                                          style="outline: none; width: 247px;">
                                         <div data-v-e4caeaf8=""><a data-v-cb8f7044=""
                                                                    th:href="@{|/market/${life.productId}|}"                                                                   class="" tabindex="-1" data-v-e4caeaf8=""
-                                                                   style="width: 100%; display: inline-block;"><img
+                                                                   style="width: 100%; display: inline-block;">
+<!--                                            th:src="|*{productFileProfilePath}/*{productFileProfileUuid}_*{productFileProfileName}|"-->
+                                            <img
                                                 data-v-cb8f7044="" alt="미니 에코백" class="service-image"
                                                 data-src="https://cdn.imweb.me/thumbnail/20220126/4487a182e52e5.jpg"
-                                                th:src="|*{productFileProfilePath}/*{productFileProfileUuid}_*{productFileProfileName}|"
+                                                th:src="*{productFileProfileName}"
                                                 lazy="loaded">
                                             <p th:text="*{productName}" data-v-cb8f7044="" class="service-name"></p>
                                         </a></div>
@@ -935,7 +939,9 @@
                                            tabindex="-1" style="width: 100%; display: inline-block;">
                                             <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"
                                                  lazy="loaded">
-                                                <img th:src="|*{courseFilePath}/*{courseFileUuid}_*{courseFileName}|" alt=""
+<!--                                                <img th:src="|*{courseFilePath}/*{courseFileUuid}_*{courseFileName}|" alt=""-->
+<!--                                                     style="width: 99%; height: 100%;">-->
+                                                <img th:src="*{courseFileName}" alt=""
                                                      style="width: 99%; height: 100%;">
                                             </div>
                                         </a>
@@ -1044,4 +1050,46 @@
 <script src="/js/fix/header.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script src="/js/fix/footer.js"></script>
+<!-- Channel Plugin Scripts -->
+<script>
+    (function() {
+        var w = window;
+        if (w.ChannelIO) {
+            return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+        }
+        var ch = function() {
+            ch.c(arguments);
+        };
+        ch.q = [];
+        ch.c = function(args) {
+            ch.q.push(args);
+        };
+        w.ChannelIO = ch;
+        function l() {
+            if (w.ChannelIOInitialized) {
+                return;
+            }
+            w.ChannelIOInitialized = true;
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+            s.charset = 'UTF-8';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+        }
+        if (document.readyState === 'complete') {
+            l();
+        } else if (window.attachEvent) {
+            window.attachEvent('onload', l);
+        } else {
+            window.addEventListener('DOMContentLoaded', l, false);
+            window.addEventListener('load', l, false);
+        }
+    })();
+    ChannelIO('boot', {
+        "pluginKey": "9620d8f4-5a7a-4113-aa8d-0e440e89b936"
+    });
+</script>
+<!-- End Channel Plugin -->
 </html>
