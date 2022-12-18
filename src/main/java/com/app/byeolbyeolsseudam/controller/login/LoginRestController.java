@@ -22,6 +22,7 @@ import javax.validation.Valid;
 public class LoginRestController {
     private final LoginService loginService;
 
+    /* 로그인 */
     @PostMapping("/rest")
     public String login(@Valid @ModelAttribute("memberDTO") MemberDTO memberDTO, BindingResult bindingResult, HttpSession session) {
         if(bindingResult.hasErrors()){

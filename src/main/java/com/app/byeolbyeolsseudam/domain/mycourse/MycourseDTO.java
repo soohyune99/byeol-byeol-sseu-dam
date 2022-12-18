@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 @Data
 @NoArgsConstructor
@@ -19,9 +21,10 @@ public class MycourseDTO {
     private Long spotId;
     private String spotName;
     private int spotNumber;
+    private LocalDateTime createdDate;
 
     @QueryProjection
-    public MycourseDTO(Long mycourseId, CourseFinishedStatus courseFinishedStatus, Long memberId, Long courseId, String courseName, Long spotId, String spotName, int spotNumber) {
+    public MycourseDTO(Long mycourseId, CourseFinishedStatus courseFinishedStatus, Long memberId, Long courseId, String courseName, Long spotId, String spotName, int spotNumber, LocalDateTime createdDate) {
         this.mycourseId = mycourseId;
         this.courseFinishedStatus = courseFinishedStatus;
         this.memberId = memberId;
@@ -30,6 +33,7 @@ public class MycourseDTO {
         this.spotId = spotId;
         this.spotName = spotName;
         this.spotNumber = spotNumber;
+        this.createdDate = createdDate;
     }
 
     public Mycourse toEntity(){

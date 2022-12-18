@@ -40,6 +40,13 @@ function showMyOrderMore(){
     globalThis.page++;
 }
 
+/* 총 개수 */
+function getCountMyorder(){
+    mypageService.getCountMyorder(
+        memberId, showCountMyorder
+    )
+}
+
 function showMyOrderList(myorders){
     let text = "";
 
@@ -109,8 +116,12 @@ function showMyOrderList(myorders){
     }
 
     $("#shop_mypage_orderlist").append(text);
+    getCountMyorder();
 }
 
+function showCountMyorder(count){
+    $(".total-count").html(count);
+}
 
 
 

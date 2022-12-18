@@ -270,17 +270,23 @@
                         </div>
                     </section>
                     <div class="col-md-6 text-center" style="padding-left: 110px; padding-bottom: 10px;">
-                        <img src="https://trailseoul157k.com/img/sub/course_map_01.png" alt="" class="img-responsive"
+                        <img th:src="*{courseFileName}" alt="" class="img-responsive"
                              style="max-width:540px">
                     </div>
                 </div>
             </section>
+            <th:block th:if="${session.member != null}">
+                <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+            </th:block>
         </div>
     </div>
     <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='memberId']").val();
+</script>
 <script src="/js/fix/header.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 </html>

@@ -80,14 +80,13 @@ public class LoginController {
         return "redirect:/main";
     }
 
-
-
     /* 비밀번호 찾기 페이지로 이동 */
     @GetMapping("/pw")
     public String findPassword(MemberDTO memberDTO){
         return "/app/login/findPassword";
     }
 
+    /* 임시 비밀번호 전송 시 */
     @PostMapping("/pw")
     public RedirectView send(MemberDTO memberDTO, RedirectAttributes redirectAttributes){
         if(!loginService.send(memberDTO)){
@@ -97,6 +96,7 @@ public class LoginController {
         return new RedirectView("/login/pw/done");
     }
 
+    /* 임시 비밀번호 전송 완료 페이지로 이동 */
     @GetMapping("/pw/done")
     public String findPasswordDone(){
         return "/app/login/findPasswordDone";

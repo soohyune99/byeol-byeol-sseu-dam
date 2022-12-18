@@ -3,6 +3,7 @@ package com.app.byeolbyeolsseudam.service.login;
 import com.app.byeolbyeolsseudam.domain.member.MemberDTO;
 import com.app.byeolbyeolsseudam.entity.member.Member;
 import com.app.byeolbyeolsseudam.repository.member.MemberRepository;
+import com.app.byeolbyeolsseudam.type.MemberCategory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.xerces.impl.dv.util.Base64;
@@ -49,6 +50,9 @@ public class LoginServiceImpl implements LoginService{
     public Member UpdatePassword(MemberDTO memberDTO, String tempPassword){
         if(Optional.ofNullable(memberRepository.findByMemberEmail(memberDTO.getMemberEmail())).isPresent()){
             Member member = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
+            if(member.getMemberCategory() == MemberCategory.탈퇴회원){
+                return null;
+            }
             memberDTO.setMemberPassword(Base64.encode(tempPassword.getBytes()));
             member.updateMemberPassword(memberDTO);
             memberRepository.save(member);

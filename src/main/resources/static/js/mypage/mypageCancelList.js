@@ -49,6 +49,13 @@ function showMyCancelMore(){
     globalThis.page++;
 }
 
+/* 총 개수 */
+function getCountMycancel(){
+    mypageService.getCountMycancel(
+        memberId, showCountMycancel
+    )
+}
+
 function getMyCancelList(mycancels){
     let text = "";
 
@@ -118,8 +125,7 @@ function getMyCancelList(mycancels){
     }
 
     $("#shop_mypage_orderlist").append(text);
-    $(".total-count").html(mycancels.length);
-    console.log(mycancels.length)
+    getCountMycancel();
 }
 
 function getMyCancel(mycancel){
@@ -143,6 +149,10 @@ function getMyCancel(mycancel){
     $(".body-block").html(text);
 }
 
+function showCountMycancel(count){
+    console.log(count);
+    $(".total-count").html(count);
+}
 
 
 

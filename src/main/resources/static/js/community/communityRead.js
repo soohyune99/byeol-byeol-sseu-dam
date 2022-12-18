@@ -76,12 +76,14 @@ function openCommentMenu(commentId){
 function openLoginModal(){
     $loginModal.css('display', 'block');
     $("body").css('overflow-y', 'hidden');
+    $("textarea[name='comment-input']").attr('disabled', 'disabled');
 }
 
 /* 로그인 모달 닫기 */
 function closeLoginModal(){
     $loginModal.css('display', 'none');
     $("body").css('overflow-y', 'auto');
+    $("textarea[name='comment-input']").removeAttr('disabled');
 }
 
 /* 첨부파일 x 클릭 시 div 삭제 */

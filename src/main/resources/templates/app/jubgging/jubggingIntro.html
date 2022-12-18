@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="/css/fix/header76.css">
     <link rel="stylesheet" href="/css/fix/header77.css">
     <link rel="stylesheet" href="/css/fix/header37.css">
+    <link rel="stylesheet" href="/css/fix/footer1.css">
+    <link rel="stylesheet" href="/css/fix/footer2.css">
 </head>
 
 <body>
@@ -43,121 +45,6 @@
                     </h1>
                 </div>
             </div>
-            <!-- <div data-v-593ade4e="" class="category-container">
-              <div data-v-593ade4e="" class="category1-box-container container">
-                <div data-v-593ade4e="" class="category1-box">
-                  <h3 data-v-593ade4e="">코스를 선택하세요</h3>
-                  <ul
-                    data-v-7d45c639=""
-                    data-v-593ade4e=""
-                    class="category1-buttons list-inline flex"
-                  >
-                    <li data-v-7d45c639="" class="category">
-                      <a data-v-7d45c639="" href="/pro/welcome/레슨" class="">
-                        <div data-v-7d45c639="" class="category-icon">
-                          <img
-                            data-v-7d45c639=""
-                            src="https://assets.cdn.soomgo.com/icons/category1/lesson.svg"
-                            alt="레슨"
-                          />
-                          <p data-v-7d45c639="" class="category-title p2">1코스</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li data-v-7d45c639="" class="category">
-                      <a data-v-7d45c639="" href="/pro/welcome/홈-리빙" class="">
-                        <div data-v-7d45c639="" class="category-icon">
-                          <img
-                            data-v-7d45c639=""
-                            src="https://assets.cdn.soomgo.com/icons/category1/home-living.svg"
-                            alt="홈/리빙"
-                          />
-                          <p data-v-7d45c639="" class="category-title p2">2코스</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li data-v-7d45c639="" class="category">
-                      <a data-v-7d45c639="" href="/pro/welcome/이벤트" class="">
-                        <div data-v-7d45c639="" class="category-icon">
-                          <img
-                            data-v-7d45c639=""
-                            src="https://assets.cdn.soomgo.com/icons/category1/event.svg"
-                            alt="이벤트"
-                          />
-                          <p data-v-7d45c639="" class="category-title p2">3코스</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li data-v-7d45c639="" class="category">
-                      <a data-v-7d45c639="" href="/pro/welcome/비즈니스" class="">
-                        <div data-v-7d45c639="" class="category-icon">
-                          <img
-                            data-v-7d45c639=""
-                            src="https://assets.cdn.soomgo.com/icons/category1/business.svg"
-                            alt="비즈니스"
-                          />
-                          <p data-v-7d45c639="" class="category-title p2">4코스</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li data-v-7d45c639="" class="category">
-                      <a
-                        data-v-7d45c639=""
-                        href="/pro/welcome/디자인-개발"
-                        class=""
-                      >
-                        <div data-v-7d45c639="" class="category-icon">
-                          <img
-                            data-v-7d45c639=""
-                            src="https://assets.cdn.soomgo.com/icons/category1/design-development.svg"
-                            alt="디자인/개발"
-                          />
-                          <p data-v-7d45c639="" class="category-title p2">5코스</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li data-v-7d45c639="" class="category">
-                      <a data-v-7d45c639="" href="/pro/welcome/건강-미용" class="">
-                        <div data-v-7d45c639="" class="category-icon">
-                          <img
-                            data-v-7d45c639=""
-                            src="https://assets.cdn.soomgo.com/icons/category1/health-beauty.svg"
-                            alt="건강/미용"
-                          />
-                          <p data-v-7d45c639="" class="category-title p2">6코스</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li data-v-7d45c639="" class="category">
-                      <a data-v-7d45c639="" href="/pro/welcome/알바" class="">
-                        <div data-v-7d45c639="" class="category-icon">
-                          <img
-                            data-v-7d45c639=""
-                            src="https://assets.cdn.soomgo.com/icons/category1/part-time-job.svg"
-                            alt="알바"
-                          />
-                          <p data-v-7d45c639="" class="category-title p2">7코스</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li data-v-7d45c639="" class="category">
-                      <a data-v-7d45c639="" href="/pro/welcome/기타" class="">
-                        <div data-v-7d45c639="" class="category-icon">
-                          <img
-                            data-v-7d45c639=""
-                            src="https://assets.cdn.soomgo.com/icons/category1/etc.svg"
-                            alt="기타"
-                          />
-                          <p data-v-7d45c639="" class="category-title p2">
-                            SPECIAL
-                          </p>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div> -->
             <div data-v-6e7535bb="" data-v-593ade4e="" id="people">
                 <div data-v-6e7535bb="" class="container">
                     <div data-v-6e7535bb="" class="row">
@@ -389,14 +276,24 @@
                                class="btn btn-primary btn-lg" target="_self" style="margin-top: 70px;">참여하기</a>
                         </div>
                     </div>
+                    <th:block th:if="${session.member != null}">
+                        <input type="hidden" name="memberId" th:value="${session.member.memberId}">
+                        <input type="hidden" name="memberCategory" th:value="${session.member.memberCategory}">
+                    </th:block>
                 </div>
             </div>
         </div>
     </div>
+    <footer th:replace="/app/fix/footer.html :: footer"></footer>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let memberId = $("input[name='memberId']").val();
+    let memberCategory = $("input[name='memberCategory']").val();
+</script>
 <script src="/js/fix/header.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
+<script src="/js/fix/footer.js"></script>
 <script src="/js/jubgging/jubggingIntro.js"></script>
 </html>
