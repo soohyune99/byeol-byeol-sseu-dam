@@ -418,17 +418,17 @@
         let memberId = $('.memberIdSession').attr('href');
         let programId = $('.programId').attr('href');
         let programStatus = $(".programStatus").attr('href');
-        //
+        // alert(check);
         // alert(memberId);
         // console.log(memberId);
-        if (memberId == undefined) {
+        if (memberId == undefined || check == undefined) {
             // 로그인 필요 모달창 띄우기
             $('.swal2-container').css('display', 'block').fadeIn();
         } else if(programStatus == '마감') {
             alert("이미 마감된 프로그램입니다.")
         } else if(programStatus == '모집예정'){
             alert("모집 예정 프로그램입니다.")
-        } else if(check == false){
+        } else if(check == 'false'){ /*문자열로 인식*/
             alert("이미 신청한 프로그램입니다.")
         } else if(programMemberCount == programLimitCount){
             alert("모집 인원이 가득찬 프로그램입니다.")
