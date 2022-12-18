@@ -228,7 +228,7 @@ function showMarketProduct(products) {
         text += `<div data-v-85c61b32="" class="item-image">`;
         text += `<article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">`;
         text += `<div data-v-1a98b297="" class="image-wrap" style="padding-top: 66.6667%;">`;
-        text += `<img data-v-1a98b297='' src=" `+ product.productFileProfilePath +` ">`;
+        text += `<img data-v-1a98b297='' src=" `+ product.productFileProfileName +` ">`;
         text += `</div>`;
         text += `</article>`;
         text += `</div>`;
@@ -272,8 +272,8 @@ function noProductList() {
     text += "<button class='btn-try-infinite'></button>"
     text += "</div>"
 
-    $("#noArticle1").html(text); // #noArticleProgram 밑에 text들을 넣어줌
-    $("#programListId").html(""); // 프로그램이 없는 경우 ""로 div를 채워줌
+    $("#noArticle1").html(text);
+    $("#programListId").html("");
 }
 
 /* 카테고리 마켓 및 검색어 마켓 */
@@ -286,7 +286,7 @@ function showSearchProduct(products) {
         text += `<div data-v-85c61b32="" class="item-image">`;
         text += `<article data-v-1a98b297="" data-v-85c61b32="" class="preview-image">`;
         text += `<div data-v-1a98b297="" class="image-wrap" style="padding-top: 66.6667%;">`;
-        text += `<img data-v-1a98b297='' src=" `+ product.productFileProfilePath +` ">`;
+        text += `<img data-v-1a98b297='' src=" `+ product.productFileProfileName +` ">`;
         text += `</div>`;
         text += `</article>`;
         text += `</div>`;
@@ -315,8 +315,8 @@ function showSearchProduct(products) {
 
 
 /* ================================== Infinite Scroll ==================================*/
-
-    let page = 1;
+    globalThis.page = 0
+    // let page = 1;
     $(window).scroll(function(){
         let formData = new FormData();
         let keyword = $searchArea.val() || "";

@@ -87,6 +87,25 @@ let orderService = (function(){
     }
 
     function getSaveOrder(formData, callback, error) {
+        $.ajax({
+            url:"/ordering/payment",
+            type: "post",
+            data: formData,
+            enctype:'multipart/form-data',
+            cache:false,
+            contentType:false,
+            processData:false,
+            success: function(order){
+                location.href = "/market/paid/"+ order;
+            },
+            error: function (xhr, status, err) {
+                if(error){
+                    error(err);
+                }
+            }
+        });
+    }
+   /* function getBasketSaveOrder(formData, callback, error) {
         console.log("ajax 들어옴");
         console.log(formData.get("basketId"));
         $.ajax({
@@ -98,34 +117,18 @@ let orderService = (function(){
             contentType:false,
             processData:false,
             success: function(order){
+                console.log("콜백 성공");
+                console.log(order);
                 location.href = "/market/paid/"+ order;
             },
             error: function (xhr, status, err) {
                 if(error){
+                    console.log("콜백 실패");
                     error(err);
                 }
             }
         });
-    }
-    function getBasketSaveOrder(formData, callback, error) {
-        $.ajax({
-            url:"/ordering/payment",
-            type: "post",
-            data: formData,
-            enctype:'multipart/form-data',
-            cache:false,
-            contentType:false,
-            processData:false,
-            success: function(order){
-                location.href = "/market/paid/"+ order;
-            },
-            error: function (xhr, status, err) {
-                if(error){
-                    error(err);
-                }
-            }
-        });
-    }
+    }*/
 
 
     async function payment( products, memberId, callback, error){
@@ -249,17 +252,17 @@ let orderService = (function(){
                 formData.append('detailAdd', detailAdd);
                 formData.append('writeAdd', writeAdd);
                 formData.append('message', buyerMemberMsg);
-                formData.append('buyCount', count);
+                // formData.append('buyCount', count);
                 formData.append('memberId', memberId);
                 formData.append('basketId', basketId);
 
                 // 결제 완료 처리
-                orderService.getBasketSaveOrder(formData);
+                orderService.getSaveOrder(formData);
                 break;
         }
     }
 
 
     return{getOrderDetail : getOrderDetail,getOrderDetailList:getOrderDetailList ,getOrderMember:getOrderMember, getSaveOrder:getSaveOrder,
-        payment:payment, getBasketOrderList:getBasketOrderList, basketPayment:basketPayment, getBasketSaveOrder:getBasketSaveOrder}
+        payment:payment, getBasketOrderList:getBasketOrderList, basketPayment:basketPayment}
 })();

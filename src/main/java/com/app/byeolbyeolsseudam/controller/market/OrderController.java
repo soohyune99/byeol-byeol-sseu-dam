@@ -37,11 +37,10 @@ public class OrderController {
 
     @PostMapping("/basket")
     public List<BasketDTO> getBasket(@RequestBody String paymentFlag){
-        log.info("============================" + paymentFlag);
         List<BasketDTO> baskets = basketService.buyBasket(paymentFlag);
-        baskets.forEach(basket -> {
+        /*baskets.forEach(basket -> {
             log.info("=========================" + basket.getProductName());
-        });
+        });*/
         return baskets;
     }
 
@@ -53,6 +52,7 @@ public class OrderController {
     // 주문하기
     @PostMapping("/payment")
     public Long saveOrderList(Payment payment){
+        log.info("aaaaaaaaaaaaaaaaaaaaaaaa" + payment);
         return orderService.order(payment);
     }
 
