@@ -361,7 +361,7 @@
 
                                     <button data-testid="purchase-btn" type="button" class="btn btn-buy btn-primary"
                                             style="background: #00c7ae; border-radius: 0.25rem; "
-                                            onclick="insertProgram()">
+                                            onclick="insertProgram();">
                                         신청하기
                                     </button>
 
@@ -391,6 +391,7 @@
 <th:block th:if="${session.member != null}">
     <input type="hidden" th:value="${session.member.memberId}" name="memberId">
     <input type="hidden" th:value="${session.member.memberCategory}" name="memberCategory">
+    <input type="hidden" th:value="${check}" name="check">
 </th:block>
 </body>
 
@@ -398,13 +399,14 @@
 <script>
     let memberId = $("input[name='memberId']").val();
     let memberCategory = $("input[name='memberCategory']").val();
+    let check = $("input[name='check']").val();
 </script>
 <script src="/js/Program/programDetail.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
 <script>
     let programMemberCount = [[${program.programMemberCount}]];
     let programLimitCount = [[${program.programLimitCount}]];
-    let check = [[${check}]]; // 신청가능/ 불가 (model 객체 사용)
+    // let check = [[${check}]]; // 신청가능/ 불가 (model 객체 사용) 위에 사용
 
     // $("#modal_title").on("click", function () {
     //     alert($(obj).closest(".responsive").find('#programId').attr("href"));
@@ -416,7 +418,9 @@
         let memberId = $('.memberIdSession').attr('href');
         let programId = $('.programId').attr('href');
         let programStatus = $(".programStatus").attr('href');
-
+        //
+        // alert(memberId);
+        // console.log(memberId);
         if (memberId == undefined) {
             // 로그인 필요 모달창 띄우기
             $('.swal2-container').css('display', 'block').fadeIn();
