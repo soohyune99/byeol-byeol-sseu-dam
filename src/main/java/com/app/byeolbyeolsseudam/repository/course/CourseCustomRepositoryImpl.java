@@ -72,6 +72,7 @@ public class CourseCustomRepositoryImpl implements CourseCustomRepository {
                 spot.spotQrPath, spot.spotQrUuid))
                 .from(spot)
                 .where(spot.course.courseId.eq(courseDTO.getCourseId()))
+                .orderBy(spot.spotNumber.asc())
                 .fetch());
         return courseDTO;
     }
@@ -93,6 +94,7 @@ public class CourseCustomRepositoryImpl implements CourseCustomRepository {
                 spot.spotQrPath, spot.spotQrUuid))
                 .from(spot)
                 .where(spot.course.courseId.eq(courseDTO.getCourseId()))
+                .orderBy(spot.spotNumber.asc())
                 .fetch());
         return courseDTO;
     }
