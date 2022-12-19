@@ -410,6 +410,11 @@
 
 /* 미디어쿼리 */
 
+@media (max-width: 767px){
+    .nick.text-default-dark {
+        padding-left: 10%;
+    }
+}
 
 
 @media (max-width: 767px){

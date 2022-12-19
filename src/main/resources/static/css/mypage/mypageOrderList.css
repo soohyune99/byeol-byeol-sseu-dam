@@ -1078,6 +1078,106 @@ body.shop_mypage .body_font_color_50 {
 
 /* 미디어쿼리 */
 
+@media (max-width: 500px){
+    .shop-content .left-menu ul {
+        padding: 0;
+        list-style: none;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 500px){
+    .left-menu ul li{
+        display: none;
+    }
+}
+
+@media (max-width: 700px){
+    .left-menu ul li.on{
+        display: block;
+    }
+}
+
+@media (max-width: 500px){
+    .mypage .head {
+        padding: 10px;
+        margin-bottom: 70px;
+    }
+}
+
+@media (max-width: 500px){
+    .point-view.text-center {
+        display: none;
+    }
+}
+
+@media (max-width: 500px){
+    .mycourseTab > a {
+        font-size: 7px !important;
+    }
+}
+
+@media (max-width: 500px){
+    .noticeContent {
+        display: none;
+    }
+}
+@media (max-width: 500px){
+    .categoryAndDate span {
+        font-size: 7px !important;
+    }
+}
+@media (max-width: 500px){
+    .community-activity-title {
+        margin-bottom: 15px!important;
+    }
+}
+
+@media (max-width: 500px){
+    .im-body-size.im-xs-body-size {
+        display: none;
+    }
+}
+
+@media (max-width: 500px){
+    .im-xs-align-top {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px){
+    .order_title.text-bold.text-center {
+        display: none !important;
+    }
+}
+
+@media (max-width: 500px){
+    .cart-btn-tools {
+        display: none;
+    }
+}
+
+@media (max-width: 500px){
+    .im-xs-align-top {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 500px){
+}
+
+
+
+
+
+
+
+
+
+
+
 @media (min-width: 768px){
     .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
         float: left;
@@ -1096,13 +1196,6 @@ body.shop_mypage .body_font_color_50 {
         margin: 30px auto;
     }
 }
-
-/*@media (min-width: 768px){*/
-/*    .modal-content {*/
-/*        -webkit-box-shadow: 0 5px 15px rgb(0 0 0 / 50%);*/
-/*        box-shadow: 0 5px 15px rgb(0 0 0 / 50%);*/
-/*    }*/
-/*}*/
 
 @media (min-width: 992px){
     .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
@@ -1127,7 +1220,6 @@ body.shop_mypage .body_font_color_50 {
         display: none!important;
     }
 }
-
 
 
 
