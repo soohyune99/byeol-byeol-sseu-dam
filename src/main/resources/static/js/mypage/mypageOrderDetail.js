@@ -68,7 +68,7 @@ function showMyOrderDetail(myorder){
         text += `<div class="im-flex">`;
         text += `<div class="margin-right-xxl">`;
         text += `<a href="/bathroom/?idx=24" target="_blank">`;
-        text += `<img alt="상품 이미지" src="https://cdn.imweb.me/thumbnail/20220117/6a329ba1bf9e7.jpg">`;
+        text += `<img alt="상품 이미지" src="` + orderDetail.productFileProfileName + `">`;
         text += `</a>`;
         text += `</div>`;
         text += `<div class="full-width">`;

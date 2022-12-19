@@ -71,7 +71,7 @@ function show(){
 $categoryList.on('click', function(){
     let formData = new FormData();
     let keyword = $searchBar.val() || "";
-    globalThis.category = $(this).text().trim();
+    globalThis.category = $(this).find(".sg-text-body2").text().trim();
     globalThis.page = 0;
 
     $categoryList.removeClass("selected");
@@ -80,6 +80,8 @@ $categoryList.on('click', function(){
     if(category == '전체'){
         globalThis.category = '';
     }
+    console.log($(this));
+    console.log(category);
 
     formData.append('page', globalThis.page);
     formData.append('keyword', keyword);

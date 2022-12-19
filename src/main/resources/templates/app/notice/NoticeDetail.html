@@ -31,10 +31,10 @@
             <nav class="sub-nav">
                 <ol class="breadcrumbs">
                     <li title="공지사항 - 별별쓰담<">
-                        <a href="/hc/ko">공지사항 - 별별쓰담</a>
+                        <a href="/notice/1">공지사항</a>
                     </li>
                     <li title="공지사항">
-                        <a href="/hc/ko/categories/360002081551-%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD">공지사항</a>
+                        <a href="/notice/1">공지사항</a>
                     </li>
                 </ol>
                 <!--<form role="search" class="search" data-search="" action="/hc/ko/search" accept-charset="UTF-8" method="get">
@@ -53,8 +53,11 @@
 
                     <section class="article-info">
                         <div class="article-content">
-                            <div class="article-body" th:text="*{noticeContent}">
-                            </div>
+                            <textarea class="article-body" th:text="*{noticeContent}"
+                            style="width: 80%; border: none; resize: none; resize: none; line-height: 3;
+                            min-height: 350px; height: fit-content; font-family: inherit; outline: none;
+                            font-size: 17px;">
+                            </textarea>
 
                             <div class="article-attachments">
                                 <ul class="attachments"></ul>
