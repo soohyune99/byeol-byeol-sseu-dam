@@ -114,6 +114,7 @@ public class CourseCustomRepositoryImpl implements CourseCustomRepository {
                             spot.spotId, spot.spotName, spot.spotAddress, spot.spotNumber, spot.course.courseId))
                             .from(spot)
                             .where(spot.course.courseId.eq(course.getCourseId()))
+                            .orderBy(spot.spotNumber.asc())
                             .fetch()
             );
             course.setMycourses(
