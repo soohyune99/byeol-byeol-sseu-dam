@@ -3,12 +3,14 @@ package com.app.byeolbyeolsseudam.entity.program;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
 import com.app.byeolbyeolsseudam.embaddable.PossibleDate;
 import com.app.byeolbyeolsseudam.entity.Period;
+import com.app.byeolbyeolsseudam.entity.myprogram.Myprogram;
 import com.app.byeolbyeolsseudam.type.ProgramStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "TBL_PROGRAM")
@@ -46,6 +48,9 @@ public class Program extends Period {
     private String programFileDetailPath;
     @NotNull
     private String programFileDetailUuid;
+
+    @OneToMany(mappedBy = "program", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Myprogram> myPrograms;
 
     @Builder
     public Program(String programName, String programPlace, PossibleDate possibleDate, int programTime, LocalDateTime programDate, String programContent, int programLimitCount, ProgramStatus programStatus, String programFileProfileName, String programFileProfilePath, String programFileProfileUuid, String programFileDetailName, String programFileDetailPath, String programFileDetailUuid) {

@@ -42,7 +42,7 @@ public class Course extends Period {
     @Embedded
     private PossibleDate possibleDate;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course", cascade = CascadeType.ALL)
     private List<Spot> spots;
 
     @Builder

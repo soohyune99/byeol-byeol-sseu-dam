@@ -3,11 +3,13 @@ package com.app.byeolbyeolsseudam.entity.order;
 import com.app.byeolbyeolsseudam.domain.order.OrderDTO;
 import com.app.byeolbyeolsseudam.entity.Period;
 import com.app.byeolbyeolsseudam.entity.member.Member;
+import com.app.byeolbyeolsseudam.entity.orderdetail.OrderDetail;
 import com.app.byeolbyeolsseudam.type.OrderStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "TBL_ORDER")
@@ -25,6 +27,9 @@ public class Order extends Period {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetails;
 
     public void changeMember(Member member){
         this.member = member;
