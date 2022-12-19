@@ -592,3 +592,57 @@ blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4,
 }
 
 /* 미완주 코스 클릭 시 모달 end */
+
+@media (max-width: 500px){
+    .shop-content .left-menu ul {
+        padding: 0;
+        list-style: none;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 500px){
+    .left-menu ul li{
+        display: none;
+    }
+}
+
+@media (max-width: 700px){
+    .left-menu ul li.on{
+        display: block;
+    }
+}
+
+@media (max-width: 500px){
+    .mypage .head {
+        padding: 10px;
+        margin-bottom: 70px;
+    }
+}
+
+@media (max-width: 500px){
+    .point-view.text-center {
+        display: none;
+    }
+}
+
+@media (max-width: 500px){
+    .mycourseTab > a {
+        font-size: 7px !important;
+    }
+}
+
+@media (max-width: 500px){
+    .noticeContent {
+        display: none;
+    }
+}
+@media (max-width: 500px){
+    .categoryAndDate span {
+        font-size: 7px !important;
+    }
+}
+@media (max-width: 500px){
+}
