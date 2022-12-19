@@ -930,10 +930,22 @@
                                      style="outline: none; width: 329px;">
                                     <div data-v-e4caeaf8="">
                                         <ul class="location-list" data-v-06148408="">
-                                            <li class="location-item" data-v-06148408="">
-                                                <a th:href="@{|/jubgging/${courseStat.count}|}" data-v-06148408="" class="" th:text="*{courseName}"></a>
+                                            <th:block th:if="${!courseStat.last}">
+                                            <li class="location-item" data-v-06148408="" th:each="jub:${#strings.arraySplit(course.courseName,' ')}">
+                                                <th:block th:if="${jubStat.first}">
+                                                    <a th:href="@{|/jubgging/${courseStat.count}|}" data-v-06148408="" class="" th:text="${jub}"></a>
+                                                </th:block>
                                             </li>
+                                            </th:block>
+                                            <th:block th:if="${courseStat.last}">
+                                                <li class="location-item" data-v-06148408="" th:each="jub:${#strings.arraySplit(course.courseName,' ')}">
+                                                    <th:block th:if="${jubStat.first}">
+                                                        <a th:href="@{|/jubgging/special|}" data-v-06148408="" class="" th:text="${jub}"></a>
+                                                    </th:block>
+                                                </li>
+                                            </th:block>
                                         </ul>
+                                        <th:block th:if="${!courseStat.last}">
                                         <a data-v-0a3d71e7="" data-v-e4caeaf8=""
                                            th:href="@{|/jubgging/${courseStat.count}|}"
                                            tabindex="-1" style="width: 100%; display: inline-block;">
@@ -945,6 +957,18 @@
                                                      style="width: 99%; height: 100%;">
                                             </div>
                                         </a>
+                                        </th:block>
+                                        <th:block th:if="${courseStat.last}">
+                                            <a data-v-0a3d71e7="" data-v-e4caeaf8=""
+                                               th:href="@{|/jubgging/special|}"
+                                               tabindex="-1" style="width: 100%; display: inline-block;">
+                                                <div data-v-0a3d71e7="" data-v-e4caeaf8="" class="magazine-image"
+                                                     lazy="loaded">
+                                                    <img th:src="@{|/images/jubgging/course${courseStat.count}.png|}" alt=""
+                                                         style="width: 99%; height: 100%;">
+                                                </div>
+                                            </a>
+                                        </th:block>
                                     </div>
                                 </div>
                                 </th:block>
