@@ -33,7 +33,7 @@ public class Board extends Period {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = CascadeType.ALL)
     private List<Comment> comments;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = CascadeType.ALL)
     private List<FileBoard> files;
