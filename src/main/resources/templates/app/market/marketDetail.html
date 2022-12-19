@@ -41,7 +41,7 @@
                                                 <div data-v-e4caeaf8="">
                                                     <article tabindex="-1" class="preview-image" style="width:100%;display:inline-block;" data-v-1a98b297="" data-v-5a004a22="" data-v-e4caeaf8="">
                                                         <div class="image-wrap">
-<!--                                                            <img src="/images/market/kitchen2.png" data-v-1a98b297="">-->
+                                                            <img class="product-picture" src="/images/market/kitchen2.png" data-v-1a98b297="">
                                                         </div>
                                                     </article>
                                                 </div>
@@ -78,7 +78,7 @@
                             <article class="product-description-images" data-v-08563466="" data-v-e0e63576="">
                                 <div class="height-clamp hide-less" style="--hc-gradient-height:120px; --hc-height:464px;" data-v-7fdb566e="">
                                     <div data-v-7fdb566e="">
-                                        <img src="/images/market/kitchendetail2.jpg" alt="상품 상세이미지" data-type="lightGallery" role="button" class="img-fluid w-100" data-v-7fdb566e="">
+                                        <img src="" alt="상품 상세이미지" data-type="lightGallery" role="button" class="product-detail-photo img-fluid w-100" data-v-7fdb566e="">
                                     </div>
                                 </div>
                             </article>
@@ -105,13 +105,13 @@
                                             <div class="rating_bar_wrap">
                                                 <span class="rating_name">5점</span>
                                                 <div class="rating_bar_background">
-                                                    <div class="five_bar rating_bar" style="width: 89.4736842105%; "> </div>
+                                                    <div class="five_bar rating_bar" style="width: 0%; "> </div>
                                                 </div>
                                             </div>
                                             <div class="rating_bar_wrap">
                                                 <span class="rating_name">4점</span>
                                                 <div class="rating_bar_background">
-                                                    <div class="four_bar rating_bar " style="width: 10.5263157895%; "></div>
+                                                    <div class="four_bar rating_bar " style="width: 0%; "></div>
                                                 </div>
                                             </div>
                                             <div class="rating_bar_wrap">
@@ -594,4 +594,46 @@
 <script src="/js/market/marketBasketModule.js"></script>
 <script src="/js/market/marketDetail.js"></script>
 <script src="/js/fix/headerLogin.js"></script>
+<!-- Channel Plugin Scripts -->
+<script>
+    (function() {
+        var w = window;
+        if (w.ChannelIO) {
+            return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+        }
+        var ch = function() {
+            ch.c(arguments);
+        };
+        ch.q = [];
+        ch.c = function(args) {
+            ch.q.push(args);
+        };
+        w.ChannelIO = ch;
+        function l() {
+            if (w.ChannelIOInitialized) {
+                return;
+            }
+            w.ChannelIOInitialized = true;
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+            s.charset = 'UTF-8';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+        }
+        if (document.readyState === 'complete') {
+            l();
+        } else if (window.attachEvent) {
+            window.attachEvent('onload', l);
+        } else {
+            window.addEventListener('DOMContentLoaded', l, false);
+            window.addEventListener('load', l, false);
+        }
+    })();
+    ChannelIO('boot', {
+        "pluginKey": "9620d8f4-5a7a-4113-aa8d-0e440e89b936"
+    });
+</script>
+<!-- End Channel Plugin -->
 </html>

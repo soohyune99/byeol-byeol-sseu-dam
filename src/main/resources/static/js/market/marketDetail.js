@@ -161,6 +161,8 @@ function showProductDetail(product){
 
     $(".productType").html(product.productCategory);
     $(".proName").html(product.productName);
+    $(".product-detail-photo").attr('src', product.productFileDetailName);
+    $(".product-picture").attr('src', product.productFileProfileName);
     $(".real_price").html(product.productPrice.toLocaleString() + "원");
     $(".item_price").html(product.productPrice.toLocaleString() + "원");
     $(".total_price").html(product.productPrice.toLocaleString() + "원");
@@ -445,17 +447,24 @@ function reviewCallback(reviews){
         }
     })
     avg = total / reviews.length;
-    $(".rating_point").html(avg.toFixed(1));
+    $(".rating_point").html(isNaN(avg.toFixed(1)) ? 0:avg.toFixed(1));
     $(".review_count").html("총" + reviews.length + "개의 구매평");
-    $(".five_bar").css('width', (totalFive / total * 100) + "%");
-    $(".four_bar").css('width', (totalFour / total * 100) + "%");
-    $(".three_bar").css('width', (totalThree / total * 100) + "%");
-    $(".two_bar").css('width', (totalTwo / total * 100) + "%");
-    $(".one_bar").css('width', (totalOne / total * 100) + "%");
+    if(isNaN(reviews.length)){
+        $(".five_bar").css('width', (0) + "%");
+        $(".four_bar").css('width', (0) + "%");
+        $(".three_bar").css('width', (0) + "%");
+        $(".two_bar").css('width', (0) + "%");
+        $(".one_bar").css('width', (0) + "%");
+    }else{
+        $(".five_bar").css('width',(totalFive / total * 100) + "%");
+        $(".four_bar").css('width', (totalFour / total * 100) + "%");
+        $(".three_bar").css('width', (totalThree / total * 100) + "%");
+        $(".two_bar").css('width', (totalTwo / total * 100) + "%");
+        $(".one_bar").css('width', (totalOne / total * 100) + "%");
+    }
     console.log("별점 최대값");
     console.log(Math.max(totalOne, totalTwo, totalThree, totalFour, totalFive));
     (Math.max(totalOne, totalTwo, totalThree, totalFour, totalFive).eq($(".rating_bar").addClass("active")));
-
 
     total = 0;
 }

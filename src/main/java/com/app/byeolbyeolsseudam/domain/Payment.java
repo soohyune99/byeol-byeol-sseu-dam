@@ -16,5 +16,5 @@ public class Payment {
 
     private Long memberId;
     private Long productId;
-    private Long basketId;
+    private String basketId;
 }

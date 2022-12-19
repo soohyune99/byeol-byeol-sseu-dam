@@ -303,7 +303,10 @@ function onblurPoint() {
         $(".use_point_number").html(" - " + 0 + "원");
         $(".total-price").html($productPrice - 0 + "원");
 
-    }else{
+    }else if (blurPoint.value < 0) {
+        alert("잘못된 입력입니다.")
+        $("input._input_point").val(0);
+    } else {
         $(".use_point_text").html("포인트 사용");
         $(".use_point_number").html(" - " + blurPoint.value + "원");
         $(".total-price").html($productPrice - blurPoint.value + "원");

@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Long order(Payment payment){
-        log.info("==================" + payment);
+        log.info("=========aaaaa=========" + payment);
         OrderDTO orderDTO = new OrderDTO();
         OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
         Member member = memberRepository.findById(payment.getMemberId()).get();
@@ -72,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
             orderDetail.changeProduct(productRepository.findById(payment.getProductId()).get());
             orderDetailRepository.save(orderDetail);
         }else{
-            Basket basket = basketRepository.findById(payment.getBasketId()).get();
+            Basket basket = basketRepository.findById(Long.valueOf(payment.getBasketId())).get();
             log.info("1111111111111111111111" + basket);
             orderDetail.changeProduct(basket.getProduct());
             log.info(",,,,,,,,,,,,,,,,,,," + basket.getProduct());
