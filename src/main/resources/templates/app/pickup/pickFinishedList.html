@@ -61,7 +61,7 @@
                     <li data-v-564412cd="" class="quote-list-item col-md-6 col-lg-4 col-12 finishPickup">
 
                         <div data-v-05822788="" data-v-564412cd="" data-testid="request-card" class="request-card">
-                            <a class="detailFinishBtn" type="button" data-v-3a2c0d3c="" style="height: 66%;">
+                            <a class="detailFinishBtn" type="button" data-v-3a2c0d3c="" style="height: 66%; width: 100%;">
                                 <input type="hidden" th:href="*{pickupAcceptId}" id="pickupAcceptId">
                             <div data-v-05822788="" class="request-card-header align-items-center">
                                 <div th:text="*{pickupAddress}" data-v-05822788="" class="request-card-title text-truncate"><!--주소가 들어갈 부분입니다-->
@@ -130,6 +130,7 @@
     let memberId = $("input[name='memberId']").val();
 </script>
 <script src="/js/fix/headerLogin.js"></script>
+<script src="/js/fix/footer.js"></script>
 <script>
     /* 수거완료내역에서 내역 클릭시 _ 수거완료내역 detail 페이지 */
     $("a.detailFinishBtn").on("click",function () {
