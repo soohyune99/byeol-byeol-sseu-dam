@@ -498,7 +498,6 @@ let totalFive = 0;
 function reviewCallback(reviews){
     reviews.forEach((review, index) => {
         total += review.reviewStar
-        // rgb(255,206,33)
         console.log(review);
         if(index == 0){
             if(review.reviewStar == 5){
