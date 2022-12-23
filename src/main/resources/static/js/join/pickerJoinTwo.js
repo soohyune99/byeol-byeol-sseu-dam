@@ -402,19 +402,3 @@ $(".change-btn").on('click', function(){
         $(".change-btn").attr("type", "submit");
     }
 });
-
-// successJoin();
-//
-// /* memberAddress 값 넣어주기 */
-// function successJoin(){
-//     let memberAddress = searchParam('memberAddress');
-//
-//     if(memberAddress != ''){
-//         $("input[name='memberAddress']").val(memberAddress);
-//     }
-// }
-//
-// /* 쿼리스트링 가져오는 메소드 */
-// function searchParam(key) {
-//     return new URLSearchParams(location.search).get(key);
-// };

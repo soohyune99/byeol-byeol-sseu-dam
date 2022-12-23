@@ -102,21 +102,4 @@ public class LoginController {
         return "/app/login/findPasswordDone";
     }
 
-    /* =========================================================================== */
-
-
-//    @Transactional
-//    @PostMapping("/findpassword")
-//    public String sendEmail(@RequestParam("memberEmail") String memberEmail, MemberDTO memberDTO){
-//        MailDTO mailDTO = memberLoginService.createMailAndChangePassword(memberDTO);
-//        memberLoginService.mailSend(mailDTO);
-//
-//        return "/app/login/findPasswordDone";
-//    }
-
-//    @RequestMapping(value = "/findpassworddone", method = RequestMethod.GET)
-//    public String findPasswordDone(){
-//
-//        return "/app/login/findPasswordDone";
-//    }
 }
