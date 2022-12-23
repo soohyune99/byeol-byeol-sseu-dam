@@ -23,15 +23,11 @@ let shippingZipCode = $("._shipping_preview_wrap").children().eq(2).children().e
 
 // 전체 동의 클릭
 $totalAgreeBtn.on("click", function(){
-    //각각의 약관의 checked 프로퍼티를 모두 전체동의의 checked 상태로 변경시켜준다.
-    // 전체 동의가 true면 나머지 다 true
     $agreeBtn.prop("checked", $(this).is(":checked"));
 });
 
 // 각각의 약관 동의 클릭
 $agreeBtn.on("click", function(){
-    // 각각의 약관의 checked 프로퍼티가 true인 개수를 가져온 뒤
-    // 2개 모두 true일 경우 전체 동의도 true이다.
     $totalAgreeBtn.prop("checked", $agreeBtn.filter(":checked").length == $agreeBtn.length);
 });
 
@@ -48,7 +44,6 @@ function modifyOrdererInfo(){
 
     $ordererInfo.html(text);
 }
-
 
 /* 주문자 정보 수정 완료 */
 function modifyOKOrdererInfo(){
@@ -89,39 +84,28 @@ function cancelModificationOrder(){
 }
 
 /* ================================== 카카오 주소 api ==================================*/
-//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 function sample4_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
             var roadAddr = data.roadAddress; // 도로명 주소 변수
             var extraRoadAddr = ''; // 참고 항목 변수
 
-            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
             if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                 extraRoadAddr += data.bname;
             }
-            // 건물명이 있고, 공동주택일 경우 추가한다.
             if(data.buildingName !== '' && data.apartment === 'Y'){
                 extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
             }
-            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
             if(extraRoadAddr !== ''){
                 extraRoadAddr = ' (' + extraRoadAddr + ')';
             }
 
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('sample4_postcode').value = data.zonecode;
             document.getElementById("sample4_roadAddress").value = roadAddr;
             document.getElementById("sample4_jibunAddress").focus();
             document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
 
-
-            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
             if(roadAddr !== ''){
                 document.getElementById("sample4_extraAddress").value = extraRoadAddr;
             } else {
@@ -208,11 +192,6 @@ $("select[name='deliv_memo']").on('click', function(){
     text += `<input type="text" class="modifyInfo text-14 margin-bottom-lg text-gray" placeholder="직접 입력">`;
 
     $(".memo-select-wrap").html(text);
-    /*  $(".select-control").style.display = 'none';
-      $(".modifyInfo").style.display = "display";
-      let wirteMsg =  $("input[name='write-msg']").val()
-      console.log("직접 쓴 메시지");
-      console.log(wirteMsg);*/
 });
 
 /* ================================== MarketPayment ==================================*/
@@ -431,7 +410,6 @@ function showOrderBasketDetail(baskets){
     console.log(all);
     $(".hidden-productId").html(baskets.productId);
     $(".hidden-productName").html(baskets.productName);
-    // $(".hidden-productPrice").html(baskets.productPrice.toLocaleString() + "원");
     $(".order-product-price").html(all.toLocaleString() + "원");    // 상품 가격 * 수량
     $(".total-price").html(all + 3000);    // 상품 가격 * 수량 + 배송비
     $(".save-point").html((all + 3000) * 0.01);   // 포인트 적립

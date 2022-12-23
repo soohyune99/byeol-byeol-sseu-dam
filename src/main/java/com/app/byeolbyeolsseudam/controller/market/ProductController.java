@@ -29,26 +29,4 @@ public class ProductController {
         return marketService.readProduct(productId);
     }
 
-    // 개수 조회
-
-
-/*    // 카테고리별 조회
-    @GetMapping("/{productCategory}")
-    public List<ProductDTO> getCategoryMarkets(@PathVariable ProductCategory productCategory) {
-        return marketService.selectProductsofCategory(productCategory);
-    }*/
-
-/*    // 검색
-    @PostMapping("/{keyword}")
-    public List<ProductDTO> getSearchProducts(@PathVariable String keyword){
-        return marketService.selectProductsofKeyword(keyword);
-    }*/
-
-   /* // 무한 스크롤
-    @PostMapping("/scroll")
-    public List<ProductDTO> infiniteScroll(Criteria criteria){
-        return marketService.selectScrollProducts(criteria);
-    }
-*/
-
 }

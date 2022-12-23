@@ -5,11 +5,9 @@
 const memberId = $("input[name='memberId']").val();
 const memberName = $("input[name='memberName']").val();
 
-console.log(memberId);
-console.log(memberName);
 /* ================================== 결제 내역 보기 ==================================*/
 
-/* 주문 영수증 조회 */
+/* 주문완료 후  조회 */
 
 showRecipt();
 

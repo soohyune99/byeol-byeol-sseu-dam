@@ -50,7 +50,6 @@ public class NoticeServiceImpl implements NoticeService {
     //공지사항 검색
     @Override
     public Page<NoticeDTO> search(String keyword, Pageable pageable){
-        log.info("================ : " + pageable.getPageSize());
         List<NoticeDTO> search = noticeRepository.searchList(keyword);
         List<NoticeDTO> result =  noticeRepository.searchNotice(keyword, pageable);
         final Page<NoticeDTO> searchList = new PageImpl<>(result, pageable, search.size());

@@ -14,13 +14,6 @@ public interface ProductCustomRepository {
     // 마켓 상세 + 댓글 조회
     public ProductDTO readProduct(Long productId);
 
-    // 마켓 카테고리 조회
-//    public List<ProductDTO> selectProductofCategory(ProductCategory productCategory);
-    // 마켓 검색
-//    public List<ProductDTO> selectProductofKeyword(String keyword);
-    // 무한 스크롤
-//    public List<ProductDTO> selectScrollProducts(Criteria criteria);
-    
     // 주문하기
     public ProductDTO selectProduct(Long productId);
     public  List<ProductDTO> selectProductAll(Long productId);

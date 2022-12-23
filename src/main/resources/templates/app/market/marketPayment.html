@@ -515,14 +515,11 @@
 <script src="/js/fix/headerLogin.js"></script>
 <script th:inline="javascript">
     /*================================== 결제 하기 ==================================*/
-    console.log("안녕");
 
     /* 결제하기 버튼 누를 시 */
     function searchParam(key) {
         return new URLSearchParams(location.search).get(key);
     }
-
-    // let basketFlag = searchParamm('basketId');
 
     function clickPayBtn() {
         console.log("결제 하기 버튼 누름");

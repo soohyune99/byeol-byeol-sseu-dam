@@ -53,11 +53,7 @@ public class BasketController {
     /* 장바구니 상품 한개 바로 구매*/
     @PostMapping("/buy")
     public List<BasketDTO> paymentBasket(@RequestBody String paymentFlag){
-//        log.info("++++++++++++들어옴+++++++++++++++++++++");
-        log.info("============================" + paymentFlag);
-//        log.info("********************" +  basketService.buyBasket(basketId));
         return basketService.buyBasket(paymentFlag);
-//        model.addAttribute("baskets", basketService.buyBasket(basketId));
     }
 
 

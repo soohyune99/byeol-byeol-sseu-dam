@@ -26,27 +26,4 @@ public class MarketServiceImpl implements MarketService {
         return productRepository.readProduct(productId);
     }
 
-    // 상품 개수 조회
-    public long countProducts(){
-        return productRepository.count();
-    }
-
-    // 상품 카테고리별 조회
-    /*@Override
-    public List<ProductDTO> selectProductsofCategory(ProductCategory productCategory){
-        return productRepository.selectProductofCategory(productCategory);
-    }*/
-
-    // 상품 검색
-    /*@Override
-    public List<ProductDTO> selectProductsofKeyword(String keyword){
-        return productRepository.selectProductofKeyword(keyword);
-    }*/
-
-    // 무한 스크롤
-   /* @Override
-    public List<ProductDTO> selectScrollProducts(Criteria criteria){
-        return productRepository.selectScrollProducts(criteria);
-    }*/
-
 }

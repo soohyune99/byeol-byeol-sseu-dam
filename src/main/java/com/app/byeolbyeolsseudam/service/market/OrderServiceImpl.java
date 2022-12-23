@@ -34,24 +34,25 @@ public class OrderServiceImpl implements OrderService {
     private final OrderDetailRepository orderDetailRepository;
     private final BasketRepository basketRepository;
 
+    // 주문 관련 상품 조회
     @Override
     public ProductDTO getOrderDetailList(Long productId){
         return productRepository.selectProduct(productId);
     }
-
     @Override
     public List<ProductDTO> getOrderDetail(Long productId){
         return productRepository.selectProductAll(productId);
     }
 
+    // 회원 조회
     @Override
     public MemberDTO getOrderMember(Long memberId){
         return memberRepository.selectMember(memberId);
     }
 
+    // 주문
     @Override
     public Long order(Payment payment){
-        log.info("=========aaaaa=========" + payment);
         OrderDTO orderDTO = new OrderDTO();
         OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
         Member member = memberRepository.findById(payment.getMemberId()).get();
@@ -73,19 +74,14 @@ public class OrderServiceImpl implements OrderService {
             orderDetailRepository.save(orderDetail);
         }else{
             Basket basket = basketRepository.findById(Long.valueOf(payment.getBasketId())).get();
-            log.info("1111111111111111111111" + basket);
             orderDetail.changeProduct(basket.getProduct());
-            log.info(",,,,,,,,,,,,,,,,,,," + basket.getProduct());
-            log.info("22222222222222222" + orderDetail);
             orderDetailRepository.save(orderDetail);
         }
-//        Product product = productRepository.findById(payment.getProductId()).get();
-//        Basket basket = basketRepository.findById(payment.getBasketId()).get();
-
         return orders.getOrderId();
 
     }
 
+    // 주문 완료
     @Override
     public OrderDTO getOrderList(Long memberId){
         return orderRepository.showReceipt(memberId);

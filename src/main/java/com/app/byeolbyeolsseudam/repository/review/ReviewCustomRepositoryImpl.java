@@ -17,6 +17,7 @@ import static com.app.byeolbyeolsseudam.entity.review.QReview.review;
 public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
+    /* 리뷰 조회 */
     @Override
     public List<ReviewDTO> getReviewList(Long productId){
         return jpaQueryFactory.select(new QReviewDTO(
@@ -33,6 +34,7 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
 
     }
 
+    /* 리뷰 전체 조회 */
     @Override
     public List<ReviewDTO> getAllReviewList(Long productId){
         return jpaQueryFactory.select(new QReviewDTO(
@@ -47,20 +49,7 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
                 .fetch();
     }
 
-    @Override
-    public List<ReviewDTO> getReviewFileList(Long productId){
-        return jpaQueryFactory.select(new QReviewDTO(
-                review.reviewId, review.reviewContent, review.reviewStar,
-                review.product.productId,review.member.memberId,
-                review.member.memberName,review.reviewFileName,
-                review.reviewFilePath, review.reviewFileUuid,
-                review.createdDate))
-                .from(review)
-                .where(review.product.productId.eq(productId).and(review.reviewFileName.isNotNull()))
-                .orderBy(review.createdDate.desc())
-                .fetch();
-    }
-
+    /* 리뷰 더보기 */
     @Override
     public List<ReviewDTO> getMoreReview(Long productId, int page){
         return jpaQueryFactory.select(new QReviewDTO(
@@ -76,5 +65,21 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
                 .limit(5)
                 .fetch();
     }
+
+    /* 사진 있는 리뷰만 조회 */
+    @Override
+    public List<ReviewDTO> getReviewFileList(Long productId){
+        return jpaQueryFactory.select(new QReviewDTO(
+                review.reviewId, review.reviewContent, review.reviewStar,
+                review.product.productId,review.member.memberId,
+                review.member.memberName,review.reviewFileName,
+                review.reviewFilePath, review.reviewFileUuid,
+                review.createdDate))
+                .from(review)
+                .where(review.product.productId.eq(productId).and(review.reviewFileName.isNotNull()))
+                .orderBy(review.createdDate.desc())
+                .fetch();
+    }
+
 
 }

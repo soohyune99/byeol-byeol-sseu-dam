@@ -42,7 +42,6 @@
                              position: relative;
                                 top: 36px;
                                 left: 13px;">
-<!--                        <input name="utf8" type="hidden" value="✓" autocomplete="off">-->
                         <input type="search" name="keyword" id="query" class="clickSearch" placeholder="검색" aria-label="검색">
                         <input type="hidden" style="display: none;" name="page" id="takepage" th:value="${page}">
                     </form>
@@ -86,8 +85,8 @@
                                 </div>
                             </section>
                         </div>
+
                         <!-- 페이징 -->
-                        <!-- 페이징처리 시작 -->
                         <div th:if="${!paging.isEmpty()}">
                             <ul class="pagination justify-content-center">
                                     <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'" th:if="${paging.hasPrevious()}">
@@ -105,53 +104,16 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- 페이징처리 끝 -->
-
-
-                       <!-- <div>
-                            <nav class="pagination">
-                                <ul>
-                                    <li class="pagination-first">
-                                        <a href="" rel="nofollow">«</a>
-                                    </li>
-
-                                    <li class="pagination-prev">
-                                        <a href="" rel="prev nofollow" th:href="*{page - 1}">‹</a>
-                                    </li>
-                                    <li>
-                                        <a href="" rel="prev nofollow" th:href="*{page}">1</a>
-                                    </li>
-                                    <li class="pagination-current">
-                                        <span>2</span>
-                                    </li>
-                                    <li>
-                                        <a href="" rel="next nofollow">3</a>
-                                    </li>
-                                    <li class="pagination-next">
-                                        <a href="" rel="next nofollow">›</a>
-                                    </li>
-                                    <li class="pagination-last">
-                                        <a href="" rel="nofollow">»</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>-->
                     </div>
                 </div>
             </div>
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<!--<script src="/js/Notice/Notice.js"></script>-->
 <script src="/js/fix/headerLogin.js"></script>
 <script th:inline="javascript">
 
     const $read = $("a.read");
-
-    // $("a.search").on("click", function(e){
-    //     e.preventDefault();
-    //     document.search.submit();
-    // });
 
     /* keyword 입력시 실행되는 함수 */
     function searchList(theForm) {

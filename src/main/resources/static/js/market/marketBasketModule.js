@@ -64,9 +64,6 @@ let basketService = (function(){
 
     /* 상품 수량 변경 */
     function updateBasketCount(basketId, basketCount, callback, error){
-        console.log("상품 수량 ajax");
-        console.log(basketId);
-        console.log(basketCount);
         $.ajax({
             url: "/cart/update/" + basketId + "/" + basketCount,
             type: "post",
@@ -74,8 +71,6 @@ let basketService = (function(){
             contentType: "application/json; charset=utf-8",
             success: function (baskets, status, xhr) {
                 if (callback) {
-                    console.log("변경 성공");
-                    console.log(baskets);
                     callback(baskets);
                 }
             },
@@ -89,8 +84,6 @@ let basketService = (function(){
 
     /* 상품 삭제 */
     function deleteBasket(basketId, callback, error){
-        console.log("상품 삭제 ajax");
-        console.log(basketId);
         $.ajax({
             url: "/cart/delete/" + basketId,
             type: "delete",
@@ -113,8 +106,6 @@ let basketService = (function(){
 
     /* 상품 구매 */
     function buyBasketProduct(paymentFlag, callback, error) {
-        console.log("상품 구매 ajax");
-        console.log(paymentFlag);
         $.ajax({
             url: "/cart/buy",
             type:"post",
@@ -122,13 +113,11 @@ let basketService = (function(){
             contentType: "application/json; charset=utf-8",
             success: function (baskets, status, xhr) {
                 if (callback) {
-                    console.log("변경 성공");
                     callback(baskets);
                 }
             },
             error: function (xhr, status, err) {
                 if (error) {
-                    alert("오류");
                     error(err);
                 }
             }

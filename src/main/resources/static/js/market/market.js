@@ -44,15 +44,7 @@ function resetKeyword(){
     $reset.css('display', 'none');
 }
 
-
-/*/!* x버튼 클릭 시 검색어 삭제 *!/
-$(".btn-keyword-del").on('click', function () {
-    $searchArea.val("");
-    $(".input-group-append").css('display', 'none');
-});*/
-
 /* 클릭 > 블러 먼저 진행 되도록 하고 안에 클릭한 text 넣기 */
-
 function selectKeyword(e){
     $marketSearch.removeClass("open");
     $keywordBox.css('display', 'none');
@@ -86,40 +78,6 @@ $(".btn-keyword-del").on('click', function(){
     $(".input-group-append").css('display', 'none');
 });
 
-/*/!* 검색바 포커스했을 때 드롭박스 열기 *!/
-$searchArea.on("focus", function(){
-    $marketSearch.addClass("open");
-    $keywordBox.css('display', 'block');
-});
-
-/!* 검색바 블러했을 때 드롭박스 닫히기 *!/
-$searchArea.on("blur", function(){
-    $marketSearch.removeClass("open");
-    $keywordBox.css('display', 'none');
-});
-
-
-/*$(".keyword-box").hide(); // 엔터 입력시 keyword 박스 닫힘.
-
-/!* 외부 영역 클릭시 keyword-box 닫기 *!/
-$(document).mouseup(function (e){
-    if($keywordBox.has(e.target).length === 0){
-        $keywordBox.hide();
-    }
-});
-
-/!* ESC 키 누를시 keyword-box 닫기 *!/
-$(document).keydown(function(e){
-    //keyCode 구 브라우저, which 현재 브라우저
-    var code = e.keyCode || e.which;
-
-    if (code == 27) { // 27은 ESC 키번호
-        $keywordBox.hide(); //
-        $searchArea.val(""); // input에 입력된 글자 빈칸으로 초기화
-    }
-});*/
-
-
 /* ================================== Market ==================================*/
 
 let $searchBar = $("input#__BVID__183"); // 검색창
@@ -138,7 +96,6 @@ function show(){
 
 /* 카테고리 클릭 시 해당 마켓 부분 조회 */
 $categoryList.on('click', function(){
-    console.log("카테고리 클릭함");
     let formData = new FormData();
     let keyword = $searchArea.val() || "";  // 검색어
     globalThis.category = $(this).text().trim();
@@ -161,8 +118,8 @@ $categoryList.on('click', function(){
 
 });
 
+/* 추천 서비스 클릭*/
 $recommendList.on('click', function(){
-    console.log("추천상품 클릭함");
     let formData = new FormData();
     let keyword = $searchArea.val() || "";  // 검색어
     globalThis.category = $(this).text().trim();
@@ -184,7 +141,6 @@ $recommendList.on('click', function(){
     globalThis.page++;
 
 });
-
 
 /* 검색어 입력 시 해당 상품 조회 */
 function searchKeyword(){
@@ -203,7 +159,6 @@ function searchKeyword(){
     formData.append('keyword', keyword);
     formData.append('category', globalThis.category);
 
-    // $categoryList.removeClass("selected");
 
     marketService.getProductList(
         formData,showSearchProduct);
@@ -215,7 +170,6 @@ function searchKeyword(){
 function goHome() {
     location.href = "/market"
 }
-
 
 
 /* 마켓 전체 조회 */
@@ -312,11 +266,9 @@ function showSearchProduct(products) {
     $("div.product-list").html(text);
 }
 
-
-
 /* ================================== Infinite Scroll ==================================*/
     globalThis.page = 0
-    // let page = 1;
+
     $(window).scroll(function(){
         let formData = new FormData();
         let keyword = $searchArea.val() || "";

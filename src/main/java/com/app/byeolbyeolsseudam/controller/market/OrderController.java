@@ -38,9 +38,6 @@ public class OrderController {
     @PostMapping("/basket")
     public List<BasketDTO> getBasket(@RequestBody String paymentFlag){
         List<BasketDTO> baskets = basketService.buyBasket(paymentFlag);
-        /*baskets.forEach(basket -> {
-            log.info("=========================" + basket.getProductName());
-        });*/
         return baskets;
     }
 
@@ -52,20 +49,12 @@ public class OrderController {
     // 주문하기
     @PostMapping("/payment")
     public Long saveOrderList(Payment payment){
-        log.info("aaaaaaaaaaaaaaaaaaaaaaaa" + payment);
         return orderService.order(payment);
     }
-
-//    @PostMapping("/basket/payment")
-//    public Long saveOrderBasketList(Payment payment){
-//        return orderService.order(payment);
-//    }
-
 
     // 주문 완료 조회
     @PostMapping("/success/{memberId}")
     public OrderDTO getOrderList(@PathVariable Long memberId){
-        log.info("---------------------------0" + memberId);
         return orderService.getOrderList(memberId);
     }
 
@@ -73,9 +62,5 @@ public class OrderController {
     public void test(@Valid @RequestBody List<BasketDTO> list){
         log.info(("---------------" + list));
     }
-
-
-
-
 
 }
