@@ -19,12 +19,13 @@ $modalCloseBtn.on('click', function(){
 
 /* 배지 정보 모달 열기 */
 function badgeModalOpen(badgeId){
-    let $badgeImg = $(".mybadgeImg.acquired." + badgeId).val();
-    let $badgeName = $(".mybadgeImg.acquired." + badgeId).next().text()
-    let $badgeInfo = $(".mybadgeImg.acquired." + badgeId).next().next().text();
+    let $badgeImg = $(".mybadgeImg." + badgeId + ".acquired").attr('src');
+    let $badgeName = $(".mybadgeImg." + badgeId + ".acquired").next().text()
+    let $badgeInfo = $(".mybadgeImg." + badgeId + ".acquired").next().next().text();
+    let $badgeDate = $(".badge-createdDate." + badgeId).val();
 
     $(".acquired-badgeName").html($badgeName);
-    $(".acquired-badgeImage").html($badgeImg);
+    $(".acquired-badgeImage").attr('src', $badgeImg);
     $(".acquired-badgeInfo").html($badgeInfo);
 
     $badgeModal.css('display', 'block');
@@ -74,6 +75,7 @@ function showBadges(badges){
             text += `<img class="mybadgeImg ` + badge.badgeId + `" src="` + badge.badgeFileName + `">`;
             text += `<p class="badgeName">` + badge.badgeName + `</p>`;
             text += `<p class="badgeInfo">` + badge.badgeInfo + `</p>`;
+            text += `<input type="hidden" value="` + badge.createdDate + `" class="badge-createdDate "` + badge.badgeId + `>`;
             text += `</li>`;
         }
     });

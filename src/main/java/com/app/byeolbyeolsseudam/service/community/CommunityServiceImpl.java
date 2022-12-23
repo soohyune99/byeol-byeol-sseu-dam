@@ -33,16 +33,6 @@ public class CommunityServiceImpl implements CommunityService {
         return boardRepository.selectBoards(criteria);
     }
 
-//    @Override
-//    public List<BoardDTO> selectBoardsofCategory(BoardCategory boardCategory){
-//        return boardRepository.selectBoardsofCategory(boardCategory);
-//    }
-//
-//    @Override
-//    public List<BoardDTO> selectBoardsofKeyword(String keyword){
-//        return boardRepository.selectBoardsofKeyword(keyword);
-//    }
-
     @Override
     public BoardDTO readBoard(Long boardId){
         return boardRepository.readBoard(boardId);
@@ -57,8 +47,6 @@ public class CommunityServiceImpl implements CommunityService {
         }
         boardRepository.save(board);
     }
-
-
 
     @Override
     public void updateBoard(BoardDTO boardDTO){
@@ -80,11 +68,6 @@ public class CommunityServiceImpl implements CommunityService {
         board.getFiles().stream().forEach(file -> fileBoardRepository.delete(file));
         boardRepository.delete(board);
     }
-
-//    @Override
-//    public List<BoardDTO> selectScrollBoards(Criteria criteria){
-//        return boardRepository.selectScrollBoards(criteria);
-//    }
 
     @Override
     public Long plusView(Long boardId){
