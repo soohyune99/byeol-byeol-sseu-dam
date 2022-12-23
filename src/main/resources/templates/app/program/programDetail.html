@@ -408,11 +408,6 @@
     let programLimitCount = [[${program.programLimitCount}]];
     // let check = [[${check}]]; // 신청가능/ 불가 (model 객체 사용) 위에 사용
 
-    // $("#modal_title").on("click", function () {
-    //     alert($(obj).closest(".responsive").find('#programId').attr("href"));
-    //     location.href = "/program/programAddSuccess"
-    // })
-
     /* ProgramDetail-신청하기 -> ProgramDetail-Modal 신청하기 클릭시 */
     function insertProgram() {
         let memberId = $('.memberIdSession').attr('href');
@@ -437,19 +432,6 @@
             location.href = "/program/saveMember" + "?programId=" + programId + "&memberId=" + memberId;
         }
     }
-    /*
-    * $(function(){
-
-    $("#Apply").click(function(){
-      $(".modal");
-    });
-
-    $(".modal_content").click(function(){
-      $(".modal").fadeOut();
-    });
-
-  });
-    * */
 
     /* 로그인이 안되어있을 경우 _ 로그인/회원가입 창으로 가기 */
     function goLogin() {

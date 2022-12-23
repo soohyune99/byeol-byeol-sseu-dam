@@ -14,28 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import java.util.List;
 
 public interface ProgramCustomRepository{
-
-    /* 키워드를 입력시 검색 결과 List */
-    public List<ProgramDTO> searchProgram(String keyword);
-
-    /* 전체 program List */
-    public List<ProgramDTO> programAllList();
-
-    /* program List _ STATUS List */
-    public List<ProgramDTO> programStatusIngList(ProgramStatus programStatus);
-
     /* 프로그램 Article 클릭시 해당 Detail 페이지로 이동 */
     public ProgramDTO findProgramDetail(Long programId);
-
-//    /* 동적쿼리 + 무한스크롤 Search -> keyword, programStatus */
-//    public Page<ProgramDTO> selectScrollPrograms (Search search, Pageable pageable);
-
-    /* 신청하기 클릭시 */
-
-    /* program Detail _ 상세보기 클릭시 상세페이지 */
-    public ProgramDTO programDetailPage(Model model, @SessionAttribute Member member, Long programId);
-
-    /* program Detail _ 상세보기 클릭시 상세페이지 */
-    public ProgramDTO programDetailPage1(Long programId);
 
 }

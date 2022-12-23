@@ -43,16 +43,17 @@ public class ProgramDynamicCustomRepositoryImpl implements ProgramDynamicCustomR
                 program.createdDate
                 ))
                 .from(program)
-                .orderBy(program.programDate.desc())
+                .orderBy(program.programDate.desc()) // 프로그램 수강일자 최신순
                 .where(
                         keywordContains(keyword), // 검색 Keyword 일치
                         programStatusEq(programStatus) // 상태 일치 확인
                 )
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset()) // 조회된 리스트 중 시작번호
+                .limit(pageable.getPageSize()) // 한페이지에 몇개 들어갈지
                 .fetch();
 
-        /* 계산될 전체 개수에서도 확인 가능해야함 _ 처음에는 where절이 안붙어있어서 전체 총개수만 가져왔었는데 이 부분에다가도 where절을 붙여서 해당 검색, 상태별 count가 가능하도록 진행 */
+        /* 계산될 전체 개수에서도 확인 가능해야함
+        _ 처음에는 where절이 안붙어있어서 전체 총개수만 가져왔었는데 이 부분에다가도 where절을 붙여서 해당 검색, 상태별 count가 가능하도록 진행 */
         long total = jpaQueryFactory.select(new QProgramDTO(
                 program.programId,
                 program.programName,
@@ -82,7 +83,6 @@ public class ProgramDynamicCustomRepositoryImpl implements ProgramDynamicCustomR
         return new PageImpl<>(programs,pageable,total);
 
     }
-
 
     /* Keyword 일치 여부 확인 메소드 */
     private BooleanExpression keywordContains(String keyword){

@@ -88,7 +88,7 @@ public class PickupAcceptCustomRepositoryImpl implements PickupAcceptCustomRepos
 //
 //    }
 
-    /*   */
+    /* 수거 리스트 _ 소재지 검색 가능 동적쿼리  */
     @Override
     public Page<PickupDTO> findListPickupStatusSojaeji(String searchSojaeji, Pageable pageable) {
 
