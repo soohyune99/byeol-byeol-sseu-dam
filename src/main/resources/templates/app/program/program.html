@@ -17,9 +17,6 @@
     <link rel="stylesheet" href="/css/fix/footer2.css">
     <link rel="icon" href="/images/fix/favicon.png">
     <style>
-        /*#noArticle1{*/
-        /*    width: 24px; height: 24px; border-width: 0.25rem; border-style: solid; border-color: rgb(0, 199, 174) rgba(0, 199, 174, 0.2) rgba(0, 199, 174, 0.2); border-image: initial;*/
-        /*}*/
         .noArticle2 {
             color: rgb(102, 102, 102);
             font-size: 14px;
@@ -28,19 +25,12 @@
         }
 
         .goHome {
-            /* width: 5rem; */
-            /* align-content: center; */
-            /* align-items: center; */
             display: flex;
             align-items: center;
-            /* align-content: center; */
             background: #f4f4f4;
             border: 0;
             border-radius: 8px;
-            /* width: 100%; */
             height: 2.75rem;
-            /* text-align: center; */
-            /* margin: 0 auto; */
             margin-left: 3px;
             padding: 0px 13px;
             font-size: 15px;
@@ -335,7 +325,6 @@
             text += "<div data-v-1a98b297='' class='image-wrap' style='padding-top: 66.6667%;'>";
             /* 해당 이미지 경로 */
             text += "<img data-v-1a98b297='' src='" + program.programFileProfileName + "'>";
-            /*text += "<img data-v-1a98b297='' src='" + program.programFileProfilePath + "'>";*/
             text += "</div>";
             text += "</article>";
             text += "</div>";
@@ -392,9 +381,6 @@
 
     /* 프로그램 수 Count */
     function programCountNum(programs, count) {
-        // programs 가 유사배열객체?
-        // 12개가
-
         // let count = programs.pageable.totalPages;
         // let count = Array.prototype.slice.call(programs).length; //실패
         // let count = Array.from(programs.content).length; // 12개 이하의 count는 잘됨, 12개 이상의 content는 어떻게 count? 무한스크롤되는 경우 바닥찍으면 0이 됨.

@@ -23,9 +23,7 @@ public class RecyclingController {
 
     /* 쓰담 수거 _ 처음 소개 페이지 이동 */
     @GetMapping("/recyclingintro")
-    public  String recyclingIntro(PickupDTO pickupDTO){
-//        pickupDTO.setMemberId(null);
-//        recyclingService.recyclingSave(pickupDTO);
+    public  String recyclingIntro(){
         return "app/recycling/recyclingIntro";
     }
 
@@ -33,12 +31,6 @@ public class RecyclingController {
     @GetMapping("/recycling")
     public String recycling(PickupDTO pickupDTO){
 
-//      ---------!!! 로그인되었을때 확인필요 !!!----------------------
-//      지금은 임시로 넣은것 (나중에 세션값 받아서 넣어야 함)
-//        pickupDTO.setMemberId(134L);
-//        pickupDTO.getMemberName();
-//      ----------------------------------------------------------
-//        recyclingService.recyclingSave(pickupDTO);
         return "app/recycling/recycling";
     }
 
