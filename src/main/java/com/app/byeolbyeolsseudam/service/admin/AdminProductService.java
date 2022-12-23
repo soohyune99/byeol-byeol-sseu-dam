@@ -80,11 +80,6 @@ public class AdminProductService {
         adminProductRepository.save(product);
     }
 
-//    public Page<OrderDetailDTO> searchOrderDetail(Pageable pageable){
-//        List<OrderDetailDTO> orderDetails = adminOrderDetailRepository.showOrderDetailList(pageable);
-//        Page<OrderDetailDTO> orderDetailList = new PageImpl<>(orderDetails, pageable, adminOrderDetailRepository.findAll().size());
-//        return orderDetailList;
-//    }
     public OrderDTO showOrderDetail(Long orderId){
         return adminOrderRepository.showOrderDetail(orderId);
     }

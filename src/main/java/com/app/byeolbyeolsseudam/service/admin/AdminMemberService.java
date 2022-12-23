@@ -43,7 +43,6 @@ public class AdminMemberService {
     public void removeMember(List<String> memberIdstr){
         List<Long> memberId = new ArrayList<>();
         memberIdstr.stream().map(Long::parseLong).forEach(memberId::add);
-//        memberId.forEach(adminMemberRepository::deleteById);
 
         memberId.stream().map(id->adminMemberRepository.findById(id).get()).forEach(member->{
             member.updateMemberCategory(MemberCategory.탈퇴회원);

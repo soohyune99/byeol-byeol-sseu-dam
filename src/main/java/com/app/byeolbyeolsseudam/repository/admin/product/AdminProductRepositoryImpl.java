@@ -17,25 +17,6 @@ import static com.app.byeolbyeolsseudam.entity.product.QProduct.product;
 public class AdminProductRepositoryImpl implements AdminProductCustomRepository{
 private final JPAQueryFactory jpaQueryFactory;
 
-//    @Override
-//    public List<ProductDTO> showProductList() {
-//        return jpaQueryFactory.select(new QProductDTO(
-//                product.productId,
-//                product.productCategory,
-//                product.productName,
-//                product.productPrice,
-//                product.productCount,
-//                product.productFileDetailName,
-//                product.productFileDetailPath,
-//                product.productFileDetailUuid,
-//                product.productFileProfileName,
-//                product.productFileProfilePath,
-//                product.productFileProfileUuid
-//        )).from(product)
-//                .orderBy(product.productId.desc())
-//                .fetch();
-//    }
-
     @Override
     public List<ProductDTO> searchProduct(String keyword) {
         return jpaQueryFactory.select(new QProductDTO(

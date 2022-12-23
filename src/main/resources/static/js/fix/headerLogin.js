@@ -50,8 +50,6 @@ function showMemberInfo(member){
         })
     }
 
-    // $(".mypage-memberType").html(member.memberCategory);
-    // $(".mypage-memberPoint").html(member.memberPoint);
 }
 
 

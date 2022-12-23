@@ -5,7 +5,6 @@ import com.app.byeolbyeolsseudam.domain.banner.BannerDTO;
 import com.app.byeolbyeolsseudam.domain.course.CourseDTO;
 import com.app.byeolbyeolsseudam.domain.product.ProductDTO;
 import com.app.byeolbyeolsseudam.domain.program.ProgramDTO;
-import com.app.byeolbyeolsseudam.domain.spot.SpotDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
@@ -31,7 +30,7 @@ import java.util.UUID;
 @Slf4j
 public class AdminFileUploadController {
 
-//배너
+    //배너 업로드
     @PostMapping("/banner/upload")
     public List<BannerDTO> uploadBanner(List<MultipartFile> upload) throws IOException {
         String rootPath = "C:/upload/banner";
@@ -60,6 +59,7 @@ public class AdminFileUploadController {
         }
         return files;
     }
+    //배너 삭제
     @PostMapping("/banner/delete")
     public void deleteBanner(String uploadPath,String bannerUuid, String bannerName){
         File file = new File("C:/", uploadPath+"/"+bannerUuid+"_"+bannerName);
@@ -168,12 +168,6 @@ public class AdminFileUploadController {
 
         for (MultipartFile multipartFile : upload){
             ProgramDTO programDTO = new ProgramDTO();
-//            UUID uuid = UUID.randomUUID();
-//            String fileName = multipartFile.getOriginalFilename();
-//            uploadFileName = uuid.toString() + "_" + fileName;
-//            programDTO.setProgramFileDetailName(fileName);
-//            programDTO.setProgramFileDetailUuid(uuid.toString());
-//            programDTO.setProgramFileDetailPath("/upload/program/" + createDirectoryByNow());
 
             String uuid = UUID.randomUUID().toString();
             String fileName = multipartFile.getOriginalFilename();
@@ -252,48 +246,13 @@ public class AdminFileUploadController {
         log.info("컨트롤러");
         log.info(path);
         Resource resource = new FileSystemResource(path);
-//URI uri = ClassLoader.getSystemResource("com/stackoverflow/json").toURI();
-//String mainPath = Paths.get(uri).toString();
-//Path path = Paths.get(mainPath ,"Movie.class");
         HttpHeaders header = new HttpHeaders();
         String name = resource.getFilename();
-//        name = name.substring(name.indexOf("_")+1);
         header.add("Content-Disposition","attachment;filename="+ new String(name.getBytes("UTF-8")));
 
         return new ResponseEntity<>(resource,header, HttpStatus.OK);
     }
 
-
-
-
-
-
-//    @PostMapping("/qr/upload")
-//    public List<SpotDTO> uploadQr(List<MultipartFile> upload) throws IOException {
-//        String rootPath = "C:/upload/spot";
-//        String uploadFileName = null;
-//        List<SpotDTO> files = new ArrayList<>();
-//
-//        File uploadPath = new File(rootPath, createDirectoryByNow());
-//        if(!uploadPath.exists()){
-//            uploadPath.mkdirs();
-//        }
-//
-//        for (MultipartFile multipartFile : upload){
-//            SpotDTO spotDTO = new SpotDTO();
-//            String uuid = UUID.randomUUID().toString();
-//            String fileName = multipartFile.getOriginalFilename();
-//            uploadFileName = uuid + fileName;
-//            spotDTO.setSpotQrName("/upload/spot/" + createDirectoryByNow()+ "/" + uuid + fileName);
-//
-//            File saveFile =new File(uploadPath, uploadFileName);
-//            multipartFile.transferTo(saveFile);
-//
-//            files.add(spotDTO);
-//
-//        }
-//        return files;
-//    }
 
 
     public String createDirectoryByNow(){
