@@ -1,3 +1,7 @@
+/*
+    author: JungJaehun
+    contents: 관리자 페이지
+*/
 package com.app.byeolbyeolsseudam.controller.admin;
 
 import com.app.byeolbyeolsseudam.service.admin.AdminCommunityService;
