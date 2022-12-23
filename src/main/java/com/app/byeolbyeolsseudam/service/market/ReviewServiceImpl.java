@@ -20,20 +20,25 @@ public class ReviewServiceImpl implements ReviewService {
     private final MemberRepository memberRepository;
     private final ProductRepository productRepository;
 
+    // 리뷰 조회
     @Override
     public List<ReviewDTO> getReviewList(Long productId){
         return reviewRepository.getReviewList(productId);
     }
 
+    // 리뷰 전체 조회
     @Override
     public List<ReviewDTO> getReviewAllList(Long productId){
         return reviewRepository.getAllReviewList(productId);
     }
+
+    // 리뷰 더보기
     @Override
     public List<ReviewDTO> getMoreReview(Long productId, int page){
         return reviewRepository.getMoreReview(productId, page);
     }
 
+    // 리뷰 저장
     @Override
     public void saveReview(ReviewDTO reviewDTO){
         Review review = reviewDTO.toEntity();
@@ -42,6 +47,7 @@ public class ReviewServiceImpl implements ReviewService {
         reviewRepository.save(review);
     }
 
+    // 리뷰 파일만
     @Override
     public List<ReviewDTO> getReviewFileList(Long productId){
         return reviewRepository.getReviewFileList(productId);

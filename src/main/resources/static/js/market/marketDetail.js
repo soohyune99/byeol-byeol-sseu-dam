@@ -1,7 +1,5 @@
 /* marketDetail.html */
-// let $purchaseBtn = $(".purchase-btn");
 
-/* 세션에 있는 멤버 아이디 */
 /* 세션에 있는 멤버 아이디 & 이름 */
 const memberId = $("input[name='memberId']").val();
 const memberName = $("input[name='memberName']").val();
@@ -140,10 +138,9 @@ function totalPrice(){
 
 /* ================================== MarketDetail ==================================*/
 
+/* productId를 뽑기위해 url에서 split */
 let url = decodeURI(window.location.href).split("/");
 let productId = url[url.length - 1];
-console.log(productId);
-
 
 readProduct(productId);
 
@@ -169,14 +166,12 @@ function showProductDetail(product){
 }
 
 /* 구매하지 않은 제품일 경우 구매평 작성 불가 모달 띄우기 */
-
 function openReviewModal(){
     if(false){
         $(".swal2-container").css('display', 'block');
         return;
     }
     openReview();
-
 }
 
 /* 구매평 작성 불가 모달 닫기 */
@@ -269,7 +264,6 @@ $(".thumb_detail_img_wrap").on('click', function(){
 });
 
 
-
 /* ================================== Review ==================================*/
 let reviewCount = 0;
 let realReviewCount = 0;
@@ -318,17 +312,13 @@ $reviewFileForm.on('change', function () {
     );
 });
 
-console.log($reviewSubmitBtn);
-console.log(globalThis.starRateTemp);
 /* 리뷰 작성 */
 $reviewSubmitBtn.on("click", function(){
-    console.log("리뷰 작성 버튼 누름");
     saveReview();
 })
 
 function saveReview(){
     if(!$reviewContent.val() || $reviewContent.val()== "" ||!globalThis.starRateTemp){
-        alert("리뷰를 다 입력하세요");
         $reviewSubmitBtn.removeClass("active");
         return;
     }
@@ -343,7 +333,6 @@ function saveReview(){
         $reviewStar.val("");
         $("input[name='reviewFileName']").val('');
         $reviewSubmitBtn.removeClass("active");
-        console.log("등록 성공")
         showReview();
     });
 }
@@ -531,6 +520,7 @@ function reviewCallback(reviews){
             totalOne++;
         }
     })
+
     avg = total / reviews.length;
     $(".rating_point").html(isNaN(avg.toFixed(1)) ? 0:avg.toFixed(1));
     $(".review_count").html("총" + reviews.length + "개의 구매평");
@@ -720,16 +710,11 @@ $purchaseBtn.on("click", function() {
     }
 
 });
-/* 장바구니 모달 열기 */
-/*function basketModalOpen(){
-    $basketModal.css('display', 'block');
-}*/
 
 /* 장바구니 모달 닫기 */
 function basketModalClose(){
     $basketModal.css('display', 'none');
 }
-
 
 /* 장바구니 버튼 누를 시 바로 insert */
 let $basketBtn = $(".btn-block");

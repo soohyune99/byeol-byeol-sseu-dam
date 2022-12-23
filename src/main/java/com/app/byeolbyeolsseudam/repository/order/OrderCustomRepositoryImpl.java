@@ -97,6 +97,7 @@ public class OrderCustomRepositoryImpl implements OrderCustomRepository {
         return myorder;
     }
 
+    /* 주문 완료 */
     @Override
     public OrderDTO showReceipt(Long memberId){
         return jpaQueryFactory.select(new QOrderDTO(order.orderId, order.orderStatus,

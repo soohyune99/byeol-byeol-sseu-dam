@@ -9,7 +9,6 @@ let orderService = (function(){
             contentType: "application/json; charset=utf-8",
             success: function (products, status, xhr) {
                 if(callback){
-                    console.log("변경 성공");
                     callback(products);
                 }
             },
@@ -29,7 +28,6 @@ let orderService = (function(){
             contentType: "application/json; charset=utf-8",
             success: function (products, status, xhr) {
                 if(callback){
-                    console.log("변경 성공");
                     callback(products);
                 }
             },
@@ -42,8 +40,6 @@ let orderService = (function(){
 
     }
     function getBasketOrderList(basketFlag, callback, error){
-        console.log("장바구니 상품 구매 ajax");
-        console.log(basketFlag);
         $.ajax({
             url: "/ordering/basket/",
             type:"post",
@@ -52,15 +48,12 @@ let orderService = (function(){
             success: function (baskets, status, xhr) {
                 console.log(baskets);
                 if (callback) {
-                    console.log("변경 성공");
                     callback(baskets);
 
                 }
             },
             error: function (xhr, status, err) {
-                console.log("실패");
                 if (error) {
-                    alert("오류");
                     error(err);
                 }
             }
@@ -105,32 +98,10 @@ let orderService = (function(){
             }
         });
     }
-   /* function getBasketSaveOrder(formData, callback, error) {
-        console.log("ajax 들어옴");
-        console.log(formData.get("basketId"));
-        $.ajax({
-            url:"/ordering/payment",
-            type: "post",
-            data: formData,
-            enctype:'multipart/form-data',
-            cache:false,
-            contentType:false,
-            processData:false,
-            success: function(order){
-                console.log("콜백 성공");
-                console.log(order);
-                location.href = "/market/paid/"+ order;
-            },
-            error: function (xhr, status, err) {
-                if(error){
-                    console.log("콜백 실패");
-                    error(err);
-                }
-            }
-        });
-    }*/
 
+    /* ================================== bootpay api ==================================*/
 
+    /* 상품 detail에서 바로 주문하기 */
     async function payment( products, memberId, callback, error){
         // 결제 금액, 구매자의 이름, 이메일, 전화번호, 주소, 배송메시지, 포인트
         const s_zipNo = document.getElementById('sample4_postcode').value;
@@ -145,7 +116,6 @@ let orderService = (function(){
         const productId = $(".hidden-productId").text();
         const productName = $(".hidden-productName").text();
         const productPrice =$(".hidden-productPrice").text();
-        // const memberId = $("input[name='memberId']").val();
         const memberName = $("input[name='memberName']").val();
         const memberPhone =  $(".info-member-phone").text();
         const memberEmail =  $(".info-member-email").text();
@@ -197,6 +167,7 @@ let orderService = (function(){
     }
 
 
+    /* 장바구니에서 주문하기 */
     async function basketPayment(baskets, memberId, callback, error){
         // 결제 금액, 구매자의 이름, 이메일, 전화번호, 주소, 배송메시지, 포인트
         const s_zipNo = document.getElementById('sample4_postcode').value;
@@ -211,7 +182,6 @@ let orderService = (function(){
         const basketId = $(".hidden-productId").text();
         const productName = $(".hidden-productName").text();
         const productPrice =$(".hidden-productPrice").text();
-        // const memberId = $("input[name='memberId']").val();
         const memberName = $("input[name='memberName']").val();
         const memberPhone =  $(".info-member-phone").text();
         const memberEmail =  $(".info-member-email").text();

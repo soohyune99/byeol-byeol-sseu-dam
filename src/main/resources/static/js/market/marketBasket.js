@@ -1,6 +1,5 @@
 /* marketBasket.html */
 
-/* 세션에 있는 멤버 아이디 */
 /* 세션에 있는 멤버 아이디 & 이름 */
 const memberId = $("input[name='memberId']").val();
 const memberName = $("input[name='memberName']").val();
@@ -17,10 +16,6 @@ let $selectBtn = $(".agree");
 
 let clickFlag = true;
 
-/*$modalOpenBtn.on('click', function(){
-    optionModalOpen();
-});*/
-
 $modalXBtn.on('click', function(){
     $optionModal.css('display', 'none');
 });
@@ -36,8 +31,7 @@ function selectboxOpen(){
 
 // 전체 동의 클릭
 $totalSelectBtn.on("click", function(){
-    //각각의 약관의 checked 프로퍼티를 모두 전체 동의의 checked 상태로 변경시켜준다.
-    // 전체 동의가 true면 나머지 다 true
+
     $(".agree").prop("checked", $(this).is(":checked"));
 
     let totalPrice = 0;
@@ -62,18 +56,14 @@ $totalSelectBtn.on("click", function(){
 
 // 각각의 약관 동의 클릭
 $(".startBakset").on("click",".agree" ,function(){
-    // 각각의 약관의 checked 프로퍼티가 true인 개수를 가져온 뒤
-    // 2개 모두 true일 경우 전체 동의도 true이다.
+
     $totalSelectBtn.prop("checked", $(".agree").filter(":checked").length == $(".agree").length);
 
     let $checked = $("input[name='check-agree']:checked");
 
-  /*  if($checked.length < 1){
-        alert('삭제할 품목을 선택해 주세요.');
-        return false;
-    }*/
     var checkList = [];
     let totalPrice = 0;
+
     $.each($checked, function(k, v){
         checkList.push($(this).val());
         $("._cart_check-count").html($checked.length);
@@ -157,7 +147,6 @@ function totalPrice(){
 
 /* ================================== MarketBasket ==================================*/
 
-// $totalSelectBtn.click();
 showBasket();
 
 $(document).ready(function () {
@@ -299,23 +288,6 @@ function showBasketList(baskets){
     $totalSelectBtn.click();
 }
 
-
-
-/* 장바구니가 비어 있을 때 */
-/*function emptyBasket(){
-    let text = "";
-
-    text += `<tr>`;
-    text += `<td colspan="4">`;
-    text += `<i class="btl bt-shopping-cart bt-3x"></i>`;
-    text += `<div class="body_font_color_40" style="font-size:14px;">장바구니가 비어있습니다.</div>`;
-    text += `</td>`;
-    text += `</tr>`;
-
-    $(".cart_empty").append(text);
-
-}*/
-
 /* 수량 변경 클릭 시 모달에 정보 조회 */
 function optionModalOpen(basketId){
     $optionModal.css('display', 'block');
@@ -394,8 +366,6 @@ $(".startBakset").on("click", ".bt-times", function(){
 
 
 
-
-
 /* ================================== MarketPayment ==================================*/
 
 /* 개별 구매*/
@@ -420,7 +390,6 @@ function checkedProductBuy() {
         alert('구매할 품목을 선택해 주세요.');
         return false;
     }
-    // var checkList = [];
     var checkList = [];
 
     $.each($checked, function(k, v){
@@ -431,72 +400,3 @@ function checkedProductBuy() {
     location.href= '/market/basket/payment?basketId='+ basketId;
 
 }
-/*
-
-function example(test) {
-    location.href = '/ordering/payment/' + test;
-}*/
-
-/*function example(baskets) {
-    let basketIdAr = [];
-    let formData = new FormData();
-    baskets.forEach(basket => {
-        basketIdAr.push(basket.basketId)
-    });
-    formData.append("basketDTO", basketIdAr);
-    fetch("/market/basket/payment", {
-        method: "post",
-        cache:"no-cache",
-        data: formData
-        // body: new URLSearchParams({
-        //     basketId: baskets
-        // })
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-        })
-}*/
-
-/*
-/!* 쿼리스트링 가져오는 메소드 *!/
-function searchParam(key) {
-    return new URLSearchParams(location.search).get(key);
-}
-
-function typePayment(){
-    let paymentFlag = searchParam('basketId');
-
-
-    if(paymentFlag != ''){          // 장바구니에서 넘어옴
-        basketService.buyBasketProduct(
-            paymentFlag, showOrderBasketDetail
-        )
-    }else{
-        orderService.payment(
-            products, memberId
-        )
-    }
-}
-*/
-
-/* basketService.BuyBasketProduct(
-       basketId, example
-   )*/
-
-/* $.each($checked, function(index){
-     console.log("formdata");
-     console.log(index);
-     console.log($checked)
-     console.log( $checked[index]);
-     console.log( $($checked[index]).val());
-
-     formData.append("basketId", $($checked[index]).val());
-     // checkList.push($(this).val());
- });
- // let basketId = checkList.join(',');
- console.log("append 완료");
- console.log(formData.getAll("basketId"));
- basketService.BuyBasketProduct(
-     formData, example
- )*/

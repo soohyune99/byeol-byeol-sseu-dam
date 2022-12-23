@@ -56,16 +56,4 @@ public class NoticeController {
         model.addAttribute("searchCount", noticeService.search(keyword, pageable).getTotalElements());
         return "app/notice/NoticeSearch";
     }
-
-/*    @GetMapping("/search/{pages}" )
-    public String searchPage(@RequestParam(value = "keyword") String keyword, @PathVariable("page") Integer pages, Model model){
-        log.info("============================" + pages);
-        Pageable pageable = PageRequest.of((pages - 1),5, Sort.Direction.DESC, "createdDate");
-
-
-        model.addAttribute("searchResult", noticeService.search(keyword, pageable));
-        model.addAttribute("searchCount", noticeService.search(keyword, pageable).getContent().size());
-        return "app/notice/NoticeSearch";
-    }*/
-
 }

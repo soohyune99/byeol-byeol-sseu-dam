@@ -18,6 +18,7 @@ public class OrderDetailCustomRepositoryImpl implements OrderDetailCustomReposit
 
     public final JPAQueryFactory jpaQueryFactory;
 
+    // 주문 내역 뽑기
     @Override
     public OrderDetailDTO showOrderDetail(Long productId){
         return jpaQueryFactory.select(new QOrderDetailDTO(

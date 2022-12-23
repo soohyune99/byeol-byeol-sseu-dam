@@ -24,6 +24,7 @@ public class BasketServiceImpl implements BasketService {
     private final ProductRepository productRepository;
     private final BasketRepository basketRepository;
 
+    // 장바구니 저장
     @Override
     public Long saveBasket(BasketDTO basketDTO){
         BasketDTO basketDTO1 = new BasketDTO();
@@ -39,16 +40,19 @@ public class BasketServiceImpl implements BasketService {
         return basket.getBasketId();
     }
 
+    // 장바구니 조회
     @Override
     public List<BasketDTO> getBasket(Long memberId){
         return basketRepository.selectBasketList(memberId);
     }
 
+    // 장바구니 한개 조회
     @Override
     public BasketDTO selectBasket(Long basketId){
         return basketRepository.selectBasket(basketId);
     }
 
+    // 장바구니 수량 변경
     @Override
     public void updateBasket(Long basketId, int basketCount){
         Basket basket = basketRepository.findById(basketId).get();
@@ -56,6 +60,7 @@ public class BasketServiceImpl implements BasketService {
         basketRepository.save(basket);
     }
 
+    // 장바구니 삭제
     @Override
     public void deleteBasket(String basketId){
 
@@ -71,6 +76,7 @@ public class BasketServiceImpl implements BasketService {
         }
     }
 
+    // 장바구니 구매
     @Override
     public List<BasketDTO> buyBasket(String basketId){
         List<BasketDTO> basketDTOO = new ArrayList<>();
