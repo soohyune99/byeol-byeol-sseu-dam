@@ -57,7 +57,8 @@ Spring 프로젝트 [별별쓰담] Gradle
 - 기사님 페이지 : 수거 수락하기 및 완료하기 기능 제공
 
 # ERD
-![별별쓰담 다이어그램](https://user-images.githubusercontent.com/114070466/209499230-dada4a67-25e6-483d-9411-9e4e73e21b2c.png)
+![별별쓰담ERD](https://user-images.githubusercontent.com/114070466/209500129-613cdd90-681d-4c1f-938c-153354e9dcea.png)
+
 
 # 느낀점
 관리자 페이지를 퍼블리싱 하며 별별쓰담에 필요한 기능과 추상적이었던 부분을 구체화 하는 작업을 하였습니다.
